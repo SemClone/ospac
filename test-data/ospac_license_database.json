@@ -1,0 +1,317 @@
+{
+  "version": "1.0",
+  "generated": "2025-11-03T23:50:44.122749",
+  "total_licenses": 5,
+  "licenses": {
+    "0BSD": {
+      "id": "0BSD",
+      "name": "0BSD",
+      "category": "permissive",
+      "permissions": {
+        "commercial_use": true,
+        "distribution": true,
+        "modification": true,
+        "patent_grant": false,
+        "private_use": true
+      },
+      "conditions": {
+        "disclose_source": false,
+        "include_license": true,
+        "include_copyright": true,
+        "include_notice": false,
+        "state_changes": false,
+        "same_license": false,
+        "network_use_disclosure": false
+      },
+      "limitations": {
+        "liability": true,
+        "warranty": true,
+        "trademark_use": false
+      },
+      "obligations": [
+        "Include license text",
+        "Include copyright notice"
+      ],
+      "compatibility_rules": {
+        "static_linking": {
+          "compatible_with": [
+            "category:any"
+          ],
+          "incompatible_with": [],
+          "requires_review": []
+        },
+        "dynamic_linking": {
+          "compatible_with": [
+            "category:any"
+          ],
+          "incompatible_with": [],
+          "requires_review": []
+        },
+        "distribution": {
+          "can_distribute_with": [
+            "category:any"
+          ],
+          "cannot_distribute_with": [],
+          "special_requirements": [
+            "Include license and copyright notice"
+          ]
+        },
+        "contamination_effect": "none",
+        "notes": "Permissive license with minimal restrictions"
+      },
+      "spdx_metadata": {
+        "is_osi_approved": false,
+        "is_fsf_libre": false,
+        "is_deprecated": false
+      }
+    },
+    "3D-Slicer-1.0": {
+      "id": "3D-Slicer-1.0",
+      "name": "3D-Slicer-1.0",
+      "category": "permissive",
+      "permissions": {
+        "commercial_use": true,
+        "distribution": true,
+        "modification": true,
+        "patent_grant": false,
+        "private_use": true
+      },
+      "conditions": {
+        "disclose_source": false,
+        "include_license": true,
+        "include_copyright": true,
+        "include_notice": false,
+        "state_changes": false,
+        "same_license": false,
+        "network_use_disclosure": false
+      },
+      "limitations": {
+        "liability": true,
+        "warranty": true,
+        "trademark_use": false
+      },
+      "obligations": [
+        "Include license text",
+        "Include copyright notice"
+      ],
+      "compatibility_rules": {
+        "static_linking": {
+          "compatible_with": [
+            "category:any"
+          ],
+          "incompatible_with": [],
+          "requires_review": []
+        },
+        "dynamic_linking": {
+          "compatible_with": [
+            "category:any"
+          ],
+          "incompatible_with": [],
+          "requires_review": []
+        },
+        "distribution": {
+          "can_distribute_with": [
+            "category:any"
+          ],
+          "cannot_distribute_with": [],
+          "special_requirements": [
+            "Include license and copyright notice"
+          ]
+        },
+        "contamination_effect": "none",
+        "notes": "Permissive license with minimal restrictions"
+      },
+      "spdx_metadata": {
+        "is_osi_approved": false,
+        "is_fsf_libre": false,
+        "is_deprecated": false
+      }
+    },
+    "AAL": {
+      "id": "AAL",
+      "name": "AAL",
+      "category": "permissive",
+      "permissions": {
+        "commercial_use": true,
+        "distribution": true,
+        "modification": true,
+        "patent_grant": false,
+        "private_use": true
+      },
+      "conditions": {
+        "disclose_source": false,
+        "include_license": true,
+        "include_copyright": true,
+        "include_notice": false,
+        "state_changes": false,
+        "same_license": false,
+        "network_use_disclosure": false
+      },
+      "limitations": {
+        "liability": true,
+        "warranty": true,
+        "trademark_use": false
+      },
+      "obligations": [
+        "Include license text",
+        "Include copyright notice"
+      ],
+      "compatibility_rules": {
+        "static_linking": {
+          "compatible_with": [
+            "category:any"
+          ],
+          "incompatible_with": [],
+          "requires_review": []
+        },
+        "dynamic_linking": {
+          "compatible_with": [
+            "category:any"
+          ],
+          "incompatible_with": [],
+          "requires_review": []
+        },
+        "distribution": {
+          "can_distribute_with": [
+            "category:any"
+          ],
+          "cannot_distribute_with": [],
+          "special_requirements": [
+            "Include license and copyright notice"
+          ]
+        },
+        "contamination_effect": "none",
+        "notes": "Permissive license with minimal restrictions"
+      },
+      "spdx_metadata": {
+        "is_osi_approved": false,
+        "is_fsf_libre": false,
+        "is_deprecated": false
+      }
+    },
+    "Abstyles": {
+      "id": "Abstyles",
+      "name": "Abstyles",
+      "category": "permissive",
+      "permissions": {
+        "commercial_use": true,
+        "distribution": true,
+        "modification": true,
+        "patent_grant": false,
+        "private_use": true
+      },
+      "conditions": {
+        "disclose_source": false,
+        "include_license": true,
+        "include_copyright": true,
+        "include_notice": false,
+        "state_changes": false,
+        "same_license": false,
+        "network_use_disclosure": false
+      },
+      "limitations": {
+        "liability": true,
+        "warranty": true,
+        "trademark_use": false
+      },
+      "obligations": [
+        "Include license text",
+        "Include copyright notice"
+      ],
+      "compatibility_rules": {
+        "static_linking": {
+          "compatible_with": [
+            "category:any"
+          ],
+          "incompatible_with": [],
+          "requires_review": []
+        },
+        "dynamic_linking": {
+          "compatible_with": [
+            "category:any"
+          ],
+          "incompatible_with": [],
+          "requires_review": []
+        },
+        "distribution": {
+          "can_distribute_with": [
+            "category:any"
+          ],
+          "cannot_distribute_with": [],
+          "special_requirements": [
+            "Include license and copyright notice"
+          ]
+        },
+        "contamination_effect": "none",
+        "notes": "Permissive license with minimal restrictions"
+      },
+      "spdx_metadata": {
+        "is_osi_approved": false,
+        "is_fsf_libre": false,
+        "is_deprecated": false
+      }
+    },
+    "AdaCore-doc": {
+      "id": "AdaCore-doc",
+      "name": "AdaCore-doc",
+      "category": "permissive",
+      "permissions": {
+        "commercial_use": true,
+        "distribution": true,
+        "modification": true,
+        "patent_grant": false,
+        "private_use": true
+      },
+      "conditions": {
+        "disclose_source": false,
+        "include_license": true,
+        "include_copyright": true,
+        "include_notice": false,
+        "state_changes": false,
+        "same_license": false,
+        "network_use_disclosure": false
+      },
+      "limitations": {
+        "liability": true,
+        "warranty": true,
+        "trademark_use": false
+      },
+      "obligations": [
+        "Include license text",
+        "Include copyright notice"
+      ],
+      "compatibility_rules": {
+        "static_linking": {
+          "compatible_with": [
+            "category:any"
+          ],
+          "incompatible_with": [],
+          "requires_review": []
+        },
+        "dynamic_linking": {
+          "compatible_with": [
+            "category:any"
+          ],
+          "incompatible_with": [],
+          "requires_review": []
+        },
+        "distribution": {
+          "can_distribute_with": [
+            "category:any"
+          ],
+          "cannot_distribute_with": [],
+          "special_requirements": [
+            "Include license and copyright notice"
+          ]
+        },
+        "contamination_effect": "none",
+        "notes": "Permissive license with minimal restrictions"
+      },
+      "spdx_metadata": {
+        "is_osi_approved": false,
+        "is_fsf_libre": false,
+        "is_deprecated": false
+      }
+    }
+  }
+}

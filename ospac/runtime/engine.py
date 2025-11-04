@@ -7,7 +7,7 @@ from pathlib import Path
 
 from ospac.runtime.loader import PolicyLoader
 from ospac.runtime.evaluator import RuleEvaluator
-from ospac.models.compliance import ComplianceResult, PolicyResult
+from ospac.models.compliance import ComplianceResult, PolicyResult, ActionType
 
 
 class PolicyRuntime:
@@ -48,7 +48,16 @@ class PolicyRuntime:
 
         for rule in applicable_rules:
             result = self.evaluator.evaluate_rule(rule, context)
-            results.append(result)
+            # Convert dict result to PolicyResult
+            policy_result = PolicyResult(
+                rule_id=result.get("rule_id", "unknown"),
+                action=ActionType[result.get("action", "allow").upper()],
+                severity=result.get("severity", "info"),
+                message=result.get("message"),
+                requirements=result.get("requirements", []),
+                remediation=result.get("remediation")
+            )
+            results.append(policy_result)
 
         return PolicyResult.aggregate(results)
 

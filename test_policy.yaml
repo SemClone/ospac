@@ -1,0 +1,11 @@
+name: Enterprise Policy
+rules:
+- description: Prevent copyleft in products
+  id: no_copyleft
+  then:
+    action: deny
+    message: Strong copyleft licenses not allowed
+    severity: error
+  when:
+    license_type: copyleft_strong
+version: '1.0'

@@ -1,0 +1,244 @@
+generated: '2025-11-03T23:50:44.122749'
+licenses:
+  0BSD:
+    category: permissive
+    compatibility_rules:
+      contamination_effect: none
+      distribution:
+        can_distribute_with:
+        - category:any
+        cannot_distribute_with: []
+        special_requirements:
+        - Include license and copyright notice
+      dynamic_linking:
+        compatible_with:
+        - category:any
+        incompatible_with: []
+        requires_review: []
+      notes: Permissive license with minimal restrictions
+      static_linking:
+        compatible_with:
+        - category:any
+        incompatible_with: []
+        requires_review: []
+    conditions:
+      disclose_source: false
+      include_copyright: true
+      include_license: true
+      include_notice: false
+      network_use_disclosure: false
+      same_license: false
+      state_changes: false
+    id: 0BSD
+    limitations:
+      liability: true
+      trademark_use: false
+      warranty: true
+    name: 0BSD
+    obligations:
+    - Include license text
+    - Include copyright notice
+    permissions:
+      commercial_use: true
+      distribution: true
+      modification: true
+      patent_grant: false
+      private_use: true
+    spdx_metadata:
+      is_deprecated: false
+      is_fsf_libre: false
+      is_osi_approved: false
+  3D-Slicer-1.0:
+    category: permissive
+    compatibility_rules:
+      contamination_effect: none
+      distribution:
+        can_distribute_with:
+        - category:any
+        cannot_distribute_with: []
+        special_requirements:
+        - Include license and copyright notice
+      dynamic_linking:
+        compatible_with:
+        - category:any
+        incompatible_with: []
+        requires_review: []
+      notes: Permissive license with minimal restrictions
+      static_linking:
+        compatible_with:
+        - category:any
+        incompatible_with: []
+        requires_review: []
+    conditions:
+      disclose_source: false
+      include_copyright: true
+      include_license: true
+      include_notice: false
+      network_use_disclosure: false
+      same_license: false
+      state_changes: false
+    id: 3D-Slicer-1.0
+    limitations:
+      liability: true
+      trademark_use: false
+      warranty: true
+    name: 3D-Slicer-1.0
+    obligations:
+    - Include license text
+    - Include copyright notice
+    permissions:
+      commercial_use: true
+      distribution: true
+      modification: true
+      patent_grant: false
+      private_use: true
+    spdx_metadata:
+      is_deprecated: false
+      is_fsf_libre: false
+      is_osi_approved: false
+  AAL:
+    category: permissive
+    compatibility_rules:
+      contamination_effect: none
+      distribution:
+        can_distribute_with:
+        - category:any
+        cannot_distribute_with: []
+        special_requirements:
+        - Include license and copyright notice
+      dynamic_linking:
+        compatible_with:
+        - category:any
+        incompatible_with: []
+        requires_review: []
+      notes: Permissive license with minimal restrictions
+      static_linking:
+        compatible_with:
+        - category:any
+        incompatible_with: []
+        requires_review: []
+    conditions:
+      disclose_source: false
+      include_copyright: true
+      include_license: true
+      include_notice: false
+      network_use_disclosure: false
+      same_license: false
+      state_changes: false
+    id: AAL
+    limitations:
+      liability: true
+      trademark_use: false
+      warranty: true
+    name: AAL
+    obligations:
+    - Include license text
+    - Include copyright notice
+    permissions:
+      commercial_use: true
+      distribution: true
+      modification: true
+      patent_grant: false
+      private_use: true
+    spdx_metadata:
+      is_deprecated: false
+      is_fsf_libre: false
+      is_osi_approved: false
+  Abstyles:
+    category: permissive
+    compatibility_rules:
+      contamination_effect: none
+      distribution:
+        can_distribute_with:
+        - category:any
+        cannot_distribute_with: []
+        special_requirements:
+        - Include license and copyright notice
+      dynamic_linking:
+        compatible_with:
+        - category:any
+        incompatible_with: []
+        requires_review: []
+      notes: Permissive license with minimal restrictions
+      static_linking:
+        compatible_with:
+        - category:any
+        incompatible_with: []
+        requires_review: []
+    conditions:
+      disclose_source: false
+      include_copyright: true
+      include_license: true
+      include_notice: false
+      network_use_disclosure: false
+      same_license: false
+      state_changes: false
+    id: Abstyles
+    limitations:
+      liability: true
+      trademark_use: false
+      warranty: true
+    name: Abstyles
+    obligations:
+    - Include license text
+    - Include copyright notice
+    permissions:
+      commercial_use: true
+      distribution: true
+      modification: true
+      patent_grant: false
+      private_use: true
+    spdx_metadata:
+      is_deprecated: false
+      is_fsf_libre: false
+      is_osi_approved: false
+  AdaCore-doc:
+    category: permissive
+    compatibility_rules:
+      contamination_effect: none
+      distribution:
+        can_distribute_with:
+        - category:any
+        cannot_distribute_with: []
+        special_requirements:
+        - Include license and copyright notice
+      dynamic_linking:
+        compatible_with:
+        - category:any
+        incompatible_with: []
+        requires_review: []
+      notes: Permissive license with minimal restrictions
+      static_linking:
+        compatible_with:
+        - category:any
+        incompatible_with: []
+        requires_review: []
+    conditions:
+      disclose_source: false
+      include_copyright: true
+      include_license: true
+      include_notice: false
+      network_use_disclosure: false
+      same_license: false
+      state_changes: false
+    id: AdaCore-doc
+    limitations:
+      liability: true
+      trademark_use: false
+      warranty: true
+    name: AdaCore-doc
+    obligations:
+    - Include license text
+    - Include copyright notice
+    permissions:
+      commercial_use: true
+      distribution: true
+      modification: true
+      patent_grant: false
+      private_use: true
+    spdx_metadata:
+      is_deprecated: false
+      is_fsf_libre: false
+      is_osi_approved: false
+total_licenses: 5
+version: '1.0'
