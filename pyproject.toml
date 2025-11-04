@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Open Source Policy as Code - License compliance policy engine"
 readme = "README.md"
 requires-python = ">=3.8"
-license = {text = "Apache-2.0"}
+license = "Apache-2.0"
 authors = [
     {name = "Oscar Valenzuela B.", email = "oscar.valenzuela.b@gmail.com"}
 ]
@@ -34,7 +34,6 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Software Development :: Documentation",
     "Topic :: System :: Software Distribution",
-    "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -84,13 +83,9 @@ Changelog = "https://github.com/SemClone/osslili/blob/main/CHANGELOG.md"
 [project.scripts]
 ospac = "ospac.cli.commands:main"
 
-[tool.setuptools]
-packages = ["ospac",
-           "ospac.runtime",
-           "ospac.models",
-           "ospac.cli",
-           "ospac.pipeline",
-           "ospac.utils"]
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ospac*"]
 
 [tool.setuptools.package-data]
 ospac = ["data/*.json", "data/*.yaml", "policies/**/*.yaml"]
