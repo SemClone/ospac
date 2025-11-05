@@ -5,6 +5,43 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.5] - 2025-11-05
+
+### Added
+
+**Default Enterprise Policy**
+- Embedded comprehensive default enterprise policy for immediate use without configuration
+- Automatic policy loading when no custom policy is specified
+- Default policy includes rules for GPL, AGPL, LGPL, permissive licenses, and public domain
+- Support for different distribution types: commercial, SaaS, embedded, internal
+- Context-aware evaluation for static vs dynamic linking
+
+**CLI Enhancements**
+- Added detailed examples to all CLI commands via help text
+- New `-o/--output` option for `check` command supporting JSON and text formats
+- Improved main help text with common use cases
+- User notification when using default policy (in text output mode)
+
+### Changed
+
+**Output Format**
+- JSON is now the default output format for all commands (previously text)
+- Consistent JSON structure across all commands for better programmatic parsing
+- Added `using_default_policy` field to JSON output for transparency
+- Proper serialization of enums and complex types in JSON output
+
+**Policy Loading**
+- Modified PolicyRuntime to automatically load default policy when:
+  - No policy directory is specified
+  - Specified directory doesn't exist
+  - Policy directory is empty
+- Package now includes embedded default policy file in `ospac/defaults/`
+
+### Fixed
+- Improved rule matching logic for license evaluation
+- Fixed JSON serialization errors with ActionType enums
+- Enhanced context handling for linking types and distribution modes
+
 ## [1.1.0] - 2025-11-05
 
 ### Added

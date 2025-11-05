@@ -1,0 +1,256 @@
+version: "2.0"
+name: "Default Enterprise Policy"
+description: "Default policy for enterprise organizations with common compliance requirements"
+
+rules:
+  # Strong Copyleft Rules
+  - id: no_gpl_in_products
+    description: "Prevent GPL licenses in distributed products"
+    priority: 10
+    when:
+      distribution_type: ["commercial", "embedded", "saas"]
+      license: ["GPL-2.0", "GPL-3.0", "GPL-2.0-only", "GPL-3.0-only", "GPL-2.0-or-later", "GPL-3.0-or-later"]
+    then:
+      action: deny
+      severity: error
+      message: "GPL licenses not allowed in commercial products due to viral copyleft requirements"
+      remediation: "Replace with MIT, Apache-2.0, or BSD licensed alternative"
+
+  - id: no_agpl_in_services
+    description: "Prevent AGPL in network services"
+    priority: 10
+    when:
+      distribution_type: ["saas", "cloud", "api"]
+      license: ["AGPL-3.0", "AGPL-3.0-only", "AGPL-3.0-or-later"]
+    then:
+      action: deny
+      severity: error
+      message: "AGPL licenses require source disclosure for network services"
+      remediation: "Use Apache-2.0 or MIT licensed alternatives"
+
+  # Weak Copyleft Rules
+  - id: review_lgpl
+    description: "Flag LGPL for legal review"
+    priority: 5
+    when:
+      license: ["LGPL-2.1", "LGPL-3.0", "LGPL-2.1-only", "LGPL-3.0-only"]
+      linking_type: "static_linking"
+    then:
+      action: flag_for_review
+      severity: warning
+      message: "LGPL with static linking requires legal review"
+      notify: ["legal@company.com"]
+      requirements:
+        - "Ensure dynamic linking if using LGPL libraries"
+        - "Provide means to replace LGPL component"
+        - "Include LGPL license text"
+
+  - id: allow_lgpl_dynamic
+    description: "Allow LGPL with dynamic linking"
+    priority: 3
+    when:
+      license: ["LGPL-2.1", "LGPL-3.0", "LGPL-2.1-only", "LGPL-3.0-only"]
+      linking_type: "dynamic_linking"
+    then:
+      action: approve
+      severity: info
+      message: "LGPL allowed with dynamic linking"
+      requirements:
+        - "Include LGPL license text"
+        - "Provide source or link to LGPL component"
+
+  # Permissive License Rules
+  - id: approve_mit
+    description: "Automatically approve MIT license"
+    priority: 1
+    when:
+      license: ["MIT", "MIT-0"]
+    then:
+      action: approve
+      severity: info
+      message: "MIT license approved for all uses"
+      requirements:
+        - "Include MIT license text"
+        - "Preserve copyright notice"
+
+  - id: approve_apache
+    description: "Automatically approve Apache 2.0"
+    priority: 1
+    when:
+      license: ["Apache-2.0"]
+    then:
+      action: approve
+      severity: info
+      message: "Apache 2.0 license approved for all uses"
+      requirements:
+        - "Include Apache 2.0 license text"
+        - "Preserve copyright and NOTICE file if present"
+        - "State changes made to the code"
+
+  - id: approve_bsd
+    description: "Automatically approve BSD licenses"
+    priority: 1
+    when:
+      license: ["BSD-2-Clause", "BSD-3-Clause", "0BSD"]
+    then:
+      action: approve
+      severity: info
+      message: "BSD license approved for all uses"
+      requirements:
+        - "Include BSD license text"
+        - "Preserve copyright notice"
+        - "Do not use contributors' names for endorsement (BSD-3-Clause)"
+
+  # Public Domain
+  - id: approve_public_domain
+    description: "Automatically approve public domain"
+    priority: 1
+    when:
+      license: ["CC0-1.0", "Unlicense"]
+    then:
+      action: approve
+      severity: info
+      message: "Public domain dedication approved"
+
+  # Special Cases
+  - id: gpl_dev_tools
+    description: "Allow GPL for development tools"
+    priority: 2
+    when:
+      license: ["GPL-2.0", "GPL-3.0", "GPL-2.0-only", "GPL-3.0-only"]
+      usage: ["development", "testing", "build"]
+    then:
+      action: approve
+      severity: info
+      message: "GPL allowed for development-only tools"
+      requirements:
+        - "Ensure tool is not distributed with product"
+        - "Tool output must not contain GPL code"
+
+  - id: review_commercial
+    description: "Review commercial/proprietary licenses"
+    priority: 5
+    when:
+      license_type: ["proprietary", "commercial"]
+    then:
+      action: flag_for_review
+      severity: warning
+      message: "Commercial license requires procurement and legal review"
+      notify: ["legal@company.com", "procurement@company.com"]
+
+  # Deprecated Licenses
+  - id: warn_deprecated
+    description: "Warn about deprecated licenses"
+    priority: 3
+    when:
+      license: ["GPL-2.0+", "GPL-3.0+", "LGPL-2.1+", "LGPL-3.0+"]
+    then:
+      action: flag_for_review
+      severity: warning
+      message: "License identifier is deprecated, use -only or -or-later suffix"
+
+  # Unknown Licenses
+  - id: review_unknown
+    description: "Flag unknown licenses for review"
+    priority: 7
+    when:
+      license_type: "unknown"
+    then:
+      action: flag_for_review
+      severity: warning
+      message: "Unknown license requires manual review"
+      notify: ["legal@company.com"]
+
+decision_tree:
+  # Permissive licenses - always allowed
+  - if:
+      license_type: ["permissive", "public_domain"]
+    then:
+      action: approve
+      automatic: true
+      note: "Permissive and public domain licenses pre-approved"
+
+  # GPL in development tools
+  - if:
+      license: ["GPL-2.0", "GPL-3.0", "GPL-2.0-only", "GPL-3.0-only"]
+      usage: "development_only"
+    then:
+      action: approve
+      note: "GPL allowed for development tools that are not distributed"
+
+  # LGPL with dynamic linking
+  - if:
+      license: ["LGPL-2.1", "LGPL-3.0", "LGPL-2.1-only", "LGPL-3.0-only"]
+      linking: "dynamic"
+    then:
+      action: approve
+      note: "LGPL allowed with dynamic linking"
+
+  # Strong copyleft in products
+  - if:
+      license_category: "copyleft_strong"
+      distribution: ["commercial", "embedded"]
+    then:
+      action: deny
+      reason: "Strong copyleft not compatible with commercial distribution"
+
+  # Proprietary licenses
+  - if:
+      license_type: "proprietary"
+    then:
+      action: review
+      reason: "Proprietary licenses require legal and procurement review"
+
+  # Unknown licenses
+  - if:
+      license_type: "unknown"
+    then:
+      action: review
+      reason: "Unknown licenses require manual review"
+
+# Obligation tracking
+obligations:
+  attribution:
+    - MIT
+    - Apache-2.0
+    - BSD-2-Clause
+    - BSD-3-Clause
+
+  include_license:
+    - MIT
+    - Apache-2.0
+    - BSD-2-Clause
+    - BSD-3-Clause
+    - GPL-2.0-only
+    - GPL-3.0-only
+    - LGPL-2.1-only
+    - LGPL-3.0-only
+
+  source_disclosure:
+    conditions:
+      - license: ["GPL-2.0-only", "GPL-3.0-only"]
+        distribution: ["commercial", "embedded"]
+      - license: ["LGPL-2.1-only", "LGPL-3.0-only"]
+        linking: "static"
+
+  state_changes:
+    - Apache-2.0
+
+  patent_grant:
+    - Apache-2.0
+
+  no_endorsement:
+    - BSD-3-Clause
+    - Apache-2.0
+
+# Compatibility matrix overrides
+compatibility:
+  incompatible:
+    - ["GPL-2.0-only", "GPL-3.0-only"]
+    - ["GPL-2.0-only", "Apache-2.0"]  # Due to GPL-2.0 patent clause conflict
+    - ["GPL-3.0-only", "BSD-4-Clause"]  # Due to advertising clause
+
+  require_review:
+    - ["MIT", "GPL-2.0-only"]  # One-way compatibility
+    - ["Apache-2.0", "GPL-3.0-only"]  # One-way compatibility
+    - ["LGPL-2.1-only", "LGPL-3.0-only"]

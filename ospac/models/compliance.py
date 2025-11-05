@@ -77,6 +77,17 @@ class PolicyResult:
             requirements=list(set(all_requirements)),
         )
 
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "rule_id": self.rule_id,
+            "action": self.action.value if isinstance(self.action, ActionType) else self.action,
+            "severity": self.severity,
+            "message": self.message,
+            "requirements": self.requirements,
+            "remediation": self.remediation,
+        }
+
 
 @dataclass
 class ComplianceResult:
