@@ -13,42 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
     liability: false
     warranty: false
-    trademark_use: true
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Permissive
-      - Apache-2.0
-      - MIT
-      incompatible_with:
-      - GPL-3.0+
-      - AGPL-3.0+
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Permissive
-      - Apache-2.0
-      - MIT
-      incompatible_with:
-      - GPL-3.0+
-      - AGPL-3.0+
+      - category:any
+      incompatible_with: []
       requires_review: []
     contamination_effect: none
-    notes: The Baekmuk license is a permissive license that allows for static linking
-      with any compatible library or module.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Include the copyright notice and permission notice in all copies of the font,
-    derivative works or modified versions.
-  - Acknowledge Kim Jeong-Hwan's ownership of Baekmuk Batang, Baekmuk Dotum, Baekmuk
-    Gulim, and Baekmuk Headline as registered trademarks.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include both the copyright notice and permission notice in all copies of the font
-    or derivative works.
-  - Acknowledge Kim Jeong-Hwan's ownership of specific trademarked fonts.
+  - Attribution required

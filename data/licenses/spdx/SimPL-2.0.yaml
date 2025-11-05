@@ -1,7 +1,7 @@
 license:
   id: SimPL-2.0
   name: SimPL-2.0
-  type: copyleft_weak
+  type: permissive
   spdx_id: SimPL-2.0
   properties:
     commercial_use: true
@@ -10,60 +10,32 @@ license:
     patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
+    disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: true
+    include_notice: false
+    state_changes: false
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-    contamination_effect: module
-    notes: SimPL-2.0 allows for weak copyleft, meaning that while modifications to
-      the original work must be shared under the same license, it can be combined
-      with other licenses without imposing the same requirements on the entire work.
+      - category:any
+      incompatible_with: []
+      requires_review: []
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Prominently note the date of any changes made to the software.
-  - Leave other people's copyright notices, warranty disclaimers, and license terms
-    in place.
-  - Provide the source code, build scripts, installation scripts, and interface definitions
-    in an easily accessible and modifiable form.
-  - License any derivative works under SimPL or substantially similar terms (such
-    as GPL 2.0) without adding further restrictions.
-  - Conspicuously announce that the software is available under the SimPL.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Must comply with the 'give back to the community' terms to maintain license rights.
-  - No warranties are provided; liability is limited to direct damages.
-  - License rights end automatically if the terms are not followed.
+  - Attribution required

@@ -1,58 +1,41 @@
 license:
   id: Lucida-Bitmap-Fonts
   name: Lucida-Bitmap-Fonts
-  type: proprietary
+  type: permissive
   spdx_id: Lucida-Bitmap-Fonts
   properties:
     commercial_use: true
     distribution: true
-    modification: false
-    patent_grant: true
+    modification: true
+    patent_grant: false
     private_use: true
   requirements:
     disclose_source: false
-    include_license: false
+    include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - proprietary
-      - commercial
-      incompatible_with:
-      - GPL
-      - LGPL
-      - AGPL
-      requires_review:
-      - MPL
-      - EPL
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - proprietary
-      - commercial
-      incompatible_with:
-      - GPL
-      - LGPL
-      - AGPL
-      requires_review:
-      - MPL
-      - EPL
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: The Lucida-Bitmap-Fonts license allows for proprietary use but does not
-      permit integration with open-source licenses that require derivative works to
-      be open-sourced.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Include copyright notices in user documentation and internal comments.
-  - Do not modify the appearance of the icons or glyphs except as necessary for standard
-    resolution.
-  - Validation by AT&T is required for the use of the OPEN LOOK trademark.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Must not change the code or output except as authorized.
-  - Must not modify the fonts and bit-mapped images to use the Lucida trademark.
+  - Attribution required

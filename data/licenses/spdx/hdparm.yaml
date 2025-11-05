@@ -11,51 +11,31 @@ license:
     private_use: true
   requirements:
     disclose_source: false
-    include_license: false
+    include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL
-      - AGPL
-      - LGPL
-      requires_review:
-      - MPL
-      - EPL
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL
-      - AGPL
-      - LGPL
-      requires_review:
-      - MPL
-      - EPL
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: The hdparm license is permissive and allows for both static and dynamic
-      linking with compatible licenses. Care should be taken when linking with copyleft
-      licenses.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Retain the author's name and copyright notice in the source code.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Ensure that the author's name and copyright notice remain intact in any distributed
-    source code.
+  - Attribution required

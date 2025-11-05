@@ -1,66 +1,41 @@
 license:
   id: RHeCos-1.1
   name: RHeCos-1.1
-  type: copyleft_weak
+  type: permissive
   spdx_id: RHeCos-1.1
   properties:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
+    disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
+    include_notice: false
+    state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - Public Domain
-      - LGPL-2.1
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
-    contamination_effect: module
-    notes: RHeCos-1.1 allows for weak copyleft, meaning that while modifications to
-      the original work must be shared under the same license, it can be combined
-      with proprietary software under certain conditions.
+      - category:any
+      incompatible_with: []
+      requires_review: []
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Must include a copy of the license when distributing the Covered Code.
-  - Must include a copyright notice when distributing the Covered Code.
-  - Must state changes made to the Original Code when distributing.
-  - Must provide access to the Source Code when distributing Executables.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Compliance with the terms of the license is required for all distributions.
-  - Modifications must be documented and made available under the same license.
+  - Attribution required

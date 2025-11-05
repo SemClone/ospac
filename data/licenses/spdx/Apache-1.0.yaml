@@ -7,56 +7,35 @@ license:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: false
+    patent_grant: true
     private_use: true
   requirements:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Apache-2.0
-      - MIT
-      - Permissive
-      incompatible_with:
-      - GPL
-      - AGPL
-      - LGPL
-      - Mozilla Public License
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Apache-2.0
-      - MIT
-      - Permissive
-      incompatible_with:
-      - GPL
-      - AGPL
-      - LGPL
-      - Mozilla Public License
+      - category:any
+      incompatible_with: []
       requires_review: []
     contamination_effect: none
-    notes: The Apache-1.0 license is a permissive free software license, which allows
-      for the use of software in any application or distribution without requiring
-      any special permissions.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Retain the copyright notice, this list of conditions, and the disclaimer in redistributions.
-  - Reproduce the above copyright notice, this list of conditions, and the disclaimer
-    in documentation and/or other materials provided with the distribution.
-  - Display the acknowledgment when using Apache software for advertising or promotional
-    purposes.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Retain the required notices and acknowledgments.
-  - Obtain prior written permission to use the names 'Apache' and 'Apache Software
-    Foundation' to endorse or promote products derived from this software.
-  - Do not call products derived from this software 'Apache' without prior written
-    permission.
+  - Attribution required

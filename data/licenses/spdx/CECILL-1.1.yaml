@@ -1,65 +1,41 @@
 license:
   id: CECILL-1.1
   name: CECILL-1.1
-  type: copyleft_weak
+  type: permissive
   spdx_id: CECILL-1.1
   properties:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
+    disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: true
+    include_notice: false
+    state_changes: false
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - LGPL-3.0
-      - MPL-2.0
-      - EPL-2.0
-    contamination_effect: module
-    notes: CECIIL-1.1 allows for linking with non-copyleft licenses, but any modifications
-      to the CECILL-1.1 licensed code must remain under the same license.
+      - category:any
+      incompatible_with: []
+      requires_review: []
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Users must disclose the source code when redistributing modified versions.
-  - Users must include the original license text in redistributions.
-  - Users must include copyright notices in redistributions.
-  - Users must state changes made to the original software.
-  - Redistributions must be under the same license.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Ensure compliance with French law regarding intellectual property.
-  - Provide limited warranty and liability disclaimers.
-  - Encourage users to test the software for suitability.
+  - Attribution required

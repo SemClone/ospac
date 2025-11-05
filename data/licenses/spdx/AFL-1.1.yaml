@@ -7,52 +7,35 @@ license:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Permissive
-      - Apache-2.0
-      - MIT
-      incompatible_with:
-      - GPL-3.0+
-      - AGPL-3.0+
-      - LGPL-3.0+
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - All Permissive licenses
-      - Apache-2.0
-      - MIT
-      incompatible_with:
-      - GPL-3.0+
-      - AGPL-3.0+
-      - LGPL-3.0+
+      - category:any
+      incompatible_with: []
       requires_review: []
     contamination_effect: none
-    notes: No special requirements or restrictions apply.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - 'Right of Attribution: Redistributions of the Original Work must reproduce all
-    copyright notices in the Original Work as furnished by the Licensor, both in the
-    Original Work itself and in any documentation and/or other materials provided
-    with the distribution of the Original Work in executable form.'
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include the notice 'Licensed under the Academic Free License version 1.1.' immediately
-    following the copyright notice for the Original Work.
-  - Do not use the names of the Licensor, nor the names of any contributors to the
-    Original Work, nor any of their trademarks or service marks, to endorse or promote
-    products derived from this Original Work without express prior written permission
-    of the Licensor.
+  - Attribution required

@@ -1,7 +1,7 @@
 license:
   id: AML
   name: AML
-  type: proprietary
+  type: permissive
   spdx_id: AML
   properties:
     commercial_use: true
@@ -13,40 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - AGPL
-      - LGPL
-      - MPL
-      incompatible_with:
-      - GPL
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - AGPL
-      - LGPL
-      - MPL
-      incompatible_with:
-      - GPL
+      - category:any
+      incompatible_with: []
       requires_review: []
-    contamination_effect: module
-    notes: The Artistic License is incompatible with GPL due to differences in copyleft
-      provisions. When distributing proprietary software that uses AML-covered code,
-      you must provide the source code or an offer to provide it.
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Retain the notice and disclaimers in all redistributions of the Apple Software.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Must not use Apple's name, trademarks, service marks or logos to endorse or promote
-    products derived from the Apple Software without specific prior written permission
-    from Apple.
-  - Must not assert patent rights that may be infringed by derivative works or by
-    other works in which the Apple Software may be incorporated.
+  - Attribution required

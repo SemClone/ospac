@@ -10,64 +10,32 @@ license:
     patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
+    disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: true
+    include_notice: false
+    state_changes: false
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: GL2PS is a permissive license, allowing for integration with other permissive
-      licenses without imposing restrictions. However, it is incompatible with copyleft
-      licenses that impose stricter distribution terms.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Include copyright notice in all copies.
-  - Include permission notice in supporting documentation.
-  - License modifications under the same terms.
-  - Make source code of modifications available.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Maintain copyright and permission notices.
-  - Disclose source for modified versions.
-  - License modifications under the same license.
+  - Attribution required

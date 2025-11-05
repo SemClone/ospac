@@ -1,7 +1,7 @@
 license:
   id: Linux-man-pages-copyleft
   name: Linux-man-pages-copyleft
-  type: copyleft_weak
+  type: permissive
   spdx_id: Linux-man-pages-copyleft
   properties:
     commercial_use: true
@@ -10,58 +10,32 @@ license:
     patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
+    disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: true
+    include_notice: false
+    state_changes: false
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - LGPL-2.1
-      - LGPL-3.0
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-    contamination_effect: module
-    notes: The Linux-man-pages-copyleft license allows for weak copyleft, meaning
-      that it can be combined with other licenses, but care must be taken to ensure
-      compliance with the terms of the licenses involved.
+      - category:any
+      incompatible_with: []
+      requires_review: []
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Preserve copyright notice and permission notice on all copies.
-  - Distribute modified versions under the same terms as the original license.
-  - Acknowledge copyright and authors in formatted or processed versions if source
-    is not included.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include the original copyright notice.
-  - Include the permission notice in all copies and modified versions.
-  - Disclose source when distributing modified versions.
+  - Attribution required

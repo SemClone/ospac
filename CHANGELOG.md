@@ -5,6 +5,42 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.3] - 2025-11-04
+
+### Fixed
+
+**Critical Data Quality Corrections**
+- Fixed systematic license limitation value errors across all 712 SPDX licenses
+- Corrected liability and warranty limitation semantics (false = license disclaims, not provides)
+- Fixed Apache-2.0 license classification as permissive (removed incorrect copyleft requirements)
+- Corrected MIT license patent grant status (false, as MIT provides no explicit patent grant)
+- Fixed Apache-2.0 patent grant status (true, as Apache-2.0 provides explicit patent grants)
+
+**Data Generation Pipeline Improvements**
+- Fixed fallback analysis methods in LLM analyzer and provider modules
+- Improved LLM prompt clarity for limitation field semantics
+- Enhanced license-specific handling for Apache, MIT, GPL, LGPL, and AGPL families
+- Standardized copyleft vs permissive license requirement patterns
+
+**AGPL License Data Corrections**
+- Fixed inconsistent license compatibility data across all AGPL license variants
+- Corrected AGPL-3.0.yaml incompatible licenses list (MIT-LICENSED → MIT)
+- Fixed AGPL-3.0-or-later.yaml limitation values and same_license requirements
+- Updated contamination_effect values for strong copyleft licenses (module → full)
+- Standardized incompatible license naming (Proprietary → proprietary)
+
+**Database Integrity**
+- Regenerated complete license database with corrected pipeline logic
+- Ensured consistent data structure and semantics across all license definitions
+- Maintained compatibility with existing CLI functionality and policy evaluation
+- Verified all 712 SPDX licenses have accurate legal metadata
+
+### Technical Details
+- Root cause identified in fallback analysis methods with incorrect default values
+- Fixed semantic interpretation of limitation fields in license analysis
+- Improved license categorization logic for permissive vs copyleft licenses
+- Enhanced compatibility matrix generation with corrected license relationships
+
 ## [1.0.2] - 2025-11-04
 
 ### Added
@@ -86,5 +122,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 13 SPDX licenses return 404 from API (fallback data provided)
 - LLM analysis optional but recommended for enhanced accuracy
 
+[1.0.3]: https://github.com/SemClone/ospac/releases/tag/v1.0.3
+[1.0.2]: https://github.com/SemClone/ospac/releases/tag/v1.0.2
 [1.0.1]: https://github.com/SemClone/ospac/releases/tag/v1.0.1
 [0.1.0]: https://github.com/SemClone/ospac/releases/tag/v0.1.0

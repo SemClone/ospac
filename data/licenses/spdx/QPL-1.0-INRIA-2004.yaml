@@ -1,66 +1,41 @@
 license:
   id: QPL-1.0-INRIA-2004
   name: QPL-1.0-INRIA-2004
-  type: copyleft_weak
+  type: permissive
   spdx_id: QPL-1.0-INRIA-2004
   properties:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
+    disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: true
+    include_notice: false
+    state_changes: false
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
+    liability: false
     warranty: false
-    trademark_use: true
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - LGPL-2.1
-      - LGPL-3.0
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-    contamination_effect: module
-    notes: The QPL-1.0 license allows for weak copyleft, meaning that it can be combined
-      with other licenses, but care must be taken to comply with the terms of the
-      QPL-1.0 when distributing combined works.
+      - category:any
+      incompatible_with: []
+      requires_review: []
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Include the license document in all distributions.
-  - Ensure that all recipients can access the complete machine-readable source code.
-  - Do not alter or remove any copyright notices in the Software.
-  - Grant a non-exclusive royalty-free right to the initial developer for future distribution
-    of modifications.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Distribute the entire package including copyright, trademark notices, and disclaimers.
-  - Provide prominent notices explaining the availability of source code.
-  - Ensure modifications are available under the same license.
+  - Attribution required

@@ -13,60 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
+    include_notice: false
+    state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: The bzip2 license is permissive and allows for both static and dynamic
-      linking with compatible licenses. Care should be taken when linking with copyleft
-      licenses, as they may impose restrictions on the combined work.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Retain the copyright notice in redistributions of source code.
-  - Do not misrepresent the origin of the software.
-  - Mark altered source versions as such.
-  - Obtain permission to use the author's name for endorsement.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include the copyright notice and license in redistributions.
-  - Acknowledge the original author in product documentation if used.
+  - Attribution required

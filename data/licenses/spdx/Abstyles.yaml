@@ -1,7 +1,7 @@
 license:
   id: Abstyles
   name: Abstyles
-  type: permissive|public_domain
+  type: permissive
   spdx_id: Abstyles
   properties:
     commercial_use: true
@@ -13,43 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Public Domain
-      - Permissive
-      incompatible_with:
-      - GPL
-      - LGPL
-      - MIT
-      - Apache-2.0
-      - Creative Commons BY-NC-SA
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Permissive
-      - Public Domain
-      incompatible_with:
-      - GPL
-      - LGPL
-      - MIT
-      - Apache-2.0
-      - Creative Commons BY-NC-SA
+      - category:any
+      incompatible_with: []
       requires_review: []
-    contamination_effect: full
-    notes: This license is very permissive and can be used with most other licenses
-      without issue. However, it's always a good idea to check for any specific requirements
-      or restrictions.
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Preserve the copyright notice and permission notice on all copies.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include a permission notice identical to this one in derived works.
-  - Comply with the same terms for verbatim copying or modified versions.
+  - Attribution required

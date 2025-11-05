@@ -13,7 +13,7 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
@@ -24,27 +24,18 @@ license:
   compatibility:
     static_linking:
       compatible_with:
-      - Apache-2.0
-      - MIT
-      incompatible_with:
-      - GPL-1.0
-      - AGPL-3.0
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Apache-2.0
-      - MIT
-      incompatible_with:
-      - GPL-1.0
-      - AGPL-3.0
+      - category:any
+      incompatible_with: []
       requires_review: []
     contamination_effect: none
-    notes: This license is permissive, allowing free use and modification of the software.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Retain copyright notices
-  - Do not distribute AFM files without this file
-  - Prominently note modifications to the file or any of the AFM files in the modified
-    file(s)
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Retain all copyright notices
-  - Ensure that all modifications are prominently noted
+  - Attribution required

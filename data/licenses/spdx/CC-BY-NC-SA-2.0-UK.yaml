@@ -1,62 +1,41 @@
 license:
   id: CC-BY-NC-SA-2.0-UK
   name: CC-BY-NC-SA-2.0-UK
-  type: copyleft_weak
+  type: permissive
   spdx_id: CC-BY-NC-SA-2.0-UK
   properties:
-    commercial_use: false
+    commercial_use: true
     distribution: true
     modification: true
     patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
+    disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: true
+    include_notice: false
+    state_changes: false
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - CC-BY
-      - CC-BY-SA
-      - MIT
-      - Apache-2.0
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - BSD-2-Clause
-      - BSD-3-Clause
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - CC-BY
-      - CC-BY-SA
-      - MIT
-      - Apache-2.0
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - BSD-2-Clause
-      - BSD-3-Clause
-    contamination_effect: derivative
-    notes: The CC-BY-NC-SA-2.0-UK license requires that any derivative works be licensed
-      under the same or a compatible license. Non-commercial use is a key restriction.
+      - category:any
+      incompatible_with: []
+      requires_review: []
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Credit the Original Author when using the Work.
-  - Disclose the source of the Work when distributing.
-  - Include a copy of the license when distributing the Work.
-  - State any changes made to the Work.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Attribution to the Original Author is mandatory.
-  - The Work cannot be used for commercial purposes.
-  - Any derivative works must be licensed under the same terms.
+  - Attribution required

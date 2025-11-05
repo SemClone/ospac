@@ -1,7 +1,7 @@
 license:
   id: AAL
   name: AAL
-  type: copyleft_strong
+  type: permissive
   spdx_id: AAL
   properties:
     commercial_use: true
@@ -13,45 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
-    same_license: true
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Apache-2.0
-      - AGPL-3.0
-      incompatible_with:
-      - MIT
-      - ISC
-      - Unlicense
-      - ZPL-1.1
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Apache-2.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      incompatible_with:
-      - MIT
-      - ISC
-      - Unlicense
-      - ZPL-1.1
+      - category:any
+      incompatible_with: []
       requires_review: []
-    contamination_effect: derivative
-    notes: 'Note: AAL is a copyleft license, which means that if you distribute a
-      modified version of the code, you must also make your modifications available
-      under the same terms.'
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Prominently display this GPG-signed text in verifiable form.
-  - Display the Author's attribution information prominently each time the resulting
-    executable program or a program dependent thereon is launched.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include Attribution Assurance License (AAL) in any documentation and in any promotional
-    materials related to the software.
+  - Attribution required

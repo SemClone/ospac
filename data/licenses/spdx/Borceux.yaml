@@ -11,9 +11,9 @@ license:
     private_use: true
   requirements:
     disclose_source: false
-    include_license: false
+    include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
@@ -24,30 +24,18 @@ license:
   compatibility:
     static_linking:
       compatible_with:
-      - Permissive
-      - Apache-2.0
-      - MIT
-      incompatible_with:
-      - GPL-3.0
-      - GPL-2.0
-      - AGPL-3.0
-      - AGPL-2.0
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Permissive
-      - Apache-2.0
-      - MIT
-      incompatible_with:
-      - GPL-3.0
-      - GPL-2.0
-      - AGPL-3.0
-      - AGPL-2.0
+      - category:any
+      incompatible_with: []
       requires_review: []
-    contamination_effect: module
-    notes: The Borceux license is a permissive open-source license that allows for
-      static and dynamic linking with other software under compatible licenses.
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - No specific obligations mentioned in the license text.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Comply with the copyright notice and provide email support to the author if requested.
+  - Attribution required

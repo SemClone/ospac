@@ -8,50 +8,39 @@ license:
     distribution: true
     modification: true
     patent_grant: false
-    private_use: false
+    private_use: true
   requirements:
     disclose_source: true
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: true
-    network_use_disclosure: true
+    network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
       - AGPL-1.0
-      - GPL-3.0-or-later
+      - category:copyleft_strong
       incompatible_with:
-      - Proprietary
-      - MIT
-      - Apache-2.0
-      requires_review: []
+      - category:permissive
+      - category:proprietary
+      requires_review:
+      - category:copyleft_weak
     dynamic_linking:
       compatible_with:
-      - AGPL-1.0
-      - GPL-3.0-or-later
-      incompatible_with:
-      - Proprietary
-      - MIT
-      - Apache-2.0
-      requires_review: []
+      - category:any
+      incompatible_with: []
+      requires_review:
+      - category:proprietary
     contamination_effect: full
-    notes: AGPL-1.0 is a copyleft license that requires derivative works to be distributed
-      under the same terms, making it incompatible with permissive licenses like MIT
-      or Apache-2.0. When distributing a modified version of AGPL-1.0 software, you
-      must also distribute your modifications and the source code.
+    notes: Strong copyleft with viral effect
   obligations:
-  - Distribute derivative works under the same license
-  - Provide the source code for modified versions
-  - Include a copy of this license in the distribution
-  - Give recipients all the rights that you have to distribute copies
-  - Make sure that they, too, receive or can get the source code
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - The recipient must comply with the obligations above
-  - The recipient must preserve the original authorship and the license terms
-  - The recipient must make modifications available under the same license
+  - Attribution required

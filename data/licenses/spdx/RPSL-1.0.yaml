@@ -7,61 +7,35 @@ license:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - ISC
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - ISC
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: RPSL-1.0 is a permissive license, allowing for broad compatibility with
-      other permissive licenses. However, it is incompatible with copyleft licenses
-      like GPL.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - You must include a copy of the license when distributing the software.
-  - You must include copyright notices when distributing the software.
-  - You must include notices of any modifications made to the original code.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Acceptance of the license is required to use, copy, modify, or distribute the
-    software.
-  - Any code covered by a Compatible Source License used with Covered Code must be
-    made available in Source Code format.
+  - Attribution required

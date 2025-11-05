@@ -10,45 +10,32 @@ license:
     patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
-    include_license: false
+    disclose_source: false
+    include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
-    same_license: true
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - Unlicense
-      - Zlib
-      incompatible_with:
-      - GPL
-      - AGPL
-      - Creative Commons licenses
-      - Proprietary licenses
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - All permissive open-source licenses
-      incompatible_with:
-      - All restrictive open-source licenses
-      - Proprietary licenses
+      - category:any
+      incompatible_with: []
       requires_review: []
     contamination_effect: none
-    notes: Note that the BitTorrent-1.0 license is a permissive license, so it's compatible
-      with most other permissive licenses and can be distributed without restrictions.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Make the Source Code of Modifications available to others.
-  - If you assert any patent claims against the Licensor relating to the Licensed
-    Product, or if you breach any terms of the License, your rights to the Licensed
-    Product under this License automatically terminate.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Comply with all terms and conditions of the license
-  - Make Source Code modifications available
+  - Attribution required

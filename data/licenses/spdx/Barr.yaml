@@ -6,12 +6,12 @@ license:
   properties:
     commercial_use: true
     distribution: true
-    modification: false
+    modification: true
     patent_grant: false
     private_use: true
   requirements:
     disclose_source: false
-    include_license: false
+    include_license: true
     include_copyright: true
     include_notice: false
     state_changes: false
@@ -24,33 +24,18 @@ license:
   compatibility:
     static_linking:
       compatible_with:
-      - Permissive
-      - MIT
-      - Apache-2.0
-      - ISC
-      incompatible_with:
-      - GPL-3.0+
-      - GPL-2.0+
-      - AGPL-3.0+
-      - AGPL-2.0+
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Permissive
-      - MIT
-      - Apache-2.0
-      - ISC
-      incompatible_with:
-      - GPL-3.0+
-      - GPL-2.0+
-      - AGPL-3.0+
-      - AGPL-2.0+
+      - category:any
+      incompatible_with: []
       requires_review: []
     contamination_effect: none
-    notes: ''
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Unchanged distribution for non-commercial or commercial use.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Rename the package if modified.
-  - Provide a free copy of the package to the author for personal examination and
-    use in case of inclusion in a commercial software package.
+  - Attribution required

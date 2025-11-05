@@ -13,53 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
+    liability: false
     warranty: false
-    trademark_use: true
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: The WordNet license is permissive and allows for integration with other
-      permissive licenses without imposing restrictions.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Include the original copyright notice in all copies or substantial portions of
-    the software.
-  - Include a copy of the license in all distributions of the software.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Must retain the copyright notice and license in all copies or substantial portions
-    of the software.
-  - Must provide a copy of the license when distributing the software.
+  - Attribution required

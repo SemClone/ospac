@@ -13,59 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - Artistic-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - LGPL-2.1
-      - LGPL-3.0
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - Artistic-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: The SSLeay-standalone license is permissive and allows for integration
-      with other permissive licenses without imposing restrictions. However, care
-      should be taken when combining with copyleft licenses.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Retain copyright notice in source code.
-  - Include copyright notice and disclaimer in binary form redistributions.
-  - Acknowledge Eric Young in advertising materials if applicable.
-  - Acknowledge Tim Hudson if including Windows specific code.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Attribution to Eric Young for parts of the library used.
-  - Include the specified acknowledgments in advertising materials.
-  - Do not remove copyright notices.
+  - Attribution required

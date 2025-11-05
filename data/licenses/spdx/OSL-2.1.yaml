@@ -1,72 +1,41 @@
 license:
   id: OSL-2.1
   name: OSL-2.1
-  type: copyleft_weak
+  type: permissive
   spdx_id: OSL-2.1
   properties:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
+    disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: true
+    include_notice: false
+    state_changes: false
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-3.0
-      - LGPL-2.1
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-3.0
-      - LGPL-2.1
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
-    contamination_effect: module
-    notes: OSL-2.1 allows for weak copyleft, meaning that while modifications to the
-      original work must be shared under the same license, it does not impose the
-      same requirements on derivative works that do not incorporate the original code.
+      - category:any
+      incompatible_with: []
+      requires_review: []
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Distribute copies of the Original Work or Derivative Works under the same Open
-    Software License.
-  - Provide a machine-readable copy of the Source Code when distributing the Original
-    Work.
-  - Do not use the names or trademarks of the Licensor or contributors without permission.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include the license text with any distribution of the Original Work or Derivative
-    Works.
-  - State any changes made to the Original Work when creating Derivative Works.
+  - Attribution required

@@ -11,10 +11,10 @@ license:
     private_use: true
   requirements:
     disclose_source: false
-    include_license: false
+    include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
+    include_notice: false
+    state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
@@ -24,48 +24,18 @@ license:
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Unlicense
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Unlicense
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: The HaskellReport license is permissive and allows for both static and
-      dynamic linking with compatible licenses. Care should be taken when combining
-      with copyleft licenses.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - The report must be reproduced in its entirety, including the copyright notice.
-  - Modified versions must be clearly presented as such and cannot claim to be a definition
-    of the Haskell 2010 Language.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include the copyright notice when distributing the report.
-  - Clearly indicate any modifications made to the original report.
+  - Attribution required

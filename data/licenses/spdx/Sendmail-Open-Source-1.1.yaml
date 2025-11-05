@@ -10,64 +10,32 @@ license:
     patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
+    disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: true
+    include_notice: false
+    state_changes: false
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: The Sendmail-Open-Source-1.1 license is permissive and allows for integration
-      with other software licenses, provided that incompatible licenses are avoided.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Redistributions must qualify as freeware or open source software.
-  - Redistributions must retain copyright notices and license terms.
-  - Binary redistributions must include copyright notice and license terms in documentation.
-  - Cannot use Sendmail's name or trademarks without permission.
-  - License can be canceled for non-compliance.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Provide a copy of modified source code or an offer to provide it for three years.
-  - Retain copyright notices and license terms in redistributions.
-  - Include a disclaimer of liability and warranty in redistributions.
+  - Attribution required

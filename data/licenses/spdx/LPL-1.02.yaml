@@ -7,60 +7,35 @@ license:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
+    include_notice: false
+    state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
+    liability: false
     warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - Unlicense
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - Unlicense
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: LPL-1.02 is a permissive license, allowing for broad compatibility with
-      other permissive licenses. However, it is incompatible with copyleft licenses
-      like GPL.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Include a copy of the license when distributing the Program.
-  - Include copyright notices for the original Program and Contributions.
-  - State changes made to the original Program when distributing modified versions.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Recipients must accept the terms of the license to use, reproduce, or distribute
-    the Program.
-  - No assurances are provided regarding patent infringement by Contributors.
+  - Attribution required

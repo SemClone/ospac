@@ -1,7 +1,7 @@
 license:
   id: Adobe-Display-PostScript
   name: Adobe-Display-PostScript
-  type: permissive|proprietary
+  type: permissive
   spdx_id: Adobe-Display-PostScript
   properties:
     commercial_use: true
@@ -13,41 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Apache-2.0
-      - MIT
-      - Permissive
-      incompatible_with:
-      - GPL-3.0+
-      - AGPL-3.0+
-      - Proprietary-only
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Apache-2.0
-      - MIT
-      - Permissive
-      incompatible_with:
-      - GPL-3.0+
-      - AGPL-3.0+
+      - category:any
+      incompatible_with: []
       requires_review: []
-    contamination_effect: module
-    notes: Note that Adobe-Display-PostScript allows derivative works, but requires
-      special permission for commercial distribution.
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - The above copyright notices and permission notice must appear in all copies.
-  - Proper trademark attribution to reflect Adobe's ownership of the trademark shall
-    be given whenever any such reference is made.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include the original license text in supporting documentation.
-  - Do not use the Adobe trademarks without specific, written prior permission.
+  - Attribution required

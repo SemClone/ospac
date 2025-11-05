@@ -7,50 +7,35 @@ license:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
     liability: false
     warranty: false
-    trademark_use: true
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Permissive
-      - BSD
-      - MIT
-      incompatible_with:
-      - GPL
-      - LGPL
-      - Apache-2.0
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Permissive
-      - ' BSD'
-      - MIT
-      incompatible_with:
-      - GPL
-      - LGPL
-      - Apache-2.0
+      - category:any
+      incompatible_with: []
       requires_review: []
     contamination_effect: none
-    notes: The AFL-2.1 license allows users to modify the code and distribute it under
-      their own license terms, with no obligation to open-source the derivative work.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Provide a machine-readable copy of the Source Code with each copy of the Original
-    Work
-  - Notify the public of the availability and location of the Source Code repository
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Retain the notice immediately following the copyright notice for the Original
-    Work
-  - Not use the names of the Licensor, contributors, or their trademarks without express
-    prior written permission
+  - Attribution required

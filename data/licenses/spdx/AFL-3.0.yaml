@@ -7,50 +7,35 @@ license:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Permissive
-      - Apache-2.0
-      - MIT
-      incompatible_with:
-      - GPL
-      - AGPL
-      - LGPL
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Permissive
-      - Apache-2.0
-      - MIT
-      - BSD
-      incompatible_with:
-      - GPL
-      - AGPL
-      - LGPL
+      - category:any
+      incompatible_with: []
       requires_review: []
     contamination_effect: none
-    notes: This license is compatible with other permissive licenses, but may require
-      review for licenses that are more restrictive.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Provide a machine-readable copy of the Source Code along with each copy of the
-    Original Work that Licensor distributes.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include the licensing notice adjacent to the copyright notice for the Original
-    Work
-  - Do not use the names of the Licensor, contributors, or their trademarks to endorse
-    or promote products derived from this Original Work without express prior permission
+  - Attribution required
