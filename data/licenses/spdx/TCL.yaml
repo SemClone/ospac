@@ -13,51 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
+    include_notice: false
+    state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL
-      - AGPL
-      - LGPL
-      requires_review:
-      - MPL
-      - EPL
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL
-      - AGPL
-      - LGPL
-      requires_review:
-      - MPL
-      - EPL
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: The TCL license is permissive and allows for both static and dynamic linking
-      with compatible licenses. However, care should be taken when combining with
-      copyleft licenses like GPL.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Retain existing copyright notices in all copies.
-  - Include the license notice verbatim in any distributions.
-  - Clearly indicate new licensing terms on the first page of modified files.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - No written agreement, license, or royalty fee is required for authorized uses.
-  - Software is provided 'as is' without any warranties.
+  - Attribution required

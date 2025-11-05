@@ -13,42 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Permissive
-      - Apache-2.0
-      - MIT
-      incompatible_with:
-      - GPL
-      - AGPL
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Permissive
-      - Apache-2.0
-      - MIT
-      incompatible_with:
-      - GPL
-      - AGPL
+      - category:any
+      incompatible_with: []
       requires_review: []
     contamination_effect: none
-    notes: BSD-2-Clause-FreeBSD is compatible with most permissive licenses and some
-      open-source licenses, but may have compatibility issues with copyleft licenses.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Retain the above copyright notice and this list of conditions in the documentation
-    and/or other materials provided with the distribution.
-  - Reproduce the above copyright notice, this list of conditions and the disclaimer
-    in the documentation and/or other materials provided with the binary distribution.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include the copyright notice, list of conditions, and disclaimer in all redistributions
-    (source and binary).
-  - Comply with the liability and warranty disclaimers.
+  - Attribution required

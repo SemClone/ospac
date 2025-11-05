@@ -11,51 +11,31 @@ license:
     private_use: true
   requirements:
     disclose_source: false
-    include_license: false
+    include_license: true
     include_copyright: true
     include_notice: false
-    state_changes: true
+    state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - LGPL-2.1
-      - LGPL-3.0
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
+      - category:any
+      incompatible_with: []
       requires_review: []
     contamination_effect: none
-    notes: TTWL is a permissive license, allowing for broad compatibility with other
-      permissive licenses. However, it is incompatible with copyleft licenses like
-      GPL.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Do not publicly redistribute modified versions of this code with the name 'Text::Tabs'
-    unless it passes the unmodified Text::Tabs test suite.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include copyright notices from the original authors.
+  - Attribution required

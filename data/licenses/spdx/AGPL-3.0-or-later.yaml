@@ -13,53 +13,34 @@ license:
     disclose_source: true
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: false
-    network_use_disclosure: true
+    include_notice: false
+    state_changes: false
+    same_license: true
+    network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - GPL-3.0-or-later
       - AGPL-3.0-or-later
-      - LGPL-3.0-or-later
+      - category:copyleft_strong
       incompatible_with:
-      - GPL-1.0-only
-      - GPL-2.0-only
-      - GPL-3.0-only
+      - category:permissive
+      - category:proprietary
       requires_review:
-      - Apache-2.0
-      - MIT
-      - Unlicense
+      - category:copyleft_weak
     dynamic_linking:
       compatible_with:
-      - GPL-3.0-or-later
-      - AGPL-3.0-or-later
-      - LGPL-3.0-or-later
-      incompatible_with:
-      - GPL-1.0-only
-      - GPL-2.0-only
-      - GPL-3.0-only
+      - category:any
+      incompatible_with: []
       requires_review:
-      - Apache-2.0
-      - MIT
-      - Unlicense
-    contamination_effect: module
-    notes: When distributing derived works, you must provide the corresponding source
-      code and modifications made to the original work.
+      - category:proprietary
+    contamination_effect: full
+    notes: Strong copyleft with viral effect
   obligations:
-  - The operator of a network server must provide the source code of the modified
-    version running there to the users of that server.
-  - 'When you distribute copies of a program, whether in object code or translated
-    form, one of the following is required:'
-  - '- You provide a copy of this License along with the program.'
-  - '- You give anyone who receives a copy the information that the program is distributed
-    under this License.'
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - The source code of any modified versions must be made available to the community.
-  - Operators of network servers must provide access to the source code of modified
-    versions running on their servers.
+  - Attribution required

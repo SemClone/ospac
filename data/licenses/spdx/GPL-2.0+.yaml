@@ -7,65 +7,40 @@ license:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
     disclose_source: true
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
+    include_notice: false
+    state_changes: false
     same_license: true
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - GPL-3.0+
-      - AGPL-3.0+
-      - LGPL-2.1
-      - LGPL-3.0
+      - GPL-2.0+
+      - category:copyleft_strong
       incompatible_with:
-      - Proprietary
-      - Apache-2.0
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
+      - category:permissive
+      - category:proprietary
       requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:copyleft_weak
     dynamic_linking:
       compatible_with:
-      - GPL-3.0+
-      - AGPL-3.0+
-      - LGPL-2.1
-      - LGPL-3.0
-      incompatible_with:
-      - Proprietary
-      - Apache-2.0
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
+      - category:any
+      incompatible_with: []
       requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:proprietary
     contamination_effect: full
-    notes: The GPL-2.0+ license requires that any derivative work or combined work
-      must also be licensed under GPL-2.0+ or a compatible license. This strong copyleft
-      nature means that any software that incorporates GPL-2.0+ licensed code must
-      also be open-sourced under the same terms.
+    notes: Strong copyleft with viral effect
   obligations:
-  - Distribute copies of the software under the same license.
-  - Provide access to the source code when distributing the software.
-  - Include a copy of the GPL license with any distributed software.
-  - Include copyright notices in all copies or substantial portions of the software.
-  - State any changes made to the original software.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Must provide the same freedoms to recipients as received.
-  - Must not impose additional restrictions on the rights granted by the license.
-  - Must ensure that any distributed modified versions are also licensed under GPL-2.0+.
+  - Attribution required

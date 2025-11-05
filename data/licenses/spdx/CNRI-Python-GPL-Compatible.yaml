@@ -1,7 +1,7 @@
 license:
   id: CNRI-Python-GPL-Compatible
   name: CNRI-Python-GPL-Compatible
-  type: permissive
+  type: copyleft_strong
   spdx_id: CNRI-Python-GPL-Compatible
   properties:
     commercial_use: true
@@ -10,60 +10,37 @@ license:
     patent_grant: false
     private_use: true
   requirements:
-    disclose_source: false
+    disclose_source: true
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: false
+    include_notice: false
+    state_changes: false
+    same_license: true
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
+      - CNRI-Python-GPL-Compatible
+      - category:copyleft_strong
       incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:permissive
+      - category:proprietary
       requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:copyleft_weak
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
+      - category:any
+      incompatible_with: []
       requires_review:
-      - LGPL-2.1
-      - LGPL-3.0
-      - MPL-2.0
-      - EPL-2.0
-    contamination_effect: none
-    notes: The CNRI-Python-GPL-Compatible license is permissive and allows for integration
-      with other permissive licenses without imposing copyleft restrictions.
+      - category:proprietary
+    contamination_effect: full
+    notes: Strong copyleft with viral effect
   obligations:
-  - Retain CNRI's License Agreement and copyright notice in all copies or derivative
-    works.
-  - Provide a brief summary of changes made to Python 1.6.1 in derivative works.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include CNRI's License Agreement or a specified notice in derivative works.
-  - Acknowledge CNRI's copyright in all distributions.
+  - Attribution required

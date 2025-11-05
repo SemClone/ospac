@@ -10,59 +10,32 @@ license:
     patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
-    include_license: false
+    disclose_source: false
+    include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
+    include_notice: false
+    state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
     liability: false
     warranty: false
-    trademark_use: true
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: Noweb is a permissive license, allowing for broad compatibility with other
-      permissive licenses. However, it is incompatible with copyleft licenses like
-      GPL.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Acknowledge the source of Noweb when redistributing.
-  - Retain the copyright notice in modified versions.
-  - State that the derived work is based on Noweb.
-  - Provide source code for derived works at no additional charge.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include the copyright notice in all copies or substantial portions of the software.
-  - Request that bug reports on derived works be reported to the author.
+  - Attribution required

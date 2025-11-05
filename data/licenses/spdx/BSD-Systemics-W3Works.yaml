@@ -13,60 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
+    include_notice: false
+    state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: The BSD-Systemics-W3Works license is permissive and allows for integration
-      with other permissive licenses without imposing restrictions on the resulting
-      work.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Attribution to Systemics Ltd and W3Works, LLC must be provided.
-  - Redistributions of source code must retain copyright notice and conditions.
-  - Redistributions in binary form must reproduce copyright notice and conditions
-    in documentation.
-  - Advertising materials must acknowledge W3Works, LLC and Systemics Ltd.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Retain copyright notices in the code.
-  - Provide attribution for modifications made by W3Works, LLC.
-  - Include disclaimers of warranty and liability.
+  - Attribution required

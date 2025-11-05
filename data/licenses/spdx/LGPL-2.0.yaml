@@ -1,67 +1,46 @@
 license:
   id: LGPL-2.0
   name: LGPL-2.0
-  type: copyleft_weak
+  type: copyleft_strong
   spdx_id: LGPL-2.0
   properties:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
     disclose_source: true
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: false
+    include_notice: false
+    state_changes: false
+    same_license: true
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
+      - LGPL-2.0
+      - category:copyleft_strong
       incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
+      - category:permissive
+      - category:proprietary
       requires_review:
-      - MPL-2.0
-      - EPL-1.0
-      - CC BY-NC
+      - category:copyleft_weak
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - GPL-2.0
-      - GPL-3.0
-      incompatible_with:
-      - AGPL-3.0
+      - category:any
+      incompatible_with: []
       requires_review:
-      - MPL-2.0
-      - EPL-1.0
-      - CC BY-NC
-    contamination_effect: module
-    notes: LGPL-2.0 allows linking with proprietary software under certain conditions,
-      but static linking may impose additional restrictions.
+      - category:proprietary
+    contamination_effect: full
+    notes: Strong copyleft with viral effect
   obligations:
-  - Distribute copies of the library with the same rights granted to you.
-  - Provide source code or access to it when distributing the library.
-  - Provide complete object files to allow relinking with modified versions of the
-    library.
-  - Include a copy of the LGPL license with any distribution.
-  - State any changes made to the library when distributing modified versions.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Ensure that recipients receive the same rights you received.
-  - Make sure to include the license text with the distributed library.
-  - Provide a copy of the copyright notice.
-  - Inform recipients of any changes made to the library.
+  - Attribution required

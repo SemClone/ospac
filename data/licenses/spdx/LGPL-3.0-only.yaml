@@ -1,69 +1,46 @@
 license:
   id: LGPL-3.0-only
   name: LGPL-3.0-only
-  type: copyleft_weak
+  type: copyleft_strong
   spdx_id: LGPL-3.0-only
   properties:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
-    disclose_source: false
+    disclose_source: true
     include_license: true
     include_copyright: true
     include_notice: false
-    state_changes: true
-    same_license: false
+    state_changes: false
+    same_license: true
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
+      - LGPL-3.0-only
+      - category:copyleft_strong
       incompatible_with:
-      - GPL-3.0-only
-      - GPL-2.0-only
-      - AGPL-3.0-only
+      - category:permissive
+      - category:proprietary
       requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:copyleft_weak
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      - GPL-2.0-only
-      - GPL-3.0-only
-      incompatible_with:
-      - AGPL-3.0-only
+      - category:any
+      incompatible_with: []
       requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
-    contamination_effect: module
-    notes: LGPL-3.0-only allows linking with proprietary software under certain conditions,
-      but static linking may impose stricter requirements than dynamic linking.
+      - category:proprietary
+    contamination_effect: full
+    notes: Strong copyleft with viral effect
   obligations:
-  - If you modify the Library, you must convey the modified version under this License
-    or the GNU GPL.
-  - You must include a copy of this License when distributing the Library or a Combined
-    Work.
-  - You must state changes made to the Library when distributing modified versions.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Ensure that the Library can still operate meaningfully if an Application does
-    not supply required functions or data.
-  - Provide the Corresponding Application Code when distributing a Combined Work.
+  - Attribution required

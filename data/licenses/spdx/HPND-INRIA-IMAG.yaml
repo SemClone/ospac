@@ -13,60 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: The HPND-INRIA-IMAG license is permissive and allows for wide compatibility
-      with other permissive licenses. However, it is incompatible with copyleft licenses
-      that impose stricter conditions.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Include the copyright notice in all copies of the software.
-  - Include the permission notice in all copies of the software.
-  - Do not use the names of INRIA, IMAG, or any contributor in advertising or publicity
-    without prior explicit permission.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Retain credits of the software.
-  - Provide the software 'as is' without any warranties or liabilities.
+  - Attribution required

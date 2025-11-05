@@ -1,7 +1,7 @@
 license:
   id: LGPLLR
   name: LGPLLR
-  type: copyleft_weak
+  type: copyleft_strong
   spdx_id: LGPLLR
   properties:
     commercial_use: true
@@ -13,56 +13,34 @@ license:
     disclose_source: true
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
+    include_notice: false
+    state_changes: false
     same_license: true
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - Public Domain
+      - LGPLLR
+      - category:copyleft_strong
       incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      - CC BY-NC
-      - CC BY-NC-SA
+      - category:permissive
+      - category:proprietary
       requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CPL-1.0
+      - category:copyleft_weak
     dynamic_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      - CC BY-NC
-      - CC BY-NC-SA
+      - category:any
+      incompatible_with: []
       requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CPL-1.0
-    contamination_effect: module
-    notes: The LGPLLR license allows for linking with proprietary software under certain
-      conditions, but care must be taken to comply with the license terms.
+      - category:proprietary
+    contamination_effect: full
+    notes: Strong copyleft with viral effect
   obligations:
-  - Include a copyright notice and disclaimer of warranty with distributed copies.
-  - Distribute a copy of the license along with the Linguistic Resource.
-  - Ensure modified works are also linguistic resources.
-  - Maintain all notices referring to the license and absence of warranty.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Provide conspicuous copyright notice on copies.
-  - Distribute under the same license terms for modified works.
-  - Keep intact all notices that refer to this License.
+  - Attribution required

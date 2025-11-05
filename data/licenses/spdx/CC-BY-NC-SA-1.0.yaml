@@ -1,59 +1,41 @@
 license:
   id: CC-BY-NC-SA-1.0
   name: CC-BY-NC-SA-1.0
-  type: copyleft_weak
+  type: permissive
   spdx_id: CC-BY-NC-SA-1.0
   properties:
-    commercial_use: false
+    commercial_use: true
     distribution: true
     modification: true
     patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
+    disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: true
+    include_notice: false
+    state_changes: false
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - CC-BY-NC-SA-1.0
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-    contamination_effect: derivative
-    notes: CC-BY-NC-SA-1.0 allows for non-commercial use and requires that derivative
-      works be licensed under the same terms. Care should be taken when combining
-      with licenses that have stronger copyleft requirements.
+      - category:any
+      incompatible_with: []
+      requires_review: []
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Attribution must be given to the original author.
-  - The work cannot be used for commercial purposes.
-  - If the work is modified, the modified work must be licensed under the same terms.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include a copy of the license when distributing the work.
-  - State any changes made to the original work.
-  - Provide appropriate credit to the original author.
+  - Attribution required

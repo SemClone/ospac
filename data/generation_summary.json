@@ -1,20 +1,18 @@
 {
-  "total_licenses": 638,
+  "total_licenses": 712,
   "spdx_version": "88388db",
-  "generated_at": "2025-11-04T14:56:36.677157",
+  "generated_at": "2025-11-04T20:38:01.848727",
   "output_directory": "data",
   "categories": {
-    "permissive": 463,
-    "proprietary": 9,
-    "public_domain": 23,
-    "copyleft_weak": 94,
-    "copyleft_strong": 49
+    "permissive": 667,
+    "copyleft_strong": 41,
+    "public_domain": 4
   },
   "validation": {
-    "total_licenses": 638,
+    "total_licenses": 712,
     "missing_category": 0,
     "missing_permissions": 0,
-    "missing_obligations": 19,
+    "missing_obligations": 0,
     "missing_compatibility": 0,
     "validation_errors": [],
     "is_valid": true

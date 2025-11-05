@@ -1,7 +1,7 @@
 license:
   id: AMDPLPA
   name: AMDPLPA
-  type: permissive|copyleft_weak
+  type: permissive
   spdx_id: AMDPLPA
   properties:
     commercial_use: true
@@ -13,44 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Permissive
-      - MIT
-      incompatible_with:
-      - GPL-3.0-or-later
-      - AGPL-3.0-or-later
-      - LGPL-3.0-or-later
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Permissive
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      incompatible_with:
-      - GPL-3.0-or-later
-      - AGPL-3.0-or-later
-      - LGPL-3.0-or-later
+      - category:any
+      incompatible_with: []
       requires_review: []
-    contamination_effect: module
-    notes: The AMDPLPA license allows for static linking with other permissive licenses,
-      but requires review for copyleft licenses. For dynamic linking, the license
-      is compatible with most permissive licenses. The license does not allow distribution
-      with copyleft licenses and requires permission for use in proprietary software.
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Redistributions of source code must retain the above copyright notice and all
-    terms of this license as part of the code.
-  - Redistributions in binary form must reproduce the above copyright notice and all
-    terms of this license in any related documentation and/or other materials.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - No specific key requirements mentioned in the license
+  - Attribution required

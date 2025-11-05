@@ -13,53 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-1.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-1.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: The BSD-Advertising-Acknowledgement license is permissive and allows for
-      integration with other permissive licenses. However, it is incompatible with
-      copyleft licenses like GPL.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Retain copyright notice in redistributions of source code.
-  - Include copyright notice and disclaimer in binary redistributions.
-  - Display acknowledgment in advertising materials mentioning features or use of
-    the software.
-  - Retain acknowledgment in all forms of redistribution.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include the copyright notice and conditions in redistributions.
-  - Provide acknowledgment in advertising materials and other distributions.
+  - Attribution required

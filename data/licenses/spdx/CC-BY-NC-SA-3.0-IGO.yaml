@@ -1,64 +1,41 @@
 license:
   id: CC-BY-NC-SA-3.0-IGO
   name: CC-BY-NC-SA-3.0-IGO
-  type: copyleft_weak
+  type: permissive
   spdx_id: CC-BY-NC-SA-3.0-IGO
   properties:
-    commercial_use: false
+    commercial_use: true
     distribution: true
     modification: true
     patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
+    disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: true
+    include_notice: false
+    state_changes: false
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - CC-BY
-      - CC-BY-SA
-      - CC-BY-NC
-      - CC-BY-NC-SA
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      - MIT
-      - Apache-2.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - CC-BY
-      - CC-BY-SA
-      - CC-BY-NC
-      - CC-BY-NC-SA
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - MIT
-      - Apache-2.0
-    contamination_effect: derivative
-    notes: The CC-BY-NC-SA-3.0-IGO license allows for non-commercial use and requires
-      derivative works to be licensed under the same terms. Care should be taken when
-      combining with licenses that have commercial use provisions.
+      - category:any
+      incompatible_with: []
+      requires_review: []
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Attribution must be given to the original creator.
-  - The work cannot be used for commercial purposes.
-  - Any adaptations must be shared alike under the same license.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include a copy of the license when distributing the work.
-  - State any changes made to the work.
-  - Provide appropriate credit to the original creator.
+  - Attribution required

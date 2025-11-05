@@ -18,46 +18,24 @@ license:
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - Unlicense
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - Unlicense
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: Cronyx license is permissive and allows for integration with other licenses,
-      provided that incompatible licenses are avoided.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Retain copyright notice and license terms in all copies or substantial portions
-    of the software.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include the copyright notice in all copies or substantial portions of the software.
-  - Retain the terms of the license when distributing the software.
+  - Attribution required

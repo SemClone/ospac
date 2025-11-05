@@ -133,8 +133,8 @@ class LicenseAnalyzer:
                 "network_use_disclosure": False
             },
             "limitations": {
-                "liability": True,
-                "warranty": True,
+                "liability": False,
+                "warranty": False,
                 "trademark_use": False
             },
             "compatibility": {
@@ -185,9 +185,12 @@ class LicenseAnalyzer:
             analysis["permissions"]["patent_grant"] = True
             analysis["conditions"]["include_notice"] = True
             analysis["conditions"]["state_changes"] = True
+            analysis["conditions"]["disclose_source"] = False
+            analysis["conditions"]["same_license"] = False
 
         elif "MIT" in license_id or "BSD" in license_id or "ISC" in license_id:
             analysis["category"] = "permissive"
+            analysis["permissions"]["patent_grant"] = False
 
         elif "CC0" in license_id or "Unlicense" in license_id:
             analysis["category"] = "public_domain"

@@ -10,66 +10,32 @@ license:
     patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
+    disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Zlib
-      - OGL-UK-2.0
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Zlib
-      - OGL-UK-2.0
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: The OGL-UK-2.0 is a permissive license, allowing for broad compatibility
-      with other permissive licenses. However, it is incompatible with copyleft licenses
-      that impose stricter requirements.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Acknowledge the source of the Information by including any attribution statement
-    specified by the Information Provider(s).
-  - Provide a link to the Open Government Licence v2.0 where possible.
-  - Use the specified attribution statement if provided; otherwise, use the default
-    statement.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Comply with the conditions of attribution and acknowledgment.
-  - Do not use the Information in a way that suggests endorsement by the Information
-    Provider.
-  - Understand that the Information is provided 'as is' without warranties.
+  - Attribution required

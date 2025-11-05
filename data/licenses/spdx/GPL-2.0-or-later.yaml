@@ -7,60 +7,40 @@ license:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
     disclose_source: true
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
+    include_notice: false
+    state_changes: false
     same_license: true
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - GPL-3.0-or-later
-      - AGPL-3.0-or-later
-      - LGPL-2.1
-      - MIT
-      - Apache-2.0
+      - GPL-2.0-or-later
+      - category:copyleft_strong
       incompatible_with:
-      - Proprietary
-      - BSD-3-Clause
-      - Apache-1.1
+      - category:permissive
+      - category:proprietary
       requires_review:
-      - LGPL-3.0
-      - MPL-2.0
+      - category:copyleft_weak
     dynamic_linking:
       compatible_with:
-      - GPL-3.0-or-later
-      - AGPL-3.0-or-later
-      - LGPL-2.1
-      - MIT
-      - Apache-2.0
-      incompatible_with:
-      - Proprietary
-      - BSD-3-Clause
-      - Apache-1.1
+      - category:any
+      incompatible_with: []
       requires_review:
-      - LGPL-3.0
-      - MPL-2.0
+      - category:proprietary
     contamination_effect: full
-    notes: The GPL-2.0-or-later license requires that any derivative works or combined
-      works must also be licensed under GPL-2.0-or-later, which leads to a strong
-      copyleft effect.
+    notes: Strong copyleft with viral effect
   obligations:
-  - Distribute copies of the software under the same license.
-  - Provide access to the source code when distributing the software.
-  - Include a copy of the license with any distributed software.
-  - Include copyright notices in all copies or substantial portions of the software.
-  - State any changes made to the original software.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Must provide the same freedoms to recipients as received.
-  - Must not impose further restrictions on the rights granted by the license.
-  - Must ensure that any modified versions are also licensed under GPL-2.0-or-later.
+  - Attribution required

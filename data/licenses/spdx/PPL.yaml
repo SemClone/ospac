@@ -1,66 +1,41 @@
 license:
   id: PPL
   name: PPL
-  type: copyleft_weak
+  type: permissive
   spdx_id: PPL
   properties:
-    commercial_use: false
+    commercial_use: true
     distribution: true
     modification: true
     patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
+    disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: true
+    include_notice: false
+    state_changes: false
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
+    liability: false
     warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      - LGPL-2.1
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
-    contamination_effect: module
-    notes: The PPL license allows for linking with proprietary software under certain
-      conditions, but care must be taken to comply with the terms of the license.
+      - category:any
+      incompatible_with: []
+      requires_review: []
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - You must provide attribution to the original author.
-  - You must include a copy of this license with any distribution of the Work or Adaptation.
-  - You must disclose the source of the Work when distributing it.
-  - You must state any changes made to the Work when distributing it.
-  - You must distribute any Adaptations under the same license.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Attribution to the original author is required.
-  - License must be included with distributed copies.
-  - Any modifications must be clearly stated.
-  - Adaptations must be licensed under the same terms.
+  - Attribution required

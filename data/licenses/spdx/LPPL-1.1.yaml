@@ -13,53 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
+    include_notice: false
+    state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
+    liability: false
     warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: LPPL-1.1 is a permissive license that allows for integration with other
-      permissive licenses without imposing restrictions on the combined work.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Must include the LPPL license when distributing the program.
-  - Must not modify files that explicitly forbid modification.
-  - Must meet any additional conditions on individual files when distributing modified
-    versions.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Distribute complete, unmodified copies of The Program.
-  - Check for additional conditions on individual files before distribution.
-  - If modifying a file, ensure compliance with any additional conditions specified
-    for that file.
+  - Attribution required

@@ -13,38 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
     liability: false
     warranty: false
-    trademark_use: true
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Apache-2.0
-      - MIT
-      - Permissive
-      incompatible_with:
-      - GPL-3.0+
-      - LGPL-3.0+
-      - AGPL-3.0+
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - All Permissive licenses
-      incompatible_with:
-      - All Copyleft licenses
+      - category:any
+      incompatible_with: []
       requires_review: []
-    contamination_effect: full
-    notes: The Bitstream-Charter license is a permissive open-source license. It allows
-      free use, modification and distribution of software. Derivative works must be
-      distributed under the same or compatible licenses.
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Acknowledge Bitstream's trademark as shown below on all unmodified copies of the
-    4 Charter Type 1 fonts.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include the license notice and acknowledge Bitstream's trademark in any modified
-    or redistributed font copies.
+  - Attribution required

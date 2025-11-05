@@ -11,55 +11,31 @@ license:
     private_use: true
   requirements:
     disclose_source: false
-    include_license: false
+    include_license: true
     include_copyright: true
     include_notice: false
-    state_changes: true
+    state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD
-      - Apache-2.0
-      - ISC
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD
-      - Apache-2.0
-      - ISC
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: HTMLTIDY is a permissive license, allowing for integration with other permissive
-      licenses without significant restrictions. However, care should be taken when
-      integrating with copyleft licenses.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - The origin of the source code must not be misrepresented.
-  - Altered versions must be plainly marked as such and must not be misrepresented
-    as being the original source.
-  - The copyright notice may not be removed or altered from any source or altered
-    source distribution.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Acknowledge the use of the source code in commercial products is appreciated but
-    not required.
+  - Attribution required

@@ -1,69 +1,46 @@
 license:
   id: GPL-3.0-with-GCC-exception
   name: GPL-3.0-with-GCC-exception
-  type: copyleft_weak
+  type: copyleft_strong
   spdx_id: GPL-3.0-with-GCC-exception
   properties:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
     disclose_source: true
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: false
+    include_notice: false
+    state_changes: false
+    same_license: true
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
+      - GPL-3.0-with-GCC-exception
+      - category:copyleft_strong
       incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-3.0
+      - category:permissive
+      - category:proprietary
       requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
+      - category:copyleft_weak
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      - LGPL-2.1
-      incompatible_with:
-      - AGPL-3.0
-      - GPL-3.0
+      - category:any
+      incompatible_with: []
       requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - CC BY-SA
-    contamination_effect: module
-    notes: The GPL-3.0-with-GCC-exception allows for linking with proprietary software
-      under certain conditions, but care must be taken to comply with the terms of
-      the GPL for any derivative works.
+      - category:proprietary
+    contamination_effect: full
+    notes: Strong copyleft with viral effect
   obligations:
-  - Must include a copy of the GPLv3 license when distributing the software.
-  - Must include the GCC Runtime Library Exception notice when distributing the software.
-  - Must disclose source code when distributing modified versions of the software.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Ensure that any combined work that includes the Runtime Library and Independent
-    Modules complies with the GPLv3 terms.
-  - Maintain the integrity of the GPLv3 license and the GCC Runtime Library Exception
-    in distributed works.
+  - Attribution required

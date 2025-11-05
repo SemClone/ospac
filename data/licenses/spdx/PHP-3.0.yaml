@@ -13,62 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Unlicense
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-1.0
-      - Artistic-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Unlicense
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-1.0
-      - Artistic-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: The PHP-3.0 license is permissive and allows for both static and dynamic
-      linking with compatible licenses. However, it is incompatible with copyleft
-      licenses like GPL and AGPL.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Retain copyright notice and list of conditions in redistributions of source code.
-  - Reproduce copyright notice and list of conditions in binary redistributions.
-  - Obtain prior written permission to use the name 'PHP' for endorsement or promotion.
-  - Obtain prior written permission to use 'PHP' in the name of derived products.
-  - Include acknowledgment that the product includes PHP in redistributions.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Maintain the copyright notice and conditions in source and binary redistributions.
-  - Do not use the name 'PHP' without permission for endorsement or product naming.
-  - Acknowledge the PHP Group in redistributions.
+  - Attribution required

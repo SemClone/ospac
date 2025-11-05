@@ -13,7 +13,7 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
@@ -24,32 +24,18 @@ license:
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - Permissive
-      - Zlib
-      incompatible_with:
-      - GPL-3.0+
-      - AGPL-3.0+
-      - LGPL-3.0+
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - Permissive
-      - Zlib
-      incompatible_with:
-      - GPL-3.0+
-      - AGPL-3.0+
-      - LGPL-3.0+
+      - category:any
+      incompatible_with: []
       requires_review: []
     contamination_effect: none
-    notes: Aladdin's permissive license is compatible with other permissive licenses,
-      and can be distributed with them without restrictions.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - You must distribute an unmodified copy of this License with the Program.
-  - You must comply with all restrictions set forth in this License.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - You must not accept these terms and conditions if you do not agree to modify or
-    distribute the Program.
+  - Attribution required

@@ -15,52 +15,27 @@ license:
     include_copyright: true
     include_notice: false
     state_changes: false
-    same_license: true
+    same_license: false
     network_use_disclosure: false
   limitations:
     liability: false
     warranty: false
-    trademark_use: true
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: The OFL-1.1-RFN license is designed to be permissive and compatible with
-      many open-source licenses, particularly those that are also permissive. However,
-      it is incompatible with copyleft licenses like GPL.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - The Font Software or its components cannot be sold by themselves.
-  - Each copy of the Font Software must include the copyright notice and the license.
-  - Modified Versions cannot use Reserved Font Names without permission.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Must not sell the Font Software by itself.
-  - Must include the license and copyright notice in redistributions.
-  - Must not use Reserved Font Names for Modified Versions without permission.
+  - Attribution required

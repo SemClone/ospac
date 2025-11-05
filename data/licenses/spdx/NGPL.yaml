@@ -13,54 +13,34 @@ license:
     disclose_source: true
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
+    include_notice: false
+    state_changes: false
     same_license: true
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - GPL
-      - AGPL
-      - LGPL (version 3 or later)
-      - MPL (version 2.0)
+      - NGPL
+      - category:copyleft_strong
       incompatible_with:
-      - MIT
-      - Apache 2.0
-      - BSD
-      - Proprietary
+      - category:permissive
+      - category:proprietary
       requires_review:
-      - LGPL (version 2.1)
-      - EPL
+      - category:copyleft_weak
     dynamic_linking:
       compatible_with:
-      - GPL
-      - AGPL
-      - LGPL (version 3 or later)
-      - MPL (version 2.0)
-      incompatible_with:
-      - MIT
-      - Apache 2.0
-      - BSD
-      - Proprietary
+      - category:any
+      incompatible_with: []
       requires_review:
-      - LGPL (version 2.1)
-      - EPL
+      - category:proprietary
     contamination_effect: full
-    notes: The NGPL license requires that any derivative works or combined works must
-      also be licensed under the NGPL or a compatible license. This strong copyleft
-      nature ensures that the freedoms granted by the license are preserved in all
-      derivative works.
+    notes: Strong copyleft with viral effect
   obligations:
-  - Distribute verbatim copies of the source code with the license intact.
-  - Provide recipients with a copy of the license agreement.
-  - Include prominent notices on modified files stating changes made.
-  - License derivative works under the same terms as this license.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Maintain copyright notices and license information in all copies.
-  - Notify recipients of their rights under this license.
-  - Ensure that modifications are also distributed under the same license.
+  - Attribution required

@@ -18,44 +18,24 @@ license:
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - Unlicense
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - Unlicense
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: CrystalStacker is a permissive license, allowing for wide compatibility
-      with other permissive licenses. However, it is incompatible with copyleft licenses
-      such as GPL and AGPL.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Include the license document in its original form with any distribution.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - No guarantees regarding the software's usability or safety.
-  - Source code must be included in its unmodified form with any new distribution.
+  - Attribution required

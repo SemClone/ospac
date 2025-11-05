@@ -13,46 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Permissive
-      - MIT
-      - Apache-2.0
-      - BSD
-      incompatible_with:
-      - GPL
-      - LGPL
-      - AGPL
-      - Boost
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Permissive
-      - MIT
-      - Apache-2.0
-      - BSD
-      incompatible_with:
-      - GPL
-      - LGPL
-      - AGPL
-      - Boost
+      - category:any
+      incompatible_with: []
       requires_review: []
-    contamination_effect: module
-    notes: The ASWF-Digital-Assets-1.0 license is compatible with most permissive
-      licenses, allowing for static and dynamic linking. However, it is not compatible
-      with copyleft licenses, which may require modifications to the original work.
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Redistribute the asset with the copyright notice, conditions, and disclaimer.
-  - Include the copyright notice in publications showing images derived from the assets.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Must use the exact name of the asset without implying endorsement or affiliation
-    with products developed or tested utilizing these digital assets.
+  - Attribution required

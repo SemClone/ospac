@@ -1,67 +1,46 @@
 license:
   id: GPL-2.0-with-GCC-exception
   name: GPL-2.0-with-GCC-exception
-  type: copyleft_weak
+  type: copyleft_strong
   spdx_id: GPL-2.0-with-GCC-exception
   properties:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
     disclose_source: true
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: false
+    include_notice: false
+    state_changes: false
+    same_license: true
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      - MIT
-      - Apache-2.0
+      - GPL-2.0-with-GCC-exception
+      - category:copyleft_strong
       incompatible_with:
-      - Proprietary
-      - Commercial licenses that do not allow GPL-2.0
+      - category:permissive
+      - category:proprietary
       requires_review:
-      - MPL-2.0
-      - EPL-1.0
-      - AGPL-3.0
+      - category:copyleft_weak
     dynamic_linking:
       compatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      - MIT
-      - Apache-2.0
-      incompatible_with:
-      - Proprietary
-      - Commercial licenses that do not allow GPL-2.0
+      - category:any
+      incompatible_with: []
       requires_review:
-      - MPL-2.0
-      - EPL-1.0
-      - AGPL-3.0
-    contamination_effect: module
-    notes: The GPL-2.0-with-GCC-exception allows linking with proprietary software
-      under certain conditions, but static linking may impose stricter requirements
-      than dynamic linking.
+      - category:proprietary
+    contamination_effect: full
+    notes: Strong copyleft with viral effect
   obligations:
-  - Must disclose source code when distributing modified versions of the software.
-  - Must include a copy of the GPL license when distributing the software.
-  - Must include copyright notices when distributing the software.
-  - Must state changes made to the original software when distributing modified versions.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Comply with the terms of the GPL v2 license.
-  - Linking the compiled version of the file with other programs is allowed without
-    restriction.
+  - Attribution required

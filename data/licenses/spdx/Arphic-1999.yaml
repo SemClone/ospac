@@ -8,54 +8,34 @@ license:
     distribution: true
     modification: true
     patent_grant: false
-    private_use: false
+    private_use: true
   requirements:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: true
+    include_notice: false
+    state_changes: false
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Apache-1.0
-      - Apache-2.0
-      - MIT
-      - Permissive-Noncommercial
-      incompatible_with:
-      - GPL
-      - LGPL
-      - AGPL
-      - Proprietary
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Apache-1.0
-      - Apache-2.0
-      - MIT
-      - Permissive-Noncommercial
-      incompatible_with:
-      - GPL
-      - LGPL
-      - AGPL
-      - Proprietary
+      - category:any
+      incompatible_with: []
       requires_review: []
     contamination_effect: none
-    notes: This license is compatible with other permissive licenses, but may be incompatible
-      with copyleft licenses due to the 'permissive' category.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - You must retain this license file (ARPHICPL.TXT) unaltered in all copies.
-  - You must insert a prominent notice in each modified file stating how and when
-    you changed that file.
-  - You must make such modifications Freely Available as a whole to all third parties
-    under the terms of this License.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Retain the license file unaltered
-  - Insert a prominent notice for modified files
-  - Make modifications freely available
+  - Attribution required

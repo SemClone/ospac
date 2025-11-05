@@ -12,8 +12,8 @@ license:
   requirements:
     disclose_source: false
     include_license: true
-    include_copyright: false
-    include_notice: true
+    include_copyright: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
@@ -24,42 +24,18 @@ license:
   compatibility:
     static_linking:
       compatible_with:
-      - Apache-2.0
-      - MIT
-      - Unlicense
-      - Zlib
-      incompatible_with:
-      - GPL-3.0
-      - GPL-2.0
-      - AGPL-3.0
-      - AGPL-2.0
-      - LGPL-3.0
-      - LGPL-2.1
-      - LGPL-2.0
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Apache-2.0
-      - MIT
-      - Unlicense
-      - Zlib
-      incompatible_with:
-      - GPL-3.0
-      - GPL-2.0
-      - AGPL-3.0
-      - AGPL-2.0
-      - LGPL-3.0
-      - LGPL-2.1
-      - LGPL-2.0
+      - category:any
+      incompatible_with: []
       requires_review: []
     contamination_effect: none
-    notes: ''
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Distribute the Licensed Work and any portions thereof under this License.
-  - Maintain the Designated Web Site and post changes to the URL for at least 60 days.
-  - Indicate the Original Creator(s) of the Initial Work in the notice required by
-    Part 1 of Exhibit A.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Read the specific Adaptive Public License that you receive with the Licensed Work,
-    as certain terms are defined at the outset by the Initial Contributor.
-  - Check Exhibit A for specific adaptive features applicable to this License.
+  - Attribution required

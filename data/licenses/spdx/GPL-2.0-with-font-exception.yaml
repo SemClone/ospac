@@ -7,69 +7,40 @@ license:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
     disclose_source: true
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
+    include_notice: false
+    state_changes: false
     same_license: true
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - GPL-2.0-with-font-exception
+      - category:copyleft_strong
       incompatible_with:
-      - Proprietary
-      - Apache-2.0
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
+      - category:permissive
+      - category:proprietary
       requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - Creative Commons
+      - category:copyleft_weak
     dynamic_linking:
       compatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-2.1
-      - LGPL-3.0
-      incompatible_with:
-      - Proprietary
-      - Apache-2.0
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
+      - category:any
+      incompatible_with: []
       requires_review:
-      - MPL-2.0
-      - EPL-2.0
-      - Creative Commons
+      - category:proprietary
     contamination_effect: full
-    notes: The GPL-2.0-with-font-exception license is a strong copyleft license. Any
-      derivative work or software that incorporates GPL-2.0-with-font-exception licensed
-      code must also be distributed under the same license. The font exception allows
-      the use of fonts without imposing the copyleft requirements on the entire work.
+    notes: Strong copyleft with viral effect
   obligations:
-  - If you distribute modified versions of the software, you must disclose the source
-    code.
-  - You must include a copy of the GPL license with any distribution.
-  - You must include copyright notices for the original authors.
-  - You must include a notice stating any changes made to the original software.
-  - If you distribute the software or derivative works, they must be licensed under
-    the same GPL license.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Ensure that the GPL license text is included with any distribution.
-  - Provide access to the source code when distributing binaries.
-  - Maintain the same license for derivative works.
+  - Attribution required

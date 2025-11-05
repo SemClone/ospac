@@ -13,53 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-2-Clause
-      - Zlib
-      - ISC
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-2-Clause
-      - Zlib
-      - ISC
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: The BSD-3-Clause-No-Nuclear-License is a permissive license that allows
-      for wide compatibility with other permissive licenses. However, it is incompatible
-      with copyleft licenses like GPL due to their requirements for derivative works.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Retain copyright notice in source code redistributions.
-  - Include copyright notice and license in binary redistributions.
-  - Obtain written permission for trademark use.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Redistribute source code with copyright notice and license.
-  - Include license and copyright notice in binary distributions.
-  - Do not use the name of Sun Microsystems, Inc. or contributors for promotion without
-    permission.
+  - Attribution required

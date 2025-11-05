@@ -13,40 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Permissive
-      - MIT
-      - Apache-2.0
-      - Unlicense
-      incompatible_with:
-      - GPL-3.0-or-later
-      - AGPL-3.0-or-later
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Permissive
-      - MIT
-      - Apache-2.0
-      - Unlicense
-      incompatible_with:
-      - GPL-3.0-or-later
-      - AGPL-3.0-or-later
+      - category:any
+      incompatible_with: []
       requires_review: []
     contamination_effect: none
-    notes: ''
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Retain the above copyright notice and this list of conditions at the beginning
-    of each file, without modification.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include the license text in any redistribution or derivative work.
-  - Retain the above disclaimer statement in any redistribution or derivative work.
+  - Attribution required

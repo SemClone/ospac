@@ -1,7 +1,7 @@
 license:
   id: CC-BY-SA-2.0-UK
   name: CC-BY-SA-2.0-UK
-  type: copyleft_weak
+  type: permissive
   spdx_id: CC-BY-SA-2.0-UK
   properties:
     commercial_use: true
@@ -10,57 +10,32 @@ license:
     patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
+    disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: true
+    include_notice: false
+    state_changes: false
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - CC-BY
-      - CC-BY-SA
-      - GPL-2.0
-      - GPL-3.0
-      - MIT
-      - Apache-2.0
-      incompatible_with:
-      - Proprietary licenses
-      - CC-NC
-      - CC-ND
-      requires_review:
-      - MPL-2.0
-      - EPL-1.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - CC-BY
-      - CC-BY-SA
-      - GPL-2.0
-      - GPL-3.0
-      - MIT
-      - Apache-2.0
-      incompatible_with:
-      - Proprietary licenses
-      - CC-NC
-      - CC-ND
-      requires_review:
-      - MPL-2.0
-      - EPL-1.0
-    contamination_effect: derivative
-    notes: The CC-BY-SA-2.0-UK license requires that any derivative works or adaptations
-      are also licensed under the same or a compatible license. This can lead to 'contamination'
-      of the codebase if combined with incompatible licenses.
+      - category:any
+      incompatible_with: []
+      requires_review: []
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Attribution to the Original Author is required.
-  - Derivative Works must be licensed under the same terms (Share-Alike).
-  - Include a copy of the license when distributing the Work.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Credit the Original Author.
-  - State any changes made to the Work.
-  - Distribute derivative Works under the same license.
+  - Attribution required

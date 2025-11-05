@@ -82,9 +82,9 @@ Provide a JSON response with the following structure:
         "network_use_disclosure": true/false
     }},
     "limitations": {{
-        "liability": true/false,
-        "warranty": true/false,
-        "trademark_use": true/false
+        "liability": true/false,  // false = license disclaims liability (typical)
+        "warranty": true/false,   // false = license disclaims warranty (typical)
+        "trademark_use": true/false  // false = license doesn't grant trademark rights
     }},
     "compatibility": {{
         "can_combine_with_permissive": true/false,
@@ -165,8 +165,8 @@ provide detailed compatibility rules in JSON format:
                 "network_use_disclosure": False
             },
             "limitations": {
-                "liability": True,
-                "warranty": True,
+                "liability": False,
+                "warranty": False,
                 "trademark_use": False
             },
             "compatibility": {
@@ -193,6 +193,8 @@ provide detailed compatibility rules in JSON format:
             analysis["conditions"]["network_use_disclosure"] = True
         elif "Apache" in license_id:
             analysis["permissions"]["patent_grant"] = True
+            analysis["conditions"]["disclose_source"] = False
+            analysis["conditions"]["same_license"] = False
         elif "CC0" in license_id or "Unlicense" in license_id:
             analysis["category"] = "public_domain"
 

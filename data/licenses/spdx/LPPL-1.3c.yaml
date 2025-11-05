@@ -1,12 +1,12 @@
 license:
   id: LPPL-1.3c
   name: LPPL-1.3c
-  type: copyleft_weak
+  type: permissive
   spdx_id: LPPL-1.3c
   properties:
     commercial_use: true
     distribution: true
-    modification: false
+    modification: true
     patent_grant: false
     private_use: true
   requirements:
@@ -18,47 +18,24 @@ license:
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - LGPL-2.1
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - LGPL-3.0
-    contamination_effect: module
-    notes: LPPL-1.3c is a weak copyleft license, meaning that it allows linking with
-      proprietary software under certain conditions. Care should be taken when combining
-      with strong copyleft licenses.
+      - category:any
+      incompatible_with: []
+      requires_review: []
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - You must include a copy of the LPPL license when distributing the Work.
-  - You must include the copyright notice when distributing the Work.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - You cannot modify the LPPL license itself.
-  - You must maintain the integrity and reliability of the Work.
+  - Attribution required

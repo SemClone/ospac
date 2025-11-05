@@ -13,54 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
+    include_notice: false
+    state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - Unlicense
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - Apache-2.0
-      - BSD-3-Clause
-      - Zlib
-      - Unlicense
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     contamination_effect: none
-    notes: OPUBL-1.0 is a permissive license, allowing for broad compatibility with
-      other permissive licenses. However, it is incompatible with copyleft licenses
-      like GPL.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Display the license or an incorporation of it by reference in reproductions.
-  - Cite the original publisher and author in standard book form.
-  - Label modified versions as such and identify the person making modifications.
-  - Retain acknowledgment of the original author and publisher.
-  - Identify the location of the original unmodified document.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include the license text or a reference to it in all reproductions.
-  - Commercial redistribution is permitted.
-  - Modified works must be labeled and dated with the modifier's information.
+  - Attribution required

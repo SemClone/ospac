@@ -1,66 +1,41 @@
 license:
   id: RSCPL
   name: RSCPL
-  type: copyleft_weak
+  type: permissive
   spdx_id: RSCPL
   properties:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
-    disclose_source: true
+    disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
+    include_notice: false
+    state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      - LGPL-3.0
-      requires_review:
-      - MPL-2.0
-      - EPL-2.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-3-Clause
-      - Apache-2.0
-      - Zlib
-      - Public Domain
-      - LGPL-2.1
-      incompatible_with:
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - LGPL-3.0
-      - MPL-2.0
-      - EPL-2.0
-    contamination_effect: module
-    notes: RSCPL allows for linking with proprietary software under certain conditions,
-      but care must be taken to comply with the terms of the license.
+      - category:any
+      incompatible_with: []
+      requires_review: []
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - You must disclose the source code of any modifications made to the Governed Code.
-  - You must include a copy of this License with any distribution of the Governed
-    Code.
-  - You must include copyright notices in all copies or substantial portions of the
-    Governed Code.
-  - You must include a notice stating any changes made to the original code.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Comply with the terms of the Ricoh Source Code Public License.
-  - Ensure that any modifications are clearly stated and the source code is made available.
+  - Attribution required

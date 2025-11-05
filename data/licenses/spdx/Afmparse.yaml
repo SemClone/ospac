@@ -13,41 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
+    include_notice: false
     state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
-    trademark_use: true
+    liability: false
+    warranty: false
+    trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Apache-2.0
-      - MIT
-      - Permissive
-      incompatible_with:
-      - GPL-1.0-only
-      - GPL-3.0-only
-      - AGPL-3.0-only
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Apache-2.0
-      - MIT
-      - Permissive
-      - Zlib
-      incompatible_with:
-      - GPL-1.0-only
-      - GPL-3.0-only
-      - AGPL-3.0-only
+      - category:any
+      incompatible_with: []
       requires_review: []
     contamination_effect: none
-    notes: This license is a permissive free software license, allowing users to use
-      the software in any way they see fit.
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Include this entire notice in the file if redistributing
-  - Conspicuously indicate modifications to the file
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - Include this entire notice in the file when distributing or modifying the software
+  - Attribution required

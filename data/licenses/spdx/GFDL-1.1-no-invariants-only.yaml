@@ -1,7 +1,7 @@
 license:
   id: GFDL-1.1-no-invariants-only
   name: GFDL-1.1-no-invariants-only
-  type: copyleft_weak
+  type: permissive
   spdx_id: GFDL-1.1-no-invariants-only
   properties:
     commercial_use: true
@@ -13,49 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
-    same_license: true
+    include_notice: false
+    state_changes: false
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
+    liability: false
     warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - LGPL-2.1
-      - LGPL-3.0
+      - category:any
+      incompatible_with: []
+      requires_review: []
     dynamic_linking:
       compatible_with:
-      - MIT
-      - BSD-2-Clause
-      - BSD-3-Clause
-      - Apache-2.0
-      - LGPL-2.1
-      incompatible_with:
-      - GPL-2.0
-      - GPL-3.0
-      - AGPL-3.0
-      requires_review:
-      - LGPL-3.0
-    contamination_effect: module
-    notes: The GFDL-1.1-no-invariants-only license allows for weak copyleft, meaning
-      that it can be combined with other licenses, but care must be taken to ensure
-      that the resulting work complies with the terms of all involved licenses.
+      - category:any
+      incompatible_with: []
+      requires_review: []
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Must include a copy of the license when distributing the Document.
-  - Must include a copyright notice.
-  - Must include a notice stating any changes made to the Document.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - The Document must be distributed under the same license if modified.
-  - Invariant Sections must not be altered or removed.
+  - Attribution required

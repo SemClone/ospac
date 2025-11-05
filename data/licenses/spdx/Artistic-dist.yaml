@@ -1,7 +1,7 @@
 license:
   id: Artistic-dist
   name: Artistic-dist
-  type: permissive|copyleft_weak
+  type: permissive
   spdx_id: Artistic-dist
   properties:
     commercial_use: true
@@ -13,43 +13,29 @@ license:
     disclose_source: false
     include_license: true
     include_copyright: true
-    include_notice: true
-    state_changes: true
+    include_notice: false
+    state_changes: false
     same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Permissive
-      - MIT
-      - BSD
-      incompatible_with:
-      - Copyleft_Strong
-      - GPL_v2
-      - AGPL_v3
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Permissive
-      - MIT
-      - BSD
-      incompatible_with:
-      - Copyleft_Strong
-      - GPL_v2
-      - AGPL_v3
+      - category:any
+      incompatible_with: []
       requires_review: []
-    contamination_effect: module
-    notes: When combining with GPL-3.0 or later, you must treat the combined work
-      as a derivative.
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - Duplicate all original copyright notices and associated disclaimers.
-  - Insert a prominent notice in each changed file stating how and when you changed
-    that file.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - 'Meet one of the three requirements: make modifications Freely Available, use
-    them within your corporation or organization, or allow the Copyright Holder to
-    include them in the Standard Version.'
+  - Attribution required

@@ -1,64 +1,41 @@
 license:
   id: APSL-1.0
   name: APSL-1.0
-  type: permissive|copyleft_weak
+  type: permissive
   spdx_id: APSL-1.0
   properties:
     commercial_use: true
     distribution: true
     modification: true
-    patent_grant: true
+    patent_grant: false
     private_use: true
   requirements:
     disclose_source: false
     include_license: true
-    include_copyright: false
-    include_notice: true
+    include_copyright: true
+    include_notice: false
     state_changes: false
-    same_license: true
+    same_license: false
     network_use_disclosure: false
   limitations:
-    liability: true
-    warranty: true
+    liability: false
+    warranty: false
     trademark_use: false
   compatibility:
     static_linking:
       compatible_with:
-      - Apache-2.0
-      - MIT
-      - ISC
-      - Unlicense
-      incompatible_with:
-      - GPL-3.0+
-      - AGPL-3.0+
-      - GPL-2.0+ with exception
-      - GPL-1.0+ with exception
+      - category:any
+      incompatible_with: []
       requires_review: []
     dynamic_linking:
       compatible_with:
-      - Apache-2.0
-      - MIT
-      - ISC
-      - Unlicense
-      incompatible_with:
-      - GPL-3.0+
-      - AGPL-3.0+
-      - GPL-2.0+ with exception
-      - GPL-1.0+ with exception
+      - category:any
+      incompatible_with: []
       requires_review: []
-    contamination_effect: module
-    notes: APSL-1.0 is compatible with most permissive licenses, but GPL-derived licenses
-      are incompatible.
+    contamination_effect: none
+    notes: Permissive license with minimal restrictions
   obligations:
-  - You must notify Apple of any changes you make to the Original Code, including
-    but not limited to new patent applications that are necessary to use, reproduce
-    and/or distribute the Modified Code without infringement.
-  - You must provide Apple with a written notice within 30 days of your making any
-    modification(s) to the Original Code or combining the Original Code with other
-    code in such a way as to form a Larger Work.
+  - Include license text
+  - Include copyright notice
   key_requirements:
-  - You must include a notice stating that you have modified the Original Code and
-    indicating the extent to which you have modified it.
-  - Your modifications must be made available under this License, including but not
-    limited to making the Source Code of any Modifications publicly available under
-    this License.
+  - Attribution required
