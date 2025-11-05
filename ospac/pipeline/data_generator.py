@@ -144,6 +144,36 @@ class PolicyDataGenerator:
 
         return analyzed_licenses
 
+    def _convert_yaml_format(self, yaml_licenses: List[Dict]) -> List[Dict]:
+        """Convert YAML format licenses to the expected format for database generation."""
+        converted = []
+        for license_data in yaml_licenses:
+            # Handle both direct format and wrapped format from YAML files
+            if isinstance(license_data, dict) and 'id' in license_data:
+                # Direct format from YAML files
+                converted_license = {
+                    "license_id": license_data.get("id"),
+                    "name": license_data.get("name", license_data.get("id")),
+                    "category": license_data.get("type", "permissive"),
+                    "permissions": license_data.get("properties", {}),
+                    "conditions": license_data.get("requirements", {}),
+                    "limitations": license_data.get("limitations", {}),
+                    "compatibility_rules": license_data.get("compatibility", {}),
+                    "obligations": license_data.get("obligations", []),
+                    "key_requirements": license_data.get("key_requirements", []),
+                    "spdx_data": {
+                        "isOsiApproved": False,  # Default values since not in YAML
+                        "isFsfLibre": False,
+                        "isDeprecatedLicenseId": False
+                    }
+                }
+                converted.append(converted_license)
+            elif isinstance(license_data, dict) and 'license_id' in license_data:
+                # Already in expected format
+                converted.append(license_data)
+
+        return converted
+
     def _update_master_databases(self, all_analyzed: List[Dict]):
         """Update master databases with all processed licenses."""
         # This method will update the main database files
@@ -241,12 +271,17 @@ class PolicyDataGenerator:
         logger.info("Updating master databases...")
         all_analyzed = self._load_all_processed_licenses()
         self._update_master_databases(all_analyzed)
-        compatibility_matrix = self._generate_compatibility_matrix(analyzed_licenses)
-        obligation_database = self._generate_obligation_database(analyzed_licenses)
+
+        # Convert YAML format to expected format for compatibility functions
+        converted_analyzed = self._convert_yaml_format(analyzed_licenses)
+        converted_all = self._convert_yaml_format(all_analyzed)
+
+        compatibility_matrix = self._generate_compatibility_matrix(converted_all)
+        obligation_database = self._generate_obligation_database(converted_all)
 
         # Step 5: Generate aggregate datasets
         logger.info("Generating aggregate datasets...")
-        self._generate_master_database(analyzed_licenses, compatibility_matrix, obligation_database)
+        self._generate_master_database(converted_all, compatibility_matrix, obligation_database)
 
         # Step 6: Generate validation data
         validation_report = self._validate_generated_data(analyzed_licenses)
