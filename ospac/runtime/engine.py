@@ -118,10 +118,13 @@ class PolicyRuntime:
         """Get all obligations for the given licenses."""
         obligations = {}
 
-        for license_id in licenses:
-            if "obligations" in self.policies:
-                license_obligations = self.policies["obligations"].get(license_id, {})
-                if license_obligations:
-                    obligations[license_id] = license_obligations
+        # Look for obligations in all obligation policy files
+        for policy_name, policy_data in self.policies.items():
+            if policy_name.startswith("obligations/") and "obligations" in policy_data:
+                for license_id in licenses:
+                    if license_id in policy_data["obligations"]:
+                        if license_id not in obligations:
+                            obligations[license_id] = {}
+                        obligations[license_id].update(policy_data["obligations"][license_id])
 
         return obligations

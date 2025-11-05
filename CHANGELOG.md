@@ -5,6 +5,28 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] - 2025-11-04
+
+### Fixed
+
+**CLI Command Improvements**
+- Fixed `ospac obligations` command returning no output
+- Corrected policy loader integration for obligation data retrieval
+- Updated get_obligations method to properly traverse nested policy structure
+- Resolved obligation policy path resolution for CLI commands
+
+**GitHub Actions Workflow**
+- Removed duplicate release workflow causing PyPI publishing conflicts
+- Consolidated to standard python-publish.yml workflow
+- Fixed action errors during release process
+
+### Changed
+
+**Internal Architecture**
+- Improved PolicyRuntime obligation handling for nested policy files
+- Enhanced policy loader to correctly map obligation policies
+- Standardized workflow configuration to prevent CI/CD conflicts
+
 ## [1.0.3] - 2025-11-04
 
 ### Fixed
