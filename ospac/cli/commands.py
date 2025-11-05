@@ -23,39 +23,92 @@ init(autoreset=True)
 @click.group()
 @click.version_option(prog_name="ospac")
 def cli():
-    """OSPAC - Open Source Policy as Code compliance engine."""
+    """OSPAC - Open Source Policy as Code compliance engine.
+
+    A tool for evaluating open source licenses against organizational policies.
+
+    Common use cases:
+
+    1. Evaluate a license for commercial use:
+       ospac evaluate -l GPL-3.0 -d commercial
+
+    2. Check compatibility between two licenses:
+       ospac check MIT GPL-3.0
+
+    3. Get license obligations:
+       ospac obligations -l "MIT, Apache-2.0"
+
+    4. Generate license data (requires initial setup):
+       ospac data generate
+
+    5. Initialize a custom policy:
+       ospac init --template enterprise
+
+    By default, OSPAC uses an enterprise policy suitable for most commercial organizations.
+    Create a custom policy with 'ospac init' to tailor compliance rules to your needs.
+    """
     pass
 
 
 @cli.command()
-@click.option("--policy-dir", "-p", type=click.Path(exists=True),
-              default="policies", help="Path to policy directory")
+@click.option("--policy-dir", "-p", type=click.Path(exists=False),
+              default=None, help="Path to policy directory (uses default enterprise policy if not provided)")
 @click.option("--licenses", "-l", required=True,
               help="Comma-separated list of licenses to evaluate")
 @click.option("--context", "-c", default="general",
               help="Evaluation context (e.g., static_linking, dynamic_linking)")
-@click.option("--distribution", "-d", default="internal",
-              help="Distribution type (internal, commercial, open_source)")
+@click.option("--distribution", "-d", default="commercial",
+              help="Distribution type (internal, commercial, saas, embedded, open_source)")
 @click.option("--output", "-o", type=click.Choice(["json", "text", "markdown"]),
-              default="text", help="Output format")
+              default="json", help="Output format (default: json)")
 def evaluate(policy_dir: str, licenses: str, context: str,
             distribution: str, output: str):
-    """Evaluate licenses against policies."""
+    """Evaluate licenses against policies.
+
+    Examples:
+        # Evaluate GPL-3.0 for commercial distribution
+        ospac evaluate -l GPL-3.0 -d commercial
+
+        # Evaluate multiple licenses
+        ospac evaluate -l "MIT, Apache-2.0, GPL-3.0" -d saas
+
+        # Use custom policy
+        ospac evaluate -l MIT -p my_policy.yaml
+
+        # Check for static linking context
+        ospac evaluate -l LGPL-2.1 -c static_linking -d commercial
+    """
     try:
-        runtime = PolicyRuntime.from_path(policy_dir)
+        runtime = PolicyRuntime(policy_dir)
+
+        if runtime._using_default and output == "text":
+            click.secho("Using default enterprise policy. Create a custom policy with 'ospac init' to customize.", fg="yellow")
 
         license_list = [l.strip() for l in licenses.split(",")]
 
         eval_context = {
             "licenses_found": license_list,
+            "licenses": license_list,  # Support both keys
             "context": context,
             "distribution": distribution,
+            "distribution_type": distribution,  # Support both keys
+            "linking_type": context if "linking" in context else None
         }
 
         result = runtime.evaluate(eval_context)
 
         if output == "json":
-            click.echo(json.dumps(result.__dict__, indent=2))
+            # Convert result to JSON-serializable format
+            result_dict = result.to_dict() if hasattr(result, 'to_dict') else {"result": str(result)}
+
+            output_data = {
+                "licenses": license_list,
+                "context": context,
+                "distribution": distribution,
+                "result": result_dict,
+                "using_default_policy": runtime._using_default
+            }
+            click.echo(json.dumps(output_data, indent=2))
         elif output == "markdown":
             _output_markdown(result, license_list)
         else:
@@ -70,24 +123,53 @@ def evaluate(policy_dir: str, licenses: str, context: str,
 @click.argument("license1")
 @click.argument("license2")
 @click.option("--context", "-c", default="general",
-              help="Compatibility context (e.g., static_linking)")
-@click.option("--policy-dir", "-p", type=click.Path(exists=True),
-              default="policies", help="Path to policy directory")
-def check(license1: str, license2: str, context: str, policy_dir: str):
-    """Check compatibility between two licenses."""
+              help="Compatibility context (e.g., static_linking, dynamic_linking)")
+@click.option("--policy-dir", "-p", type=click.Path(exists=False),
+              default=None, help="Path to policy directory (uses default enterprise policy if not provided)")
+@click.option("--output", "-o", type=click.Choice(["json", "text"]),
+              default="json", help="Output format (default: json)")
+def check(license1: str, license2: str, context: str, policy_dir: str, output: str):
+    """Check compatibility between two licenses.
+
+    Examples:
+        # Check if MIT and GPL-3.0 are compatible
+        ospac check MIT GPL-3.0
+
+        # Check compatibility for static linking
+        ospac check MIT LGPL-2.1 -c static_linking
+
+        # Use text output
+        ospac check Apache-2.0 BSD-3-Clause -o text
+    """
     try:
-        runtime = PolicyRuntime.from_path(policy_dir)
+        runtime = PolicyRuntime(policy_dir)
+
+        if runtime._using_default and output == "text":
+            click.secho("Using default enterprise policy. Create a custom policy with 'ospac init' to customize.", fg="yellow")
+
         result = runtime.check_compatibility(license1, license2, context)
 
-        if result.is_compliant:
-            click.secho(f"✓ {license1} and {license2} are compatible", fg="green")
+        if output == "json":
+            output_data = {
+                "license1": license1,
+                "license2": license2,
+                "context": context,
+                "compatible": result.is_compliant,
+                "violations": result.violations if result.violations else [],
+                "using_default_policy": runtime._using_default
+            }
+            click.echo(json.dumps(output_data, indent=2))
         else:
-            click.secho(f"✗ {license1} and {license2} are incompatible", fg="red")
+            # Text output
+            if result.is_compliant:
+                click.secho(f"✓ {license1} and {license2} are compatible", fg="green")
+            else:
+                click.secho(f"✗ {license1} and {license2} are incompatible", fg="red")
 
-            if result.violations:
-                click.echo("\nViolations:")
-                for violation in result.violations:
-                    click.echo(f"  - {violation['message']}")
+                if result.violations:
+                    click.echo("\nViolations:")
+                    for violation in result.violations:
+                        click.echo(f"  - {violation['message']}")
 
     except Exception as e:
         click.secho(f"Error: {e}", fg="red", err=True)
@@ -97,19 +179,41 @@ def check(license1: str, license2: str, context: str, policy_dir: str):
 @cli.command()
 @click.option("--licenses", "-l", required=True,
               help="Comma-separated list of licenses")
-@click.option("--policy-dir", "-p", type=click.Path(exists=True),
-              default="policies", help="Path to policy directory")
-@click.option("--format", "-f", type=click.Choice(["text", "checklist", "markdown"]),
-              default="text", help="Output format")
+@click.option("--policy-dir", "-p", type=click.Path(exists=False),
+              default=None, help="Path to policy directory (uses default enterprise policy if not provided)")
+@click.option("--format", "-f", type=click.Choice(["json", "text", "checklist", "markdown"]),
+              default="json", help="Output format (default: json)")
 def obligations(licenses: str, policy_dir: str, format: str):
-    """Get obligations for the specified licenses."""
+    """Get obligations for the specified licenses.
+
+    Examples:
+        # Get obligations for MIT license
+        ospac obligations -l MIT
+
+        # Get obligations for multiple licenses
+        ospac obligations -l "MIT, Apache-2.0, BSD-3-Clause"
+
+        # Output as checklist
+        ospac obligations -l "GPL-3.0, LGPL-2.1" -f checklist
+    """
     try:
-        runtime = PolicyRuntime.from_path(policy_dir)
+        runtime = PolicyRuntime(policy_dir)
+
+        if runtime._using_default and format != "json":
+            click.secho("Using default enterprise policy. Create a custom policy with 'ospac init' to customize.", fg="yellow")
+
         license_list = [l.strip() for l in licenses.split(",")]
 
         obligations_dict = runtime.get_obligations(license_list)
 
-        if format == "checklist":
+        if format == "json":
+            output_data = {
+                "licenses": license_list,
+                "obligations": obligations_dict,
+                "using_default_policy": runtime._using_default
+            }
+            click.echo(json.dumps(output_data, indent=2))
+        elif format == "checklist":
             _output_checklist(obligations_dict)
         elif format == "markdown":
             _output_obligations_markdown(obligations_dict)

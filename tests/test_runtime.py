@@ -162,7 +162,7 @@ class TestPolicyRuntime:
 
     def test_evaluate_without_policies(self):
         """Test evaluation without loaded policies."""
-        runtime = PolicyRuntime()
+        runtime = PolicyRuntime(skip_default=True)
 
         with pytest.raises(RuntimeError, match="No policies loaded"):
             runtime.evaluate({})
@@ -196,7 +196,7 @@ class TestPolicyRuntime:
 
     def test_rule_applies_with_conditions(self):
         """Test checking if a rule applies with conditions."""
-        runtime = PolicyRuntime()
+        runtime = PolicyRuntime(skip_default=True)
         runtime.policies = {}
         runtime.evaluator = RuleEvaluator({})
 
@@ -214,7 +214,7 @@ class TestPolicyRuntime:
 
     def test_rule_applies_with_list_conditions(self):
         """Test rule with list conditions."""
-        runtime = PolicyRuntime()
+        runtime = PolicyRuntime(skip_default=True)
         runtime.policies = {}
         runtime.evaluator = RuleEvaluator({})
 
@@ -230,7 +230,7 @@ class TestPolicyRuntime:
 
     def test_rule_without_conditions(self):
         """Test rule without when clause always applies."""
-        runtime = PolicyRuntime()
+        runtime = PolicyRuntime(skip_default=True)
         runtime.policies = {}
         runtime.evaluator = RuleEvaluator({})
 
