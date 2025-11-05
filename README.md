@@ -196,7 +196,24 @@ For support, please:
 
 ## License
 
-Apache-2.0 - See [LICENSE](LICENSE) for details.
+This project uses dual licensing:
+
+- **Software Code**: Apache-2.0 - See [LICENSE](LICENSE) for details
+- **License Database**: CC BY-NC-SA 4.0 - See [DATA_LICENSE](DATA_LICENSE) for details
+
+### Software License (Apache-2.0)
+
+All source code in this repository (Python files, scripts, configuration) is licensed under the Apache License, Version 2.0. This allows for commercial use, modification, and distribution of the software.
+
+### Dataset License (CC BY-NC-SA 4.0)
+
+The OSPAC license database located in `ospac/data/` is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. This means:
+
+- **Non-Commercial Use Only**: The dataset cannot be used for commercial purposes
+- **Attribution Required**: You must give appropriate credit when using the dataset
+- **Share-Alike**: Any derivatives must be shared under the same CC BY-NC-SA 4.0 license
+
+For academic research, open-source projects, or internal non-commercial use, you are free to use the dataset according to the CC BY-NC-SA 4.0 terms.
 
 ## Authors
 
