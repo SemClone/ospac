@@ -1,78 +1,93 @@
 """
-LLM-based license analyzer using StrandsAgents SDK with Ollama.
+LLM-based license analyzer with configurable providers.
+Supports OpenAI, Anthropic Claude, and local Ollama.
 Analyzes licenses to extract obligations, compatibility rules, and classifications.
 """
 
-import json
 import logging
 from typing import Dict, List, Any, Optional
-from pathlib import Path
 import asyncio
+import os
 
-# StrandsAgents SDK for LLM integration
-try:
-    from strandsagents import Agent, OllamaProvider
-except ImportError:
-    logger = logging.getLogger(__name__)
-    logger.warning("StrandsAgents SDK not installed. Install with: pip install strandsagents")
-    Agent = None
-    OllamaProvider = None
+from ospac.pipeline.llm_providers import (
+    LLMConfig,
+    LLMProvider,
+    create_llm_provider
+)
 
 logger = logging.getLogger(__name__)
 
 
 class LicenseAnalyzer:
     """
-    Analyze licenses using LLM to extract detailed information.
-    Uses StrandsAgents SDK with local Ollama running llama3.
+    Analyze licenses using configurable LLM providers.
+    Supports OpenAI, Anthropic Claude, and local Ollama.
     """
 
-    def __init__(self, model: str = "llama3", ollama_url: str = "http://localhost:11434"):
+    def __init__(self, provider: str = "ollama", model: str = None, api_key: str = None, **kwargs):
         """
-        Initialize the license analyzer.
+        Initialize the license analyzer with specified provider.
 
         Args:
-            model: Ollama model to use (default: llama3)
-            ollama_url: Ollama server URL
+            provider: LLM provider ("openai", "claude", "ollama")
+            model: Model name (auto-selected if not provided)
+            api_key: API key for cloud providers (or from environment)
+            **kwargs: Additional provider-specific configuration
         """
-        self.model = model
-        self.ollama_url = ollama_url
-        self.agent = None
+        self.provider_name = provider.lower()
 
-        if Agent and OllamaProvider:
-            self._init_agent()
-        else:
-            logger.error("StrandsAgents SDK not available")
+        # Auto-select models if not provided
+        if not model:
+            model = self._get_default_model(self.provider_name)
 
-    def _init_agent(self):
-        """Initialize the StrandsAgents agent."""
+        # Get API key from environment if not provided
+        if not api_key:
+            api_key = self._get_api_key_from_env(self.provider_name)
+
+        # Create configuration
+        self.config = LLMConfig(
+            provider=self.provider_name,
+            model=model,
+            api_key=api_key,
+            **kwargs
+        )
+
+        # Initialize provider
         try:
-            provider = OllamaProvider(
-                model=self.model,
-                base_url=self.ollama_url
-            )
-
-            self.agent = Agent(
-                name="LicenseAnalyzer",
-                provider=provider,
-                system_prompt="""You are an expert in software licensing and open source compliance.
-                Your task is to analyze software licenses and provide detailed, accurate information about:
-                - License obligations and requirements
-                - Compatibility with other licenses
-                - Usage restrictions and permissions
-                - Patent grants and trademark rules
-
-                Always provide information in structured JSON format.
-                Be precise and accurate - licensing compliance is critical."""
-            )
-            logger.info(f"Initialized StrandsAgents with {self.model} at {self.ollama_url}")
+            self.llm_provider = create_llm_provider(self.config)
+            logger.info(f"Initialized {self.provider_name} provider with model {model}")
         except Exception as e:
-            logger.error(f"Failed to initialize agent: {e}")
-            self.agent = None
+            logger.error(f"Failed to initialize {self.provider_name} provider: {e}")
+            self.llm_provider = None
+
+    def _get_default_model(self, provider: str) -> str:
+        """Get default model for each provider."""
+        defaults = {
+            "openai": "gpt-4o-mini",
+            "claude": "claude-3-haiku-20240307",
+            "ollama": "llama3:latest"
+        }
+        return defaults.get(provider, "gpt-4o-mini")
+
+    def _get_api_key_from_env(self, provider: str) -> Optional[str]:
+        """Get API key from environment variables."""
+        env_vars = {
+            "openai": "OPENAI_API_KEY",
+            "claude": "ANTHROPIC_API_KEY",
+            "ollama": None  # No API key needed for local Ollama
+        }
+
+        env_var = env_vars.get(provider)
+        if env_var:
+            api_key = os.getenv(env_var)
+            if not api_key:
+                logger.warning(f"No API key found in environment variable {env_var}")
+            return api_key
+        return None
 
     async def analyze_license(self, license_id: str, license_text: str) -> Dict[str, Any]:
         """
-        Analyze a license using LLM.
+        Analyze a license using the configured LLM provider.
 
         Args:
             license_id: SPDX license identifier
@@ -81,81 +96,11 @@ class LicenseAnalyzer:
         Returns:
             Analysis results
         """
-        if not self.agent:
-            logger.warning(f"Agent not available, returning basic analysis for {license_id}")
+        if not self.llm_provider:
+            logger.warning(f"LLM provider not available, returning fallback for {license_id}")
             return self._get_fallback_analysis(license_id)
 
-        try:
-            # Prepare the analysis prompt
-            prompt = f"""Analyze the following license and provide detailed information in JSON format.
-
-License ID: {license_id}
-License Text (first 3000 chars):
-{license_text[:3000]}
-
-Provide a JSON response with the following structure:
-{{
-    "license_id": "{license_id}",
-    "category": "permissive|copyleft_weak|copyleft_strong|proprietary|public_domain",
-    "permissions": {{
-        "commercial_use": true/false,
-        "distribution": true/false,
-        "modification": true/false,
-        "patent_grant": true/false,
-        "private_use": true/false
-    }},
-    "conditions": {{
-        "disclose_source": true/false,
-        "include_license": true/false,
-        "include_copyright": true/false,
-        "include_notice": true/false,
-        "state_changes": true/false,
-        "same_license": true/false,
-        "network_use_disclosure": true/false
-    }},
-    "limitations": {{
-        "liability": true/false,
-        "warranty": true/false,
-        "trademark_use": true/false
-    }},
-    "compatibility": {{
-        "can_combine_with_permissive": true/false,
-        "can_combine_with_weak_copyleft": true/false,
-        "can_combine_with_strong_copyleft": true/false,
-        "static_linking_restrictions": "none|weak|strong",
-        "dynamic_linking_restrictions": "none|weak|strong"
-    }},
-    "obligations": [
-        "List of specific obligations when using this license"
-    ],
-    "key_requirements": [
-        "List of key requirements for compliance"
-    ]
-}}"""
-
-            # Query the LLM
-            response = await self.agent.query(prompt)
-
-            # Parse the response
-            try:
-                # Extract JSON from response
-                json_start = response.find("{")
-                json_end = response.rfind("}") + 1
-                if json_start >= 0 and json_end > json_start:
-                    json_str = response[json_start:json_end]
-                    analysis = json.loads(json_str)
-                else:
-                    logger.warning(f"Could not extract JSON from LLM response for {license_id}")
-                    analysis = self._get_fallback_analysis(license_id)
-            except json.JSONDecodeError as e:
-                logger.error(f"Failed to parse LLM response for {license_id}: {e}")
-                analysis = self._get_fallback_analysis(license_id)
-
-            return analysis
-
-        except Exception as e:
-            logger.error(f"Failed to analyze {license_id}: {e}")
-            return self._get_fallback_analysis(license_id)
+        return await self.llm_provider.analyze_license(license_id, license_text)
 
     def _get_fallback_analysis(self, license_id: str) -> Dict[str, Any]:
         """
@@ -263,48 +208,10 @@ Provide a JSON response with the following structure:
         Returns:
             Compatibility rules
         """
-        if not self.agent:
+        if not self.llm_provider:
             return self._get_default_compatibility_rules(license_id, analysis)
 
-        try:
-            prompt = f"""Based on the {license_id} license with category {analysis.get('category', 'unknown')},
-            provide detailed compatibility rules in JSON format:
-
-            {{
-                "static_linking": {{
-                    "compatible_with": ["list of compatible license IDs or categories"],
-                    "incompatible_with": ["list of incompatible license IDs or categories"],
-                    "requires_review": ["list of licenses requiring case-by-case review"]
-                }},
-                "dynamic_linking": {{
-                    "compatible_with": ["list"],
-                    "incompatible_with": ["list"],
-                    "requires_review": ["list"]
-                }},
-                "distribution": {{
-                    "can_distribute_with": ["list"],
-                    "cannot_distribute_with": ["list"],
-                    "special_requirements": ["list of special requirements"]
-                }},
-                "contamination_effect": "none|module|derivative|full",
-                "notes": "Additional compatibility notes"
-            }}"""
-
-            response = await self.agent.query(prompt)
-
-            # Parse response
-            json_start = response.find("{")
-            json_end = response.rfind("}") + 1
-            if json_start >= 0 and json_end > json_start:
-                rules = json.loads(response[json_start:json_end])
-            else:
-                rules = self._get_default_compatibility_rules(license_id, analysis)
-
-            return rules
-
-        except Exception as e:
-            logger.error(f"Failed to extract compatibility rules for {license_id}: {e}")
-            return self._get_default_compatibility_rules(license_id, analysis)
+        return await self.llm_provider.extract_compatibility_rules(license_id, analysis)
 
     def _get_default_compatibility_rules(self, license_id: str, analysis: Dict[str, Any]) -> Dict[str, Any]:
         """Get default compatibility rules based on license category."""

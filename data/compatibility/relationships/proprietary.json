@@ -1,0 +1,6386 @@
+{
+  "Elastic-2.0": {
+    "BSD-2-Clause-Patent": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-2-Clause-pkgconf-disclaimer": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-2-Clause-Views": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-3-Clause": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-3-Clause-acpica": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-3-Clause-Attribution": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-3-Clause-Clear": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-3-Clause-flex": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-3-Clause-HP": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-3-Clause-LBNL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-3-Clause-Modification": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-3-Clause-No-Military-License": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-3-Clause-No-Nuclear-License": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-3-Clause-No-Nuclear-License-2014": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-3-Clause-No-Nuclear-Warranty": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-3-Clause-Open-MPI": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-3-Clause-Sun": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-3-Clause-Tso": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-4-Clause": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-4-Clause-Shortened": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-4-Clause-UC": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-4.3RENO": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-4.3TAHOE": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-Advertising-Acknowledgement": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-Attribution-HPND-disclaimer": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-Inferno-Nettverk": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-Mark-Modifications": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-Protection": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-Source-beginning-file": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-Source-Code": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-Systemics": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSD-Systemics-W3Works": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BSL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "BUSL-1.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "bzip2-1.0.5": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "bzip2-1.0.6": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "C-UDA-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CAL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CAL-1.0-Combined-Work-Exception": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Caldera": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Caldera-no-preamble": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Catharon": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CATOSL-1.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-2.5": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-2.5-AU": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-3.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-3.0-AT": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-3.0-AU": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-3.0-DE": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-3.0-IGO": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-3.0-NL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-3.0-US": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-4.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-2.5": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-3.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-3.0-DE": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-4.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-ND-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-ND-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-ND-2.5": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-ND-3.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-ND-3.0-DE": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-ND-3.0-IGO": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-ND-4.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-SA-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-2.0-DE": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-2.0-FR": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-2.0-UK": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-2.5": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-3.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-3.0-DE": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-3.0-IGO": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-4.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-ND-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-ND-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-ND-2.5": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-ND-3.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-ND-3.0-DE": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-ND-4.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-SA-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-2.0-UK": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-2.1-JP": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-2.5": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-3.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-3.0-AT": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "CC-BY-SA-3.0-DE": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-3.0-IGO": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-4.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-PDDC": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-PDM-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-SA-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC0-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CDDL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CDDL-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CDL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CDLA-Permissive-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CDLA-Permissive-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CDLA-Sharing-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CECILL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CECILL-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CECILL-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CECILL-2.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CECILL-B": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CECILL-C": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CERN-OHL-1.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CERN-OHL-1.2": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CERN-OHL-P-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CERN-OHL-S-2.0": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "CERN-OHL-W-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CFITSIO": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "check-cvs": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "checkmk": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "ClArtistic": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Clips": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CMU-Mach": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CMU-Mach-nodoc": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CNRI-Jython": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CNRI-Python": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CNRI-Python-GPL-Compatible": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "COIL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Community-Spec-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Condor-1.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "copyleft-next-0.3.0": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "copyleft-next-0.3.1": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "Cornell-Lossless-JPEG": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CPAL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CPL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CPOL-1.02": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Cronyx": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Crossword": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CryptoSwift": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CrystalStacker": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CUA-OPL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Cube": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "curl": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "cve-tou": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "D-FSL-1.0": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "DEC-3-Clause": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "diffmark": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "DL-DE-BY-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "DL-DE-ZERO-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "DOC": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "DocBook-DTD": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "DocBook-Schema": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "DocBook-Stylesheet": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "DocBook-XML": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Dotseqn": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "DRL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "DRL-1.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "DSDP": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "dtoa": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "dvipdfm": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ECL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "ECL-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "eCos-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "EFL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "EFL-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "eGenix": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Elastic-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Entessa": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "EPICS": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "EPL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "EPL-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ErlPL-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ESA-PL-permissive-2.4": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "ESA-PL-strong-copyleft-2.4": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "ESA-PL-weak-copyleft-2.4": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "etalab-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "EUDatagrid": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "EUPL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "EUPL-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "EUPL-1.2": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Eurosym": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Fair": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "FBM": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "FDK-AAC": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Ferguson-Twofish": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Frameworx-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "FreeBSD-DOC": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "FreeImage": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "FSFAP": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "FSFAP-no-warranty-disclaimer": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "FSFUL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "FSFULLR": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "FSFULLRSD": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "FSFULLRWD": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "FSL-1.1-ALv2": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "FSL-1.1-MIT": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "FTL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Furuseth": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "fwlw": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Game-Programming-Gems": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "GCR-docs": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "GD": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "generic-xts": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "GFDL-1.1": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.1-invariants-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.1-invariants-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.1-no-invariants-only": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "GFDL-1.1-no-invariants-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.1-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.1-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.2": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.2-invariants-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.2-invariants-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.2-no-invariants-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.2-no-invariants-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.2-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.2-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.3": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.3-invariants-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.3-invariants-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.3-no-invariants-only": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "GFDL-1.3-no-invariants-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.3-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.3-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "Giftware": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "GL2PS": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Glide": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Glulxe": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "GLWTPL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "gnuplot": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "GPL-1.0": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-1.0+": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-1.0-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-1.0-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-2.0": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-2.0+": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-2.0-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-2.0-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-2.0-with-autoconf-exception": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-2.0-with-bison-exception": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "GPL-2.0-with-classpath-exception": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "GPL-2.0-with-font-exception": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-2.0-with-GCC-exception": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "GPL-3.0": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-3.0+": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-3.0-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-3.0-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-3.0-with-autoconf-exception": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-3.0-with-GCC-exception": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Graphics-Gems": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "gSOAP-1.3b": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "gtkbook": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Gutmann": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HaskellReport": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HDF5": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "hdparm": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HIDAPI": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Hippocratic-2.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HP-1986": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HP-1989": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-DEC": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-doc": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-doc-sell": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-export-US": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-export-US-acknowledgement": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-export-US-modify": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-export2-US": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-Fenneberg-Livingston": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-INRIA-IMAG": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-Intel": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-Kevlin-Henney": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-Markus-Kuhn": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-merchantability-variant": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-MIT-disclaimer": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-Netrek": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-Pbmplus": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-sell-MIT-disclaimer-xserver": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-sell-regexpr": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-sell-variant": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-sell-variant-MIT-disclaimer": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-sell-variant-MIT-disclaimer-rev": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-SMC": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-UC": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HPND-UC-export-US": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "HTMLTIDY": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "hyphen-bulgarian": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "IBM-pibs": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "ICU": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "IEC-Code-Components-EULA": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "IJG": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "IJG-short": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "ImageMagick": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "iMatix": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Imlib2": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Info-ZIP": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Inner-Net-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "InnoSetup": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Intel": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Intel-ACPI": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Interbase-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "IPA": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "IPL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "ISC": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "ISC-Veillard": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Jam": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "JasPer-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "jove": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "JPL-image": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "JPNIC": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "JSON": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Kastrup": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Kazlib": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Knuth-CTAN": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LAL-1.2": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "LAL-1.3": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "Latex2e": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Latex2e-translated-notice": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Leptonica": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LGPL-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-2.0+": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-2.0-only": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-2.0-or-later": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-2.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-2.1+": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-2.1-only": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-2.1-or-later": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-3.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-3.0+": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-3.0-only": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-3.0-or-later": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPLLR": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Libpng": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "libpng-1.6.35": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "libpng-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "libselinux-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "libtiff": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "libutil-David-Nugent": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LiLiQ-P-1.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LiLiQ-R-1.1": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "LiLiQ-Rplus-1.1": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "Linux-man-pages-1-para": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Linux-man-pages-copyleft": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Linux-man-pages-copyleft-2-para": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Linux-man-pages-copyleft-var": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Linux-OpenIB": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LOOP": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LPD-document": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LPL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LPL-1.02": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LPPL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LPPL-1.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LPPL-1.2": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LPPL-1.3a": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LPPL-1.3c": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "lsof": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Lucida-Bitmap-Fonts": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LZMA-SDK-9.11-to-9.20": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LZMA-SDK-9.22": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Mackerras-3-Clause": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Mackerras-3-Clause-acknowledgment": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "magaz": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "mailprio": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MakeIndex": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "man2html": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Martin-Birgmeier": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "McPhee-slideshow": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "metamail": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Minpack": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MIPS": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MirOS": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MIT": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MIT-0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MIT-advertising": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MIT-Click": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MIT-CMU": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MIT-enna": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MIT-feh": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MIT-Festival": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MIT-Khronos-old": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MIT-Modern-Variant": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MIT-open-group": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MIT-testregex": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MIT-Wu": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MITNFA": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MMIXware": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Motosoto": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MPEG-SSG": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "mpi-permissive": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "mpich2": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MPL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MPL-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MPL-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MPL-2.0-no-copyleft-exception": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "mplus": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MS-LPL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MS-PL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MS-RL": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MTLL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MulanPSL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "MulanPSL-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Multics": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Mup": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NAIST-2003": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NASA-1.3": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Naumen": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NBPL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NCBI-PD": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NCGL-UK-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NCL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NCSA": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Net-SNMP": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NetCDF": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Newsletr": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NGPL": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "ngrep": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NICTA-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NIST-PD": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NIST-PD-fallback": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NIST-PD-TNT": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NIST-Software": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NLOD-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NLOD-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NLPL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Nokia": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NOSL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Noweb": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NPL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NPL-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NPOSL-3.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NRL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NTIA-PD": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NTP": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NTP-0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Nunit": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "O-UDA-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OAR": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OCCT-PL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OCLC-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "ODbL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ODC-By-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OFFIS": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OFL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OFL-1.0-no-RFN": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OFL-1.0-RFN": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OFL-1.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OFL-1.1-no-RFN": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OFL-1.1-RFN": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OGC-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OGDL-Taiwan-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OGL-Canada-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OGL-UK-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OGL-UK-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OGL-UK-3.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OGTSL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLDAP-1.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLDAP-1.2": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLDAP-1.3": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLDAP-1.4": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLDAP-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLDAP-2.0.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLDAP-2.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLDAP-2.2": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLDAP-2.2.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLDAP-2.2.2": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLDAP-2.3": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLDAP-2.4": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLDAP-2.5": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLDAP-2.6": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLDAP-2.7": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLDAP-2.8": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OLFL-1.3": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OML": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OpenPBS-2.3": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OpenSSL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OpenSSL-standalone": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OpenVision": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OPL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OPL-UK-3.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OPUBL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "OSET-PL-2.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OSL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OSL-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OSL-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OSL-2.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OSL-3.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OSSP": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "PADL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Parity-6.0.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Parity-7.0.0": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "PDDL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "PHP-3.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "PHP-3.01": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Pixar": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "pkgconf": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Plexus": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "pnmstitch": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "PolyForm-Noncommercial-1.0.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "PolyForm-Small-Business-1.0.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "PostgreSQL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "PPL": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "PSF-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "psfrag": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "psutils": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Python-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Python-2.0.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "python-ldap": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Qhull": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "QPL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "QPL-1.0-INRIA-2004": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "radvd": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Rdisc": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "RHeCos-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "RPL-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "RPL-1.5": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "RPSL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "RSA-MD": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "RSCPL": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Ruby": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Ruby-pty": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SAX-PD": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SAX-PD-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Saxpath": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SCEA": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SchemeReport": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Sendmail": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Sendmail-8.23": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Sendmail-Open-Source-1.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SGI-B-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SGI-B-1.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SGI-B-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SGI-OpenGL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SGMLUG-PM": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SGP4": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SHL-0.5": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SHL-0.51": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SimPL-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SISSL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SISSL-1.2": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Sleepycat": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SMAIL-GPL": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "SMLNJ": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SMPPL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SNIA": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "snprintf": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SOFA": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "softSurfer": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Soundex": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Spencer-86": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Spencer-94": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Spencer-99": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SPL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "ssh-keyscan": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SSH-OpenSSH": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SSH-short": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SSLeay-standalone": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SSPL-1.0": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "StandardML-NJ": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SugarCRM-1.1.3": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SUL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Sun-PPP": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Sun-PPP-2000": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SunPro": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SWL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "swrule": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Symlinks": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "TAPR-OHL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "TCL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "TCP-wrappers": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "TermReadKey": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "TGPPL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ThirdEye": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "threeparttable": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "TMate": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "TORQUE-1.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "TOSL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "TPDL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "TPL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TrustedQSL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "TTWL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "TTYP0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "TU-Berlin-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "TU-Berlin-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Ubuntu-font-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "UCAR": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "UCL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "ulem": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "UMich-Merit": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Unicode-3.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Unicode-DFS-2015": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Unicode-DFS-2016": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Unicode-TOU": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "UnixCrypt": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Unlicense": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Unlicense-libtelnet": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Unlicense-libwhirlpool": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "UPL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "URT-RLE": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Vim": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "VOSTROM": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "VSL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "W3C": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "W3C-19980720": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "W3C-20150513": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "w3m": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Watcom-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Widget-Workshop": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "WordNet": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Wsuipa": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "WTFNMFPL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "WTFPL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "wwl": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "wxWindows": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "X11": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "X11-distribute-modifications-variant": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "X11-swapped": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Xdebug-1.03": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Xerox": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Xfig": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "XFree86-1.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "xinetd": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "xkeyboard-config-Zinoviev": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "xlock": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Xnet": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "xpp": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "XSkat": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "xzoom": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "YPL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "YPL-1.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Zed": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Zeeff": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Zend-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Zimbra-1.3": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Zimbra-1.4": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Zlib": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "zlib-acknowledgement": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "ZPL-1.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "ZPL-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "ZPL-2.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    }
+  },
+  "PolyForm-Noncommercial-1.0.0": {
+    "BSD-2-Clause-Patent": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-2-Clause-pkgconf-disclaimer": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-2-Clause-Views": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-3-Clause": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-3-Clause-acpica": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-3-Clause-Attribution": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-3-Clause-Clear": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-3-Clause-flex": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-3-Clause-HP": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-3-Clause-LBNL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-3-Clause-Modification": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-3-Clause-No-Military-License": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-3-Clause-No-Nuclear-License": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-3-Clause-No-Nuclear-License-2014": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-3-Clause-No-Nuclear-Warranty": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-3-Clause-Open-MPI": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-3-Clause-Sun": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-3-Clause-Tso": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-4-Clause": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-4-Clause-Shortened": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-4-Clause-UC": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-4.3RENO": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-4.3TAHOE": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-Advertising-Acknowledgement": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-Attribution-HPND-disclaimer": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-Inferno-Nettverk": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-Mark-Modifications": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-Protection": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-Source-beginning-file": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-Source-Code": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-Systemics": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSD-Systemics-W3Works": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BSL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BUSL-1.1": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "bzip2-1.0.5": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "bzip2-1.0.6": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "C-UDA-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CAL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CAL-1.0-Combined-Work-Exception": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Caldera": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Caldera-no-preamble": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Catharon": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CATOSL-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-2.5": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-2.5-AU": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-3.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-3.0-AT": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-3.0-AU": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-3.0-DE": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-3.0-IGO": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-3.0-NL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-3.0-US": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-4.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-2.5": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-3.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-3.0-DE": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-4.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-ND-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-ND-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-ND-2.5": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-ND-3.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-ND-3.0-DE": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-ND-3.0-IGO": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-BY-NC-ND-4.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-2.0-DE": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-2.0-FR": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-2.0-UK": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-2.5": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-3.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-3.0-DE": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-3.0-IGO": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-NC-SA-4.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-ND-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-ND-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-ND-2.5": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-ND-3.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-ND-3.0-DE": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-ND-4.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-2.0-UK": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-2.1-JP": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-2.5": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-3.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-3.0-AT": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "CC-BY-SA-3.0-DE": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-3.0-IGO": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-BY-SA-4.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC-PDDC": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-PDM-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CC-SA-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CC0-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "CDDL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CDDL-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CDL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CDLA-Permissive-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CDLA-Permissive-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CDLA-Sharing-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CECILL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CECILL-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CECILL-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CECILL-2.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CECILL-B": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CECILL-C": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CERN-OHL-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CERN-OHL-1.2": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CERN-OHL-P-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CERN-OHL-S-2.0": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "CERN-OHL-W-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CFITSIO": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "check-cvs": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "checkmk": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ClArtistic": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Clips": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CMU-Mach": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CMU-Mach-nodoc": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CNRI-Jython": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CNRI-Python": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CNRI-Python-GPL-Compatible": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "COIL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Community-Spec-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Condor-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "copyleft-next-0.3.0": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "copyleft-next-0.3.1": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "Cornell-Lossless-JPEG": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CPAL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CPL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CPOL-1.02": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Cronyx": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Crossword": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CryptoSwift": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CrystalStacker": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "CUA-OPL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Cube": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "curl": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "cve-tou": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "D-FSL-1.0": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "DEC-3-Clause": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "diffmark": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "DL-DE-BY-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "DL-DE-ZERO-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "DOC": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "DocBook-DTD": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "DocBook-Schema": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "DocBook-Stylesheet": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "DocBook-XML": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Dotseqn": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "DRL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "DRL-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "DSDP": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "dtoa": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "dvipdfm": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ECL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ECL-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "eCos-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "EFL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "EFL-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "eGenix": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Elastic-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Entessa": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "EPICS": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "EPL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "EPL-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ErlPL-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ESA-PL-permissive-2.4": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ESA-PL-strong-copyleft-2.4": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "ESA-PL-weak-copyleft-2.4": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "etalab-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "EUDatagrid": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "EUPL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "EUPL-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "EUPL-1.2": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Eurosym": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Fair": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "FBM": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "FDK-AAC": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Ferguson-Twofish": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Frameworx-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "FreeBSD-DOC": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "FreeImage": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "FSFAP": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "FSFAP-no-warranty-disclaimer": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "FSFUL": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "FSFULLR": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "FSFULLRSD": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "FSFULLRWD": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "FSL-1.1-ALv2": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "FSL-1.1-MIT": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "FTL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Furuseth": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "fwlw": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Game-Programming-Gems": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "GCR-docs": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "GD": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "generic-xts": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "GFDL-1.1": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.1-invariants-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.1-invariants-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.1-no-invariants-only": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "GFDL-1.1-no-invariants-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.1-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.1-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.2": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.2-invariants-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.2-invariants-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.2-no-invariants-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.2-no-invariants-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.2-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.2-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.3": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.3-invariants-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.3-invariants-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.3-no-invariants-only": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "GFDL-1.3-no-invariants-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.3-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GFDL-1.3-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "Giftware": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "GL2PS": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Glide": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Glulxe": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "GLWTPL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "gnuplot": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "GPL-1.0": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-1.0+": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-1.0-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-1.0-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-2.0": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-2.0+": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-2.0-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-2.0-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-2.0-with-autoconf-exception": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-2.0-with-bison-exception": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "GPL-2.0-with-classpath-exception": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "GPL-2.0-with-font-exception": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-2.0-with-GCC-exception": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "GPL-3.0": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-3.0+": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-3.0-only": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-3.0-or-later": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-3.0-with-autoconf-exception": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "GPL-3.0-with-GCC-exception": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Graphics-Gems": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "gSOAP-1.3b": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "gtkbook": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Gutmann": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HaskellReport": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HDF5": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "hdparm": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HIDAPI": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Hippocratic-2.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HP-1986": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HP-1989": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-DEC": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-doc": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-doc-sell": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-export-US": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-export-US-acknowledgement": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-export-US-modify": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-export2-US": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-Fenneberg-Livingston": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-INRIA-IMAG": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-Intel": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-Kevlin-Henney": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-Markus-Kuhn": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-merchantability-variant": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-MIT-disclaimer": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-Netrek": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-Pbmplus": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-sell-MIT-disclaimer-xserver": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-sell-regexpr": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-sell-variant": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-sell-variant-MIT-disclaimer": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-sell-variant-MIT-disclaimer-rev": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-SMC": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-UC": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-UC-export-US": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HTMLTIDY": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "hyphen-bulgarian": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "IBM-pibs": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ICU": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "IEC-Code-Components-EULA": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "IJG": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "IJG-short": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ImageMagick": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "iMatix": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Imlib2": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Info-ZIP": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Inner-Net-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "InnoSetup": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Intel": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Intel-ACPI": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Interbase-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "IPA": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "IPL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ISC": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ISC-Veillard": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Jam": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "JasPer-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "jove": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "JPL-image": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "JPNIC": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "JSON": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Kastrup": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Kazlib": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Knuth-CTAN": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LAL-1.2": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "LAL-1.3": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "Latex2e": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Latex2e-translated-notice": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Leptonica": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-2.0+": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-2.0-only": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-2.0-or-later": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-2.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-2.1+": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-2.1-only": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-2.1-or-later": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-3.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-3.0+": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-3.0-only": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPL-3.0-or-later": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LGPLLR": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Libpng": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "libpng-1.6.35": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "libpng-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "libselinux-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "libtiff": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "libutil-David-Nugent": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LiLiQ-P-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LiLiQ-R-1.1": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "LiLiQ-Rplus-1.1": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "Linux-man-pages-1-para": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Linux-man-pages-copyleft": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Linux-man-pages-copyleft-2-para": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Linux-man-pages-copyleft-var": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Linux-OpenIB": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LOOP": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LPD-document": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LPL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LPL-1.02": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LPPL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LPPL-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LPPL-1.2": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LPPL-1.3a": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "LPPL-1.3c": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "lsof": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Lucida-Bitmap-Fonts": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LZMA-SDK-9.11-to-9.20": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "LZMA-SDK-9.22": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Mackerras-3-Clause": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Mackerras-3-Clause-acknowledgment": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "magaz": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "mailprio": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MakeIndex": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "man2html": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Martin-Birgmeier": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "McPhee-slideshow": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "metamail": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Minpack": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIPS": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MirOS": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIT": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIT-0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIT-advertising": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIT-Click": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIT-CMU": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIT-enna": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIT-feh": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIT-Festival": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIT-Khronos-old": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIT-Modern-Variant": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIT-open-group": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIT-testregex": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIT-Wu": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MITNFA": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MMIXware": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Motosoto": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MPEG-SSG": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "mpi-permissive": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "mpich2": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MPL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MPL-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MPL-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MPL-2.0-no-copyleft-exception": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "mplus": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MS-LPL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MS-PL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MS-RL": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MTLL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MulanPSL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MulanPSL-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Multics": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Mup": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NAIST-2003": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NASA-1.3": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Naumen": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NBPL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NCBI-PD": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NCGL-UK-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NCL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NCSA": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Net-SNMP": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NetCDF": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Newsletr": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NGPL": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "ngrep": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NICTA-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NIST-PD": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NIST-PD-fallback": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NIST-PD-TNT": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NIST-Software": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NLOD-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NLOD-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NLPL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Nokia": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NOSL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Noweb": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NPL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NPL-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NPOSL-3.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NRL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NTIA-PD": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "NTP": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "NTP-0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Nunit": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "O-UDA-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OAR": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OCCT-PL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OCLC-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ODbL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ODC-By-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OFFIS": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OFL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OFL-1.0-no-RFN": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OFL-1.0-RFN": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OFL-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OFL-1.1-no-RFN": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OFL-1.1-RFN": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OGC-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OGDL-Taiwan-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OGL-Canada-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OGL-UK-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OGL-UK-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OGL-UK-3.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OGTSL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLDAP-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLDAP-1.2": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLDAP-1.3": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLDAP-1.4": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLDAP-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLDAP-2.0.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLDAP-2.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLDAP-2.2": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLDAP-2.2.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLDAP-2.2.2": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLDAP-2.3": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLDAP-2.4": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLDAP-2.5": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLDAP-2.6": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLDAP-2.7": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLDAP-2.8": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OLFL-1.3": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OML": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OpenPBS-2.3": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OpenSSL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OpenSSL-standalone": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OpenVision": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OPL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OPL-UK-3.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OPUBL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OSET-PL-2.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OSL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OSL-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OSL-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OSL-2.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OSL-3.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OSSP": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "PADL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Parity-6.0.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Parity-7.0.0": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "PDDL-1.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "PHP-3.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "PHP-3.01": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Pixar": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "pkgconf": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Plexus": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "pnmstitch": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "PolyForm-Noncommercial-1.0.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "PolyForm-Small-Business-1.0.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "PostgreSQL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "PPL": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "PSF-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "psfrag": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "psutils": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Python-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Python-2.0.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "python-ldap": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Qhull": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "QPL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "QPL-1.0-INRIA-2004": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "radvd": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Rdisc": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "RHeCos-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "RPL-1.1": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "RPL-1.5": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "RPSL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "RSA-MD": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "RSCPL": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Ruby": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Ruby-pty": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SAX-PD": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "SAX-PD-2.0": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Saxpath": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SCEA": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SchemeReport": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Sendmail": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Sendmail-8.23": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Sendmail-Open-Source-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SGI-B-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SGI-B-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SGI-B-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SGI-OpenGL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SGMLUG-PM": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SGP4": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SHL-0.5": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SHL-0.51": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SimPL-2.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SISSL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SISSL-1.2": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Sleepycat": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SMAIL-GPL": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "SMLNJ": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SMPPL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SNIA": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "snprintf": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SOFA": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "softSurfer": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Soundex": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Spencer-86": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Spencer-94": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Spencer-99": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SPL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ssh-keyscan": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SSH-OpenSSH": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SSH-short": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SSLeay-standalone": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SSPL-1.0": {
+      "static_linking": "incompatible",
+      "dynamic_linking": "review_required",
+      "distribution": "incompatible"
+    },
+    "StandardML-NJ": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SugarCRM-1.1.3": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SUL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Sun-PPP": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Sun-PPP-2000": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SunPro": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "SWL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "swrule": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Symlinks": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TAPR-OHL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TCL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TCP-wrappers": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TermReadKey": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TGPPL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ThirdEye": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "threeparttable": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TMate": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TORQUE-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TOSL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TPDL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TPL-1.0": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TrustedQSL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TTWL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TTYP0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TU-Berlin-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TU-Berlin-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Ubuntu-font-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "UCAR": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "UCL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ulem": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "UMich-Merit": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Unicode-3.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Unicode-DFS-2015": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Unicode-DFS-2016": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Unicode-TOU": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "UnixCrypt": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Unlicense": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Unlicense-libtelnet": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "Unlicense-libwhirlpool": {
+      "static_linking": "unknown",
+      "dynamic_linking": "unknown",
+      "distribution": "unknown"
+    },
+    "UPL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "URT-RLE": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Vim": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "VOSTROM": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "VSL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "W3C": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "W3C-19980720": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "W3C-20150513": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "w3m": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Watcom-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Widget-Workshop": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "WordNet": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Wsuipa": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "WTFNMFPL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "WTFPL": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "wwl": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "wxWindows": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "X11": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "X11-distribute-modifications-variant": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "X11-swapped": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Xdebug-1.03": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Xerox": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Xfig": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "XFree86-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "xinetd": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "xkeyboard-config-Zinoviev": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "xlock": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Xnet": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "xpp": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "XSkat": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "xzoom": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "YPL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "YPL-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Zed": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Zeeff": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Zend-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Zimbra-1.3": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Zimbra-1.4": {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Zlib": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "zlib-acknowledgement": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ZPL-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ZPL-2.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ZPL-2.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    }
+  }
+}

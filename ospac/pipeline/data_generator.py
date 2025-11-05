@@ -23,25 +23,150 @@ class PolicyDataGenerator:
     Produces all required datasets for OSPAC runtime.
     """
 
-    def __init__(self, output_dir: Path = None):
+    def __init__(self, output_dir: Path = None, llm_provider: str = "ollama",
+                 llm_model: str = None, llm_api_key: str = None, **llm_kwargs):
         """
         Initialize the data generator.
 
         Args:
             output_dir: Output directory for generated data
+            llm_provider: LLM provider ("openai", "claude", "ollama")
+            llm_model: LLM model name (auto-selected if not provided)
+            llm_api_key: API key for cloud providers
+            **llm_kwargs: Additional LLM configuration
         """
         self.output_dir = output_dir or Path("data")
         self.spdx_processor = SPDXProcessor()
-        self.llm_analyzer = LicenseAnalyzer()
+        self.llm_analyzer = LicenseAnalyzer(
+            provider=llm_provider,
+            model=llm_model,
+            api_key=llm_api_key,
+            **llm_kwargs
+        )
 
         # Ensure output directories exist
         self.output_dir.mkdir(parents=True, exist_ok=True)
         (self.output_dir / "licenses").mkdir(exist_ok=True)
+        (self.output_dir / "licenses" / "spdx").mkdir(exist_ok=True)
         (self.output_dir / "compatibility").mkdir(exist_ok=True)
+        (self.output_dir / "compatibility" / "relationships").mkdir(exist_ok=True)
         (self.output_dir / "obligations").mkdir(exist_ok=True)
 
+        # Progress tracking
+        self.progress_file = self.output_dir / "generation_progress.json"
+        self.processed_licenses = self._load_progress()
+
+    def _load_progress(self) -> set:
+        """Load previously processed licenses from progress file."""
+        if self.progress_file.exists():
+            try:
+                with open(self.progress_file, 'r') as f:
+                    data = json.load(f)
+                    return set(data.get('processed_licenses', []))
+            except Exception as e:
+                logger.warning(f"Failed to load progress file: {e}")
+        return set()
+
+    def _save_progress(self, license_id: str):
+        """Save progress after processing each license."""
+        self.processed_licenses.add(license_id)
+        progress_data = {
+            'last_updated': datetime.now().isoformat(),
+            'total_processed': len(self.processed_licenses),
+            'processed_licenses': list(self.processed_licenses)
+        }
+        try:
+            with open(self.progress_file, 'w') as f:
+                json.dump(progress_data, f, indent=2)
+        except Exception as e:
+            logger.error(f"Failed to save progress: {e}")
+
+    def _generate_individual_policy(self, analysis: Dict[str, Any]):
+        """Generate individual policy file for a license."""
+        license_id = analysis.get("license_id")
+        if not license_id:
+            return
+
+        # Create policy structure
+        policy_data = {
+            "license": {
+                "id": license_id,
+                "name": license_id,
+                "type": analysis.get("category", "unknown"),
+                "spdx_id": license_id,
+                "properties": analysis.get("permissions", {}),
+                "requirements": analysis.get("conditions", {}),
+                "limitations": analysis.get("limitations", {}),
+                "compatibility": self._format_compatibility_rules(analysis.get("compatibility_rules", {})),
+                "obligations": analysis.get("obligations", []),
+                "key_requirements": analysis.get("key_requirements", [])
+            }
+        }
+
+        # Save to individual file
+        license_file = self.output_dir / "licenses" / "spdx" / f"{license_id}.yaml"
+        try:
+            with open(license_file, 'w') as f:
+                yaml.dump(policy_data, f, default_flow_style=False, sort_keys=False)
+        except Exception as e:
+            logger.error(f"Failed to save policy file for {license_id}: {e}")
+
+    def _format_compatibility_rules(self, rules: Dict) -> Dict:
+        """Format compatibility rules for policy file."""
+        if not rules:
+            return {
+                "static_linking": {"compatible_with": [], "incompatible_with": [], "requires_review": []},
+                "dynamic_linking": {"compatible_with": [], "incompatible_with": [], "requires_review": []},
+                "contamination_effect": "unknown",
+                "notes": ""
+            }
+
+        return {
+            "static_linking": rules.get("static_linking", {}),
+            "dynamic_linking": rules.get("dynamic_linking", {}),
+            "contamination_effect": rules.get("contamination_effect", "unknown"),
+            "notes": rules.get("notes", "")
+        }
+
+    def _load_all_processed_licenses(self) -> List[Dict]:
+        """Load all previously processed license analyses."""
+        analyzed_licenses = []
+        spdx_dir = self.output_dir / "licenses" / "spdx"
+
+        for license_file in spdx_dir.glob("*.yaml"):
+            try:
+                with open(license_file, 'r') as f:
+                    policy_data = yaml.safe_load(f)
+                    if "license" in policy_data:
+                        analyzed_licenses.append(policy_data["license"])
+            except Exception as e:
+                logger.warning(f"Failed to load {license_file}: {e}")
+
+        return analyzed_licenses
+
+    def _update_master_databases(self, all_analyzed: List[Dict]):
+        """Update master databases with all processed licenses."""
+        # This method will update the main database files
+        pass
+
+    def _get_licenses_to_process(self, all_licenses: List[Dict], force: bool = False) -> List[Dict]:
+        """Get list of licenses that need processing (delta processing)."""
+        if force:
+            return all_licenses
+
+        # Filter out already processed licenses
+        licenses_to_process = []
+        for license_data in all_licenses:
+            license_id = license_data.get('licenseId', license_data.get('id', ''))
+            if license_id not in self.processed_licenses:
+                licenses_to_process.append(license_data)
+
+        logger.info(f"Found {len(licenses_to_process)} new licenses to process out of {len(all_licenses)} total")
+        return licenses_to_process
+
     async def generate_all_data(self, force_download: bool = False,
-                               limit: Optional[int] = None) -> Dict[str, Any]:
+                               limit: Optional[int] = None,
+                               force_reprocess: bool = False) -> Dict[str, Any]:
         """
         Generate all policy data from SPDX licenses.
 
@@ -57,37 +182,65 @@ class PolicyDataGenerator:
         # Step 1: Download and process SPDX data
         logger.info("Downloading SPDX license data...")
         spdx_data = self.spdx_processor.download_spdx_data(force=force_download)
-        licenses = spdx_data["licenses"]
+        all_licenses = spdx_data["licenses"]
+
+        # Step 2: Determine which licenses need processing (delta processing)
+        licenses_to_process = self._get_licenses_to_process(all_licenses, force_reprocess)
 
         if limit:
-            licenses = licenses[:limit]
+            licenses_to_process = licenses_to_process[:limit]
             logger.info(f"Processing limited to {limit} licenses")
 
-        # Step 2: Process licenses with basic categorization
-        logger.info(f"Processing {len(licenses)} licenses...")
-        processed_licenses = []
+        if not licenses_to_process:
+            logger.info("No new licenses to process. All licenses up to date.")
+            return self._generate_summary(all_licenses)
 
-        for license_data in licenses:
+        logger.info(f"Processing {len(licenses_to_process)} licenses with progress tracking...")
+
+        # Step 3: Process licenses with progress tracking
+        processed_licenses = []
+        analyzed_licenses = []
+
+        for i, license_data in enumerate(licenses_to_process, 1):
             license_id = license_data.get("licenseId")
             if not license_id:
                 continue
 
-            # Get license text
-            license_text = self.spdx_processor.get_license_text(license_id)
+            logger.info(f"[{i}/{len(licenses_to_process)}] Processing {license_id}")
 
-            processed_licenses.append({
-                "id": license_id,
-                "text": license_text or "",
-                "spdx_data": license_data
-            })
+            try:
+                # Get license text
+                license_text = self.spdx_processor.get_license_text(license_id)
 
-        # Step 3: Analyze licenses with LLM
-        logger.info("Analyzing licenses with LLM...")
-        analyzed_licenses = await self.llm_analyzer.batch_analyze(processed_licenses)
+                license_to_analyze = {
+                    "id": license_id,
+                    "text": license_text or "",
+                    "spdx_data": license_data
+                }
 
-        # Step 4: Generate policy files
-        logger.info("Generating policy files...")
-        self._generate_license_policies(analyzed_licenses)
+                # Analyze with LLM
+                analysis = await self.llm_analyzer.analyze_license(license_id, license_text or "")
+                compatibility = await self.llm_analyzer.extract_compatibility_rules(license_id, analysis)
+                analysis["compatibility_rules"] = compatibility
+
+                analyzed_licenses.append(analysis)
+
+                # Generate individual policy file immediately
+                self._generate_individual_policy(analysis)
+
+                # Save progress after each license
+                self._save_progress(license_id)
+
+                logger.info(f"✓ Completed {license_id} ({i}/{len(licenses_to_process)})")
+
+            except Exception as e:
+                logger.error(f"Failed to process {license_id}: {e}")
+                continue
+
+        # Step 4: Update master databases and compatibility matrix
+        logger.info("Updating master databases...")
+        all_analyzed = self._load_all_processed_licenses()
+        self._update_master_databases(all_analyzed)
         compatibility_matrix = self._generate_compatibility_matrix(analyzed_licenses)
         obligation_database = self._generate_obligation_database(analyzed_licenses)
 
@@ -171,8 +324,14 @@ class PolicyDataGenerator:
         }
 
     def _generate_compatibility_matrix(self, licenses: List[Dict[str, Any]]) -> Dict[str, Any]:
-        """Generate license compatibility matrix."""
-        matrix = {
+        """Generate license compatibility matrix using split architecture."""
+        from ospac.core.compatibility_matrix import CompatibilityMatrix
+
+        # Initialize the matrix handler
+        matrix_handler = CompatibilityMatrix(str(self.output_dir / "compatibility"))
+
+        # Build full matrix for conversion
+        full_matrix = {
             "version": "1.0",
             "generated": datetime.now().isoformat(),
             "total_licenses": len(licenses),
@@ -185,7 +344,7 @@ class PolicyDataGenerator:
             if not id1:
                 continue
 
-            matrix["compatibility"][id1] = {}
+            full_matrix["compatibility"][id1] = {}
 
             for license2 in licenses:
                 id2 = license2.get("license_id")
@@ -194,15 +353,22 @@ class PolicyDataGenerator:
 
                 # Determine compatibility
                 compat = self._check_license_compatibility(license1, license2)
-                matrix["compatibility"][id1][id2] = compat
+                full_matrix["compatibility"][id1][id2] = compat
 
-        # Save matrix
+        # Save both formats: full matrix for backward compatibility and split for efficiency
+        # Save full matrix (can be removed later if space is an issue)
         matrix_file = self.output_dir / "compatibility_matrix.json"
         with open(matrix_file, "w") as f:
-            json.dump(matrix, f, indent=2)
+            json.dump(full_matrix, f, indent=2)
 
-        logger.info(f"Generated compatibility matrix: {matrix_file}")
-        return matrix
+        # Convert to efficient split format
+        matrix_handler.build_from_full_matrix(str(matrix_file))
+
+        logger.info(f"Generated compatibility matrix in both formats")
+        logger.info(f"  Full matrix: {matrix_file}")
+        logger.info(f"  Split format: {self.output_dir / 'compatibility'}")
+
+        return full_matrix
 
     def _check_license_compatibility(self, license1: Dict, license2: Dict) -> Dict[str, Any]:
         """Check compatibility between two licenses."""

@@ -157,25 +157,82 @@ def data():
     pass
 
 
+@cli.command()
+@click.argument("license1")
+@click.argument("license2")
+@click.option("--data-dir", "-d", type=click.Path(exists=True),
+              default="data/compatibility", help="Path to compatibility data")
+def check_compat(license1: str, license2: str, data_dir: str):
+    """Check compatibility between two licenses using split matrix format."""
+    from ospac.core.compatibility_matrix import CompatibilityMatrix
+
+    try:
+        # Load the split matrix
+        matrix = CompatibilityMatrix(data_dir)
+        matrix.load()
+
+        # Get compatibility status
+        status = matrix.get_compatibility(license1, license2)
+
+        # Display result
+        if status == "compatible":
+            click.secho(f"✓ {license1} and {license2} are compatible", fg="green")
+        elif status == "incompatible":
+            click.secho(f"✗ {license1} and {license2} are incompatible", fg="red")
+        elif status == "review_needed":
+            click.secho(f"⚠ {license1} and {license2} require review", fg="yellow")
+        else:
+            click.secho(f"? {license1} and {license2} have unknown compatibility", fg="white")
+
+        # Show compatible licenses
+        click.echo(f"\n{license1} is compatible with:")
+        compatible = matrix.get_compatible_licenses(license1)[:10]  # Show first 10
+        for lic in compatible:
+            click.echo(f"  • {lic}")
+        if len(compatible) > 10:
+            click.echo(f"  ... and {len(compatible) - 10} more")
+
+    except Exception as e:
+        click.secho(f"Error: {e}", fg="red", err=True)
+        sys.exit(1)
+
+
 @data.command()
 @click.option("--output-dir", "-o", type=click.Path(), default="data",
               help="Output directory for generated data")
 @click.option("--force", "-f", is_flag=True,
               help="Force re-download of SPDX data")
+@click.option("--force-reprocess", is_flag=True,
+              help="Force reprocessing of all licenses (ignore existing)")
 @click.option("--limit", "-l", type=int,
               help="Limit number of licenses to process (for testing)")
 @click.option("--use-llm", is_flag=True, default=False,
-              help="Use LLM for enhanced analysis (requires Ollama)")
-def generate(output_dir: str, force: bool, limit: Optional[int], use_llm: bool):
+              help="Use LLM for enhanced analysis")
+@click.option("--llm-provider", type=click.Choice(["openai", "claude", "ollama"]),
+              default="ollama", help="LLM provider to use")
+@click.option("--llm-model", type=str,
+              help="LLM model name (auto-selected if not provided)")
+@click.option("--llm-api-key", type=str,
+              help="API key for cloud LLM providers (or set OPENAI_API_KEY/ANTHROPIC_API_KEY)")
+def generate(output_dir: str, force: bool, force_reprocess: bool, limit: Optional[int],
+             use_llm: bool, llm_provider: str, llm_model: Optional[str], llm_api_key: Optional[str]):
     """Generate policy data from SPDX licenses."""
     import asyncio
 
     async def run_generation():
-        generator = PolicyDataGenerator(Path(output_dir))
-
-        if not use_llm:
+        # Create generator with LLM configuration
+        if use_llm:
+            generator = PolicyDataGenerator(
+                output_dir=Path(output_dir),
+                llm_provider=llm_provider,
+                llm_model=llm_model,
+                llm_api_key=llm_api_key
+            )
+            click.echo(f"Using {llm_provider.upper()} LLM provider for enhanced analysis")
+        else:
+            generator = PolicyDataGenerator(Path(output_dir))
             click.secho("⚠ Running without LLM analysis. Data will be basic.", fg="yellow")
-            click.echo("To enable LLM analysis, use --use-llm flag (requires Ollama with llama3)")
+            click.echo("To enable LLM analysis, use --use-llm flag with --llm-provider")
 
         click.echo(f"Generating policy data in {output_dir}...")
 
@@ -183,7 +240,8 @@ def generate(output_dir: str, force: bool, limit: Optional[int], use_llm: bool):
             # This is simplified - in reality would update progress
             summary = await generator.generate_all_data(
                 force_download=force,
-                limit=limit
+                limit=limit,
+                force_reprocess=force_reprocess
             )
             bar.update(100)
 
