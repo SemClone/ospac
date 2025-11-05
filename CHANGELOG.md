@@ -5,6 +5,29 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2025-11-04
+
+### Added
+- Complete SPDX license database coverage (712/712 licenses)
+- All Apache family licenses now included (Apache-1.0, Apache-1.1, Apache-2.0)
+- Enhanced data generation process for comprehensive license coverage
+
+### Fixed
+- Critical issue where Apache-2.0 and other licenses were missing from the main database
+- Data generation process bug that excluded previously processed licenses from master database
+- YAML format conversion issues between individual license files and database generation
+- Database completeness ensuring all 712 SPDX licenses are accessible via CLI
+
+### Changed
+- Updated data generation flow to include all processed licenses instead of incremental updates only
+- Improved license database structure to support complete SPDX license set
+- Enhanced compatibility checking to work with full license catalog
+
+### Technical Details
+- Fixed `ospac/pipeline/data_generator.py` to use all analyzed licenses in master database generation
+- Added `_convert_yaml_format()` function to transform YAML license data to expected database format
+- Updated database from 638 to 712 licenses with complete metadata and compatibility rules
+
 ## [1.0.1] - 2025-11-05
 
 ### Added
