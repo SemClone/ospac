@@ -222,8 +222,23 @@ class CompatibilityMatrix:
 
         # Get relationship
         if license1 in relationships:
-            return relationships[license1].get(license2,
-                                              self._metadata.get("default_status", "unknown"))
+            rel = relationships[license1].get(license2)
+            # Handle dict format (with static/dynamic/distribution keys)
+            if isinstance(rel, dict):
+                # Return overall compatibility based on static linking (most restrictive)
+                static = rel.get("static_linking", "unknown")
+                if static == "compatible":
+                    return "compatible"
+                elif static == "incompatible":
+                    return "incompatible"
+                elif static == "review_required":
+                    return "review_needed"
+                return static
+            # Handle string format
+            elif isinstance(rel, str):
+                return rel
+            else:
+                return self._metadata.get("default_status", "unknown")
 
         return self._metadata.get("default_status", "unknown")
 
@@ -248,7 +263,12 @@ class CompatibilityMatrix:
 
                 if license_id in relationships:
                     for target, status in relationships[license_id].items():
-                        if status == CompatibilityStatus.COMPATIBLE.value:
+                        # Handle dict format
+                        if isinstance(status, dict):
+                            if status.get("static_linking") == "compatible":
+                                compatible.append(target)
+                        # Handle string format
+                        elif status == CompatibilityStatus.COMPATIBLE.value:
                             compatible.append(target)
 
         return sorted(compatible)
