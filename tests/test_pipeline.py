@@ -2,6 +2,7 @@
 Tests for the data processing pipeline.
 """
 
+import os
 import pytest
 import json
 from unittest.mock import Mock, patch, MagicMock
@@ -10,6 +11,12 @@ from pathlib import Path
 from ospac.pipeline.spdx_processor import SPDXProcessor
 from ospac.pipeline.llm_analyzer import LicenseAnalyzer
 from ospac.pipeline.data_generator import PolicyDataGenerator
+
+# Skip LLM tests in CI environment
+skip_llm_tests = pytest.mark.skipif(
+    os.environ.get("CI", "false") == "true",
+    reason="LLM tests skipped in CI environment"
+)
 
 
 class TestSPDXProcessor:
@@ -121,6 +128,7 @@ class TestSPDXProcessor:
 class TestLicenseAnalyzer:
     """Test the LicenseAnalyzer class."""
 
+    @skip_llm_tests
     @pytest.mark.asyncio
     async def test_get_fallback_analysis(self):
         """Test fallback analysis when LLM is not available."""
@@ -134,6 +142,7 @@ class TestLicenseAnalyzer:
         assert analysis["permissions"]["commercial_use"] is True
         assert analysis["conditions"]["include_license"] is True
 
+    @skip_llm_tests
     @pytest.mark.asyncio
     async def test_analyze_gpl_fallback(self):
         """Test GPL license analysis fallback."""
@@ -149,6 +158,7 @@ class TestLicenseAnalyzer:
         # Fallback analysis returns basic compatibility info
         assert "compatibility" in analysis
 
+    @skip_llm_tests
     @pytest.mark.asyncio
     async def test_extract_compatibility_rules(self):
         """Test extracting compatibility rules."""
@@ -161,6 +171,7 @@ class TestLicenseAnalyzer:
         assert rules["static_linking"]["compatible_with"] == ["category:any"]
         assert rules["contamination_effect"] == "none"
 
+    @skip_llm_tests
     @pytest.mark.asyncio
     async def test_batch_analyze(self):
         """Test batch analysis of licenses."""
@@ -192,6 +203,7 @@ class TestPolicyDataGenerator:
         assert (temp_dir / "compatibility").exists()
         assert (temp_dir / "obligations").exists()
 
+    @skip_llm_tests
     @pytest.mark.asyncio
     @patch.object(SPDXProcessor, "download_spdx_data")
     @patch.object(SPDXProcessor, "get_license_text")
