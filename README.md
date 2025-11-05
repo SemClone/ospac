@@ -55,25 +55,6 @@ OSPAC includes a pipeline that:
 
 ## Quick Start
 
-### Data Generation (First Time Setup)
-
-```bash
-# Download SPDX dataset and generate basic policy data
-ospac data download-spdx
-
-# Generate complete policy dataset (basic analysis)
-ospac data generate --output-dir ./data
-
-# Generate with LLM-enhanced analysis (requires Ollama with llama3)
-ospac data generate --use-llm --output-dir ./data
-
-# Validate generated data
-ospac data validate --data-dir ./data
-
-# Query specific license from database
-ospac data show MIT --format yaml
-```
-
 ### Policy Evaluation
 
 ```bash
@@ -115,6 +96,24 @@ compat = runtime.check_compatibility("GPL-3.0", "MIT", "static_linking")
 obligations = runtime.get_obligations(["Apache-2.0", "MIT"])
 ```
 
+### Data Generation (First Time Setup)
+
+```bash
+# Download SPDX dataset and generate basic policy data
+ospac data download-spdx
+
+# Generate complete policy dataset (basic analysis)
+ospac data generate --output-dir ./data
+
+# Generate with LLM-enhanced analysis (requires Ollama with llama3)
+ospac data generate --use-llm --output-dir ./data
+
+# Validate generated data
+ospac data validate --data-dir ./data
+
+# Query specific license from database
+ospac data show MIT --format yaml
+```
 
 ## Policy Files
 
