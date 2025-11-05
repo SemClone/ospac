@@ -5,6 +5,23 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2025-11-05
+
+### Added
+- Package now includes all default data files in distribution
+  - 700+ SPDX license files
+  - Compatibility matrices and relationships
+  - Pre-generated obligation database
+- MANIFEST.in for proper source distribution packaging
+
+### Changed
+- Data directory moved to `ospac/data/` for wheel distribution compatibility
+- Updated pyproject.toml with comprehensive package-data configuration
+
+### Fixed
+- Default data now ships with PyPI package installation
+- Users can use the tool immediately without generating data first
+
 ## [0.1.0] - 2025-11-04
 
 ### Added
@@ -46,4 +63,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 13 SPDX licenses return 404 from API (fallback data provided)
 - LLM analysis optional but recommended for enhanced accuracy
 
+[1.0.1]: https://github.com/SemClone/ospac/releases/tag/v1.0.1
 [0.1.0]: https://github.com/SemClone/ospac/releases/tag/v0.1.0

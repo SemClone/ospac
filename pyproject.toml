@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ospac"
-version = "0.1.0"
+version = "1.0.1"
 description = "Open Source Policy as Code - License compliance policy engine"
 readme = "README.md"
 requires-python = ">=3.8"
