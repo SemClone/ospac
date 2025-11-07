@@ -1,0 +1,77 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "Creative Commons licenses",
+          "Proprietary licenses"
+        ]
+      },
+      "notes": "The CC-BY-NC-ND-3.0-IGO license prohibits derivative works and commercial use, which limits compatibility with many open-source licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "Creative Commons licenses",
+          "Proprietary licenses"
+        ]
+      }
+    },
+    "id": "CC-BY-NC-ND-3.0-IGO",
+    "key_requirements": [
+      "You must provide appropriate credit, provide a link to the license, and indicate if changes were made.",
+      "You may not use the material for commercial purposes.",
+      "You may not distribute modified versions of the work."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "CC-BY-NC-ND-3.0-IGO",
+    "obligations": [
+      "Attribution must be given to the original creator.",
+      "The work cannot be used for commercial purposes.",
+      "No modifications or derivative works are allowed.",
+      "License must be included with any distribution of the work.",
+      "Copyright notice must be included with any distribution."
+    ],
+    "properties": {
+      "commercial_use": false,
+      "distribution": true,
+      "modification": false,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "CC-BY-NC-ND-3.0-IGO",
+    "type": "proprietary"
+  }
+}

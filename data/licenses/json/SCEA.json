@@ -1,0 +1,77 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-3.0",
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "The SCEA license is permissive and allows for integration with other permissive licenses without significant restrictions. Care should be taken when integrating with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "SCEA",
+    "key_requirements": [
+      "Include copyright notice when distributing the Software.",
+      "Do not impair ownership rights of SCEA or contributors."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "SCEA",
+    "obligations": [
+      "You must not file for any patent application or seek copyright protection that might impair ownership rights in the Software.",
+      "If you contribute modifications to the Software, you do so voluntarily and grant SCEA the right to use, modify, or distribute those contributions."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "SCEA",
+    "type": "permissive"
+  }
+}

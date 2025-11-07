@@ -1,0 +1,78 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "Zimbra-1.4 allows for weak copyleft, meaning that it can be combined with permissive licenses without imposing the same copyleft requirements on the combined work.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "Zimbra-1.4",
+    "key_requirements": [
+      "You must have the authority to bind your corporation or entity to this Agreement if acting on their behalf.",
+      "When distributing Modifications, you stand in the shoes of Zimbra regarding the rights granted."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "Zimbra-1.4",
+    "obligations": [
+      "Include a complete copy of the Zimbra Public License with any distribution of the Software or Modifications.",
+      "Distribute Modifications in source code format under the same terms as the original Software.",
+      "Provide access to the source code when distributing compiled or object code format."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "Zimbra-1.4",
+    "type": "copyleft_weak"
+  }
+}

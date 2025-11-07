@@ -1,0 +1,78 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-1.0"
+        ]
+      },
+      "notes": "The GPL-2.0-with-classpath-exception allows linking with proprietary software under certain conditions, but care must be taken to comply with the terms of the exception.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-1.0"
+        ]
+      }
+    },
+    "id": "GPL-2.0-with-classpath-exception",
+    "key_requirements": [
+      "Include a copy of the GPL v2 license when distributing the library or combined works.",
+      "State any changes made to the library if modified.",
+      "If distributing an executable linked with independent modules, ensure compliance with their respective licenses."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "GPL-2.0-with-classpath-exception",
+    "obligations": [
+      "Must comply with the terms of the GPL v2 for the combined work.",
+      "Must meet the license terms of each independent module linked."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "GPL-2.0-with-classpath-exception",
+    "type": "copyleft_weak"
+  }
+}

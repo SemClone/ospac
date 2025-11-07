@@ -1,0 +1,65 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Artistic-1.0",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "Apache-2.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "The Artistic-1.0-cl8 license is compatible with other permissive licenses, but incompatible with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "Artistic-1.0",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "Apache-2.0"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Artistic-1.0-cl8",
+    "key_requirements": [
+      "Insert a prominent notice in each changed file stating how and when you changed that file.",
+      "Make modifications Freely Available by posting to Usenet or an equivalent medium, placing on a major archive site, or allowing the Copyright Holder to include them in the Standard Version of the Package."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "Artistic-1.0-cl8",
+    "obligations": [
+      "Insert a prominent notice in each changed file stating how and when you changed that file.",
+      "Do at least ONE of the following: place your modifications in the Public Domain, make them Freely Available, use the modified Package only within your corporation or organization, rename non-standard executables and provide separate manual pages, or make other distribution arrangements with the Copyright Holder."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "Artistic-1.0-cl8",
+    "type": "permissive"
+  }
+}

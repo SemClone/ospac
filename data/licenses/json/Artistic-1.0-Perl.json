@@ -1,0 +1,67 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL-2.0+",
+          "Artistic-2.0",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL-2.0-only",
+          "Apache-2.0",
+          "EPL-1.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "The Artistic-1.0-Perl license is based on the Artistic License, but with some additional permissions specific to Perl. As such, it is generally compatible with other permissive licenses and some copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "Artistic-2.0",
+          "GPL-3.0",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL-2.0-only",
+          "Apache-2.0",
+          "EPL-1.0"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Artistic-1.0-Perl",
+    "key_requirements": [
+      "Insert a prominent notice in each changed file.",
+      "Make at least one of the modifications publicly available."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "Artistic-1.0-Perl",
+    "obligations": [
+      "Provide a prominent notice in each changed file stating how and when you changed that file.",
+      "Make your modifications Freely Available, or place them in the Public Domain."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "Artistic-1.0-Perl",
+    "type": "permissive|copyleft_weak"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "public_domain",
+          "unlicense"
+        ],
+        "incompatible_with": [
+          "bsd",
+          "mit",
+          "apache_2.0",
+          "gpl_v3"
+        ],
+        "requires_review": []
+      },
+      "notes": "No additional compatibility notes",
+      "static_linking": {
+        "compatible_with": [
+          "public_domain",
+          "unlicense"
+        ],
+        "incompatible_with": [
+          "bsd",
+          "mit",
+          "apache_2.0",
+          "gpl_v3"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "ANTLR-PD",
+    "key_requirements": [
+      "Intact headers in source code",
+      "Acknowledgment of ANTLR use in documentation or research report"
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "ANTLR-PD",
+    "obligations": [
+      "Credit must be given to the developers of ANTLR"
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": false,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "ANTLR-PD",
+    "type": "public_domain"
+  }
+}

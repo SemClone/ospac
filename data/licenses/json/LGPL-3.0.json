@@ -1,0 +1,78 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain",
+          "GPL-3.0"
+        ],
+        "incompatible_with": [
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-NC"
+        ]
+      },
+      "notes": "LGPL-3.0 allows linking with proprietary software under certain conditions, particularly when dynamic linking is used. Static linking may impose stricter requirements.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-NC"
+        ]
+      }
+    },
+    "id": "LGPL-3.0",
+    "key_requirements": [
+      "If you convey a Combined Work, you must provide the Corresponding Application Code.",
+      "You may convey the object code of an Application that incorporates material from the Library under terms of your choice, with certain conditions."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "LGPL-3.0",
+    "obligations": [
+      "If you modify the Library, you must ensure that the modified version still operates meaningfully.",
+      "You must include a copy of the LGPL-3.0 license when distributing the Library or modified versions.",
+      "You must provide a copy of the copyright notice."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "LGPL-3.0",
+    "type": "copyleft_weak"
+  }
+}

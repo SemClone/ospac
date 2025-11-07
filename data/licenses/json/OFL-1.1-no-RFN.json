@@ -1,0 +1,78 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "OFL-1.1"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "The OFL-1.1-no-RFN license is designed to be permissive and does not impose copyleft restrictions. However, care should be taken when combining with licenses that have strong copyleft provisions.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "OFL-1.1"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "OFL-1.1-no-RFN",
+    "key_requirements": [
+      "Fonts and derivatives must remain under the Open Font License.",
+      "Acknowledgment of the Copyright Holder(s) and Author(s) is required when promoting Modified Versions."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "OFL-1.1-no-RFN",
+    "obligations": [
+      "Fonts cannot be sold by themselves.",
+      "Include the copyright notice and license in each copy of the Font Software.",
+      "Do not use Reserved Font Names for Modified Versions without permission."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": false
+    },
+    "spdx_id": "OFL-1.1-no-RFN",
+    "type": "permissive"
+  }
+}

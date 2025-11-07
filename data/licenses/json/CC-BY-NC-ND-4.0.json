@@ -1,0 +1,75 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-3.0",
+          "MPL-2.0"
+        ]
+      },
+      "notes": "CC-BY-NC-ND-4.0 is a non-commercial license that does not allow derivative works, which limits its compatibility with many other licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "CC-BY-NC-ND-4.0",
+    "key_requirements": [
+      "Do not use the material for commercial purposes.",
+      "Do not modify the material.",
+      "Respect the rights of other copyright holders."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "CC-BY-NC-ND-4.0",
+    "obligations": [
+      "Attribution must be given to the original creator.",
+      "License must be included with any distributed copies.",
+      "Copyright notice must be included with any distributed copies.",
+      "Notice of the license must be included with any distributed copies."
+    ],
+    "properties": {
+      "commercial_use": false,
+      "distribution": true,
+      "modification": false,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "CC-BY-NC-ND-4.0",
+    "type": "permissive"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL-1.0",
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "MPL-1.1",
+          "MPL-2.0",
+          "EPL-1.0"
+        ]
+      },
+      "notes": "The GPL-1.0 license has a strong copyleft effect, meaning that any derivative work must also be licensed under GPL-1.0 or a compatible license. This applies to both static and dynamic linking.",
+      "static_linking": {
+        "compatible_with": [
+          "GPL-1.0",
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "MPL-1.1",
+          "MPL-2.0",
+          "EPL-1.0"
+        ]
+      }
+    },
+    "id": "GPL-1.0",
+    "key_requirements": [
+      "You must provide the same freedoms to recipients that you received.",
+      "You must not impose further restrictions on the rights granted by the GPL.",
+      "You must ensure that recipients can access the source code."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "GPL-1.0",
+    "obligations": [
+      "Distribute copies of the source code when distributing the software.",
+      "Include a copy of the GPL license with any distributed software.",
+      "Include copyright notices in all copies or substantial portions of the software.",
+      "State any changes made to the original software when distributing modified versions.",
+      "Distribute modified versions under the same GPL license."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "GPL-1.0",
+    "type": "copyleft_strong"
+  }
+}

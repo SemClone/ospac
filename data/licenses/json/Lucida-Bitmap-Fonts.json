@@ -1,0 +1,72 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "proprietary",
+          "commercial"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL"
+        ],
+        "requires_review": [
+          "MPL",
+          "EPL"
+        ]
+      },
+      "notes": "The Lucida-Bitmap-Fonts license allows for proprietary use but does not permit integration with open-source licenses that require derivative works to be open-sourced.",
+      "static_linking": {
+        "compatible_with": [
+          "proprietary",
+          "commercial"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL"
+        ],
+        "requires_review": [
+          "MPL",
+          "EPL"
+        ]
+      }
+    },
+    "id": "Lucida-Bitmap-Fonts",
+    "key_requirements": [
+      "Must not change the code or output except as authorized.",
+      "Must not modify the fonts and bit-mapped images to use the Lucida trademark."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "Lucida-Bitmap-Fonts",
+    "obligations": [
+      "Include copyright notices in user documentation and internal comments.",
+      "Do not modify the appearance of the icons or glyphs except as necessary for standard resolution.",
+      "Validation by AT&T is required for the use of the OPEN LOOK trademark."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": false,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Lucida-Bitmap-Fonts",
+    "type": "proprietary"
+  }
+}

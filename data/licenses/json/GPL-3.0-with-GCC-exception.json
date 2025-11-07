@@ -1,0 +1,82 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain",
+          "LGPL-2.1"
+        ],
+        "incompatible_with": [
+          "AGPL-3.0",
+          "GPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      },
+      "notes": "The GPL-3.0-with-GCC-exception allows for linking with proprietary software under certain conditions, but care must be taken to comply with the terms of the GPL for any derivative works.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      }
+    },
+    "id": "GPL-3.0-with-GCC-exception",
+    "key_requirements": [
+      "Ensure that any combined work that includes the Runtime Library and Independent Modules complies with the GPLv3 terms.",
+      "Maintain the integrity of the GPLv3 license and the GCC Runtime Library Exception in distributed works."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "GPL-3.0-with-GCC-exception",
+    "obligations": [
+      "Must include a copy of the GPLv3 license when distributing the software.",
+      "Must include the GCC Runtime Library Exception notice when distributing the software.",
+      "Must disclose source code when distributing modified versions of the software."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "GPL-3.0-with-GCC-exception",
+    "type": "copyleft_weak"
+  }
+}

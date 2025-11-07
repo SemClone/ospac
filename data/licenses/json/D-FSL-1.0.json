@@ -1,0 +1,74 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "MPL-2.0"
+        ]
+      },
+      "notes": "D-FSL-1.0 has a strong copyleft nature, meaning that any derivative works or combined works must also be licensed under D-FSL-1.0 or a compatible license.",
+      "static_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "D-FSL-1.0",
+    "key_requirements": [
+      "Include the license text with any distribution.",
+      "Disclose the source code when distributing modified versions.",
+      "State any changes made to the original program."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "D-FSL-1.0",
+    "obligations": [
+      "Provide a copy of the license when distributing the program.",
+      "Make the source code available to recipients.",
+      "Release modifications under the same license if publicly distributed."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "D-FSL-1.0",
+    "type": "copyleft_strong"
+  }
+}

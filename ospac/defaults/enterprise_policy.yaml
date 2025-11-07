@@ -8,7 +8,7 @@ rules:
     description: "Prevent GPL licenses in distributed products"
     priority: 10
     when:
-      distribution_type: ["commercial", "embedded", "saas"]
+      distribution_type: ["commercial", "embedded", "saas", "mobile", "desktop", "web"]
       license: ["GPL-2.0", "GPL-3.0", "GPL-2.0-only", "GPL-3.0-only", "GPL-2.0-or-later", "GPL-3.0-or-later"]
     then:
       action: deny
@@ -161,6 +161,55 @@ rules:
       message: "Unknown license requires manual review"
       notify: ["legal@company.com"]
 
+  # License Compatibility Rules
+  - id: gpl2_apache_incompatible
+    description: "GPL-2.0 and Apache-2.0 are incompatible"
+    priority: 10
+    when:
+      license1: ["GPL-2.0", "GPL-2.0-only"]
+      license2: ["Apache-2.0"]
+    then:
+      action: deny
+      severity: error
+      message: "GPL-2.0 and Apache-2.0 are incompatible due to patent clause conflicts"
+      remediation: "Use GPL-3.0 (compatible with Apache-2.0) or choose different licenses"
+
+  - id: apache_gpl2_incompatible
+    description: "Apache-2.0 and GPL-2.0 are incompatible (reverse check)"
+    priority: 10
+    when:
+      license1: ["Apache-2.0"]
+      license2: ["GPL-2.0", "GPL-2.0-only"]
+    then:
+      action: deny
+      severity: error
+      message: "Apache-2.0 and GPL-2.0 are incompatible due to patent clause conflicts"
+      remediation: "Use GPL-3.0 (compatible with Apache-2.0) or choose different licenses"
+
+  - id: gpl2_gpl3_incompatible
+    description: "GPL-2.0 and GPL-3.0 are incompatible"
+    priority: 10
+    when:
+      license1: ["GPL-2.0", "GPL-2.0-only"]
+      license2: ["GPL-3.0", "GPL-3.0-only"]
+    then:
+      action: deny
+      severity: error
+      message: "GPL-2.0 and GPL-3.0 are incompatible - cannot mix versions"
+      remediation: "Use consistent GPL version across all components"
+
+  - id: gpl3_gpl2_incompatible
+    description: "GPL-3.0 and GPL-2.0 are incompatible (reverse check)"
+    priority: 10
+    when:
+      license1: ["GPL-3.0", "GPL-3.0-only"]
+      license2: ["GPL-2.0", "GPL-2.0-only"]
+    then:
+      action: deny
+      severity: error
+      message: "GPL-3.0 and GPL-2.0 are incompatible - cannot mix versions"
+      remediation: "Use consistent GPL version across all components"
+
 decision_tree:
   # Permissive licenses - always allowed
   - if:
@@ -189,10 +238,10 @@ decision_tree:
   # Strong copyleft in products
   - if:
       license_category: "copyleft_strong"
-      distribution: ["commercial", "embedded"]
+      distribution: ["commercial", "embedded", "mobile", "desktop"]
     then:
       action: deny
-      reason: "Strong copyleft not compatible with commercial distribution"
+      reason: "Strong copyleft not compatible with distributed products"
 
   # Proprietary licenses
   - if:

@@ -1,0 +1,65 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "Permissive",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL-3.0-only",
+          "AGPL-3.0-only",
+          "GPL-2.0-only"
+        ],
+        "requires_review": []
+      },
+      "notes": "The Apache-2.0 license is permissive, allowing derivative works and modifications.",
+      "static_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-3.0-only",
+          "AGPL-3.0-only"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Apache-2.0",
+    "key_requirements": [
+      "Include a copy of this license in your derivative work.",
+      "Maintain the Source form of any Work that you modify by making available for download or otherwise the full source code of the modified Work, and provide an adequate mechanism to obtain copies of the modified Work",
+      "You may choose to offer, and MUST offer, that Source form on the same medium from which you distributed the Object form of the Work,"
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "Apache-2.0",
+    "obligations": [
+      "You must retain the copyright notice and one or more statements of acknowledgment, if applicable, for any modified version."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": false
+    },
+    "spdx_id": "Apache-2.0",
+    "type": "permissive"
+  }
+}

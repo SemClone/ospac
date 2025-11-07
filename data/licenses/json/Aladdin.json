@@ -1,0 +1,68 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "Permissive",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "AGPL-3.0+",
+          "LGPL-3.0+"
+        ],
+        "requires_review": []
+      },
+      "notes": "Aladdin's permissive license is compatible with other permissive licenses, and can be distributed with them without restrictions.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "Permissive",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "AGPL-3.0+",
+          "LGPL-3.0+"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Aladdin",
+    "key_requirements": [
+      "You must not accept these terms and conditions if you do not agree to modify or distribute the Program."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "Aladdin",
+    "obligations": [
+      "You must distribute an unmodified copy of this License with the Program.",
+      "You must comply with all restrictions set forth in this License."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Aladdin",
+    "type": "permissive"
+  }
+}

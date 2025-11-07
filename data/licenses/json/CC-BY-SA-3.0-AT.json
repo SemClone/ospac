@@ -1,0 +1,76 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "CC-BY-SA-3.0",
+          "CC-BY-SA-4.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "CC-BY-SA-3.0-AT requires that any derivative works or combined works must also be licensed under CC-BY-SA. This strong copyleft nature means that it is generally incompatible with permissive licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "CC-BY-SA-3.0",
+          "CC-BY-SA-4.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "CC-BY-SA-3.0-AT",
+    "key_requirements": [
+      "Provide appropriate credit, link to the license, and indicate if changes were made.",
+      "Distribute any derivative works under the same license."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "CC-BY-SA-3.0-AT",
+    "obligations": [
+      "Attribution must be given to the original creator.",
+      "Any derivative works must be licensed under the same terms (ShareAlike).",
+      "License must be included with any distribution of the work or derivative."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "CC-BY-SA-3.0-AT",
+    "type": "copyleft_strong"
+  }
+}

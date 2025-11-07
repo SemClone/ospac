@@ -279,9 +279,11 @@ class PolicyDataGenerator:
         compatibility_matrix = self._generate_compatibility_matrix(converted_all)
         obligation_database = self._generate_obligation_database(converted_all)
 
-        # Step 5: Generate aggregate datasets
-        logger.info("Generating aggregate datasets...")
-        self._generate_master_database(converted_all, compatibility_matrix, obligation_database)
+        # Step 5: Generate modular per-license files and index
+        logger.info("Generating modular per-license files...")
+        self._generate_modular_license_files(converted_all, compatibility_matrix, obligation_database)
+
+        # Skip legacy master database generation - using modular files only
 
         # Step 6: Generate validation data
         validation_report = self._validate_generated_data(analyzed_licenses)
@@ -299,6 +301,10 @@ class PolicyDataGenerator:
         summary_file = self.output_dir / "generation_summary.json"
         with open(summary_file, "w") as f:
             json.dump(summary, f, indent=2)
+
+        # Step 7: Clean up temporary/intermediate files for packaging
+        logger.info("Cleaning up temporary files for final package...")
+        self._cleanup_temporary_files()
 
         logger.info(f"Data generation complete. Summary saved to {summary_file}")
         return summary
@@ -563,3 +569,111 @@ class PolicyDataGenerator:
         report["is_valid"] = len(report["validation_errors"]) == 0
 
         return report
+
+    def _cleanup_temporary_files(self) -> None:
+        """Clean up temporary/intermediate files to prepare data for packaging."""
+        import shutil
+        import logging
+
+        logger = logging.getLogger(__name__)
+        logger.info("Cleaning up temporary and intermediate files...")
+
+        files_to_remove = [
+            # Generation tracking files (not needed in package)
+            "generation_progress.json",
+            "generation_summary.json",
+            # Legacy files no longer needed with modular approach
+            "ospac_license_database.yaml",
+            "ospac_license_database.json",
+            "obligation_database.json",
+            "compatibility_matrix.json",
+        ]
+
+        directories_to_remove = [
+            # Empty obligations directory
+            "obligations",
+            # Old split compatibility matrix (replaced by obligation-based compatibility)
+            "compatibility",
+        ]
+
+        # Remove unnecessary files
+        for filename in files_to_remove:
+            file_path = self.output_dir / filename
+            if file_path.exists():
+                file_path.unlink()
+                logger.info(f"Removed: {filename}")
+
+        # Remove unnecessary directories
+        for dirname in directories_to_remove:
+            dir_path = self.output_dir / dirname
+            if dir_path.exists():
+                shutil.rmtree(dir_path)
+                logger.info(f"Removed directory: {dirname}")
+
+        # Keep only essential files:
+        # - licenses/ directory (modular per-license files with obligations)
+        # - index.json (license discovery index)
+
+        logger.info("Cleanup complete. Package-ready data contains only modular license files.")
+
+    def _generate_modular_license_files(self, licenses: List[Dict[str, Any]],
+                                      compatibility_matrix: Dict[str, Any],
+                                      obligation_database: Dict[str, Any]) -> None:
+        """Generate individual license files with obligations and compatibility data."""
+        licenses_dir = self.output_dir / "licenses"
+        licenses_dir.mkdir(parents=True, exist_ok=True)
+
+        # Create index for license discovery
+        index = {
+            "version": "1.0",
+            "generated": datetime.now().isoformat(),
+            "total_licenses": len(licenses),
+            "licenses": {}
+        }
+
+        for license_data in licenses:
+            license_id = license_data.get("license_id")
+            if not license_id:
+                continue
+
+            # Note: Compatibility will be calculated on-demand by comparing obligations
+            # No need to store massive pre-computed compatibility matrices
+
+            # Create per-license file
+            license_file_data = {
+                "id": license_id,
+                "name": license_data.get("name", license_id),
+                "category": license_data.get("category"),
+                "obligations": obligation_database["licenses"].get(license_id, {}).get("obligations", []),
+                "key_requirements": obligation_database["licenses"].get(license_id, {}).get("key_requirements", []),
+                "permissions": license_data.get("permissions", {}),
+                "conditions": license_data.get("conditions", {}),
+                "limitations": license_data.get("limitations", {}),
+                # Compatibility calculated on-demand by comparing obligations
+                "spdx_metadata": {
+                    "is_osi_approved": license_data.get("spdx_data", {}).get("isOsiApproved", False),
+                    "is_fsf_libre": license_data.get("spdx_data", {}).get("isFsfLibre", False),
+                    "is_deprecated": license_data.get("spdx_data", {}).get("isDeprecatedLicenseId", False)
+                },
+                "generated": datetime.now().isoformat()
+            }
+
+            # Save individual license file
+            license_file = licenses_dir / f"{license_id}.json"
+            with open(license_file, "w") as f:
+                json.dump(license_file_data, f, indent=2)
+
+            # Add to index
+            index["licenses"][license_id] = {
+                "name": license_data.get("name", license_id),
+                "category": license_data.get("category"),
+                "file": f"licenses/{license_id}.json",
+                "obligations_count": len(license_file_data["obligations"])
+            }
+
+        # Save index file
+        index_file = self.output_dir / "index.json"
+        with open(index_file, "w") as f:
+            json.dump(index, f, indent=2)
+
+        logger.info(f"Generated {len(licenses)} modular license files and index")

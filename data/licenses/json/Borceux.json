@@ -1,0 +1,67 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "Apache-2.0",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "GPL-2.0",
+          "AGPL-3.0",
+          "AGPL-2.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "The Borceux license is a permissive open-source license that allows for static and dynamic linking with other software under compatible licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "Apache-2.0",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "GPL-2.0",
+          "AGPL-3.0",
+          "AGPL-2.0"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Borceux",
+    "key_requirements": [
+      "Comply with the copyright notice and provide email support to the author if requested."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "Borceux",
+    "obligations": [
+      "No specific obligations mentioned in the license text."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Borceux",
+    "type": "permissive"
+  }
+}

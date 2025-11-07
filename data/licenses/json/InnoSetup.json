@@ -1,0 +1,89 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-NC-SA",
+          "CC BY-SA"
+        ]
+      },
+      "notes": "InnoSetup is a permissive license, allowing for wide compatibility with other permissive licenses. However, it is incompatible with copyleft licenses such as GPL and AGPL.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-NC-SA",
+          "CC BY-SA"
+        ]
+      }
+    },
+    "id": "InnoSetup",
+    "key_requirements": [
+      "Include the license text in redistributions.",
+      "Acknowledge the original author in documentation if distributing a product."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "InnoSetup",
+    "obligations": [
+      "Retain all copyright notices in redistributions of source code.",
+      "Retain copyright notice and website addresses in redistributions in binary form.",
+      "Do not misrepresent the origin of the software.",
+      "Mark modified versions as modified and do not misrepresent them as original."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "InnoSetup",
+    "type": "permissive"
+  }
+}

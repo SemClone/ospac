@@ -1,0 +1,83 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "The FDK-AAC license is permissive and allows for integration with other permissive licenses without significant restrictions. However, care should be taken when combining with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "FDK-AAC",
+    "key_requirements": [
+      "Include the license text in all redistributions.",
+      "Provide source code for binary distributions.",
+      "State any modifications made to the original software."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "FDK-AAC",
+    "obligations": [
+      "Retain the complete text of the software license in redistributions in source code form.",
+      "Retain the complete text of the software license in documentation and/or other materials provided with redistributions in binary form.",
+      "Make available free of charge copies of the complete source code of the FDK AAC Codec and modifications to recipients of binary form.",
+      "Do not use the name of Fraunhofer to endorse or promote products derived from this library without prior written permission.",
+      "Do not charge copyright license fees for anyone to use, copy, or distribute the FDK AAC Codec software or modifications.",
+      "Prominently state changes made to the software and the date of any change in modified versions.",
+      "Replace the term 'Fraunhofer FDK AAC Codec Library for Android' with 'Third-Party Modified Version of the Fraunhofer FDK AAC Codec Library for Android' in modified versions."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "FDK-AAC",
+    "type": "permissive"
+  }
+}

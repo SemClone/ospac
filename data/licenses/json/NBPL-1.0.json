@@ -1,0 +1,72 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "The NBPL-1.0 license allows for weak copyleft, meaning that while modifications to the original work must be shared under the same license, linking with other compatible licenses does not impose the same requirement on those other works.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "NBPL-1.0",
+    "key_requirements": [
+      "Provide a prominent notice in modified files.",
+      "Distribute the license and copyright notices with the package.",
+      "Ensure that any modifications are either made Freely Available or used internally within an organization."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "NBPL-1.0",
+    "obligations": [
+      "Duplicate all original copyright notices and associated disclaimers when distributing verbatim copies.",
+      "Insert a prominent notice in each changed file stating how and when the file was changed if modifications are made.",
+      "Make modifications Freely Available or allow the Copyright Holder to include them in the Standard Version."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "NBPL-1.0",
+    "type": "copyleft_weak"
+  }
+}

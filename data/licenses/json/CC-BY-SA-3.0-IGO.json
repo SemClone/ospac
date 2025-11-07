@@ -1,0 +1,79 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "derivative",
+      "dynamic_linking": {
+        "compatible_with": [
+          "CC-BY",
+          "CC-BY-SA",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "Proprietary licenses",
+          "CC-BY-NC",
+          "CC-BY-NC-SA"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "Apache-2.0"
+        ]
+      },
+      "notes": "CC-BY-SA-3.0-IGO requires that derivative works be licensed under the same terms, which can affect compatibility with other licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "CC-BY",
+          "CC-BY-SA",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "incompatible_with": [
+          "Proprietary licenses",
+          "CC-BY-NC",
+          "CC-BY-NC-SA"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "Apache-2.0"
+        ]
+      }
+    },
+    "id": "CC-BY-SA-3.0-IGO",
+    "key_requirements": [
+      "You must provide appropriate credit, provide a link to the license, and indicate if changes were made.",
+      "You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "CC-BY-SA-3.0-IGO",
+    "obligations": [
+      "Attribution must be given to the original creator.",
+      "ShareAlike condition requires that adaptations be licensed under the same terms.",
+      "License must be included with any distribution of the Work or Adaptation.",
+      "Copyright notice must be included with the Work or Adaptation.",
+      "Notice of any changes made to the Work must be provided."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "CC-BY-SA-3.0-IGO",
+    "type": "copyleft_weak"
+  }
+}

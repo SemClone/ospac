@@ -1,0 +1,72 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT-0",
+          "BSD-3-Clause",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "AGPL-3.0+",
+          "CC-BY-SA-4.0",
+          "GPL-2.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "No additional compatibility notes",
+      "static_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT-0",
+          "BSD-3-Clause",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "AGPL-3.0+",
+          "CC-BY-SA-4.0",
+          "GPL-2.0"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "ASWF-Digital-Assets-1.1",
+    "key_requirements": [
+      "Redistribute the digital assets only for education, training, research, software and hardware development, performance benchmarking, or software and hardware product demonstrations.",
+      "Do not use any trade names, trademarks, service marks, or product names of the copyright holder for any purpose other than identifying the digital assets."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "ASWF-Digital-Assets-1.1",
+    "obligations": [
+      "Redistribute the digital assets with the above copyright notice, this list of conditions, and the disclaimer.",
+      "Include a description of how the redistributed versions differ from the originals (if applicable).",
+      "Do not use the names of the copyright holder or its contributors to promote or imply endorsement, sponsorship, or affiliation with products developed or tested utilizing these digital assets."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "ASWF-Digital-Assets-1.1",
+    "type": "permissive"
+  }
+}

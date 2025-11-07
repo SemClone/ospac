@@ -1,0 +1,69 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "Apache-2.0",
+          "MIT",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "This license allows for static linking with other permissive licenses, and dynamic linking with most licenses. It is not compatible with GPL-2.0 or its variants.",
+      "static_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "Apache-2.0",
+          "MIT",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "3D-Slicer-1.0",
+    "key_requirements": [
+      "All Contributions must be properly attributed, with applicable copyright notices and licenses for any third-party software or data included in the Contribution.",
+      "Contributions may not include patient data unless it is de-identified in accordance with U.S. confidentiality and security laws and requirements."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "3D-Slicer-1.0",
+    "obligations": [
+      "You must include all paragraphs of Part B of this Agreement with and apply to the Software if you distribute it.",
+      "You represent that you are legally authorized and entitled to make a Contribution to Slicer and to grant all licenses granted in this Contribution Agreement."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "3D-Slicer-1.0",
+    "type": "permissive"
+  }
+}

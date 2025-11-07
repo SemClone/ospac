@@ -1,0 +1,68 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-3.0-only",
+          "GPL-2.0-only",
+          "LGPL-3.0-only",
+          "LGPL-2.1-only"
+        ],
+        "requires_review": []
+      },
+      "notes": "APSL-1.1 is a permissive open-source license that allows for the free distribution of software and derivative works.",
+      "static_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-3.0-only",
+          "GPL-2.0-only",
+          "LGPL-3.0-only",
+          "LGPL-2.1-only"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "APSL-1.1",
+    "key_requirements": [
+      "You must distribute any Modifications you make to the Covered Code under the same License terms as the Original Code.",
+      "You must provide a copy of this License with each copy or substantial portion of the Covered Code."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "APSL-1.1",
+    "obligations": [
+      "You must include the original copyright notice and permissions in all copies or substantial portions of the Covered Code."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": false,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": false
+    },
+    "spdx_id": "APSL-1.1",
+    "type": "permissive"
+  }
+}

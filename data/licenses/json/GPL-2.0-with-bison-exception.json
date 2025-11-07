@@ -1,0 +1,78 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "Proprietary",
+          "Commercial licenses that do not allow GPL compatibility"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-1.0",
+          "AGPL-3.0"
+        ]
+      },
+      "notes": "The GPL-2.0-with-bison-exception allows linking with proprietary software under certain conditions, but any modifications to the GPL-covered code must remain under GPL. The Bison exception specifically allows the use of Bison-generated files without imposing the GPL on the entire project.",
+      "static_linking": {
+        "compatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "Proprietary",
+          "Commercial licenses that do not allow GPL compatibility"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-1.0",
+          "AGPL-3.0"
+        ]
+      }
+    },
+    "id": "GPL-2.0-with-bison-exception",
+    "key_requirements": [
+      "You must include the original copyright notice and license when redistributing the Bison parser skeleton or any derived work.",
+      "You must disclose the source code of the modified version if you distribute it."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "GPL-2.0-with-bison-exception",
+    "obligations": [
+      "If you modify or redistribute the Bison parser skeleton, you must either keep the Bison Exception or remove it, which will then subject the skeleton to the GPL terms."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "GPL-2.0-with-bison-exception",
+    "type": "copyleft_weak"
+  }
+}

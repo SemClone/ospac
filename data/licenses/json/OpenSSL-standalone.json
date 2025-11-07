@@ -1,0 +1,89 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0",
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "The OpenSSL-standalone license is permissive and allows for integration with other permissive licenses. However, care must be taken when combining with copyleft licenses, as they may impose additional restrictions.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      }
+    },
+    "id": "OpenSSL-standalone",
+    "key_requirements": [
+      "Include the copyright notice and disclaimer in all redistributions.",
+      "Provide acknowledgment in advertising materials.",
+      "Obtain permission for trademark use and naming conventions."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "OpenSSL-standalone",
+    "obligations": [
+      "Retain copyright notice and disclaimer in redistributions of source code.",
+      "Reproduce copyright notice and disclaimer in redistributions of binary form.",
+      "Include acknowledgment in advertising materials mentioning features or use of the software.",
+      "Do not use the names 'OpenSSL Toolkit' and 'OpenSSL Project' for endorsement without permission.",
+      "Do not use 'OpenSSL' in product names without permission.",
+      "Retain acknowledgment in all forms of redistribution."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "OpenSSL-standalone",
+    "type": "permissive"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "GPL-2.0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-3.0",
+          "MPL-2.0"
+        ]
+      },
+      "notes": "CC-BY-3.0-IGO is a permissive license that allows for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses like GPL-3.0 and AGPL-3.0.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-3.0",
+          "MPL-2.0"
+        ]
+      }
+    },
+    "id": "CC-BY-3.0-IGO",
+    "key_requirements": [
+      "Accept and agree to the terms of the license.",
+      "Do not use the Work in a manner that suggests endorsement by the Licensor."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "CC-BY-3.0-IGO",
+    "obligations": [
+      "Attribution must be given to the original creator.",
+      "License must be included with any distribution of the Work.",
+      "Copyright notice must be included with the Work.",
+      "Any modifications must be indicated."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "CC-BY-3.0-IGO",
+    "type": "permissive"
+  }
+}

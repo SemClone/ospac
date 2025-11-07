@@ -1,0 +1,77 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "ISC"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "NICTA-1.0 is a permissive license, allowing for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses such as GPL.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "ISC"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "NICTA-1.0",
+    "key_requirements": [
+      "Retain copyright notice in redistributions.",
+      "Include license and disclaimers in binary redistributions.",
+      "Obtain permission for trademark use."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "NICTA-1.0",
+    "obligations": [
+      "Redistributions of source code must retain the copyright notice, list of conditions, and disclaimers.",
+      "Redistributions in binary form must reproduce the copyright notice, list of conditions, and disclaimers in the documentation or other materials provided with the distribution.",
+      "The name of NICTA may not be used to endorse or promote products derived from this Software without specific prior written permission."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "NICTA-1.0",
+    "type": "permissive"
+  }
+}

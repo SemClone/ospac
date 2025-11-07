@@ -1,0 +1,71 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "Unlicense",
+          "Public-Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "GPL-2.0",
+          "LGPL-3.0",
+          "LGPL-2.1"
+        ],
+        "requires_review": []
+      },
+      "notes": "The Adobe-Glyph license is permissive, allowing static and dynamic linking with compatible licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "Unlicense",
+          "Public-Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "GPL-2.0",
+          "LGPL-3.0",
+          "LGPL-2.1"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Adobe-Glyph",
+    "key_requirements": [
+      "Maintain the same permissions for derivative works.",
+      "Do not represent derived work as being a copy or version of this document."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "Adobe-Glyph",
+    "obligations": [
+      "Do not modify the documentation.",
+      "Include the copyright notice and permission notice in all copies of the documentation."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": false,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Adobe-Glyph",
+    "type": "permissive"
+  }
+}

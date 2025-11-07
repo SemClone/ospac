@@ -1,0 +1,73 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-1.0",
+          "Apache-2.0",
+          "Artistic-2.0",
+          "MIT",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "The Apache Software License 2.0 (APSL-2.0) is a permissive open-source license that allows for static linking, dynamic linking, and distribution of modified code with minimal restrictions.",
+      "static_linking": {
+        "compatible_with": [
+          "Apache-1.0",
+          "Apache-2.0",
+          "Artistic-2.0",
+          "MIT",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "APSL-2.0",
+    "key_requirements": [
+      "Maintain the same license terms for your modifications as the Original Code",
+      "Provide attribution to Apple in all modified and distributed versions of the Covered Code"
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "APSL-2.0",
+    "obligations": [
+      "Include the notice in all modified and distributed versions of the Covered Code.",
+      "Make available to the public any Modifications made by you (the Contributor) to create a Larger Work from the Original Code."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": false
+    },
+    "spdx_id": "APSL-2.0",
+    "type": "permissive"
+  }
+}

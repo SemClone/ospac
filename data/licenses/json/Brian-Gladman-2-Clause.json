@@ -1,0 +1,73 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "Permissive-0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0",
+          "GPL-2.0",
+          "AGPL-2.0",
+          "LGPL-2.1"
+        ],
+        "requires_review": []
+      },
+      "notes": "The Brian-Gladman-2-Clause license allows modification of the original code, as long as the modified code is distributed under the same terms. It also requires that any derivative work be made available under this same license.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "Permissive-0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "GPL-2.0",
+          "AGPL-2.0",
+          "LGPL-2.1"
+        ]
+      }
+    },
+    "id": "Brian-Gladman-2-Clause",
+    "key_requirements": [
+      "The redistribution and use of this software is allowed without payment of fees or royalties."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "Brian-Gladman-2-Clause",
+    "obligations": [
+      "Include the copyright notice, this list of conditions, and the following disclaimer in source code distributions.",
+      "Include the copyright notice, this list of conditions, and the following disclaimer in binary distribution documentation."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Brian-Gladman-2-Clause",
+    "type": "permissive"
+  }
+}

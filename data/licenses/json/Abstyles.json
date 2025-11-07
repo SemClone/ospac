@@ -1,0 +1,68 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "MIT",
+          "Apache-2.0",
+          "Creative Commons BY-NC-SA"
+        ],
+        "requires_review": []
+      },
+      "notes": "This license is very permissive and can be used with most other licenses without issue. However, it's always a good idea to check for any specific requirements or restrictions.",
+      "static_linking": {
+        "compatible_with": [
+          "Public Domain",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "MIT",
+          "Apache-2.0",
+          "Creative Commons BY-NC-SA"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Abstyles",
+    "key_requirements": [
+      "Include a permission notice identical to this one in derived works.",
+      "Comply with the same terms for verbatim copying or modified versions."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "Abstyles",
+    "obligations": [
+      "Preserve the copyright notice and permission notice on all copies."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Abstyles",
+    "type": "permissive|public_domain"
+  }
+}

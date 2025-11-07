@@ -1,0 +1,75 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "GFDL-1.2 is a strong copyleft license, meaning that any derivative work must also be distributed under the same license. This can lead to incompatibility with permissive licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "GFDL-1.2",
+    "key_requirements": [
+      "The Document must be distributed under the same license terms.",
+      "Any derivative work must also be free and carry the same license."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "GFDL-1.2",
+    "obligations": [
+      "You must include a copy of this license when distributing the Document.",
+      "You must preserve the notice of copyright and the license in all copies or substantial portions of the Document.",
+      "You must state changes made to the Document if you modify it.",
+      "You must keep Invariant Sections intact if they are included in the Document."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "GFDL-1.2",
+    "type": "copyleft_strong"
+  }
+}

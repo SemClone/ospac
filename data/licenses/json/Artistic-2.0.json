@@ -1,0 +1,76 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "ISC",
+          "Artistic-1.0"
+        ],
+        "incompatible_with": [
+          "GPL-1.0",
+          "GPL-2.0",
+          "LGPL-2.1",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "Zlib"
+        ]
+      },
+      "notes": "This license is a copyleft license with weak terms, making it compatible with permissive licenses but not with strong copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "ISC"
+        ],
+        "incompatible_with": [
+          "GPL-1.0",
+          "GPL-2.0",
+          "LGPL-2.1",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "Zlib"
+        ]
+      }
+    },
+    "id": "Artistic-2.0",
+    "key_requirements": [
+      "Do not Distribute Modified Versions",
+      "Contact the Copyright Holder for special arrangements"
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "Artistic-2.0",
+    "obligations": [
+      "You are permitted to use the Standard Version and create and use Modified Versions for any purpose without restriction, provided that you do not Distribute the Modified Version.",
+      "If the terms of this license do not permit the full use that you propose to make of the Package, you should contact the Copyright Holder and seek a different licensing arrangement."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Artistic-2.0",
+    "type": "permissive|copyleft_weak"
+  }
+}

@@ -41,11 +41,11 @@ def cli():
     4. Generate license data (requires initial setup):
        ospac data generate
 
-    5. Initialize a custom policy:
-       ospac init --template enterprise
+    5. Initialize a policy for your build target:
+       ospac policy init --template mobile
 
-    By default, OSPAC uses an enterprise policy suitable for most commercial organizations.
-    Create a custom policy with 'ospac init' to tailor compliance rules to your needs.
+    Available templates: mobile, desktop, web, server, embedded, library, custom.
+    Create targeted policies with 'ospac policy init' to match your development needs.
     """
     pass
 
@@ -58,7 +58,7 @@ def cli():
 @click.option("--context", "-c", default="general",
               help="Evaluation context (e.g., static_linking, dynamic_linking)")
 @click.option("--distribution", "-d", default="commercial",
-              help="Distribution type (internal, commercial, saas, embedded, open_source)")
+              help="Distribution type (internal, commercial, saas, embedded, mobile, desktop, web, open_source)")
 @click.option("--output", "-o", type=click.Choice(["json", "text", "markdown"]),
               default="json", help="Output format (default: json)")
 def evaluate(policy_dir: str, licenses: str, context: str,
@@ -96,6 +96,9 @@ def evaluate(policy_dir: str, licenses: str, context: str,
         }
 
         result = runtime.evaluate(eval_context)
+
+        # Add license obligations to requirements regardless of policy decision
+        _enhance_result_with_obligations(result, license_list)
 
         if output == "json":
             # Convert result to JSON-serializable format
@@ -181,9 +184,11 @@ def check(license1: str, license2: str, context: str, policy_dir: str, output: s
               help="Comma-separated list of licenses")
 @click.option("--policy-dir", "-p", type=click.Path(exists=False),
               default=None, help="Path to policy directory (uses default enterprise policy if not provided)")
+@click.option("--data-dir", "-d", type=click.Path(exists=False),
+              default="data", help="Path to data directory containing license databases")
 @click.option("--format", "-f", type=click.Choice(["json", "text", "checklist", "markdown"]),
               default="json", help="Output format (default: json)")
-def obligations(licenses: str, policy_dir: str, format: str):
+def obligations(licenses: str, policy_dir: str, data_dir: str, format: str):
     """Get obligations for the specified licenses.
 
     Examples:
@@ -197,35 +202,57 @@ def obligations(licenses: str, policy_dir: str, format: str):
         ospac obligations -l "GPL-3.0, LGPL-2.1" -f checklist
     """
     try:
-        runtime = PolicyRuntime(policy_dir)
-
-        if runtime._using_default and format != "json":
-            click.secho("Using default enterprise policy. Create a custom policy with 'ospac init' to customize.", fg="yellow")
-
         license_list = [l.strip() for l in licenses.split(",")]
 
-        obligations_dict = runtime.get_obligations(license_list)
+        # For basic license obligations, directly load from license data
+        # Policy system is only needed for custom compliance rules
+        if policy_dir:
+            # Use policy system when custom policy is specified
+            runtime = PolicyRuntime(policy_dir)
+            obligations_dict = runtime.get_obligations(license_list, data_dir=data_dir)
+        else:
+            # Use direct license data loading for complete license information
+            obligations_dict = _get_license_data_directly(license_list, data_dir)
 
         if format == "json":
-            output_data = {
-                "licenses": license_list,
-                "obligations": obligations_dict,
-                "using_default_policy": runtime._using_default
-            }
+            if policy_dir:
+                # When using policies, return obligations format
+                output_data = {
+                    "licenses": license_list,
+                    "obligations": obligations_dict,
+                    "using_policy": True
+                }
+            else:
+                # When using direct data, return raw license data for system consumption
+                output_data = {
+                    "licenses": license_list,
+                    "license_data": obligations_dict,
+                    "using_policy": False
+                }
             click.echo(json.dumps(output_data, indent=2))
         elif format == "checklist":
-            _output_checklist(obligations_dict)
+            # For human-readable formats, extract obligations from license data
+            obligations_only = _extract_obligations_for_display(obligations_dict, policy_dir)
+            _output_checklist(obligations_only)
         elif format == "markdown":
-            _output_obligations_markdown(obligations_dict)
+            obligations_only = _extract_obligations_for_display(obligations_dict, policy_dir)
+            _output_obligations_markdown(obligations_only)
         else:
-            _output_obligations_text(obligations_dict)
+            obligations_only = _extract_obligations_for_display(obligations_dict, policy_dir)
+            _output_obligations_text(obligations_only)
 
     except Exception as e:
         click.secho(f"Error: {e}", fg="red", err=True)
         sys.exit(1)
 
 
-@cli.command()
+@cli.group()
+def policy():
+    """Policy management commands."""
+    pass
+
+
+@policy.command()
 @click.argument("policy_file", type=click.Path(exists=True))
 def validate(policy_file: str):
     """Validate a policy file syntax."""
@@ -261,44 +288,6 @@ def data():
     pass
 
 
-@cli.command()
-@click.argument("license1")
-@click.argument("license2")
-@click.option("--data-dir", "-d", type=click.Path(exists=True),
-              default="data/compatibility", help="Path to compatibility data")
-def check_compat(license1: str, license2: str, data_dir: str):
-    """Check compatibility between two licenses using split matrix format."""
-    from ospac.core.compatibility_matrix import CompatibilityMatrix
-
-    try:
-        # Load the split matrix
-        matrix = CompatibilityMatrix(data_dir)
-        matrix.load()
-
-        # Get compatibility status
-        status = matrix.get_compatibility(license1, license2)
-
-        # Display result
-        if status == "compatible":
-            click.secho(f"✓ {license1} and {license2} are compatible", fg="green")
-        elif status == "incompatible":
-            click.secho(f"✗ {license1} and {license2} are incompatible", fg="red")
-        elif status == "review_needed":
-            click.secho(f"⚠ {license1} and {license2} require review", fg="yellow")
-        else:
-            click.secho(f"? {license1} and {license2} have unknown compatibility", fg="white")
-
-        # Show compatible licenses
-        click.echo(f"\n{license1} is compatible with:")
-        compatible = matrix.get_compatible_licenses(license1)[:10]  # Show first 10
-        for lic in compatible:
-            click.echo(f"  • {lic}")
-        if len(compatible) > 10:
-            click.echo(f"  ... and {len(compatible) - 10} more")
-
-    except Exception as e:
-        click.secho(f"Error: {e}", fg="red", err=True)
-        sys.exit(1)
 
 
 @data.command()
@@ -405,26 +394,28 @@ def download_spdx(output_dir: str, force: bool):
 @click.option("--format", "-f", type=click.Choice(["json", "yaml", "text"]),
               default="yaml", help="Output format")
 def show(license_id: str, format: str):
-    """Show details for a specific license from the database."""
+    """Show details for a specific license from SPDX data."""
+    import yaml
     try:
-        # Try to load from generated data
-        data_file = Path("data") / "ospac_license_database.json"
+        # Load from SPDX YAML file
+        spdx_file = Path("data") / "licenses" / "spdx" / f"{license_id}.yaml"
 
-        if not data_file.exists():
-            click.secho("No generated data found. Run 'ospac data generate' first.", fg="red")
+        if not spdx_file.exists():
+            click.secho(f"License {license_id} not found", fg="red")
+
+            # Show available licenses
+            spdx_dir = Path("data") / "licenses" / "spdx"
+            if spdx_dir.exists():
+                available = [f.stem for f in spdx_dir.glob("*.yaml")][:10]
+                click.echo("\nAvailable licenses (first 10):")
+                for lid in available:
+                    click.echo(f"  - {lid}")
             sys.exit(1)
 
-        with open(data_file) as f:
-            database = json.load(f)
+        with open(spdx_file) as f:
+            data = yaml.safe_load(f)
 
-        if license_id not in database.get("licenses", {}):
-            click.secho(f"License {license_id} not found in database", fg="red")
-            click.echo("\nAvailable licenses (first 10):")
-            for lid in list(database.get("licenses", {}).keys())[:10]:
-                click.echo(f"  - {lid}")
-            sys.exit(1)
-
-        license_data = database["licenses"][license_id]
+        license_data = data.get("license", {})
 
         if format == "json":
             click.echo(json.dumps(license_data, indent=2))
@@ -459,42 +450,46 @@ def show(license_id: str, format: str):
 @click.option("--data-dir", "-d", type=click.Path(exists=True),
               default="data", help="Directory containing generated data")
 def validate(data_dir: str):
-    """Validate generated policy data."""
+    """Validate SPDX license data."""
+    import yaml
     try:
         data_path = Path(data_dir)
 
-        # Check required files
-        required_files = [
-            "ospac_license_database.json",
-            "compatibility_matrix.json",
-            "obligation_database.json",
-            "generation_summary.json"
-        ]
-
-        missing = []
-        for file_name in required_files:
-            if not (data_path / file_name).exists():
-                missing.append(file_name)
-
-        if missing:
-            click.secho(f"✗ Missing required files:", fg="red")
-            for file_name in missing:
-                click.echo(f"  - {file_name}")
+        # Check SPDX directory exists
+        spdx_dir = data_path / "licenses" / "spdx"
+        if not spdx_dir.exists():
+            click.secho(f"✗ SPDX directory not found: {spdx_dir}", fg="red")
             sys.exit(1)
 
-        # Load and validate master database
-        with open(data_path / "ospac_license_database.json") as f:
-            database = json.load(f)
+        # Count and validate SPDX files
+        yaml_files = list(spdx_dir.glob("*.yaml"))
+        total = len(yaml_files)
 
-        total = len(database.get("licenses", {}))
-        click.echo(f"Validating {total} licenses...")
+        if total == 0:
+            click.secho(f"✗ No SPDX YAML files found in {spdx_dir}", fg="red")
+            sys.exit(1)
+
+        click.echo(f"Validating {total} SPDX licenses...")
 
         issues = []
-        for license_id, data in database.get("licenses", {}).items():
-            if not data.get("category"):
-                issues.append(f"{license_id}: Missing category")
-            if not data.get("permissions"):
-                issues.append(f"{license_id}: Missing permissions")
+        required_fields = {"id", "name", "type", "properties", "requirements", "limitations", "obligations"}
+
+        for yaml_file in yaml_files:
+            try:
+                with open(yaml_file) as f:
+                    data = yaml.safe_load(f)
+
+                if "license" not in data:
+                    issues.append(f"{yaml_file.name}: Missing 'license' section")
+                    continue
+
+                license_data = data["license"]
+                missing_fields = required_fields - set(license_data.keys())
+                if missing_fields:
+                    issues.append(f"{yaml_file.name}: Missing fields: {missing_fields}")
+
+            except Exception as e:
+                issues.append(f"{yaml_file.name}: Parse error - {e}")
 
         if issues:
             click.secho(f"⚠ Found {len(issues)} validation issues:", fg="yellow")
@@ -503,63 +498,191 @@ def validate(data_dir: str):
         else:
             click.secho(f"✓ All {total} licenses validated successfully", fg="green")
 
-        # Show summary
-        with open(data_path / "generation_summary.json") as f:
-            summary = json.load(f)
-
-        click.echo(f"\nGeneration summary:")
-        click.echo(f"  Generated: {summary.get('generated_at')}")
-        click.echo(f"  SPDX version: {summary.get('spdx_version')}")
-
-        click.echo("\nCategories:")
-        for cat, count in summary.get("categories", {}).items():
-            click.echo(f"  {cat}: {count}")
+        click.echo(f"\nData summary: {total} SPDX license files validated")
 
     except Exception as e:
         click.secho(f"Error: {e}", fg="red", err=True)
         sys.exit(1)
 
 
-@cli.command()
+@policy.command()
 @click.option("--template", "-t",
-              type=click.Choice(["enterprise", "startup", "opensource", "permissive", "strict"]),
-              default="enterprise", help="Policy template to use")
+              type=click.Choice(["mobile", "desktop", "web", "server", "embedded", "library", "custom"]),
+              default="web", help="Policy template for build target")
 @click.option("--output", "-o", type=click.Path(),
-              default="my_policy.yaml", help="Output file path")
+              default="policy.yaml", help="Output file path")
 def init(template: str, output: str):
-    """Initialize a new policy from a template."""
+    """Initialize a new policy from a build target template."""
     templates = {
-        "enterprise": {
+        "mobile": {
             "version": "1.0",
-            "name": "Enterprise Policy",
+            "name": "Mobile App Policy",
+            "description": "Optimized for mobile app distribution (App Store/Play Store)",
             "rules": [
                 {
                     "id": "no_copyleft",
-                    "description": "Prevent copyleft in products",
-                    "when": {"license_type": "copyleft_strong"},
+                    "description": "Prevent copyleft in mobile apps",
+                    "when": {"license_type": ["copyleft_strong", "copyleft_weak"]},
                     "then": {
                         "action": "deny",
                         "severity": "error",
-                        "message": "Strong copyleft licenses not allowed",
+                        "message": "Copyleft licenses may conflict with app store terms",
+                        "remediation": "Replace with MIT, Apache-2.0, or BSD licensed alternative for app store compatibility"
+                    }
+                },
+                {
+                    "id": "allow_permissive",
+                    "description": "Allow permissive licenses",
+                    "when": {"license_type": ["permissive", "public_domain"]},
+                    "then": {"action": "approve"}
+                }
+            ]
+        },
+        "desktop": {
+            "version": "1.0",
+            "name": "Desktop Application Policy",
+            "description": "For desktop applications with flexible distribution",
+            "rules": [
+                {
+                    "id": "dynamic_linking_ok",
+                    "description": "Allow LGPL with dynamic linking",
+                    "when": {
+                        "license_type": "copyleft_weak",
+                        "context": "dynamic_linking"
+                    },
+                    "then": {"action": "approve"}
+                },
+                {
+                    "id": "strong_copyleft_review",
+                    "description": "Review GPL for desktop apps",
+                    "when": {"license_type": "copyleft_strong"},
+                    "then": {
+                        "action": "review",
+                        "message": "GPL requires source disclosure for distributed software"
                     }
                 }
             ]
         },
-        "permissive": {
+        "web": {
             "version": "1.0",
-            "name": "Permissive Policy",
+            "name": "Web Application Policy",
+            "description": "For web applications and services",
             "rules": [
                 {
-                    "id": "prefer_permissive",
-                    "description": "Allow only permissive licenses",
-                    "when": {"license_type": ["permissive", "public_domain"]},
-                    "then": {"action": "allow"}
+                    "id": "server_side_gpl_ok",
+                    "description": "Allow GPL for server-side code",
+                    "when": {
+                        "license_type": "copyleft_strong",
+                        "distribution": "saas"
+                    },
+                    "then": {"action": "approve"}
+                },
+                {
+                    "id": "client_side_restrictions",
+                    "description": "Restrict copyleft in client-side code",
+                    "when": {
+                        "license_type": "copyleft_strong",
+                        "distribution": ["commercial", "embedded"]
+                    },
+                    "then": {
+                        "action": "review",
+                        "message": "Client-side GPL requires source disclosure"
+                    }
+                }
+            ]
+        },
+        "server": {
+            "version": "1.0",
+            "name": "Server Application Policy",
+            "description": "For backend services and server applications",
+            "rules": [
+                {
+                    "id": "agpl_restrictions",
+                    "description": "Careful with AGPL for networked services",
+                    "when": {"spdx_id": ["AGPL-3.0", "AGPL-3.0-only", "AGPL-3.0-or-later"]},
+                    "then": {
+                        "action": "review",
+                        "message": "AGPL requires source disclosure for network use"
+                    }
+                },
+                {
+                    "id": "gpl_ok_internal",
+                    "description": "Allow GPL for internal services",
+                    "when": {
+                        "license_type": "copyleft_strong",
+                        "distribution": "internal"
+                    },
+                    "then": {"action": "approve"}
+                }
+            ]
+        },
+        "embedded": {
+            "version": "1.0",
+            "name": "Embedded Device Policy",
+            "description": "For embedded devices and IoT applications",
+            "rules": [
+                {
+                    "id": "no_copyleft_embedded",
+                    "description": "Avoid copyleft in embedded devices",
+                    "when": {"license_type": ["copyleft_strong", "copyleft_weak"]},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "Copyleft complicates embedded device compliance",
+                        "remediation": "Use MIT or BSD-2-Clause for minimal embedded device restrictions"
+                    }
+                },
+                {
+                    "id": "prefer_bsd_mit",
+                    "description": "Prefer BSD/MIT for embedded",
+                    "when": {"spdx_id": ["MIT", "BSD-2-Clause", "BSD-3-Clause", "Apache-2.0"]},
+                    "then": {"action": "approve"}
+                }
+            ]
+        },
+        "library": {
+            "version": "1.0",
+            "name": "Library/SDK Policy",
+            "description": "For libraries and SDKs distributed to third parties",
+            "rules": [
+                {
+                    "id": "lgpl_dependencies_ok",
+                    "description": "Allow LGPL dependencies in libraries",
+                    "when": {
+                        "license_type": "copyleft_weak",
+                        "context": "dynamic_linking"
+                    },
+                    "then": {"action": "approve"}
+                },
+                {
+                    "id": "viral_licenses_restricted",
+                    "description": "Restrict viral licenses in libraries",
+                    "when": {"license_type": "copyleft_strong"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "Strong copyleft would contaminate library users",
+                        "remediation": "Use Apache-2.0, MIT, or BSD for maximum library compatibility"
+                    }
+                }
+            ]
+        },
+        "custom": {
+            "version": "1.0",
+            "name": "Custom Policy Template",
+            "description": "Minimal template for custom policies",
+            "rules": [
+                {
+                    "id": "default_allow",
+                    "description": "Allow all licenses by default",
+                    "when": {},
+                    "then": {"action": "approve"}
                 }
             ]
         }
     }
 
-    policy = templates.get(template, templates["enterprise"])
+    policy = templates.get(template, templates["web"])  # Default to web template
 
     with open(output, "w") as f:
         yaml.dump(policy, f, default_flow_style=False)
@@ -647,6 +770,122 @@ def _output_obligations_markdown(obligations_dict):
                     click.echo(f"- **{key}:**")
                     for item in value:
                         click.echo(f"  - {item}")
+
+
+def _get_license_data_directly(licenses: list, data_dir: str = "data") -> dict:
+    """Load complete license data directly from SPDX JSON files."""
+    import json
+    from pathlib import Path
+
+    license_data_result = {}
+
+    # Try JSON files first (preferred format)
+    json_dir = Path(data_dir) / "licenses" / "json"
+    if json_dir.exists():
+        for license_id in licenses:
+            json_file = json_dir / f"{license_id}.json"
+            if json_file.exists():
+                try:
+                    with open(json_file) as f:
+                        spdx_data = json.load(f)
+
+                    # Extract license data from SPDX format
+                    if "license" in spdx_data:
+                        license_data = spdx_data["license"]
+                        license_data_result[license_id] = license_data
+                    else:
+                        click.echo(f"⚠️  Warning: {license_id} JSON file missing 'license' key", err=True)
+
+                except Exception as e:
+                    click.echo(f"⚠️  Warning: Failed to load {license_id}.json: {e}", err=True)
+            else:
+                click.echo(f"⚠️  Warning: {license_id}.json not found", err=True)
+
+    # Fallback to YAML files if JSON not available
+    else:
+        import yaml
+        spdx_dir = Path(data_dir) / "licenses" / "spdx"
+        if spdx_dir.exists():
+            for license_id in licenses:
+                spdx_file = spdx_dir / f"{license_id}.yaml"
+                if spdx_file.exists():
+                    try:
+                        with open(spdx_file) as f:
+                            spdx_data = yaml.safe_load(f)
+
+                        # Extract license data from SPDX format
+                        if "license" in spdx_data:
+                            license_data = spdx_data["license"]
+                            license_data_result[license_id] = license_data
+                    except Exception:
+                        # Continue with other licenses if this file fails
+                        pass
+
+    return license_data_result
+
+
+def _enhance_result_with_obligations(result, license_list: list):
+    """Add license obligations to policy result requirements."""
+    import json
+    from pathlib import Path
+
+    # Get license obligations from JSON files (preferred) or YAML files
+    all_obligations = []
+
+    for license_id in license_list:
+        # Try JSON first, then fallback to YAML
+        json_file = Path("data") / "licenses" / "json" / f"{license_id}.json"
+        yaml_file = Path("data") / "licenses" / "spdx" / f"{license_id}.yaml"
+
+        spdx_data = None
+
+        if json_file.exists():
+            try:
+                with open(json_file) as f:
+                    spdx_data = json.load(f)
+            except Exception:
+                pass
+
+        if spdx_data is None and yaml_file.exists():
+            try:
+                import yaml
+                with open(yaml_file) as f:
+                    spdx_data = yaml.safe_load(f)
+            except Exception:
+                pass
+
+        if spdx_data:
+            license_data = spdx_data.get("license", {})
+            obligations = license_data.get("obligations", [])
+            key_requirements = license_data.get("key_requirements", [])
+
+            # Add license prefix to make it clear which license requires what
+            prefixed_obligations = [f"{license_id}: {obligation}" for obligation in obligations]
+            prefixed_requirements = [f"{license_id}: {req}" for req in key_requirements]
+
+            all_obligations.extend(prefixed_obligations)
+            all_obligations.extend(prefixed_requirements)
+
+    # Add obligations to existing requirements
+    if hasattr(result, 'requirements'):
+        result.requirements.extend(all_obligations)
+
+
+def _extract_obligations_for_display(license_data_dict: dict, using_policy: bool) -> dict:
+    """Extract obligations from license data for human-readable display formats."""
+    if using_policy:
+        # Policy data is already in obligations format
+        return license_data_dict
+
+    # Extract obligations from raw license data
+    obligations_dict = {}
+    for license_id, license_data in license_data_dict.items():
+        if isinstance(license_data, dict):
+            obligations = license_data.get("obligations", [])
+            if obligations:
+                obligations_dict[license_id] = {"obligations": obligations}
+
+    return obligations_dict
 
 
 def main():

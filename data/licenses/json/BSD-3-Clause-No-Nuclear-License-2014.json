@@ -1,0 +1,85 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "Zlib",
+          "ISC"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      },
+      "notes": "This license is permissive and allows for wide compatibility with other permissive licenses. However, care should be taken when combining with copyleft licenses, as they may impose additional restrictions.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "Zlib",
+          "ISC"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      }
+    },
+    "id": "BSD-3-Clause-No-Nuclear-License-2014",
+    "key_requirements": [
+      "Redistributions must retain the copyright notice.",
+      "Redistributions in binary form must include the license and disclaimer.",
+      "No use of Oracle's name for promotion without permission."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "BSD-3-Clause-No-Nuclear-License-2014",
+    "obligations": [
+      "Retain copyright notice in redistributions of source code.",
+      "Include copyright notice and disclaimer in redistributions of binary form.",
+      "Obtain specific prior written permission to use the name of Oracle Corporation or its contributors for endorsement or promotion."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "BSD-3-Clause-No-Nuclear-License-2014",
+    "type": "permissive"
+  }
+}

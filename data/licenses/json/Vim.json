@@ -1,0 +1,91 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      },
+      "notes": "The Vim license is permissive and allows for both static and dynamic linking with compatible licenses. However, care should be taken when combining with copyleft licenses, as they may impose additional restrictions.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      }
+    },
+    "id": "Vim",
+    "key_requirements": [
+      "Include the license text with all distributions.",
+      "Clearly describe how to contact you if you modify Vim.",
+      "Make modifications available to the maintainer without fee.",
+      "Provide source code for changes or a context diff.",
+      "Ensure that the license for new code does not restrict others."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "Vim",
+    "obligations": [
+      "Include the license text unmodified with all distributions.",
+      "If modifications are made, provide a way to contact the modifier.",
+      "Make changes available to the maintainer upon request.",
+      "Provide all changes with every copy of the modified Vim distributed.",
+      "Keep changes for at least three years after distribution."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": false,
+      "include_license": true,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "Vim",
+    "type": "permissive"
+  }
+}

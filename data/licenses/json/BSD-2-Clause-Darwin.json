@@ -1,0 +1,66 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-3.0-or-later",
+          "AGPL-3.0-or-later"
+        ],
+        "requires_review": []
+      },
+      "notes": "",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-3.0-or-later",
+          "AGPL-3.0-or-later"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "BSD-2-Clause-Darwin",
+    "key_requirements": [
+      "Include the license text in any redistribution or derivative work.",
+      "Retain the above disclaimer statement in any redistribution or derivative work."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "BSD-2-Clause-Darwin",
+    "obligations": [
+      "Retain the above copyright notice and this list of conditions at the beginning of each file, without modification."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "BSD-2-Clause-Darwin",
+    "type": "permissive"
+  }
+}

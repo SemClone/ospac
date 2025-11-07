@@ -1,0 +1,61 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "All Permissive licenses"
+        ],
+        "incompatible_with": [
+          "All Copyleft licenses"
+        ],
+        "requires_review": []
+      },
+      "notes": "The Bitstream-Charter license is a permissive open-source license. It allows free use, modification and distribution of software. Derivative works must be distributed under the same or compatible licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "LGPL-3.0+",
+          "AGPL-3.0+"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Bitstream-Charter",
+    "key_requirements": [
+      "Include the license notice and acknowledge Bitstream's trademark in any modified or redistributed font copies."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "Bitstream-Charter",
+    "obligations": [
+      "Acknowledge Bitstream's trademark as shown below on all unmodified copies of the 4 Charter Type 1 fonts."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Bitstream-Charter",
+    "type": "permissive"
+  }
+}

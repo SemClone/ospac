@@ -1,0 +1,65 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "Apache-2.0",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "AGPL-3.0+"
+        ],
+        "requires_review": []
+      },
+      "notes": "The Baekmuk license is a permissive license that allows for static linking with any compatible library or module.",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "Apache-2.0",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "AGPL-3.0+"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Baekmuk",
+    "key_requirements": [
+      "Include both the copyright notice and permission notice in all copies of the font or derivative works.",
+      "Acknowledge Kim Jeong-Hwan's ownership of specific trademarked fonts."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "Baekmuk",
+    "obligations": [
+      "Include the copyright notice and permission notice in all copies of the font, derivative works or modified versions.",
+      "Acknowledge Kim Jeong-Hwan's ownership of Baekmuk Batang, Baekmuk Dotum, Baekmuk Gulim, and Baekmuk Headline as registered trademarks."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Baekmuk",
+    "type": "permissive"
+  }
+}

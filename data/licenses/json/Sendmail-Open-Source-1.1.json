@@ -1,0 +1,89 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      },
+      "notes": "The Sendmail-Open-Source-1.1 license is permissive and allows for integration with other software licenses, provided that incompatible licenses are avoided.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      }
+    },
+    "id": "Sendmail-Open-Source-1.1",
+    "key_requirements": [
+      "Provide a copy of modified source code or an offer to provide it for three years.",
+      "Retain copyright notices and license terms in redistributions.",
+      "Include a disclaimer of liability and warranty in redistributions."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "Sendmail-Open-Source-1.1",
+    "obligations": [
+      "Redistributions must qualify as freeware or open source software.",
+      "Redistributions must retain copyright notices and license terms.",
+      "Binary redistributions must include copyright notice and license terms in documentation.",
+      "Cannot use Sendmail's name or trademarks without permission.",
+      "License can be canceled for non-compliance."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "Sendmail-Open-Source-1.1",
+    "type": "permissive"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "Apache-2.0",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "proprietary"
+        ],
+        "requires_review": []
+      },
+      "notes": "This license is permissive and allows free use, modification, and distribution of the software.",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "Apache-2.0",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "proprietary"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "any-OSI-perl-modules",
+    "key_requirements": [
+      "Choose one of the OSI-approved licenses listed, and update documentation and/or include a LICENSE file accordingly"
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "any-OSI-perl-modules",
+    "obligations": [
+      "Refer to package metadata or replace LICENSE section to reflect chosen license(s)"
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": false,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "any-OSI-perl-modules",
+    "type": "permissive"
+  }
+}

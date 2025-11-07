@@ -1,0 +1,66 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0-or-later",
+          "AGPL-3.0-or-later",
+          "LGPL-3.0-or-later"
+        ],
+        "requires_review": []
+      },
+      "notes": "The AMDPLPA license allows for static linking with other permissive licenses, but requires review for copyleft licenses. For dynamic linking, the license is compatible with most permissive licenses. The license does not allow distribution with copyleft licenses and requires permission for use in proprietary software.",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL-3.0-or-later",
+          "AGPL-3.0-or-later",
+          "LGPL-3.0-or-later"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "AMDPLPA",
+    "key_requirements": [
+      "No specific key requirements mentioned in the license"
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "AMDPLPA",
+    "obligations": [
+      "Redistributions of source code must retain the above copyright notice and all terms of this license as part of the code.",
+      "Redistributions in binary form must reproduce the above copyright notice and all terms of this license in any related documentation and/or other materials."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "AMDPLPA",
+    "type": "permissive|copyleft_weak"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL",
+          "Proprietary"
+        ],
+        "requires_review": []
+      },
+      "notes": "The App-s2p license is a permissive open-source license that allows derivative works. It is compatible with other permissive licenses and Apache-2.0, but incompatible with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL",
+          "Proprietary"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "App-s2p",
+    "key_requirements": [
+      "Include a copyright notice in derivative works."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "App-s2p",
+    "obligations": [
+      "Do not restrict others from using, modifying, distributing, and selling the program."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "App-s2p",
+    "type": "permissive"
+  }
+}

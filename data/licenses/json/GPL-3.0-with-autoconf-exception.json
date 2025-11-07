@@ -1,0 +1,75 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "Proprietary",
+          "Apache-2.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "The GPL-3.0-with-autoconf-exception license requires that any derivative work or combined work must also be licensed under GPL-3.0 or a compatible license. Static linking typically leads to full contamination, while dynamic linking may allow for some exceptions depending on the nature of the linking.",
+      "static_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0",
+          "MPL-2.0"
+        ],
+        "incompatible_with": [
+          "Proprietary",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      }
+    },
+    "id": "GPL-3.0-with-autoconf-exception",
+    "key_requirements": [
+      "Maintain the copyleft provisions of the GPLv3 for any derivative works.",
+      "State any changes made to the original code.",
+      "Include copyright notices and license information in all copies or substantial portions of the software."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "GPL-3.0-with-autoconf-exception",
+    "obligations": [
+      "If you modify Autoconf and cause Ineligible Code to become Normally Copied Code, you must remove the Exception.",
+      "You must include the GPLv3 license text when distributing the software.",
+      "You must provide a copy of the license with any distribution."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "GPL-3.0-with-autoconf-exception",
+    "type": "copyleft_strong"
+  }
+}

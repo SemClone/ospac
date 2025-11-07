@@ -1,0 +1,77 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "copyleft-next-0.3.0",
+          "GNU GPL v3",
+          "GNU AGPL v3",
+          "Mozilla Public License 2.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache License 2.0",
+          "BSD 3-Clause"
+        ],
+        "requires_review": [
+          "Creative Commons licenses",
+          "Proprietary licenses"
+        ]
+      },
+      "notes": "The copyleft-next-0.3.0 license has a strong copyleft effect, meaning that any derivative works must also be licensed under the same terms. This can lead to incompatibility with permissive licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "copyleft-next-0.3.0",
+          "GNU GPL v3",
+          "GNU AGPL v3",
+          "Mozilla Public License 2.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache License 2.0",
+          "BSD 3-Clause"
+        ],
+        "requires_review": [
+          "Creative Commons licenses",
+          "Proprietary licenses"
+        ]
+      }
+    },
+    "id": "copyleft-next-0.3.0",
+    "key_requirements": [
+      "Provide a URL for the Corresponding Source when distributing Object Code.",
+      "Ensure that the Corresponding Source is available for two years if distributed in a physical product."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "copyleft-next-0.3.0",
+    "obligations": [
+      "Inform recipients how they can obtain a copy of this License.",
+      "Preserve all Legal Notices contained in the Work.",
+      "License the entire Derived Work under this License when distributing.",
+      "Do not impose further restrictions on the exercise of rights granted under this License."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": true,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "copyleft-next-0.3.0",
+    "type": "copyleft_strong"
+  }
+}

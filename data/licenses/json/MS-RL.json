@@ -1,0 +1,75 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "The MS-RL license allows for weak copyleft, meaning that while modifications to the MS-RL licensed code must be shared under the same license, it can be combined with proprietary code without imposing the same license on the proprietary parts.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "MS-RL",
+    "key_requirements": [
+      "Disclose source code for derivative works.",
+      "Include the MS-RL license with distributions.",
+      "Do not use contributors' trademarks without permission.",
+      "Automatic termination of patent license if a patent claim is made against a contributor."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "MS-RL",
+    "obligations": [
+      "Provide source code for any distributed files containing code from the software.",
+      "Include a copy of the MS-RL license with any distributed files.",
+      "Retain all copyright, patent, trademark, and attribution notices present in the software.",
+      "If distributing in source code form, do so only under the MS-RL license.",
+      "If distributing in compiled form, ensure the license complies with MS-RL."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "MS-RL",
+    "type": "copyleft_weak"
+  }
+}

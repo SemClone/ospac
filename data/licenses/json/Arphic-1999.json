@@ -1,0 +1,73 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-1.0",
+          "Apache-2.0",
+          "MIT",
+          "Permissive-Noncommercial"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL",
+          "Proprietary"
+        ],
+        "requires_review": []
+      },
+      "notes": "This license is compatible with other permissive licenses, but may be incompatible with copyleft licenses due to the 'permissive' category.",
+      "static_linking": {
+        "compatible_with": [
+          "Apache-1.0",
+          "Apache-2.0",
+          "MIT",
+          "Permissive-Noncommercial"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL",
+          "Proprietary"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Arphic-1999",
+    "key_requirements": [
+      "Retain the license file unaltered",
+      "Insert a prominent notice for modified files",
+      "Make modifications freely available"
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "Arphic-1999",
+    "obligations": [
+      "You must retain this license file (ARPHICPL.TXT) unaltered in all copies.",
+      "You must insert a prominent notice in each modified file stating how and when you changed that file.",
+      "You must make such modifications Freely Available as a whole to all third parties under the terms of this License."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": false
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "Arphic-1999",
+    "type": "permissive"
+  }
+}

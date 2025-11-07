@@ -1,0 +1,76 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0"
+        ]
+      },
+      "notes": "NPL-1.1 allows for linking with proprietary software under certain conditions, but care must be taken to comply with its terms.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "NPL-1.1",
+    "key_requirements": [
+      "Distribute the source code of modifications if distributed.",
+      "Include notices and copyright statements in all copies or substantial portions of the software."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "NPL-1.1",
+    "obligations": [
+      "Include a copy of the license with any distribution of the Covered Code.",
+      "State changes made to the original code when modifications are made.",
+      "Do not use Netscape trademarks without permission."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "NPL-1.1",
+    "type": "copyleft_weak"
+  }
+}

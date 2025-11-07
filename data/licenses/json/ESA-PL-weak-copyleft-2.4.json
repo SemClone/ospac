@@ -1,0 +1,79 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Eclipse Public License 2.0",
+          "LGPL-2.1"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "Artistic-2.0"
+        ]
+      },
+      "notes": "The ESA-PL-weak-copyleft-2.4 license allows for weak copyleft, meaning that while modifications to the licensed code must remain under the same license, it can be combined with proprietary code under certain conditions.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Eclipse Public License 2.0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "Artistic-2.0"
+        ]
+      }
+    },
+    "id": "ESA-PL-weak-copyleft-2.4",
+    "key_requirements": [
+      "Provide a copy of the license with any distribution.",
+      "Retain copyright notices in all copies.",
+      "Disclose source code for modified versions.",
+      "State changes made to the original software."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "ESA-PL-weak-copyleft-2.4",
+    "obligations": [
+      "Source code must be made available when distributing modified versions.",
+      "License must be included with any distribution of the software.",
+      "Copyright notice must be retained in all copies or substantial portions of the software.",
+      "Any modifications must be stated clearly in the documentation."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "ESA-PL-weak-copyleft-2.4",
+    "type": "copyleft_weak"
+  }
+}

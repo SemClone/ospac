@@ -1,0 +1,74 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "derivative",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "LGPL-2.1"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "CC-BY-NC-SA-3.0 allows for non-commercial use and requires derivatives to be licensed under the same terms. Care should be taken when combining with licenses that have stronger copyleft provisions.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "CC-BY-NC-SA-3.0",
+    "key_requirements": [
+      "Include a copy of the license when distributing the work.",
+      "State any changes made to the original work.",
+      "Provide proper attribution to the original creator."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "CC-BY-NC-SA-3.0",
+    "obligations": [
+      "Attribution must be given to the original creator.",
+      "Non-commercial use only.",
+      "Share adaptations under the same license."
+    ],
+    "properties": {
+      "commercial_use": false,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "CC-BY-NC-SA-3.0",
+    "type": "copyleft_weak"
+  }
+}

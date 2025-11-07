@@ -1,0 +1,77 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL-3.0-or-later",
+          "AGPL-3.0-or-later",
+          "LGPL-3.0-or-later"
+        ],
+        "incompatible_with": [
+          "GPL-1.0-only",
+          "GPL-2.0-only",
+          "GPL-3.0-only"
+        ],
+        "requires_review": [
+          "Apache-2.0",
+          "MIT",
+          "Unlicense"
+        ]
+      },
+      "notes": "When distributing derived works, you must provide the corresponding source code and modifications made to the original work.",
+      "static_linking": {
+        "compatible_with": [
+          "GPL-3.0-or-later",
+          "AGPL-3.0-or-later",
+          "LGPL-3.0-or-later"
+        ],
+        "incompatible_with": [
+          "GPL-1.0-only",
+          "GPL-2.0-only",
+          "GPL-3.0-only"
+        ],
+        "requires_review": [
+          "Apache-2.0",
+          "MIT",
+          "Unlicense"
+        ]
+      }
+    },
+    "id": "AGPL-3.0-or-later",
+    "key_requirements": [
+      "The source code of any modified versions must be made available to the community.",
+      "Operators of network servers must provide access to the source code of modified versions running on their servers."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "AGPL-3.0-or-later",
+    "obligations": [
+      "The operator of a network server must provide the source code of the modified version running there to the users of that server.",
+      "When you distribute copies of a program, whether in object code or translated form, one of the following is required:",
+      "- You provide a copy of this License along with the program.",
+      "- You give anyone who receives a copy the information that the program is distributed under this License."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": true,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "AGPL-3.0-or-later",
+    "type": "copyleft_strong"
+  }
+}
