@@ -1,0 +1,81 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL-3.0-or-later",
+          "AGPL-3.0-or-later",
+          "LGPL-2.1",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "Proprietary",
+          "BSD-3-Clause",
+          "Apache-1.1"
+        ],
+        "requires_review": [
+          "LGPL-3.0",
+          "MPL-2.0"
+        ]
+      },
+      "notes": "The GPL-2.0-or-later license requires that any derivative works or combined works must also be licensed under GPL-2.0-or-later, which leads to a strong copyleft effect.",
+      "static_linking": {
+        "compatible_with": [
+          "GPL-3.0-or-later",
+          "AGPL-3.0-or-later",
+          "LGPL-2.1",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "Proprietary",
+          "BSD-3-Clause",
+          "Apache-1.1"
+        ],
+        "requires_review": [
+          "LGPL-3.0",
+          "MPL-2.0"
+        ]
+      }
+    },
+    "id": "GPL-2.0-or-later",
+    "key_requirements": [
+      "Must provide the same freedoms to recipients as received.",
+      "Must not impose further restrictions on the rights granted by the license.",
+      "Must ensure that any modified versions are also licensed under GPL-2.0-or-later."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "GPL-2.0-or-later",
+    "obligations": [
+      "Distribute copies of the software under the same license.",
+      "Provide access to the source code when distributing the software.",
+      "Include a copy of the license with any distributed software.",
+      "Include copyright notices in all copies or substantial portions of the software.",
+      "State any changes made to the original software."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "GPL-2.0-or-later",
+    "type": "copyleft_strong"
+  }
+}

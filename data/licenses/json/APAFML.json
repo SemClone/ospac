@@ -1,0 +1,64 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL-1.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "This license is permissive, allowing free use and modification of the software.",
+      "static_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL-1.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "APAFML",
+    "key_requirements": [
+      "Retain all copyright notices",
+      "Ensure that all modifications are prominently noted"
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "APAFML",
+    "obligations": [
+      "Retain copyright notices",
+      "Do not distribute AFM files without this file",
+      "Prominently note modifications to the file or any of the AFM files in the modified file(s)"
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "APAFML",
+    "type": "permissive"
+  }
+}

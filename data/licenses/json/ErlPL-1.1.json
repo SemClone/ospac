@@ -1,0 +1,73 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "ErlPL-1.1",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "ErlPL-1.1 allows for linking with proprietary software under certain conditions, but static linking may impose stricter requirements.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "ErlPL-1.1"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "ErlPL-1.1",
+    "key_requirements": [
+      "You must comply with the terms of the Erlang Public License when using, modifying, or distributing the Covered Code.",
+      "You must provide access to the source code when distributing Executables derived from the Covered Code."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "ErlPL-1.1",
+    "obligations": [
+      "You must include a copy of this license in all distributions of the Covered Code.",
+      "You must include a copyright notice in all copies or substantial portions of the Covered Code.",
+      "You must state changes made to the Covered Code when distributing it."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "ErlPL-1.1",
+    "type": "copyleft_weak"
+  }
+}

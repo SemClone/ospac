@@ -1,0 +1,79 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "Permissive licenses allow for greater flexibility in combining with other licenses, but care should be taken when integrating with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "magaz",
+    "key_requirements": [
+      "Ensure that the copyright notice is included in any distribution of the software."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "magaz",
+    "obligations": [
+      "Retain the copyright notice and permission statement in all copies or substantial portions of the software."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "magaz",
+    "type": "permissive"
+  }
+}

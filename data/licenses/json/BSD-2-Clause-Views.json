@@ -1,0 +1,79 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "The BSD-2-Clause-Views license is permissive and allows for integration with many other licenses, but care should be taken when combining with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "BSD-2-Clause-Views",
+    "key_requirements": [
+      "Must include the copyright notice and license in all copies or substantial portions of the software.",
+      "Must include a disclaimer of warranties and liabilities."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "BSD-2-Clause-Views",
+    "obligations": [
+      "Retain the copyright notice in redistributions of source code.",
+      "Include the copyright notice and license in redistributions in binary form."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "BSD-2-Clause-Views",
+    "type": "permissive"
+  }
+}

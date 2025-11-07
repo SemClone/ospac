@@ -1,0 +1,81 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "SimPL-2.0 allows for weak copyleft, meaning that while modifications to the original work must be shared under the same license, it can be combined with other licenses without imposing the same requirements on the entire work.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "SimPL-2.0",
+    "key_requirements": [
+      "Must comply with the 'give back to the community' terms to maintain license rights.",
+      "No warranties are provided; liability is limited to direct damages.",
+      "License rights end automatically if the terms are not followed."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "SimPL-2.0",
+    "obligations": [
+      "Prominently note the date of any changes made to the software.",
+      "Leave other people's copyright notices, warranty disclaimers, and license terms in place.",
+      "Provide the source code, build scripts, installation scripts, and interface definitions in an easily accessible and modifiable form.",
+      "License any derivative works under SimPL or substantially similar terms (such as GPL 2.0) without adding further restrictions.",
+      "Conspicuously announce that the software is available under the SimPL."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "SimPL-2.0",
+    "type": "copyleft_weak"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "The BSD-2-Clause-Patent license is permissive and allows for integration with various other licenses, provided that the terms of the licenses are respected. Care should be taken when combining with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "BSD-2-Clause-Patent",
+    "key_requirements": [
+      "Must comply with the conditions of the license to maintain the patent grant.",
+      "No additional rights are granted beyond those explicitly stated in the license."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "BSD-2-Clause-Patent",
+    "obligations": [
+      "Retain copyright notice in redistributions of source code.",
+      "Include copyright notice and license in redistributions in binary form."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "BSD-2-Clause-Patent",
+    "type": "permissive"
+  }
+}

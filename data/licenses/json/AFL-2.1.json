@@ -1,0 +1,67 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          " BSD",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "Apache-2.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "The AFL-2.1 license allows users to modify the code and distribute it under their own license terms, with no obligation to open-source the derivative work.",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "BSD",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "Apache-2.0"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "AFL-2.1",
+    "key_requirements": [
+      "Retain the notice immediately following the copyright notice for the Original Work",
+      "Not use the names of the Licensor, contributors, or their trademarks without express prior written permission"
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "AFL-2.1",
+    "obligations": [
+      "Provide a machine-readable copy of the Source Code with each copy of the Original Work",
+      "Notify the public of the availability and location of the Source Code repository"
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "AFL-2.1",
+    "type": "permissive"
+  }
+}

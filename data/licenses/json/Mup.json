@@ -1,0 +1,78 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "Mup license is permissive and allows for integration with other licenses, but care should be taken with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "Mup",
+    "key_requirements": [
+      "Include the original copyright notice and conditions in all redistributions.",
+      "Document any modifications made to the original files."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "Mup",
+    "obligations": [
+      "Retain copyright notice in redistributions of source code.",
+      "Include copyright notice in redistributions in binary form.",
+      "Clearly indicate any changes made to the original files in accompanying documentation."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "Mup",
+    "type": "permissive"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "any license compatible with static linking"
+        ],
+        "incompatible_with": [
+          "any license incompatible with static linking"
+        ],
+        "requires_review": []
+      },
+      "notes": "This license is compatible with licenses that are themselves public domain or unlicensed. Any attempt to mix this license with a proprietary or copyrighted work will result in contamination.",
+      "static_linking": {
+        "compatible_with": [
+          "public_domain",
+          "unlicense"
+        ],
+        "incompatible_with": [
+          "bsd",
+          "mit",
+          "apache",
+          "gpl",
+          "lgpl"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "bcrypt-Solar-Designer",
+    "key_requirements": [
+      "Compliance with the terms of the public domain license: no licensing requirements apply."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "bcrypt-Solar-Designer",
+    "obligations": [
+      "No specific obligations when using this license, as it is in the public domain."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": false,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "bcrypt-Solar-Designer",
+    "type": "public_domain"
+  }
+}

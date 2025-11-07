@@ -1,0 +1,74 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "ODbL-1.0 allows for compatibility with permissive licenses but is incompatible with strong copyleft licenses like GPL. Care should be taken when combining with licenses that have similar requirements.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "ODbL-1.0",
+    "key_requirements": [
+      "Maintain the same freedoms for others when sharing or modifying the database.",
+      "Clarify rights governing the contents of the database if they are covered by different licenses."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "ODbL-1.0",
+    "obligations": [
+      "You must attribute the original source of the database.",
+      "You must share any derivative databases under the same license.",
+      "You must provide a copy of the ODbL license when distributing the database."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "ODbL-1.0",
+    "type": "copyleft_weak"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL",
+          "Proprietary"
+        ],
+        "requires_review": []
+      },
+      "notes": "The AMPAS license is a permissive open-source license that allows free use, modification and distribution of the software. However, it has specific restrictions for distributing derivative works.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL",
+          "Proprietary"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "AMPAS",
+    "key_requirements": [
+      "Acceptance of the license terms by performing any of the aforementioned acts indicates acceptance to be bound by the following terms and conditions.",
+      "The name of A.M.P.A.S. nor of any other contributors to this software, may not be used to endorse or promote products derived from this software without specific prior written permission."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "AMPAS",
+    "obligations": [
+      "Redistributions of source code must retain the above copyright notice, this list of conditions and the Disclaimer of Warranty.",
+      "Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the Disclaimer of Warranty in the documentation and/or other materials provided with the distribution."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "AMPAS",
+    "type": "permissive"
+  }
+}

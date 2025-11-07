@@ -1,0 +1,66 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "All permissive open-source licenses"
+        ],
+        "incompatible_with": [
+          "All restrictive open-source licenses",
+          "Proprietary licenses"
+        ],
+        "requires_review": []
+      },
+      "notes": "Note that the BitTorrent-1.0 license is a permissive license, so it's compatible with most other permissive licenses and can be distributed without restrictions.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "Unlicense",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "Creative Commons licenses",
+          "Proprietary licenses"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "BitTorrent-1.0",
+    "key_requirements": [
+      "Comply with all terms and conditions of the license",
+      "Make Source Code modifications available"
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "BitTorrent-1.0",
+    "obligations": [
+      "Make the Source Code of Modifications available to others.",
+      "If you assert any patent claims against the Licensor relating to the Licensed Product, or if you breach any terms of the License, your rights to the Licensed Product under this License automatically terminate."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": false
+    },
+    "spdx_id": "BitTorrent-1.0",
+    "type": "permissive"
+  }
+}

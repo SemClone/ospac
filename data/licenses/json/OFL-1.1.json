@@ -1,0 +1,84 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "The OFL-1.1 license is designed to be permissive and allows for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses that impose stricter requirements.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "OFL-1.1",
+    "key_requirements": [
+      "Fonts and derivatives must remain under the OFL.",
+      "Any document created using the fonts is not subject to the OFL."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "OFL-1.1",
+    "obligations": [
+      "Fonts cannot be sold by themselves.",
+      "Include the copyright notice and license in all copies.",
+      "Do not use Reserved Font Names for Modified Versions without permission."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": false
+    },
+    "spdx_id": "OFL-1.1",
+    "type": "permissive"
+  }
+}

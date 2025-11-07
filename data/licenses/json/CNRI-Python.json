@@ -1,0 +1,85 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      },
+      "notes": "The CNRI-Python license is permissive and allows for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses like GPL and AGPL.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      }
+    },
+    "id": "CNRI-Python",
+    "key_requirements": [
+      "Licensee must accept the terms of the CNRI Open Source License Agreement.",
+      "Licensee must include a notice indicating the license terms when distributing the software."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "CNRI-Python",
+    "obligations": [
+      "Retain CNRI's License Agreement in all copies or derivative versions of the software.",
+      "Indicate the nature of modifications made to Python 1.6b1 in any derivative work."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": false,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "CNRI-Python",
+    "type": "permissive"
+  }
+}

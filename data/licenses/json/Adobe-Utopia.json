@@ -1,0 +1,70 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "BSD"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL",
+          "GPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "Compatibility notes: This license is permissive, so it is compatible with other permissive licenses. However, it may not be compatible with copyleft licenses that require derivative works to be distributed under the same license.",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "BSD"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL",
+          "GPL-3.0"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Adobe-Utopia",
+    "key_requirements": [
+      "Comply with the conditions specified above to use this license."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "Adobe-Utopia",
+    "obligations": [
+      "Display the Adobe Copyright notice in all whole and partial copies of the software.",
+      "Include the trademark symbol and attribution in all unmodified copies of the software."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Adobe-Utopia",
+    "type": "permissive"
+  }
+}

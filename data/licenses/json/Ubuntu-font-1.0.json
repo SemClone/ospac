@@ -1,0 +1,81 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "The Ubuntu-font-1.0 license is permissive and allows for both static and dynamic linking without imposing restrictions on the licensing of the combined work. However, care should be taken when combining with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "Ubuntu-font-1.0",
+    "key_requirements": [
+      "Include the copyright notice and license in all copies or substantial portions of the Font Software.",
+      "Do not release the fonts or derivatives under any other license."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "Ubuntu-font-1.0",
+    "obligations": [
+      "Each copy of the Font Software must contain the copyright notice and this license.",
+      "The Original Version must retain its name, unmodified.",
+      "Modified Versions which are Substantially Changed must be renamed to avoid use of the name of the Original Version.",
+      "Modified Versions which are not Substantially Changed must retain the name of the Original Version and add additional naming elements."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "Ubuntu-font-1.0",
+    "type": "permissive"
+  }
+}

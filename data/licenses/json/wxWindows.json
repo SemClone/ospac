@@ -1,0 +1,83 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "GPL-2.0",
+          "GPL-3.0"
+        ],
+        "incompatible_with": [
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      },
+      "notes": "The wxWindows license is permissive and allows for both static and dynamic linking with compatible licenses. However, care should be taken when linking with copyleft licenses, especially for static linking.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      }
+    },
+    "id": "wxWindows",
+    "key_requirements": [
+      "You must comply with the wxWindows Library License version 3.1 or later.",
+      "You must adjust the licensing conditions notice if you do not wish the exception to apply."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "wxWindows",
+    "obligations": [
+      "If you copy code from files under the GNU GPL or LGPL, you must delete the exception notice from such code.",
+      "If you write modifications, you may choose whether to apply the exception to your modifications."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": false,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "wxWindows",
+    "type": "permissive"
+  }
+}

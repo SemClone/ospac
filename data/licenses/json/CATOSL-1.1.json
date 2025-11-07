@@ -1,0 +1,79 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "ISC"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "The CATOSL-1.1 license is permissive and allows for integration with other permissive licenses without imposing restrictions on the combined work.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "ISC"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "CATOSL-1.1",
+    "key_requirements": [
+      "Must include copyright notices for the Original Program and Contributions.",
+      "Must include a copy of this License when distributing the Program."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "CATOSL-1.1",
+    "obligations": [
+      "Contributions to the Program must be distributed under the terms of this License.",
+      "Include the License text with any distribution of the Program or Contributions."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "CATOSL-1.1",
+    "type": "permissive"
+  }
+}

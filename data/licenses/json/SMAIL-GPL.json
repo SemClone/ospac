@@ -1,0 +1,77 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "SMAIL-GPL",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "SMAIL-GPL has strong copyleft provisions, meaning any derivative work or combined work must also be licensed under SMAIL-GPL or a compatible license.",
+      "static_linking": {
+        "compatible_with": [
+          "SMAIL-GPL",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "SMAIL-GPL",
+    "key_requirements": [
+      "Must provide source code or access to it when distributing.",
+      "Must not deprive others of the rights granted by this license.",
+      "Must inform recipients of their rights under this license."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "SMAIL-GPL",
+    "obligations": [
+      "Distribute verbatim copies of the source code with the same license.",
+      "Provide a copy of the license with any distributed copies.",
+      "Include a valid copyright notice on all copies.",
+      "State any changes made to the files and the date of changes.",
+      "License derivative works under the same terms."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "SMAIL-GPL",
+    "type": "copyleft_strong"
+  }
+}

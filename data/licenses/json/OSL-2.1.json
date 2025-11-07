@@ -1,0 +1,84 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0",
+          "LGPL-2.1"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      },
+      "notes": "OSL-2.1 allows for weak copyleft, meaning that while modifications to the original work must be shared under the same license, it does not impose the same requirements on derivative works that do not incorporate the original code.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0",
+          "LGPL-2.1"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      }
+    },
+    "id": "OSL-2.1",
+    "key_requirements": [
+      "Include the license text with any distribution of the Original Work or Derivative Works.",
+      "State any changes made to the Original Work when creating Derivative Works."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "OSL-2.1",
+    "obligations": [
+      "Distribute copies of the Original Work or Derivative Works under the same Open Software License.",
+      "Provide a machine-readable copy of the Source Code when distributing the Original Work.",
+      "Do not use the names or trademarks of the Licensor or contributors without permission."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "OSL-2.1",
+    "type": "copyleft_weak"
+  }
+}

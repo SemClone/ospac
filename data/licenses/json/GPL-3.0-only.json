@@ -1,0 +1,85 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL-3.0-only",
+          "GPL-3.0-or-later",
+          "AGPL-3.0-only",
+          "AGPL-3.0-or-later",
+          "LGPL-3.0-only",
+          "LGPL-3.0-or-later"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Proprietary"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "The GPL-3.0-only license has a strong copyleft effect, meaning that any derivative work must also be licensed under GPL-3.0-only. This applies to both static and dynamic linking.",
+      "static_linking": {
+        "compatible_with": [
+          "GPL-3.0-only",
+          "GPL-3.0-or-later",
+          "AGPL-3.0-only",
+          "AGPL-3.0-or-later",
+          "LGPL-3.0-only",
+          "LGPL-3.0-or-later"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Proprietary"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "GPL-3.0-only",
+    "key_requirements": [
+      "Ensure that all recipients have the same freedoms you received.",
+      "Do not impose further restrictions on the rights granted by the GPL.",
+      "Mark modified versions to distinguish them from the original."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "GPL-3.0-only",
+    "obligations": [
+      "Distribute the source code or make it available to recipients.",
+      "Include a copy of the GPL license with distributed software.",
+      "Include copyright notices of the original authors.",
+      "State any changes made to the original software.",
+      "Distribute modified versions under the same GPL license."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "GPL-3.0-only",
+    "type": "copyleft_strong"
+  }
+}

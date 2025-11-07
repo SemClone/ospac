@@ -1,0 +1,63 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [],
+        "requires_review": []
+      },
+      "notes": "CDLA-Permissive-2.0 is a permissive license that allows for broad compatibility with other permissive licenses. It does not impose copyleft requirements, making it suitable for use in both open-source and proprietary software.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [],
+        "requires_review": []
+      }
+    },
+    "id": "CDLA-Permissive-2.0",
+    "key_requirements": [
+      "Follow the terms of the agreement when using, modifying, or sharing Data."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "CDLA-Permissive-2.0",
+    "obligations": [
+      "Make available the text of this agreement when sharing Data."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": false,
+      "include_license": true,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "CDLA-Permissive-2.0",
+    "type": "permissive"
+  }
+}

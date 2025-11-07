@@ -1,0 +1,83 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "The W3C-20150513 license is permissive and allows for integration with other permissive licenses without imposing restrictions. However, care should be taken when combining with copyleft licenses, as they may impose additional obligations.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "W3C-20150513",
+    "key_requirements": [
+      "Read and understand the terms and conditions of the license.",
+      "Provide proper attribution to the copyright holders.",
+      "Do not use the names or trademarks of copyright holders in advertising without permission."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "W3C-20150513",
+    "obligations": [
+      "Include the full text of the NOTICE in a location viewable to users.",
+      "Include any pre-existing intellectual property disclaimers or notices.",
+      "State any changes or modifications made to the original work."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "W3C-20150513",
+    "type": "permissive"
+  }
+}

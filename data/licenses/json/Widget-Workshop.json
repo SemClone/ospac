@@ -1,0 +1,76 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "The Widget-Workshop license is permissive and allows for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses like GPL and AGPL.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "Widget-Workshop",
+    "key_requirements": [
+      "No representations or warranties are made about the suitability of the software.",
+      "Not intended for use in high-risk activities."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "Widget-Workshop",
+    "obligations": [
+      "Retain the copyright notice in all copies or substantial portions of the software."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Widget-Workshop",
+    "type": "permissive"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "OPUBL-1.0 is a permissive license, allowing for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses like GPL.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "OPUBL-1.0",
+    "key_requirements": [
+      "Include the license text or a reference to it in all reproductions.",
+      "Commercial redistribution is permitted.",
+      "Modified works must be labeled and dated with the modifier's information."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "OPUBL-1.0",
+    "obligations": [
+      "Display the license or an incorporation of it by reference in reproductions.",
+      "Cite the original publisher and author in standard book form.",
+      "Label modified versions as such and identify the person making modifications.",
+      "Retain acknowledgment of the original author and publisher.",
+      "Identify the location of the original unmodified document."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "OPUBL-1.0",
+    "type": "permissive"
+  }
+}

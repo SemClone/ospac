@@ -1,0 +1,74 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "GFDL-1.3-only has a strong copyleft effect, meaning that any derivative work must also be licensed under GFDL-1.3-only or a compatible license. Care should be taken when combining with non-copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "GFDL-1.3-only",
+    "key_requirements": [
+      "Include a notice that the document can be distributed under the GFDL.",
+      "Ensure that any modified versions are also free and under the same license."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "GFDL-1.3-only",
+    "obligations": [
+      "Must include a copy of the license when distributing the document.",
+      "Must state changes made to the original document.",
+      "Must keep the document under the same license if modified."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "GFDL-1.3-only",
+    "type": "copyleft_strong"
+  }
+}

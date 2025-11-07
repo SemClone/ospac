@@ -1,0 +1,85 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      },
+      "notes": "The BSD-4.3TAHOE license is permissive and allows for wide compatibility with other permissive licenses. However, it is incompatible with copyleft licenses like GPL and AGPL.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      }
+    },
+    "id": "BSD-4.3TAHOE",
+    "key_requirements": [
+      "Must include the copyright notice and acknowledgment in all redistributions.",
+      "Cannot use the name of the University to endorse or promote derived products without permission."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "BSD-4.3TAHOE",
+    "obligations": [
+      "Include the copyright notice in all copies or substantial portions of the software.",
+      "Acknowledge the University of California, Berkeley in any documentation or materials related to the distribution."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "BSD-4.3TAHOE",
+    "type": "permissive"
+  }
+}

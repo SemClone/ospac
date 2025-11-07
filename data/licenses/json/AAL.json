@@ -1,0 +1,68 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "derivative",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "ISC",
+          "Unlicense",
+          "ZPL-1.1"
+        ],
+        "requires_review": []
+      },
+      "notes": "Note: AAL is a copyleft license, which means that if you distribute a modified version of the code, you must also make your modifications available under the same terms.",
+      "static_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "AGPL-3.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "ISC",
+          "Unlicense",
+          "ZPL-1.1"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "AAL",
+    "key_requirements": [
+      "Include Attribution Assurance License (AAL) in any documentation and in any promotional materials related to the software."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "AAL",
+    "obligations": [
+      "Prominently display this GPG-signed text in verifiable form.",
+      "Display the Author's attribution information prominently each time the resulting executable program or a program dependent thereon is launched."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": false
+    },
+    "spdx_id": "AAL",
+    "type": "copyleft_strong"
+  }
+}

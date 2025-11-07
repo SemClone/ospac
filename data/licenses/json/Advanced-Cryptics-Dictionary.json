@@ -1,0 +1,68 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "Apache-2.0",
+          "LGPL"
+        ],
+        "requires_review": [
+          "Mozilla-1.1"
+        ]
+      },
+      "notes": "The Advanced-Cryptics-Dictionary license allows modification and distribution of the software, as long as the changes are documented. The license is compatible with other permissive licenses, but may be incompatible with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "Apache-2.0",
+          "Proprietary"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Advanced-Cryptics-Dictionary",
+    "key_requirements": [
+      "You must use the original dictionary for commercial or private purposes. Modifications to the dictionary are allowed, but you must maintain the original integrity and accuracy of the work."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "Advanced-Cryptics-Dictionary",
+    "obligations": [
+      "You must preserve the integrity of the original work, including any cryptographic information."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": false,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Advanced-Cryptics-Dictionary",
+    "type": "permissive"
+  }
+}

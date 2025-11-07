@@ -1,0 +1,74 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-3.0",
+          "MPL-2.0"
+        ]
+      },
+      "notes": "CC-BY-ND-2.0 does not allow modifications, which limits its compatibility with licenses that require derivative works.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "CC-BY-ND-2.0",
+    "key_requirements": [
+      "Do not create derivative works based on the original work.",
+      "Ensure that any distribution of the work is in its original form without modifications."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "CC-BY-ND-2.0",
+    "obligations": [
+      "Attribution must be given to the original author.",
+      "The license must be included with any distribution of the work.",
+      "The copyright notice must be included with any distribution of the work.",
+      "A notice must be included with any distribution of the work."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": false,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "CC-BY-ND-2.0",
+    "type": "permissive"
+  }
+}

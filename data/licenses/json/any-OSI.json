@@ -1,0 +1,77 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "ISC",
+          "Unlicense",
+          "Zlib",
+          "LGPL-3.0-or-later"
+        ],
+        "incompatible_with": [
+          "GPL-1.0",
+          "LGPL-2.1",
+          "AGPL-3.0",
+          "Mozilla-Public-Licence",
+          "Eclipse-Public-Licence",
+          "Apache-1.1"
+        ],
+        "requires_review": []
+      },
+      "notes": "",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "ISC",
+          "Unlicense",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL-1.0",
+          "LGPL-2.1",
+          "AGPL-3.0",
+          "Mozilla-Public-Licence",
+          "Eclipse-Public-Licence"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "any-OSI",
+    "key_requirements": [
+      "Ensure the chosen license is compliant with applicable laws and regulations."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "any-OSI",
+    "obligations": [
+      "Choose an OSI-approved license from the list provided."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": false,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "any-OSI",
+    "type": "permissive"
+  }
+}

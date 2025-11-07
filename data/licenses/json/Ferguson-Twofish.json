@@ -1,0 +1,78 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "The Ferguson-Twofish license is permissive and allows for integration with other permissive licenses without imposing restrictions. However, care should be taken when combining with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "Ferguson-Twofish",
+    "key_requirements": [
+      "Do not remove the copyright message.",
+      "Notify the author about the usage of the code, if possible."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "Ferguson-Twofish",
+    "obligations": [
+      "Include the copyright message in the source code of the original or derived works."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Ferguson-Twofish",
+    "type": "permissive"
+  }
+}

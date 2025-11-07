@@ -1,0 +1,70 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "AGPL-1.0",
+          "GPL-2.0-only",
+          "GPL-3.0-only"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "Creative Commons"
+        ],
+        "requires_review": []
+      },
+      "notes": "The AGPL-1.0-or-later license is a copyleft license that requires any derived works to be distributed under the same or compatible license. This means that if you distribute software that uses AGPL-1.0-or-later licensed code, you must also make available the source code for your software and any modifications you made.",
+      "static_linking": {
+        "compatible_with": [
+          "AGPL-1.0",
+          "GPL-2.0-only",
+          "GPL-3.0-only"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "Creative Commons"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "AGPL-1.0-or-later",
+    "key_requirements": [
+      "Maintain the same license terms and conditions for derivative works.",
+      "Make source code available for modifications and distribute them under this License.",
+      "Notify users about any changes made to the software when distributing or publishing it."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "AGPL-1.0-or-later",
+    "obligations": [
+      "Distribute copies of the software and/or its derivative works under this License.",
+      "Make available the source code or have it available for distribution without fee.",
+      "Provide a copy of this License with each copy, or make it accessible via a publicly visible link.",
+      "Notify users that they are receiving a modified version of the software."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": true,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "AGPL-1.0-or-later",
+    "type": "copyleft_strong"
+  }
+}

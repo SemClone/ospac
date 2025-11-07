@@ -1,0 +1,81 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0"
+        ]
+      },
+      "notes": "CDDL-1.1 is a weak copyleft license, allowing for more flexibility in combining with other licenses, especially permissive ones. However, care must be taken when combining with strong copyleft licenses like GPL.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0",
+          "MPL-2.0"
+        ]
+      }
+    },
+    "id": "CDDL-1.1",
+    "key_requirements": [
+      "Comply with the terms of the license when using, modifying, or distributing the software.",
+      "Ensure that any modifications are clearly documented."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "CDDL-1.1",
+    "obligations": [
+      "Include a copy of the license with any distribution of the Covered Software.",
+      "State changes made to the original software when modifications are made."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "CDDL-1.1",
+    "type": "copyleft_weak"
+  }
+}

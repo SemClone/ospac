@@ -1,0 +1,65 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "AGPL-3.0+"
+        ],
+        "requires_review": []
+      },
+      "notes": "Permissive license, compatible with most open-source licenses. No special requirements for distribution or modification.",
+      "static_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "AGPL-3.0+"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "BlueOak-1.0.0",
+    "key_requirements": [
+      "Include the Blue Oak Model License (version 1.0.0) text in every copy of the software",
+      "Provide a link to <https://blueoakcouncil.org/license/1.0.0> for anyone who receives a copy of the software"
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "BlueOak-1.0.0",
+    "obligations": [
+      "Ensure that everyone who gets a copy of any part of the software from you, with or without changes, also gets the text of this license or a link to <https://blueoakcouncil.org/license/1.0.0>",
+      "Comply with the notices condition within 30 days after receiving notice"
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "BlueOak-1.0.0",
+    "type": "permissive"
+  }
+}

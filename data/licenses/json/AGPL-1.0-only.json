@@ -1,0 +1,72 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "AGPL-1.0-only",
+          "GPL-3.0-only",
+          "LGPL-3.0-only"
+        ],
+        "incompatible_with": [
+          "proprietary",
+          "non-copyleft-free",
+          "mit",
+          "bsd",
+          "apache-2.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "The AGPL-1.0-only license requires that any software that links dynamically to the licensed code must also be made available under the same terms.",
+      "static_linking": {
+        "compatible_with": [
+          "AGPL-1.0-only",
+          "GPL-3.0-only",
+          "LGPL-3.0-only"
+        ],
+        "incompatible_with": [
+          "proprietary",
+          "non-copyleft-free",
+          "mit",
+          "bsd",
+          "apache-2.0"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "AGPL-1.0-only",
+    "key_requirements": [
+      "The recipient must preserve the conditions of this license",
+      "The recipient must include a copy of this license with the software"
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "AGPL-1.0-only",
+    "obligations": [
+      "You must give the recipients all the rights that you have.",
+      "You must make sure that they, too, receive or can get the source code.",
+      "You must show them these terms so they know their rights."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": true,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "AGPL-1.0-only",
+    "type": "copyleft_strong"
+  }
+}

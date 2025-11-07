@@ -1,0 +1,77 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "public_domain",
+          "CC0",
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "The CC-PDDC license allows for broad compatibility with other licenses, especially those in the public domain or permissive categories. However, it is incompatible with copyleft licenses like GPL.",
+      "static_linking": {
+        "compatible_with": [
+          "public_domain",
+          "CC0",
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "CC-PDDC",
+    "key_requirements": [
+      "The work is dedicated to the public domain, relinquishing all rights under copyright law."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "CC-PDDC",
+    "obligations": [
+      "The dedicator must have taken reasonable steps to verify the copyright status of the work."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": false,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "CC-PDDC",
+    "type": "public_domain"
+  }
+}

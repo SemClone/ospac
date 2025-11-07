@@ -1,0 +1,79 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0"
+        ]
+      },
+      "notes": "EFL-1.0 allows for linking with proprietary software under certain conditions, but care must be taken to comply with the terms of the license.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0",
+          "MPL-2.0"
+        ]
+      }
+    },
+    "id": "EFL-1.0",
+    "key_requirements": [
+      "Retain copyright notices",
+      "Include the license file with distributions",
+      "Publicly release modified versions if applicable"
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "EFL-1.0",
+    "obligations": [
+      "Retain copyright notices unchanged",
+      "Include the license file in any distribution",
+      "Publicly release modified versions if distributing a binary that depends on a modified version"
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "EFL-1.0",
+    "type": "copyleft_weak"
+  }
+}

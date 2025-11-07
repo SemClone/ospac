@@ -1,0 +1,79 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "The WordNet license is permissive and allows for integration with other permissive licenses without imposing restrictions.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "WordNet",
+    "key_requirements": [
+      "Must retain the copyright notice and license in all copies or substantial portions of the software.",
+      "Must provide a copy of the license when distributing the software."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "WordNet",
+    "obligations": [
+      "Include the original copyright notice in all copies or substantial portions of the software.",
+      "Include a copy of the license in all distributions of the software."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "WordNet",
+    "type": "permissive"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "The Cornell-Lossless-JPEG license is permissive and allows for integration with other permissive licenses without imposing restrictions. However, care should be taken when combining with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "Cornell-Lossless-JPEG",
+    "key_requirements": [
+      "Must not hold Cornell University liable for any damages arising from the use of the software.",
+      "Software is provided 'as is' without any warranty."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "Cornell-Lossless-JPEG",
+    "obligations": [
+      "Include the copyright notice in all copies of the software.",
+      "Include the disclaimer of liability and warranty in all copies of the software."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Cornell-Lossless-JPEG",
+    "type": "permissive"
+  }
+}

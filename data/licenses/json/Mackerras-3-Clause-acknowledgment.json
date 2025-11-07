@@ -1,0 +1,76 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "ISC"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "The Mackerras-3-Clause-acknowledgment license is permissive and allows for integration with other permissive licenses without imposing restrictions on the derived works.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "ISC"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "Mackerras-3-Clause-acknowledgment",
+    "key_requirements": [
+      "Retain copyright notice, conditions, and disclaimer in redistributions.",
+      "Include the acknowledgment statement in all forms of redistribution."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "Mackerras-3-Clause-acknowledgment",
+    "obligations": [
+      "Retain the copyright notice in redistributions of source code.",
+      "Do not use the authors' names to endorse or promote derived products without permission.",
+      "Include the acknowledgment statement in all redistributions."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Mackerras-3-Clause-acknowledgment",
+    "type": "permissive"
+  }
+}

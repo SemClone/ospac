@@ -1,0 +1,76 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "ISC"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "The xinetd license is permissive and allows for both static and dynamic linking with compatible licenses. However, care should be taken when linking with copyleft licenses, as they may impose additional restrictions.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "ISC"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "xinetd",
+    "key_requirements": [
+      "Include the original copyright notice in all redistributions.",
+      "State any changes made to the software when distributing modified versions."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "xinetd",
+    "obligations": [
+      "Retain the copyright notice in redistributions.",
+      "Modify the version number when distributing modified software.",
+      "Include the name of the modifier along with the new version number."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "xinetd",
+    "type": "permissive"
+  }
+}

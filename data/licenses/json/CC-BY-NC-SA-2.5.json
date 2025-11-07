@@ -1,0 +1,74 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "derivative",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "LGPL-2.1"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "CC-BY-NC-SA-2.5 is a non-commercial license, which may limit compatibility with commercial licenses. Ensure compliance with the non-commercial clause when distributing.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "CC-BY-NC-SA-2.5",
+    "key_requirements": [
+      "Must provide appropriate credit, provide a link to the license, and indicate if changes were made.",
+      "Must not use the material for commercial purposes.",
+      "Must distribute derivative works under the same license."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "CC-BY-NC-SA-2.5",
+    "obligations": [
+      "Attribution to the original author is required.",
+      "Non-commercial use only.",
+      "Share derivative works under the same license."
+    ],
+    "properties": {
+      "commercial_use": false,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "CC-BY-NC-SA-2.5",
+    "type": "copyleft_weak"
+  }
+}

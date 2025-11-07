@@ -1,0 +1,72 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "SAX-PD is a public domain license, which generally allows for maximum compatibility with other licenses. However, care should be taken when combining with copyleft licenses like GPL.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "SAX-PD",
+    "key_requirements": [
+      "No warranty or guarantee of fitness for any purpose.",
+      "Users assume all risks associated with the use of SAX."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "SAX-PD",
+    "obligations": [
+      "No specific obligations; the software is in the public domain."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": false,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "SAX-PD",
+    "type": "public_domain"
+  }
+}

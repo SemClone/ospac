@@ -1,0 +1,79 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "public_domain",
+          "MIT",
+          "Apache_2.0",
+          "BSD",
+          "Creative_Commons_Zero"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "LGPL"
+        ],
+        "requires_review": [
+          "proprietary"
+        ]
+      },
+      "notes": "As a public domain license, the JPL-image license allows for maximum compatibility with other licenses, but care should be taken when combining with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "public_domain",
+          "MIT",
+          "Apache_2.0",
+          "BSD",
+          "Creative_Commons_Zero"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "LGPL"
+        ],
+        "requires_review": [
+          "proprietary"
+        ]
+      }
+    },
+    "id": "JPL-image",
+    "key_requirements": [
+      "Credit the source when using images.",
+      "Do not use NASA logos without permission.",
+      "Ensure no endorsement is implied when using images."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "JPL-image",
+    "obligations": [
+      "Use a credit line: 'Courtesy NASA/JPL-Caltech.'",
+      "Obtain prior written approval for using NASA insignia, logos, or seals.",
+      "Do not claim or imply endorsement by NASA, JPL, or Caltech.",
+      "Obtain permission for commercial use of images featuring identifiable persons.",
+      "Contact Institutional Communications Office for advertising or public relations use."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": false,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "JPL-image",
+    "type": "public_domain"
+  }
+}

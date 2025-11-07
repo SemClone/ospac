@@ -1,0 +1,70 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "ISC"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "GPL-2.0+",
+          "AGPL-3.0+",
+          "AGPL-2.0+"
+        ],
+        "requires_review": []
+      },
+      "notes": "",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "ISC"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "GPL-2.0+",
+          "AGPL-3.0+",
+          "AGPL-2.0+"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Barr",
+    "key_requirements": [
+      "Rename the package if modified.",
+      "Provide a free copy of the package to the author for personal examination and use in case of inclusion in a commercial software package."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "Barr",
+    "obligations": [
+      "Unchanged distribution for non-commercial or commercial use."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": false,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Barr",
+    "type": "permissive"
+  }
+}

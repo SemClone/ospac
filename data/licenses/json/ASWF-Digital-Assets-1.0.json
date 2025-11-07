@@ -1,0 +1,70 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "BSD"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL",
+          "Boost"
+        ],
+        "requires_review": []
+      },
+      "notes": "The ASWF-Digital-Assets-1.0 license is compatible with most permissive licenses, allowing for static and dynamic linking. However, it is not compatible with copyleft licenses, which may require modifications to the original work.",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "BSD"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL",
+          "Boost"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "ASWF-Digital-Assets-1.0",
+    "key_requirements": [
+      "Must use the exact name of the asset without implying endorsement or affiliation with products developed or tested utilizing these digital assets."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "ASWF-Digital-Assets-1.0",
+    "obligations": [
+      "Redistribute the asset with the copyright notice, conditions, and disclaimer.",
+      "Include the copyright notice in publications showing images derived from the assets."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "ASWF-Digital-Assets-1.0",
+    "type": "permissive"
+  }
+}

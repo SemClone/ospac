@@ -5,6 +5,62 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2024-11-06
+
+### Added
+
+**JSON Dataset Format**
+- Migrated license dataset from YAML to JSON format for improved parsing reliability
+- Added comprehensive JSON schema validation for license data structure
+- Enhanced data loading performance and reduced parsing errors
+- Support for 712 SPDX licenses in structured JSON format with complete metadata
+
+**Enhanced Data Structure**
+- Complete license information including properties, requirements, limitations, and obligations
+- Detailed compatibility matrices for static and dynamic linking scenarios
+- Comprehensive obligation tracking with license-specific requirements
+- Structured contamination effect and compatibility notes
+
+**Improved API Integration**
+- JSON-first design optimized for MCP (Model Context Protocol) integration
+- Clean, machine-readable output perfect for external system consumption
+- Backward compatibility with YAML fallback for legacy support
+- Enhanced library API for programmatic usage
+
+### Changed
+
+**Dataset Architecture**
+- Primary license data format changed from YAML to JSON
+- Reduced dataset size from 5.6MB to 2.8MB (50% reduction)
+- Eliminated duplicate data structures and simplified maintenance
+- Streamlined file structure for better package distribution
+
+**Policy Evaluation Enhancement**
+- Fixed policy aggregation to preserve remediation and requirements data
+- Added comprehensive license obligations to policy evaluation results
+- Improved compatibility checking with explicit incompatible license pairs
+- Enhanced mobile/embedded distribution recognition in default policy
+
+**Test Coverage**
+- Achieved 100% test success rate with comprehensive validation suite
+- Added dataset integrity validation for all 712 license files
+- Enhanced CLI command testing across all options and scenarios
+- Improved library API testing for external system integration
+
+### Fixed
+- Resolved GPL-2.0 + Apache-2.0 compatibility checking issue
+- Fixed missing remediation data in policy aggregation results
+- Corrected empty requirements field for denied licenses
+- Enhanced mobile distribution type recognition in default policies
+- Improved error handling for edge cases in license data loading
+
+### Technical Improvements
+- Added JSON schema for license data validation
+- Implemented fallback mechanism from JSON to YAML for compatibility
+- Enhanced data loading with proper error handling and validation
+- Optimized file structure and removed redundant datasets
+- Improved package size and distribution efficiency
+
 ## [1.1.5] - 2025-11-05
 
 ### Added

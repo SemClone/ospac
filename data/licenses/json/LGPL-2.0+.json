@@ -1,0 +1,83 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain",
+          "GPL-2.0",
+          "GPL-3.0"
+        ],
+        "incompatible_with": [],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      },
+      "notes": "LGPL-2.0+ allows linking with proprietary software under certain conditions, especially with dynamic linking. Static linking may impose stricter requirements.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      }
+    },
+    "id": "LGPL-2.0+",
+    "key_requirements": [
+      "Ensure that recipients receive the same rights you received.",
+      "Make sure to include the license and copyright notices in all copies or substantial portions of the library.",
+      "If the library is modified, inform recipients that it is not the original version."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "LGPL-2.0+",
+    "obligations": [
+      "Distribute copies of the library with the same rights granted to you.",
+      "Provide access to the source code when distributing the library.",
+      "Provide complete object files to allow relinking with modified versions of the library.",
+      "Include a copy of the LGPL license with any distributed copies.",
+      "State any changes made to the library when distributing modified versions."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "LGPL-2.0+",
+    "type": "copyleft_weak"
+  }
+}

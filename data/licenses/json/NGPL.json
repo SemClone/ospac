@@ -1,0 +1,80 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL",
+          "AGPL",
+          "LGPL (version 3 or later)",
+          "MPL (version 2.0)"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache 2.0",
+          "BSD",
+          "Proprietary"
+        ],
+        "requires_review": [
+          "LGPL (version 2.1)",
+          "EPL"
+        ]
+      },
+      "notes": "The NGPL license requires that any derivative works or combined works must also be licensed under the NGPL or a compatible license. This strong copyleft nature ensures that the freedoms granted by the license are preserved in all derivative works.",
+      "static_linking": {
+        "compatible_with": [
+          "GPL",
+          "AGPL",
+          "LGPL (version 3 or later)",
+          "MPL (version 2.0)"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache 2.0",
+          "BSD",
+          "Proprietary"
+        ],
+        "requires_review": [
+          "LGPL (version 2.1)",
+          "EPL"
+        ]
+      }
+    },
+    "id": "NGPL",
+    "key_requirements": [
+      "Maintain copyright notices and license information in all copies.",
+      "Notify recipients of their rights under this license.",
+      "Ensure that modifications are also distributed under the same license."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "NGPL",
+    "obligations": [
+      "Distribute verbatim copies of the source code with the license intact.",
+      "Provide recipients with a copy of the license agreement.",
+      "Include prominent notices on modified files stating changes made.",
+      "License derivative works under the same terms as this license."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "NGPL",
+    "type": "copyleft_strong"
+  }
+}

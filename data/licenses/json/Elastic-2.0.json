@@ -1,0 +1,74 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1"
+        ]
+      },
+      "notes": "The Elastic-2.0 license allows for proprietary use, but care must be taken when combining with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1"
+        ]
+      }
+    },
+    "id": "Elastic-2.0",
+    "key_requirements": [
+      "Compliance with all terms and conditions of the license.",
+      "Reinstatement of licenses if violations are corrected within 30 days of notice."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "Elastic-2.0",
+    "obligations": [
+      "Must not provide the software as a hosted or managed service.",
+      "Must not alter or disable license key functionality.",
+      "Must not remove or obscure licensing, copyright, or other notices.",
+      "Must ensure that anyone who receives the software also gets a copy of the license terms.",
+      "If modified, must include prominent notices stating modifications."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "Elastic-2.0",
+    "type": "proprietary"
+  }
+}

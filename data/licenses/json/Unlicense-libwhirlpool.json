@@ -1,0 +1,72 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Unlicense",
+          "Public Domain",
+          "MIT",
+          "BSD",
+          "Apache 2.0"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL"
+        ],
+        "requires_review": [
+          "LGPL",
+          "MPL"
+        ]
+      },
+      "notes": "The Unlicense-libwhirlpool is designed to be as permissive as possible, allowing for maximum freedom in use, modification, and distribution. However, care should be taken when combining with copyleft licenses like GPL, as they impose restrictions that may conflict with the public domain nature of this license.",
+      "static_linking": {
+        "compatible_with": [
+          "Unlicense",
+          "Public Domain",
+          "MIT",
+          "BSD",
+          "Apache 2.0"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL"
+        ],
+        "requires_review": [
+          "LGPL",
+          "MPL"
+        ]
+      }
+    },
+    "id": "Unlicense-libwhirlpool",
+    "key_requirements": [
+      "No obligations to disclose source code or include license notices.",
+      "Software is provided 'as is' without any warranty."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "Unlicense-libwhirlpool",
+    "obligations": [],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": false,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Unlicense-libwhirlpool",
+    "type": "public_domain"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "GPL-2.0",
+          "GPL-3.0"
+        ],
+        "incompatible_with": [
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "OpenSSL is generally permissive and can be used in proprietary software, but care should be taken when combining with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "OpenSSL",
+    "key_requirements": [
+      "Include the OpenSSL license text in all redistributions.",
+      "Provide proper attribution to the OpenSSL Project in advertising materials.",
+      "Obtain permission for trademark use and naming."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "OpenSSL",
+    "obligations": [
+      "Retain copyright notice and list of conditions in redistributions of source code.",
+      "Reproduce copyright notice and list of conditions in binary redistributions.",
+      "Display acknowledgment in advertising materials mentioning features or use of the software.",
+      "Do not use the names 'OpenSSL Toolkit' and 'OpenSSL Project' for endorsement without permission.",
+      "Do not use 'OpenSSL' in product names without permission.",
+      "Retain acknowledgment in all forms of redistribution."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "OpenSSL",
+    "type": "permissive"
+  }
+}

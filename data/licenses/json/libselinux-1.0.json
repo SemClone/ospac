@@ -1,0 +1,74 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "LGPL"
+        ],
+        "requires_review": [
+          "Creative Commons",
+          "Proprietary Licenses"
+        ]
+      },
+      "notes": "As a public domain license, libselinux-1.0 can be freely used, modified, and distributed without restrictions. However, care should be taken when combining with licenses that have copyleft provisions.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "LGPL"
+        ],
+        "requires_review": [
+          "Creative Commons",
+          "Proprietary Licenses"
+        ]
+      }
+    },
+    "id": "libselinux-1.0",
+    "key_requirements": [
+      "Use of the software is at your own risk.",
+      "No warranties are provided by the NSA."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "libselinux-1.0",
+    "obligations": [
+      "No specific obligations for using this license as it is public domain."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": false,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "libselinux-1.0",
+    "type": "public_domain"
+  }
+}

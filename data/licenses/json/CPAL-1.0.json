@@ -1,0 +1,73 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "CPAL-1.0 is a weak copyleft license, allowing for more flexibility in combining with other licenses compared to strong copyleft licenses like GPL.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "CPAL-1.0",
+    "key_requirements": [
+      "Include a notice stating the changes made to the original code.",
+      "Provide access to the source code when distributing the executable version.",
+      "Ensure that any modifications are clearly marked."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "CPAL-1.0",
+    "obligations": [
+      "Must provide attribution to the original developer.",
+      "Must include a copy of the license with any distribution.",
+      "Must disclose source code when distributing the software.",
+      "Must state changes made to the original code."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "CPAL-1.0",
+    "type": "copyleft_weak"
+  }
+}

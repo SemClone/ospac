@@ -1,0 +1,91 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      },
+      "notes": "The Sendmail-8.23 license is permissive and allows for integration with other software, but care should be taken when combining with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      }
+    },
+    "id": "Sendmail-8.23",
+    "key_requirements": [
+      "Include copyright notices in source and binary redistributions.",
+      "Provide a copy of the license with redistributions.",
+      "State any changes made to the original source code."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "Sendmail-8.23",
+    "obligations": [
+      "Redistributions must qualify as 'freeware' or 'Open Source Software'.",
+      "Redistributions must be made at no charge beyond the reasonable cost of materials and delivery.",
+      "Redistributions must include a copy of the Source Code or an irrevocable offer to provide the Source Code.",
+      "Redistributions of Source Code must retain copyright notices and license terms.",
+      "Redistributions in binary form must reproduce copyright notice and license terms in documentation.",
+      "Must not use the names of Proofpoint, Inc. or the University of California for promotion without permission.",
+      "Must comply with conditions imposed by the University of California on certain embedded code."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "Sendmail-8.23",
+    "type": "permissive"
+  }
+}

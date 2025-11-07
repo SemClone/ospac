@@ -1,0 +1,87 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "Proprietary",
+          "Apache-2.0",
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "Creative Commons"
+        ]
+      },
+      "notes": "The GPL-2.0-with-font-exception license is a strong copyleft license. Any derivative work or software that incorporates GPL-2.0-with-font-exception licensed code must also be distributed under the same license. The font exception allows the use of fonts without imposing the copyleft requirements on the entire work.",
+      "static_linking": {
+        "compatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "Proprietary",
+          "Apache-2.0",
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "Creative Commons"
+        ]
+      }
+    },
+    "id": "GPL-2.0-with-font-exception",
+    "key_requirements": [
+      "Ensure that the GPL license text is included with any distribution.",
+      "Provide access to the source code when distributing binaries.",
+      "Maintain the same license for derivative works."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "GPL-2.0-with-font-exception",
+    "obligations": [
+      "If you distribute modified versions of the software, you must disclose the source code.",
+      "You must include a copy of the GPL license with any distribution.",
+      "You must include copyright notices for the original authors.",
+      "You must include a notice stating any changes made to the original software.",
+      "If you distribute the software or derivative works, they must be licensed under the same GPL license."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "GPL-2.0-with-font-exception",
+    "type": "copyleft_strong"
+  }
+}

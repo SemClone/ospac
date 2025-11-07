@@ -1,0 +1,66 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "LGPL-3.0",
+          "ECL-2.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "This license is copyleft-weak, meaning it allows modifications and derivative works to be distributed under a different license.",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Artistic-1.0",
+    "key_requirements": [
+      "You must make at least one of the following: place your modifications in the Public Domain, make them Freely Available, use the modified Package only within your corporation or organization, rename non-standard executables and provide a separate manual page for each non-standard executable that clearly documents how it differs from the Standard Version."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "Artistic-1.0",
+    "obligations": [
+      "Insert a prominent notice in each changed file stating how and when you changed that file.",
+      "Make your modifications Freely Available, such as by posting said modifications to Usenet or an equivalent medium, or placing the modifications on a major archive site such as ftp.uu.net, or by allowing the Copyright Holder to include your modifications in the Standard Version of the Package."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "Artistic-1.0",
+    "type": "permissive|copyleft_weak"
+  }
+}

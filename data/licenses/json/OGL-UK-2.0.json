@@ -1,0 +1,87 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "OGL-UK-2.0"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      },
+      "notes": "The OGL-UK-2.0 is a permissive license, allowing for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses that impose stricter requirements.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "OGL-UK-2.0"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      }
+    },
+    "id": "OGL-UK-2.0",
+    "key_requirements": [
+      "Comply with the conditions of attribution and acknowledgment.",
+      "Do not use the Information in a way that suggests endorsement by the Information Provider.",
+      "Understand that the Information is provided 'as is' without warranties."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "OGL-UK-2.0",
+    "obligations": [
+      "Acknowledge the source of the Information by including any attribution statement specified by the Information Provider(s).",
+      "Provide a link to the Open Government Licence v2.0 where possible.",
+      "Use the specified attribution statement if provided; otherwise, use the default statement."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "OGL-UK-2.0",
+    "type": "permissive"
+  }
+}

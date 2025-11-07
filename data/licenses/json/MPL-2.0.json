@@ -1,0 +1,76 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "MPL-2.0 allows for combining with other licenses, but care must be taken with GPL licenses due to their strong copyleft nature.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "MPL-2.0",
+    "key_requirements": [
+      "Provide attribution to the original authors.",
+      "Include the license text in all copies or substantial portions of the software.",
+      "State changes made to the original software."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "MPL-2.0",
+    "obligations": [
+      "If you distribute the Covered Software, you must make the source code available.",
+      "You must include a copy of the MPL-2.0 license with any distribution of the Covered Software.",
+      "You must include a notice stating any changes made to the Covered Software."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "MPL-2.0",
+    "type": "copyleft_weak"
+  }
+}

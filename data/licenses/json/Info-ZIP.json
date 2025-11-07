@@ -1,0 +1,81 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "The Info-ZIP license is permissive and allows for both static and dynamic linking without imposing restrictions on the licensing of the combined work, provided that the terms of the Info-ZIP license are followed.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "Info-ZIP",
+    "key_requirements": [
+      "Include the copyright notice and disclaimer in all redistributions.",
+      "Mark altered versions clearly and do not misrepresent them as original Info-ZIP software.",
+      "Do not use the names 'Info-ZIP' or similar variations without permission for altered versions."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "Info-ZIP",
+    "obligations": [
+      "Redistributions of source code must retain the copyright notice, definition, disclaimer, and list of conditions.",
+      "Redistributions in binary form must reproduce the copyright notice, definition, disclaimer, and list of conditions in documentation or materials provided.",
+      "Altered versions must be plainly marked as such and must not misrepresent themselves as original sources or Info-ZIP releases."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "Info-ZIP",
+    "type": "permissive"
+  }
+}

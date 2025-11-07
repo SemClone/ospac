@@ -1,0 +1,76 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "CC-BY",
+          "CC-BY-SA"
+        ]
+      },
+      "notes": "CC-BY-NC-2.5 is a non-commercial license, which limits its compatibility with commercial licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "CC-BY",
+          "CC-BY-SA"
+        ]
+      }
+    },
+    "id": "CC-BY-NC-2.5",
+    "key_requirements": [
+      "You must provide appropriate credit, provide a link to the license, and indicate if changes were made.",
+      "You may not use the material for commercial purposes.",
+      "You may not impose any additional restrictions on the rights granted by the license."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "CC-BY-NC-2.5",
+    "obligations": [
+      "Attribution must be given to the original author.",
+      "The work cannot be used for commercial purposes.",
+      "If modifications are made, they must be indicated.",
+      "The license must be included with any distribution of the work."
+    ],
+    "properties": {
+      "commercial_use": false,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "CC-BY-NC-2.5",
+    "type": "permissive"
+  }
+}

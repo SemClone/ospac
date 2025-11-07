@@ -1,0 +1,70 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "BSD",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL",
+          "Proprietary"
+        ],
+        "requires_review": []
+      },
+      "notes": "The Bitstream-Vera license is permissive, allowing free use of the software. However, distribution with GPL-licensed code requires review due to potential contamination.",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "BSD",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL",
+          "Proprietary"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Bitstream-Vera",
+    "key_requirements": [
+      "Do not sell the Font Software by itself, but may be sold as part of a larger software package."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "Bitstream-Vera",
+    "obligations": [
+      "Include the copyright and trademark notices in all copies of the Font Software typefaces.",
+      "Rename the fonts if modifications are made to the glyphs or characters."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": false
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Bitstream-Vera",
+    "type": "permissive"
+  }
+}

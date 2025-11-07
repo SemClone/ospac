@@ -1,0 +1,65 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "LGPL-3.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "incompatible_with": [
+          "Apache-2.0",
+          "MIT-LICENSED",
+          "proprietary"
+        ],
+        "requires_review": []
+      },
+      "notes": "The AGPL-3.0 license is a copyleft license, which means that if you distribute derivative works based on the original work, you must also make the source code available under the same terms.",
+      "static_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "incompatible_with": [
+          "Apache-2.0",
+          "MIT-LICENSED",
+          "proprietary"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "AGPL-3.0",
+    "key_requirements": [
+      "When using this license, you must assert copyright on the software and offer recipients a copy of the GNU Affero General Public License.",
+      "You must provide the source code of the modified version running on a publicly accessible server to the public."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "AGPL-3.0",
+    "obligations": [
+      "The operator of a network server must provide the source code of the modified version running there to the users of that server."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": true,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "AGPL-3.0",
+    "type": "copyleft_strong"
+  }
+}

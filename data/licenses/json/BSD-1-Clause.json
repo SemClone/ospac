@@ -1,0 +1,64 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "BSD-1-Clause with category permissive is a very permissive license, allowing the work to be used as if it were public domain. It's compatible with most licenses and can be distributed freely.",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "GPL-3.0"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "BSD-1-Clause",
+    "key_requirements": [
+      "Include this disclaimer: `THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS ``AS IS''`"
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "BSD-1-Clause",
+    "obligations": [
+      "Retain the copyright notice and this list of conditions"
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "BSD-1-Clause",
+    "type": "permissive"
+  }
+}

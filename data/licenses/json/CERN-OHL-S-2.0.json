@@ -1,0 +1,79 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "CERN-OHL-S-2.0",
+          "GNU GPL v3",
+          "GNU AGPL v3",
+          "Eclipse Public License 2.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache License 2.0",
+          "BSD 3-Clause"
+        ],
+        "requires_review": [
+          "Creative Commons licenses",
+          "Proprietary licenses"
+        ]
+      },
+      "notes": "CERN-OHL-S-2.0 has a strong copyleft nature, meaning that any derivative works must also be licensed under the same terms. Care should be taken when combining with other licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "CERN-OHL-S-2.0",
+          "GNU GPL v3",
+          "GNU AGPL v3",
+          "Eclipse Public License 2.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache License 2.0",
+          "BSD 3-Clause"
+        ],
+        "requires_review": [
+          "Creative Commons licenses",
+          "Proprietary licenses"
+        ]
+      }
+    },
+    "id": "CERN-OHL-S-2.0",
+    "key_requirements": [
+      "Ensure that all modifications and derived works are licensed under CERN-OHL-S.",
+      "Provide access to the Complete Source when distributing the Product.",
+      "Maintain compliance with the obligations regarding patent grants and trademark use."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "CERN-OHL-S-2.0",
+    "obligations": [
+      "You must disclose the source of the Covered Source when distributing the Product.",
+      "You must include a copy of this license with any distribution of the Product.",
+      "You must include copyright notices in all copies or substantial portions of the Product.",
+      "You must state any changes made to the Covered Source.",
+      "You must license any derivative works under the same CERN-OHL-S license."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "CERN-OHL-S-2.0",
+    "type": "copyleft_strong"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "DL-DE-BY-2.0 is a permissive license that allows for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses such as GPL.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "DL-DE-BY-2.0",
+    "key_requirements": [
+      "Ensure that the source note contains the name of the provider.",
+      "Include the annotation 'Data licence Germany – attribution – Version 2.0' or 'dl-de/by-2-0'.",
+      "Provide a reference to the dataset (URI)."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "DL-DE-BY-2.0",
+    "obligations": [
+      "Provide attribution to the data provider.",
+      "Include the license text or a reference to it.",
+      "Include a reference to the dataset (URI).",
+      "Indicate any changes made to the data in the source note."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": false,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "DL-DE-BY-2.0",
+    "type": "permissive"
+  }
+}

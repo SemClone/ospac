@@ -1,0 +1,77 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "CC-BY",
+          "CC-BY-SA-2.0"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "notes": "CC-SA-1.0 allows for compatibility with permissive licenses but requires that derivative works are shared under the same license. It is important to ensure that any modifications or derivatives maintain the same share-alike provisions.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "CC-BY",
+          "CC-BY-SA-2.0"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "CC-SA-1.0",
+    "key_requirements": [
+      "Accept and agree to be bound by the terms of this License.",
+      "Do not violate the terms of this License to maintain rights."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "CC-SA-1.0",
+    "obligations": [
+      "You must include a copy of this license when distributing the Work.",
+      "You must include the original copyright notice when distributing the Work.",
+      "If you modify the Work and distribute it, you must state the changes made.",
+      "If you distribute the Work or a Derivative Work, it must be under the same license."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "CC-SA-1.0",
+    "type": "copyleft_weak"
+  }
+}

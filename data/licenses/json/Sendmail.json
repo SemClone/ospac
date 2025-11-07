@@ -1,0 +1,85 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "LGPL"
+        ],
+        "requires_review": [
+          "MPL",
+          "EPL",
+          "CC BY-SA"
+        ]
+      },
+      "notes": "The Sendmail license is permissive and allows for integration with other software licenses, provided that incompatible licenses are avoided.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "LGPL"
+        ],
+        "requires_review": [
+          "MPL",
+          "EPL",
+          "CC BY-SA"
+        ]
+      }
+    },
+    "id": "Sendmail",
+    "key_requirements": [
+      "Include copyright notices in source and binary redistributions.",
+      "Provide a copy of the license with redistributions.",
+      "Obtain permission for trademark use."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "Sendmail",
+    "obligations": [
+      "Redistributions must qualify as 'freeware' or 'Open Source Software'.",
+      "Redistributions must be made at no charge beyond the reasonable cost of materials and delivery.",
+      "Redistributions must include a copy of the Source Code or an irrevocable offer to provide it for up to three years.",
+      "Redistributions of Source Code must retain copyright notices, license terms, and disclaimers.",
+      "Redistributions in binary form must reproduce copyright notices, license terms, and disclaimers in documentation.",
+      "The name of Sendmail, Inc. or the University of California cannot be used for endorsement without permission.",
+      "Redistributions must comply with conditions imposed by the University of California on certain embedded code."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "Sendmail",
+    "type": "permissive"
+  }
+}

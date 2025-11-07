@@ -1,0 +1,99 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-1.1",
+          "Apache-2.0",
+          "Artistic-2.0",
+          "CC-BY-1.0",
+          "FreeBSD-DOC",
+          "GPL-2.0-only",
+          "ISC",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "AGPL-3.0",
+          "CPOL",
+          "Eclipse-1.0",
+          "Gnome-LS",
+          "Intel-ACPI",
+          "Nokia",
+          "ODC-BY-1.0",
+          "OpenSSL",
+          "Python-2.0",
+          "Python-2.7"
+        ],
+        "requires_review": [
+          "Apache-2.0-with-Patent-Clearance",
+          "EPL-1.0",
+          "GPL-3.0-or-later",
+          "LGPL-3.0-or-later"
+        ]
+      },
+      "notes": "The Adobe-2006 license is permissive, allowing derivative works without restrictions. However, please note that some licenses listed above may require additional permissions or review.",
+      "static_linking": {
+        "compatible_with": [
+          "Apache-1.1",
+          "Apache-2.0",
+          "Artistic-2.0",
+          "CC-BY-1.0",
+          "FreeBSD-DOC",
+          "GPL-2.0-only",
+          "ISC",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "AGPL-3.0",
+          "CPOL",
+          "Eclipse-1.0",
+          "Gnome-LS",
+          "Intel-ACPI",
+          "Nokia",
+          "ODC-BY-1.0",
+          "OpenSSL",
+          "Python-2.0",
+          "Python-2.7"
+        ],
+        "requires_review": [
+          "Apache-2.0-with-Patent-Clearance",
+          "EPL-1.0",
+          "GPL-3.0-or-later",
+          "LGPL-3.0-or-later"
+        ]
+      }
+    },
+    "id": "Adobe-2006",
+    "key_requirements": [
+      "Do not use the name 'Adobe Systems Incorporated' to endorse or promote products derived from the source code without prior written permission."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "Adobe-2006",
+    "obligations": [
+      "Indemnify Adobe Systems Incorporated from any loss, damage, claims or lawsuits arising from your use or distribution of the source code."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Adobe-2006",
+    "type": "permissive"
+  }
+}
