@@ -40,31 +40,42 @@ Everything in OSPAC is policy-defined, not code-defined:
 ## Installation
 
 ```bash
+# Latest stable release (v1.2.0)
 pip install ospac
-```
 
-For development with SEMCL.ONE integration:
-
-```bash
+# With SEMCL.ONE integration
 pip install "ospac[semcl]"
+
+# With LLM analysis capabilities
+pip install "ospac[llm]"
+
+# Full installation with all features
+pip install "ospac[all]"
 ```
 
 ## How It Works
 
-OSPAC provides both:
-1. **Data Generation Pipeline** - Downloads SPDX licenses and generates comprehensive policy datasets
-2. **Runtime Engine** - Evaluates licenses against policies using the generated data
+OSPAC v1.2.0 includes a pre-built JSON dataset with instant functionality:
 
-### Data Generation
+1. **Ready-to-Use Dataset** - 712 SPDX licenses in optimized JSON format (included with installation)
+2. **Runtime Engine** - Evaluates licenses against policies using comprehensive metadata
+3. **Optional Data Pipeline** - Advanced users can regenerate data with custom analysis
 
-OSPAC includes a pipeline that:
-- Downloads the complete SPDX license dataset (700+ licenses)
+### Pre-Built Dataset (v1.2.0)
+
+**No setup required!** OSPAC ships with:
+- 712 complete SPDX license definitions in JSON format
+- Comprehensive compatibility matrices for static/dynamic linking
+- Complete obligation tracking with license-specific requirements
+- Structured contamination effects and compatibility notes
+- Schema-validated data integrity
+
+### Advanced Data Generation (Optional)
+
+For custom analysis, OSPAC includes a pipeline that:
+- Downloads the latest SPDX license dataset
 - Optionally uses LLM (Ollama + llama3) for enhanced analysis via StrandsAgents SDK
-- Generates comprehensive policy files with:
-  - License categorizations (permissive, copyleft, etc.)
-  - Compatibility matrices
-  - Obligation databases
-  - Regulatory requirements
+- Generates comprehensive policy files with custom requirements
 
 ## Quick Start
 
@@ -86,23 +97,30 @@ ospac evaluate -l "GPL-3.0" -d mobile  # Correctly denies GPL for mobile apps
 ospac policy init --template mobile --output mobile_policy.yaml
 ```
 
+## Command Examples
+
 ### Policy Evaluation
 
 ```bash
-# Evaluate licenses against policies
-ospac evaluate --licenses GPL-3.0,MIT --context static_linking
+# Evaluate licenses against policies (JSON output by default)
+ospac evaluate -l "GPL-3.0,MIT" -d commercial
 
 # Check license compatibility
-ospac check GPL-3.0 MIT --context static_linking
+ospac check GPL-3.0 MIT -c static_linking
 
-# Get license obligations
-ospac obligations --licenses Apache-2.0,MIT --format checklist
+# Get license obligations with complete metadata
+ospac obligations -l "Apache-2.0,MIT" -f json
 
-# Initialize a new policy from template
-ospac init --template enterprise --output my_policy.yaml
+# Create policies for specific build targets
+ospac policy init --template mobile --output mobile_policy.yaml
+ospac policy init --template desktop --output desktop_policy.yaml
 
 # Validate policy syntax
-ospac validate ./my_policy.yaml
+ospac policy validate ./my_policy.yaml
+
+# Evaluate for specific distribution types
+ospac evaluate -l "GPL-3.0" -d mobile    # Correctly denies GPL for mobile
+ospac evaluate -l "MIT" -d embedded      # Allows permissive licenses
 ```
 
 ### Python API
@@ -110,61 +128,97 @@ ospac validate ./my_policy.yaml
 ```python
 from ospac import PolicyRuntime
 
-# Initialize runtime with policies
+# Initialize runtime (uses default enterprise policy with v1.2.0)
+runtime = PolicyRuntime()
+
+# Or with custom policies
 runtime = PolicyRuntime.from_path("policies/")
 
-# Evaluate licenses
+# Evaluate licenses with comprehensive results
 result = runtime.evaluate({
     "licenses_found": ["GPL-3.0", "MIT"],
     "context": "static_linking",
     "distribution": "commercial"
 })
+# Returns: action, severity, message, requirements, remediation, obligations
 
-# Check compatibility
-compat = runtime.check_compatibility("GPL-3.0", "MIT", "static_linking")
+# Check compatibility between licenses
+compat = runtime.check_compatibility("GPL-2.0", "Apache-2.0")  # Returns False
 
-# Get obligations
+# Get complete obligations with license metadata
 obligations = runtime.get_obligations(["Apache-2.0", "MIT"])
+# Returns: full license data with properties, requirements, limitations
 ```
 
-### Data Generation (First Time Setup)
+### Data Commands (Advanced Usage)
+
+**Note:** v1.2.0 includes a complete pre-built dataset. Data generation is only needed for custom analysis.
 
 ```bash
-# Download SPDX dataset and generate basic policy data
-ospac data download-spdx
+# Show license information (works out of the box)
+ospac data show MIT
+ospac data show GPL-3.0
 
-# Generate complete policy dataset (basic analysis)
+# Optional: Regenerate data with latest SPDX
+ospac data download-spdx
 ospac data generate --output-dir ./data
 
-# Generate with LLM-enhanced analysis (requires Ollama with llama3)
+# Advanced: Generate with LLM analysis (requires Ollama with llama3)
 ospac data generate --use-llm --output-dir ./data
 
-# Validate generated data
+# Validate data integrity
 ospac data validate --data-dir ./data
-
-# Query specific license from database
-ospac data show MIT --format yaml
 ```
 
 ## Policy Files
 
 OSPAC uses declarative policy files to define all compliance logic:
 
-### License Definition
+### License Definition (v1.2.0 JSON Format)
 
-```yaml
-# policies/licenses/spdx/MIT.yaml
-license:
-  id: MIT
-  type: permissive
+```json
+{
+  "license": {
+    "id": "MIT",
+    "name": "MIT",
+    "type": "permissive",
+    "spdx_id": "MIT",
 
-  requirements:
-    include_license: true
-    include_copyright: true
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
 
-  compatibility:
-    static_linking:
-      compatible_with: [category: any]
+    "requirements": {
+      "include_license": true,
+      "include_copyright": true,
+      "disclose_source": false,
+      "same_license": false,
+      "state_changes": false
+    },
+
+    "limitations": {
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
+    },
+
+    "obligations": [
+      "Include the copyright notice and permission notice in all copies or substantial portions of the Software."
+    ],
+
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": ["Apache-2.0", "BSD-3-Clause", "GPL-3.0"],
+        "incompatible_with": [],
+        "requires_review": []
+      }
+    }
+  }
+}
 ```
 
 ### Organizational Policy
@@ -204,14 +258,14 @@ result = runtime.evaluate({"licenses_found": licenses})
 ```
 ospac/
 ├── runtime/           # Policy execution engine
-├── policies/          # Policy definitions (Policy as Code)
-│   ├── licenses/      # License definitions
-│   ├── compatibility/ # Compatibility rules
-│   ├── obligations/   # License obligations
-│   └── organizations/ # Org-specific policies
+├── data/             # Pre-built JSON dataset (v1.2.0)
+│   └── licenses/
+│       └── json/     # 712 SPDX licenses in JSON format
+├── defaults/         # Default enterprise policy
+├── schemas/          # JSON schema validation
 ├── models/           # Data models
 ├── cli/              # CLI interface
-└── utils/            # Utilities
+└── pipeline/         # Data generation (optional)
 ```
 
 ## Contributing
