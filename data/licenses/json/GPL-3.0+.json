@@ -1,0 +1,81 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL-3.0+",
+          "AGPL-3.0+",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "Proprietary",
+          "Apache-2.0",
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "The GPL-3.0+ license has a strong copyleft effect, meaning that any derivative work must also be licensed under GPL-3.0+. This applies to both static and dynamic linking.",
+      "static_linking": {
+        "compatible_with": [
+          "GPL-3.0+",
+          "AGPL-3.0+",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "Proprietary",
+          "Apache-2.0",
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "GPL-3.0+",
+    "key_requirements": [
+      "Ensure that all recipients of the software receive the same freedoms you received.",
+      "Do not impose additional restrictions on the rights granted by the GPL.",
+      "Mark modified versions as changed to avoid misattribution."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "GPL-3.0+",
+    "obligations": [
+      "Distribute the source code or provide access to it when distributing the software.",
+      "Include a copy of the GPL license with any distributed software.",
+      "Include copyright notices of the original authors.",
+      "State any changes made to the original software.",
+      "Distribute modified versions under the same GPL license."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "GPL-3.0+",
+    "type": "copyleft_strong"
+  }
+}

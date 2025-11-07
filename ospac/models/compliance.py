@@ -75,6 +75,7 @@ class PolicyResult:
             severity=highest_severity.severity,
             message=f"Evaluated {len(results)} rules",
             requirements=list(set(all_requirements)),
+            remediation=most_restrictive.remediation,
         )
 
     def to_dict(self) -> Dict[str, Any]:

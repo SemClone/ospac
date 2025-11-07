@@ -1,0 +1,65 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "LGPL-3.0+"
+        ],
+        "requires_review": []
+      },
+      "notes": "The AFL-1.2 license is a permissive license that allows free use, modification and distribution of the software. However, it does not allow for modification of the license itself.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "LGPL-3.0+"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "AFL-1.2",
+    "key_requirements": [
+      "Include Attribution Notices and retain original notices",
+      "Do not use Licensor's names or trademarks without permission"
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "AFL-1.2",
+    "obligations": [
+      "Retain copyright, patent, or trademark notices from the Original Work in Derivative Works",
+      "Cause Derivative Works to carry a prominent Attribution Notice"
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "AFL-1.2",
+    "type": "permissive"
+  }
+}

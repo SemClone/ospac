@@ -1,0 +1,77 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL"
+        ],
+        "requires_review": [
+          "LGPL",
+          "Creative Commons",
+          "Proprietary Licenses"
+        ]
+      },
+      "notes": "ImageMagick's permissive license allows for broad compatibility with other permissive licenses. However, care should be taken when combining with copyleft licenses like GPL or AGPL, as they impose stricter requirements.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "LGPL"
+        ],
+        "requires_review": [
+          "Creative Commons",
+          "Proprietary Licenses"
+        ]
+      }
+    },
+    "id": "ImageMagick",
+    "key_requirements": [
+      "Redistribute ImageMagick software with proper attribution.",
+      "Do not use ImageMagick marks in a way that implies endorsement or authorship."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "ImageMagick",
+    "obligations": [
+      "Include a copy of the license in any redistribution that includes ImageMagick software.",
+      "Provide clear attribution to ImageMagick Studio LLC for any distributions that include ImageMagick software."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "ImageMagick",
+    "type": "permissive"
+  }
+}

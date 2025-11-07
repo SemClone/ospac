@@ -1,0 +1,66 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "BSD"
+        ],
+        "incompatible_with": [
+          "Copyleft_Strong",
+          "GPL_v2",
+          "AGPL_v3"
+        ],
+        "requires_review": []
+      },
+      "notes": "When combining with GPL-3.0 or later, you must treat the combined work as a derivative.",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "BSD"
+        ],
+        "incompatible_with": [
+          "Copyleft_Strong",
+          "GPL_v2",
+          "AGPL_v3"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Artistic-dist",
+    "key_requirements": [
+      "Meet one of the three requirements: make modifications Freely Available, use them within your corporation or organization, or allow the Copyright Holder to include them in the Standard Version."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "Artistic-dist",
+    "obligations": [
+      "Duplicate all original copyright notices and associated disclaimers.",
+      "Insert a prominent notice in each changed file stating how and when you changed that file."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "Artistic-dist",
+    "type": "permissive|copyleft_weak"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "GPL-1.0",
+          "LGPL-2.1"
+        ],
+        "requires_review": []
+      },
+      "notes": "Permissive license, compatible with most licenses",
+      "static_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "GPL-1.0",
+          "LGPL-2.1"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "AdaCore-doc",
+    "key_requirements": [
+      "Include the unmodified copyright notice in any copy of this document."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "AdaCore-doc",
+    "obligations": [
+      "Clearly mark any alterations as such."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "AdaCore-doc",
+    "type": "permissive"
+  }
+}

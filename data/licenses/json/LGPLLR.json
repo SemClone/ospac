@@ -1,0 +1,84 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "CC BY-NC",
+          "CC BY-NC-SA"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CPL-1.0"
+        ]
+      },
+      "notes": "The LGPLLR license allows for linking with proprietary software under certain conditions, but care must be taken to comply with the license terms.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "CC BY-NC",
+          "CC BY-NC-SA"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CPL-1.0"
+        ]
+      }
+    },
+    "id": "LGPLLR",
+    "key_requirements": [
+      "Provide conspicuous copyright notice on copies.",
+      "Distribute under the same license terms for modified works.",
+      "Keep intact all notices that refer to this License."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "LGPLLR",
+    "obligations": [
+      "Include a copyright notice and disclaimer of warranty with distributed copies.",
+      "Distribute a copy of the license along with the Linguistic Resource.",
+      "Ensure modified works are also linguistic resources.",
+      "Maintain all notices referring to the license and absence of warranty."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "LGPLLR",
+    "type": "copyleft_weak"
+  }
+}

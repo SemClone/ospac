@@ -1,0 +1,66 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "AGPL-3.0",
+          "GPL-3.0",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "Proprietary",
+          "Permissive",
+          "Free"
+        ],
+        "requires_review": []
+      },
+      "notes": "When linking or distributing, ensure that the resulting work is also licensed under AGPL-3.0.",
+      "static_linking": {
+        "compatible_with": [
+          "AGPL-3.0",
+          "GPL-3.0",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "Proprietary",
+          "Permissive",
+          "Free"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "AGPL-3.0-only",
+    "key_requirements": [
+      "Copyright notice and license terms must be included with any copies or substantial portions of the software.",
+      "Source code must be made available if the software is used on a publicly accessible server."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "AGPL-3.0-only",
+    "obligations": [
+      "The operator of a network server must provide the source code of the modified version running there to the users of that server."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": true,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "AGPL-3.0-only",
+    "type": "copyleft_strong"
+  }
+}

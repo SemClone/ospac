@@ -1,0 +1,77 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "derivative",
+      "dynamic_linking": {
+        "compatible_with": [
+          "CC-BY",
+          "CC-BY-SA",
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0"
+        ]
+      },
+      "notes": "The CC-BY-NC-SA-2.0-DE license allows for non-commercial use and requires derivative works to be licensed under the same terms. Compatibility with other licenses may vary based on the nature of the linking and distribution.",
+      "static_linking": {
+        "compatible_with": [
+          "CC-BY",
+          "CC-BY-SA",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "BSD-3-Clause",
+          "MPL-2.0"
+        ]
+      }
+    },
+    "id": "CC-BY-NC-SA-2.0-DE",
+    "key_requirements": [
+      "Provide appropriate credit to the original author.",
+      "Include a copy of the license when distributing the work.",
+      "Indicate if changes were made to the original work."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "CC-BY-NC-SA-2.0-DE",
+    "obligations": [
+      "Attribution must be given to the original creator.",
+      "The work cannot be used for commercial purposes.",
+      "Any derivative works must be licensed under the same terms."
+    ],
+    "properties": {
+      "commercial_use": false,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "CC-BY-NC-SA-2.0-DE",
+    "type": "copyleft_weak"
+  }
+}

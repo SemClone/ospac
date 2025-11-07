@@ -1,0 +1,209 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SPDX License Schema",
+  "description": "Schema for SPDX license data in OSPAC",
+  "type": "object",
+  "required": ["license"],
+  "properties": {
+    "license": {
+      "type": "object",
+      "required": [
+        "id", "name", "type", "spdx_id", "properties",
+        "requirements", "limitations", "compatibility",
+        "obligations", "key_requirements"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._+-]+$",
+          "description": "SPDX license identifier"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Full license name"
+        },
+        "type": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "permissive", "copyleft_weak", "copyleft_strong",
+                "proprietary", "public_domain", "restrictive"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "^(permissive|copyleft_weak|copyleft_strong|proprietary|public_domain|restrictive)(\\|(permissive|copyleft_weak|copyleft_strong|proprietary|public_domain|restrictive))*$"
+            }
+          ],
+          "description": "License type or combination of types separated by |"
+        },
+        "spdx_id": {
+          "type": "string",
+          "description": "Official SPDX identifier"
+        },
+        "properties": {
+          "type": "object",
+          "required": [
+            "commercial_use", "distribution", "modification",
+            "patent_grant", "private_use"
+          ],
+          "properties": {
+            "commercial_use": {
+              "type": "boolean",
+              "description": "Allows commercial use"
+            },
+            "distribution": {
+              "type": "boolean",
+              "description": "Allows distribution"
+            },
+            "modification": {
+              "type": "boolean",
+              "description": "Allows modification"
+            },
+            "patent_grant": {
+              "type": "boolean",
+              "description": "Includes patent grant"
+            },
+            "private_use": {
+              "type": "boolean",
+              "description": "Allows private use"
+            }
+          },
+          "additionalProperties": false
+        },
+        "requirements": {
+          "type": "object",
+          "required": [
+            "disclose_source", "include_license", "include_copyright",
+            "include_notice", "state_changes", "same_license",
+            "network_use_disclosure"
+          ],
+          "properties": {
+            "disclose_source": {
+              "type": "boolean",
+              "description": "Must disclose source code"
+            },
+            "include_license": {
+              "type": "boolean",
+              "description": "Must include license text"
+            },
+            "include_copyright": {
+              "type": "boolean",
+              "description": "Must include copyright notice"
+            },
+            "include_notice": {
+              "type": "boolean",
+              "description": "Must include notice file"
+            },
+            "state_changes": {
+              "type": "boolean",
+              "description": "Must state changes made"
+            },
+            "same_license": {
+              "type": "boolean",
+              "description": "Must use same license for derivatives"
+            },
+            "network_use_disclosure": {
+              "type": "boolean",
+              "description": "Must disclose source for network use"
+            }
+          },
+          "additionalProperties": false
+        },
+        "limitations": {
+          "type": "object",
+          "required": ["liability", "warranty", "trademark_use"],
+          "properties": {
+            "liability": {
+              "type": "boolean",
+              "description": "Limits liability"
+            },
+            "warranty": {
+              "type": "boolean",
+              "description": "Excludes warranty"
+            },
+            "trademark_use": {
+              "type": "boolean",
+              "description": "Limits trademark use"
+            }
+          },
+          "additionalProperties": false
+        },
+        "compatibility": {
+          "type": "object",
+          "required": [
+            "static_linking", "dynamic_linking",
+            "contamination_effect", "notes"
+          ],
+          "properties": {
+            "static_linking": {
+              "$ref": "#/definitions/linking_compatibility"
+            },
+            "dynamic_linking": {
+              "$ref": "#/definitions/linking_compatibility"
+            },
+            "contamination_effect": {
+              "type": "string",
+              "enum": ["none", "module", "file", "project", "network"],
+              "description": "Scope of license contamination"
+            },
+            "notes": {
+              "type": "string",
+              "description": "Additional compatibility notes"
+            }
+          },
+          "additionalProperties": false
+        },
+        "obligations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "License obligations and requirements"
+        },
+        "key_requirements": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Key license requirements summary"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "definitions": {
+    "linking_compatibility": {
+      "type": "object",
+      "required": ["compatible_with", "incompatible_with", "requires_review"],
+      "properties": {
+        "compatible_with": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Licenses compatible with this one"
+        },
+        "incompatible_with": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Licenses incompatible with this one"
+        },
+        "requires_review": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Licenses requiring manual review"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

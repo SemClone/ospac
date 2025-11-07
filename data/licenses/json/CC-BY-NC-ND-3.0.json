@@ -1,0 +1,75 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "Creative Commons licenses",
+          "Proprietary licenses"
+        ]
+      },
+      "notes": "CC-BY-NC-ND-3.0 is a non-commercial license that does not allow derivative works. It is generally incompatible with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "Creative Commons licenses",
+          "Proprietary licenses"
+        ]
+      }
+    },
+    "id": "CC-BY-NC-ND-3.0",
+    "key_requirements": [
+      "Must provide proper attribution to the original author.",
+      "Must not use the work for commercial purposes.",
+      "Must not alter, transform, or build upon the work."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "CC-BY-NC-ND-3.0",
+    "obligations": [
+      "Attribution must be given to the original author.",
+      "The work cannot be used for commercial purposes.",
+      "No adaptations or derivative works are allowed."
+    ],
+    "properties": {
+      "commercial_use": false,
+      "distribution": true,
+      "modification": false,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "CC-BY-NC-ND-3.0",
+    "type": "proprietary"
+  }
+}

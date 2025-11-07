@@ -1,0 +1,73 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "LiLiQ-R-1.1",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "LGPL-3.0",
+          "MPL-2.0"
+        ]
+      },
+      "notes": "LiLiQ-R-1.1 has a strong copyleft nature, meaning that any derivative works or combined works must also be licensed under LiLiQ-R-1.1. This can lead to compatibility issues with permissive licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "LiLiQ-R-1.1",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "LGPL-3.0",
+          "MPL-2.0"
+        ]
+      }
+    },
+    "id": "LiLiQ-R-1.1",
+    "key_requirements": [
+      "The source code must be made available when distributing the software.",
+      "The license must be included with any distribution of the software."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "LiLiQ-R-1.1",
+    "obligations": [
+      "Distribute the software with a copy of this license.",
+      "If modifications are made, the modified software must be accompanied by a statement of changes."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "LiLiQ-R-1.1",
+    "type": "copyleft_strong"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "CERN-OHL-W-2.0",
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0"
+        ]
+      },
+      "notes": "CERN-OHL-W-2.0 allows for weak copyleft, meaning that while modifications to the original work must be shared under the same license, works that link to it may be licensed differently.",
+      "static_linking": {
+        "compatible_with": [
+          "CERN-OHL-W-2.0",
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0",
+          "MPL-2.0"
+        ]
+      }
+    },
+    "id": "CERN-OHL-W-2.0",
+    "key_requirements": [
+      "Ensure that any modifications made to the Covered Source are documented.",
+      "Treat any Source derived from the Covered Source as licensed under CERN-OHL-W or a Compatible Licence.",
+      "Do not imply endorsement by CERN when using the license."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "name": "CERN-OHL-W-2.0",
+    "obligations": [
+      "Must disclose the source of the Covered Source when Conveying it.",
+      "Must include a copy of the license with any distribution of the Covered Source.",
+      "Must include copyright notices in any distribution of the Covered Source.",
+      "Must include notices of any changes made to the Covered Source."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "CERN-OHL-W-2.0",
+    "type": "copyleft_weak"
+  }
+}

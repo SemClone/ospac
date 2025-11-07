@@ -1,0 +1,79 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Public Domain",
+          "GPL-2.0",
+          "GPL-3.0"
+        ],
+        "incompatible_with": [
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "Creative Commons",
+          "Proprietary Licenses"
+        ]
+      },
+      "notes": "LGPL-2.1 allows linking with proprietary software under certain conditions, but static linking may impose stricter requirements compared to dynamic linking.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "Creative Commons",
+          "Proprietary Licenses"
+        ]
+      }
+    },
+    "id": "LGPL-2.1-only",
+    "key_requirements": [
+      "Include a copy of the LGPL-2.1 license with the distributed software.",
+      "State any changes made to the library when distributing modified versions."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "LGPL-2.1-only",
+    "obligations": [
+      "Distributors must provide the same rights to recipients as granted to them.",
+      "Source code must be made available to recipients.",
+      "If linking with other code, complete object files must be provided.",
+      "Recipients must be informed of their rights under this license."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "LGPL-2.1-only",
+    "type": "copyleft_weak"
+  }
+}

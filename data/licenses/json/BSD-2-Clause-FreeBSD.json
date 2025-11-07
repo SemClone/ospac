@@ -1,0 +1,65 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "Apache-2.0",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL"
+        ],
+        "requires_review": []
+      },
+      "notes": "BSD-2-Clause-FreeBSD is compatible with most permissive licenses and some open-source licenses, but may have compatibility issues with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "Apache-2.0",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "BSD-2-Clause-FreeBSD",
+    "key_requirements": [
+      "Include the copyright notice, list of conditions, and disclaimer in all redistributions (source and binary).",
+      "Comply with the liability and warranty disclaimers."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "BSD-2-Clause-FreeBSD",
+    "obligations": [
+      "Retain the above copyright notice and this list of conditions in the documentation and/or other materials provided with the distribution.",
+      "Reproduce the above copyright notice, this list of conditions and the disclaimer in the documentation and/or other materials provided with the binary distribution."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "BSD-2-Clause-FreeBSD",
+    "type": "permissive"
+  }
+}

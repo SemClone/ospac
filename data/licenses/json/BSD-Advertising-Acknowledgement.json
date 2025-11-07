@@ -1,0 +1,79 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-1.0"
+        ]
+      },
+      "notes": "The BSD-Advertising-Acknowledgement license is permissive and allows for integration with other permissive licenses. However, it is incompatible with copyleft licenses like GPL.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-1.0"
+        ]
+      }
+    },
+    "id": "BSD-Advertising-Acknowledgement",
+    "key_requirements": [
+      "Include the copyright notice and conditions in redistributions.",
+      "Provide acknowledgment in advertising materials and other distributions."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "BSD-Advertising-Acknowledgement",
+    "obligations": [
+      "Retain copyright notice in redistributions of source code.",
+      "Include copyright notice and disclaimer in binary redistributions.",
+      "Display acknowledgment in advertising materials mentioning features or use of the software.",
+      "Retain acknowledgment in all forms of redistribution."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "BSD-Advertising-Acknowledgement",
+    "type": "permissive"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "*BSD"
+        ],
+        "incompatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "Zlib"
+        ],
+        "requires_review": [
+          "LGPL-2.1"
+        ]
+      },
+      "notes": "The ADSL license with a permissive category is generally compatible with other open-source licenses that are also permissive in nature.",
+      "static_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "ADSL",
+    "key_requirements": [
+      "Include the copyright notice.",
+      "Keep the software code unchanged in its entirety."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "ADSL",
+    "obligations": [
+      "Do not remove any proprietary notices."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "ADSL",
+    "type": "permissive"
+  }
+}

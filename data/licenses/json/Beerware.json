@@ -1,0 +1,64 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "Proprietary"
+        ],
+        "requires_review": []
+      },
+      "notes": "No additional restrictions for using Beerware licensed code in other projects.",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "Proprietary"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Beerware",
+    "key_requirements": [
+      "Retain the notice in the original file or modified version.",
+      "Buy the author a beer if you think this software is worth it"
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "Beerware",
+    "obligations": [
+      "As long as you retain this notice, you can do whatever you want with this stuff."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": false,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Beerware",
+    "type": "permissive"
+  }
+}

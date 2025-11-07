@@ -1,0 +1,81 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-3.0",
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "CECIIL-1.1 allows for linking with non-copyleft licenses, but any modifications to the CECILL-1.1 licensed code must remain under the same license.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "CECILL-1.1",
+    "key_requirements": [
+      "Ensure compliance with French law regarding intellectual property.",
+      "Provide limited warranty and liability disclaimers.",
+      "Encourage users to test the software for suitability."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "CECILL-1.1",
+    "obligations": [
+      "Users must disclose the source code when redistributing modified versions.",
+      "Users must include the original license text in redistributions.",
+      "Users must include copyright notices in redistributions.",
+      "Users must state changes made to the original software.",
+      "Redistributions must be under the same license."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "CECILL-1.1",
+    "type": "copyleft_weak"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL"
+        ],
+        "requires_review": []
+      },
+      "notes": "BSD-2-Clause-NetBSD (permissive) is compatible with other permissive licenses and some open-source licenses, but incompatible with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "BSD-2-Clause-NetBSD",
+    "key_requirements": [
+      "Include the BSD-2-Clause-NetBSD license text in source code and binary forms",
+      "Provide proper attribution to the original copyright holders"
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "BSD-2-Clause-NetBSD",
+    "obligations": [
+      "Retain the copyright notice and this list of conditions in source code",
+      "Reproduce the copyright notice, this list of conditions, and disclaimer in binary form documentation",
+      "Notify The NetBSD Foundation, Inc. and contributors if changes are made to the software"
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "BSD-2-Clause-NetBSD",
+    "type": "permissive"
+  }
+}

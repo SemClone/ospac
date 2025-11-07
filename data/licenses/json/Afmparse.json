@@ -1,0 +1,67 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "Permissive",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL-1.0-only",
+          "GPL-3.0-only",
+          "AGPL-3.0-only"
+        ],
+        "requires_review": []
+      },
+      "notes": "This license is a permissive free software license, allowing users to use the software in any way they see fit.",
+      "static_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-1.0-only",
+          "GPL-3.0-only",
+          "AGPL-3.0-only"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Afmparse",
+    "key_requirements": [
+      "Include this entire notice in the file when distributing or modifying the software"
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "Afmparse",
+    "obligations": [
+      "Include this entire notice in the file if redistributing",
+      "Conspicuously indicate modifications to the file"
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Afmparse",
+    "type": "permissive"
+  }
+}

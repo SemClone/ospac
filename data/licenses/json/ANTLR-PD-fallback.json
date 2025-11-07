@@ -1,0 +1,66 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "public_domain",
+          "cc0"
+        ],
+        "incompatible_with": [
+          "bsd",
+          "lgpl",
+          "apache_2.0",
+          "mit"
+        ],
+        "requires_review": []
+      },
+      "notes": "The ANTLR-PD-fallback license is compatible with licenses that are also in the public domain, as well as CC0. It is incompatible with licenses that impose restrictions on derivative works or commercial use, such as BSD and Apache 2.0. In cases where a project has multiple components under different licenses, the ANTLR-PD-fallback license can be used to provide a fallback option for those components.",
+      "static_linking": {
+        "compatible_with": [
+          "public_domain",
+          "cc0"
+        ],
+        "incompatible_with": [
+          "bsd",
+          "lgpl",
+          "apache_2.0",
+          "mit"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "ANTLR-PD-fallback",
+    "key_requirements": [
+      "Maintaining intact headers in the source code is a requirement."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "ANTLR-PD-fallback",
+    "obligations": [
+      "Credit must be given to the authors for developing ANTLR.",
+      "Acknowledgement of using ANTLR in documentation or research reports is required."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "ANTLR-PD-fallback",
+    "type": "public_domain"
+  }
+}

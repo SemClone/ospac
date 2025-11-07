@@ -1,0 +1,59 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Public_Domain"
+        ],
+        "incompatible_with": [
+          "All_Reserved",
+          "All_Restricted"
+        ],
+        "requires_review": []
+      },
+      "notes": "",
+      "static_linking": {
+        "compatible_with": [
+          "Public_Domain"
+        ],
+        "incompatible_with": [
+          "All_Reserved",
+          "All_Restricted"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "blessing",
+    "key_requirements": [
+      "None, as this license is public domain and has no requirements."
+    ],
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "name": "blessing",
+    "obligations": [
+      "None, as this license is public domain and has no obligations."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": false,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "blessing",
+    "type": "public_domain"
+  }
+}

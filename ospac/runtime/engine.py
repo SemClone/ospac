@@ -3,6 +3,7 @@ Policy execution runtime engine.
 """
 
 import os
+import json
 from typing import Dict, List, Any, Optional
 from pathlib import Path
 import tempfile
@@ -166,7 +167,7 @@ class PolicyRuntime:
         result = self.evaluate(eval_context)
         return ComplianceResult.from_policy_result(result)
 
-    def get_obligations(self, licenses: List[str]) -> Dict[str, Any]:
+    def get_obligations(self, licenses: List[str], data_dir: str = "data") -> Dict[str, Any]:
         """Get all obligations for the given licenses."""
         obligations = {}
 
@@ -178,5 +179,42 @@ class PolicyRuntime:
                         if license_id not in obligations:
                             obligations[license_id] = {}
                         obligations[license_id].update(policy_data["obligations"][license_id])
+
+        # Check for modular per-license files first (preferred)
+        licenses_dir = Path(data_dir) / "licenses"
+        if licenses_dir.exists():
+            for license_id in licenses:
+                license_file = licenses_dir / f"{license_id}.json"
+                if license_file.exists():
+                    try:
+                        with open(license_file) as f:
+                            license_data = json.load(f)
+
+                        license_obligations = license_data.get("obligations", [])
+                        if license_obligations:
+                            if license_id not in obligations:
+                                obligations[license_id] = {}
+                            obligations[license_id]["obligations"] = license_obligations
+                    except Exception:
+                        # Continue with other sources if this file fails
+                        pass
+        else:
+            # Fallback to legacy obligation database for backward compatibility
+            obligation_db_path = Path(data_dir) / "obligation_database.json"
+            if obligation_db_path.exists():
+                try:
+                    with open(obligation_db_path) as f:
+                        obligation_db = json.load(f)
+
+                    for license_id in licenses:
+                        if license_id in obligation_db.get("licenses", {}):
+                            license_obligations = obligation_db["licenses"][license_id].get("obligations", [])
+                            if license_obligations:
+                                if license_id not in obligations:
+                                    obligations[license_id] = {}
+                                obligations[license_id]["obligations"] = license_obligations
+                except Exception:
+                    # If we can't load the obligation database, just continue with policy-based obligations
+                    pass
 
         return obligations

@@ -1,0 +1,75 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "GPL",
+          "AGPL"
+        ],
+        "incompatible_with": [],
+        "requires_review": [
+          "MPL",
+          "EPL"
+        ]
+      },
+      "notes": "Libpng is a permissive license, allowing for both static and dynamic linking with minimal restrictions. However, care should be taken when linking with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL"
+        ],
+        "requires_review": [
+          "MPL",
+          "EPL"
+        ]
+      }
+    },
+    "id": "Libpng",
+    "key_requirements": [
+      "Must include the copyright notice and license in redistributions.",
+      "Must state any modifications made to the original code."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "Libpng",
+    "obligations": [
+      "Include the original copyright notice in all copies or substantial portions of the software.",
+      "Include a copy of the license in all distributions of the software.",
+      "State any changes made to the original code."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "Libpng",
+    "type": "permissive"
+  }
+}

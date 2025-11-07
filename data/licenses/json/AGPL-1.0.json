@@ -1,0 +1,69 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "full",
+      "dynamic_linking": {
+        "compatible_with": [
+          "AGPL-1.0",
+          "GPL-3.0-or-later"
+        ],
+        "incompatible_with": [
+          "Proprietary",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "AGPL-1.0 is a copyleft license that requires derivative works to be distributed under the same terms, making it incompatible with permissive licenses like MIT or Apache-2.0. When distributing a modified version of AGPL-1.0 software, you must also distribute your modifications and the source code.",
+      "static_linking": {
+        "compatible_with": [
+          "AGPL-1.0",
+          "GPL-3.0-or-later"
+        ],
+        "incompatible_with": [
+          "Proprietary",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "AGPL-1.0",
+    "key_requirements": [
+      "The recipient must comply with the obligations above",
+      "The recipient must preserve the original authorship and the license terms",
+      "The recipient must make modifications available under the same license"
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "AGPL-1.0",
+    "obligations": [
+      "Distribute derivative works under the same license",
+      "Provide the source code for modified versions",
+      "Include a copy of this license in the distribution",
+      "Give recipients all the rights that you have to distribute copies",
+      "Make sure that they, too, receive or can get the source code"
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": false
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": true,
+      "same_license": true,
+      "state_changes": false
+    },
+    "spdx_id": "AGPL-1.0",
+    "type": "copyleft_strong"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "derivative",
+      "dynamic_linking": {
+        "compatible_with": [
+          "CC-BY",
+          "CC-BY-SA",
+          "CC-BY-NC",
+          "CC-BY-NC-SA"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "MIT",
+          "Apache-2.0"
+        ]
+      },
+      "notes": "The CC-BY-NC-SA-3.0-IGO license allows for non-commercial use and requires derivative works to be licensed under the same terms. Care should be taken when combining with licenses that have commercial use provisions.",
+      "static_linking": {
+        "compatible_with": [
+          "CC-BY",
+          "CC-BY-SA",
+          "CC-BY-NC",
+          "CC-BY-NC-SA"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      }
+    },
+    "id": "CC-BY-NC-SA-3.0-IGO",
+    "key_requirements": [
+      "Include a copy of the license when distributing the work.",
+      "State any changes made to the work.",
+      "Provide appropriate credit to the original creator."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "CC-BY-NC-SA-3.0-IGO",
+    "obligations": [
+      "Attribution must be given to the original creator.",
+      "The work cannot be used for commercial purposes.",
+      "Any adaptations must be shared alike under the same license."
+    ],
+    "properties": {
+      "commercial_use": false,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "CC-BY-NC-SA-3.0-IGO",
+    "type": "copyleft_weak"
+  }
+}

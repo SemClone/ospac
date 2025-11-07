@@ -1,0 +1,73 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "EPL-2.0",
+          "Apache-2.0",
+          "MIT",
+          "BSD-3-Clause",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "EPL-2.0 is a weak copyleft license, allowing for compatibility with permissive licenses and certain other weak copyleft licenses. However, it is incompatible with strong copyleft licenses like GPL-3.0.",
+      "static_linking": {
+        "compatible_with": [
+          "EPL-2.0",
+          "Apache-2.0",
+          "MIT",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      }
+    },
+    "id": "EPL-2.0",
+    "key_requirements": [
+      "Contributors grant a patent license for their Contributions.",
+      "Recipients must comply with the terms of the EPL-2.0 when distributing the Program or Modified Works."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "EPL-2.0",
+    "obligations": [
+      "Include a copy of the EPL-2.0 license when distributing the Program.",
+      "Include copyright notices of the original Contributors.",
+      "State changes made to the original Program when creating Modified Works."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "spdx_id": "EPL-2.0",
+    "type": "copyleft_weak"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0",
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "notes": "The Zend-2.0 license is permissive and allows for both static and dynamic linking with compatible licenses. However, it is incompatible with copyleft licenses like GPL and AGPL.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-NC-SA",
+          "CC BY-ND"
+        ]
+      }
+    },
+    "id": "Zend-2.0",
+    "key_requirements": [
+      "Obtain permission from Zend Technologies Ltd. for trademark use.",
+      "Retain the acknowledgment of the Zend Engine in all forms of redistribution.",
+      "Follow the terms of the license as published by Zend Technologies Ltd."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "Zend-2.0",
+    "obligations": [
+      "Retain copyright notice in redistributions of source code.",
+      "Reproduce copyright notice and license in binary redistributions.",
+      "Do not use the names 'Zend' and 'Zend Engine' for endorsement without permission.",
+      "Acknowledge that the product includes the Zend Engine in all redistributions.",
+      "Display acknowledgment in advertising materials mentioning features or use of the software."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Zend-2.0",
+    "type": "permissive"
+  }
+}

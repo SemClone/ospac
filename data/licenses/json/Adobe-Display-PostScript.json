@@ -1,0 +1,66 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "module",
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "AGPL-3.0+"
+        ],
+        "requires_review": []
+      },
+      "notes": "Note that Adobe-Display-PostScript allows derivative works, but requires special permission for commercial distribution.",
+      "static_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "AGPL-3.0+",
+          "Proprietary-only"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "Adobe-Display-PostScript",
+    "key_requirements": [
+      "Include the original license text in supporting documentation.",
+      "Do not use the Adobe trademarks without specific, written prior permission."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "Adobe-Display-PostScript",
+    "obligations": [
+      "The above copyright notices and permission notice must appear in all copies.",
+      "Proper trademark attribution to reflect Adobe's ownership of the trademark shall be given whenever any such reference is made."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "Adobe-Display-PostScript",
+    "type": "permissive|proprietary"
+  }
+}

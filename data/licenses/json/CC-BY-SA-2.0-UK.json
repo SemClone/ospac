@@ -1,0 +1,81 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "derivative",
+      "dynamic_linking": {
+        "compatible_with": [
+          "CC-BY",
+          "CC-BY-SA",
+          "GPL-2.0",
+          "GPL-3.0",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "Proprietary licenses",
+          "CC-NC",
+          "CC-ND"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-1.0"
+        ]
+      },
+      "notes": "The CC-BY-SA-2.0-UK license requires that any derivative works or adaptations are also licensed under the same or a compatible license. This can lead to 'contamination' of the codebase if combined with incompatible licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "CC-BY",
+          "CC-BY-SA",
+          "GPL-2.0",
+          "GPL-3.0",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "Proprietary licenses",
+          "CC-NC",
+          "CC-ND"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-1.0"
+        ]
+      }
+    },
+    "id": "CC-BY-SA-2.0-UK",
+    "key_requirements": [
+      "Credit the Original Author.",
+      "State any changes made to the Work.",
+      "Distribute derivative Works under the same license."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "CC-BY-SA-2.0-UK",
+    "obligations": [
+      "Attribution to the Original Author is required.",
+      "Derivative Works must be licensed under the same terms (Share-Alike).",
+      "Include a copy of the license when distributing the Work."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "spdx_id": "CC-BY-SA-2.0-UK",
+    "type": "copyleft_weak"
+  }
+}

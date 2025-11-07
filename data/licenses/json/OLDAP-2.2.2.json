@@ -1,0 +1,90 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-NC-SA"
+        ]
+      },
+      "notes": "OLDAP-2.2.2 is a permissive license, allowing for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses such as GPL and AGPL.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-NC-SA"
+        ]
+      }
+    },
+    "id": "OLDAP-2.2.2",
+    "key_requirements": [
+      "Include the license text in all redistributions.",
+      "Retain copyright notices in all forms of redistribution.",
+      "Obtain permission for trademark use."
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "name": "OLDAP-2.2.2",
+    "obligations": [
+      "Retain copyright statements and notices in redistributions of source code.",
+      "Reproduce copyright statements, notices, conditions, and disclaimer in binary redistributions.",
+      "Include a verbatim copy of the license in redistributions.",
+      "Do not use the name 'OpenLDAP' for endorsement or promotion without permission.",
+      "Do not name derived products 'OpenLDAP' without permission.",
+      "Give due credit to the OpenLDAP Project."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "OLDAP-2.2.2",
+    "type": "permissive"
+  }
+}

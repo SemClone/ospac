@@ -1,0 +1,71 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "public_domain",
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "LGPL"
+        ],
+        "requires_review": [
+          "Creative Commons",
+          "Proprietary"
+        ]
+      },
+      "notes": "The public domain status of LZMA-SDK allows for broad compatibility with permissive licenses. However, care should be taken when combining with copyleft licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "public_domain",
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "LGPL"
+        ],
+        "requires_review": [
+          "Creative Commons",
+          "Proprietary"
+        ]
+      }
+    },
+    "id": "LZMA-SDK-9.11-to-9.20",
+    "key_requirements": [],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "LZMA-SDK-9.11-to-9.20",
+    "obligations": [],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": false,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "LZMA-SDK-9.11-to-9.20",
+    "type": "public_domain"
+  }
+}

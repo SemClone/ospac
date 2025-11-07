@@ -1,0 +1,67 @@
+{
+  "license": {
+    "compatibility": {
+      "contamination_effect": "none",
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "CC0-1.0"
+        ],
+        "requires_review": []
+      },
+      "notes": "This license is permissive and compatible with most other licenses.",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "CC0-1.0"
+        ],
+        "requires_review": []
+      }
+    },
+    "id": "BitTorrent-1.1",
+    "key_requirements": [
+      "Disclose the modifications made to the original code",
+      "Make the modified source code available for others"
+    ],
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "name": "BitTorrent-1.1",
+    "obligations": [
+      "Make Source Code of Modifications available to others free of charge and without a royalty.",
+      "Ensure that any Modifications you make to the Licensed Product are governed by the provisions of this License."
+    ],
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "spdx_id": "BitTorrent-1.1",
+    "type": "permissive"
+  }
+}
