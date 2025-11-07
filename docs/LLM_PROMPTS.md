@@ -1,6 +1,6 @@
 # LLM Prompts for License Analysis
 
-This document describes the AI prompts used by OSPAC to analyze software licenses and extract structured data.
+This document describes the AI prompts OSPAC uses to analyze software licenses and extract structured data.
 
 ## Overview
 
@@ -10,7 +10,7 @@ OSPAC uses LLMs (AI models) to analyze license texts and extract:
 - Permissions, conditions, and limitations
 - Usage restrictions and patent grants
 
-The prompts are located in `ospac/pipeline/llm_providers.py` and are used by all supported LLM providers (OpenAI, API-based providers, and Ollama).
+The prompts are located in `ospac/pipeline/llm_providers.py` and are used by all supported LLM providers (OpenAI, Claude, and Ollama).
 
 ## System Prompt
 
@@ -109,7 +109,7 @@ The prompt requests a JSON response with the following structure:
 - **include_copyright**: Must include copyright notice
 - **include_notice**: Must include NOTICE file
 - **state_changes**: Must document changes
-- **same_license**: Derivatives must use same license
+- **same_license**: Derivatives must use the same license
 - **network_use_disclosure**: Network use triggers disclosure (AGPL)
 
 #### Limitations
@@ -180,7 +180,7 @@ response = await self.client.chat.completions.create(
 )
 ```
 
-### API Provider (Alternative)
+### Claude Provider
 ```python
 # ospac/pipeline/llm_providers.py:340-348
 message = await self.client.messages.create(
