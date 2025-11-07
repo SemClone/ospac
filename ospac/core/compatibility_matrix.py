@@ -23,7 +23,11 @@ class CompatibilityMatrix:
     Only stores non-default relationships (default is "unknown").
     """
 
-    def __init__(self, data_dir: str = "data/compatibility"):
+    def __init__(self, data_dir: Optional[str] = None):
+        # Use package data directory if not specified
+        if data_dir is None:
+            data_dir = str(Path(__file__).parent.parent / "data" / "compatibility")
+
         self.data_dir = Path(data_dir)
         self.data_dir.mkdir(parents=True, exist_ok=True)
 
