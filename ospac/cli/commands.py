@@ -185,10 +185,10 @@ def check(license1: str, license2: str, context: str, policy_dir: str, output: s
 @click.option("--policy-dir", "-p", type=click.Path(exists=False),
               default=None, help="Path to policy directory (uses default enterprise policy if not provided)")
 @click.option("--data-dir", "-d", type=click.Path(exists=False),
-              default="data", help="Path to data directory containing license databases")
+              default=None, help="Path to data directory containing license databases")
 @click.option("--format", "-f", type=click.Choice(["json", "text", "checklist", "markdown"]),
               default="json", help="Output format (default: json)")
-def obligations(licenses: str, policy_dir: str, data_dir: str, format: str):
+def obligations(licenses: str, policy_dir: str, data_dir: Optional[str], format: str):
     """Get obligations for the specified licenses.
 
     Examples:
@@ -203,6 +203,10 @@ def obligations(licenses: str, policy_dir: str, data_dir: str, format: str):
     """
     try:
         license_list = [l.strip() for l in licenses.split(",")]
+
+        # Use package data directory if not specified
+        if data_dir is None:
+            data_dir = str(Path(__file__).parent.parent / "data")
 
         # For basic license obligations, directly load from license data
         # Policy system is only needed for custom compliance rules
@@ -448,11 +452,15 @@ def show(license_id: str, format: str):
 
 @data.command()
 @click.option("--data-dir", "-d", type=click.Path(exists=True),
-              default="data", help="Directory containing generated data")
-def validate(data_dir: str):
+              default=None, help="Directory containing generated data")
+def validate(data_dir: Optional[str]):
     """Validate SPDX license data."""
     import yaml
     try:
+        # Use package data directory if not specified
+        if data_dir is None:
+            data_dir = str(Path(__file__).parent.parent / "data")
+
         data_path = Path(data_dir)
 
         # Check SPDX directory exists
@@ -772,10 +780,14 @@ def _output_obligations_markdown(obligations_dict):
                         click.echo(f"  - {item}")
 
 
-def _get_license_data_directly(licenses: list, data_dir: str = "data") -> dict:
+def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -> dict:
     """Load complete license data directly from SPDX JSON files."""
     import json
     from pathlib import Path
+
+    # Use package data directory if not specified
+    if data_dir is None:
+        data_dir = str(Path(__file__).parent.parent / "data")
 
     license_data_result = {}
 

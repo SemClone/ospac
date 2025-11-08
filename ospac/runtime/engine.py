@@ -167,8 +167,12 @@ class PolicyRuntime:
         result = self.evaluate(eval_context)
         return ComplianceResult.from_policy_result(result)
 
-    def get_obligations(self, licenses: List[str], data_dir: str = "data") -> Dict[str, Any]:
+    def get_obligations(self, licenses: List[str], data_dir: Optional[str] = None) -> Dict[str, Any]:
         """Get all obligations for the given licenses."""
+        # Use package data directory if not specified
+        if data_dir is None:
+            data_dir = str(Path(__file__).parent.parent / "data")
+
         obligations = {}
 
         # Look for obligations in all obligation policy files

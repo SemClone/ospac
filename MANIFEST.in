@@ -1,7 +1,7 @@
 include README.md
 include LICENSE
-recursive-include ospac/data *.json *.yaml *.yml *.txt
-recursive-include ospac/data/licenses *
-recursive-include ospac/data/compatibility *
-recursive-include ospac/data/obligations *
+recursive-include ospac/ospac/data *.json *.yaml *.yml *.txt
+recursive-include ospac/ospac/data/licenses *
+recursive-include ospac/ospac/data/compatibility *
+recursive-include ospac/ospac/data/obligations *
 recursive-include ospac/policies *.yaml
