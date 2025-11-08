@@ -5,6 +5,16 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.2] - 2025-11-07
+
+### Fixed
+
+**Data Show Command**
+- Fixed `ospac data show` command to use package data directory instead of relative path
+- Command now works correctly regardless of current working directory
+- Added JSON file support as primary data source with YAML fallback
+- Improved error messages when license is not found
+
 ## [1.2.1] - 2025-11-07
 
 ### Fixed
