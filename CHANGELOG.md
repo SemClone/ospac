@@ -5,6 +5,35 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.3] - 2025-11-10
+
+### Added
+
+**Policy Format Support**
+- Added `--format` option to `ospac policy init` command supporting both YAML and JSON output
+- Default output filename now automatically uses selected format extension
+- JSON policy format fully supported for all policy operations and evaluations
+
+### Changed
+
+**Policy Templates - Enhanced Copyleft Restrictions**
+- Updated all policy templates with more consistent and strict copyleft handling
+- Strong copyleft licenses (GPL, AGPL) now set to `deny` across all templates
+- Weak copyleft licenses (LGPL) handling improved:
+  - Mobile template: LGPL now `deny` (app store compliance)
+  - Embedded template: LGPL now `deny` (device distribution complexity)
+  - Web template: LGPL changed from `review` to `deny` (compliance simplification)
+  - Library template: LGPL changed from `review` to `deny` (user restriction prevention)
+  - Desktop template: LGPL remains `review` (dynamic linking flexibility)
+  - Server template: LGPL remains `review` (backend service flexibility)
+- Permissive licenses (MIT, Apache-2.0, BSD) remain `approve` in all templates
+- Added comprehensive remediation messages for all denied licenses
+
+**Policy Command Improvements**
+- Policy init command now generates format-appropriate output files
+- Enhanced validation to work seamlessly with both YAML and JSON formats
+- Improved consistency across all policy template rules
+
 ## [1.2.2] - 2025-11-07
 
 ### Fixed

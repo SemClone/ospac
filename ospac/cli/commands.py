@@ -528,8 +528,10 @@ def validate(data_dir: Optional[str]):
               type=click.Choice(["mobile", "desktop", "web", "server", "embedded", "library", "custom"]),
               default="web", help="Policy template for build target")
 @click.option("--output", "-o", type=click.Path(),
-              default="policy.yaml", help="Output file path")
-def init(template: str, output: str):
+              default=None, help="Output file path")
+@click.option("--format", "-f", type=click.Choice(["yaml", "json"]),
+              default="yaml", help="Output format (default: yaml)")
+def init(template: str, output: str, format: str):
     """Initialize a new policy from a build target template."""
     templates = {
         "mobile": {
@@ -538,13 +540,24 @@ def init(template: str, output: str):
             "description": "Optimized for mobile app distribution (App Store/Play Store)",
             "rules": [
                 {
-                    "id": "no_copyleft",
-                    "description": "Prevent copyleft in mobile apps",
-                    "when": {"license_type": ["copyleft_strong", "copyleft_weak"]},
+                    "id": "deny_strong_copyleft",
+                    "description": "Deny GPL and strong copyleft in mobile apps",
+                    "when": {"license_type": "copyleft_strong"},
                     "then": {
                         "action": "deny",
                         "severity": "error",
-                        "message": "Copyleft licenses may conflict with app store terms",
+                        "message": "GPL may conflict with app store terms and requires source disclosure",
+                        "remediation": "Replace with MIT, Apache-2.0, or BSD licensed alternative for app store compatibility"
+                    }
+                },
+                {
+                    "id": "deny_weak_copyleft",
+                    "description": "Deny LGPL and weak copyleft in mobile apps",
+                    "when": {"license_type": "copyleft_weak"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "LGPL may conflict with app store terms and complicates mobile compliance",
                         "remediation": "Replace with MIT, Apache-2.0, or BSD licensed alternative for app store compatibility"
                     }
                 },
@@ -562,22 +575,30 @@ def init(template: str, output: str):
             "description": "For desktop applications with flexible distribution",
             "rules": [
                 {
-                    "id": "dynamic_linking_ok",
-                    "description": "Allow LGPL with dynamic linking",
-                    "when": {
-                        "license_type": "copyleft_weak",
-                        "context": "dynamic_linking"
-                    },
-                    "then": {"action": "approve"}
-                },
-                {
-                    "id": "strong_copyleft_review",
-                    "description": "Review GPL for desktop apps",
+                    "id": "deny_strong_copyleft",
+                    "description": "Deny GPL and strong copyleft for desktop apps",
                     "when": {"license_type": "copyleft_strong"},
                     "then": {
-                        "action": "review",
-                        "message": "GPL requires source disclosure for distributed software"
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "GPL requires source disclosure for distributed software",
+                        "remediation": "Use permissive licenses like MIT, Apache-2.0, or BSD for desktop distribution"
                     }
+                },
+                {
+                    "id": "review_weak_copyleft",
+                    "description": "Review LGPL and weak copyleft licenses",
+                    "when": {"license_type": "copyleft_weak"},
+                    "then": {
+                        "action": "review",
+                        "message": "LGPL requires review - ensure dynamic linking compliance if approved"
+                    }
+                },
+                {
+                    "id": "allow_permissive",
+                    "description": "Allow permissive licenses",
+                    "when": {"license_type": ["permissive", "public_domain"]},
+                    "then": {"action": "approve"}
                 }
             ]
         },
@@ -587,25 +608,32 @@ def init(template: str, output: str):
             "description": "For web applications and services",
             "rules": [
                 {
-                    "id": "server_side_gpl_ok",
-                    "description": "Allow GPL for server-side code",
-                    "when": {
-                        "license_type": "copyleft_strong",
-                        "distribution": "saas"
-                    },
-                    "then": {"action": "approve"}
+                    "id": "deny_strong_copyleft",
+                    "description": "Deny GPL and strong copyleft licenses",
+                    "when": {"license_type": "copyleft_strong"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "GPL requires source disclosure which conflicts with commercial web applications",
+                        "remediation": "Use permissive licenses like MIT, Apache-2.0, or BSD for web applications"
+                    }
                 },
                 {
-                    "id": "client_side_restrictions",
-                    "description": "Restrict copyleft in client-side code",
-                    "when": {
-                        "license_type": "copyleft_strong",
-                        "distribution": ["commercial", "embedded"]
-                    },
+                    "id": "deny_weak_copyleft",
+                    "description": "Deny LGPL and weak copyleft licenses",
+                    "when": {"license_type": "copyleft_weak"},
                     "then": {
-                        "action": "review",
-                        "message": "Client-side GPL requires source disclosure"
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "LGPL complicates web application compliance and distribution",
+                        "remediation": "Use permissive licenses like MIT, Apache-2.0, or BSD for web applications"
                     }
+                },
+                {
+                    "id": "allow_permissive",
+                    "description": "Allow permissive licenses",
+                    "when": {"license_type": ["permissive", "public_domain"]},
+                    "then": {"action": "approve"}
                 }
             ]
         },
@@ -615,21 +643,29 @@ def init(template: str, output: str):
             "description": "For backend services and server applications",
             "rules": [
                 {
-                    "id": "agpl_restrictions",
-                    "description": "Careful with AGPL for networked services",
-                    "when": {"spdx_id": ["AGPL-3.0", "AGPL-3.0-only", "AGPL-3.0-or-later"]},
+                    "id": "deny_strong_copyleft",
+                    "description": "Deny GPL, AGPL and strong copyleft licenses",
+                    "when": {"license_type": "copyleft_strong"},
                     "then": {
-                        "action": "review",
-                        "message": "AGPL requires source disclosure for network use"
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "GPL/AGPL requires source disclosure for networked services",
+                        "remediation": "Use permissive licenses like MIT, Apache-2.0, or BSD for server applications"
                     }
                 },
                 {
-                    "id": "gpl_ok_internal",
-                    "description": "Allow GPL for internal services",
-                    "when": {
-                        "license_type": "copyleft_strong",
-                        "distribution": "internal"
-                    },
+                    "id": "review_weak_copyleft",
+                    "description": "Review LGPL and weak copyleft licenses",
+                    "when": {"license_type": "copyleft_weak"},
+                    "then": {
+                        "action": "review",
+                        "message": "LGPL requires review - verify compliance requirements"
+                    }
+                },
+                {
+                    "id": "allow_permissive",
+                    "description": "Allow permissive licenses",
+                    "when": {"license_type": ["permissive", "public_domain"]},
                     "then": {"action": "approve"}
                 }
             ]
@@ -640,20 +676,31 @@ def init(template: str, output: str):
             "description": "For embedded devices and IoT applications",
             "rules": [
                 {
-                    "id": "no_copyleft_embedded",
-                    "description": "Avoid copyleft in embedded devices",
-                    "when": {"license_type": ["copyleft_strong", "copyleft_weak"]},
+                    "id": "deny_strong_copyleft",
+                    "description": "Deny GPL and strong copyleft in embedded devices",
+                    "when": {"license_type": "copyleft_strong"},
                     "then": {
                         "action": "deny",
                         "severity": "error",
-                        "message": "Copyleft complicates embedded device compliance",
+                        "message": "GPL requires source disclosure which complicates embedded device distribution",
                         "remediation": "Use MIT or BSD-2-Clause for minimal embedded device restrictions"
                     }
                 },
                 {
-                    "id": "prefer_bsd_mit",
-                    "description": "Prefer BSD/MIT for embedded",
-                    "when": {"spdx_id": ["MIT", "BSD-2-Clause", "BSD-3-Clause", "Apache-2.0"]},
+                    "id": "deny_weak_copyleft",
+                    "description": "Deny LGPL and weak copyleft in embedded devices",
+                    "when": {"license_type": "copyleft_weak"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "LGPL complicates embedded device compliance due to dynamic linking requirements",
+                        "remediation": "Use MIT or BSD-2-Clause for minimal embedded device restrictions"
+                    }
+                },
+                {
+                    "id": "allow_permissive",
+                    "description": "Allow permissive licenses for embedded",
+                    "when": {"license_type": ["permissive", "public_domain"]},
                     "then": {"action": "approve"}
                 }
             ]
@@ -664,17 +711,8 @@ def init(template: str, output: str):
             "description": "For libraries and SDKs distributed to third parties",
             "rules": [
                 {
-                    "id": "lgpl_dependencies_ok",
-                    "description": "Allow LGPL dependencies in libraries",
-                    "when": {
-                        "license_type": "copyleft_weak",
-                        "context": "dynamic_linking"
-                    },
-                    "then": {"action": "approve"}
-                },
-                {
-                    "id": "viral_licenses_restricted",
-                    "description": "Restrict viral licenses in libraries",
+                    "id": "deny_strong_copyleft",
+                    "description": "Deny GPL and strong copyleft in libraries",
                     "when": {"license_type": "copyleft_strong"},
                     "then": {
                         "action": "deny",
@@ -682,6 +720,23 @@ def init(template: str, output: str):
                         "message": "Strong copyleft would contaminate library users",
                         "remediation": "Use Apache-2.0, MIT, or BSD for maximum library compatibility"
                     }
+                },
+                {
+                    "id": "deny_weak_copyleft",
+                    "description": "Deny LGPL and weak copyleft licenses",
+                    "when": {"license_type": "copyleft_weak"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "LGPL restricts library users and limits distribution flexibility",
+                        "remediation": "Use Apache-2.0, MIT, or BSD for maximum library compatibility"
+                    }
+                },
+                {
+                    "id": "allow_permissive",
+                    "description": "Allow permissive licenses",
+                    "when": {"license_type": ["permissive", "public_domain"]},
+                    "then": {"action": "approve"}
                 }
             ]
         },
@@ -702,10 +757,17 @@ def init(template: str, output: str):
 
     policy = templates.get(template, templates["web"])  # Default to web template
 
-    with open(output, "w") as f:
-        yaml.dump(policy, f, default_flow_style=False)
+    # Set default output filename based on format if not provided
+    if output is None:
+        output = f"policy.{format}"
 
-    click.secho(f"✓ Created policy file: {output}", fg="green")
+    with open(output, "w") as f:
+        if format == "json":
+            json.dump(policy, f, indent=2)
+        else:
+            yaml.dump(policy, f, default_flow_style=False)
+
+    click.secho(f"✓ Created {format.upper()} policy file: {output}", fg="green")
 
 
 def _output_text(result, licenses):
