@@ -42,26 +42,17 @@ Everything in OSPAC is policy-defined, not code-defined:
 ```bash
 # Latest stable release (v1.2.0)
 pip install ospac
-
-# With SEMCL.ONE integration
-pip install "ospac[semcl]"
-
-# With LLM analysis capabilities
-pip install "ospac[llm]"
-
-# Full installation with all features
-pip install "ospac[all]"
 ```
 
 ## How It Works
 
-OSPAC v1.2.0 includes a pre-built JSON dataset with instant functionality:
+OSPAC includes a pre-built JSON dataset with instant functionality:
 
 1. **Ready-to-Use Dataset** - 712 SPDX licenses in optimized JSON format (included with installation)
 2. **Runtime Engine** - Evaluates licenses against policies using comprehensive metadata
 3. **Optional Data Pipeline** - Advanced users can regenerate data with custom analysis
 
-### Pre-Built Dataset (v1.2.0)
+### Pre-Built Dataset
 
 **No setup required!** OSPAC ships with:
 - 712 complete SPDX license definitions in JSON format
@@ -123,32 +114,6 @@ ospac evaluate -l "GPL-3.0" -d mobile    # Correctly denies GPL for mobile
 ospac evaluate -l "MIT" -d embedded      # Allows permissive licenses
 ```
 
-### Python API
-
-```python
-from ospac import PolicyRuntime
-
-# Initialize runtime (uses default enterprise policy with v1.2.0)
-runtime = PolicyRuntime()
-
-# Or with custom policies
-runtime = PolicyRuntime.from_path("policies/")
-
-# Evaluate licenses with comprehensive results
-result = runtime.evaluate({
-    "licenses_found": ["GPL-3.0", "MIT"],
-    "context": "static_linking",
-    "distribution": "commercial"
-})
-# Returns: action, severity, message, requirements, remediation, obligations
-
-# Check compatibility between licenses
-compat = runtime.check_compatibility("GPL-2.0", "Apache-2.0")  # Returns False
-
-# Get complete obligations with license metadata
-obligations = runtime.get_obligations(["Apache-2.0", "MIT"])
-# Returns: full license data with properties, requirements, limitations
-```
 
 ### Data Commands (Advanced Usage)
 
@@ -170,104 +135,6 @@ ospac data generate --use-llm --output-dir ./data
 ospac data validate --data-dir ./data
 ```
 
-## Policy Files
-
-OSPAC uses declarative policy files to define all compliance logic:
-
-### License Definition (v1.2.0 JSON Format)
-
-```json
-{
-  "license": {
-    "id": "MIT",
-    "name": "MIT",
-    "type": "permissive",
-    "spdx_id": "MIT",
-
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
-    },
-
-    "requirements": {
-      "include_license": true,
-      "include_copyright": true,
-      "disclose_source": false,
-      "same_license": false,
-      "state_changes": false
-    },
-
-    "limitations": {
-      "liability": false,
-      "warranty": false,
-      "trademark_use": false
-    },
-
-    "obligations": [
-      "Include the copyright notice and permission notice in all copies or substantial portions of the Software."
-    ],
-
-    "compatibility": {
-      "static_linking": {
-        "compatible_with": ["Apache-2.0", "BSD-3-Clause", "GPL-3.0"],
-        "incompatible_with": [],
-        "requires_review": []
-      }
-    }
-  }
-}
-```
-
-### Organizational Policy
-
-```yaml
-# policies/organizations/my_company.yaml
-version: "1.0"
-
-rules:
-  - id: no_copyleft
-    when:
-      license_type: copyleft_strong
-    then:
-      action: deny
-      message: "Strong copyleft licenses not allowed"
-```
-
-## Integration with SEMCL.ONE
-
-OSPAC integrates seamlessly with the SEMCL.ONE ecosystem:
-
-```python
-# Use with osslili for license detection
-from osslili import scan_directory
-from ospac import PolicyRuntime
-
-# Detect licenses
-licenses = scan_directory("/path/to/project")
-
-# Validate against policy
-runtime = PolicyRuntime.from_path("policies/")
-result = runtime.evaluate({"licenses_found": licenses})
-```
-
-## Project Structure
-
-```
-ospac/
-├── runtime/           # Policy execution engine
-├── data/             # Pre-built JSON dataset (v1.2.0)
-│   └── licenses/
-│       └── json/     # 712 SPDX licenses in JSON format
-├── defaults/         # Default enterprise policy
-├── schemas/          # JSON schema validation
-├── models/           # Data models
-├── cli/              # CLI interface
-└── pipeline/         # Data generation (optional)
-```
-
 ## Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
@@ -275,7 +142,7 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for deta
 ## Support
 
 For support, please:
-- Check the [documentation](https://github.com/SemClone/ospac)
+- Check the [documentation](https://github.com/SemClone/ospac/tree/main/docs)
 - File an issue on [GitHub](https://github.com/SemClone/ospac/issues)
 - See [SUPPORT.md](SUPPORT.md) for more options
 
