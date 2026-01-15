@@ -176,3 +176,6 @@ test_policy.yaml
 *_test.py
 *_dev.py
 scripts/dev/
+
+# uv does not have first-class support in ospac at this time
+uv.lock

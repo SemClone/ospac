@@ -7,7 +7,7 @@ name = "ospac"
 version = "1.2.3"
 description = "Open Source Policy as Code - License compliance policy engine"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 license = "Apache-2.0"
 authors = [
     {name = "Oscar Valenzuela B.", email = "oscar.valenzuela.b@gmail.com"}
@@ -35,8 +35,6 @@ classifiers = [
     "Topic :: Software Development :: Documentation",
     "Topic :: System :: Software Distribution",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -74,18 +72,18 @@ semcl = [
     "upmex>=1.6.0",    # For package metadata extraction
 ]
 llm = [
-    "strandsagents>=0.1.0",  # For LLM-based analysis with Ollama
+    "strands-agents>=0.1.0",  # For LLM-based analysis with Ollama
 ]
 all = [
     "ospac[semcl,llm]",
 ]
 
 [project.urls]
-Homepage = "https://github.com/SemClone/osslili"
-Documentation = "https://github.com/SemClone/osslili#readme"
-Repository = "https://github.com/SemClone/osslili.git"
-Issues = "https://github.com/SemClone/osslili/issues"
-Changelog = "https://github.com/SemClone/osslili/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/SemClone/ospac"
+Documentation = "https://github.com/SemClone/ospac#readme"
+Repository = "https://github.com/SemClone/ospac.git"
+Issues = "https://github.com/SemClone/ospac/issues"
+Changelog = "https://github.com/SemClone/ospac/blob/main/CHANGELOG.md"
 
 [project.scripts]
 ospac = "ospac.cli.commands:main"
@@ -113,7 +111,7 @@ ospac = [
 
 [tool.black]
 line-length = 100
-target-version = ['py38', 'py39', 'py310', 'py311']
+target-version = ['py310', 'py311', 'py312']
 include = '\.pyi?$'
 exclude = '''
 /(
@@ -130,7 +128,7 @@ line_length = 100
 skip_gitignore = true
 
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.10"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = false
