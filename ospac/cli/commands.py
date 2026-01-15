@@ -935,6 +935,13 @@ def _enhance_result_with_obligations(result, license_list: list):
     all_obligations = []
 
     for license_id in license_list:
+        try:
+            # Validate license_id to prevent path traversal
+            validate_license_id(license_id)
+        except ValueError:
+            # Skip invalid license IDs
+            continue
+
         # Try JSON first, then fallback to YAML
         json_file = Path("data") / "licenses" / "json" / f"{license_id}.json"
         yaml_file = Path("data") / "licenses" / "spdx" / f"{license_id}.yaml"
