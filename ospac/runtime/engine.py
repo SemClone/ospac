@@ -13,7 +13,6 @@ from ospac.runtime.loader import PolicyLoader
 from ospac.runtime.evaluator import RuleEvaluator
 from ospac.models.compliance import ComplianceResult, PolicyResult, ActionType
 
-
 class PolicyRuntime:
     """
     Main policy execution runtime.
@@ -170,8 +169,7 @@ class PolicyRuntime:
     def get_obligations(self, licenses: List[str], data_dir: Optional[str] = None) -> Dict[str, Any]:
         """Get all obligations for the given licenses."""
         # Use package data directory if not specified
-        if data_dir is None:
-            data_dir = str(Path(__file__).parent.parent / "data")
+        data_dir = self.resolve_data_dir(data_dir)
 
         obligations = {}
 
@@ -188,20 +186,12 @@ class PolicyRuntime:
         licenses_dir = Path(data_dir) / "licenses"
         if licenses_dir.exists():
             for license_id in licenses:
-                license_file = licenses_dir / f"{license_id}.json"
-                if license_file.exists():
-                    try:
-                        with open(license_file) as f:
-                            license_data = json.load(f)
-
-                        license_obligations = license_data.get("obligations", [])
-                        if license_obligations:
-                            if license_id not in obligations:
-                                obligations[license_id] = {}
-                            obligations[license_id]["obligations"] = license_obligations
-                    except Exception:
-                        # Continue with other sources if this file fails
-                        pass
+                license_data = self.lookup_license_data(license_id, data_dir) or {}
+                license_obligations = license_data.get("obligations", [])
+                if license_obligations:
+                    if license_id not in obligations:
+                        obligations[license_id] = {}
+                    obligations[license_id]["obligations"] = license_obligations
         else:
             # Fallback to legacy obligation database for backward compatibility
             obligation_db_path = Path(data_dir) / "obligation_database.json"
@@ -222,3 +212,24 @@ class PolicyRuntime:
                     pass
 
         return obligations
+
+    def lookup_license_data(self, license_id: str, data_dir: Optional[str] = None) -> Optional[Dict[str, Any]]:
+        """Lookup detailed information about a license."""
+        data_dir = self.resolve_data_dir(data_dir)
+        licenses_dir = Path(data_dir) / "licenses"
+        if licenses_dir.exists():
+            license_file = licenses_dir / f"{license_id}.json"
+            if license_file.exists():
+                try:
+                    with open(license_file) as f:
+                        license_data = json.load(f)
+                    return license_data
+                except Exception:
+                    pass
+        return None
+
+    def resolve_data_dir(self, data_dir: Optional[str] = None) -> str:
+        """Provide a default data directory if none is specified."""
+        if data_dir is None:
+            data_dir = str(Path(__file__).parent.parent / "data")
+        return data_dir
