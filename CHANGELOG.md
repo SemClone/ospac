@@ -5,6 +5,62 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.5] - 2026-01-15
+
+### Security
+
+**Path Traversal Vulnerability Fix (CVE-TBD)**
+- **Critical**: Fixed path traversal vulnerability in license ID input validation (CWE-22)
+- Added comprehensive input validation to prevent arbitrary file reads via malicious license IDs
+- Vulnerability allowed attackers to read arbitrary JSON files by exploiting unchecked `license_id` parameters
+- Attack examples: `ospac obligations -l "../../../etc/passwd"`, `ospac data show "../../secrets/api_keys"`
+
+**Affected Components (Fixed)**
+- `PolicyRuntime.lookup_license_data()` - Core license data lookup function
+- `ospac data show` CLI command - License information display
+- `ospac obligations` CLI command - License obligation retrieval
+- `ospac evaluate` CLI command - Policy evaluation with obligations
+- All functions using `license_id` to construct file paths
+
+**Security Measures Implemented**
+- Created `ospac.utils.validation` module with security-focused input validation
+- `validate_license_id()`: Validates SPDX license identifier format
+  - Rejects path separators (`/`, `\`)
+  - Blocks relative path components (`.`, `..`, `./`, `../`)
+  - Enforces alphanumeric start character
+  - Allows only: `A-Z`, `a-z`, `0-9`, `.`, `-`, `+`
+- `validate_license_path()`: Defense-in-depth path verification to ensure resolved paths stay within base directory
+- Applied validation to all 7 user-facing code paths accepting license ID input
+- Added path resolution checks to prevent symlink-based directory escapes
+
+**Test Coverage**
+- Added 12 comprehensive security tests covering:
+  - Path traversal attack prevention
+  - Invalid character rejection
+  - Relative path component blocking
+  - Symlink escape protection
+  - Integration tests for all vulnerable code paths
+- All 59 existing tests continue passing (zero regressions)
+
+**Impact**
+- **Severity**: Medium (arbitrary file read limited to .json files)
+- **CVSS v3.1 Estimate**: 5.3 (AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N)
+- **Affected versions**: All versions prior to 1.2.5
+- **Fixed in**: 1.2.5
+- **Credit**: Internal security review
+
+### Fixed
+
+**Input Validation**
+- License IDs now properly validated against SPDX identifier format across all CLI commands
+- Invalid license IDs produce clear error messages instead of attempting file operations
+- Enhanced error handling for malformed input
+
+**Code Quality**
+- Centralized input validation logic in dedicated utility module
+- Improved code maintainability with reusable validation functions
+- Added comprehensive docstrings with security considerations
+
 ## [1.2.3] - 2025-11-10
 
 ### Added
@@ -316,6 +372,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 13 SPDX licenses return 404 from API (fallback data provided)
 - LLM analysis optional but recommended for enhanced accuracy
 
+[1.2.5]: https://github.com/SemClone/ospac/releases/tag/v1.2.5
+[1.2.3]: https://github.com/SemClone/ospac/releases/tag/v1.2.3
+[1.2.2]: https://github.com/SemClone/ospac/releases/tag/v1.2.2
+[1.2.1]: https://github.com/SemClone/ospac/releases/tag/v1.2.1
+[1.2.0]: https://github.com/SemClone/ospac/releases/tag/v1.2.0
+[1.1.5]: https://github.com/SemClone/ospac/releases/tag/v1.1.5
 [1.1.0]: https://github.com/SemClone/ospac/releases/tag/v1.1.0
 [1.0.4]: https://github.com/SemClone/ospac/releases/tag/v1.0.4
 [1.0.3]: https://github.com/SemClone/ospac/releases/tag/v1.0.3
