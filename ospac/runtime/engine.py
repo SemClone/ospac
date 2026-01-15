@@ -12,6 +12,7 @@ import shutil
 from ospac.runtime.loader import PolicyLoader
 from ospac.runtime.evaluator import RuleEvaluator
 from ospac.models.compliance import ComplianceResult, PolicyResult, ActionType
+from ospac.utils.validation import validate_license_id
 
 class PolicyRuntime:
     """
@@ -214,11 +215,34 @@ class PolicyRuntime:
         return obligations
 
     def lookup_license_data(self, license_id: str, data_dir: Optional[str] = None) -> Optional[Dict[str, Any]]:
-        """Lookup detailed information about a license."""
+        """
+        Lookup detailed information about a license.
+
+        Args:
+            license_id: SPDX license identifier (validated for security)
+            data_dir: Optional data directory path
+
+        Returns:
+            License data dictionary if found, None otherwise
+
+        Raises:
+            ValueError: If license_id contains invalid characters or path separators
+        """
+        # Validate license_id to prevent path traversal attacks
+        validate_license_id(license_id)
+
         data_dir = self.resolve_data_dir(data_dir)
         licenses_dir = Path(data_dir) / "licenses"
         if licenses_dir.exists():
             license_file = licenses_dir / f"{license_id}.json"
+
+            # Additional safety check: verify path stays within licenses_dir
+            try:
+                license_file.resolve().relative_to(licenses_dir.resolve())
+            except ValueError:
+                # Path escaped the licenses directory
+                return None
+
             if license_file.exists():
                 try:
                     with open(license_file) as f:

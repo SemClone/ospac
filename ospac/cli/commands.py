@@ -15,6 +15,7 @@ from ospac.runtime.engine import PolicyRuntime
 from ospac.models.compliance import ComplianceStatus
 from ospac.pipeline.spdx_processor import SPDXProcessor
 from ospac.pipeline.data_generator import PolicyDataGenerator
+from ospac.utils.validation import validate_license_id
 
 # Initialize colorama
 init(autoreset=True)
@@ -401,6 +402,9 @@ def show(license_id: str, format: str):
     """Show details for a specific license from SPDX data."""
     import yaml
     try:
+        # Validate license_id to prevent path traversal
+        validate_license_id(license_id)
+
         # Use package data directory
         data_dir = Path(__file__).parent.parent / "data"
 
@@ -867,6 +871,13 @@ def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -
     json_dir = Path(data_dir) / "licenses" / "json"
     if json_dir.exists():
         for license_id in licenses:
+            try:
+                # Validate license_id to prevent path traversal
+                validate_license_id(license_id)
+            except ValueError as e:
+                click.echo(f"⚠️  Error: Invalid license ID '{license_id}': {e}", err=True)
+                continue
+
             json_file = json_dir / f"{license_id}.json"
             if json_file.exists():
                 try:
@@ -891,6 +902,13 @@ def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -
         spdx_dir = Path(data_dir) / "licenses" / "spdx"
         if spdx_dir.exists():
             for license_id in licenses:
+                try:
+                    # Validate license_id to prevent path traversal
+                    validate_license_id(license_id)
+                except ValueError:
+                    # Skip invalid license IDs
+                    continue
+
                 spdx_file = spdx_dir / f"{license_id}.yaml"
                 if spdx_file.exists():
                     try:
