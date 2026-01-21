@@ -234,7 +234,7 @@ class PolicyRuntime:
         data_dir = self.resolve_data_dir(data_dir)
         licenses_dir = Path(data_dir) / "licenses"
         if licenses_dir.exists():
-            license_file = licenses_dir / f"{license_id}.json"
+            license_file = licenses_dir / "json" / f"{license_id}.json"
 
             # Additional safety check: verify path stays within licenses_dir
             try:
