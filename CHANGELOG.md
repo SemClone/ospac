@@ -5,6 +5,16 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.6] - 2026-01-28
+
+### Fixed
+
+**License Data Lookup**
+- Fixed incorrect file path in `PolicyRuntime.lookup_license_data()` method
+- License JSON files are now correctly loaded from `./data/licenses/json/` directory
+- Resolves issue where license data lookups were failing due to incorrect path construction
+- Aligns runtime engine with the actual directory structure used throughout the codebase
+
 ## [1.2.5] - 2026-01-15
 
 ### Security
