@@ -221,6 +221,54 @@ class PolicyDataGenerator:
         logger.info(f"Found {len(licenses_to_process)} new licenses to process out of {len(all_licenses)} total")
         return licenses_to_process
 
+    def _derive_obligations(self, license_id: str, category: str,
+                            conditions: Dict, permissions: Dict) -> tuple:
+        """
+        Build obligations and key_requirements from structured boolean fields.
+        LLM-generated prose for these fields is uniformly generic; derive them
+        deterministically so every license gets accurate, distinct values.
+        """
+        obligs = []
+        # Always required when distributing open-source software
+        if conditions.get("include_copyright", True):
+            obligs.append("Retain copyright notices")
+        if conditions.get("include_license", True):
+            obligs.append("Include license text")
+        if conditions.get("state_changes"):
+            obligs.append("Document changes made to the code")
+        if conditions.get("disclose_source"):
+            obligs.append("Provide or offer access to complete source code")
+        if conditions.get("same_license"):
+            obligs.append("Distribute modifications under the same license")
+        if conditions.get("network_use_disclosure"):
+            obligs.append("Make source available to users interacting over a network")
+        if not permissions.get("commercial_use", True):
+            obligs.append("Non-commercial use only")
+        if not permissions.get("modification", True):
+            obligs.append("No modification permitted")
+        if not permissions.get("distribution", True):
+            obligs.append("No redistribution permitted")
+
+        # key_requirements: one-line summary driven by license category
+        _CATEGORY_KEY = {
+            "permissive":      ["Attribution required"],
+            "copyleft_weak":   ["Attribution required",
+                                "Modifications to covered files must stay open-source"],
+            "copyleft_strong": ["Attribution required",
+                                "Combined works must be released under the same license"],
+            "network_copyleft":["Attribution required",
+                                "Network use triggers source-disclosure obligation"],
+            "public_domain":   ["No restrictions"],
+            "source_available":["Source visible but redistribution restricted"],
+            "proprietary":     ["All rights reserved — no redistribution"],
+            "unknown":         ["Review license terms before use"],
+        }
+        key_reqs = list(_CATEGORY_KEY.get(category, ["Review license terms before use"]))
+        if conditions.get("network_use_disclosure") and category != "network_copyleft":
+            key_reqs.append("Network use triggers source-disclosure obligation")
+
+        return obligs, key_reqs
+
     def _apply_known_corrections(self, license_id: str, analysis: Dict) -> Dict:
         """Override fields that LLMs consistently misclassify for well-known licenses."""
         overrides = _KNOWN_OVERRIDES.get(license_id)
@@ -761,17 +809,23 @@ class PolicyDataGenerator:
 
             spdx_meta = license_data.get("spdx_data", {})
             compat_rules = license_data.get("compatibility_rules", {})
-            obligs = obligation_database.get("licenses", {}).get(license_id, {})
+            category = license_data.get("category", "permissive")
+            conditions = license_data.get("conditions", {})
+            permissions = license_data.get("permissions", {})
+
+            obligations, key_requirements = self._derive_obligations(
+                license_id, category, conditions, permissions
+            )
 
             # Use the same schema as existing files (license wrapper, type/properties/requirements)
             license_file_data = {
                 "license": {
                     "id": license_id,
                     "name": license_data.get("name", license_id),
-                    "type": license_data.get("category", "permissive"),
+                    "type": category,
                     "spdx_id": license_id,
-                    "properties": license_data.get("permissions", {}),
-                    "requirements": license_data.get("conditions", {}),
+                    "properties": permissions,
+                    "requirements": conditions,
                     "limitations": license_data.get("limitations", {}),
                     "compatibility": {
                         "static_linking": compat_rules.get("static_linking", {}),
@@ -779,8 +833,8 @@ class PolicyDataGenerator:
                         "contamination_effect": compat_rules.get("contamination_effect", "unknown"),
                         "notes": compat_rules.get("notes", ""),
                     },
-                    "obligations": obligs.get("obligations", license_data.get("obligations", [])),
-                    "key_requirements": obligs.get("key_requirements", license_data.get("key_requirements", [])),
+                    "obligations": obligations,
+                    "key_requirements": key_requirements,
                     "spdx_metadata": {
                         "is_osi_approved": spdx_meta.get("isOsiApproved", False),
                         "is_fsf_libre": spdx_meta.get("isFsfLibre", False),
