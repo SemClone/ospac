@@ -1,0 +1,215 @@
+name: SPDX License Sync
+
+on:
+  schedule:
+    - cron: '0 2 1 * *'   # First of every month at 02:00 UTC
+  workflow_dispatch:
+    inputs:
+      force_reprocess:
+        description: 'Reprocess all licenses (ignore existing data)'
+        type: boolean
+        default: false
+      limit:
+        description: 'Limit number of new licenses to process (0 = no limit)'
+        type: number
+        default: 0
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install OSPAC and dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[llm]" 2>/dev/null || pip install -e . anthropic
+
+      - name: Check SPDX upstream state
+        id: spdx-check
+        run: |
+          python3 - <<'EOF'
+          import json, urllib.request, os, sys
+
+          url = "https://raw.githubusercontent.com/spdx/license-list-data/main/json/licenses.json"
+          with urllib.request.urlopen(url) as r:
+              upstream = json.load(r)
+
+          version = upstream.get("licenseListVersion", "unknown")
+          release_date = upstream.get("releaseDate", "")
+          upstream_ids = {l["licenseId"] for l in upstream["licenses"]}
+          deprecated_ids = {l["licenseId"] for l in upstream["licenses"] if l.get("isDeprecatedLicenseId")}
+
+          import pathlib
+          json_dir = pathlib.Path("ospac/data/licenses/json")
+          existing_ids = {p.stem for p in json_dir.glob("*.json")} if json_dir.exists() else set()
+
+          new_ids = sorted(upstream_ids - existing_ids)
+          unflagged_deprecated = sorted(deprecated_ids & existing_ids)
+
+          # Check if any existing files are missing the deprecated flag
+          needs_flag = []
+          for lid in unflagged_deprecated:
+              p = json_dir / f"{lid}.json"
+              if p.exists():
+                  d = json.load(open(p))
+                  if not d.get("license", {}).get("spdx_metadata", {}).get("is_deprecated"):
+                      needs_flag.append(lid)
+
+          print(f"SPDX version: {version} ({release_date})")
+          print(f"Upstream: {len(upstream_ids)} licenses | OSPAC: {len(existing_ids)} licenses")
+          print(f"New licenses: {len(new_ids)}: {new_ids}")
+          print(f"Deprecated needing flag update: {len(needs_flag)}")
+
+          env = os.environ["GITHUB_OUTPUT"]
+          with open(env, "a") as f:
+              f.write(f"spdx_version={version}\n")
+              f.write(f"new_count={len(new_ids)}\n")
+              f.write(f"deprecated_flag_count={len(needs_flag)}\n")
+              has_work = "true" if (new_ids or needs_flag) else "false"
+              f.write(f"has_work={has_work}\n")
+
+          # Write list of new IDs for use in summary
+          with open("/tmp/spdx_new_ids.json", "w") as f:
+              json.dump(new_ids, f)
+          with open("/tmp/spdx_needs_flag.json", "w") as f:
+              json.dump(needs_flag, f)
+          EOF
+
+      - name: Run OSPAC data generation
+        if: steps.spdx-check.outputs.has_work == 'true' || github.event.inputs.force_reprocess == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          FORCE_FLAG=""
+          LIMIT_FLAG=""
+
+          if [ "${{ github.event.inputs.force_reprocess }}" = "true" ]; then
+            FORCE_FLAG="--force-reprocess"
+          fi
+
+          LIMIT="${{ github.event.inputs.limit }}"
+          if [ -n "$LIMIT" ] && [ "$LIMIT" != "0" ]; then
+            LIMIT_FLAG="--limit $LIMIT"
+          fi
+
+          ospac data generate \
+            --output-dir ospac/data \
+            --use-llm \
+            --llm-provider claude \
+            --force \
+            $FORCE_FLAG \
+            $LIMIT_FLAG
+
+      - name: Validate generated data
+        if: steps.spdx-check.outputs.has_work == 'true' || github.event.inputs.force_reprocess == 'true'
+        run: |
+          python3 - <<'EOF'
+          import json, pathlib, sys
+
+          json_dir = pathlib.Path("ospac/data/licenses/json")
+          files = list(json_dir.glob("*.json"))
+          errors = []
+
+          # Core fields every license file must have (spdx_metadata is new — gradual rollout)
+          required_fields = {"id", "name", "type", "properties", "requirements",
+                             "limitations", "compatibility", "obligations"}
+
+          for p in files:
+              try:
+                  d = json.load(open(p))
+                  lic = d.get("license", {})
+                  missing = required_fields - set(lic.keys())
+                  if missing:
+                      errors.append(f"{p.stem}: missing fields {missing}")
+
+                  # Validate known licenses
+                  if p.stem == "Apache-2.0":
+                      if not lic.get("properties", {}).get("patent_grant"):
+                          errors.append("Apache-2.0: patent_grant should be true")
+                      if lic.get("requirements", {}).get("same_license"):
+                          errors.append("Apache-2.0: same_license should be false")
+                      if lic.get("requirements", {}).get("disclose_source"):
+                          errors.append("Apache-2.0: disclose_source should be false")
+
+              except json.JSONDecodeError as e:
+                  errors.append(f"{p.stem}: invalid JSON — {e}")
+
+          if errors:
+              print(f"VALIDATION ERRORS ({len(errors)}):")
+              for e in errors:
+                  print(f"  - {e}")
+              sys.exit(1)
+          else:
+              print(f"Validation passed: {len(files)} license files OK")
+          EOF
+
+      - name: Build change summary
+        id: summary
+        if: always()
+        run: |
+          python3 - <<'EOF'
+          import json, pathlib, subprocess, os
+
+          new_ids = json.load(open("/tmp/spdx_new_ids.json")) if pathlib.Path("/tmp/spdx_new_ids.json").exists() else []
+          needs_flag = json.load(open("/tmp/spdx_needs_flag.json")) if pathlib.Path("/tmp/spdx_needs_flag.json").exists() else []
+
+          result = subprocess.run(["git", "diff", "--name-only", "ospac/data/"], capture_output=True, text=True)
+          changed_files = [l for l in result.stdout.strip().split("\n") if l]
+
+          lines = ["## SPDX Sync Summary\n"]
+          lines.append(f"**SPDX version**: `{os.environ.get('SPDX_VERSION', 'unknown')}`\n")
+
+          if new_ids:
+              lines.append(f"\n### New licenses ({len(new_ids)})\n")
+              for lid in new_ids:
+                  lines.append(f"- `{lid}`")
+
+          if needs_flag:
+              lines.append(f"\n### Deprecated licenses flagged ({len(needs_flag)})\n")
+              for lid in needs_flag[:20]:
+                  lines.append(f"- `{lid}`")
+              if len(needs_flag) > 20:
+                  lines.append(f"- _(and {len(needs_flag) - 20} more)_")
+
+          if changed_files:
+              lines.append(f"\n### Files changed: {len(changed_files)}\n")
+
+          body = "\n".join(lines)
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"pr_body<<BODY\n{body}\nBODY\n")
+          EOF
+        env:
+          SPDX_VERSION: ${{ steps.spdx-check.outputs.spdx_version }}
+
+      - name: Check for data changes
+        id: git-check
+        run: |
+          git diff --quiet ospac/data/ && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Create pull request
+        if: steps.git-check.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "data: sync SPDX ${{ steps.spdx-check.outputs.spdx_version }} — ${{ steps.spdx-check.outputs.new_count }} new, ${{ steps.spdx-check.outputs.deprecated_flag_count }} deprecated"
+          branch: "data/spdx-sync-${{ steps.spdx-check.outputs.spdx_version }}"
+          delete-branch: true
+          title: "data: SPDX sync ${{ steps.spdx-check.outputs.spdx_version }} (${{ steps.spdx-check.outputs.new_count }} new licenses)"
+          body: ${{ steps.summary.outputs.pr_body }}
+          labels: "data,automated"
+
+      - name: No changes detected
+        if: steps.git-check.outputs.changed == 'false'
+        run: echo "OSPAC data is already up to date with SPDX ${{ steps.spdx-check.outputs.spdx_version }}"

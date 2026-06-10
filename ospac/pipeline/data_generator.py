@@ -184,12 +184,17 @@ class PolicyDataGenerator:
         if force:
             return all_licenses
 
-        # Filter out already processed licenses
-        licenses_to_process = []
-        for license_data in all_licenses:
-            license_id = license_data.get('licenseId', license_data.get('id', ''))
-            if license_id not in self.processed_licenses:
-                licenses_to_process.append(license_data)
+        # Use existing JSON files as the source of truth, not the transient progress file
+        licenses_json_dir = self.output_dir / "licenses" / "json"
+        existing_ids = (
+            {p.stem for p in licenses_json_dir.glob("*.json")}
+            if licenses_json_dir.exists() else set()
+        )
+
+        licenses_to_process = [
+            l for l in all_licenses
+            if l.get("licenseId", l.get("id", "")) not in existing_ids
+        ]
 
         logger.info(f"Found {len(licenses_to_process)} new licenses to process out of {len(all_licenses)} total")
         return licenses_to_process
@@ -213,6 +218,11 @@ class PolicyDataGenerator:
         logger.info("Downloading SPDX license data...")
         spdx_data = self.spdx_processor.download_spdx_data(force=force_download)
         all_licenses = spdx_data["licenses"]
+
+        # Step 1b: Flag any newly-deprecated licenses in existing data (no LLM needed)
+        deprecated_updated = self.update_deprecated_licenses(all_licenses)
+        if deprecated_updated:
+            logger.info(f"Flagged {len(deprecated_updated)} licenses as deprecated")
 
         # Step 2: Determine which licenses need processing (delta processing)
         licenses_to_process = self._get_licenses_to_process(all_licenses, force_reprocess)
@@ -279,9 +289,14 @@ class PolicyDataGenerator:
         compatibility_matrix = self._generate_compatibility_matrix(converted_all)
         obligation_database = self._generate_obligation_database(converted_all)
 
-        # Step 5: Generate modular per-license files and index
+        # Step 5: Generate modular per-license files and rebuild the full index
         logger.info("Generating modular per-license files...")
-        self._generate_modular_license_files(converted_all, compatibility_matrix, obligation_database)
+        self._generate_modular_license_files(
+            converted_all, compatibility_matrix, obligation_database,
+            spdx_version=spdx_data.get("version", "")
+        )
+        # Rebuild index from ALL on-disk files so delta runs don't truncate the index
+        self._rebuild_index_from_files(spdx_version=spdx_data.get("version", ""))
 
         # Skip legacy master database generation - using modular files only
 
@@ -412,49 +427,69 @@ class PolicyDataGenerator:
         return full_matrix
 
     def _check_license_compatibility(self, license1: Dict, license2: Dict) -> Dict[str, Any]:
-        """Check compatibility between two licenses."""
-        cat1 = license1.get("category", "permissive")
+        """
+        Derive compatibility between two licenses.
+
+        Uses the LLM-generated compatibility_rules from license1 when available,
+        falling back to category-level inference only when the specific pair is unlisted.
+        """
+        id2 = license2.get("license_id", "")
         cat2 = license2.get("category", "permissive")
+        rules = license1.get("compatibility_rules", {})
 
-        # Basic compatibility rules
-        compatibility = {
-            "static_linking": "unknown",
-            "dynamic_linking": "unknown",
-            "distribution": "unknown"
-        }
+        def resolve(section_key: str) -> str:
+            section = rules.get(section_key, {})
+            compatible = section.get("compatible_with", [])
+            incompatible = section.get("incompatible_with", [])
+            review = section.get("requires_review", [])
 
-        # Permissive licenses are generally compatible
-        if cat1 == "permissive" and cat2 == "permissive":
-            compatibility = {
-                "static_linking": "compatible",
-                "dynamic_linking": "compatible",
-                "distribution": "compatible"
-            }
+            if id2 in compatible:
+                return "compatible"
+            if id2 in incompatible:
+                return "incompatible"
+            if id2 in review:
+                return "review_required"
 
-        # Strong copyleft contamination
-        elif cat1 == "copyleft_strong" or cat2 == "copyleft_strong":
-            if cat1 == cat2:
-                compatibility = {
-                    "static_linking": "compatible",
-                    "dynamic_linking": "compatible",
-                    "distribution": "compatible"
-                }
+            # Resolve category-based wildcards
+            for entry in compatible:
+                if entry == "category:any":
+                    return "compatible"
+                if entry == f"category:{cat2}":
+                    return "compatible"
+            for entry in incompatible:
+                if entry == f"category:{cat2}":
+                    return "incompatible"
+
+            return None  # not specified — fall through to category logic
+
+        static = resolve("static_linking")
+        dynamic = resolve("dynamic_linking")
+
+        # Category-level fallback for any dimension not covered by LLM rules
+        if static is None or dynamic is None:
+            cat1 = license1.get("category", "permissive")
+            if cat1 == "permissive" and cat2 == "permissive":
+                fallback_static, fallback_dynamic = "compatible", "compatible"
+            elif cat1 == "copyleft_strong" or cat2 == "copyleft_strong":
+                if cat1 == cat2:
+                    fallback_static, fallback_dynamic = "compatible", "compatible"
+                else:
+                    fallback_static, fallback_dynamic = "incompatible", "review_required"
+            elif cat1 == "copyleft_weak" or cat2 == "copyleft_weak":
+                fallback_static, fallback_dynamic = "review_required", "compatible"
             else:
-                compatibility = {
-                    "static_linking": "incompatible",
-                    "dynamic_linking": "review_required",
-                    "distribution": "incompatible"
-                }
+                fallback_static, fallback_dynamic = "unknown", "unknown"
 
-        # Weak copyleft
-        elif cat1 == "copyleft_weak" or cat2 == "copyleft_weak":
-            compatibility = {
-                "static_linking": "review_required",
-                "dynamic_linking": "compatible",
-                "distribution": "compatible"
-            }
+            if static is None:
+                static = fallback_static
+            if dynamic is None:
+                dynamic = fallback_dynamic
 
-        return compatibility
+        return {
+            "static_linking": static,
+            "dynamic_linking": dynamic,
+            "distribution": dynamic,
+        }
 
     def _generate_obligation_database(self, licenses: List[Dict[str, Any]]) -> Dict[str, Any]:
         """Generate obligation database."""
@@ -570,110 +605,169 @@ class PolicyDataGenerator:
 
         return report
 
+    def update_deprecated_licenses(self, spdx_licenses: List[Dict[str, Any]]) -> List[str]:
+        """
+        Stamp any existing per-license JSON files whose SPDX entry is now marked deprecated.
+        Returns the list of license IDs that were updated.
+        """
+        licenses_json_dir = self.output_dir / "licenses" / "json"
+        if not licenses_json_dir.exists():
+            return []
+
+        deprecated_ids = {
+            l.get("licenseId") for l in spdx_licenses
+            if l.get("isDeprecatedLicenseId", False) and l.get("licenseId")
+        }
+
+        updated = []
+        for license_id in deprecated_ids:
+            json_path = licenses_json_dir / f"{license_id}.json"
+            if not json_path.exists():
+                continue
+
+            with open(json_path) as f:
+                data = json.load(f)
+
+            spdx_meta = data.get("license", {}).get("spdx_metadata", {})
+            if spdx_meta.get("is_deprecated"):
+                continue  # already flagged
+
+            data.setdefault("license", {}).setdefault("spdx_metadata", {})["is_deprecated"] = True
+            with open(json_path, "w") as f:
+                json.dump(data, f, indent=2)
+
+            updated.append(license_id)
+            logger.info(f"Flagged as deprecated: {license_id}")
+
+        if updated:
+            logger.info(f"Updated deprecated flag on {len(updated)} licenses")
+        return updated
+
+    def _generate_summary(self, all_licenses: List[Dict]) -> Dict[str, Any]:
+        """Return a lightweight summary when no new licenses needed processing."""
+        licenses_json_dir = self.output_dir / "licenses" / "json"
+        existing_count = len(list(licenses_json_dir.glob("*.json"))) if licenses_json_dir.exists() else 0
+        return {
+            "total_licenses": existing_count,
+            "new_licenses_processed": 0,
+            "message": "All licenses already up to date",
+        }
+
     def _cleanup_temporary_files(self) -> None:
-        """Clean up temporary/intermediate files to prepare data for packaging."""
+        """Remove intermediate files produced during generation, keeping final artifacts."""
         import shutil
-        import logging
 
-        logger = logging.getLogger(__name__)
-        logger.info("Cleaning up temporary and intermediate files...")
+        logger.info("Cleaning up intermediate files...")
 
-        files_to_remove = [
-            # Generation tracking files (not needed in package)
+        # Transient files that are inputs/logs, not outputs
+        for filename in [
             "generation_progress.json",
             "generation_summary.json",
-            # Legacy files no longer needed with modular approach
             "ospac_license_database.yaml",
             "ospac_license_database.json",
             "obligation_database.json",
             "compatibility_matrix.json",
-        ]
-
-        directories_to_remove = [
-            # Empty obligations directory
-            "obligations",
-            # Old split compatibility matrix (replaced by obligation-based compatibility)
-            "compatibility",
-        ]
-
-        # Remove unnecessary files
-        for filename in files_to_remove:
-            file_path = self.output_dir / filename
-            if file_path.exists():
-                file_path.unlink()
+        ]:
+            p = self.output_dir / filename
+            if p.exists():
+                p.unlink()
                 logger.info(f"Removed: {filename}")
 
-        # Remove unnecessary directories
-        for dirname in directories_to_remove:
-            dir_path = self.output_dir / dirname
-            if dir_path.exists():
-                shutil.rmtree(dir_path)
+        # YAML intermediate files (superseded by licenses/json/)
+        for dirname in ["obligations", "licenses/spdx"]:
+            d = self.output_dir / dirname
+            if d.exists():
+                shutil.rmtree(d)
                 logger.info(f"Removed directory: {dirname}")
 
-        # Keep only essential files:
-        # - licenses/ directory (modular per-license files with obligations)
-        # - index.json (license discovery index)
-
-        logger.info("Cleanup complete. Package-ready data contains only modular license files.")
+        # Keep: licenses/json/, index.json, compatibility/ (split matrix for runtime queries)
+        logger.info("Cleanup complete. Final artifacts: licenses/json/, index.json, compatibility/")
 
     def _generate_modular_license_files(self, licenses: List[Dict[str, Any]],
                                       compatibility_matrix: Dict[str, Any],
-                                      obligation_database: Dict[str, Any]) -> None:
+                                      obligation_database: Dict[str, Any],
+                                      spdx_version: str = "") -> None:
         """Generate individual license files with obligations and compatibility data."""
-        licenses_dir = self.output_dir / "licenses"
-        licenses_dir.mkdir(parents=True, exist_ok=True)
+        # Write to licenses/json/ to match the established on-disk layout
+        licenses_json_dir = self.output_dir / "licenses" / "json"
+        licenses_json_dir.mkdir(parents=True, exist_ok=True)
 
-        # Create index for license discovery
-        index = {
-            "version": "1.0",
-            "generated": datetime.now().isoformat(),
-            "total_licenses": len(licenses),
-            "licenses": {}
-        }
+        generated_at = datetime.now().isoformat()
 
         for license_data in licenses:
             license_id = license_data.get("license_id")
             if not license_id:
                 continue
 
-            # Note: Compatibility will be calculated on-demand by comparing obligations
-            # No need to store massive pre-computed compatibility matrices
+            spdx_meta = license_data.get("spdx_data", {})
+            compat_rules = license_data.get("compatibility_rules", {})
+            obligs = obligation_database.get("licenses", {}).get(license_id, {})
 
-            # Create per-license file
+            # Use the same schema as existing files (license wrapper, type/properties/requirements)
             license_file_data = {
-                "id": license_id,
-                "name": license_data.get("name", license_id),
-                "category": license_data.get("category"),
-                "obligations": obligation_database["licenses"].get(license_id, {}).get("obligations", []),
-                "key_requirements": obligation_database["licenses"].get(license_id, {}).get("key_requirements", []),
-                "permissions": license_data.get("permissions", {}),
-                "conditions": license_data.get("conditions", {}),
-                "limitations": license_data.get("limitations", {}),
-                # Compatibility calculated on-demand by comparing obligations
-                "spdx_metadata": {
-                    "is_osi_approved": license_data.get("spdx_data", {}).get("isOsiApproved", False),
-                    "is_fsf_libre": license_data.get("spdx_data", {}).get("isFsfLibre", False),
-                    "is_deprecated": license_data.get("spdx_data", {}).get("isDeprecatedLicenseId", False)
-                },
-                "generated": datetime.now().isoformat()
+                "license": {
+                    "id": license_id,
+                    "name": license_data.get("name", license_id),
+                    "type": license_data.get("category", "permissive"),
+                    "spdx_id": license_id,
+                    "properties": license_data.get("permissions", {}),
+                    "requirements": license_data.get("conditions", {}),
+                    "limitations": license_data.get("limitations", {}),
+                    "compatibility": {
+                        "static_linking": compat_rules.get("static_linking", {}),
+                        "dynamic_linking": compat_rules.get("dynamic_linking", {}),
+                        "contamination_effect": compat_rules.get("contamination_effect", "unknown"),
+                        "notes": compat_rules.get("notes", ""),
+                    },
+                    "obligations": obligs.get("obligations", license_data.get("obligations", [])),
+                    "key_requirements": obligs.get("key_requirements", license_data.get("key_requirements", [])),
+                    "spdx_metadata": {
+                        "is_osi_approved": spdx_meta.get("isOsiApproved", False),
+                        "is_fsf_libre": spdx_meta.get("isFsfLibre", False),
+                        "is_deprecated": spdx_meta.get("isDeprecatedLicenseId", False),
+                    },
+                    "generated": generated_at,
+                    "spdx_list_version": spdx_version,
+                }
             }
 
-            # Save individual license file
-            license_file = licenses_dir / f"{license_id}.json"
+            license_file = licenses_json_dir / f"{license_id}.json"
             with open(license_file, "w") as f:
                 json.dump(license_file_data, f, indent=2)
 
-            # Add to index
-            index["licenses"][license_id] = {
-                "name": license_data.get("name", license_id),
-                "category": license_data.get("category"),
-                "file": f"licenses/{license_id}.json",
-                "obligations_count": len(license_file_data["obligations"])
-            }
+        logger.info(f"Wrote {len(licenses)} license files to {licenses_json_dir}")
+        # Index is rebuilt from ALL files after the delta — see _rebuild_index_from_files
 
-        # Save index file
+    def _rebuild_index_from_files(self, spdx_version: str = "") -> None:
+        """Build index.json from ALL license JSON files on disk, not just the current batch."""
+        licenses_json_dir = self.output_dir / "licenses" / "json"
+        index = {
+            "version": "1.0",
+            "generated": datetime.now().isoformat(),
+            "spdx_list_version": spdx_version,
+            "total_licenses": 0,
+            "licenses": {},
+        }
+
+        for p in sorted(licenses_json_dir.glob("*.json")):
+            try:
+                with open(p) as f:
+                    d = json.load(f)
+                lic = d.get("license", {})
+                lid = lic.get("id") or p.stem
+                index["licenses"][lid] = {
+                    "name": lic.get("name", lid),
+                    "category": lic.get("type", "unknown"),
+                    "file": f"licenses/json/{p.name}",
+                    "is_deprecated": lic.get("spdx_metadata", {}).get("is_deprecated", False),
+                    "obligations_count": len(lic.get("obligations", [])),
+                }
+            except Exception as e:
+                logger.warning(f"Skipping {p.name} in index rebuild: {e}")
+
+        index["total_licenses"] = len(index["licenses"])
         index_file = self.output_dir / "index.json"
         with open(index_file, "w") as f:
             json.dump(index, f, indent=2)
 
-        logger.info(f"Generated {len(licenses)} modular license files and index")
+        logger.info(f"Rebuilt index.json: {index['total_licenses']} licenses, SPDX {spdx_version}")
