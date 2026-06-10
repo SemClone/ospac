@@ -30,9 +30,10 @@
     },
     "id": "Apache-2.0",
     "key_requirements": [
-      "Include a copy of this license in your derivative work.",
-      "Maintain the Source form of any Work that you modify by making available for download or otherwise the full source code of the modified Work, and provide an adequate mechanism to obtain copies of the modified Work",
-      "You may choose to offer, and MUST offer, that Source form on the same medium from which you distributed the Object form of the Work,"
+      "Retain all copyright, patent, trademark, and attribution notices",
+      "Include a copy of this license with every distribution",
+      "Mark modified files as changed",
+      "Include a NOTICE file if the original contained one"
     ],
     "limitations": {
       "liability": true,
@@ -41,22 +42,25 @@
     },
     "name": "Apache-2.0",
     "obligations": [
-      "You must retain the copyright notice and one or more statements of acknowledgment, if applicable, for any modified version."
+      "Include a copy of the Apache-2.0 license",
+      "Retain all notices (copyright, patent, trademark, attribution)",
+      "Mark modified files",
+      "Include NOTICE file if present in original"
     ],
     "properties": {
       "commercial_use": true,
       "distribution": true,
       "modification": true,
-      "patent_grant": false,
+      "patent_grant": true,
       "private_use": true
     },
     "requirements": {
-      "disclose_source": true,
+      "disclose_source": false,
       "include_copyright": true,
       "include_license": true,
       "include_notice": true,
       "network_use_disclosure": false,
-      "same_license": true,
+      "same_license": false,
       "state_changes": false
     },
     "spdx_id": "Apache-2.0",
