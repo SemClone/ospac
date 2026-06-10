@@ -1,7 +1,7 @@
 {
   "license": {
     "id": "StandardML-NJ",
-    "name": "StandardML-NJ",
+    "name": "Standard ML of New Jersey License",
     "type": "permissive",
     "spdx_id": "StandardML-NJ",
     "properties": {
@@ -13,81 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": true,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": false
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": true
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "Apache-2.0",
-          "Zlib",
-          "Public Domain"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0",
-          "CC BY-SA"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "Apache-2.0",
-          "Zlib",
-          "Public Domain"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0",
-          "CC BY-SA"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "The StandardML-NJ license is permissive and allows for wide compatibility with other permissive licenses. However, care should be taken when combining with copyleft licenses, as they may impose additional restrictions."
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Include the copyright notice in all copies of the software.",
-      "Include the permission notice and warranty disclaimer in supporting documentation.",
-      "Do not use the names of Lucent Technologies, Bell Labs, or any Lucent entity in advertising or publicity without prior written permission."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Retain copyright notice in all copies.",
-      "Retain permission notice and warranty disclaimer in documentation."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
-      "is_fsf_libre": false,
+      "is_fsf_libre": true,
       "is_deprecated": true
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

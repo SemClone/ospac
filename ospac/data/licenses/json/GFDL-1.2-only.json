@@ -1,8 +1,8 @@
 {
   "license": {
     "id": "GFDL-1.2-only",
-    "name": "GFDL-1.2-only",
-    "type": "copyleft_strong",
+    "name": "GNU Free Documentation License v1.2 only",
+    "type": "permissive",
     "spdx_id": "GFDL-1.2-only",
     "properties": {
       "commercial_use": true,
@@ -12,70 +12,50 @@
       "private_use": true
     },
     "requirements": {
-      "disclose_source": true,
-      "include_copyright": true,
+      "disclose_source": false,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": true,
-      "state_changes": true
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
+      "same_license": false,
+      "network_use_disclosure": false
     },
     "limitations": {
       "liability": false,
-      "trademark_use": false,
-      "warranty": false
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-3.0"
+          "category:any"
         ],
-        "incompatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-3.0"
+          "category:any"
         ],
-        "incompatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
-      "contamination_effect": "full",
-      "notes": "The GFDL-1.2-only license has a strong copyleft effect, meaning that any derivative work must also be licensed under GFDL-1.2. This can lead to incompatibility with permissive licenses."
+      "contamination_effect": "none",
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Must include a copy of the license when distributing the document.",
-      "Must state changes made to the original document.",
-      "Must keep the document under the same license if modified."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "The document must contain a notice that it is licensed under the GFDL.",
-      "Any modified version must also be free and carry the same license."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
-      "is_fsf_libre": false,
+      "is_fsf_libre": true,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

@@ -1,7 +1,7 @@
 {
   "license": {
     "id": "OFL-1.1-no-RFN",
-    "name": "OFL-1.1-no-RFN",
+    "name": "SIL Open Font License 1.1 with no Reserved Font Name",
     "type": "permissive",
     "spdx_id": "OFL-1.1-no-RFN",
     "properties": {
@@ -13,73 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": true,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": true,
-      "state_changes": false
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
+      "same_license": false,
+      "network_use_disclosure": false
     },
     "limitations": {
       "liability": false,
-      "trademark_use": true,
-      "warranty": false
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "OFL-1.1"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "OFL-1.1"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "The OFL-1.1-no-RFN license is designed to be permissive and does not impose copyleft restrictions. However, care should be taken when combining with licenses that have strong copyleft provisions."
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Fonts cannot be sold by themselves.",
-      "Include the copyright notice and license in each copy of the Font Software.",
-      "Do not use Reserved Font Names for Modified Versions without permission."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Fonts and derivatives must remain under the Open Font License.",
-      "Acknowledgment of the Copyright Holder(s) and Author(s) is required when promoting Modified Versions."
+      "Attribution required"
     ],
     "spdx_metadata": {
-      "is_osi_approved": false,
+      "is_osi_approved": true,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

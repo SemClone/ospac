@@ -1,8 +1,8 @@
 {
   "license": {
     "id": "AMD-newlib",
-    "name": "AMD-newlib",
-    "type": "proprietary",
+    "name": "AMD newlib License",
+    "type": "permissive",
     "spdx_id": "AMD-newlib",
     "properties": {
       "commercial_use": true,
@@ -13,61 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
+      "include_license": true,
       "include_copyright": true,
-      "include_license": false,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": false
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "Apache-2.0",
-          "MIT",
-          "proprietary"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL",
-          "LGPL",
-          "AGPL"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "Apache-2.0",
-          "MIT",
-          "proprietary"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL",
-          "LGPL",
-          "AGPL"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
-      "contamination_effect": "module",
-      "notes": "This license is only compatible with proprietary software. Any modification or redistribution of the licensed code may require written permission from AMD."
+      "contamination_effect": "none",
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Include the notice that states 'This software is the property of Advanced Micro Devices, Inc (AMD) which specifically grants the user the right to modify, use and distribute this software provided this notice is not removed or altered.'",
-      "Do not remove or alter the notice"
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Include the notice in any distribution or modification of the software"
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

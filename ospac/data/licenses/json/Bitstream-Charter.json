@@ -1,7 +1,7 @@
 {
   "license": {
     "id": "Bitstream-Charter",
-    "name": "Bitstream-Charter",
+    "name": "Bitstream Charter Font License",
     "type": "permissive",
     "spdx_id": "Bitstream-Charter",
     "properties": {
@@ -13,56 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": true,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": false
+      "network_use_disclosure": false
     },
     "limitations": {
       "liability": false,
-      "trademark_use": true,
-      "warranty": false
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "Apache-2.0",
-          "MIT",
-          "Permissive"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-3.0+",
-          "LGPL-3.0+",
-          "AGPL-3.0+"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "All Permissive licenses"
+          "category:any"
         ],
-        "incompatible_with": [
-          "All Copyleft licenses"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
-      "contamination_effect": "full",
-      "notes": "The Bitstream-Charter license is a permissive open-source license. It allows free use, modification and distribution of software. Derivative works must be distributed under the same or compatible licenses."
+      "contamination_effect": "none",
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Acknowledge Bitstream's trademark as shown below on all unmodified copies of the 4 Charter Type 1 fonts."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Include the license notice and acknowledge Bitstream's trademark in any modified or redistributed font copies."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

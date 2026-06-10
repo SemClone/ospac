@@ -1,8 +1,8 @@
 {
   "license": {
     "id": "CC-BY-SA-1.0",
-    "name": "CC-BY-SA-1.0",
-    "type": "copyleft_weak",
+    "name": "Creative Commons Attribution Share Alike 1.0 Generic",
+    "type": "permissive",
     "spdx_id": "CC-BY-SA-1.0",
     "properties": {
       "commercial_use": true,
@@ -12,81 +12,50 @@
       "private_use": true
     },
     "requirements": {
-      "disclose_source": true,
-      "include_copyright": true,
+      "disclose_source": false,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": true,
-      "state_changes": true
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
+      "same_license": false,
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "CC-BY",
-          "CC-BY-SA-2.0",
-          "CC-BY-SA-2.5",
-          "CC-BY-SA-3.0",
-          "CC-BY-SA-4.0",
-          "MIT",
-          "Apache-2.0"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "MPL-2.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "CC-BY",
-          "CC-BY-SA-2.0",
-          "CC-BY-SA-2.5",
-          "CC-BY-SA-3.0",
-          "CC-BY-SA-4.0",
-          "MIT",
-          "Apache-2.0"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "MPL-2.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
-      "contamination_effect": "derivative",
-      "notes": "CC-BY-SA-1.0 has a weak copyleft nature, meaning that while it allows for integration with other licenses, any derivative works must also be shared under the same license. Care should be taken when combining with strong copyleft licenses like GPL."
+      "contamination_effect": "none",
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Attribution to the original author is required.",
-      "Share derivative works under the same license (ShareAlike).",
-      "Include a copy of the license when distributing the work."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Must provide appropriate credit to the original author.",
-      "Must indicate if changes were made to the original work.",
-      "Must distribute derivative works under the same license."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

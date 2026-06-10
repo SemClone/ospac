@@ -1,7 +1,7 @@
 {
   "license": {
     "id": "HPND-Fenneberg-Livingston",
-    "name": "HPND-Fenneberg-Livingston",
+    "name": "Historical Permission Notice and Disclaimer - Fenneberg-Livingston variant",
     "type": "permissive",
     "spdx_id": "HPND-Fenneberg-Livingston",
     "properties": {
@@ -13,74 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": true,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": false
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": true
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "Zlib",
-          "Public Domain"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "Zlib",
-          "Public Domain"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "The HPND-Fenneberg-Livingston license is permissive and allows for integration with other permissive licenses without imposing restrictions."
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Include the copyright and permission notice in all copies and supporting documentation.",
-      "Do not use the name of Lars Fenneberg in advertising or publicity without specific prior permission.",
-      "Provide notice in supporting documentation that copying and distribution is by permission of Lars Fenneberg."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Retain copyright notice in all copies.",
-      "Include permission notice in all copies.",
-      "Do not use the author's name for promotion without permission."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

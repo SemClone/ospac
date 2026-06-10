@@ -1,8 +1,8 @@
 {
   "license": {
     "id": "LiLiQ-R-1.1",
-    "name": "LiLiQ-R-1.1",
-    "type": "copyleft_strong",
+    "name": "Licence Libre du Qu\u00e9bec \u2013 R\u00e9ciprocit\u00e9 version 1.1",
+    "type": "permissive",
     "spdx_id": "LiLiQ-R-1.1",
     "properties": {
       "commercial_use": true,
@@ -12,69 +12,50 @@
       "private_use": true
     },
     "requirements": {
-      "disclose_source": true,
-      "include_copyright": true,
+      "disclose_source": false,
       "include_license": true,
+      "include_copyright": true,
       "include_notice": false,
-      "network_use_disclosure": false,
-      "same_license": true,
-      "state_changes": true
+      "state_changes": false,
+      "same_license": false,
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": false
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "LiLiQ-R-1.1",
-          "GPL-3.0",
-          "AGPL-3.0"
+          "category:any"
         ],
-        "incompatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "requires_review": [
-          "LGPL-3.0",
-          "MPL-2.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "LiLiQ-R-1.1",
-          "GPL-3.0",
-          "AGPL-3.0"
+          "category:any"
         ],
-        "incompatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "requires_review": [
-          "LGPL-3.0",
-          "MPL-2.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
-      "contamination_effect": "full",
-      "notes": "LiLiQ-R-1.1 has a strong copyleft nature, meaning that any derivative works or combined works must also be licensed under LiLiQ-R-1.1. This can lead to compatibility issues with permissive licenses."
+      "contamination_effect": "none",
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Distribute the software with a copy of this license.",
-      "If modifications are made, the modified software must be accompanied by a statement of changes."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "The source code must be made available when distributing the software.",
-      "The license must be included with any distribution of the software."
+      "Attribution required"
     ],
     "spdx_metadata": {
-      "is_osi_approved": false,
+      "is_osi_approved": true,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

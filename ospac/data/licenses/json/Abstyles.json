@@ -1,8 +1,8 @@
 {
   "license": {
     "id": "Abstyles",
-    "name": "Abstyles",
-    "type": "permissive|public_domain",
+    "name": "Abstyles License",
+    "type": "permissive",
     "spdx_id": "Abstyles",
     "properties": {
       "commercial_use": true,
@@ -13,63 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": true,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": false
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "Public Domain",
-          "Permissive"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL",
-          "LGPL",
-          "MIT",
-          "Apache-2.0",
-          "Creative Commons BY-NC-SA"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "Permissive",
-          "Public Domain"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL",
-          "LGPL",
-          "MIT",
-          "Apache-2.0",
-          "Creative Commons BY-NC-SA"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
-      "contamination_effect": "full",
-      "notes": "This license is very permissive and can be used with most other licenses without issue. However, it's always a good idea to check for any specific requirements or restrictions."
+      "contamination_effect": "none",
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Preserve the copyright notice and permission notice on all copies."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Include a permission notice identical to this one in derived works.",
-      "Comply with the same terms for verbatim copying or modified versions."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

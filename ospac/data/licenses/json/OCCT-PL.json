@@ -1,83 +1,61 @@
 {
   "license": {
     "id": "OCCT-PL",
-    "name": "OCCT-PL",
+    "name": "Open CASCADE Technology Public License",
     "type": "permissive",
     "spdx_id": "OCCT-PL",
     "properties": {
       "commercial_use": true,
       "distribution": true,
       "modification": true,
-      "patent_grant": true,
+      "patent_grant": false,
       "private_use": true
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": true,
       "include_license": true,
+      "include_copyright": true,
       "include_notice": false,
-      "network_use_disclosure": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": true
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": false
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "ISC"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "ISC"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "OCCT-PL is a permissive license, allowing for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses like GPL."
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "You must include a copy of this license with any distribution of the software.",
-      "You must include a copyright notice when redistributing the software.",
-      "You must state any changes made to the original software."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Accept the terms of the license before downloading or using the software.",
-      "Do not infringe on any patents or other property rights."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

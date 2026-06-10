@@ -1,7 +1,7 @@
 {
   "license": {
     "id": "3D-Slicer-1.0",
-    "name": "3D-Slicer-1.0",
+    "name": "3D Slicer License v1.0",
     "type": "permissive",
     "spdx_id": "3D-Slicer-1.0",
     "properties": {
@@ -13,64 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": true,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": false
+      "network_use_disclosure": false
     },
     "limitations": {
       "liability": false,
-      "trademark_use": false,
-      "warranty": false
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "GPL-3.0",
-          "Apache-2.0",
-          "MIT",
-          "Permissive"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "AGPL-3.0",
-          "LGPL-3.0"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "GPL-3.0",
-          "Apache-2.0",
-          "MIT",
-          "Permissive"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "AGPL-3.0",
-          "LGPL-3.0"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "This license allows for static linking with other permissive licenses, and dynamic linking with most licenses. It is not compatible with GPL-2.0 or its variants."
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "You must include all paragraphs of Part B of this Agreement with and apply to the Software if you distribute it.",
-      "You represent that you are legally authorized and entitled to make a Contribution to Slicer and to grant all licenses granted in this Contribution Agreement."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "All Contributions must be properly attributed, with applicable copyright notices and licenses for any third-party software or data included in the Contribution.",
-      "Contributions may not include patient data unless it is de-identified in accordance with U.S. confidentiality and security laws and requirements."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

@@ -1,9 +1,9 @@
 {
   "Apache-2.0": {
     "ESA-PL-strong-copyleft-2.4": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CrystalStacker": {
       "static_linking": "compatible",
@@ -11,7 +11,7 @@
       "distribution": "compatible"
     },
     "NPOSL-3.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -41,8 +41,8 @@
       "distribution": "compatible"
     },
     "AGPL-3.0-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "OGTSL": {
@@ -51,9 +51,9 @@
       "distribution": "compatible"
     },
     "JPL-image": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Imlib2": {
       "static_linking": "compatible",
@@ -81,9 +81,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.3-no-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Saxpath": {
       "static_linking": "compatible",
@@ -91,9 +91,9 @@
       "distribution": "compatible"
     },
     "LZMA-SDK-9.11-to-9.20": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CAL-1.0": {
       "static_linking": "compatible",
@@ -101,9 +101,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.2-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CC-BY-3.0-NL": {
       "static_linking": "compatible",
@@ -116,9 +116,9 @@
       "distribution": "compatible"
     },
     "AML": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "VSL-1.0": {
       "static_linking": "compatible",
@@ -151,9 +151,9 @@
       "distribution": "compatible"
     },
     "LAL-1.2": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "JSON": {
       "static_linking": "compatible",
@@ -161,9 +161,9 @@
       "distribution": "compatible"
     },
     "Bahyph": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CPOL-1.02": {
       "static_linking": "compatible",
@@ -171,7 +171,7 @@
       "distribution": "compatible"
     },
     "RSCPL": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -181,7 +181,7 @@
       "distribution": "compatible"
     },
     "RPL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -196,7 +196,7 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-2.0-DE": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -226,7 +226,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-3.0-DE": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -241,34 +241,34 @@
       "distribution": "compatible"
     },
     "CECILL-2.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "Brian-Gladman-3-Clause": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Lucida-Bitmap-Fonts": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CECILL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "MPL-2.0-no-copyleft-exception": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "Parity-7.0.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "MIT-advertising": {
       "static_linking": "compatible",
@@ -291,14 +291,14 @@
       "distribution": "compatible"
     },
     "CECILL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "blessing": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "ClArtistic": {
       "static_linking": "compatible",
@@ -306,14 +306,14 @@
       "distribution": "compatible"
     },
     "LGPL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "SAX-PD-2.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "IJG": {
       "static_linking": "compatible",
@@ -326,7 +326,7 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-3.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -376,7 +376,7 @@
       "distribution": "compatible"
     },
     "CDDL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -396,14 +396,14 @@
       "distribution": "compatible"
     },
     "CC-SA-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "GPL-2.0-with-bison-exception": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "MIT-feh": {
       "static_linking": "compatible",
@@ -416,8 +416,8 @@
       "distribution": "compatible"
     },
     "GPL-1.0+": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "O-UDA-1.0": {
@@ -426,7 +426,7 @@
       "distribution": "compatible"
     },
     "LGPL-2.0-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -456,14 +456,14 @@
       "distribution": "compatible"
     },
     "AGPL-3.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "GFDL-1.2": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CC-BY-3.0-AT": {
       "static_linking": "compatible",
@@ -496,12 +496,12 @@
       "distribution": "compatible"
     },
     "RPL-1.5": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "EUPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -531,7 +531,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -541,7 +541,7 @@
       "distribution": "compatible"
     },
     "Zimbra-1.4": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -586,9 +586,9 @@
       "distribution": "compatible"
     },
     "Abstyles": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CMU-Mach": {
       "static_linking": "compatible",
@@ -656,9 +656,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.3-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "DOC": {
       "static_linking": "compatible",
@@ -716,7 +716,7 @@
       "distribution": "compatible"
     },
     "dvipdfm": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -746,9 +746,9 @@
       "distribution": "compatible"
     },
     "LGPL-2.1+": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "BSD-4-Clause-UC": {
       "static_linking": "compatible",
@@ -761,9 +761,9 @@
       "distribution": "compatible"
     },
     "LGPL-2.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "LPPL-1.1": {
       "static_linking": "compatible",
@@ -771,9 +771,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.2-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "UMich-Merit": {
       "static_linking": "compatible",
@@ -806,14 +806,14 @@
       "distribution": "compatible"
     },
     "LGPLLR": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "GFDL-1.3-invariants-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OpenPBS-2.3": {
       "static_linking": "compatible",
@@ -821,9 +821,9 @@
       "distribution": "compatible"
     },
     "D-FSL-1.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "DRL-1.1": {
       "static_linking": "compatible",
@@ -836,9 +836,9 @@
       "distribution": "compatible"
     },
     "LiLiQ-Rplus-1.1": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "BSD-3-Clause-Sun": {
       "static_linking": "compatible",
@@ -861,7 +861,7 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-3.0-IGO": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -871,7 +871,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -881,9 +881,9 @@
       "distribution": "compatible"
     },
     "PolyForm-Small-Business-1.0.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OLDAP-1.4": {
       "static_linking": "compatible",
@@ -898,17 +898,17 @@
     "CNRI-Python-GPL-Compatible": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "eCos-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "AAL": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "bzip2-1.0.6": {
       "static_linking": "compatible",
@@ -971,9 +971,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.2-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "HP-1989": {
       "static_linking": "compatible",
@@ -996,19 +996,19 @@
       "distribution": "compatible"
     },
     "GPL-2.0+": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "CC-BY-NC-ND-3.0-DE": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GFDL-1.1": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Qhull": {
       "static_linking": "compatible",
@@ -1016,9 +1016,9 @@
       "distribution": "compatible"
     },
     "FSFUL": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Brian-Gladman-2-Clause": {
       "static_linking": "compatible",
@@ -1026,7 +1026,7 @@
       "distribution": "compatible"
     },
     "OSL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1051,8 +1051,8 @@
       "distribution": "compatible"
     },
     "Unlicense": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
     "ADSL": {
@@ -1121,9 +1121,9 @@
       "distribution": "compatible"
     },
     "LAL-1.3": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Ruby": {
       "static_linking": "compatible",
@@ -1146,7 +1146,7 @@
       "distribution": "compatible"
     },
     "EPL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1201,7 +1201,7 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-3.0-DE": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1216,7 +1216,7 @@
       "distribution": "compatible"
     },
     "LGPL-3.0-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1226,12 +1226,12 @@
       "distribution": "compatible"
     },
     "PDDL-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SimPL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1241,9 +1241,9 @@
       "distribution": "compatible"
     },
     "LGPL-3.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "MIT-Wu": {
       "static_linking": "compatible",
@@ -1251,17 +1251,17 @@
       "distribution": "compatible"
     },
     "copyleft-next-0.3.1": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SMAIL-GPL": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "CC-BY-NC-SA-2.0-FR": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1276,14 +1276,14 @@
       "distribution": "compatible"
     },
     "GFDL-1.1-no-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
-    },
-    "LGPL-3.0+": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
+    },
+    "LGPL-3.0+": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "incompatible"
     },
     "BSD-3-Clause-HP": {
       "static_linking": "compatible",
@@ -1326,8 +1326,8 @@
       "distribution": "compatible"
     },
     "CC0-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
     "MIT-0": {
@@ -1341,29 +1341,29 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "NIST-PD-fallback": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "MS-RL": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "GFDL-1.2-no-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GFDL-1.1-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CERN-OHL-1.1": {
       "static_linking": "compatible",
@@ -1381,14 +1381,14 @@
       "distribution": "compatible"
     },
     "Adobe-Display-PostScript": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "ANTLR-PD-fallback": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "any-OSI-perl-modules": {
       "static_linking": "compatible",
@@ -1396,7 +1396,7 @@
       "distribution": "compatible"
     },
     "SugarCRM-1.1.3": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1456,8 +1456,8 @@
       "distribution": "compatible"
     },
     "GPL-2.0-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "OLDAP-2.6": {
@@ -1486,7 +1486,7 @@
       "distribution": "compatible"
     },
     "CPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1496,8 +1496,8 @@
       "distribution": "compatible"
     },
     "GPL-1.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "RPSL-1.0": {
@@ -1541,12 +1541,17 @@
       "distribution": "compatible"
     },
     "Linux-man-pages-copyleft-var": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BOLA-1.1": {
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "CC-BY-SA-3.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1556,7 +1561,7 @@
       "distribution": "compatible"
     },
     "CERN-OHL-W-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1581,19 +1586,19 @@
       "distribution": "compatible"
     },
     "AGPL-1.0-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "AGPL-1.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "CC-BY-NC-ND-3.0-IGO": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Inner-Net-2.0": {
       "static_linking": "compatible",
@@ -1601,12 +1606,12 @@
       "distribution": "compatible"
     },
     "NIST-PD-TNT": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CECILL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1646,9 +1651,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.1-invariants-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SNIA": {
       "static_linking": "compatible",
@@ -1671,9 +1676,9 @@
       "distribution": "compatible"
     },
     "NTIA-PD": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "X11-distribute-modifications-variant": {
       "static_linking": "compatible",
@@ -1686,12 +1691,12 @@
       "distribution": "compatible"
     },
     "ANTLR-PD": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OSL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1701,7 +1706,7 @@
       "distribution": "compatible"
     },
     "OSL-3.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1726,7 +1731,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-2.1-JP": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1751,8 +1756,8 @@
       "distribution": "compatible"
     },
     "GPL-3.0-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "incompatible",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "BSD-Systemics": {
@@ -1796,7 +1801,7 @@
       "distribution": "compatible"
     },
     "CPAL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1806,9 +1811,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.3-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "AFL-1.2": {
       "static_linking": "compatible",
@@ -1831,9 +1836,9 @@
       "distribution": "compatible"
     },
     "libselinux-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Caldera-no-preamble": {
       "static_linking": "compatible",
@@ -1856,7 +1861,7 @@
       "distribution": "compatible"
     },
     "EFL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1876,9 +1881,9 @@
       "distribution": "compatible"
     },
     "CC-PDDC": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "BSD-3-Clause-acpica": {
       "static_linking": "compatible",
@@ -1886,7 +1891,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-4.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1906,7 +1911,7 @@
       "distribution": "compatible"
     },
     "GFDL-1.3-no-invariants-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1926,12 +1931,12 @@
       "distribution": "compatible"
     },
     "ESA-PL-weak-copyleft-2.4": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "OLFL-1.3": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1951,7 +1956,7 @@
       "distribution": "compatible"
     },
     "Parity-6.0.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -1966,9 +1971,9 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-3.0-AT": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OPUBL-1.0": {
       "static_linking": "compatible",
@@ -1976,7 +1981,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-2.0-UK": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -2011,9 +2016,9 @@
       "distribution": "compatible"
     },
     "copyleft-next-0.3.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Bitstream-Vera": {
       "static_linking": "compatible",
@@ -2021,9 +2026,9 @@
       "distribution": "compatible"
     },
     "LGPL-2.0+": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "psutils": {
       "static_linking": "compatible",
@@ -2036,14 +2041,19 @@
       "distribution": "compatible"
     },
     "FSFULLR": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SAX-PD": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ALGLIB-Documentation": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "BSD-3-Clause-No-Nuclear-Warranty": {
       "static_linking": "compatible",
@@ -2056,7 +2066,7 @@
       "distribution": "compatible"
     },
     "LGPL-2.1-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -2081,7 +2091,7 @@
       "distribution": "compatible"
     },
     "OSL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -2101,9 +2111,9 @@
       "distribution": "compatible"
     },
     "NIST-PD": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Sendmail-8.23": {
       "static_linking": "compatible",
@@ -2126,9 +2136,9 @@
       "distribution": "compatible"
     },
     "NCBI-PD": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OLDAP-2.1": {
       "static_linking": "compatible",
@@ -2146,17 +2156,17 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-ND-3.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-3.0-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "TGPPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -2166,13 +2176,13 @@
       "distribution": "compatible"
     },
     "CERN-OHL-S-2.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "NGPL": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "CATOSL-1.1": {
@@ -2206,12 +2216,12 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-3.0-IGO": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "PPL": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -2241,12 +2251,12 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-4.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "ODbL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -2261,7 +2271,7 @@
       "distribution": "compatible"
     },
     "Glide": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -2271,14 +2281,14 @@
       "distribution": "compatible"
     },
     "CDDL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "GPL-2.0-with-classpath-exception": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "EUDatagrid": {
       "static_linking": "compatible",
@@ -2346,7 +2356,7 @@
       "distribution": "compatible"
     },
     "CECILL-C": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -2366,9 +2376,9 @@
       "distribution": "compatible"
     },
     "CC-PDM-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CC-BY-ND-2.5": {
       "static_linking": "compatible",
@@ -2381,9 +2391,9 @@
       "distribution": "compatible"
     },
     "GPL-3.0-with-GCC-exception": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "HTMLTIDY": {
       "static_linking": "compatible",
@@ -2391,13 +2401,13 @@
       "distribution": "compatible"
     },
     "GFDL-1.3": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "AGPL-3.0-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "incompatible",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "OGL-UK-3.0": {
@@ -2426,8 +2436,8 @@
       "distribution": "compatible"
     },
     "GPL-3.0+": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "SMPPL": {
@@ -2436,8 +2446,8 @@
       "distribution": "compatible"
     },
     "GPL-1.0-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "HPND-merchantability-variant": {
@@ -2446,9 +2456,9 @@
       "distribution": "compatible"
     },
     "Artistic-2.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "C-UDA-1.0": {
       "static_linking": "compatible",
@@ -2456,7 +2466,7 @@
       "distribution": "compatible"
     },
     "MPL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -2481,9 +2491,9 @@
       "distribution": "compatible"
     },
     "MPEG-SSG": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OFL-1.1": {
       "static_linking": "compatible",
@@ -2511,9 +2521,9 @@
       "distribution": "compatible"
     },
     "DL-DE-ZERO-2.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "InnoSetup": {
       "static_linking": "compatible",
@@ -2521,7 +2531,7 @@
       "distribution": "compatible"
     },
     "EUPL-1.2": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -2541,12 +2551,12 @@
       "distribution": "compatible"
     },
     "TPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "OSL-2.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -2561,7 +2571,7 @@
       "distribution": "compatible"
     },
     "QPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -2586,8 +2596,8 @@
       "distribution": "compatible"
     },
     "GPL-2.0-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "incompatible",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "OAR": {
@@ -2596,8 +2606,8 @@
       "distribution": "compatible"
     },
     "GPL-1.0-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "BSD-3-Clause-Tso": {
@@ -2606,8 +2616,8 @@
       "distribution": "compatible"
     },
     "GPL-2.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "BSD-2-Clause-Darwin": {
@@ -2616,19 +2626,19 @@
       "distribution": "compatible"
     },
     "MPL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "GFDL-1.1-no-invariants-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "NIST-Software": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "mailprio": {
       "static_linking": "compatible",
@@ -2636,13 +2646,13 @@
       "distribution": "compatible"
     },
     "Unlicense-libwhirlpool": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
     "GPL-3.0-with-autoconf-exception": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "Mup": {
@@ -2686,9 +2696,9 @@
       "distribution": "compatible"
     },
     "bcrypt-Solar-Designer": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "W3C-19980720": {
       "static_linking": "compatible",
@@ -2766,14 +2776,14 @@
       "distribution": "compatible"
     },
     "NBPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "Artistic-1.0-Perl": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SOFA": {
       "static_linking": "compatible",
@@ -2786,9 +2796,9 @@
       "distribution": "compatible"
     },
     "IPA": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "APSL-2.0": {
       "static_linking": "compatible",
@@ -2801,7 +2811,7 @@
       "distribution": "compatible"
     },
     "Zimbra-1.3": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -2821,9 +2831,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.2-invariants-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OFFIS": {
       "static_linking": "compatible",
@@ -2876,12 +2886,12 @@
       "distribution": "compatible"
     },
     "NPL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-2.0-UK": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -2901,14 +2911,14 @@
       "distribution": "compatible"
     },
     "Artistic-dist": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GFDL-1.2-no-invariants-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Bitstream-Charter": {
       "static_linking": "compatible",
@@ -2921,7 +2931,7 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-2.5": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -2941,13 +2951,13 @@
       "distribution": "compatible"
     },
     "BUSL-1.1": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Unlicense-libtelnet": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
     "NLOD-1.0": {
@@ -2966,12 +2976,12 @@
       "distribution": "compatible"
     },
     "Artistic-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "QPL-1.0-INRIA-2004": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -2991,7 +3001,7 @@
       "distribution": "compatible"
     },
     "LGPL-3.0-or-later": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3006,7 +3016,7 @@
       "distribution": "compatible"
     },
     "Linux-man-pages-copyleft": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3016,9 +3026,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.1-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OGL-Canada-2.0": {
       "static_linking": "compatible",
@@ -3026,7 +3036,7 @@
       "distribution": "compatible"
     },
     "LGPL-2.1-or-later": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3036,9 +3046,9 @@
       "distribution": "compatible"
     },
     "AMDPLPA": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OpenVision": {
       "static_linking": "compatible",
@@ -3051,12 +3061,12 @@
       "distribution": "compatible"
     },
     "LZMA-SDK-9.22": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "RHeCos-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3121,8 +3131,8 @@
       "distribution": "compatible"
     },
     "GPL-2.0-with-font-exception": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "Net-SNMP": {
@@ -3131,19 +3141,19 @@
       "distribution": "compatible"
     },
     "LiLiQ-R-1.1": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "IEC-Code-Components-EULA": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SSPL-1.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Crossword": {
       "static_linking": "compatible",
@@ -3156,9 +3166,9 @@
       "distribution": "compatible"
     },
     "APSL-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Afmparse": {
       "static_linking": "compatible",
@@ -3186,9 +3196,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.3-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "MulanPSL-1.0": {
       "static_linking": "compatible",
@@ -3226,8 +3236,8 @@
       "distribution": "compatible"
     },
     "AGPL-1.0-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "OFL-1.0-no-RFN": {
@@ -3261,7 +3271,7 @@
       "distribution": "compatible"
     },
     "EUPL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3276,12 +3286,12 @@
       "distribution": "compatible"
     },
     "CECILL-B": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "MPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3296,7 +3306,7 @@
       "distribution": "compatible"
     },
     "OSET-PL-2.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3356,17 +3366,17 @@
       "distribution": "compatible"
     },
     "AMD-newlib": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-2.0-with-autoconf-exception": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "NPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3391,7 +3401,7 @@
       "distribution": "compatible"
     },
     "LPPL-1.3c": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3440,10 +3450,15 @@
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
-    "GPL-2.0-with-GCC-exception": {
-      "static_linking": "review_required",
+    "Brian-Gladman-3-Clause-no-conversion": {
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
+    },
+    "GPL-2.0-with-GCC-exception": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "incompatible"
     },
     "DocBook-Stylesheet": {
       "static_linking": "compatible",
@@ -3461,7 +3476,7 @@
       "distribution": "compatible"
     },
     "Linux-man-pages-copyleft-2-para": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3486,7 +3501,7 @@
       "distribution": "compatible"
     },
     "ErlPL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3496,14 +3511,14 @@
       "distribution": "compatible"
     },
     "LGPL-2.0-or-later": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "GFDL-1.1-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OSSP": {
       "static_linking": "compatible",
@@ -3521,7 +3536,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-2.5": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3541,13 +3556,13 @@
       "distribution": "compatible"
     },
     "Elastic-2.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-3.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "IJG-short": {
@@ -3556,21 +3571,76 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-1.0": {
-      "static_linking": "review_required",
-      "dynamic_linking": "compatible",
-      "distribution": "compatible"
-    },
-    "ALGLIB-Documentation": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
-    "BOLA-1.1": {
+    "Buddy": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
-    "Brian-Gladman-3-Clause-no-conversion": {
+    "CAPEC-tou": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-sell-variant-critical-systems": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ISO-permission": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIT-STK": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MMPL-1.0.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MVT-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OpenMDW-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OSC-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ParaType-Free-Font-1.3": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TekHVC": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "UnRAR": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Vixie-Cron": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "X11-no-permit-persons": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
@@ -3578,9 +3648,9 @@
   },
   "Apache-1.0": {
     "ESA-PL-strong-copyleft-2.4": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CrystalStacker": {
       "static_linking": "compatible",
@@ -3588,7 +3658,7 @@
       "distribution": "compatible"
     },
     "NPOSL-3.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3618,8 +3688,8 @@
       "distribution": "compatible"
     },
     "AGPL-3.0-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "OGTSL": {
@@ -3628,9 +3698,9 @@
       "distribution": "compatible"
     },
     "JPL-image": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Imlib2": {
       "static_linking": "compatible",
@@ -3658,9 +3728,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.3-no-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Saxpath": {
       "static_linking": "compatible",
@@ -3668,9 +3738,9 @@
       "distribution": "compatible"
     },
     "LZMA-SDK-9.11-to-9.20": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CAL-1.0": {
       "static_linking": "compatible",
@@ -3678,9 +3748,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.2-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CC-BY-3.0-NL": {
       "static_linking": "compatible",
@@ -3693,9 +3763,9 @@
       "distribution": "compatible"
     },
     "AML": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "VSL-1.0": {
       "static_linking": "compatible",
@@ -3728,9 +3798,9 @@
       "distribution": "compatible"
     },
     "LAL-1.2": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "JSON": {
       "static_linking": "compatible",
@@ -3738,9 +3808,9 @@
       "distribution": "compatible"
     },
     "Bahyph": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CPOL-1.02": {
       "static_linking": "compatible",
@@ -3748,7 +3818,7 @@
       "distribution": "compatible"
     },
     "RSCPL": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3758,7 +3828,7 @@
       "distribution": "compatible"
     },
     "RPL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3773,7 +3843,7 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-2.0-DE": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3803,7 +3873,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-3.0-DE": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3818,34 +3888,34 @@
       "distribution": "compatible"
     },
     "CECILL-2.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "Brian-Gladman-3-Clause": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Lucida-Bitmap-Fonts": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CECILL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "MPL-2.0-no-copyleft-exception": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "Parity-7.0.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "MIT-advertising": {
       "static_linking": "compatible",
@@ -3868,14 +3938,14 @@
       "distribution": "compatible"
     },
     "CECILL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "blessing": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "ClArtistic": {
       "static_linking": "compatible",
@@ -3883,14 +3953,14 @@
       "distribution": "compatible"
     },
     "LGPL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "SAX-PD-2.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "IJG": {
       "static_linking": "compatible",
@@ -3903,7 +3973,7 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-3.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3953,7 +4023,7 @@
       "distribution": "compatible"
     },
     "CDDL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -3973,14 +4043,14 @@
       "distribution": "compatible"
     },
     "CC-SA-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "GPL-2.0-with-bison-exception": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "MIT-feh": {
       "static_linking": "compatible",
@@ -3993,8 +4063,8 @@
       "distribution": "compatible"
     },
     "GPL-1.0+": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "O-UDA-1.0": {
@@ -4003,7 +4073,7 @@
       "distribution": "compatible"
     },
     "LGPL-2.0-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -4033,14 +4103,14 @@
       "distribution": "compatible"
     },
     "AGPL-3.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "GFDL-1.2": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CC-BY-3.0-AT": {
       "static_linking": "compatible",
@@ -4073,12 +4143,12 @@
       "distribution": "compatible"
     },
     "RPL-1.5": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "EUPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -4108,7 +4178,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -4118,7 +4188,7 @@
       "distribution": "compatible"
     },
     "Zimbra-1.4": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -4163,9 +4233,9 @@
       "distribution": "compatible"
     },
     "Abstyles": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CMU-Mach": {
       "static_linking": "compatible",
@@ -4233,9 +4303,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.3-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "DOC": {
       "static_linking": "compatible",
@@ -4293,7 +4363,7 @@
       "distribution": "compatible"
     },
     "dvipdfm": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -4323,9 +4393,9 @@
       "distribution": "compatible"
     },
     "LGPL-2.1+": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "BSD-4-Clause-UC": {
       "static_linking": "compatible",
@@ -4338,9 +4408,9 @@
       "distribution": "compatible"
     },
     "LGPL-2.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "LPPL-1.1": {
       "static_linking": "compatible",
@@ -4348,9 +4418,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.2-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "UMich-Merit": {
       "static_linking": "compatible",
@@ -4383,14 +4453,14 @@
       "distribution": "compatible"
     },
     "LGPLLR": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "GFDL-1.3-invariants-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OpenPBS-2.3": {
       "static_linking": "compatible",
@@ -4398,9 +4468,9 @@
       "distribution": "compatible"
     },
     "D-FSL-1.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "DRL-1.1": {
       "static_linking": "compatible",
@@ -4413,9 +4483,9 @@
       "distribution": "compatible"
     },
     "LiLiQ-Rplus-1.1": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "BSD-3-Clause-Sun": {
       "static_linking": "compatible",
@@ -4438,7 +4508,7 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-3.0-IGO": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -4448,7 +4518,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -4458,9 +4528,9 @@
       "distribution": "compatible"
     },
     "PolyForm-Small-Business-1.0.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OLDAP-1.4": {
       "static_linking": "compatible",
@@ -4475,17 +4545,17 @@
     "CNRI-Python-GPL-Compatible": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "eCos-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "AAL": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "bzip2-1.0.6": {
       "static_linking": "compatible",
@@ -4548,9 +4618,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.2-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "HP-1989": {
       "static_linking": "compatible",
@@ -4573,19 +4643,19 @@
       "distribution": "compatible"
     },
     "GPL-2.0+": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "CC-BY-NC-ND-3.0-DE": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GFDL-1.1": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Qhull": {
       "static_linking": "compatible",
@@ -4593,9 +4663,9 @@
       "distribution": "compatible"
     },
     "FSFUL": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Brian-Gladman-2-Clause": {
       "static_linking": "compatible",
@@ -4603,7 +4673,7 @@
       "distribution": "compatible"
     },
     "OSL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -4628,8 +4698,8 @@
       "distribution": "compatible"
     },
     "Unlicense": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
     "ADSL": {
@@ -4698,9 +4768,9 @@
       "distribution": "compatible"
     },
     "LAL-1.3": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Ruby": {
       "static_linking": "compatible",
@@ -4723,7 +4793,7 @@
       "distribution": "compatible"
     },
     "EPL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -4778,7 +4848,7 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-3.0-DE": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -4793,7 +4863,7 @@
       "distribution": "compatible"
     },
     "LGPL-3.0-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -4803,12 +4873,12 @@
       "distribution": "compatible"
     },
     "PDDL-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SimPL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -4818,9 +4888,9 @@
       "distribution": "compatible"
     },
     "LGPL-3.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "MIT-Wu": {
       "static_linking": "compatible",
@@ -4828,17 +4898,17 @@
       "distribution": "compatible"
     },
     "copyleft-next-0.3.1": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SMAIL-GPL": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "CC-BY-NC-SA-2.0-FR": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -4853,14 +4923,14 @@
       "distribution": "compatible"
     },
     "GFDL-1.1-no-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
-    },
-    "LGPL-3.0+": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
+    },
+    "LGPL-3.0+": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "incompatible"
     },
     "BSD-3-Clause-HP": {
       "static_linking": "compatible",
@@ -4903,8 +4973,8 @@
       "distribution": "compatible"
     },
     "CC0-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
     "MIT-0": {
@@ -4918,29 +4988,29 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "NIST-PD-fallback": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "MS-RL": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "GFDL-1.2-no-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GFDL-1.1-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CERN-OHL-1.1": {
       "static_linking": "compatible",
@@ -4958,14 +5028,14 @@
       "distribution": "compatible"
     },
     "Adobe-Display-PostScript": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "ANTLR-PD-fallback": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "any-OSI-perl-modules": {
       "static_linking": "compatible",
@@ -4973,7 +5043,7 @@
       "distribution": "compatible"
     },
     "SugarCRM-1.1.3": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5033,8 +5103,8 @@
       "distribution": "compatible"
     },
     "GPL-2.0-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "OLDAP-2.6": {
@@ -5063,7 +5133,7 @@
       "distribution": "compatible"
     },
     "CPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5073,8 +5143,8 @@
       "distribution": "compatible"
     },
     "GPL-1.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "RPSL-1.0": {
@@ -5118,12 +5188,17 @@
       "distribution": "compatible"
     },
     "Linux-man-pages-copyleft-var": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BOLA-1.1": {
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "CC-BY-SA-3.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5133,7 +5208,7 @@
       "distribution": "compatible"
     },
     "CERN-OHL-W-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5158,19 +5233,19 @@
       "distribution": "compatible"
     },
     "AGPL-1.0-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "AGPL-1.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "CC-BY-NC-ND-3.0-IGO": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Inner-Net-2.0": {
       "static_linking": "compatible",
@@ -5178,12 +5253,12 @@
       "distribution": "compatible"
     },
     "NIST-PD-TNT": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CECILL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5223,9 +5298,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.1-invariants-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SNIA": {
       "static_linking": "compatible",
@@ -5248,9 +5323,9 @@
       "distribution": "compatible"
     },
     "NTIA-PD": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "X11-distribute-modifications-variant": {
       "static_linking": "compatible",
@@ -5263,12 +5338,12 @@
       "distribution": "compatible"
     },
     "ANTLR-PD": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OSL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5278,7 +5353,7 @@
       "distribution": "compatible"
     },
     "OSL-3.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5303,7 +5378,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-2.1-JP": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5328,8 +5403,8 @@
       "distribution": "compatible"
     },
     "GPL-3.0-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "BSD-Systemics": {
@@ -5373,7 +5448,7 @@
       "distribution": "compatible"
     },
     "CPAL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5383,9 +5458,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.3-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "AFL-1.2": {
       "static_linking": "compatible",
@@ -5408,9 +5483,9 @@
       "distribution": "compatible"
     },
     "libselinux-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Caldera-no-preamble": {
       "static_linking": "compatible",
@@ -5433,7 +5508,7 @@
       "distribution": "compatible"
     },
     "EFL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5453,9 +5528,9 @@
       "distribution": "compatible"
     },
     "CC-PDDC": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "BSD-3-Clause-acpica": {
       "static_linking": "compatible",
@@ -5463,7 +5538,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-4.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5483,7 +5558,7 @@
       "distribution": "compatible"
     },
     "GFDL-1.3-no-invariants-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5503,12 +5578,12 @@
       "distribution": "compatible"
     },
     "ESA-PL-weak-copyleft-2.4": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "OLFL-1.3": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5528,7 +5603,7 @@
       "distribution": "compatible"
     },
     "Parity-6.0.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5543,9 +5618,9 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-3.0-AT": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OPUBL-1.0": {
       "static_linking": "compatible",
@@ -5553,7 +5628,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-2.0-UK": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5588,9 +5663,9 @@
       "distribution": "compatible"
     },
     "copyleft-next-0.3.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Bitstream-Vera": {
       "static_linking": "compatible",
@@ -5598,9 +5673,9 @@
       "distribution": "compatible"
     },
     "LGPL-2.0+": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "psutils": {
       "static_linking": "compatible",
@@ -5613,14 +5688,19 @@
       "distribution": "compatible"
     },
     "FSFULLR": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SAX-PD": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ALGLIB-Documentation": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "BSD-3-Clause-No-Nuclear-Warranty": {
       "static_linking": "compatible",
@@ -5633,7 +5713,7 @@
       "distribution": "compatible"
     },
     "LGPL-2.1-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5658,7 +5738,7 @@
       "distribution": "compatible"
     },
     "OSL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5678,9 +5758,9 @@
       "distribution": "compatible"
     },
     "NIST-PD": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Sendmail-8.23": {
       "static_linking": "compatible",
@@ -5703,9 +5783,9 @@
       "distribution": "compatible"
     },
     "NCBI-PD": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OLDAP-2.1": {
       "static_linking": "compatible",
@@ -5723,17 +5803,17 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-ND-3.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-3.0-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "TGPPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5743,13 +5823,13 @@
       "distribution": "compatible"
     },
     "CERN-OHL-S-2.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "NGPL": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "CATOSL-1.1": {
@@ -5783,12 +5863,12 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-3.0-IGO": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "PPL": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5818,12 +5898,12 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-4.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "ODbL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5838,7 +5918,7 @@
       "distribution": "compatible"
     },
     "Glide": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5848,14 +5928,14 @@
       "distribution": "compatible"
     },
     "CDDL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "GPL-2.0-with-classpath-exception": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "EUDatagrid": {
       "static_linking": "compatible",
@@ -5923,7 +6003,7 @@
       "distribution": "compatible"
     },
     "CECILL-C": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -5943,9 +6023,9 @@
       "distribution": "compatible"
     },
     "CC-PDM-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CC-BY-ND-2.5": {
       "static_linking": "compatible",
@@ -5958,9 +6038,9 @@
       "distribution": "compatible"
     },
     "GPL-3.0-with-GCC-exception": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "HTMLTIDY": {
       "static_linking": "compatible",
@@ -5968,13 +6048,13 @@
       "distribution": "compatible"
     },
     "GFDL-1.3": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "AGPL-3.0-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "OGL-UK-3.0": {
@@ -6003,8 +6083,8 @@
       "distribution": "compatible"
     },
     "GPL-3.0+": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "SMPPL": {
@@ -6013,8 +6093,8 @@
       "distribution": "compatible"
     },
     "GPL-1.0-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "HPND-merchantability-variant": {
@@ -6023,9 +6103,9 @@
       "distribution": "compatible"
     },
     "Artistic-2.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "C-UDA-1.0": {
       "static_linking": "compatible",
@@ -6033,7 +6113,7 @@
       "distribution": "compatible"
     },
     "MPL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -6058,9 +6138,9 @@
       "distribution": "compatible"
     },
     "MPEG-SSG": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OFL-1.1": {
       "static_linking": "compatible",
@@ -6088,9 +6168,9 @@
       "distribution": "compatible"
     },
     "DL-DE-ZERO-2.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "InnoSetup": {
       "static_linking": "compatible",
@@ -6098,7 +6178,7 @@
       "distribution": "compatible"
     },
     "EUPL-1.2": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -6118,12 +6198,12 @@
       "distribution": "compatible"
     },
     "TPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "OSL-2.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -6138,7 +6218,7 @@
       "distribution": "compatible"
     },
     "QPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -6163,8 +6243,8 @@
       "distribution": "compatible"
     },
     "GPL-2.0-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "OAR": {
@@ -6173,8 +6253,8 @@
       "distribution": "compatible"
     },
     "GPL-1.0-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "BSD-3-Clause-Tso": {
@@ -6183,8 +6263,8 @@
       "distribution": "compatible"
     },
     "GPL-2.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "BSD-2-Clause-Darwin": {
@@ -6193,19 +6273,19 @@
       "distribution": "compatible"
     },
     "MPL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "GFDL-1.1-no-invariants-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "NIST-Software": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "mailprio": {
       "static_linking": "compatible",
@@ -6213,13 +6293,13 @@
       "distribution": "compatible"
     },
     "Unlicense-libwhirlpool": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
     "GPL-3.0-with-autoconf-exception": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "Mup": {
@@ -6263,9 +6343,9 @@
       "distribution": "compatible"
     },
     "bcrypt-Solar-Designer": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "W3C-19980720": {
       "static_linking": "compatible",
@@ -6343,14 +6423,14 @@
       "distribution": "compatible"
     },
     "NBPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "Artistic-1.0-Perl": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SOFA": {
       "static_linking": "compatible",
@@ -6363,9 +6443,9 @@
       "distribution": "compatible"
     },
     "IPA": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "APSL-2.0": {
       "static_linking": "compatible",
@@ -6378,7 +6458,7 @@
       "distribution": "compatible"
     },
     "Zimbra-1.3": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -6398,9 +6478,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.2-invariants-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OFFIS": {
       "static_linking": "compatible",
@@ -6453,12 +6533,12 @@
       "distribution": "compatible"
     },
     "NPL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-2.0-UK": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -6478,14 +6558,14 @@
       "distribution": "compatible"
     },
     "Artistic-dist": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GFDL-1.2-no-invariants-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Bitstream-Charter": {
       "static_linking": "compatible",
@@ -6498,7 +6578,7 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-2.5": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -6518,13 +6598,13 @@
       "distribution": "compatible"
     },
     "BUSL-1.1": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Unlicense-libtelnet": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
     "NLOD-1.0": {
@@ -6543,12 +6623,12 @@
       "distribution": "compatible"
     },
     "Artistic-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "QPL-1.0-INRIA-2004": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -6568,7 +6648,7 @@
       "distribution": "compatible"
     },
     "LGPL-3.0-or-later": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -6583,7 +6663,7 @@
       "distribution": "compatible"
     },
     "Linux-man-pages-copyleft": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -6593,9 +6673,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.1-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OGL-Canada-2.0": {
       "static_linking": "compatible",
@@ -6603,7 +6683,7 @@
       "distribution": "compatible"
     },
     "LGPL-2.1-or-later": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -6613,9 +6693,9 @@
       "distribution": "compatible"
     },
     "AMDPLPA": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OpenVision": {
       "static_linking": "compatible",
@@ -6628,12 +6708,12 @@
       "distribution": "compatible"
     },
     "LZMA-SDK-9.22": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "RHeCos-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -6698,8 +6778,8 @@
       "distribution": "compatible"
     },
     "GPL-2.0-with-font-exception": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "Net-SNMP": {
@@ -6708,19 +6788,19 @@
       "distribution": "compatible"
     },
     "LiLiQ-R-1.1": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "IEC-Code-Components-EULA": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SSPL-1.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Crossword": {
       "static_linking": "compatible",
@@ -6733,9 +6813,9 @@
       "distribution": "compatible"
     },
     "APSL-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Afmparse": {
       "static_linking": "compatible",
@@ -6763,9 +6843,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.3-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "MulanPSL-1.0": {
       "static_linking": "compatible",
@@ -6803,8 +6883,8 @@
       "distribution": "compatible"
     },
     "AGPL-1.0-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "OFL-1.0-no-RFN": {
@@ -6838,7 +6918,7 @@
       "distribution": "compatible"
     },
     "EUPL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -6853,12 +6933,12 @@
       "distribution": "compatible"
     },
     "CECILL-B": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "MPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -6873,7 +6953,7 @@
       "distribution": "compatible"
     },
     "OSET-PL-2.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -6933,17 +7013,17 @@
       "distribution": "compatible"
     },
     "AMD-newlib": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-2.0-with-autoconf-exception": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "NPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -6968,7 +7048,7 @@
       "distribution": "compatible"
     },
     "LPPL-1.3c": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -7017,10 +7097,15 @@
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
-    "GPL-2.0-with-GCC-exception": {
-      "static_linking": "review_required",
+    "Brian-Gladman-3-Clause-no-conversion": {
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
+    },
+    "GPL-2.0-with-GCC-exception": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "incompatible"
     },
     "DocBook-Stylesheet": {
       "static_linking": "compatible",
@@ -7038,7 +7123,7 @@
       "distribution": "compatible"
     },
     "Linux-man-pages-copyleft-2-para": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -7063,7 +7148,7 @@
       "distribution": "compatible"
     },
     "ErlPL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -7073,14 +7158,14 @@
       "distribution": "compatible"
     },
     "LGPL-2.0-or-later": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "GFDL-1.1-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OSSP": {
       "static_linking": "compatible",
@@ -7098,7 +7183,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-2.5": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -7118,13 +7203,13 @@
       "distribution": "compatible"
     },
     "Elastic-2.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-3.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "IJG-short": {
@@ -7133,21 +7218,76 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-1.0": {
-      "static_linking": "review_required",
-      "dynamic_linking": "compatible",
-      "distribution": "compatible"
-    },
-    "ALGLIB-Documentation": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
-    "BOLA-1.1": {
+    "Buddy": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
-    "Brian-Gladman-3-Clause-no-conversion": {
+    "CAPEC-tou": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-sell-variant-critical-systems": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ISO-permission": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIT-STK": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MMPL-1.0.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MVT-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OpenMDW-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OSC-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ParaType-Free-Font-1.3": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TekHVC": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "UnRAR": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Vixie-Cron": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "X11-no-permit-persons": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
@@ -7155,9 +7295,9 @@
   },
   "Apache-1.1": {
     "ESA-PL-strong-copyleft-2.4": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CrystalStacker": {
       "static_linking": "compatible",
@@ -7165,7 +7305,7 @@
       "distribution": "compatible"
     },
     "NPOSL-3.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -7195,8 +7335,8 @@
       "distribution": "compatible"
     },
     "AGPL-3.0-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "OGTSL": {
@@ -7205,9 +7345,9 @@
       "distribution": "compatible"
     },
     "JPL-image": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Imlib2": {
       "static_linking": "compatible",
@@ -7235,9 +7375,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.3-no-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Saxpath": {
       "static_linking": "compatible",
@@ -7245,9 +7385,9 @@
       "distribution": "compatible"
     },
     "LZMA-SDK-9.11-to-9.20": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CAL-1.0": {
       "static_linking": "compatible",
@@ -7255,9 +7395,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.2-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CC-BY-3.0-NL": {
       "static_linking": "compatible",
@@ -7270,9 +7410,9 @@
       "distribution": "compatible"
     },
     "AML": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "VSL-1.0": {
       "static_linking": "compatible",
@@ -7305,9 +7445,9 @@
       "distribution": "compatible"
     },
     "LAL-1.2": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "JSON": {
       "static_linking": "compatible",
@@ -7315,9 +7455,9 @@
       "distribution": "compatible"
     },
     "Bahyph": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CPOL-1.02": {
       "static_linking": "compatible",
@@ -7325,7 +7465,7 @@
       "distribution": "compatible"
     },
     "RSCPL": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -7335,7 +7475,7 @@
       "distribution": "compatible"
     },
     "RPL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -7350,7 +7490,7 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-2.0-DE": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -7380,7 +7520,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-3.0-DE": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -7395,34 +7535,34 @@
       "distribution": "compatible"
     },
     "CECILL-2.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "Brian-Gladman-3-Clause": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Lucida-Bitmap-Fonts": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CECILL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "MPL-2.0-no-copyleft-exception": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "Parity-7.0.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "MIT-advertising": {
       "static_linking": "compatible",
@@ -7445,14 +7585,14 @@
       "distribution": "compatible"
     },
     "CECILL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "blessing": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "ClArtistic": {
       "static_linking": "compatible",
@@ -7460,14 +7600,14 @@
       "distribution": "compatible"
     },
     "LGPL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "SAX-PD-2.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "IJG": {
       "static_linking": "compatible",
@@ -7480,7 +7620,7 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-3.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -7530,7 +7670,7 @@
       "distribution": "compatible"
     },
     "CDDL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -7550,14 +7690,14 @@
       "distribution": "compatible"
     },
     "CC-SA-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "GPL-2.0-with-bison-exception": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "MIT-feh": {
       "static_linking": "compatible",
@@ -7570,8 +7710,8 @@
       "distribution": "compatible"
     },
     "GPL-1.0+": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "O-UDA-1.0": {
@@ -7580,7 +7720,7 @@
       "distribution": "compatible"
     },
     "LGPL-2.0-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -7610,14 +7750,14 @@
       "distribution": "compatible"
     },
     "AGPL-3.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "GFDL-1.2": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CC-BY-3.0-AT": {
       "static_linking": "compatible",
@@ -7650,12 +7790,12 @@
       "distribution": "compatible"
     },
     "RPL-1.5": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "EUPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -7685,7 +7825,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -7695,7 +7835,7 @@
       "distribution": "compatible"
     },
     "Zimbra-1.4": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -7740,9 +7880,9 @@
       "distribution": "compatible"
     },
     "Abstyles": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CMU-Mach": {
       "static_linking": "compatible",
@@ -7810,9 +7950,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.3-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "DOC": {
       "static_linking": "compatible",
@@ -7870,7 +8010,7 @@
       "distribution": "compatible"
     },
     "dvipdfm": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -7900,9 +8040,9 @@
       "distribution": "compatible"
     },
     "LGPL-2.1+": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "BSD-4-Clause-UC": {
       "static_linking": "compatible",
@@ -7915,9 +8055,9 @@
       "distribution": "compatible"
     },
     "LGPL-2.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "LPPL-1.1": {
       "static_linking": "compatible",
@@ -7925,9 +8065,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.2-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "UMich-Merit": {
       "static_linking": "compatible",
@@ -7960,14 +8100,14 @@
       "distribution": "compatible"
     },
     "LGPLLR": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "GFDL-1.3-invariants-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OpenPBS-2.3": {
       "static_linking": "compatible",
@@ -7975,9 +8115,9 @@
       "distribution": "compatible"
     },
     "D-FSL-1.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "DRL-1.1": {
       "static_linking": "compatible",
@@ -7990,9 +8130,9 @@
       "distribution": "compatible"
     },
     "LiLiQ-Rplus-1.1": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "BSD-3-Clause-Sun": {
       "static_linking": "compatible",
@@ -8015,7 +8155,7 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-3.0-IGO": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8025,7 +8165,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8035,9 +8175,9 @@
       "distribution": "compatible"
     },
     "PolyForm-Small-Business-1.0.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OLDAP-1.4": {
       "static_linking": "compatible",
@@ -8052,17 +8192,17 @@
     "CNRI-Python-GPL-Compatible": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "eCos-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "AAL": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "bzip2-1.0.6": {
       "static_linking": "compatible",
@@ -8125,9 +8265,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.2-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "HP-1989": {
       "static_linking": "compatible",
@@ -8150,19 +8290,19 @@
       "distribution": "compatible"
     },
     "GPL-2.0+": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "CC-BY-NC-ND-3.0-DE": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GFDL-1.1": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Qhull": {
       "static_linking": "compatible",
@@ -8170,9 +8310,9 @@
       "distribution": "compatible"
     },
     "FSFUL": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Brian-Gladman-2-Clause": {
       "static_linking": "compatible",
@@ -8180,7 +8320,7 @@
       "distribution": "compatible"
     },
     "OSL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8205,8 +8345,8 @@
       "distribution": "compatible"
     },
     "Unlicense": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
     "ADSL": {
@@ -8275,9 +8415,9 @@
       "distribution": "compatible"
     },
     "LAL-1.3": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Ruby": {
       "static_linking": "compatible",
@@ -8300,7 +8440,7 @@
       "distribution": "compatible"
     },
     "EPL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8355,7 +8495,7 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-3.0-DE": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8370,7 +8510,7 @@
       "distribution": "compatible"
     },
     "LGPL-3.0-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8380,12 +8520,12 @@
       "distribution": "compatible"
     },
     "PDDL-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SimPL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8395,9 +8535,9 @@
       "distribution": "compatible"
     },
     "LGPL-3.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "MIT-Wu": {
       "static_linking": "compatible",
@@ -8405,17 +8545,17 @@
       "distribution": "compatible"
     },
     "copyleft-next-0.3.1": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SMAIL-GPL": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "CC-BY-NC-SA-2.0-FR": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8430,14 +8570,14 @@
       "distribution": "compatible"
     },
     "GFDL-1.1-no-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
-    },
-    "LGPL-3.0+": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
+    },
+    "LGPL-3.0+": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "incompatible"
     },
     "BSD-3-Clause-HP": {
       "static_linking": "compatible",
@@ -8480,8 +8620,8 @@
       "distribution": "compatible"
     },
     "CC0-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
     "MIT-0": {
@@ -8495,29 +8635,29 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "NIST-PD-fallback": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "MS-RL": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "GFDL-1.2-no-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GFDL-1.1-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CERN-OHL-1.1": {
       "static_linking": "compatible",
@@ -8535,14 +8675,14 @@
       "distribution": "compatible"
     },
     "Adobe-Display-PostScript": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "ANTLR-PD-fallback": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "any-OSI-perl-modules": {
       "static_linking": "compatible",
@@ -8550,7 +8690,7 @@
       "distribution": "compatible"
     },
     "SugarCRM-1.1.3": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8610,8 +8750,8 @@
       "distribution": "compatible"
     },
     "GPL-2.0-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "OLDAP-2.6": {
@@ -8640,7 +8780,7 @@
       "distribution": "compatible"
     },
     "CPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8650,8 +8790,8 @@
       "distribution": "compatible"
     },
     "GPL-1.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "RPSL-1.0": {
@@ -8695,12 +8835,17 @@
       "distribution": "compatible"
     },
     "Linux-man-pages-copyleft-var": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "BOLA-1.1": {
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "CC-BY-SA-3.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8710,7 +8855,7 @@
       "distribution": "compatible"
     },
     "CERN-OHL-W-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8735,19 +8880,19 @@
       "distribution": "compatible"
     },
     "AGPL-1.0-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "AGPL-1.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "CC-BY-NC-ND-3.0-IGO": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Inner-Net-2.0": {
       "static_linking": "compatible",
@@ -8755,12 +8900,12 @@
       "distribution": "compatible"
     },
     "NIST-PD-TNT": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CECILL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8800,9 +8945,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.1-invariants-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SNIA": {
       "static_linking": "compatible",
@@ -8825,9 +8970,9 @@
       "distribution": "compatible"
     },
     "NTIA-PD": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "X11-distribute-modifications-variant": {
       "static_linking": "compatible",
@@ -8840,12 +8985,12 @@
       "distribution": "compatible"
     },
     "ANTLR-PD": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OSL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8855,7 +9000,7 @@
       "distribution": "compatible"
     },
     "OSL-3.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8880,7 +9025,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-2.1-JP": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8905,8 +9050,8 @@
       "distribution": "compatible"
     },
     "GPL-3.0-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "BSD-Systemics": {
@@ -8950,7 +9095,7 @@
       "distribution": "compatible"
     },
     "CPAL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -8960,9 +9105,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.3-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "AFL-1.2": {
       "static_linking": "compatible",
@@ -8985,9 +9130,9 @@
       "distribution": "compatible"
     },
     "libselinux-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Caldera-no-preamble": {
       "static_linking": "compatible",
@@ -9010,7 +9155,7 @@
       "distribution": "compatible"
     },
     "EFL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9030,9 +9175,9 @@
       "distribution": "compatible"
     },
     "CC-PDDC": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "BSD-3-Clause-acpica": {
       "static_linking": "compatible",
@@ -9040,7 +9185,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-4.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9060,7 +9205,7 @@
       "distribution": "compatible"
     },
     "GFDL-1.3-no-invariants-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9080,12 +9225,12 @@
       "distribution": "compatible"
     },
     "ESA-PL-weak-copyleft-2.4": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "OLFL-1.3": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9105,7 +9250,7 @@
       "distribution": "compatible"
     },
     "Parity-6.0.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9120,9 +9265,9 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-3.0-AT": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OPUBL-1.0": {
       "static_linking": "compatible",
@@ -9130,7 +9275,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-2.0-UK": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9165,9 +9310,9 @@
       "distribution": "compatible"
     },
     "copyleft-next-0.3.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Bitstream-Vera": {
       "static_linking": "compatible",
@@ -9175,9 +9320,9 @@
       "distribution": "compatible"
     },
     "LGPL-2.0+": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "psutils": {
       "static_linking": "compatible",
@@ -9190,14 +9335,19 @@
       "distribution": "compatible"
     },
     "FSFULLR": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SAX-PD": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ALGLIB-Documentation": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "BSD-3-Clause-No-Nuclear-Warranty": {
       "static_linking": "compatible",
@@ -9210,7 +9360,7 @@
       "distribution": "compatible"
     },
     "LGPL-2.1-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9235,7 +9385,7 @@
       "distribution": "compatible"
     },
     "OSL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9255,9 +9405,9 @@
       "distribution": "compatible"
     },
     "NIST-PD": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Sendmail-8.23": {
       "static_linking": "compatible",
@@ -9280,9 +9430,9 @@
       "distribution": "compatible"
     },
     "NCBI-PD": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OLDAP-2.1": {
       "static_linking": "compatible",
@@ -9300,17 +9450,17 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-ND-3.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-3.0-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "TGPPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9320,13 +9470,13 @@
       "distribution": "compatible"
     },
     "CERN-OHL-S-2.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "NGPL": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "CATOSL-1.1": {
@@ -9360,12 +9510,12 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-3.0-IGO": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "PPL": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9395,12 +9545,12 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-4.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "ODbL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9415,7 +9565,7 @@
       "distribution": "compatible"
     },
     "Glide": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9425,14 +9575,14 @@
       "distribution": "compatible"
     },
     "CDDL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "GPL-2.0-with-classpath-exception": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "EUDatagrid": {
       "static_linking": "compatible",
@@ -9500,7 +9650,7 @@
       "distribution": "compatible"
     },
     "CECILL-C": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9520,9 +9670,9 @@
       "distribution": "compatible"
     },
     "CC-PDM-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "CC-BY-ND-2.5": {
       "static_linking": "compatible",
@@ -9535,9 +9685,9 @@
       "distribution": "compatible"
     },
     "GPL-3.0-with-GCC-exception": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "distribution": "incompatible"
     },
     "HTMLTIDY": {
       "static_linking": "compatible",
@@ -9545,13 +9695,13 @@
       "distribution": "compatible"
     },
     "GFDL-1.3": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "AGPL-3.0-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "OGL-UK-3.0": {
@@ -9580,8 +9730,8 @@
       "distribution": "compatible"
     },
     "GPL-3.0+": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "SMPPL": {
@@ -9590,8 +9740,8 @@
       "distribution": "compatible"
     },
     "GPL-1.0-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "HPND-merchantability-variant": {
@@ -9600,9 +9750,9 @@
       "distribution": "compatible"
     },
     "Artistic-2.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "C-UDA-1.0": {
       "static_linking": "compatible",
@@ -9610,7 +9760,7 @@
       "distribution": "compatible"
     },
     "MPL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9635,9 +9785,9 @@
       "distribution": "compatible"
     },
     "MPEG-SSG": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OFL-1.1": {
       "static_linking": "compatible",
@@ -9665,9 +9815,9 @@
       "distribution": "compatible"
     },
     "DL-DE-ZERO-2.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "InnoSetup": {
       "static_linking": "compatible",
@@ -9675,7 +9825,7 @@
       "distribution": "compatible"
     },
     "EUPL-1.2": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9695,12 +9845,12 @@
       "distribution": "compatible"
     },
     "TPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "OSL-2.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9715,7 +9865,7 @@
       "distribution": "compatible"
     },
     "QPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9740,8 +9890,8 @@
       "distribution": "compatible"
     },
     "GPL-2.0-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "OAR": {
@@ -9750,8 +9900,8 @@
       "distribution": "compatible"
     },
     "GPL-1.0-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "BSD-3-Clause-Tso": {
@@ -9760,8 +9910,8 @@
       "distribution": "compatible"
     },
     "GPL-2.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "BSD-2-Clause-Darwin": {
@@ -9770,19 +9920,19 @@
       "distribution": "compatible"
     },
     "MPL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "GFDL-1.1-no-invariants-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "NIST-Software": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "mailprio": {
       "static_linking": "compatible",
@@ -9790,13 +9940,13 @@
       "distribution": "compatible"
     },
     "Unlicense-libwhirlpool": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
     "GPL-3.0-with-autoconf-exception": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "Mup": {
@@ -9840,9 +9990,9 @@
       "distribution": "compatible"
     },
     "bcrypt-Solar-Designer": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "W3C-19980720": {
       "static_linking": "compatible",
@@ -9920,14 +10070,14 @@
       "distribution": "compatible"
     },
     "NBPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "Artistic-1.0-Perl": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SOFA": {
       "static_linking": "compatible",
@@ -9940,9 +10090,9 @@
       "distribution": "compatible"
     },
     "IPA": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "APSL-2.0": {
       "static_linking": "compatible",
@@ -9955,7 +10105,7 @@
       "distribution": "compatible"
     },
     "Zimbra-1.3": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -9975,9 +10125,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.2-invariants-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OFFIS": {
       "static_linking": "compatible",
@@ -10030,12 +10180,12 @@
       "distribution": "compatible"
     },
     "NPL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-2.0-UK": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -10055,14 +10205,14 @@
       "distribution": "compatible"
     },
     "Artistic-dist": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GFDL-1.2-no-invariants-only": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Bitstream-Charter": {
       "static_linking": "compatible",
@@ -10075,7 +10225,7 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-2.5": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -10095,13 +10245,13 @@
       "distribution": "compatible"
     },
     "BUSL-1.1": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Unlicense-libtelnet": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
     "NLOD-1.0": {
@@ -10120,12 +10270,12 @@
       "distribution": "compatible"
     },
     "Artistic-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "QPL-1.0-INRIA-2004": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -10145,7 +10295,7 @@
       "distribution": "compatible"
     },
     "LGPL-3.0-or-later": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -10160,7 +10310,7 @@
       "distribution": "compatible"
     },
     "Linux-man-pages-copyleft": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -10170,9 +10320,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.1-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OGL-Canada-2.0": {
       "static_linking": "compatible",
@@ -10180,7 +10330,7 @@
       "distribution": "compatible"
     },
     "LGPL-2.1-or-later": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -10190,9 +10340,9 @@
       "distribution": "compatible"
     },
     "AMDPLPA": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OpenVision": {
       "static_linking": "compatible",
@@ -10205,12 +10355,12 @@
       "distribution": "compatible"
     },
     "LZMA-SDK-9.22": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "RHeCos-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -10275,8 +10425,8 @@
       "distribution": "compatible"
     },
     "GPL-2.0-with-font-exception": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "Net-SNMP": {
@@ -10285,19 +10435,19 @@
       "distribution": "compatible"
     },
     "LiLiQ-R-1.1": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "IEC-Code-Components-EULA": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "SSPL-1.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Crossword": {
       "static_linking": "compatible",
@@ -10310,9 +10460,9 @@
       "distribution": "compatible"
     },
     "APSL-1.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Afmparse": {
       "static_linking": "compatible",
@@ -10340,9 +10490,9 @@
       "distribution": "compatible"
     },
     "GFDL-1.3-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "MulanPSL-1.0": {
       "static_linking": "compatible",
@@ -10380,8 +10530,8 @@
       "distribution": "compatible"
     },
     "AGPL-1.0-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "OFL-1.0-no-RFN": {
@@ -10415,7 +10565,7 @@
       "distribution": "compatible"
     },
     "EUPL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -10430,12 +10580,12 @@
       "distribution": "compatible"
     },
     "CECILL-B": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "MPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -10450,7 +10600,7 @@
       "distribution": "compatible"
     },
     "OSET-PL-2.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -10510,17 +10660,17 @@
       "distribution": "compatible"
     },
     "AMD-newlib": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-2.0-with-autoconf-exception": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "NPL-1.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -10545,7 +10695,7 @@
       "distribution": "compatible"
     },
     "LPPL-1.3c": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -10594,10 +10744,15 @@
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
-    "GPL-2.0-with-GCC-exception": {
-      "static_linking": "review_required",
+    "Brian-Gladman-3-Clause-no-conversion": {
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
+    },
+    "GPL-2.0-with-GCC-exception": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "incompatible"
     },
     "DocBook-Stylesheet": {
       "static_linking": "compatible",
@@ -10615,7 +10770,7 @@
       "distribution": "compatible"
     },
     "Linux-man-pages-copyleft-2-para": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -10640,7 +10795,7 @@
       "distribution": "compatible"
     },
     "ErlPL-1.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -10650,14 +10805,14 @@
       "distribution": "compatible"
     },
     "LGPL-2.0-or-later": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
     "GFDL-1.1-invariants-or-later": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
-      "distribution": "incompatible"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "OSSP": {
       "static_linking": "compatible",
@@ -10675,7 +10830,7 @@
       "distribution": "compatible"
     },
     "CC-BY-SA-2.5": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
@@ -10695,13 +10850,13 @@
       "distribution": "compatible"
     },
     "Elastic-2.0": {
-      "static_linking": "unknown",
-      "dynamic_linking": "unknown",
-      "distribution": "unknown"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-3.0": {
-      "static_linking": "incompatible",
-      "dynamic_linking": "review_required",
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
     "IJG-short": {
@@ -10710,21 +10865,76 @@
       "distribution": "compatible"
     },
     "CC-BY-NC-SA-1.0": {
-      "static_linking": "review_required",
-      "dynamic_linking": "compatible",
-      "distribution": "compatible"
-    },
-    "ALGLIB-Documentation": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
-    "BOLA-1.1": {
+    "Buddy": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"
     },
-    "Brian-Gladman-3-Clause-no-conversion": {
+    "CAPEC-tou": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "HPND-sell-variant-critical-systems": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ISO-permission": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MIT-STK": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MMPL-1.0.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "MVT-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OpenMDW-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "OSC-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "ParaType-Free-Font-1.3": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "TekHVC": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "UnRAR": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "Vixie-Cron": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    "X11-no-permit-persons": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "compatible"

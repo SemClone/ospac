@@ -1,7 +1,7 @@
 {
   "license": {
     "id": "CNRI-Python",
-    "name": "CNRI-Python",
+    "name": "CNRI Python License",
     "type": "permissive",
     "spdx_id": "CNRI-Python",
     "properties": {
@@ -13,80 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": false,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": true
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "Zlib",
-          "Public Domain"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0",
-          "CC BY-SA"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "Zlib",
-          "Public Domain"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0",
-          "CC BY-SA"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "The CNRI-Python license is permissive and allows for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses like GPL and AGPL."
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Retain CNRI's License Agreement in all copies or derivative versions of the software.",
-      "Indicate the nature of modifications made to Python 1.6b1 in any derivative work."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Licensee must accept the terms of the CNRI Open Source License Agreement.",
-      "Licensee must include a notice indicating the license terms when distributing the software."
+      "Attribution required"
     ],
     "spdx_metadata": {
-      "is_osi_approved": false,
+      "is_osi_approved": true,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

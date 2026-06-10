@@ -1,7 +1,7 @@
 {
   "license": {
     "id": "Apache-2.0",
-    "name": "Apache-2.0",
+    "name": "Apache License 2.0",
     "type": "permissive",
     "spdx_id": "Apache-2.0",
     "properties": {
@@ -13,64 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": true,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": false
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "Apache-2.0",
-          "Permissive"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-3.0-only",
-          "AGPL-3.0-only"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "Apache-2.0",
-          "Permissive",
-          "MIT"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-3.0-only",
-          "AGPL-3.0-only",
-          "GPL-2.0-only"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "The Apache-2.0 license is permissive, allowing derivative works and modifications."
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Include a copy of the Apache-2.0 license",
-      "Retain all notices (copyright, patent, trademark, attribution)",
-      "Mark modified files",
-      "Include NOTICE file if present in original"
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Retain all copyright, patent, trademark, and attribution notices",
-      "Include a copy of this license with every distribution",
-      "Mark modified files as changed",
-      "Include a NOTICE file if the original contained one"
+      "Attribution required"
     ],
     "spdx_metadata": {
-      "is_osi_approved": false,
-      "is_fsf_libre": false,
+      "is_osi_approved": true,
+      "is_fsf_libre": true,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }
