@@ -1,54 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "module",
-      "dynamic_linking": {
-        "compatible_with": [
-          "Apache-2.0",
-          "MIT",
-          "ISC",
-          "Unlicense"
-        ],
-        "incompatible_with": [
-          "GPL-3.0+",
-          "AGPL-3.0+",
-          "GPL-2.0+ with exception",
-          "GPL-1.0+ with exception"
-        ],
-        "requires_review": []
-      },
-      "notes": "APSL-1.0 is compatible with most permissive licenses, but GPL-derived licenses are incompatible.",
-      "static_linking": {
-        "compatible_with": [
-          "Apache-2.0",
-          "MIT",
-          "ISC",
-          "Unlicense"
-        ],
-        "incompatible_with": [
-          "GPL-3.0+",
-          "AGPL-3.0+",
-          "GPL-2.0+ with exception",
-          "GPL-1.0+ with exception"
-        ],
-        "requires_review": []
-      }
-    },
     "id": "APSL-1.0",
-    "key_requirements": [
-      "You must include a notice stating that you have modified the Original Code and indicating the extent to which you have modified it.",
-      "Your modifications must be made available under this License, including but not limited to making the Source Code of any Modifications publicly available under this License."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
     "name": "APSL-1.0",
-    "obligations": [
-      "You must notify Apple of any changes you make to the Original Code, including but not limited to new patent applications that are necessary to use, reproduce and/or distribute the Modified Code without infringement.",
-      "You must provide Apple with a written notice within 30 days of your making any modification(s) to the Original Code or combining the Original Code with other code in such a way as to form a Larger Work."
-    ],
+    "type": "permissive|copyleft_weak",
+    "spdx_id": "APSL-1.0",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -65,7 +20,59 @@
       "same_license": true,
       "state_changes": false
     },
-    "spdx_id": "APSL-1.0",
-    "type": "permissive|copyleft_weak"
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "ISC",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "AGPL-3.0+",
+          "GPL-2.0+ with exception",
+          "GPL-1.0+ with exception"
+        ],
+        "requires_review": []
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "ISC",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "AGPL-3.0+",
+          "GPL-2.0+ with exception",
+          "GPL-1.0+ with exception"
+        ],
+        "requires_review": []
+      },
+      "contamination_effect": "module",
+      "notes": "APSL-1.0 is compatible with most permissive licenses, but GPL-derived licenses are incompatible."
+    },
+    "obligations": [
+      "You must notify Apple of any changes you make to the Original Code, including but not limited to new patent applications that are necessary to use, reproduce and/or distribute the Modified Code without infringement.",
+      "You must provide Apple with a written notice within 30 days of your making any modification(s) to the Original Code or combining the Original Code with other code in such a way as to form a Larger Work."
+    ],
+    "key_requirements": [
+      "You must include a notice stating that you have modified the Original Code and indicating the extent to which you have modified it.",
+      "Your modifications must be made available under this License, including but not limited to making the Source Code of any Modifications publicly available under this License."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

@@ -1,7 +1,53 @@
 {
   "license": {
+    "id": "Intel-ACPI",
+    "name": "Intel-ACPI",
+    "type": "permissive",
+    "spdx_id": "Intel-ACPI",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
     "compatibility": {
-      "contamination_effect": "none",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -24,64 +70,25 @@
           "CC BY-SA"
         ]
       },
-      "notes": "The Intel-ACPI license is permissive and allows for integration with other permissive licenses without imposing restrictions. However, care should be taken when combining with copyleft licenses.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "Zlib",
-          "Public Domain"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0",
-          "CC BY-SA"
-        ]
-      }
+      "contamination_effect": "none",
+      "notes": "The Intel-ACPI license is permissive and allows for integration with other permissive licenses without imposing restrictions. However, care should be taken when combining with copyleft licenses."
     },
-    "id": "Intel-ACPI",
-    "key_requirements": [
-      "Redistribution of source code must include the original copyright notice.",
-      "Redistribution must include the license and conditions.",
-      "If modifications are made, a file documenting those changes must be included."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
-    "name": "Intel-ACPI",
     "obligations": [
       "Include the copyright notice, license, conditions, and disclaimer when redistributing source code.",
       "Document changes made to the Covered Code and include the date of changes.",
       "State that modifications are derived from Original Intel Code."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": true,
-      "private_use": true
+    "key_requirements": [
+      "Redistribution of source code must include the original copyright notice.",
+      "Redistribution must include the license and conditions.",
+      "If modifications are made, a file documenting those changes must be included."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": true,
-      "include_copyright": true,
-      "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": true
-    },
-    "spdx_id": "Intel-ACPI",
-    "type": "permissive"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

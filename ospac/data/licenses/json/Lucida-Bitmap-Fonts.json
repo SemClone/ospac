@@ -1,55 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "none",
-      "dynamic_linking": {
-        "compatible_with": [
-          "proprietary",
-          "commercial"
-        ],
-        "incompatible_with": [
-          "GPL",
-          "LGPL",
-          "AGPL"
-        ],
-        "requires_review": [
-          "MPL",
-          "EPL"
-        ]
-      },
-      "notes": "The Lucida-Bitmap-Fonts license allows for proprietary use but does not permit integration with open-source licenses that require derivative works to be open-sourced.",
-      "static_linking": {
-        "compatible_with": [
-          "proprietary",
-          "commercial"
-        ],
-        "incompatible_with": [
-          "GPL",
-          "LGPL",
-          "AGPL"
-        ],
-        "requires_review": [
-          "MPL",
-          "EPL"
-        ]
-      }
-    },
     "id": "Lucida-Bitmap-Fonts",
-    "key_requirements": [
-      "Must not change the code or output except as authorized.",
-      "Must not modify the fonts and bit-mapped images to use the Lucida trademark."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": true
-    },
     "name": "Lucida-Bitmap-Fonts",
-    "obligations": [
-      "Include copyright notices in user documentation and internal comments.",
-      "Do not modify the appearance of the icons or glyphs except as necessary for standard resolution.",
-      "Validation by AT&T is required for the use of the OPEN LOOK trademark."
-    ],
+    "type": "proprietary",
+    "spdx_id": "Lucida-Bitmap-Fonts",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -66,7 +20,60 @@
       "same_license": false,
       "state_changes": false
     },
-    "spdx_id": "Lucida-Bitmap-Fonts",
-    "type": "proprietary"
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "proprietary",
+          "commercial"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL"
+        ],
+        "requires_review": [
+          "MPL",
+          "EPL"
+        ]
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "proprietary",
+          "commercial"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL"
+        ],
+        "requires_review": [
+          "MPL",
+          "EPL"
+        ]
+      },
+      "contamination_effect": "none",
+      "notes": "The Lucida-Bitmap-Fonts license allows for proprietary use but does not permit integration with open-source licenses that require derivative works to be open-sourced."
+    },
+    "obligations": [
+      "Include copyright notices in user documentation and internal comments.",
+      "Do not modify the appearance of the icons or glyphs except as necessary for standard resolution.",
+      "Validation by AT&T is required for the use of the OPEN LOOK trademark."
+    ],
+    "key_requirements": [
+      "Must not change the code or output except as authorized.",
+      "Must not modify the fonts and bit-mapped images to use the Lucida trademark."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

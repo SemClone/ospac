@@ -1,58 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "none",
-      "dynamic_linking": {
-        "compatible_with": [
-          "MIT",
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "Apache-2.0",
-          "Zlib",
-          "GPL",
-          "AGPL"
-        ],
-        "incompatible_with": [],
-        "requires_review": [
-          "MPL",
-          "EPL"
-        ]
-      },
-      "notes": "Libpng is a permissive license, allowing for both static and dynamic linking with minimal restrictions. However, care should be taken when linking with copyleft licenses.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "Apache-2.0",
-          "Zlib"
-        ],
-        "incompatible_with": [
-          "GPL",
-          "AGPL"
-        ],
-        "requires_review": [
-          "MPL",
-          "EPL"
-        ]
-      }
-    },
     "id": "Libpng",
-    "key_requirements": [
-      "Must include the copyright notice and license in redistributions.",
-      "Must state any modifications made to the original code."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
     "name": "Libpng",
-    "obligations": [
-      "Include the original copyright notice in all copies or substantial portions of the software.",
-      "Include a copy of the license in all distributions of the software.",
-      "State any changes made to the original code."
-    ],
+    "type": "permissive",
+    "spdx_id": "Libpng",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -69,7 +20,63 @@
       "same_license": false,
       "state_changes": true
     },
-    "spdx_id": "Libpng",
-    "type": "permissive"
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL"
+        ],
+        "requires_review": [
+          "MPL",
+          "EPL"
+        ]
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "GPL",
+          "AGPL"
+        ],
+        "incompatible_with": [],
+        "requires_review": [
+          "MPL",
+          "EPL"
+        ]
+      },
+      "contamination_effect": "none",
+      "notes": "Libpng is a permissive license, allowing for both static and dynamic linking with minimal restrictions. However, care should be taken when linking with copyleft licenses."
+    },
+    "obligations": [
+      "Include the original copyright notice in all copies or substantial portions of the software.",
+      "Include a copy of the license in all distributions of the software.",
+      "State any changes made to the original code."
+    ],
+    "key_requirements": [
+      "Must include the copyright notice and license in redistributions.",
+      "Must state any modifications made to the original code."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

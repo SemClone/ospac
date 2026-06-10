@@ -1,55 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "full",
-      "dynamic_linking": {
-        "compatible_with": [
-          "AGPL-1.0-only",
-          "GPL-3.0-only",
-          "LGPL-3.0-only"
-        ],
-        "incompatible_with": [
-          "proprietary",
-          "non-copyleft-free",
-          "mit",
-          "bsd",
-          "apache-2.0"
-        ],
-        "requires_review": []
-      },
-      "notes": "The AGPL-1.0-only license requires that any software that links dynamically to the licensed code must also be made available under the same terms.",
-      "static_linking": {
-        "compatible_with": [
-          "AGPL-1.0-only",
-          "GPL-3.0-only",
-          "LGPL-3.0-only"
-        ],
-        "incompatible_with": [
-          "proprietary",
-          "non-copyleft-free",
-          "mit",
-          "bsd",
-          "apache-2.0"
-        ],
-        "requires_review": []
-      }
-    },
     "id": "AGPL-1.0-only",
-    "key_requirements": [
-      "The recipient must preserve the conditions of this license",
-      "The recipient must include a copy of this license with the software"
-    ],
-    "limitations": {
-      "liability": false,
-      "trademark_use": false,
-      "warranty": false
-    },
     "name": "AGPL-1.0-only",
-    "obligations": [
-      "You must give the recipients all the rights that you have.",
-      "You must make sure that they, too, receive or can get the source code.",
-      "You must show them these terms so they know their rights."
-    ],
+    "type": "copyleft_strong",
+    "spdx_id": "AGPL-1.0-only",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -66,7 +20,60 @@
       "same_license": true,
       "state_changes": true
     },
-    "spdx_id": "AGPL-1.0-only",
-    "type": "copyleft_strong"
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "AGPL-1.0-only",
+          "GPL-3.0-only",
+          "LGPL-3.0-only"
+        ],
+        "incompatible_with": [
+          "proprietary",
+          "non-copyleft-free",
+          "mit",
+          "bsd",
+          "apache-2.0"
+        ],
+        "requires_review": []
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "AGPL-1.0-only",
+          "GPL-3.0-only",
+          "LGPL-3.0-only"
+        ],
+        "incompatible_with": [
+          "proprietary",
+          "non-copyleft-free",
+          "mit",
+          "bsd",
+          "apache-2.0"
+        ],
+        "requires_review": []
+      },
+      "contamination_effect": "full",
+      "notes": "The AGPL-1.0-only license requires that any software that links dynamically to the licensed code must also be made available under the same terms."
+    },
+    "obligations": [
+      "You must give the recipients all the rights that you have.",
+      "You must make sure that they, too, receive or can get the source code.",
+      "You must show them these terms so they know their rights."
+    ],
+    "key_requirements": [
+      "The recipient must preserve the conditions of this license",
+      "The recipient must include a copy of this license with the software"
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

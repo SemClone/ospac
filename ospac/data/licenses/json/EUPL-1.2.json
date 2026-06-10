@@ -1,56 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "module",
-      "dynamic_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "EUPL-1.2",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": []
-      },
-      "notes": "EUPL-1.2 allows for compatibility with other licenses under certain conditions, particularly when linking dynamically. Static linking may impose stricter compatibility requirements.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "EUPL-1.2"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      }
-    },
     "id": "EUPL-1.2",
-    "key_requirements": [
-      "The Licensor must place a notice indicating the Work is licensed under the EUPL.",
-      "Any distribution of the Work must include the license and copyright notice."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": false
-    },
     "name": "EUPL-1.2",
-    "obligations": [
-      "Include a copy of the license when distributing the Work.",
-      "Include the copyright notice when distributing the Work.",
-      "State changes made to the Original Work when creating Derivative Works."
-    ],
+    "type": "copyleft_weak",
+    "spdx_id": "EUPL-1.2",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -67,7 +20,61 @@
       "same_license": false,
       "state_changes": true
     },
-    "spdx_id": "EUPL-1.2",
-    "type": "copyleft_weak"
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "EUPL-1.2"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "EUPL-1.2",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "contamination_effect": "module",
+      "notes": "EUPL-1.2 allows for compatibility with other licenses under certain conditions, particularly when linking dynamically. Static linking may impose stricter compatibility requirements."
+    },
+    "obligations": [
+      "Include a copy of the license when distributing the Work.",
+      "Include the copyright notice when distributing the Work.",
+      "State changes made to the Original Work when creating Derivative Works."
+    ],
+    "key_requirements": [
+      "The Licensor must place a notice indicating the Work is licensed under the EUPL.",
+      "Any distribution of the Work must include the license and copyright notice."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

@@ -1,47 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "module",
-      "dynamic_linking": {
-        "compatible_with": [
-          "Permissive",
-          "MIT"
-        ],
-        "incompatible_with": [
-          "GPL",
-          "AGPL",
-          "Proprietary"
-        ],
-        "requires_review": []
-      },
-      "notes": "No additional restrictions for using Beerware licensed code in other projects.",
-      "static_linking": {
-        "compatible_with": [
-          "Permissive",
-          "MIT"
-        ],
-        "incompatible_with": [
-          "GPL",
-          "AGPL",
-          "Proprietary"
-        ],
-        "requires_review": []
-      }
-    },
     "id": "Beerware",
-    "key_requirements": [
-      "Retain the notice in the original file or modified version.",
-      "Buy the author a beer if you think this software is worth it"
-    ],
-    "limitations": {
-      "liability": false,
-      "trademark_use": false,
-      "warranty": false
-    },
     "name": "Beerware",
-    "obligations": [
-      "As long as you retain this notice, you can do whatever you want with this stuff."
-    ],
+    "type": "permissive",
+    "spdx_id": "Beerware",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -58,7 +20,52 @@
       "same_license": false,
       "state_changes": false
     },
-    "spdx_id": "Beerware",
-    "type": "permissive"
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "Proprietary"
+        ],
+        "requires_review": []
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "Proprietary"
+        ],
+        "requires_review": []
+      },
+      "contamination_effect": "module",
+      "notes": "No additional restrictions for using Beerware licensed code in other projects."
+    },
+    "obligations": [
+      "As long as you retain this notice, you can do whatever you want with this stuff."
+    ],
+    "key_requirements": [
+      "Retain the notice in the original file or modified version.",
+      "Buy the author a beer if you think this software is worth it"
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

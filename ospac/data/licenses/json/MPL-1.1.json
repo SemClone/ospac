@@ -1,57 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "module",
-      "dynamic_linking": {
-        "compatible_with": [
-          "MPL-2.0",
-          "Apache-2.0",
-          "MIT",
-          "BSD-3-Clause",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0"
-        ],
-        "requires_review": []
-      },
-      "notes": "MPL-1.1 allows for the combination with other licenses, but care must be taken to comply with the terms of the MPL when distributing combined works.",
-      "static_linking": {
-        "compatible_with": [
-          "MPL-2.0",
-          "Apache-2.0",
-          "MIT",
-          "BSD-3-Clause"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0"
-        ],
-        "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      }
-    },
     "id": "MPL-1.1",
-    "key_requirements": [
-      "Provide attribution to the original authors.",
-      "Retain the license and copyright notices in all copies or substantial portions of the covered code.",
-      "State changes made to the original code in a prominent manner."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": true
-    },
     "name": "MPL-1.1",
-    "obligations": [
-      "You must make the source code of any modifications available when distributing the modified version.",
-      "You must include a copy of the MPL license with any distribution of the covered code.",
-      "You must include a notice stating any changes made to the original code."
-    ],
+    "type": "copyleft_weak",
+    "spdx_id": "MPL-1.1",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -68,7 +20,62 @@
       "same_license": false,
       "state_changes": true
     },
-    "spdx_id": "MPL-1.1",
-    "type": "copyleft_weak"
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "MPL-2.0",
+          "Apache-2.0",
+          "MIT",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "MPL-2.0",
+          "Apache-2.0",
+          "MIT",
+          "BSD-3-Clause",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "contamination_effect": "module",
+      "notes": "MPL-1.1 allows for the combination with other licenses, but care must be taken to comply with the terms of the MPL when distributing combined works."
+    },
+    "obligations": [
+      "You must make the source code of any modifications available when distributing the modified version.",
+      "You must include a copy of the MPL license with any distribution of the covered code.",
+      "You must include a notice stating any changes made to the original code."
+    ],
+    "key_requirements": [
+      "Provide attribution to the original authors.",
+      "Retain the license and copyright notices in all copies or substantial portions of the covered code.",
+      "State changes made to the original code in a prominent manner."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

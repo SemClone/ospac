@@ -1,7 +1,50 @@
 {
   "license": {
+    "id": "Nunit",
+    "name": "Nunit",
+    "type": "permissive",
+    "spdx_id": "Nunit",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
     "compatibility": {
-      "contamination_effect": "none",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -21,62 +64,26 @@
           "LGPL-3.0"
         ]
       },
-      "notes": "NUnit is a permissive license, allowing for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses like GPL.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "Zlib",
-          "Unlicense"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      }
+      "contamination_effect": "none",
+      "notes": "NUnit is a permissive license, allowing for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses like GPL."
     },
-    "id": "Nunit",
-    "key_requirements": [
-      "Include the original copyright notice.",
-      "Include a copy of the license in all distributions.",
-      "Acknowledge the authors in any product documentation."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
-    "name": "Nunit",
     "obligations": [
       "Must not misrepresent the origin of the software.",
       "Must acknowledge the original authors in product documentation if used.",
       "Altered source versions must be marked as such.",
       "This notice must not be removed or altered from any source distribution."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "Include the original copyright notice.",
+      "Include a copy of the license in all distributions.",
+      "Acknowledge the authors in any product documentation."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": true
     },
-    "requirements": {
-      "disclose_source": false,
-      "include_copyright": true,
-      "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": true
-    },
-    "spdx_id": "Nunit",
-    "type": "permissive"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

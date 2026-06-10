@@ -1,7 +1,49 @@
 {
   "license": {
+    "id": "CDLA-Sharing-1.0",
+    "name": "CDLA-Sharing-1.0",
+    "type": "permissive",
+    "spdx_id": "CDLA-Sharing-1.0",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": false
+    },
     "compatibility": {
-      "contamination_effect": "none",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "ISC"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -20,59 +62,24 @@
           "LGPL-3.0"
         ]
       },
-      "notes": "CDLA-Sharing-1.0 is designed to promote sharing and collaboration while allowing for permissive use. It does not impose copyleft requirements, making it compatible with other permissive licenses.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "ISC"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      }
+      "contamination_effect": "none",
+      "notes": "CDLA-Sharing-1.0 is designed to promote sharing and collaboration while allowing for permissive use. It does not impose copyleft requirements, making it compatible with other permissive licenses."
     },
-    "id": "CDLA-Sharing-1.0",
-    "key_requirements": [
-      "Accept the terms of the Agreement by exercising rights granted.",
-      "Publish any Additions or Modifications as Enhanced Data under the same Agreement."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": false
-    },
-    "name": "CDLA-Sharing-1.0",
     "obligations": [
       "You must include the license when distributing the Data.",
       "You must include any copyright notices associated with the Data.",
       "You must state any changes made to the Data when publishing Enhanced Data."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": true,
-      "private_use": true
+    "key_requirements": [
+      "Accept the terms of the Agreement by exercising rights granted.",
+      "Publish any Additions or Modifications as Enhanced Data under the same Agreement."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": false,
-      "include_copyright": true,
-      "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": true
-    },
-    "spdx_id": "CDLA-Sharing-1.0",
-    "type": "permissive"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

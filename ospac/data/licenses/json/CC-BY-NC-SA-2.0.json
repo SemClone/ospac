@@ -1,58 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "derivative",
-      "dynamic_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "CC-BY-NC-SA-4.0"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0"
-        ]
-      },
-      "notes": "The CC-BY-NC-SA-2.0 license allows for non-commercial use and requires attribution. Any derivative works must also be licensed under the same terms, which may affect compatibility with more restrictive licenses.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0"
-        ]
-      }
-    },
     "id": "CC-BY-NC-SA-2.0",
-    "key_requirements": [
-      "Provide appropriate credit to the original author.",
-      "Indicate if changes were made to the original work.",
-      "Distribute derivative works under the same license."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
     "name": "CC-BY-NC-SA-2.0",
-    "obligations": [
-      "Attribution must be given to the original author.",
-      "The work cannot be used for commercial purposes.",
-      "Any derivative works must be licensed under the same terms (ShareAlike).",
-      "The license must be included with any distributed copies or adaptations of the work."
-    ],
+    "type": "copyleft_weak",
+    "spdx_id": "CC-BY-NC-SA-2.0",
     "properties": {
       "commercial_use": false,
       "distribution": true,
@@ -69,7 +20,63 @@
       "same_license": true,
       "state_changes": true
     },
-    "spdx_id": "CC-BY-NC-SA-2.0",
-    "type": "copyleft_weak"
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "CC-BY-NC-SA-4.0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
+      "contamination_effect": "derivative",
+      "notes": "The CC-BY-NC-SA-2.0 license allows for non-commercial use and requires attribution. Any derivative works must also be licensed under the same terms, which may affect compatibility with more restrictive licenses."
+    },
+    "obligations": [
+      "Attribution must be given to the original author.",
+      "The work cannot be used for commercial purposes.",
+      "Any derivative works must be licensed under the same terms (ShareAlike).",
+      "The license must be included with any distributed copies or adaptations of the work."
+    ],
+    "key_requirements": [
+      "Provide appropriate credit to the original author.",
+      "Indicate if changes were made to the original work.",
+      "Distribute derivative works under the same license."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

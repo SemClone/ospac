@@ -1,57 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "none",
-      "dynamic_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      },
-      "notes": "CC-BY-NC-1.0 is a non-commercial license, which limits its compatibility with commercial licenses. Care should be taken when combining with licenses that have copyleft provisions.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      }
-    },
     "id": "CC-BY-NC-1.0",
-    "key_requirements": [
-      "Must include a copy of the license when distributing the work.",
-      "Must include a copyright notice when distributing the work."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
     "name": "CC-BY-NC-1.0",
-    "obligations": [
-      "Attribution must be given to the original author.",
-      "The work cannot be used for commercial purposes.",
-      "If the work is modified, the changes must be stated."
-    ],
+    "type": "permissive",
+    "spdx_id": "CC-BY-NC-1.0",
     "properties": {
       "commercial_use": false,
       "distribution": true,
@@ -68,7 +20,62 @@
       "same_license": false,
       "state_changes": true
     },
-    "spdx_id": "CC-BY-NC-1.0",
-    "type": "permissive"
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "contamination_effect": "none",
+      "notes": "CC-BY-NC-1.0 is a non-commercial license, which limits its compatibility with commercial licenses. Care should be taken when combining with licenses that have copyleft provisions."
+    },
+    "obligations": [
+      "Attribution must be given to the original author.",
+      "The work cannot be used for commercial purposes.",
+      "If the work is modified, the changes must be stated."
+    ],
+    "key_requirements": [
+      "Must include a copy of the license when distributing the work.",
+      "Must include a copyright notice when distributing the work."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

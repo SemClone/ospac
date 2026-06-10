@@ -1,7 +1,53 @@
 {
   "license": {
+    "id": "gtkbook",
+    "name": "gtkbook",
+    "type": "permissive",
+    "spdx_id": "gtkbook",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
     "compatibility": {
-      "contamination_effect": "none",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0",
+          "CC BY-SA"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -24,60 +70,21 @@
           "CC BY-SA"
         ]
       },
-      "notes": "The gtkbook license is permissive and allows for both static and dynamic linking with compatible licenses. Care should be taken when linking with copyleft licenses, as they may impose restrictions on the distribution of derivative works.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "Apache-2.0",
-          "Zlib",
-          "Unlicense"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0",
-          "CC BY-SA"
-        ]
-      }
+      "contamination_effect": "none",
+      "notes": "The gtkbook license is permissive and allows for both static and dynamic linking with compatible licenses. Care should be taken when linking with copyleft licenses, as they may impose restrictions on the distribution of derivative works."
     },
-    "id": "gtkbook",
-    "key_requirements": [
-      "Must include the copyright notice in any distribution of the code."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
-    "name": "gtkbook",
     "obligations": [
       "Include the copyright notice when republishing or redistributing the code."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "Must include the copyright notice in any distribution of the code."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": false,
-      "include_copyright": true,
-      "include_license": false,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": false
-    },
-    "spdx_id": "gtkbook",
-    "type": "permissive"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

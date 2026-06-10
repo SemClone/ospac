@@ -1,52 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "none",
-      "dynamic_linking": {
-        "compatible_with": [
-          "GPL-3.0",
-          "Apache-2.0",
-          "MIT",
-          "Permissive"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "AGPL-3.0",
-          "LGPL-3.0"
-        ],
-        "requires_review": []
-      },
-      "notes": "This license allows for static linking with other permissive licenses, and dynamic linking with most licenses. It is not compatible with GPL-2.0 or its variants.",
-      "static_linking": {
-        "compatible_with": [
-          "GPL-3.0",
-          "Apache-2.0",
-          "MIT",
-          "Permissive"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "AGPL-3.0",
-          "LGPL-3.0"
-        ],
-        "requires_review": []
-      }
-    },
     "id": "3D-Slicer-1.0",
-    "key_requirements": [
-      "All Contributions must be properly attributed, with applicable copyright notices and licenses for any third-party software or data included in the Contribution.",
-      "Contributions may not include patient data unless it is de-identified in accordance with U.S. confidentiality and security laws and requirements."
-    ],
-    "limitations": {
-      "liability": false,
-      "trademark_use": false,
-      "warranty": false
-    },
     "name": "3D-Slicer-1.0",
-    "obligations": [
-      "You must include all paragraphs of Part B of this Agreement with and apply to the Software if you distribute it.",
-      "You represent that you are legally authorized and entitled to make a Contribution to Slicer and to grant all licenses granted in this Contribution Agreement."
-    ],
+    "type": "permissive",
+    "spdx_id": "3D-Slicer-1.0",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -63,7 +20,57 @@
       "same_license": false,
       "state_changes": false
     },
-    "spdx_id": "3D-Slicer-1.0",
-    "type": "permissive"
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "Apache-2.0",
+          "MIT",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "Apache-2.0",
+          "MIT",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "contamination_effect": "none",
+      "notes": "This license allows for static linking with other permissive licenses, and dynamic linking with most licenses. It is not compatible with GPL-2.0 or its variants."
+    },
+    "obligations": [
+      "You must include all paragraphs of Part B of this Agreement with and apply to the Software if you distribute it.",
+      "You represent that you are legally authorized and entitled to make a Contribution to Slicer and to grant all licenses granted in this Contribution Agreement."
+    ],
+    "key_requirements": [
+      "All Contributions must be properly attributed, with applicable copyright notices and licenses for any third-party software or data included in the Contribution.",
+      "Contributions may not include patient data unless it is de-identified in accordance with U.S. confidentiality and security laws and requirements."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

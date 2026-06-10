@@ -1,7 +1,50 @@
 {
   "license": {
+    "id": "LPPL-1.3a",
+    "name": "LPPL-1.3a",
+    "type": "permissive",
+    "spdx_id": "LPPL-1.3a",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": false,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": false
+    },
     "compatibility": {
-      "contamination_effect": "none",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -21,59 +64,23 @@
           "LGPL-3.0"
         ]
       },
-      "notes": "LPPL-1.3a is a permissive license that allows for both static and dynamic linking with compatible licenses. However, it is incompatible with copyleft licenses like GPL.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "BSD",
-          "Apache-2.0",
-          "Zlib",
-          "Public Domain"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      }
+      "contamination_effect": "none",
+      "notes": "LPPL-1.3a is a permissive license that allows for both static and dynamic linking with compatible licenses. However, it is incompatible with copyleft licenses like GPL."
     },
-    "id": "LPPL-1.3a",
-    "key_requirements": [
-      "Do not modify the license text itself.",
-      "Ensure that any modifications to the Work are clearly documented."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": false
-    },
-    "name": "LPPL-1.3a",
     "obligations": [
       "You must include a copy of this license when distributing the Work.",
       "You must include the copyright notice when distributing the Work."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": false,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "Do not modify the license text itself.",
+      "Ensure that any modifications to the Work are clearly documented."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": false,
-      "include_copyright": true,
-      "include_license": true,
-      "include_notice": false,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": false
-    },
-    "spdx_id": "LPPL-1.3a",
-    "type": "permissive"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

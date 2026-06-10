@@ -1,46 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "none",
-      "dynamic_linking": {
-        "compatible_with": [
-          "Permissive",
-          "MIT",
-          "Apache-2.0"
-        ],
-        "incompatible_with": [
-          "GPL-3.0+",
-          "AGPL-3.0+"
-        ],
-        "requires_review": []
-      },
-      "notes": "Aspell-RU is a permissive license that allows for static and dynamic linking with other Permissive, MIT, and Apache-2.0 licensed works. It does not allow combining with GPL-3.0+ or AGPL-3.0+, as these licenses are incompatible due to their copyleft provisions.",
-      "static_linking": {
-        "compatible_with": [
-          "Permissive",
-          "MIT",
-          "Apache-2.0"
-        ],
-        "incompatible_with": [
-          "GPL-3.0+",
-          "AGPL-3.0+"
-        ],
-        "requires_review": []
-      }
-    },
     "id": "Aspell-RU",
-    "key_requirements": [
-      "Include a copy of this license with any redistribution."
-    ],
-    "limitations": {
-      "liability": false,
-      "trademark_use": true,
-      "warranty": false
-    },
     "name": "Aspell-RU",
-    "obligations": [
-      "No specific obligations mentioned in the license text."
-    ],
+    "type": "permissive",
+    "spdx_id": "Aspell-RU",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -57,7 +20,51 @@
       "same_license": false,
       "state_changes": false
     },
-    "spdx_id": "Aspell-RU",
-    "type": "permissive"
+    "limitations": {
+      "liability": false,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "AGPL-3.0+"
+        ],
+        "requires_review": []
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0+",
+          "AGPL-3.0+"
+        ],
+        "requires_review": []
+      },
+      "contamination_effect": "none",
+      "notes": "Aspell-RU is a permissive license that allows for static and dynamic linking with other Permissive, MIT, and Apache-2.0 licensed works. It does not allow combining with GPL-3.0+ or AGPL-3.0+, as these licenses are incompatible due to their copyleft provisions."
+    },
+    "obligations": [
+      "No specific obligations mentioned in the license text."
+    ],
+    "key_requirements": [
+      "Include a copy of this license with any redistribution."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

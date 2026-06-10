@@ -1,7 +1,50 @@
 {
   "license": {
+    "id": "TCP-wrappers",
+    "name": "TCP-wrappers",
+    "type": "permissive",
+    "spdx_id": "TCP-wrappers",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
     "compatibility": {
-      "contamination_effect": "none",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -21,58 +64,22 @@
           "LGPL-3.0"
         ]
       },
-      "notes": "TCP-wrappers is a permissive license, allowing for integration with other permissive licenses without imposing restrictions. However, it is incompatible with copyleft licenses like GPL.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "Apache-2.0",
-          "Zlib"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      }
+      "contamination_effect": "none",
+      "notes": "TCP-wrappers is a permissive license, allowing for integration with other permissive licenses without imposing restrictions. However, it is incompatible with copyleft licenses like GPL."
     },
-    "id": "TCP-wrappers",
+    "obligations": [
+      "The entire copyright notice must be duplicated in all copies of the software."
+    ],
     "key_requirements": [
       "Redistribution and use in source and binary forms are permitted with or without modification.",
       "The software is provided 'as is' without any warranties."
     ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "name": "TCP-wrappers",
-    "obligations": [
-      "The entire copyright notice must be duplicated in all copies of the software."
-    ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
-    },
-    "requirements": {
-      "disclose_source": false,
-      "include_copyright": true,
-      "include_license": false,
-      "include_notice": false,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": false
-    },
-    "spdx_id": "TCP-wrappers",
-    "type": "permissive"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

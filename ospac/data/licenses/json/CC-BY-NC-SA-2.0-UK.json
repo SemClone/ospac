@@ -1,7 +1,48 @@
 {
   "license": {
+    "id": "CC-BY-NC-SA-2.0-UK",
+    "name": "CC-BY-NC-SA-2.0-UK",
+    "type": "copyleft_weak",
+    "spdx_id": "CC-BY-NC-SA-2.0-UK",
+    "properties": {
+      "commercial_use": false,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
     "compatibility": {
-      "contamination_effect": "derivative",
+      "static_linking": {
+        "compatible_with": [
+          "CC-BY",
+          "CC-BY-SA",
+          "MIT",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "BSD-2-Clause",
+          "BSD-3-Clause"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "CC-BY",
@@ -19,60 +60,26 @@
           "BSD-3-Clause"
         ]
       },
-      "notes": "The CC-BY-NC-SA-2.0-UK license requires that any derivative works be licensed under the same or a compatible license. Non-commercial use is a key restriction.",
-      "static_linking": {
-        "compatible_with": [
-          "CC-BY",
-          "CC-BY-SA",
-          "MIT",
-          "Apache-2.0"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "BSD-2-Clause",
-          "BSD-3-Clause"
-        ]
-      }
+      "contamination_effect": "derivative",
+      "notes": "The CC-BY-NC-SA-2.0-UK license requires that any derivative works be licensed under the same or a compatible license. Non-commercial use is a key restriction."
     },
-    "id": "CC-BY-NC-SA-2.0-UK",
-    "key_requirements": [
-      "Attribution to the Original Author is mandatory.",
-      "The Work cannot be used for commercial purposes.",
-      "Any derivative works must be licensed under the same terms."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
-    "name": "CC-BY-NC-SA-2.0-UK",
     "obligations": [
       "Credit the Original Author when using the Work.",
       "Disclose the source of the Work when distributing.",
       "Include a copy of the license when distributing the Work.",
       "State any changes made to the Work."
     ],
-    "properties": {
-      "commercial_use": false,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "Attribution to the Original Author is mandatory.",
+      "The Work cannot be used for commercial purposes.",
+      "Any derivative works must be licensed under the same terms."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": true,
-      "include_copyright": true,
-      "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": true,
-      "state_changes": true
-    },
-    "spdx_id": "CC-BY-NC-SA-2.0-UK",
-    "type": "copyleft_weak"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

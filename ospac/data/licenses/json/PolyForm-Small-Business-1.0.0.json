@@ -1,56 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "none",
-      "dynamic_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "Creative Commons",
-          "MPL-2.0"
-        ]
-      },
-      "notes": "This license is designed for small businesses and allows for proprietary use. Ensure compliance with all terms when integrating with other licenses.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "Creative Commons",
-          "MPL-2.0"
-        ]
-      }
-    },
     "id": "PolyForm-Small-Business-1.0.0",
-    "key_requirements": [
-      "Ensure compliance with the distribution license.",
-      "Adhere to the revenue and employee count limitations for small business use.",
-      "Notify the licensor if you make any claims regarding patent infringement."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": false
-    },
     "name": "PolyForm-Small-Business-1.0.0",
-    "obligations": [
-      "You must agree to the terms as strict obligations.",
-      "You must provide a copy of the license or URL to the license with any distributed copies.",
-      "You must include any required notices provided by the licensor."
-    ],
+    "type": "proprietary",
+    "spdx_id": "PolyForm-Small-Business-1.0.0",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -67,7 +20,61 @@
       "same_license": false,
       "state_changes": false
     },
-    "spdx_id": "PolyForm-Small-Business-1.0.0",
-    "type": "proprietary"
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "Creative Commons",
+          "MPL-2.0"
+        ]
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "Creative Commons",
+          "MPL-2.0"
+        ]
+      },
+      "contamination_effect": "none",
+      "notes": "This license is designed for small businesses and allows for proprietary use. Ensure compliance with all terms when integrating with other licenses."
+    },
+    "obligations": [
+      "You must agree to the terms as strict obligations.",
+      "You must provide a copy of the license or URL to the license with any distributed copies.",
+      "You must include any required notices provided by the licensor."
+    ],
+    "key_requirements": [
+      "Ensure compliance with the distribution license.",
+      "Adhere to the revenue and employee count limitations for small business use.",
+      "Notify the licensor if you make any claims regarding patent infringement."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

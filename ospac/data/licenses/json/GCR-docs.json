@@ -1,7 +1,50 @@
 {
   "license": {
+    "id": "GCR-docs",
+    "name": "GCR-docs",
+    "type": "permissive",
+    "spdx_id": "GCR-docs",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
     "compatibility": {
-      "contamination_effect": "none",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -21,61 +64,25 @@
           "LGPL-3.0"
         ]
       },
-      "notes": "Permissive licenses generally allow for integration with other licenses, but care should be taken when combining with copyleft licenses.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "Zlib",
-          "Unlicense"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      }
+      "contamination_effect": "none",
+      "notes": "Permissive licenses generally allow for integration with other licenses, but care should be taken when combining with copyleft licenses."
     },
-    "id": "GCR-docs",
-    "key_requirements": [
-      "Include the copyright notice in all copies.",
-      "Provide source code for modified or translated versions.",
-      "No warranty is provided for the work."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
-    "name": "GCR-docs",
     "obligations": [
       "Retain the copyright notice on all copies.",
       "Make the source code of modified or translated versions available in electronic form without charge.",
       "Do not redistribute under terms more restrictive than those under which you received it."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "Include the copyright notice in all copies.",
+      "Provide source code for modified or translated versions.",
+      "No warranty is provided for the work."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": true,
-      "include_copyright": true,
-      "include_license": false,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": true
-    },
-    "spdx_id": "GCR-docs",
-    "type": "permissive"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

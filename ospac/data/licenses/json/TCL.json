@@ -1,7 +1,49 @@
 {
   "license": {
+    "id": "TCL",
+    "name": "TCL",
+    "type": "permissive",
+    "spdx_id": "TCL",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
     "compatibility": {
-      "contamination_effect": "none",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "LGPL"
+        ],
+        "requires_review": [
+          "MPL",
+          "EPL"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -20,59 +62,24 @@
           "EPL"
         ]
       },
-      "notes": "The TCL license is permissive and allows for both static and dynamic linking with compatible licenses. However, care should be taken when combining with copyleft licenses like GPL.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "BSD",
-          "Apache-2.0",
-          "Zlib",
-          "Public Domain"
-        ],
-        "incompatible_with": [
-          "GPL",
-          "AGPL",
-          "LGPL"
-        ],
-        "requires_review": [
-          "MPL",
-          "EPL"
-        ]
-      }
+      "contamination_effect": "none",
+      "notes": "The TCL license is permissive and allows for both static and dynamic linking with compatible licenses. However, care should be taken when combining with copyleft licenses like GPL."
     },
-    "id": "TCL",
-    "key_requirements": [
-      "No written agreement, license, or royalty fee is required for authorized uses.",
-      "Software is provided 'as is' without any warranties."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
-    "name": "TCL",
     "obligations": [
       "Retain existing copyright notices in all copies.",
       "Include the license notice verbatim in any distributions.",
       "Clearly indicate new licensing terms on the first page of modified files."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "No written agreement, license, or royalty fee is required for authorized uses.",
+      "Software is provided 'as is' without any warranties."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": false,
-      "include_copyright": true,
-      "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": true
-    },
-    "spdx_id": "TCL",
-    "type": "permissive"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

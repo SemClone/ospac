@@ -1,7 +1,46 @@
 {
   "license": {
+    "id": "Brian-Gladman-3-Clause",
+    "name": "Brian-Gladman-3-Clause",
+    "type": "permissive|copyleft_weak",
+    "spdx_id": "Brian-Gladman-3-Clause",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
     "compatibility": {
-      "contamination_effect": "module",
+      "static_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "ISC",
+          "Zlib"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "AGPL",
+          "CeCILL-1.0"
+        ],
+        "requires_review": []
+      },
       "dynamic_linking": {
         "compatible_with": [
           "Apache-2.0",
@@ -19,56 +58,24 @@
           "GPL-3.0"
         ]
       },
-      "notes": "The Brian-Gladman-3-Clause license is a permissive open-source software license that allows for free use, modification, and distribution of the licensed code. It does not have any copyleft restrictions.",
-      "static_linking": {
-        "compatible_with": [
-          "Apache-2.0",
-          "MIT",
-          "ISC",
-          "Zlib"
-        ],
-        "incompatible_with": [
-          "GPL",
-          "LGPL",
-          "AGPL",
-          "CeCILL-1.0"
-        ],
-        "requires_review": []
-      }
+      "contamination_effect": "module",
+      "notes": "The Brian-Gladman-3-Clause license is a permissive open-source software license that allows for free use, modification, and distribution of the licensed code. It does not have any copyleft restrictions."
     },
-    "id": "Brian-Gladman-3-Clause",
-    "key_requirements": [
-      "Retain the notice in full when distributing the software.",
-      "Comply with the provisions of the GNU General Public License (GPL) if distributing under the terms of the GPL instead of those given above."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
-    "name": "Brian-Gladman-3-Clause",
     "obligations": [
       "Distribute the software with the copyright notice, this list of conditions, and the disclaimer.",
       "Include the above copyright notice, this list of conditions, and the disclaimer in documentation and/or other associated materials (for binary distributions).",
       "Do not use the copyright holder's name to endorse products built using this software without specific written permission."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "Retain the notice in full when distributing the software.",
+      "Comply with the provisions of the GNU General Public License (GPL) if distributing under the terms of the GPL instead of those given above."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": false,
-      "include_copyright": true,
-      "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": false
-    },
-    "spdx_id": "Brian-Gladman-3-Clause",
-    "type": "permissive|copyleft_weak"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

@@ -1,7 +1,49 @@
 {
   "license": {
+    "id": "OGL-UK-1.0",
+    "name": "OGL-UK-1.0",
+    "type": "permissive",
+    "spdx_id": "OGL-UK-1.0",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
     "compatibility": {
-      "contamination_effect": "none",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "OGL-UK-1.0"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -20,38 +62,9 @@
           "LGPL-3.0"
         ]
       },
-      "notes": "OGL-UK-1.0 is a permissive license that allows for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses like GPL due to their stricter requirements.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "OGL-UK-1.0"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      }
+      "contamination_effect": "none",
+      "notes": "OGL-UK-1.0 is a permissive license that allows for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses like GPL due to their stricter requirements."
     },
-    "id": "OGL-UK-1.0",
-    "key_requirements": [
-      "Attribution to the Information Provider.",
-      "Link to the Open Government Licence when possible.",
-      "Compliance with data protection laws."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": true
-    },
-    "name": "OGL-UK-1.0",
     "obligations": [
       "Acknowledge the source of the Information by including any attribution statement specified by the Information Provider(s).",
       "Provide a link to the Open Government Licence where possible.",
@@ -59,23 +72,17 @@
       "Do not mislead others or misrepresent the Information or its source.",
       "Ensure compliance with the Data Protection Act 1998 and the Privacy and Electronic Communications (EC Directive) Regulations 2003."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "Attribution to the Information Provider.",
+      "Link to the Open Government Licence when possible.",
+      "Compliance with data protection laws."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": true,
-      "include_copyright": true,
-      "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": false
-    },
-    "spdx_id": "OGL-UK-1.0",
-    "type": "permissive"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

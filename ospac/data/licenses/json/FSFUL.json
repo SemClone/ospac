@@ -1,50 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "none",
-      "dynamic_linking": {
-        "compatible_with": [
-          "public_domain",
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      },
-      "notes": "The FSFUL license is public domain, allowing for maximum compatibility with other licenses. However, care should be taken when combining with copyleft licenses like GPL.",
-      "static_linking": {
-        "compatible_with": [
-          "public_domain",
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      }
-    },
     "id": "FSFUL",
-    "key_requirements": [],
-    "limitations": {
-      "liability": false,
-      "trademark_use": false,
-      "warranty": false
-    },
     "name": "FSFUL",
-    "obligations": [],
+    "type": "public_domain",
+    "spdx_id": "FSFUL",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -61,7 +20,55 @@
       "same_license": false,
       "state_changes": false
     },
-    "spdx_id": "FSFUL",
-    "type": "public_domain"
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "public_domain",
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "public_domain",
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "contamination_effect": "none",
+      "notes": "The FSFUL license is public domain, allowing for maximum compatibility with other licenses. However, care should be taken when combining with copyleft licenses like GPL."
+    },
+    "obligations": [],
+    "key_requirements": [],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }
