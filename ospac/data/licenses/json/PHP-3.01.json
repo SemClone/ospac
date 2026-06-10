@@ -1,7 +1,53 @@
 {
   "license": {
+    "id": "PHP-3.01",
+    "name": "PHP-3.01",
+    "type": "permissive",
+    "spdx_id": "PHP-3.01",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
     "compatibility": {
-      "contamination_effect": "none",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-1.0",
+          "Artistic-2.0"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -24,43 +70,9 @@
           "Artistic-2.0"
         ]
       },
-      "notes": "The PHP-3.01 license is permissive and allows for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses such as the GPL and LGPL.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "Apache-2.0",
-          "Zlib",
-          "Public Domain"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-1.0",
-          "Artistic-2.0"
-        ]
-      }
+      "contamination_effect": "none",
+      "notes": "The PHP-3.01 license is permissive and allows for broad compatibility with other permissive licenses. However, it is incompatible with copyleft licenses such as the GPL and LGPL."
     },
-    "id": "PHP-3.01",
-    "key_requirements": [
-      "Must retain copyright notice and conditions in source code redistributions.",
-      "Must reproduce copyright notice and conditions in binary redistributions.",
-      "Must not use 'PHP' in product names without permission.",
-      "Must include acknowledgment of PHP software in all redistributions."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": true
-    },
-    "name": "PHP-3.01",
     "obligations": [
       "Retain copyright notice and list of conditions in redistributions of source code.",
       "Reproduce copyright notice and list of conditions in documentation for binary redistributions.",
@@ -68,23 +80,18 @@
       "Obtain prior written permission to use 'PHP' in the name of derived products.",
       "Include acknowledgment of PHP software in redistributions."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "Must retain copyright notice and conditions in source code redistributions.",
+      "Must reproduce copyright notice and conditions in binary redistributions.",
+      "Must not use 'PHP' in product names without permission.",
+      "Must include acknowledgment of PHP software in all redistributions."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": false,
-      "include_copyright": true,
-      "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": false
-    },
-    "spdx_id": "PHP-3.01",
-    "type": "permissive"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

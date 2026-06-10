@@ -1,7 +1,50 @@
 {
   "license": {
+    "id": "Sendmail",
+    "name": "Sendmail",
+    "type": "permissive",
+    "spdx_id": "Sendmail",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
     "compatibility": {
-      "contamination_effect": "none",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "LGPL"
+        ],
+        "requires_review": [
+          "MPL",
+          "EPL",
+          "CC BY-SA"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -21,39 +64,9 @@
           "CC BY-SA"
         ]
       },
-      "notes": "The Sendmail license is permissive and allows for integration with other software licenses, provided that incompatible licenses are avoided.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "BSD",
-          "Apache-2.0",
-          "Zlib",
-          "Public Domain"
-        ],
-        "incompatible_with": [
-          "GPL",
-          "AGPL",
-          "LGPL"
-        ],
-        "requires_review": [
-          "MPL",
-          "EPL",
-          "CC BY-SA"
-        ]
-      }
+      "contamination_effect": "none",
+      "notes": "The Sendmail license is permissive and allows for integration with other software licenses, provided that incompatible licenses are avoided."
     },
-    "id": "Sendmail",
-    "key_requirements": [
-      "Include copyright notices in source and binary redistributions.",
-      "Provide a copy of the license with redistributions.",
-      "Obtain permission for trademark use."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": true
-    },
-    "name": "Sendmail",
     "obligations": [
       "Redistributions must qualify as 'freeware' or 'Open Source Software'.",
       "Redistributions must be made at no charge beyond the reasonable cost of materials and delivery.",
@@ -63,23 +76,17 @@
       "The name of Sendmail, Inc. or the University of California cannot be used for endorsement without permission.",
       "Redistributions must comply with conditions imposed by the University of California on certain embedded code."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "Include copyright notices in source and binary redistributions.",
+      "Provide a copy of the license with redistributions.",
+      "Obtain permission for trademark use."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": true,
-      "include_copyright": true,
-      "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": true,
-      "state_changes": true
-    },
-    "spdx_id": "Sendmail",
-    "type": "permissive"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

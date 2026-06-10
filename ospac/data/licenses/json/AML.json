@@ -1,45 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "module",
-      "dynamic_linking": {
-        "compatible_with": [
-          "AGPL",
-          "LGPL",
-          "MPL"
-        ],
-        "incompatible_with": [
-          "GPL"
-        ],
-        "requires_review": []
-      },
-      "notes": "The Artistic License is incompatible with GPL due to differences in copyleft provisions. When distributing proprietary software that uses AML-covered code, you must provide the source code or an offer to provide it.",
-      "static_linking": {
-        "compatible_with": [
-          "AGPL",
-          "LGPL",
-          "MPL"
-        ],
-        "incompatible_with": [
-          "GPL"
-        ],
-        "requires_review": []
-      }
-    },
     "id": "AML",
-    "key_requirements": [
-      "Must not use Apple's name, trademarks, service marks or logos to endorse or promote products derived from the Apple Software without specific prior written permission from Apple.",
-      "Must not assert patent rights that may be infringed by derivative works or by other works in which the Apple Software may be incorporated."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": true
-    },
     "name": "AML",
-    "obligations": [
-      "Retain the notice and disclaimers in all redistributions of the Apple Software."
-    ],
+    "type": "proprietary",
+    "spdx_id": "AML",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -56,7 +20,50 @@
       "same_license": false,
       "state_changes": false
     },
-    "spdx_id": "AML",
-    "type": "proprietary"
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "AGPL",
+          "LGPL",
+          "MPL"
+        ],
+        "incompatible_with": [
+          "GPL"
+        ],
+        "requires_review": []
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "AGPL",
+          "LGPL",
+          "MPL"
+        ],
+        "incompatible_with": [
+          "GPL"
+        ],
+        "requires_review": []
+      },
+      "contamination_effect": "module",
+      "notes": "The Artistic License is incompatible with GPL due to differences in copyleft provisions. When distributing proprietary software that uses AML-covered code, you must provide the source code or an offer to provide it."
+    },
+    "obligations": [
+      "Retain the notice and disclaimers in all redistributions of the Apple Software."
+    ],
+    "key_requirements": [
+      "Must not use Apple's name, trademarks, service marks or logos to endorse or promote products derived from the Apple Software without specific prior written permission from Apple.",
+      "Must not assert patent rights that may be infringed by derivative works or by other works in which the Apple Software may be incorporated."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

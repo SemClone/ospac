@@ -1,7 +1,50 @@
 {
   "license": {
+    "id": "ClArtistic",
+    "name": "ClArtistic",
+    "type": "permissive",
+    "spdx_id": "ClArtistic",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": false
+    },
     "compatibility": {
-      "contamination_effect": "none",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -21,60 +64,24 @@
           "LGPL-3.0"
         ]
       },
-      "notes": "The ClArtistic license is permissive and allows for wide compatibility with other permissive licenses. However, care should be taken when combining with copyleft licenses.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "BSD",
-          "Apache-2.0",
-          "Zlib",
-          "Unlicense"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      }
+      "contamination_effect": "none",
+      "notes": "The ClArtistic license is permissive and allows for wide compatibility with other permissive licenses. However, care should be taken when combining with copyleft licenses."
     },
-    "id": "ClArtistic",
-    "key_requirements": [
-      "Provide a copy of the license if distributing the Package.",
-      "Ensure that any modifications are documented and made Freely Available or used within a corporation/organization."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": false
-    },
-    "name": "ClArtistic",
     "obligations": [
       "Duplicate all original copyright notices and associated disclaimers when distributing verbatim copies.",
       "Insert a prominent notice in each changed file stating how and when it was changed if modifications are made.",
       "Make modifications Freely Available or allow the Copyright Holder to include them in the Standard Version."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "Provide a copy of the license if distributing the Package.",
+      "Ensure that any modifications are documented and made Freely Available or used within a corporation/organization."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": false,
-      "include_copyright": true,
-      "include_license": false,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": true
-    },
-    "spdx_id": "ClArtistic",
-    "type": "permissive"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

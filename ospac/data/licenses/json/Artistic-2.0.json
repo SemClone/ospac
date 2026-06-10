@@ -1,7 +1,48 @@
 {
   "license": {
+    "id": "Artistic-2.0",
+    "name": "Artistic-2.0",
+    "type": "permissive|copyleft_weak",
+    "spdx_id": "Artistic-2.0",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
     "compatibility": {
-      "contamination_effect": "module",
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "ISC"
+        ],
+        "incompatible_with": [
+          "GPL-1.0",
+          "GPL-2.0",
+          "LGPL-2.1",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "Zlib"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "Permissive",
@@ -20,57 +61,23 @@
           "Zlib"
         ]
       },
-      "notes": "This license is a copyleft license with weak terms, making it compatible with permissive licenses but not with strong copyleft licenses.",
-      "static_linking": {
-        "compatible_with": [
-          "Permissive",
-          "MIT",
-          "Apache-2.0",
-          "ISC"
-        ],
-        "incompatible_with": [
-          "GPL-1.0",
-          "GPL-2.0",
-          "LGPL-2.1",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "Zlib"
-        ]
-      }
+      "contamination_effect": "module",
+      "notes": "This license is a copyleft license with weak terms, making it compatible with permissive licenses but not with strong copyleft licenses."
     },
-    "id": "Artistic-2.0",
-    "key_requirements": [
-      "Do not Distribute Modified Versions",
-      "Contact the Copyright Holder for special arrangements"
-    ],
-    "limitations": {
-      "liability": false,
-      "trademark_use": false,
-      "warranty": false
-    },
-    "name": "Artistic-2.0",
     "obligations": [
       "You are permitted to use the Standard Version and create and use Modified Versions for any purpose without restriction, provided that you do not Distribute the Modified Version.",
       "If the terms of this license do not permit the full use that you propose to make of the Package, you should contact the Copyright Holder and seek a different licensing arrangement."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "Do not Distribute Modified Versions",
+      "Contact the Copyright Holder for special arrangements"
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": false,
-      "include_copyright": true,
-      "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": false
-    },
-    "spdx_id": "Artistic-2.0",
-    "type": "permissive|copyleft_weak"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

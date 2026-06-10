@@ -1,56 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "module",
-      "dynamic_linking": {
-        "compatible_with": [
-          "Apache-1.0",
-          "Apache-2.0",
-          "Artistic-2.0",
-          "MIT",
-          "Permissive"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "requires_review": []
-      },
-      "notes": "The Apache Software License 2.0 (APSL-2.0) is a permissive open-source license that allows for static linking, dynamic linking, and distribution of modified code with minimal restrictions.",
-      "static_linking": {
-        "compatible_with": [
-          "Apache-1.0",
-          "Apache-2.0",
-          "Artistic-2.0",
-          "MIT",
-          "Permissive"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "requires_review": []
-      }
-    },
     "id": "APSL-2.0",
-    "key_requirements": [
-      "Maintain the same license terms for your modifications as the Original Code",
-      "Provide attribution to Apple in all modified and distributed versions of the Covered Code"
-    ],
-    "limitations": {
-      "liability": false,
-      "trademark_use": false,
-      "warranty": false
-    },
     "name": "APSL-2.0",
-    "obligations": [
-      "Include the notice in all modified and distributed versions of the Covered Code.",
-      "Make available to the public any Modifications made by you (the Contributor) to create a Larger Work from the Original Code."
-    ],
+    "type": "permissive",
+    "spdx_id": "APSL-2.0",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -67,7 +20,61 @@
       "same_license": true,
       "state_changes": false
     },
-    "spdx_id": "APSL-2.0",
-    "type": "permissive"
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "Apache-1.0",
+          "Apache-2.0",
+          "Artistic-2.0",
+          "MIT",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-1.0",
+          "Apache-2.0",
+          "Artistic-2.0",
+          "MIT",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "contamination_effect": "module",
+      "notes": "The Apache Software License 2.0 (APSL-2.0) is a permissive open-source license that allows for static linking, dynamic linking, and distribution of modified code with minimal restrictions."
+    },
+    "obligations": [
+      "Include the notice in all modified and distributed versions of the Covered Code.",
+      "Make available to the public any Modifications made by you (the Contributor) to create a Larger Work from the Original Code."
+    ],
+    "key_requirements": [
+      "Maintain the same license terms for your modifications as the Original Code",
+      "Provide attribution to Apple in all modified and distributed versions of the Covered Code"
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

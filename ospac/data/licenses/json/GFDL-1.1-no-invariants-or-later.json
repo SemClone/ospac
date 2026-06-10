@@ -1,57 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "full",
-      "dynamic_linking": {
-        "compatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0",
-          "CC BY-SA 4.0"
-        ],
-        "incompatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      },
-      "notes": "The GFDL-1.1-no-invariants-or-later license has a strong copyleft effect, meaning that any derivative works must also be licensed under the same terms. This can lead to incompatibility with permissive licenses.",
-      "static_linking": {
-        "compatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0",
-          "CC BY-SA 4.0"
-        ],
-        "incompatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      }
-    },
     "id": "GFDL-1.1-no-invariants-or-later",
-    "key_requirements": [
-      "The Document must contain a notice that it is licensed under this License.",
-      "Invariant Sections, if any, must remain unchanged in modified versions."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": false
-    },
     "name": "GFDL-1.1-no-invariants-or-later",
-    "obligations": [
-      "Must include a copy of the license when distributing the Document.",
-      "Must state changes made to the Document if modified.",
-      "Must keep the same license for derivative works."
-    ],
+    "type": "copyleft_strong",
+    "spdx_id": "GFDL-1.1-no-invariants-or-later",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -68,7 +20,62 @@
       "same_license": true,
       "state_changes": true
     },
-    "spdx_id": "GFDL-1.1-no-invariants-or-later",
-    "type": "copyleft_strong"
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "CC BY-SA 4.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "CC BY-SA 4.0"
+        ],
+        "incompatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "contamination_effect": "full",
+      "notes": "The GFDL-1.1-no-invariants-or-later license has a strong copyleft effect, meaning that any derivative works must also be licensed under the same terms. This can lead to incompatibility with permissive licenses."
+    },
+    "obligations": [
+      "Must include a copy of the license when distributing the Document.",
+      "Must state changes made to the Document if modified.",
+      "Must keep the same license for derivative works."
+    ],
+    "key_requirements": [
+      "The Document must contain a notice that it is licensed under this License.",
+      "Invariant Sections, if any, must remain unchanged in modified versions."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

@@ -1,7 +1,49 @@
 {
   "license": {
+    "id": "PPL",
+    "name": "PPL",
+    "type": "copyleft_weak",
+    "spdx_id": "PPL",
+    "properties": {
+      "commercial_use": false,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": true
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": false
+    },
     "compatibility": {
-      "contamination_effect": "module",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -20,39 +62,9 @@
           "EPL-2.0"
         ]
       },
-      "notes": "The PPL license allows for linking with proprietary software under certain conditions, but care must be taken to comply with the terms of the license.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "BSD",
-          "Apache-2.0",
-          "Zlib",
-          "Public Domain"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0"
-        ]
-      }
+      "contamination_effect": "module",
+      "notes": "The PPL license allows for linking with proprietary software under certain conditions, but care must be taken to comply with the terms of the license."
     },
-    "id": "PPL",
-    "key_requirements": [
-      "Attribution to the original author is required.",
-      "License must be included with distributed copies.",
-      "Any modifications must be clearly stated.",
-      "Adaptations must be licensed under the same terms."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": false
-    },
-    "name": "PPL",
     "obligations": [
       "You must provide attribution to the original author.",
       "You must include a copy of this license with any distribution of the Work or Adaptation.",
@@ -60,23 +72,18 @@
       "You must state any changes made to the Work when distributing it.",
       "You must distribute any Adaptations under the same license."
     ],
-    "properties": {
-      "commercial_use": false,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "Attribution to the original author is required.",
+      "License must be included with distributed copies.",
+      "Any modifications must be clearly stated.",
+      "Adaptations must be licensed under the same terms."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": true,
-      "include_copyright": true,
-      "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": true,
-      "state_changes": true
-    },
-    "spdx_id": "PPL",
-    "type": "copyleft_weak"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

@@ -1,58 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "module",
-      "dynamic_linking": {
-        "compatible_with": [
-          "MPL-2.0",
-          "Apache-2.0",
-          "MIT",
-          "BSD-3-Clause",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": []
-      },
-      "notes": "The MPL-2.0-no-copyleft-exception allows for more flexibility in combining with other licenses compared to strong copyleft licenses like GPL. However, care must be taken when combining with licenses that have strong copyleft provisions.",
-      "static_linking": {
-        "compatible_with": [
-          "MPL-2.0",
-          "Apache-2.0",
-          "MIT",
-          "BSD-3-Clause"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      }
-    },
     "id": "MPL-2.0-no-copyleft-exception",
-    "key_requirements": [
-      "Ensure that any modifications are clearly marked as such.",
-      "Maintain the license and copyright notices in all copies of the software.",
-      "Do not use the trademarks of the original contributors without permission."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": false
-    },
     "name": "MPL-2.0-no-copyleft-exception",
-    "obligations": [
-      "You must disclose the source code of any modifications made to the Covered Software when distributing it.",
-      "You must include a copy of the MPL license with any distribution of the Covered Software.",
-      "You must include a copyright notice in all copies or substantial portions of the Covered Software.",
-      "You must include a notice stating any changes made to the Covered Software."
-    ],
+    "type": "copyleft_weak",
+    "spdx_id": "MPL-2.0-no-copyleft-exception",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -69,7 +20,63 @@
       "same_license": false,
       "state_changes": true
     },
-    "spdx_id": "MPL-2.0-no-copyleft-exception",
-    "type": "copyleft_weak"
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": false
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "MPL-2.0",
+          "Apache-2.0",
+          "MIT",
+          "BSD-3-Clause"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "MPL-2.0",
+          "Apache-2.0",
+          "MIT",
+          "BSD-3-Clause",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "contamination_effect": "module",
+      "notes": "The MPL-2.0-no-copyleft-exception allows for more flexibility in combining with other licenses compared to strong copyleft licenses like GPL. However, care must be taken when combining with licenses that have strong copyleft provisions."
+    },
+    "obligations": [
+      "You must disclose the source code of any modifications made to the Covered Software when distributing it.",
+      "You must include a copy of the MPL license with any distribution of the Covered Software.",
+      "You must include a copyright notice in all copies or substantial portions of the Covered Software.",
+      "You must include a notice stating any changes made to the Covered Software."
+    ],
+    "key_requirements": [
+      "Ensure that any modifications are clearly marked as such.",
+      "Maintain the license and copyright notices in all copies of the software.",
+      "Do not use the trademarks of the original contributors without permission."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

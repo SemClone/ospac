@@ -1,49 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "none",
-      "dynamic_linking": {
-        "compatible_with": [
-          "public_domain",
-          "cc0"
-        ],
-        "incompatible_with": [
-          "bsd",
-          "lgpl",
-          "apache_2.0",
-          "mit"
-        ],
-        "requires_review": []
-      },
-      "notes": "The ANTLR-PD-fallback license is compatible with licenses that are also in the public domain, as well as CC0. It is incompatible with licenses that impose restrictions on derivative works or commercial use, such as BSD and Apache 2.0. In cases where a project has multiple components under different licenses, the ANTLR-PD-fallback license can be used to provide a fallback option for those components.",
-      "static_linking": {
-        "compatible_with": [
-          "public_domain",
-          "cc0"
-        ],
-        "incompatible_with": [
-          "bsd",
-          "lgpl",
-          "apache_2.0",
-          "mit"
-        ],
-        "requires_review": []
-      }
-    },
     "id": "ANTLR-PD-fallback",
-    "key_requirements": [
-      "Maintaining intact headers in the source code is a requirement."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
     "name": "ANTLR-PD-fallback",
-    "obligations": [
-      "Credit must be given to the authors for developing ANTLR.",
-      "Acknowledgement of using ANTLR in documentation or research reports is required."
-    ],
+    "type": "public_domain",
+    "spdx_id": "ANTLR-PD-fallback",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -60,7 +20,54 @@
       "same_license": false,
       "state_changes": false
     },
-    "spdx_id": "ANTLR-PD-fallback",
-    "type": "public_domain"
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "public_domain",
+          "cc0"
+        ],
+        "incompatible_with": [
+          "bsd",
+          "lgpl",
+          "apache_2.0",
+          "mit"
+        ],
+        "requires_review": []
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "public_domain",
+          "cc0"
+        ],
+        "incompatible_with": [
+          "bsd",
+          "lgpl",
+          "apache_2.0",
+          "mit"
+        ],
+        "requires_review": []
+      },
+      "contamination_effect": "none",
+      "notes": "The ANTLR-PD-fallback license is compatible with licenses that are also in the public domain, as well as CC0. It is incompatible with licenses that impose restrictions on derivative works or commercial use, such as BSD and Apache 2.0. In cases where a project has multiple components under different licenses, the ANTLR-PD-fallback license can be used to provide a fallback option for those components."
+    },
+    "obligations": [
+      "Credit must be given to the authors for developing ANTLR.",
+      "Acknowledgement of using ANTLR in documentation or research reports is required."
+    ],
+    "key_requirements": [
+      "Maintaining intact headers in the source code is a requirement."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

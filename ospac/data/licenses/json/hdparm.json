@@ -1,7 +1,49 @@
 {
   "license": {
+    "id": "hdparm",
+    "name": "hdparm",
+    "type": "permissive",
+    "spdx_id": "hdparm",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
     "compatibility": {
-      "contamination_effect": "none",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "Zlib",
+          "Public Domain"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "LGPL"
+        ],
+        "requires_review": [
+          "MPL",
+          "EPL"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -20,56 +62,21 @@
           "EPL"
         ]
       },
-      "notes": "The hdparm license is permissive and allows for both static and dynamic linking with compatible licenses. Care should be taken when linking with copyleft licenses.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "BSD",
-          "Apache-2.0",
-          "Zlib",
-          "Public Domain"
-        ],
-        "incompatible_with": [
-          "GPL",
-          "AGPL",
-          "LGPL"
-        ],
-        "requires_review": [
-          "MPL",
-          "EPL"
-        ]
-      }
+      "contamination_effect": "none",
+      "notes": "The hdparm license is permissive and allows for both static and dynamic linking with compatible licenses. Care should be taken when linking with copyleft licenses."
     },
-    "id": "hdparm",
-    "key_requirements": [
-      "Ensure that the author's name and copyright notice remain intact in any distributed source code."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
-    "name": "hdparm",
     "obligations": [
       "Retain the author's name and copyright notice in the source code."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "Ensure that the author's name and copyright notice remain intact in any distributed source code."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": false,
-      "include_copyright": true,
-      "include_license": false,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": false
-    },
-    "spdx_id": "hdparm",
-    "type": "permissive"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

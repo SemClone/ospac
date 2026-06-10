@@ -1,7 +1,49 @@
 {
   "license": {
+    "id": "CrystalStacker",
+    "name": "CrystalStacker",
+    "type": "permissive",
+    "spdx_id": "CrystalStacker",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
     "compatibility": {
-      "contamination_effect": "none",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -20,57 +62,22 @@
           "EPL-2.0"
         ]
       },
-      "notes": "CrystalStacker is a permissive license, allowing for wide compatibility with other permissive licenses. However, it is incompatible with copyleft licenses such as GPL and AGPL.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "Zlib",
-          "Unlicense"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0"
-        ]
-      }
+      "contamination_effect": "none",
+      "notes": "CrystalStacker is a permissive license, allowing for wide compatibility with other permissive licenses. However, it is incompatible with copyleft licenses such as GPL and AGPL."
     },
-    "id": "CrystalStacker",
+    "obligations": [
+      "Include the license document in its original form with any distribution."
+    ],
     "key_requirements": [
       "No guarantees regarding the software's usability or safety.",
       "Source code must be included in its unmodified form with any new distribution."
     ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "name": "CrystalStacker",
-    "obligations": [
-      "Include the license document in its original form with any distribution."
-    ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
-    },
-    "requirements": {
-      "disclose_source": false,
-      "include_copyright": true,
-      "include_license": true,
-      "include_notice": false,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": false
-    },
-    "spdx_id": "CrystalStacker",
-    "type": "permissive"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

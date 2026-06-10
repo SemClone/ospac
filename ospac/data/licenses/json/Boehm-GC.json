@@ -1,50 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "none",
-      "dynamic_linking": {
-        "compatible_with": [
-          "Permissive",
-          "MIT"
-        ],
-        "incompatible_with": [
-          "GPL",
-          "LGPL",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "requires_review": []
-      },
-      "notes": "This license allows for static and dynamic linking of modules, as well as distribution. Note that some licenses (e.g. GPL) may require special permission to use the Boehm-GC due to potential contamination.",
-      "static_linking": {
-        "compatible_with": [
-          "Permissive",
-          "MIT"
-        ],
-        "incompatible_with": [
-          "GPL",
-          "LGPL",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "requires_review": []
-      }
-    },
     "id": "Boehm-GC",
-    "key_requirements": [
-      "Include the Boehm-GC copyright notice in all copies of the software",
-      "Retain the original author's copyright notice when distributing modified code"
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
     "name": "Boehm-GC",
-    "obligations": [
-      "Retain the above notices on all copies",
-      "Include a notice that the code was modified if changes are made"
-    ],
+    "type": "permissive",
+    "spdx_id": "Boehm-GC",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -61,7 +20,55 @@
       "same_license": false,
       "state_changes": false
     },
-    "spdx_id": "Boehm-GC",
-    "type": "permissive"
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": []
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "LGPL",
+          "Apache-2.0",
+          "BSD-3-Clause"
+        ],
+        "requires_review": []
+      },
+      "contamination_effect": "none",
+      "notes": "This license allows for static and dynamic linking of modules, as well as distribution. Note that some licenses (e.g. GPL) may require special permission to use the Boehm-GC due to potential contamination."
+    },
+    "obligations": [
+      "Retain the above notices on all copies",
+      "Include a notice that the code was modified if changes are made"
+    ],
+    "key_requirements": [
+      "Include the Boehm-GC copyright notice in all copies of the software",
+      "Retain the original author's copyright notice when distributing modified code"
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

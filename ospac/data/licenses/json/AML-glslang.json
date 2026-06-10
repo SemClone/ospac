@@ -1,54 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "module",
-      "dynamic_linking": {
-        "compatible_with": [
-          "Apache-2.0",
-          "MIT",
-          "ISC",
-          "Permissive"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "LGPL-3.0",
-          "AGPL-3.0",
-          "Eclipse-Public"
-        ],
-        "requires_review": []
-      },
-      "notes": "This license is permissive and allows for free use, modification, and distribution of the software. It does not contain any copyleft provisions.",
-      "static_linking": {
-        "compatible_with": [
-          "Apache-2.0",
-          "MIT",
-          "ISC",
-          "Permissive"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "LGPL-3.0",
-          "AGPL-3.0",
-          "Eclipse-Public"
-        ],
-        "requires_review": []
-      }
-    },
     "id": "AML-glslang",
-    "key_requirements": [
-      "Retain the copyright notice of NVIDIA in all redistributions.",
-      "Do not use NVIDIA's name, trademarks, service marks, or logos to endorse or promote products derived from the software without specific prior written permission."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
     "name": "AML-glslang",
-    "obligations": [
-      "Retain the copyright notice of NVIDIA in all redistributions.",
-      "Include this notice and disclaimer in all redistributions."
-    ],
+    "type": "permissive",
+    "spdx_id": "AML-glslang",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -65,7 +20,59 @@
       "same_license": false,
       "state_changes": false
     },
-    "spdx_id": "AML-glslang",
-    "type": "permissive"
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "ISC",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "LGPL-3.0",
+          "AGPL-3.0",
+          "Eclipse-Public"
+        ],
+        "requires_review": []
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT",
+          "ISC",
+          "Permissive"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "LGPL-3.0",
+          "AGPL-3.0",
+          "Eclipse-Public"
+        ],
+        "requires_review": []
+      },
+      "contamination_effect": "module",
+      "notes": "This license is permissive and allows for free use, modification, and distribution of the software. It does not contain any copyleft provisions."
+    },
+    "obligations": [
+      "Retain the copyright notice of NVIDIA in all redistributions.",
+      "Include this notice and disclaimer in all redistributions."
+    ],
+    "key_requirements": [
+      "Retain the copyright notice of NVIDIA in all redistributions.",
+      "Do not use NVIDIA's name, trademarks, service marks, or logos to endorse or promote products derived from the software without specific prior written permission."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

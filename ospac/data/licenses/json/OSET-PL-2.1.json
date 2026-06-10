@@ -1,58 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "module",
-      "dynamic_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "OSET-PL-2.1"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-3.0"
-        ]
-      },
-      "notes": "OSET-PL-2.1 allows for linking with other licenses that are permissive in nature. However, any modifications to the OSET-PL-2.1 licensed code must remain under the same license.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "OSET-PL-2.1"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-3.0"
-        ]
-      }
-    },
     "id": "OSET-PL-2.1",
-    "key_requirements": [
-      "Accept the terms of the license to use the covered software.",
-      "Provide attribution to the original contributors.",
-      "Ensure that any modifications are clearly stated."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": true
-    },
     "name": "OSET-PL-2.1",
-    "obligations": [
-      "Must include a copy of the license when distributing the software.",
-      "Must include a notice of any modifications made to the original software.",
-      "Must disclose the source code when distributing the software in executable form."
-    ],
+    "type": "copyleft_weak",
+    "spdx_id": "OSET-PL-2.1",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -69,7 +20,63 @@
       "same_license": false,
       "state_changes": true
     },
-    "spdx_id": "OSET-PL-2.1",
-    "type": "copyleft_weak"
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "OSET-PL-2.1"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-3.0"
+        ]
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "OSET-PL-2.1"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-3.0"
+        ]
+      },
+      "contamination_effect": "module",
+      "notes": "OSET-PL-2.1 allows for linking with other licenses that are permissive in nature. However, any modifications to the OSET-PL-2.1 licensed code must remain under the same license."
+    },
+    "obligations": [
+      "Must include a copy of the license when distributing the software.",
+      "Must include a notice of any modifications made to the original software.",
+      "Must disclose the source code when distributing the software in executable form."
+    ],
+    "key_requirements": [
+      "Accept the terms of the license to use the covered software.",
+      "Provide attribution to the original contributors.",
+      "Ensure that any modifications are clearly stated."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

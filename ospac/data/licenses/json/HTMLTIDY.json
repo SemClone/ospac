@@ -1,7 +1,49 @@
 {
   "license": {
+    "id": "HTMLTIDY",
+    "name": "HTMLTIDY",
+    "type": "permissive",
+    "spdx_id": "HTMLTIDY",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": false,
+      "include_notice": false,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": true
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
     "compatibility": {
-      "contamination_effect": "none",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD",
+          "Apache-2.0",
+          "ISC"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -20,58 +62,23 @@
           "LGPL-3.0"
         ]
       },
-      "notes": "HTMLTIDY is a permissive license, allowing for integration with other permissive licenses without significant restrictions. However, care should be taken when integrating with copyleft licenses.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "BSD",
-          "Apache-2.0",
-          "ISC"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      }
+      "contamination_effect": "none",
+      "notes": "HTMLTIDY is a permissive license, allowing for integration with other permissive licenses without significant restrictions. However, care should be taken when integrating with copyleft licenses."
     },
-    "id": "HTMLTIDY",
-    "key_requirements": [
-      "Acknowledge the use of the source code in commercial products is appreciated but not required."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
-    "name": "HTMLTIDY",
     "obligations": [
       "The origin of the source code must not be misrepresented.",
       "Altered versions must be plainly marked as such and must not be misrepresented as being the original source.",
       "The copyright notice may not be removed or altered from any source or altered source distribution."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "Acknowledge the use of the source code in commercial products is appreciated but not required."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": false,
-      "include_copyright": true,
-      "include_license": false,
-      "include_notice": false,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": true
-    },
-    "spdx_id": "HTMLTIDY",
-    "type": "permissive"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

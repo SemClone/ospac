@@ -1,49 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "none",
-      "dynamic_linking": {
-        "compatible_with": [
-          "Permissive",
-          "MIT",
-          "Apache-2.0",
-          "Unlicense"
-        ],
-        "incompatible_with": [
-          "GPL-3.0-or-later",
-          "AGPL-3.0-or-later"
-        ],
-        "requires_review": []
-      },
-      "notes": "",
-      "static_linking": {
-        "compatible_with": [
-          "Permissive",
-          "MIT",
-          "Apache-2.0",
-          "Unlicense"
-        ],
-        "incompatible_with": [
-          "GPL-3.0-or-later",
-          "AGPL-3.0-or-later"
-        ],
-        "requires_review": []
-      }
-    },
     "id": "BSD-2-Clause-Darwin",
-    "key_requirements": [
-      "Include the license text in any redistribution or derivative work.",
-      "Retain the above disclaimer statement in any redistribution or derivative work."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
     "name": "BSD-2-Clause-Darwin",
-    "obligations": [
-      "Retain the above copyright notice and this list of conditions at the beginning of each file, without modification."
-    ],
+    "type": "permissive",
+    "spdx_id": "BSD-2-Clause-Darwin",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -60,7 +20,54 @@
       "same_license": false,
       "state_changes": false
     },
-    "spdx_id": "BSD-2-Clause-Darwin",
-    "type": "permissive"
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-3.0-or-later",
+          "AGPL-3.0-or-later"
+        ],
+        "requires_review": []
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Apache-2.0",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-3.0-or-later",
+          "AGPL-3.0-or-later"
+        ],
+        "requires_review": []
+      },
+      "contamination_effect": "none",
+      "notes": ""
+    },
+    "obligations": [
+      "Retain the above copyright notice and this list of conditions at the beginning of each file, without modification."
+    ],
+    "key_requirements": [
+      "Include the license text in any redistribution or derivative work.",
+      "Retain the above disclaimer statement in any redistribution or derivative work."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

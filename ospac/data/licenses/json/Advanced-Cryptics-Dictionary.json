@@ -1,51 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "module",
-      "dynamic_linking": {
-        "compatible_with": [
-          "Permissive",
-          "MIT",
-          "Unlicense"
-        ],
-        "incompatible_with": [
-          "GPL",
-          "AGPL",
-          "Apache-2.0",
-          "LGPL"
-        ],
-        "requires_review": [
-          "Mozilla-1.1"
-        ]
-      },
-      "notes": "The Advanced-Cryptics-Dictionary license allows modification and distribution of the software, as long as the changes are documented. The license is compatible with other permissive licenses, but may be incompatible with copyleft licenses.",
-      "static_linking": {
-        "compatible_with": [
-          "Permissive",
-          "MIT"
-        ],
-        "incompatible_with": [
-          "GPL",
-          "AGPL",
-          "Apache-2.0",
-          "Proprietary"
-        ],
-        "requires_review": []
-      }
-    },
     "id": "Advanced-Cryptics-Dictionary",
-    "key_requirements": [
-      "You must use the original dictionary for commercial or private purposes. Modifications to the dictionary are allowed, but you must maintain the original integrity and accuracy of the work."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
     "name": "Advanced-Cryptics-Dictionary",
-    "obligations": [
-      "You must preserve the integrity of the original work, including any cryptographic information."
-    ],
+    "type": "permissive",
+    "spdx_id": "Advanced-Cryptics-Dictionary",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -62,7 +20,56 @@
       "same_license": false,
       "state_changes": false
     },
-    "spdx_id": "Advanced-Cryptics-Dictionary",
-    "type": "permissive"
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "Apache-2.0",
+          "Proprietary"
+        ],
+        "requires_review": []
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "Permissive",
+          "MIT",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL",
+          "AGPL",
+          "Apache-2.0",
+          "LGPL"
+        ],
+        "requires_review": [
+          "Mozilla-1.1"
+        ]
+      },
+      "contamination_effect": "module",
+      "notes": "The Advanced-Cryptics-Dictionary license allows modification and distribution of the software, as long as the changes are documented. The license is compatible with other permissive licenses, but may be incompatible with copyleft licenses."
+    },
+    "obligations": [
+      "You must preserve the integrity of the original work, including any cryptographic information."
+    ],
+    "key_requirements": [
+      "You must use the original dictionary for commercial or private purposes. Modifications to the dictionary are allowed, but you must maintain the original integrity and accuracy of the work."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

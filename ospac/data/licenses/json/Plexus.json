@@ -1,7 +1,50 @@
 {
   "license": {
+    "id": "Plexus",
+    "name": "Plexus",
+    "type": "permissive",
+    "spdx_id": "Plexus",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": false,
+      "state_changes": false
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": true,
+      "warranty": true
+    },
     "compatibility": {
-      "contamination_effect": "none",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "Zlib",
+          "Unlicense"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -21,39 +64,9 @@
           "LGPL-3.0"
         ]
       },
-      "notes": "Plexus license is permissive and allows for integration with other permissive licenses without restrictions. However, care should be taken when integrating with copyleft licenses.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "Zlib",
-          "Unlicense"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
-      }
+      "contamination_effect": "none",
+      "notes": "Plexus license is permissive and allows for integration with other permissive licenses without restrictions. However, care should be taken when integrating with copyleft licenses."
     },
-    "id": "Plexus",
-    "key_requirements": [
-      "Include copyright notice and license in all redistributions.",
-      "Obtain permission for any use of the trademark 'classworlds'.",
-      "Provide a disclaimer of warranties and liabilities."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": true
-    },
-    "name": "Plexus",
     "obligations": [
       "Retain copyright statements and notices in redistributions of source code.",
       "Include a copy of the license in redistributions of binary form.",
@@ -61,23 +74,17 @@
       "Do not name derived products 'classworlds' without permission.",
       "Give due credit to The Codehaus."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "Include copyright notice and license in all redistributions.",
+      "Obtain permission for any use of the trademark 'classworlds'.",
+      "Provide a disclaimer of warranties and liabilities."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": true,
-      "include_copyright": true,
-      "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": false,
-      "state_changes": false
-    },
-    "spdx_id": "Plexus",
-    "type": "permissive"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

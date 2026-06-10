@@ -1,47 +1,9 @@
 {
   "license": {
-    "compatibility": {
-      "contamination_effect": "none",
-      "dynamic_linking": {
-        "compatible_with": [
-          "Apache-2.0",
-          "MIT"
-        ],
-        "incompatible_with": [
-          "GPL-1.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": []
-      },
-      "notes": "This license is permissive, allowing free use and modification of the software.",
-      "static_linking": {
-        "compatible_with": [
-          "Apache-2.0",
-          "MIT"
-        ],
-        "incompatible_with": [
-          "GPL-1.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": []
-      }
-    },
     "id": "APAFML",
-    "key_requirements": [
-      "Retain all copyright notices",
-      "Ensure that all modifications are prominently noted"
-    ],
-    "limitations": {
-      "liability": false,
-      "trademark_use": false,
-      "warranty": false
-    },
     "name": "APAFML",
-    "obligations": [
-      "Retain copyright notices",
-      "Do not distribute AFM files without this file",
-      "Prominently note modifications to the file or any of the AFM files in the modified file(s)"
-    ],
+    "type": "permissive",
+    "spdx_id": "APAFML",
     "properties": {
       "commercial_use": true,
       "distribution": true,
@@ -58,7 +20,52 @@
       "same_license": false,
       "state_changes": false
     },
-    "spdx_id": "APAFML",
-    "type": "permissive"
+    "limitations": {
+      "liability": false,
+      "trademark_use": false,
+      "warranty": false
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL-1.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "Apache-2.0",
+          "MIT"
+        ],
+        "incompatible_with": [
+          "GPL-1.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": []
+      },
+      "contamination_effect": "none",
+      "notes": "This license is permissive, allowing free use and modification of the software."
+    },
+    "obligations": [
+      "Retain copyright notices",
+      "Do not distribute AFM files without this file",
+      "Prominently note modifications to the file or any of the AFM files in the modified file(s)"
+    ],
+    "key_requirements": [
+      "Retain all copyright notices",
+      "Ensure that all modifications are prominently noted"
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

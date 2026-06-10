@@ -1,7 +1,48 @@
 {
   "license": {
+    "id": "Linux-man-pages-copyleft-var",
+    "name": "Linux-man-pages-copyleft-var",
+    "type": "copyleft_weak",
+    "spdx_id": "Linux-man-pages-copyleft-var",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_copyright": true,
+      "include_license": true,
+      "include_notice": true,
+      "network_use_disclosure": false,
+      "same_license": true,
+      "state_changes": false
+    },
+    "limitations": {
+      "liability": true,
+      "trademark_use": false,
+      "warranty": true
+    },
     "compatibility": {
-      "contamination_effect": "module",
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "Apache-2.0"
+        ],
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": [
+          "MPL-2.0",
+          "EPL-2.0"
+        ]
+      },
       "dynamic_linking": {
         "compatible_with": [
           "MIT",
@@ -21,57 +62,23 @@
           "EPL-2.0"
         ]
       },
-      "notes": "The Linux-man-pages-copyleft-var license allows for weak copyleft, meaning that it can be combined with permissive licenses without imposing the same copyleft requirements on the combined work.",
-      "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "Apache-2.0"
-        ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0"
-        ]
-      }
+      "contamination_effect": "module",
+      "notes": "The Linux-man-pages-copyleft-var license allows for weak copyleft, meaning that it can be combined with permissive licenses without imposing the same copyleft requirements on the combined work."
     },
-    "id": "Linux-man-pages-copyleft-var",
-    "key_requirements": [
-      "Include the copyright notice and permission notice in all copies.",
-      "Distribute derived works under a permission notice identical to this one."
-    ],
-    "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
-    },
-    "name": "Linux-man-pages-copyleft-var",
     "obligations": [
       "Preserve copyright notice and permission notice on all copies.",
       "Distribute modified versions under the same terms as the original."
     ],
-    "properties": {
-      "commercial_use": true,
-      "distribution": true,
-      "modification": true,
-      "patent_grant": false,
-      "private_use": true
+    "key_requirements": [
+      "Include the copyright notice and permission notice in all copies.",
+      "Distribute derived works under a permission notice identical to this one."
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
     },
-    "requirements": {
-      "disclose_source": false,
-      "include_copyright": true,
-      "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": true,
-      "state_changes": false
-    },
-    "spdx_id": "Linux-man-pages-copyleft-var",
-    "type": "copyleft_weak"
+    "generated": "2026-06-10T07:40:11.253160",
+    "spdx_list_version": "3dfd9aa"
   }
 }

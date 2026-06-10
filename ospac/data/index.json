@@ -1,0 +1,5013 @@
+{
+  "version": "1.0",
+  "generated": "2026-06-10T07:40:11.373805",
+  "spdx_list_version": "3dfd9aa",
+  "total_licenses": 715,
+  "licenses": {
+    "0BSD": {
+      "name": "0BSD",
+      "category": "permissive",
+      "file": "licenses/json/0BSD.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "3D-Slicer-1.0": {
+      "name": "3D-Slicer-1.0",
+      "category": "permissive",
+      "file": "licenses/json/3D-Slicer-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "AAL": {
+      "name": "AAL",
+      "category": "copyleft_strong",
+      "file": "licenses/json/AAL.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "ADSL": {
+      "name": "ADSL",
+      "category": "permissive",
+      "file": "licenses/json/ADSL.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "AFL-1.1": {
+      "name": "AFL-1.1",
+      "category": "permissive",
+      "file": "licenses/json/AFL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "AFL-1.2": {
+      "name": "AFL-1.2",
+      "category": "permissive",
+      "file": "licenses/json/AFL-1.2.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "AFL-2.0": {
+      "name": "AFL-2.0",
+      "category": "permissive",
+      "file": "licenses/json/AFL-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "AFL-2.1": {
+      "name": "AFL-2.1",
+      "category": "permissive",
+      "file": "licenses/json/AFL-2.1.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "AFL-3.0": {
+      "name": "AFL-3.0",
+      "category": "permissive",
+      "file": "licenses/json/AFL-3.0.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "AGPL-1.0-only": {
+      "name": "AGPL-1.0-only",
+      "category": "copyleft_strong",
+      "file": "licenses/json/AGPL-1.0-only.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "AGPL-1.0-or-later": {
+      "name": "AGPL-1.0-or-later",
+      "category": "copyleft_strong",
+      "file": "licenses/json/AGPL-1.0-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "AGPL-1.0": {
+      "name": "AGPL-1.0",
+      "category": "copyleft_strong",
+      "file": "licenses/json/AGPL-1.0.json",
+      "is_deprecated": true,
+      "obligations_count": 5
+    },
+    "AGPL-3.0-only": {
+      "name": "AGPL-3.0-only",
+      "category": "copyleft_strong",
+      "file": "licenses/json/AGPL-3.0-only.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "AGPL-3.0-or-later": {
+      "name": "AGPL-3.0-or-later",
+      "category": "copyleft_strong",
+      "file": "licenses/json/AGPL-3.0-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "AGPL-3.0": {
+      "name": "AGPL-3.0",
+      "category": "copyleft_strong",
+      "file": "licenses/json/AGPL-3.0.json",
+      "is_deprecated": true,
+      "obligations_count": 1
+    },
+    "ALGLIB-Documentation": {
+      "name": "ALGLIB Documentation License",
+      "category": "permissive",
+      "file": "licenses/json/ALGLIB-Documentation.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "AMD-newlib": {
+      "name": "AMD-newlib",
+      "category": "proprietary",
+      "file": "licenses/json/AMD-newlib.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "AMDPLPA": {
+      "name": "AMDPLPA",
+      "category": "permissive|copyleft_weak",
+      "file": "licenses/json/AMDPLPA.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "AML-glslang": {
+      "name": "AML-glslang",
+      "category": "permissive",
+      "file": "licenses/json/AML-glslang.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "AML": {
+      "name": "AML",
+      "category": "proprietary",
+      "file": "licenses/json/AML.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "AMPAS": {
+      "name": "AMPAS",
+      "category": "permissive",
+      "file": "licenses/json/AMPAS.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "ANTLR-PD-fallback": {
+      "name": "ANTLR-PD-fallback",
+      "category": "public_domain",
+      "file": "licenses/json/ANTLR-PD-fallback.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "ANTLR-PD": {
+      "name": "ANTLR-PD",
+      "category": "public_domain",
+      "file": "licenses/json/ANTLR-PD.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "APAFML": {
+      "name": "APAFML",
+      "category": "permissive",
+      "file": "licenses/json/APAFML.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "APL-1.0": {
+      "name": "APL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/APL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "APSL-1.0": {
+      "name": "APSL-1.0",
+      "category": "permissive|copyleft_weak",
+      "file": "licenses/json/APSL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "APSL-1.1": {
+      "name": "APSL-1.1",
+      "category": "permissive",
+      "file": "licenses/json/APSL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "APSL-1.2": {
+      "name": "APSL-1.2",
+      "category": "permissive",
+      "file": "licenses/json/APSL-1.2.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "APSL-2.0": {
+      "name": "APSL-2.0",
+      "category": "permissive",
+      "file": "licenses/json/APSL-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "ASWF-Digital-Assets-1.0": {
+      "name": "ASWF-Digital-Assets-1.0",
+      "category": "permissive",
+      "file": "licenses/json/ASWF-Digital-Assets-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "ASWF-Digital-Assets-1.1": {
+      "name": "ASWF-Digital-Assets-1.1",
+      "category": "permissive",
+      "file": "licenses/json/ASWF-Digital-Assets-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Abstyles": {
+      "name": "Abstyles",
+      "category": "permissive|public_domain",
+      "file": "licenses/json/Abstyles.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "AdaCore-doc": {
+      "name": "AdaCore-doc",
+      "category": "permissive",
+      "file": "licenses/json/AdaCore-doc.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Adobe-2006": {
+      "name": "Adobe-2006",
+      "category": "permissive",
+      "file": "licenses/json/Adobe-2006.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Adobe-Display-PostScript": {
+      "name": "Adobe-Display-PostScript",
+      "category": "permissive|proprietary",
+      "file": "licenses/json/Adobe-Display-PostScript.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Adobe-Glyph": {
+      "name": "Adobe-Glyph",
+      "category": "permissive",
+      "file": "licenses/json/Adobe-Glyph.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Adobe-Utopia": {
+      "name": "Adobe-Utopia",
+      "category": "permissive",
+      "file": "licenses/json/Adobe-Utopia.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Advanced-Cryptics-Dictionary": {
+      "name": "Advanced-Cryptics-Dictionary",
+      "category": "permissive",
+      "file": "licenses/json/Advanced-Cryptics-Dictionary.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Afmparse": {
+      "name": "Afmparse",
+      "category": "permissive",
+      "file": "licenses/json/Afmparse.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Aladdin": {
+      "name": "Aladdin",
+      "category": "permissive",
+      "file": "licenses/json/Aladdin.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Apache-1.0": {
+      "name": "Apache-1.0",
+      "category": "permissive",
+      "file": "licenses/json/Apache-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Apache-1.1": {
+      "name": "Apache-1.1",
+      "category": "permissive",
+      "file": "licenses/json/Apache-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Apache-2.0": {
+      "name": "Apache-2.0",
+      "category": "permissive",
+      "file": "licenses/json/Apache-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "App-s2p": {
+      "name": "App-s2p",
+      "category": "permissive",
+      "file": "licenses/json/App-s2p.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Arphic-1999": {
+      "name": "Arphic-1999",
+      "category": "permissive",
+      "file": "licenses/json/Arphic-1999.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Artistic-1.0-Perl": {
+      "name": "Artistic-1.0-Perl",
+      "category": "permissive|copyleft_weak",
+      "file": "licenses/json/Artistic-1.0-Perl.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Artistic-1.0-cl8": {
+      "name": "Artistic-1.0-cl8",
+      "category": "permissive",
+      "file": "licenses/json/Artistic-1.0-cl8.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Artistic-1.0": {
+      "name": "Artistic-1.0",
+      "category": "permissive|copyleft_weak",
+      "file": "licenses/json/Artistic-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Artistic-2.0": {
+      "name": "Artistic-2.0",
+      "category": "permissive|copyleft_weak",
+      "file": "licenses/json/Artistic-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Artistic-dist": {
+      "name": "Artistic-dist",
+      "category": "permissive|copyleft_weak",
+      "file": "licenses/json/Artistic-dist.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Aspell-RU": {
+      "name": "Aspell-RU",
+      "category": "permissive",
+      "file": "licenses/json/Aspell-RU.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "BOLA-1.1": {
+      "name": "Buena Onda License Agreement v1.1",
+      "category": "permissive",
+      "file": "licenses/json/BOLA-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "BSD-1-Clause": {
+      "name": "BSD-1-Clause",
+      "category": "permissive",
+      "file": "licenses/json/BSD-1-Clause.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "BSD-2-Clause-Darwin": {
+      "name": "BSD-2-Clause-Darwin",
+      "category": "permissive",
+      "file": "licenses/json/BSD-2-Clause-Darwin.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "BSD-2-Clause-FreeBSD": {
+      "name": "BSD-2-Clause-FreeBSD",
+      "category": "permissive",
+      "file": "licenses/json/BSD-2-Clause-FreeBSD.json",
+      "is_deprecated": true,
+      "obligations_count": 2
+    },
+    "BSD-2-Clause-NetBSD": {
+      "name": "BSD-2-Clause-NetBSD",
+      "category": "permissive",
+      "file": "licenses/json/BSD-2-Clause-NetBSD.json",
+      "is_deprecated": true,
+      "obligations_count": 3
+    },
+    "BSD-2-Clause-Patent": {
+      "name": "BSD-2-Clause-Patent",
+      "category": "permissive",
+      "file": "licenses/json/BSD-2-Clause-Patent.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "BSD-2-Clause-Views": {
+      "name": "BSD-2-Clause-Views",
+      "category": "permissive",
+      "file": "licenses/json/BSD-2-Clause-Views.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "BSD-2-Clause-first-lines": {
+      "name": "BSD-2-Clause-first-lines",
+      "category": "permissive",
+      "file": "licenses/json/BSD-2-Clause-first-lines.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "BSD-2-Clause-pkgconf-disclaimer": {
+      "name": "BSD-2-Clause-pkgconf-disclaimer",
+      "category": "permissive",
+      "file": "licenses/json/BSD-2-Clause-pkgconf-disclaimer.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "BSD-2-Clause": {
+      "name": "BSD-2-Clause",
+      "category": "permissive",
+      "file": "licenses/json/BSD-2-Clause.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "BSD-3-Clause-Attribution": {
+      "name": "BSD-3-Clause-Attribution",
+      "category": "permissive",
+      "file": "licenses/json/BSD-3-Clause-Attribution.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "BSD-3-Clause-Clear": {
+      "name": "BSD-3-Clause-Clear",
+      "category": "permissive",
+      "file": "licenses/json/BSD-3-Clause-Clear.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "BSD-3-Clause-HP": {
+      "name": "BSD-3-Clause-HP",
+      "category": "permissive",
+      "file": "licenses/json/BSD-3-Clause-HP.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "BSD-3-Clause-LBNL": {
+      "name": "BSD-3-Clause-LBNL",
+      "category": "permissive",
+      "file": "licenses/json/BSD-3-Clause-LBNL.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "BSD-3-Clause-Modification": {
+      "name": "BSD-3-Clause-Modification",
+      "category": "permissive",
+      "file": "licenses/json/BSD-3-Clause-Modification.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "BSD-3-Clause-No-Military-License": {
+      "name": "BSD-3-Clause-No-Military-License",
+      "category": "permissive",
+      "file": "licenses/json/BSD-3-Clause-No-Military-License.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "BSD-3-Clause-No-Nuclear-License-2014": {
+      "name": "BSD-3-Clause-No-Nuclear-License-2014",
+      "category": "permissive",
+      "file": "licenses/json/BSD-3-Clause-No-Nuclear-License-2014.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "BSD-3-Clause-No-Nuclear-License": {
+      "name": "BSD-3-Clause-No-Nuclear-License",
+      "category": "permissive",
+      "file": "licenses/json/BSD-3-Clause-No-Nuclear-License.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "BSD-3-Clause-No-Nuclear-Warranty": {
+      "name": "BSD-3-Clause-No-Nuclear-Warranty",
+      "category": "permissive",
+      "file": "licenses/json/BSD-3-Clause-No-Nuclear-Warranty.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "BSD-3-Clause-Open-MPI": {
+      "name": "BSD-3-Clause-Open-MPI",
+      "category": "permissive",
+      "file": "licenses/json/BSD-3-Clause-Open-MPI.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "BSD-3-Clause-Sun": {
+      "name": "BSD-3-Clause-Sun",
+      "category": "permissive",
+      "file": "licenses/json/BSD-3-Clause-Sun.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "BSD-3-Clause-Tso": {
+      "name": "BSD-3-Clause-Tso",
+      "category": "permissive",
+      "file": "licenses/json/BSD-3-Clause-Tso.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "BSD-3-Clause-acpica": {
+      "name": "BSD-3-Clause-acpica",
+      "category": "permissive",
+      "file": "licenses/json/BSD-3-Clause-acpica.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "BSD-3-Clause-flex": {
+      "name": "BSD-3-Clause-flex",
+      "category": "permissive",
+      "file": "licenses/json/BSD-3-Clause-flex.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "BSD-3-Clause": {
+      "name": "BSD-3-Clause",
+      "category": "permissive",
+      "file": "licenses/json/BSD-3-Clause.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "BSD-4-Clause-Shortened": {
+      "name": "BSD-4-Clause-Shortened",
+      "category": "permissive",
+      "file": "licenses/json/BSD-4-Clause-Shortened.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "BSD-4-Clause-UC": {
+      "name": "BSD-4-Clause-UC",
+      "category": "permissive",
+      "file": "licenses/json/BSD-4-Clause-UC.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "BSD-4-Clause": {
+      "name": "BSD-4-Clause",
+      "category": "permissive",
+      "file": "licenses/json/BSD-4-Clause.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "BSD-4.3RENO": {
+      "name": "BSD-4.3RENO",
+      "category": "permissive",
+      "file": "licenses/json/BSD-4.3RENO.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "BSD-4.3TAHOE": {
+      "name": "BSD-4.3TAHOE",
+      "category": "permissive",
+      "file": "licenses/json/BSD-4.3TAHOE.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "BSD-Advertising-Acknowledgement": {
+      "name": "BSD-Advertising-Acknowledgement",
+      "category": "permissive",
+      "file": "licenses/json/BSD-Advertising-Acknowledgement.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "BSD-Attribution-HPND-disclaimer": {
+      "name": "BSD-Attribution-HPND-disclaimer",
+      "category": "permissive",
+      "file": "licenses/json/BSD-Attribution-HPND-disclaimer.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "BSD-Inferno-Nettverk": {
+      "name": "BSD-Inferno-Nettverk",
+      "category": "permissive",
+      "file": "licenses/json/BSD-Inferno-Nettverk.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "BSD-Mark-Modifications": {
+      "name": "BSD-Mark-Modifications",
+      "category": "permissive",
+      "file": "licenses/json/BSD-Mark-Modifications.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "BSD-Protection": {
+      "name": "BSD-Protection",
+      "category": "permissive",
+      "file": "licenses/json/BSD-Protection.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "BSD-Source-Code": {
+      "name": "BSD-Source-Code",
+      "category": "permissive",
+      "file": "licenses/json/BSD-Source-Code.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "BSD-Source-beginning-file": {
+      "name": "BSD-Source-beginning-file",
+      "category": "permissive",
+      "file": "licenses/json/BSD-Source-beginning-file.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "BSD-Systemics-W3Works": {
+      "name": "BSD-Systemics-W3Works",
+      "category": "permissive",
+      "file": "licenses/json/BSD-Systemics-W3Works.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "BSD-Systemics": {
+      "name": "BSD-Systemics",
+      "category": "permissive",
+      "file": "licenses/json/BSD-Systemics.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "BSL-1.0": {
+      "name": "BSL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/BSL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "BUSL-1.1": {
+      "name": "BUSL-1.1",
+      "category": "proprietary",
+      "file": "licenses/json/BUSL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Baekmuk": {
+      "name": "Baekmuk",
+      "category": "permissive",
+      "file": "licenses/json/Baekmuk.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Bahyph": {
+      "name": "Bahyph",
+      "category": "permissive|public_domain",
+      "file": "licenses/json/Bahyph.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Barr": {
+      "name": "Barr",
+      "category": "permissive",
+      "file": "licenses/json/Barr.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Beerware": {
+      "name": "Beerware",
+      "category": "permissive",
+      "file": "licenses/json/Beerware.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "BitTorrent-1.0": {
+      "name": "BitTorrent-1.0",
+      "category": "permissive",
+      "file": "licenses/json/BitTorrent-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "BitTorrent-1.1": {
+      "name": "BitTorrent-1.1",
+      "category": "permissive",
+      "file": "licenses/json/BitTorrent-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Bitstream-Charter": {
+      "name": "Bitstream-Charter",
+      "category": "permissive",
+      "file": "licenses/json/Bitstream-Charter.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Bitstream-Vera": {
+      "name": "Bitstream-Vera",
+      "category": "permissive",
+      "file": "licenses/json/Bitstream-Vera.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "BlueOak-1.0.0": {
+      "name": "BlueOak-1.0.0",
+      "category": "permissive",
+      "file": "licenses/json/BlueOak-1.0.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Boehm-GC-without-fee": {
+      "name": "Boehm-GC-without-fee",
+      "category": "permissive",
+      "file": "licenses/json/Boehm-GC-without-fee.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Boehm-GC": {
+      "name": "Boehm-GC",
+      "category": "permissive",
+      "file": "licenses/json/Boehm-GC.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Borceux": {
+      "name": "Borceux",
+      "category": "permissive",
+      "file": "licenses/json/Borceux.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Brian-Gladman-2-Clause": {
+      "name": "Brian-Gladman-2-Clause",
+      "category": "permissive",
+      "file": "licenses/json/Brian-Gladman-2-Clause.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Brian-Gladman-3-Clause-no-conversion": {
+      "name": "Brian Gladman 3-Clause License (no conversion clause)",
+      "category": "permissive",
+      "file": "licenses/json/Brian-Gladman-3-Clause-no-conversion.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Brian-Gladman-3-Clause": {
+      "name": "Brian-Gladman-3-Clause",
+      "category": "permissive|copyleft_weak",
+      "file": "licenses/json/Brian-Gladman-3-Clause.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "C-UDA-1.0": {
+      "name": "C-UDA-1.0",
+      "category": "permissive",
+      "file": "licenses/json/C-UDA-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CAL-1.0-Combined-Work-Exception": {
+      "name": "CAL-1.0-Combined-Work-Exception",
+      "category": "permissive",
+      "file": "licenses/json/CAL-1.0-Combined-Work-Exception.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "CAL-1.0": {
+      "name": "CAL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/CAL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "CATOSL-1.1": {
+      "name": "CATOSL-1.1",
+      "category": "permissive",
+      "file": "licenses/json/CATOSL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "CC-BY-1.0": {
+      "name": "CC-BY-1.0",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-2.0": {
+      "name": "CC-BY-2.0",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-2.5-AU": {
+      "name": "CC-BY-2.5-AU",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-2.5-AU.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-2.5": {
+      "name": "CC-BY-2.5",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-2.5.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-3.0-AT": {
+      "name": "CC-BY-3.0-AT",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-3.0-AT.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-3.0-AU": {
+      "name": "CC-BY-3.0-AU",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-3.0-AU.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-3.0-DE": {
+      "name": "CC-BY-3.0-DE",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-3.0-DE.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-3.0-IGO": {
+      "name": "CC-BY-3.0-IGO",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-3.0-IGO.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-3.0-NL": {
+      "name": "CC-BY-3.0-NL",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-3.0-NL.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-3.0-US": {
+      "name": "CC-BY-3.0-US",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-3.0-US.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-3.0": {
+      "name": "CC-BY-3.0",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-3.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-4.0": {
+      "name": "CC-BY-4.0",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-4.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-NC-1.0": {
+      "name": "CC-BY-NC-1.0",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-NC-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-NC-2.0": {
+      "name": "CC-BY-NC-2.0",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-NC-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-NC-2.5": {
+      "name": "CC-BY-NC-2.5",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-NC-2.5.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-NC-3.0-DE": {
+      "name": "CC-BY-NC-3.0-DE",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-NC-3.0-DE.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-NC-3.0": {
+      "name": "CC-BY-NC-3.0",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-NC-3.0.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "CC-BY-NC-4.0": {
+      "name": "CC-BY-NC-4.0",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-NC-4.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-NC-ND-1.0": {
+      "name": "CC-BY-NC-ND-1.0",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-NC-ND-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-NC-ND-2.0": {
+      "name": "CC-BY-NC-ND-2.0",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-NC-ND-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-NC-ND-2.5": {
+      "name": "CC-BY-NC-ND-2.5",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-NC-ND-2.5.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-NC-ND-3.0-DE": {
+      "name": "CC-BY-NC-ND-3.0-DE",
+      "category": "public_domain",
+      "file": "licenses/json/CC-BY-NC-ND-3.0-DE.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-NC-ND-3.0-IGO": {
+      "name": "CC-BY-NC-ND-3.0-IGO",
+      "category": "proprietary",
+      "file": "licenses/json/CC-BY-NC-ND-3.0-IGO.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "CC-BY-NC-ND-3.0": {
+      "name": "CC-BY-NC-ND-3.0",
+      "category": "proprietary",
+      "file": "licenses/json/CC-BY-NC-ND-3.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-NC-ND-4.0": {
+      "name": "CC-BY-NC-ND-4.0",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-NC-ND-4.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-NC-SA-1.0": {
+      "name": "CC-BY-NC-SA-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-NC-SA-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-NC-SA-2.0-DE": {
+      "name": "CC-BY-NC-SA-2.0-DE",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-NC-SA-2.0-DE.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-NC-SA-2.0-FR": {
+      "name": "CC-BY-NC-SA-2.0-FR",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-NC-SA-2.0-FR.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-NC-SA-2.0-UK": {
+      "name": "CC-BY-NC-SA-2.0-UK",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-NC-SA-2.0-UK.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-NC-SA-2.0": {
+      "name": "CC-BY-NC-SA-2.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-NC-SA-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-NC-SA-2.5": {
+      "name": "CC-BY-NC-SA-2.5",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-NC-SA-2.5.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-NC-SA-3.0-DE": {
+      "name": "CC-BY-NC-SA-3.0-DE",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-NC-SA-3.0-DE.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-NC-SA-3.0-IGO": {
+      "name": "CC-BY-NC-SA-3.0-IGO",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-NC-SA-3.0-IGO.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-NC-SA-3.0": {
+      "name": "CC-BY-NC-SA-3.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-NC-SA-3.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-NC-SA-4.0": {
+      "name": "CC-BY-NC-SA-4.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-NC-SA-4.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-ND-1.0": {
+      "name": "CC-BY-ND-1.0",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-ND-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "CC-BY-ND-2.0": {
+      "name": "CC-BY-ND-2.0",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-ND-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-ND-2.5": {
+      "name": "CC-BY-ND-2.5",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-ND-2.5.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-ND-3.0-DE": {
+      "name": "CC-BY-ND-3.0-DE",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-ND-3.0-DE.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-ND-3.0": {
+      "name": "CC-BY-ND-3.0",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-ND-3.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-ND-4.0": {
+      "name": "CC-BY-ND-4.0",
+      "category": "permissive",
+      "file": "licenses/json/CC-BY-ND-4.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-SA-1.0": {
+      "name": "CC-BY-SA-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-SA-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-SA-2.0-UK": {
+      "name": "CC-BY-SA-2.0-UK",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-SA-2.0-UK.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-SA-2.0": {
+      "name": "CC-BY-SA-2.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-SA-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-SA-2.1-JP": {
+      "name": "CC-BY-SA-2.1-JP",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-SA-2.1-JP.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-SA-2.5": {
+      "name": "CC-BY-SA-2.5",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-SA-2.5.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-SA-3.0-AT": {
+      "name": "CC-BY-SA-3.0-AT",
+      "category": "copyleft_strong",
+      "file": "licenses/json/CC-BY-SA-3.0-AT.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-SA-3.0-DE": {
+      "name": "CC-BY-SA-3.0-DE",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-SA-3.0-DE.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-BY-SA-3.0-IGO": {
+      "name": "CC-BY-SA-3.0-IGO",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-SA-3.0-IGO.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "CC-BY-SA-3.0": {
+      "name": "CC-BY-SA-3.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-SA-3.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC-BY-SA-4.0": {
+      "name": "CC-BY-SA-4.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-BY-SA-4.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CC-PDDC": {
+      "name": "CC-PDDC",
+      "category": "public_domain",
+      "file": "licenses/json/CC-PDDC.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "CC-PDM-1.0": {
+      "name": "CC-PDM-1.0",
+      "category": "public_domain",
+      "file": "licenses/json/CC-PDM-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "CC-SA-1.0": {
+      "name": "CC-SA-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CC-SA-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CC0-1.0": {
+      "name": "CC0-1.0",
+      "category": "public_domain",
+      "file": "licenses/json/CC0-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "CDDL-1.0": {
+      "name": "CDDL-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CDDL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CDDL-1.1": {
+      "name": "CDDL-1.1",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CDDL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "CDL-1.0": {
+      "name": "CDL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/CDL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CDLA-Permissive-1.0": {
+      "name": "CDLA-Permissive-1.0",
+      "category": "permissive",
+      "file": "licenses/json/CDLA-Permissive-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "CDLA-Permissive-2.0": {
+      "name": "CDLA-Permissive-2.0",
+      "category": "permissive",
+      "file": "licenses/json/CDLA-Permissive-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "CDLA-Sharing-1.0": {
+      "name": "CDLA-Sharing-1.0",
+      "category": "permissive",
+      "file": "licenses/json/CDLA-Sharing-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CECILL-1.0": {
+      "name": "CECILL-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CECILL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CECILL-1.1": {
+      "name": "CECILL-1.1",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CECILL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "CECILL-2.0": {
+      "name": "CECILL-2.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CECILL-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "CECILL-2.1": {
+      "name": "CECILL-2.1",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CECILL-2.1.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "CECILL-B": {
+      "name": "CECILL-B",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CECILL-B.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "CECILL-C": {
+      "name": "CECILL-C",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CECILL-C.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CERN-OHL-1.1": {
+      "name": "CERN-OHL-1.1",
+      "category": "permissive",
+      "file": "licenses/json/CERN-OHL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "CERN-OHL-1.2": {
+      "name": "CERN-OHL-1.2",
+      "category": "permissive",
+      "file": "licenses/json/CERN-OHL-1.2.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CERN-OHL-P-2.0": {
+      "name": "CERN-OHL-P-2.0",
+      "category": "permissive",
+      "file": "licenses/json/CERN-OHL-P-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "CERN-OHL-S-2.0": {
+      "name": "CERN-OHL-S-2.0",
+      "category": "copyleft_strong",
+      "file": "licenses/json/CERN-OHL-S-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "CERN-OHL-W-2.0": {
+      "name": "CERN-OHL-W-2.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CERN-OHL-W-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CFITSIO": {
+      "name": "CFITSIO",
+      "category": "permissive",
+      "file": "licenses/json/CFITSIO.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "CMU-Mach-nodoc": {
+      "name": "CMU-Mach-nodoc",
+      "category": "permissive",
+      "file": "licenses/json/CMU-Mach-nodoc.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "CMU-Mach": {
+      "name": "CMU-Mach",
+      "category": "permissive",
+      "file": "licenses/json/CMU-Mach.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CNRI-Jython": {
+      "name": "CNRI-Jython",
+      "category": "permissive",
+      "file": "licenses/json/CNRI-Jython.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CNRI-Python-GPL-Compatible": {
+      "name": "CNRI-Python-GPL-Compatible",
+      "category": "permissive",
+      "file": "licenses/json/CNRI-Python-GPL-Compatible.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "CNRI-Python": {
+      "name": "CNRI-Python",
+      "category": "permissive",
+      "file": "licenses/json/CNRI-Python.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "COIL-1.0": {
+      "name": "COIL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/COIL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "CPAL-1.0": {
+      "name": "CPAL-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CPAL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "CPL-1.0": {
+      "name": "CPL-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/CPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "CPOL-1.02": {
+      "name": "CPOL-1.02",
+      "category": "permissive",
+      "file": "licenses/json/CPOL-1.02.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "CUA-OPL-1.0": {
+      "name": "CUA-OPL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/CUA-OPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Caldera-no-preamble": {
+      "name": "Caldera-no-preamble",
+      "category": "permissive",
+      "file": "licenses/json/Caldera-no-preamble.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "Caldera": {
+      "name": "Caldera",
+      "category": "permissive",
+      "file": "licenses/json/Caldera.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "Catharon": {
+      "name": "Catharon",
+      "category": "permissive",
+      "file": "licenses/json/Catharon.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "ClArtistic": {
+      "name": "ClArtistic",
+      "category": "permissive",
+      "file": "licenses/json/ClArtistic.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Clips": {
+      "name": "Clips",
+      "category": "permissive",
+      "file": "licenses/json/Clips.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "Community-Spec-1.0": {
+      "name": "Community-Spec-1.0",
+      "category": "permissive",
+      "file": "licenses/json/Community-Spec-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Condor-1.1": {
+      "name": "Condor-1.1",
+      "category": "permissive",
+      "file": "licenses/json/Condor-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "Cornell-Lossless-JPEG": {
+      "name": "Cornell-Lossless-JPEG",
+      "category": "permissive",
+      "file": "licenses/json/Cornell-Lossless-JPEG.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Cronyx": {
+      "name": "Cronyx",
+      "category": "permissive",
+      "file": "licenses/json/Cronyx.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Crossword": {
+      "name": "Crossword",
+      "category": "permissive",
+      "file": "licenses/json/Crossword.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "CryptoSwift": {
+      "name": "CryptoSwift",
+      "category": "permissive",
+      "file": "licenses/json/CryptoSwift.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "CrystalStacker": {
+      "name": "CrystalStacker",
+      "category": "permissive",
+      "file": "licenses/json/CrystalStacker.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Cube": {
+      "name": "Cube",
+      "category": "permissive",
+      "file": "licenses/json/Cube.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "D-FSL-1.0": {
+      "name": "D-FSL-1.0",
+      "category": "copyleft_strong",
+      "file": "licenses/json/D-FSL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "DEC-3-Clause": {
+      "name": "DEC-3-Clause",
+      "category": "permissive",
+      "file": "licenses/json/DEC-3-Clause.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "DL-DE-BY-2.0": {
+      "name": "DL-DE-BY-2.0",
+      "category": "permissive",
+      "file": "licenses/json/DL-DE-BY-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "DL-DE-ZERO-2.0": {
+      "name": "DL-DE-ZERO-2.0",
+      "category": "public_domain",
+      "file": "licenses/json/DL-DE-ZERO-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "DOC": {
+      "name": "DOC",
+      "category": "permissive",
+      "file": "licenses/json/DOC.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "DRL-1.0": {
+      "name": "DRL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/DRL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "DRL-1.1": {
+      "name": "DRL-1.1",
+      "category": "permissive",
+      "file": "licenses/json/DRL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "DSDP": {
+      "name": "DSDP",
+      "category": "permissive",
+      "file": "licenses/json/DSDP.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "DocBook-DTD": {
+      "name": "DocBook-DTD",
+      "category": "permissive",
+      "file": "licenses/json/DocBook-DTD.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "DocBook-Schema": {
+      "name": "DocBook-Schema",
+      "category": "permissive",
+      "file": "licenses/json/DocBook-Schema.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "DocBook-Stylesheet": {
+      "name": "DocBook-Stylesheet",
+      "category": "permissive",
+      "file": "licenses/json/DocBook-Stylesheet.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "DocBook-XML": {
+      "name": "DocBook-XML",
+      "category": "permissive",
+      "file": "licenses/json/DocBook-XML.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Dotseqn": {
+      "name": "Dotseqn",
+      "category": "permissive",
+      "file": "licenses/json/Dotseqn.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "ECL-1.0": {
+      "name": "ECL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/ECL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "ECL-2.0": {
+      "name": "ECL-2.0",
+      "category": "permissive",
+      "file": "licenses/json/ECL-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "EFL-1.0": {
+      "name": "EFL-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/EFL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "EFL-2.0": {
+      "name": "EFL-2.0",
+      "category": "permissive",
+      "file": "licenses/json/EFL-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "EPICS": {
+      "name": "EPICS",
+      "category": "permissive",
+      "file": "licenses/json/EPICS.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "EPL-1.0": {
+      "name": "EPL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/EPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "EPL-2.0": {
+      "name": "EPL-2.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/EPL-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "ESA-PL-permissive-2.4": {
+      "name": "ESA-PL-permissive-2.4",
+      "category": "permissive",
+      "file": "licenses/json/ESA-PL-permissive-2.4.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "ESA-PL-strong-copyleft-2.4": {
+      "name": "ESA-PL-strong-copyleft-2.4",
+      "category": "copyleft_strong",
+      "file": "licenses/json/ESA-PL-strong-copyleft-2.4.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "ESA-PL-weak-copyleft-2.4": {
+      "name": "ESA-PL-weak-copyleft-2.4",
+      "category": "copyleft_weak",
+      "file": "licenses/json/ESA-PL-weak-copyleft-2.4.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "EUDatagrid": {
+      "name": "EUDatagrid",
+      "category": "permissive",
+      "file": "licenses/json/EUDatagrid.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "EUPL-1.0": {
+      "name": "EUPL-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/EUPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "EUPL-1.1": {
+      "name": "EUPL-1.1",
+      "category": "copyleft_weak",
+      "file": "licenses/json/EUPL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "EUPL-1.2": {
+      "name": "EUPL-1.2",
+      "category": "copyleft_weak",
+      "file": "licenses/json/EUPL-1.2.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Elastic-2.0": {
+      "name": "Elastic-2.0",
+      "category": "proprietary",
+      "file": "licenses/json/Elastic-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "Entessa": {
+      "name": "Entessa",
+      "category": "permissive",
+      "file": "licenses/json/Entessa.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "ErlPL-1.1": {
+      "name": "ErlPL-1.1",
+      "category": "copyleft_weak",
+      "file": "licenses/json/ErlPL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Eurosym": {
+      "name": "Eurosym",
+      "category": "permissive",
+      "file": "licenses/json/Eurosym.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "FBM": {
+      "name": "FBM",
+      "category": "permissive",
+      "file": "licenses/json/FBM.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "FDK-AAC": {
+      "name": "FDK-AAC",
+      "category": "permissive",
+      "file": "licenses/json/FDK-AAC.json",
+      "is_deprecated": false,
+      "obligations_count": 7
+    },
+    "FSFAP-no-warranty-disclaimer": {
+      "name": "FSFAP-no-warranty-disclaimer",
+      "category": "permissive",
+      "file": "licenses/json/FSFAP-no-warranty-disclaimer.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "FSFAP": {
+      "name": "FSFAP",
+      "category": "permissive",
+      "file": "licenses/json/FSFAP.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "FSFUL": {
+      "name": "FSFUL",
+      "category": "public_domain",
+      "file": "licenses/json/FSFUL.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "FSFULLR": {
+      "name": "FSFULLR",
+      "category": "public_domain",
+      "file": "licenses/json/FSFULLR.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "FSFULLRSD": {
+      "name": "FSFULLRSD",
+      "category": "permissive",
+      "file": "licenses/json/FSFULLRSD.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "FSFULLRWD": {
+      "name": "FSFULLRWD",
+      "category": "permissive",
+      "file": "licenses/json/FSFULLRWD.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "FSL-1.1-ALv2": {
+      "name": "FSL-1.1-ALv2",
+      "category": "permissive",
+      "file": "licenses/json/FSL-1.1-ALv2.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "FSL-1.1-MIT": {
+      "name": "FSL-1.1-MIT",
+      "category": "permissive",
+      "file": "licenses/json/FSL-1.1-MIT.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "FTL": {
+      "name": "FTL",
+      "category": "permissive",
+      "file": "licenses/json/FTL.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Fair": {
+      "name": "Fair",
+      "category": "permissive",
+      "file": "licenses/json/Fair.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Ferguson-Twofish": {
+      "name": "Ferguson-Twofish",
+      "category": "permissive",
+      "file": "licenses/json/Ferguson-Twofish.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Frameworx-1.0": {
+      "name": "Frameworx-1.0",
+      "category": "permissive",
+      "file": "licenses/json/Frameworx-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "FreeBSD-DOC": {
+      "name": "FreeBSD-DOC",
+      "category": "permissive",
+      "file": "licenses/json/FreeBSD-DOC.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "FreeImage": {
+      "name": "FreeImage",
+      "category": "permissive",
+      "file": "licenses/json/FreeImage.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Furuseth": {
+      "name": "Furuseth",
+      "category": "permissive",
+      "file": "licenses/json/Furuseth.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "GCR-docs": {
+      "name": "GCR-docs",
+      "category": "permissive",
+      "file": "licenses/json/GCR-docs.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "GD": {
+      "name": "GD",
+      "category": "permissive",
+      "file": "licenses/json/GD.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "GFDL-1.1-invariants-only": {
+      "name": "GFDL-1.1-invariants-only",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.1-invariants-only.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "GFDL-1.1-invariants-or-later": {
+      "name": "GFDL-1.1-invariants-or-later",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.1-invariants-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "GFDL-1.1-no-invariants-only": {
+      "name": "GFDL-1.1-no-invariants-only",
+      "category": "copyleft_weak",
+      "file": "licenses/json/GFDL-1.1-no-invariants-only.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "GFDL-1.1-no-invariants-or-later": {
+      "name": "GFDL-1.1-no-invariants-or-later",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.1-no-invariants-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "GFDL-1.1-only": {
+      "name": "GFDL-1.1-only",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.1-only.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "GFDL-1.1-or-later": {
+      "name": "GFDL-1.1-or-later",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.1-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "GFDL-1.1": {
+      "name": "GFDL-1.1",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.1.json",
+      "is_deprecated": true,
+      "obligations_count": 3
+    },
+    "GFDL-1.2-invariants-only": {
+      "name": "GFDL-1.2-invariants-only",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.2-invariants-only.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "GFDL-1.2-invariants-or-later": {
+      "name": "GFDL-1.2-invariants-or-later",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.2-invariants-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "GFDL-1.2-no-invariants-only": {
+      "name": "GFDL-1.2-no-invariants-only",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.2-no-invariants-only.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "GFDL-1.2-no-invariants-or-later": {
+      "name": "GFDL-1.2-no-invariants-or-later",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.2-no-invariants-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "GFDL-1.2-only": {
+      "name": "GFDL-1.2-only",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.2-only.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "GFDL-1.2-or-later": {
+      "name": "GFDL-1.2-or-later",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.2-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "GFDL-1.2": {
+      "name": "GFDL-1.2",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.2.json",
+      "is_deprecated": true,
+      "obligations_count": 4
+    },
+    "GFDL-1.3-invariants-only": {
+      "name": "GFDL-1.3-invariants-only",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.3-invariants-only.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "GFDL-1.3-invariants-or-later": {
+      "name": "GFDL-1.3-invariants-or-later",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.3-invariants-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "GFDL-1.3-no-invariants-only": {
+      "name": "GFDL-1.3-no-invariants-only",
+      "category": "copyleft_weak",
+      "file": "licenses/json/GFDL-1.3-no-invariants-only.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "GFDL-1.3-no-invariants-or-later": {
+      "name": "GFDL-1.3-no-invariants-or-later",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.3-no-invariants-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "GFDL-1.3-only": {
+      "name": "GFDL-1.3-only",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.3-only.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "GFDL-1.3-or-later": {
+      "name": "GFDL-1.3-or-later",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.3-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "GFDL-1.3": {
+      "name": "GFDL-1.3",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GFDL-1.3.json",
+      "is_deprecated": true,
+      "obligations_count": 3
+    },
+    "GL2PS": {
+      "name": "GL2PS",
+      "category": "permissive",
+      "file": "licenses/json/GL2PS.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "GLWTPL": {
+      "name": "GLWTPL",
+      "category": "permissive",
+      "file": "licenses/json/GLWTPL.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "GPL-1.0+": {
+      "name": "GPL-1.0+",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GPL-1.0+.json",
+      "is_deprecated": true,
+      "obligations_count": 4
+    },
+    "GPL-1.0-only": {
+      "name": "GPL-1.0-only",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GPL-1.0-only.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "GPL-1.0-or-later": {
+      "name": "GPL-1.0-or-later",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GPL-1.0-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "GPL-1.0": {
+      "name": "GPL-1.0",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GPL-1.0.json",
+      "is_deprecated": true,
+      "obligations_count": 5
+    },
+    "GPL-2.0+": {
+      "name": "GPL-2.0+",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GPL-2.0+.json",
+      "is_deprecated": true,
+      "obligations_count": 5
+    },
+    "GPL-2.0-only": {
+      "name": "GPL-2.0-only",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GPL-2.0-only.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "GPL-2.0-or-later": {
+      "name": "GPL-2.0-or-later",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GPL-2.0-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "GPL-2.0-with-GCC-exception": {
+      "name": "GPL-2.0-with-GCC-exception",
+      "category": "copyleft_weak",
+      "file": "licenses/json/GPL-2.0-with-GCC-exception.json",
+      "is_deprecated": true,
+      "obligations_count": 4
+    },
+    "GPL-2.0-with-autoconf-exception": {
+      "name": "GPL-2.0-with-autoconf-exception",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GPL-2.0-with-autoconf-exception.json",
+      "is_deprecated": true,
+      "obligations_count": 5
+    },
+    "GPL-2.0-with-bison-exception": {
+      "name": "GPL-2.0-with-bison-exception",
+      "category": "copyleft_weak",
+      "file": "licenses/json/GPL-2.0-with-bison-exception.json",
+      "is_deprecated": true,
+      "obligations_count": 1
+    },
+    "GPL-2.0-with-classpath-exception": {
+      "name": "GPL-2.0-with-classpath-exception",
+      "category": "copyleft_weak",
+      "file": "licenses/json/GPL-2.0-with-classpath-exception.json",
+      "is_deprecated": true,
+      "obligations_count": 2
+    },
+    "GPL-2.0-with-font-exception": {
+      "name": "GPL-2.0-with-font-exception",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GPL-2.0-with-font-exception.json",
+      "is_deprecated": true,
+      "obligations_count": 5
+    },
+    "GPL-2.0": {
+      "name": "GPL-2.0",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GPL-2.0.json",
+      "is_deprecated": true,
+      "obligations_count": 4
+    },
+    "GPL-3.0+": {
+      "name": "GPL-3.0+",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GPL-3.0+.json",
+      "is_deprecated": true,
+      "obligations_count": 5
+    },
+    "GPL-3.0-only": {
+      "name": "GPL-3.0-only",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GPL-3.0-only.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "GPL-3.0-or-later": {
+      "name": "GPL-3.0-or-later",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GPL-3.0-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "GPL-3.0-with-GCC-exception": {
+      "name": "GPL-3.0-with-GCC-exception",
+      "category": "copyleft_weak",
+      "file": "licenses/json/GPL-3.0-with-GCC-exception.json",
+      "is_deprecated": true,
+      "obligations_count": 3
+    },
+    "GPL-3.0-with-autoconf-exception": {
+      "name": "GPL-3.0-with-autoconf-exception",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GPL-3.0-with-autoconf-exception.json",
+      "is_deprecated": true,
+      "obligations_count": 3
+    },
+    "GPL-3.0": {
+      "name": "GPL-3.0",
+      "category": "copyleft_strong",
+      "file": "licenses/json/GPL-3.0.json",
+      "is_deprecated": true,
+      "obligations_count": 5
+    },
+    "Game-Programming-Gems": {
+      "name": "Game-Programming-Gems",
+      "category": "permissive",
+      "file": "licenses/json/Game-Programming-Gems.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Giftware": {
+      "name": "Giftware",
+      "category": "permissive",
+      "file": "licenses/json/Giftware.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Glide": {
+      "name": "Glide",
+      "category": "copyleft_weak",
+      "file": "licenses/json/Glide.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Glulxe": {
+      "name": "Glulxe",
+      "category": "permissive",
+      "file": "licenses/json/Glulxe.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Graphics-Gems": {
+      "name": "Graphics-Gems",
+      "category": "permissive",
+      "file": "licenses/json/Graphics-Gems.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Gutmann": {
+      "name": "Gutmann",
+      "category": "permissive",
+      "file": "licenses/json/Gutmann.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "HDF5": {
+      "name": "HDF5",
+      "category": "permissive",
+      "file": "licenses/json/HDF5.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "HIDAPI": {
+      "name": "HIDAPI",
+      "category": "permissive",
+      "file": "licenses/json/HIDAPI.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "HP-1986": {
+      "name": "HP-1986",
+      "category": "permissive",
+      "file": "licenses/json/HP-1986.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "HP-1989": {
+      "name": "HP-1989",
+      "category": "permissive",
+      "file": "licenses/json/HP-1989.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "HPND-DEC": {
+      "name": "HPND-DEC",
+      "category": "permissive",
+      "file": "licenses/json/HPND-DEC.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "HPND-Fenneberg-Livingston": {
+      "name": "HPND-Fenneberg-Livingston",
+      "category": "permissive",
+      "file": "licenses/json/HPND-Fenneberg-Livingston.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "HPND-INRIA-IMAG": {
+      "name": "HPND-INRIA-IMAG",
+      "category": "permissive",
+      "file": "licenses/json/HPND-INRIA-IMAG.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "HPND-Intel": {
+      "name": "HPND-Intel",
+      "category": "permissive",
+      "file": "licenses/json/HPND-Intel.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "HPND-Kevlin-Henney": {
+      "name": "HPND-Kevlin-Henney",
+      "category": "permissive",
+      "file": "licenses/json/HPND-Kevlin-Henney.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "HPND-MIT-disclaimer": {
+      "name": "HPND-MIT-disclaimer",
+      "category": "permissive",
+      "file": "licenses/json/HPND-MIT-disclaimer.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "HPND-Markus-Kuhn": {
+      "name": "HPND-Markus-Kuhn",
+      "category": "permissive",
+      "file": "licenses/json/HPND-Markus-Kuhn.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "HPND-Netrek": {
+      "name": "HPND-Netrek",
+      "category": "permissive",
+      "file": "licenses/json/HPND-Netrek.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "HPND-Pbmplus": {
+      "name": "HPND-Pbmplus",
+      "category": "permissive",
+      "file": "licenses/json/HPND-Pbmplus.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "HPND-SMC": {
+      "name": "HPND-SMC",
+      "category": "permissive",
+      "file": "licenses/json/HPND-SMC.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "HPND-UC-export-US": {
+      "name": "HPND-UC-export-US",
+      "category": "permissive",
+      "file": "licenses/json/HPND-UC-export-US.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "HPND-UC": {
+      "name": "HPND-UC",
+      "category": "permissive",
+      "file": "licenses/json/HPND-UC.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "HPND-doc-sell": {
+      "name": "HPND-doc-sell",
+      "category": "permissive",
+      "file": "licenses/json/HPND-doc-sell.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "HPND-doc": {
+      "name": "HPND-doc",
+      "category": "permissive",
+      "file": "licenses/json/HPND-doc.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "HPND-export-US-acknowledgement": {
+      "name": "HPND-export-US-acknowledgement",
+      "category": "permissive",
+      "file": "licenses/json/HPND-export-US-acknowledgement.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "HPND-export-US-modify": {
+      "name": "HPND-export-US-modify",
+      "category": "permissive",
+      "file": "licenses/json/HPND-export-US-modify.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "HPND-export-US": {
+      "name": "HPND-export-US",
+      "category": "permissive",
+      "file": "licenses/json/HPND-export-US.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "HPND-export2-US": {
+      "name": "HPND-export2-US",
+      "category": "permissive",
+      "file": "licenses/json/HPND-export2-US.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "HPND-merchantability-variant": {
+      "name": "HPND-merchantability-variant",
+      "category": "permissive",
+      "file": "licenses/json/HPND-merchantability-variant.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "HPND-sell-MIT-disclaimer-xserver": {
+      "name": "HPND-sell-MIT-disclaimer-xserver",
+      "category": "permissive",
+      "file": "licenses/json/HPND-sell-MIT-disclaimer-xserver.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "HPND-sell-regexpr": {
+      "name": "HPND-sell-regexpr",
+      "category": "permissive",
+      "file": "licenses/json/HPND-sell-regexpr.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "HPND-sell-variant-MIT-disclaimer-rev": {
+      "name": "HPND-sell-variant-MIT-disclaimer-rev",
+      "category": "permissive",
+      "file": "licenses/json/HPND-sell-variant-MIT-disclaimer-rev.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "HPND-sell-variant-MIT-disclaimer": {
+      "name": "HPND-sell-variant-MIT-disclaimer",
+      "category": "permissive",
+      "file": "licenses/json/HPND-sell-variant-MIT-disclaimer.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "HPND-sell-variant": {
+      "name": "HPND-sell-variant",
+      "category": "permissive",
+      "file": "licenses/json/HPND-sell-variant.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "HPND": {
+      "name": "HPND",
+      "category": "permissive",
+      "file": "licenses/json/HPND.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "HTMLTIDY": {
+      "name": "HTMLTIDY",
+      "category": "permissive",
+      "file": "licenses/json/HTMLTIDY.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "HaskellReport": {
+      "name": "HaskellReport",
+      "category": "permissive",
+      "file": "licenses/json/HaskellReport.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Hippocratic-2.1": {
+      "name": "Hippocratic-2.1",
+      "category": "permissive",
+      "file": "licenses/json/Hippocratic-2.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "IBM-pibs": {
+      "name": "IBM-pibs",
+      "category": "permissive",
+      "file": "licenses/json/IBM-pibs.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "ICU": {
+      "name": "ICU",
+      "category": "permissive",
+      "file": "licenses/json/ICU.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "IEC-Code-Components-EULA": {
+      "name": "IEC-Code-Components-EULA",
+      "category": "proprietary",
+      "file": "licenses/json/IEC-Code-Components-EULA.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "IJG-short": {
+      "name": "IJG-short",
+      "category": "permissive",
+      "file": "licenses/json/IJG-short.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "IJG": {
+      "name": "IJG",
+      "category": "permissive",
+      "file": "licenses/json/IJG.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "IPA": {
+      "name": "IPA",
+      "category": "proprietary",
+      "file": "licenses/json/IPA.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "IPL-1.0": {
+      "name": "IPL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/IPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "ISC-Veillard": {
+      "name": "ISC-Veillard",
+      "category": "permissive",
+      "file": "licenses/json/ISC-Veillard.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "ISC": {
+      "name": "ISC",
+      "category": "permissive",
+      "file": "licenses/json/ISC.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "ImageMagick": {
+      "name": "ImageMagick",
+      "category": "permissive",
+      "file": "licenses/json/ImageMagick.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Imlib2": {
+      "name": "Imlib2",
+      "category": "permissive",
+      "file": "licenses/json/Imlib2.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Info-ZIP": {
+      "name": "Info-ZIP",
+      "category": "permissive",
+      "file": "licenses/json/Info-ZIP.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Inner-Net-2.0": {
+      "name": "Inner-Net-2.0",
+      "category": "permissive",
+      "file": "licenses/json/Inner-Net-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "InnoSetup": {
+      "name": "InnoSetup",
+      "category": "permissive",
+      "file": "licenses/json/InnoSetup.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "Intel-ACPI": {
+      "name": "Intel-ACPI",
+      "category": "permissive",
+      "file": "licenses/json/Intel-ACPI.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Intel": {
+      "name": "Intel",
+      "category": "permissive",
+      "file": "licenses/json/Intel.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Interbase-1.0": {
+      "name": "Interbase-1.0",
+      "category": "permissive",
+      "file": "licenses/json/Interbase-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "JPL-image": {
+      "name": "JPL-image",
+      "category": "public_domain",
+      "file": "licenses/json/JPL-image.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "JPNIC": {
+      "name": "JPNIC",
+      "category": "permissive",
+      "file": "licenses/json/JPNIC.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "JSON": {
+      "name": "JSON",
+      "category": "permissive",
+      "file": "licenses/json/JSON.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Jam": {
+      "name": "Jam",
+      "category": "permissive",
+      "file": "licenses/json/Jam.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "JasPer-2.0": {
+      "name": "JasPer-2.0",
+      "category": "permissive",
+      "file": "licenses/json/JasPer-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Kastrup": {
+      "name": "Kastrup",
+      "category": "permissive",
+      "file": "licenses/json/Kastrup.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Kazlib": {
+      "name": "Kazlib",
+      "category": "permissive",
+      "file": "licenses/json/Kazlib.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Knuth-CTAN": {
+      "name": "Knuth-CTAN",
+      "category": "permissive",
+      "file": "licenses/json/Knuth-CTAN.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "LAL-1.2": {
+      "name": "LAL-1.2",
+      "category": "copyleft_strong",
+      "file": "licenses/json/LAL-1.2.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "LAL-1.3": {
+      "name": "LAL-1.3",
+      "category": "copyleft_strong",
+      "file": "licenses/json/LAL-1.3.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "LGPL-2.0+": {
+      "name": "LGPL-2.0+",
+      "category": "copyleft_weak",
+      "file": "licenses/json/LGPL-2.0+.json",
+      "is_deprecated": true,
+      "obligations_count": 5
+    },
+    "LGPL-2.0-only": {
+      "name": "LGPL-2.0-only",
+      "category": "copyleft_weak",
+      "file": "licenses/json/LGPL-2.0-only.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "LGPL-2.0-or-later": {
+      "name": "LGPL-2.0-or-later",
+      "category": "copyleft_weak",
+      "file": "licenses/json/LGPL-2.0-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "LGPL-2.0": {
+      "name": "LGPL-2.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/LGPL-2.0.json",
+      "is_deprecated": true,
+      "obligations_count": 5
+    },
+    "LGPL-2.1+": {
+      "name": "LGPL-2.1+",
+      "category": "copyleft_weak",
+      "file": "licenses/json/LGPL-2.1+.json",
+      "is_deprecated": true,
+      "obligations_count": 4
+    },
+    "LGPL-2.1-only": {
+      "name": "LGPL-2.1-only",
+      "category": "copyleft_weak",
+      "file": "licenses/json/LGPL-2.1-only.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "LGPL-2.1-or-later": {
+      "name": "LGPL-2.1-or-later",
+      "category": "copyleft_weak",
+      "file": "licenses/json/LGPL-2.1-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "LGPL-2.1": {
+      "name": "LGPL-2.1",
+      "category": "copyleft_weak",
+      "file": "licenses/json/LGPL-2.1.json",
+      "is_deprecated": true,
+      "obligations_count": 4
+    },
+    "LGPL-3.0+": {
+      "name": "LGPL-3.0+",
+      "category": "copyleft_weak",
+      "file": "licenses/json/LGPL-3.0+.json",
+      "is_deprecated": true,
+      "obligations_count": 3
+    },
+    "LGPL-3.0-only": {
+      "name": "LGPL-3.0-only",
+      "category": "copyleft_weak",
+      "file": "licenses/json/LGPL-3.0-only.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "LGPL-3.0-or-later": {
+      "name": "LGPL-3.0-or-later",
+      "category": "copyleft_weak",
+      "file": "licenses/json/LGPL-3.0-or-later.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "LGPL-3.0": {
+      "name": "LGPL-3.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/LGPL-3.0.json",
+      "is_deprecated": true,
+      "obligations_count": 3
+    },
+    "LGPLLR": {
+      "name": "LGPLLR",
+      "category": "copyleft_weak",
+      "file": "licenses/json/LGPLLR.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "LOOP": {
+      "name": "LOOP",
+      "category": "permissive",
+      "file": "licenses/json/LOOP.json",
+      "is_deprecated": false,
+      "obligations_count": 8
+    },
+    "LPD-document": {
+      "name": "LPD-document",
+      "category": "permissive",
+      "file": "licenses/json/LPD-document.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "LPL-1.0": {
+      "name": "LPL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/LPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "LPL-1.02": {
+      "name": "LPL-1.02",
+      "category": "permissive",
+      "file": "licenses/json/LPL-1.02.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "LPPL-1.0": {
+      "name": "LPPL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/LPPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "LPPL-1.1": {
+      "name": "LPPL-1.1",
+      "category": "permissive",
+      "file": "licenses/json/LPPL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "LPPL-1.2": {
+      "name": "LPPL-1.2",
+      "category": "permissive",
+      "file": "licenses/json/LPPL-1.2.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "LPPL-1.3a": {
+      "name": "LPPL-1.3a",
+      "category": "permissive",
+      "file": "licenses/json/LPPL-1.3a.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "LPPL-1.3c": {
+      "name": "LPPL-1.3c",
+      "category": "copyleft_weak",
+      "file": "licenses/json/LPPL-1.3c.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "LZMA-SDK-9.11-to-9.20": {
+      "name": "LZMA-SDK-9.11-to-9.20",
+      "category": "public_domain",
+      "file": "licenses/json/LZMA-SDK-9.11-to-9.20.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "LZMA-SDK-9.22": {
+      "name": "LZMA-SDK-9.22",
+      "category": "public_domain",
+      "file": "licenses/json/LZMA-SDK-9.22.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "Latex2e-translated-notice": {
+      "name": "Latex2e-translated-notice",
+      "category": "permissive",
+      "file": "licenses/json/Latex2e-translated-notice.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Latex2e": {
+      "name": "Latex2e",
+      "category": "permissive",
+      "file": "licenses/json/Latex2e.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Leptonica": {
+      "name": "Leptonica",
+      "category": "permissive",
+      "file": "licenses/json/Leptonica.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "LiLiQ-P-1.1": {
+      "name": "LiLiQ-P-1.1",
+      "category": "permissive",
+      "file": "licenses/json/LiLiQ-P-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "LiLiQ-R-1.1": {
+      "name": "LiLiQ-R-1.1",
+      "category": "copyleft_strong",
+      "file": "licenses/json/LiLiQ-R-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "LiLiQ-Rplus-1.1": {
+      "name": "LiLiQ-Rplus-1.1",
+      "category": "copyleft_strong",
+      "file": "licenses/json/LiLiQ-Rplus-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Libpng": {
+      "name": "Libpng",
+      "category": "permissive",
+      "file": "licenses/json/Libpng.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Linux-OpenIB": {
+      "name": "Linux-OpenIB",
+      "category": "permissive",
+      "file": "licenses/json/Linux-OpenIB.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Linux-man-pages-1-para": {
+      "name": "Linux-man-pages-1-para",
+      "category": "permissive",
+      "file": "licenses/json/Linux-man-pages-1-para.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Linux-man-pages-copyleft-2-para": {
+      "name": "Linux-man-pages-copyleft-2-para",
+      "category": "copyleft_weak",
+      "file": "licenses/json/Linux-man-pages-copyleft-2-para.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Linux-man-pages-copyleft-var": {
+      "name": "Linux-man-pages-copyleft-var",
+      "category": "copyleft_weak",
+      "file": "licenses/json/Linux-man-pages-copyleft-var.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Linux-man-pages-copyleft": {
+      "name": "Linux-man-pages-copyleft",
+      "category": "copyleft_weak",
+      "file": "licenses/json/Linux-man-pages-copyleft.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Lucida-Bitmap-Fonts": {
+      "name": "Lucida-Bitmap-Fonts",
+      "category": "proprietary",
+      "file": "licenses/json/Lucida-Bitmap-Fonts.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "MIPS": {
+      "name": "MIPS",
+      "category": "permissive",
+      "file": "licenses/json/MIPS.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "MIT-0": {
+      "name": "MIT-0",
+      "category": "permissive",
+      "file": "licenses/json/MIT-0.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "MIT-CMU": {
+      "name": "MIT-CMU",
+      "category": "permissive",
+      "file": "licenses/json/MIT-CMU.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "MIT-Click": {
+      "name": "MIT-Click",
+      "category": "permissive",
+      "file": "licenses/json/MIT-Click.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "MIT-Festival": {
+      "name": "MIT-Festival",
+      "category": "permissive",
+      "file": "licenses/json/MIT-Festival.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "MIT-Khronos-old": {
+      "name": "MIT-Khronos-old",
+      "category": "permissive",
+      "file": "licenses/json/MIT-Khronos-old.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "MIT-Modern-Variant": {
+      "name": "MIT-Modern-Variant",
+      "category": "permissive",
+      "file": "licenses/json/MIT-Modern-Variant.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "MIT-Wu": {
+      "name": "MIT-Wu",
+      "category": "permissive",
+      "file": "licenses/json/MIT-Wu.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "MIT-advertising": {
+      "name": "MIT-advertising",
+      "category": "permissive",
+      "file": "licenses/json/MIT-advertising.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "MIT-enna": {
+      "name": "MIT-enna",
+      "category": "permissive",
+      "file": "licenses/json/MIT-enna.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "MIT-feh": {
+      "name": "MIT-feh",
+      "category": "permissive",
+      "file": "licenses/json/MIT-feh.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "MIT-open-group": {
+      "name": "MIT-open-group",
+      "category": "permissive",
+      "file": "licenses/json/MIT-open-group.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "MIT-testregex": {
+      "name": "MIT-testregex",
+      "category": "permissive",
+      "file": "licenses/json/MIT-testregex.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "MIT": {
+      "name": "MIT",
+      "category": "permissive",
+      "file": "licenses/json/MIT.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "MITNFA": {
+      "name": "MITNFA",
+      "category": "permissive",
+      "file": "licenses/json/MITNFA.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "MMIXware": {
+      "name": "MMIXware",
+      "category": "permissive",
+      "file": "licenses/json/MMIXware.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "MPEG-SSG": {
+      "name": "MPEG-SSG",
+      "category": "proprietary",
+      "file": "licenses/json/MPEG-SSG.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "MPL-1.0": {
+      "name": "MPL-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/MPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "MPL-1.1": {
+      "name": "MPL-1.1",
+      "category": "copyleft_weak",
+      "file": "licenses/json/MPL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "MPL-2.0-no-copyleft-exception": {
+      "name": "MPL-2.0-no-copyleft-exception",
+      "category": "copyleft_weak",
+      "file": "licenses/json/MPL-2.0-no-copyleft-exception.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "MPL-2.0": {
+      "name": "MPL-2.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/MPL-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "MS-LPL": {
+      "name": "MS-LPL",
+      "category": "permissive",
+      "file": "licenses/json/MS-LPL.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "MS-PL": {
+      "name": "MS-PL",
+      "category": "permissive",
+      "file": "licenses/json/MS-PL.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "MS-RL": {
+      "name": "MS-RL",
+      "category": "copyleft_weak",
+      "file": "licenses/json/MS-RL.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "MTLL": {
+      "name": "MTLL",
+      "category": "permissive",
+      "file": "licenses/json/MTLL.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "Mackerras-3-Clause-acknowledgment": {
+      "name": "Mackerras-3-Clause-acknowledgment",
+      "category": "permissive",
+      "file": "licenses/json/Mackerras-3-Clause-acknowledgment.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Mackerras-3-Clause": {
+      "name": "Mackerras-3-Clause",
+      "category": "permissive",
+      "file": "licenses/json/Mackerras-3-Clause.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "MakeIndex": {
+      "name": "MakeIndex",
+      "category": "permissive",
+      "file": "licenses/json/MakeIndex.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "Martin-Birgmeier": {
+      "name": "Martin-Birgmeier",
+      "category": "permissive",
+      "file": "licenses/json/Martin-Birgmeier.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "McPhee-slideshow": {
+      "name": "McPhee-slideshow",
+      "category": "permissive",
+      "file": "licenses/json/McPhee-slideshow.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Minpack": {
+      "name": "Minpack",
+      "category": "permissive",
+      "file": "licenses/json/Minpack.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "MirOS": {
+      "name": "MirOS",
+      "category": "permissive",
+      "file": "licenses/json/MirOS.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Motosoto": {
+      "name": "Motosoto",
+      "category": "permissive",
+      "file": "licenses/json/Motosoto.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "MulanPSL-1.0": {
+      "name": "MulanPSL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/MulanPSL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "MulanPSL-2.0": {
+      "name": "MulanPSL-2.0",
+      "category": "permissive",
+      "file": "licenses/json/MulanPSL-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Multics": {
+      "name": "Multics",
+      "category": "permissive",
+      "file": "licenses/json/Multics.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "Mup": {
+      "name": "Mup",
+      "category": "permissive",
+      "file": "licenses/json/Mup.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "NAIST-2003": {
+      "name": "NAIST-2003",
+      "category": "permissive",
+      "file": "licenses/json/NAIST-2003.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "NASA-1.3": {
+      "name": "NASA-1.3",
+      "category": "permissive",
+      "file": "licenses/json/NASA-1.3.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "NBPL-1.0": {
+      "name": "NBPL-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/NBPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "NCBI-PD": {
+      "name": "NCBI-PD",
+      "category": "public_domain",
+      "file": "licenses/json/NCBI-PD.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "NCGL-UK-2.0": {
+      "name": "NCGL-UK-2.0",
+      "category": "permissive",
+      "file": "licenses/json/NCGL-UK-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "NCL": {
+      "name": "NCL",
+      "category": "permissive",
+      "file": "licenses/json/NCL.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "NCSA": {
+      "name": "NCSA",
+      "category": "permissive",
+      "file": "licenses/json/NCSA.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "NGPL": {
+      "name": "NGPL",
+      "category": "copyleft_strong",
+      "file": "licenses/json/NGPL.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "NICTA-1.0": {
+      "name": "NICTA-1.0",
+      "category": "permissive",
+      "file": "licenses/json/NICTA-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "NIST-PD-TNT": {
+      "name": "NIST-PD-TNT",
+      "category": "public_domain",
+      "file": "licenses/json/NIST-PD-TNT.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "NIST-PD-fallback": {
+      "name": "NIST-PD-fallback",
+      "category": "public_domain",
+      "file": "licenses/json/NIST-PD-fallback.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "NIST-PD": {
+      "name": "NIST-PD",
+      "category": "public_domain",
+      "file": "licenses/json/NIST-PD.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "NIST-Software": {
+      "name": "NIST-Software",
+      "category": "public_domain",
+      "file": "licenses/json/NIST-Software.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "NLOD-1.0": {
+      "name": "NLOD-1.0",
+      "category": "permissive",
+      "file": "licenses/json/NLOD-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "NLOD-2.0": {
+      "name": "NLOD-2.0",
+      "category": "permissive",
+      "file": "licenses/json/NLOD-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "NLPL": {
+      "name": "NLPL",
+      "category": "permissive",
+      "file": "licenses/json/NLPL.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "NOSL": {
+      "name": "NOSL",
+      "category": "permissive",
+      "file": "licenses/json/NOSL.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "NPL-1.0": {
+      "name": "NPL-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/NPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "NPL-1.1": {
+      "name": "NPL-1.1",
+      "category": "copyleft_weak",
+      "file": "licenses/json/NPL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "NPOSL-3.0": {
+      "name": "NPOSL-3.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/NPOSL-3.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "NRL": {
+      "name": "NRL",
+      "category": "permissive",
+      "file": "licenses/json/NRL.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "NTIA-PD": {
+      "name": "NTIA-PD",
+      "category": "public_domain",
+      "file": "licenses/json/NTIA-PD.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "NTP-0": {
+      "name": "NTP-0",
+      "category": "permissive",
+      "file": "licenses/json/NTP-0.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "NTP": {
+      "name": "NTP",
+      "category": "permissive",
+      "file": "licenses/json/NTP.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Naumen": {
+      "name": "Naumen",
+      "category": "permissive",
+      "file": "licenses/json/Naumen.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "Net-SNMP": {
+      "name": "Net-SNMP",
+      "category": "permissive",
+      "file": "licenses/json/Net-SNMP.json",
+      "is_deprecated": true,
+      "obligations_count": 4
+    },
+    "NetCDF": {
+      "name": "NetCDF",
+      "category": "permissive",
+      "file": "licenses/json/NetCDF.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Newsletr": {
+      "name": "Newsletr",
+      "category": "permissive",
+      "file": "licenses/json/Newsletr.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Nokia": {
+      "name": "Nokia",
+      "category": "permissive",
+      "file": "licenses/json/Nokia.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Noweb": {
+      "name": "Noweb",
+      "category": "permissive",
+      "file": "licenses/json/Noweb.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "Nunit": {
+      "name": "Nunit",
+      "category": "permissive",
+      "file": "licenses/json/Nunit.json",
+      "is_deprecated": true,
+      "obligations_count": 4
+    },
+    "O-UDA-1.0": {
+      "name": "O-UDA-1.0",
+      "category": "permissive",
+      "file": "licenses/json/O-UDA-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OAR": {
+      "name": "OAR",
+      "category": "permissive",
+      "file": "licenses/json/OAR.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "OCCT-PL": {
+      "name": "OCCT-PL",
+      "category": "permissive",
+      "file": "licenses/json/OCCT-PL.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OCLC-2.0": {
+      "name": "OCLC-2.0",
+      "category": "permissive",
+      "file": "licenses/json/OCLC-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "ODC-By-1.0": {
+      "name": "ODC-By-1.0",
+      "category": "permissive",
+      "file": "licenses/json/ODC-By-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "ODbL-1.0": {
+      "name": "ODbL-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/ODbL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OFFIS": {
+      "name": "OFFIS",
+      "category": "permissive",
+      "file": "licenses/json/OFFIS.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "OFL-1.0-RFN": {
+      "name": "OFL-1.0-RFN",
+      "category": "permissive",
+      "file": "licenses/json/OFL-1.0-RFN.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "OFL-1.0-no-RFN": {
+      "name": "OFL-1.0-no-RFN",
+      "category": "permissive",
+      "file": "licenses/json/OFL-1.0-no-RFN.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "OFL-1.0": {
+      "name": "OFL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/OFL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "OFL-1.1-RFN": {
+      "name": "OFL-1.1-RFN",
+      "category": "permissive",
+      "file": "licenses/json/OFL-1.1-RFN.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OFL-1.1-no-RFN": {
+      "name": "OFL-1.1-no-RFN",
+      "category": "permissive",
+      "file": "licenses/json/OFL-1.1-no-RFN.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OFL-1.1": {
+      "name": "OFL-1.1",
+      "category": "permissive",
+      "file": "licenses/json/OFL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OGC-1.0": {
+      "name": "OGC-1.0",
+      "category": "permissive",
+      "file": "licenses/json/OGC-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OGDL-Taiwan-1.0": {
+      "name": "OGDL-Taiwan-1.0",
+      "category": "permissive",
+      "file": "licenses/json/OGDL-Taiwan-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "OGL-Canada-2.0": {
+      "name": "OGL-Canada-2.0",
+      "category": "permissive",
+      "file": "licenses/json/OGL-Canada-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "OGL-UK-1.0": {
+      "name": "OGL-UK-1.0",
+      "category": "permissive",
+      "file": "licenses/json/OGL-UK-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "OGL-UK-2.0": {
+      "name": "OGL-UK-2.0",
+      "category": "permissive",
+      "file": "licenses/json/OGL-UK-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OGL-UK-3.0": {
+      "name": "OGL-UK-3.0",
+      "category": "permissive",
+      "file": "licenses/json/OGL-UK-3.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "OGTSL": {
+      "name": "OGTSL",
+      "category": "permissive",
+      "file": "licenses/json/OGTSL.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "OLDAP-1.1": {
+      "name": "OLDAP-1.1",
+      "category": "permissive",
+      "file": "licenses/json/OLDAP-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OLDAP-1.2": {
+      "name": "OLDAP-1.2",
+      "category": "permissive",
+      "file": "licenses/json/OLDAP-1.2.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OLDAP-1.3": {
+      "name": "OLDAP-1.3",
+      "category": "permissive",
+      "file": "licenses/json/OLDAP-1.3.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OLDAP-1.4": {
+      "name": "OLDAP-1.4",
+      "category": "permissive",
+      "file": "licenses/json/OLDAP-1.4.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OLDAP-2.0.1": {
+      "name": "OLDAP-2.0.1",
+      "category": "permissive",
+      "file": "licenses/json/OLDAP-2.0.1.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "OLDAP-2.0": {
+      "name": "OLDAP-2.0",
+      "category": "permissive",
+      "file": "licenses/json/OLDAP-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "OLDAP-2.1": {
+      "name": "OLDAP-2.1",
+      "category": "permissive",
+      "file": "licenses/json/OLDAP-2.1.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "OLDAP-2.2.1": {
+      "name": "OLDAP-2.2.1",
+      "category": "permissive",
+      "file": "licenses/json/OLDAP-2.2.1.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "OLDAP-2.2.2": {
+      "name": "OLDAP-2.2.2",
+      "category": "permissive",
+      "file": "licenses/json/OLDAP-2.2.2.json",
+      "is_deprecated": false,
+      "obligations_count": 6
+    },
+    "OLDAP-2.2": {
+      "name": "OLDAP-2.2",
+      "category": "permissive",
+      "file": "licenses/json/OLDAP-2.2.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "OLDAP-2.3": {
+      "name": "OLDAP-2.3",
+      "category": "permissive",
+      "file": "licenses/json/OLDAP-2.3.json",
+      "is_deprecated": false,
+      "obligations_count": 6
+    },
+    "OLDAP-2.4": {
+      "name": "OLDAP-2.4",
+      "category": "permissive",
+      "file": "licenses/json/OLDAP-2.4.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "OLDAP-2.5": {
+      "name": "OLDAP-2.5",
+      "category": "permissive",
+      "file": "licenses/json/OLDAP-2.5.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "OLDAP-2.6": {
+      "name": "OLDAP-2.6",
+      "category": "permissive",
+      "file": "licenses/json/OLDAP-2.6.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "OLDAP-2.7": {
+      "name": "OLDAP-2.7",
+      "category": "permissive",
+      "file": "licenses/json/OLDAP-2.7.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OLDAP-2.8": {
+      "name": "OLDAP-2.8",
+      "category": "permissive",
+      "file": "licenses/json/OLDAP-2.8.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OLFL-1.3": {
+      "name": "OLFL-1.3",
+      "category": "copyleft_weak",
+      "file": "licenses/json/OLFL-1.3.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OML": {
+      "name": "OML",
+      "category": "permissive",
+      "file": "licenses/json/OML.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OPL-1.0": {
+      "name": "OPL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/OPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "OPL-UK-3.0": {
+      "name": "OPL-UK-3.0",
+      "category": "permissive",
+      "file": "licenses/json/OPL-UK-3.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "OPUBL-1.0": {
+      "name": "OPUBL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/OPUBL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "OSET-PL-2.1": {
+      "name": "OSET-PL-2.1",
+      "category": "copyleft_weak",
+      "file": "licenses/json/OSET-PL-2.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OSL-1.0": {
+      "name": "OSL-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/OSL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OSL-1.1": {
+      "name": "OSL-1.1",
+      "category": "copyleft_weak",
+      "file": "licenses/json/OSL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OSL-2.0": {
+      "name": "OSL-2.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/OSL-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OSL-2.1": {
+      "name": "OSL-2.1",
+      "category": "copyleft_weak",
+      "file": "licenses/json/OSL-2.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OSL-3.0": {
+      "name": "OSL-3.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/OSL-3.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "OSSP": {
+      "name": "OSSP",
+      "category": "permissive",
+      "file": "licenses/json/OSSP.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "OpenPBS-2.3": {
+      "name": "OpenPBS-2.3",
+      "category": "permissive",
+      "file": "licenses/json/OpenPBS-2.3.json",
+      "is_deprecated": false,
+      "obligations_count": 6
+    },
+    "OpenSSL-standalone": {
+      "name": "OpenSSL-standalone",
+      "category": "permissive",
+      "file": "licenses/json/OpenSSL-standalone.json",
+      "is_deprecated": false,
+      "obligations_count": 6
+    },
+    "OpenSSL": {
+      "name": "OpenSSL",
+      "category": "permissive",
+      "file": "licenses/json/OpenSSL.json",
+      "is_deprecated": false,
+      "obligations_count": 6
+    },
+    "OpenVision": {
+      "name": "OpenVision",
+      "category": "permissive",
+      "file": "licenses/json/OpenVision.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "PADL": {
+      "name": "PADL",
+      "category": "permissive",
+      "file": "licenses/json/PADL.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "PDDL-1.0": {
+      "name": "PDDL-1.0",
+      "category": "public_domain",
+      "file": "licenses/json/PDDL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "PHP-3.0": {
+      "name": "PHP-3.0",
+      "category": "permissive",
+      "file": "licenses/json/PHP-3.0.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "PHP-3.01": {
+      "name": "PHP-3.01",
+      "category": "permissive",
+      "file": "licenses/json/PHP-3.01.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "PPL": {
+      "name": "PPL",
+      "category": "copyleft_weak",
+      "file": "licenses/json/PPL.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "PSF-2.0": {
+      "name": "PSF-2.0",
+      "category": "permissive",
+      "file": "licenses/json/PSF-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Parity-6.0.0": {
+      "name": "Parity-6.0.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/Parity-6.0.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "Parity-7.0.0": {
+      "name": "Parity-7.0.0",
+      "category": "copyleft_strong",
+      "file": "licenses/json/Parity-7.0.0.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "Pixar": {
+      "name": "Pixar",
+      "category": "permissive",
+      "file": "licenses/json/Pixar.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Plexus": {
+      "name": "Plexus",
+      "category": "permissive",
+      "file": "licenses/json/Plexus.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "PolyForm-Noncommercial-1.0.0": {
+      "name": "PolyForm-Noncommercial-1.0.0",
+      "category": "permissive",
+      "file": "licenses/json/PolyForm-Noncommercial-1.0.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "PolyForm-Small-Business-1.0.0": {
+      "name": "PolyForm-Small-Business-1.0.0",
+      "category": "proprietary",
+      "file": "licenses/json/PolyForm-Small-Business-1.0.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "PostgreSQL": {
+      "name": "PostgreSQL",
+      "category": "permissive",
+      "file": "licenses/json/PostgreSQL.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Python-2.0.1": {
+      "name": "Python-2.0.1",
+      "category": "permissive",
+      "file": "licenses/json/Python-2.0.1.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Python-2.0": {
+      "name": "Python-2.0",
+      "category": "permissive",
+      "file": "licenses/json/Python-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "QPL-1.0-INRIA-2004": {
+      "name": "QPL-1.0-INRIA-2004",
+      "category": "copyleft_weak",
+      "file": "licenses/json/QPL-1.0-INRIA-2004.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "QPL-1.0": {
+      "name": "QPL-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/QPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "Qhull": {
+      "name": "Qhull",
+      "category": "permissive",
+      "file": "licenses/json/Qhull.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "RHeCos-1.1": {
+      "name": "RHeCos-1.1",
+      "category": "copyleft_weak",
+      "file": "licenses/json/RHeCos-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "RPL-1.1": {
+      "name": "RPL-1.1",
+      "category": "copyleft_weak",
+      "file": "licenses/json/RPL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "RPL-1.5": {
+      "name": "RPL-1.5",
+      "category": "copyleft_strong",
+      "file": "licenses/json/RPL-1.5.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "RPSL-1.0": {
+      "name": "RPSL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/RPSL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "RSA-MD": {
+      "name": "RSA-MD",
+      "category": "permissive",
+      "file": "licenses/json/RSA-MD.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "RSCPL": {
+      "name": "RSCPL",
+      "category": "copyleft_weak",
+      "file": "licenses/json/RSCPL.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "Rdisc": {
+      "name": "Rdisc",
+      "category": "permissive",
+      "file": "licenses/json/Rdisc.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Ruby-pty": {
+      "name": "Ruby-pty",
+      "category": "permissive",
+      "file": "licenses/json/Ruby-pty.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Ruby": {
+      "name": "Ruby",
+      "category": "permissive",
+      "file": "licenses/json/Ruby.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "SAX-PD-2.0": {
+      "name": "SAX-PD-2.0",
+      "category": "public_domain",
+      "file": "licenses/json/SAX-PD-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "SAX-PD": {
+      "name": "SAX-PD",
+      "category": "public_domain",
+      "file": "licenses/json/SAX-PD.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "SCEA": {
+      "name": "SCEA",
+      "category": "permissive",
+      "file": "licenses/json/SCEA.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "SGI-B-1.0": {
+      "name": "SGI-B-1.0",
+      "category": "permissive",
+      "file": "licenses/json/SGI-B-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "SGI-B-1.1": {
+      "name": "SGI-B-1.1",
+      "category": "permissive",
+      "file": "licenses/json/SGI-B-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "SGI-B-2.0": {
+      "name": "SGI-B-2.0",
+      "category": "permissive",
+      "file": "licenses/json/SGI-B-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "SGI-OpenGL": {
+      "name": "SGI-OpenGL",
+      "category": "permissive",
+      "file": "licenses/json/SGI-OpenGL.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "SGMLUG-PM": {
+      "name": "SGMLUG-PM",
+      "category": "permissive",
+      "file": "licenses/json/SGMLUG-PM.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "SGP4": {
+      "name": "SGP4",
+      "category": "permissive",
+      "file": "licenses/json/SGP4.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "SHL-0.5": {
+      "name": "SHL-0.5",
+      "category": "permissive",
+      "file": "licenses/json/SHL-0.5.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "SHL-0.51": {
+      "name": "SHL-0.51",
+      "category": "permissive",
+      "file": "licenses/json/SHL-0.51.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "SISSL-1.2": {
+      "name": "SISSL-1.2",
+      "category": "permissive",
+      "file": "licenses/json/SISSL-1.2.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "SISSL": {
+      "name": "SISSL",
+      "category": "permissive",
+      "file": "licenses/json/SISSL.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "SL": {
+      "name": "SL",
+      "category": "permissive",
+      "file": "licenses/json/SL.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "SMAIL-GPL": {
+      "name": "SMAIL-GPL",
+      "category": "copyleft_strong",
+      "file": "licenses/json/SMAIL-GPL.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "SMLNJ": {
+      "name": "SMLNJ",
+      "category": "permissive",
+      "file": "licenses/json/SMLNJ.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "SMPPL": {
+      "name": "SMPPL",
+      "category": "permissive",
+      "file": "licenses/json/SMPPL.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "SNIA": {
+      "name": "SNIA",
+      "category": "permissive",
+      "file": "licenses/json/SNIA.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "SOFA": {
+      "name": "SOFA",
+      "category": "permissive",
+      "file": "licenses/json/SOFA.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "SPL-1.0": {
+      "name": "SPL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/SPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "SSH-OpenSSH": {
+      "name": "SSH-OpenSSH",
+      "category": "permissive",
+      "file": "licenses/json/SSH-OpenSSH.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "SSH-short": {
+      "name": "SSH-short",
+      "category": "permissive",
+      "file": "licenses/json/SSH-short.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "SSLeay-standalone": {
+      "name": "SSLeay-standalone",
+      "category": "permissive",
+      "file": "licenses/json/SSLeay-standalone.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "SSPL-1.0": {
+      "name": "SSPL-1.0",
+      "category": "copyleft_strong",
+      "file": "licenses/json/SSPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "SUL-1.0": {
+      "name": "SUL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/SUL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "SWL": {
+      "name": "SWL",
+      "category": "permissive",
+      "file": "licenses/json/SWL.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Saxpath": {
+      "name": "Saxpath",
+      "category": "permissive",
+      "file": "licenses/json/Saxpath.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "SchemeReport": {
+      "name": "SchemeReport",
+      "category": "permissive",
+      "file": "licenses/json/SchemeReport.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Sendmail-8.23": {
+      "name": "Sendmail-8.23",
+      "category": "permissive",
+      "file": "licenses/json/Sendmail-8.23.json",
+      "is_deprecated": false,
+      "obligations_count": 7
+    },
+    "Sendmail-Open-Source-1.1": {
+      "name": "Sendmail-Open-Source-1.1",
+      "category": "permissive",
+      "file": "licenses/json/Sendmail-Open-Source-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "Sendmail": {
+      "name": "Sendmail",
+      "category": "permissive",
+      "file": "licenses/json/Sendmail.json",
+      "is_deprecated": false,
+      "obligations_count": 7
+    },
+    "SimPL-2.0": {
+      "name": "SimPL-2.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/SimPL-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "Sleepycat": {
+      "name": "Sleepycat",
+      "category": "permissive",
+      "file": "licenses/json/Sleepycat.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Soundex": {
+      "name": "Soundex",
+      "category": "permissive",
+      "file": "licenses/json/Soundex.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Spencer-86": {
+      "name": "Spencer-86",
+      "category": "permissive",
+      "file": "licenses/json/Spencer-86.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Spencer-94": {
+      "name": "Spencer-94",
+      "category": "permissive",
+      "file": "licenses/json/Spencer-94.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "Spencer-99": {
+      "name": "Spencer-99",
+      "category": "permissive",
+      "file": "licenses/json/Spencer-99.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "StandardML-NJ": {
+      "name": "StandardML-NJ",
+      "category": "permissive",
+      "file": "licenses/json/StandardML-NJ.json",
+      "is_deprecated": true,
+      "obligations_count": 3
+    },
+    "SugarCRM-1.1.3": {
+      "name": "SugarCRM-1.1.3",
+      "category": "copyleft_weak",
+      "file": "licenses/json/SugarCRM-1.1.3.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "Sun-PPP-2000": {
+      "name": "Sun-PPP-2000",
+      "category": "permissive",
+      "file": "licenses/json/Sun-PPP-2000.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Sun-PPP": {
+      "name": "Sun-PPP",
+      "category": "permissive",
+      "file": "licenses/json/Sun-PPP.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "SunPro": {
+      "name": "SunPro",
+      "category": "permissive",
+      "file": "licenses/json/SunPro.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Symlinks": {
+      "name": "Symlinks",
+      "category": "permissive",
+      "file": "licenses/json/Symlinks.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "TAPR-OHL-1.0": {
+      "name": "TAPR-OHL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/TAPR-OHL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "TCL": {
+      "name": "TCL",
+      "category": "permissive",
+      "file": "licenses/json/TCL.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "TCP-wrappers": {
+      "name": "TCP-wrappers",
+      "category": "permissive",
+      "file": "licenses/json/TCP-wrappers.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "TGPPL-1.0": {
+      "name": "TGPPL-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/TGPPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "TMate": {
+      "name": "TMate",
+      "category": "permissive",
+      "file": "licenses/json/TMate.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "TORQUE-1.1": {
+      "name": "TORQUE-1.1",
+      "category": "permissive",
+      "file": "licenses/json/TORQUE-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "TOSL": {
+      "name": "TOSL",
+      "category": "permissive",
+      "file": "licenses/json/TOSL.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "TPDL": {
+      "name": "TPDL",
+      "category": "permissive",
+      "file": "licenses/json/TPDL.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "TPL-1.0": {
+      "name": "TPL-1.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/TPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "TTWL": {
+      "name": "TTWL",
+      "category": "permissive",
+      "file": "licenses/json/TTWL.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "TTYP0": {
+      "name": "TTYP0",
+      "category": "permissive",
+      "file": "licenses/json/TTYP0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "TU-Berlin-1.0": {
+      "name": "TU-Berlin-1.0",
+      "category": "permissive",
+      "file": "licenses/json/TU-Berlin-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "TU-Berlin-2.0": {
+      "name": "TU-Berlin-2.0",
+      "category": "permissive",
+      "file": "licenses/json/TU-Berlin-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "TermReadKey": {
+      "name": "TermReadKey",
+      "category": "permissive",
+      "file": "licenses/json/TermReadKey.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "ThirdEye": {
+      "name": "ThirdEye",
+      "category": "permissive",
+      "file": "licenses/json/ThirdEye.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "TrustedQSL": {
+      "name": "TrustedQSL",
+      "category": "permissive",
+      "file": "licenses/json/TrustedQSL.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "UCAR": {
+      "name": "UCAR",
+      "category": "permissive",
+      "file": "licenses/json/UCAR.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "UCL-1.0": {
+      "name": "UCL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/UCL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "UMich-Merit": {
+      "name": "UMich-Merit",
+      "category": "permissive",
+      "file": "licenses/json/UMich-Merit.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "UPL-1.0": {
+      "name": "UPL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/UPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "URT-RLE": {
+      "name": "URT-RLE",
+      "category": "permissive",
+      "file": "licenses/json/URT-RLE.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Ubuntu-font-1.0": {
+      "name": "Ubuntu-font-1.0",
+      "category": "permissive",
+      "file": "licenses/json/Ubuntu-font-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "Unicode-3.0": {
+      "name": "Unicode-3.0",
+      "category": "permissive",
+      "file": "licenses/json/Unicode-3.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Unicode-DFS-2015": {
+      "name": "Unicode-DFS-2015",
+      "category": "permissive",
+      "file": "licenses/json/Unicode-DFS-2015.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Unicode-DFS-2016": {
+      "name": "Unicode-DFS-2016",
+      "category": "permissive",
+      "file": "licenses/json/Unicode-DFS-2016.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Unicode-TOU": {
+      "name": "Unicode-TOU",
+      "category": "permissive",
+      "file": "licenses/json/Unicode-TOU.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "UnixCrypt": {
+      "name": "UnixCrypt",
+      "category": "permissive",
+      "file": "licenses/json/UnixCrypt.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Unlicense-libtelnet": {
+      "name": "Unlicense-libtelnet",
+      "category": "public_domain",
+      "file": "licenses/json/Unlicense-libtelnet.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "Unlicense-libwhirlpool": {
+      "name": "Unlicense-libwhirlpool",
+      "category": "public_domain",
+      "file": "licenses/json/Unlicense-libwhirlpool.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "Unlicense": {
+      "name": "Unlicense",
+      "category": "public_domain",
+      "file": "licenses/json/Unlicense.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "VOSTROM": {
+      "name": "VOSTROM",
+      "category": "permissive",
+      "file": "licenses/json/VOSTROM.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "VSL-1.0": {
+      "name": "VSL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/VSL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "Vim": {
+      "name": "Vim",
+      "category": "permissive",
+      "file": "licenses/json/Vim.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "W3C-19980720": {
+      "name": "W3C-19980720",
+      "category": "permissive",
+      "file": "licenses/json/W3C-19980720.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "W3C-20150513": {
+      "name": "W3C-20150513",
+      "category": "permissive",
+      "file": "licenses/json/W3C-20150513.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "W3C": {
+      "name": "W3C",
+      "category": "permissive",
+      "file": "licenses/json/W3C.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "WTFNMFPL": {
+      "name": "WTFNMFPL",
+      "category": "permissive",
+      "file": "licenses/json/WTFNMFPL.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "WTFPL": {
+      "name": "WTFPL",
+      "category": "permissive",
+      "file": "licenses/json/WTFPL.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "Watcom-1.0": {
+      "name": "Watcom-1.0",
+      "category": "permissive",
+      "file": "licenses/json/Watcom-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Widget-Workshop": {
+      "name": "Widget-Workshop",
+      "category": "permissive",
+      "file": "licenses/json/Widget-Workshop.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "WordNet": {
+      "name": "WordNet",
+      "category": "permissive",
+      "file": "licenses/json/WordNet.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Wsuipa": {
+      "name": "Wsuipa",
+      "category": "permissive",
+      "file": "licenses/json/Wsuipa.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "X11-distribute-modifications-variant": {
+      "name": "X11-distribute-modifications-variant",
+      "category": "permissive",
+      "file": "licenses/json/X11-distribute-modifications-variant.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "X11-swapped": {
+      "name": "X11-swapped",
+      "category": "permissive",
+      "file": "licenses/json/X11-swapped.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "X11": {
+      "name": "X11",
+      "category": "permissive",
+      "file": "licenses/json/X11.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "XFree86-1.1": {
+      "name": "XFree86-1.1",
+      "category": "permissive",
+      "file": "licenses/json/XFree86-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "XSkat": {
+      "name": "XSkat",
+      "category": "permissive",
+      "file": "licenses/json/XSkat.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Xdebug-1.03": {
+      "name": "Xdebug-1.03",
+      "category": "permissive",
+      "file": "licenses/json/Xdebug-1.03.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "Xerox": {
+      "name": "Xerox",
+      "category": "permissive",
+      "file": "licenses/json/Xerox.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "Xfig": {
+      "name": "Xfig",
+      "category": "permissive",
+      "file": "licenses/json/Xfig.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Xnet": {
+      "name": "Xnet",
+      "category": "permissive",
+      "file": "licenses/json/Xnet.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "YPL-1.0": {
+      "name": "YPL-1.0",
+      "category": "permissive",
+      "file": "licenses/json/YPL-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "YPL-1.1": {
+      "name": "YPL-1.1",
+      "category": "permissive",
+      "file": "licenses/json/YPL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "ZPL-1.1": {
+      "name": "ZPL-1.1",
+      "category": "permissive",
+      "file": "licenses/json/ZPL-1.1.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "ZPL-2.0": {
+      "name": "ZPL-2.0",
+      "category": "permissive",
+      "file": "licenses/json/ZPL-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "ZPL-2.1": {
+      "name": "ZPL-2.1",
+      "category": "permissive",
+      "file": "licenses/json/ZPL-2.1.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "Zed": {
+      "name": "Zed",
+      "category": "permissive",
+      "file": "licenses/json/Zed.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Zeeff": {
+      "name": "Zeeff",
+      "category": "permissive",
+      "file": "licenses/json/Zeeff.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "Zend-2.0": {
+      "name": "Zend-2.0",
+      "category": "permissive",
+      "file": "licenses/json/Zend-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "Zimbra-1.3": {
+      "name": "Zimbra-1.3",
+      "category": "copyleft_weak",
+      "file": "licenses/json/Zimbra-1.3.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Zimbra-1.4": {
+      "name": "Zimbra-1.4",
+      "category": "copyleft_weak",
+      "file": "licenses/json/Zimbra-1.4.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "Zlib": {
+      "name": "Zlib",
+      "category": "permissive",
+      "file": "licenses/json/Zlib.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "any-OSI-perl-modules": {
+      "name": "any-OSI-perl-modules",
+      "category": "permissive",
+      "file": "licenses/json/any-OSI-perl-modules.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "any-OSI": {
+      "name": "any-OSI",
+      "category": "permissive",
+      "file": "licenses/json/any-OSI.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "bcrypt-Solar-Designer": {
+      "name": "bcrypt-Solar-Designer",
+      "category": "public_domain",
+      "file": "licenses/json/bcrypt-Solar-Designer.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "blessing": {
+      "name": "blessing",
+      "category": "public_domain",
+      "file": "licenses/json/blessing.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "bzip2-1.0.5": {
+      "name": "bzip2-1.0.5",
+      "category": "permissive",
+      "file": "licenses/json/bzip2-1.0.5.json",
+      "is_deprecated": true,
+      "obligations_count": 4
+    },
+    "bzip2-1.0.6": {
+      "name": "bzip2-1.0.6",
+      "category": "permissive",
+      "file": "licenses/json/bzip2-1.0.6.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "check-cvs": {
+      "name": "check-cvs",
+      "category": "permissive",
+      "file": "licenses/json/check-cvs.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "checkmk": {
+      "name": "checkmk",
+      "category": "permissive",
+      "file": "licenses/json/checkmk.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "copyleft-next-0.3.0": {
+      "name": "copyleft-next-0.3.0",
+      "category": "copyleft_strong",
+      "file": "licenses/json/copyleft-next-0.3.0.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "copyleft-next-0.3.1": {
+      "name": "copyleft-next-0.3.1",
+      "category": "copyleft_strong",
+      "file": "licenses/json/copyleft-next-0.3.1.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    },
+    "curl": {
+      "name": "curl",
+      "category": "permissive",
+      "file": "licenses/json/curl.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "cve-tou": {
+      "name": "cve-tou",
+      "category": "permissive",
+      "file": "licenses/json/cve-tou.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "diffmark": {
+      "name": "diffmark",
+      "category": "permissive",
+      "file": "licenses/json/diffmark.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "dtoa": {
+      "name": "dtoa",
+      "category": "permissive",
+      "file": "licenses/json/dtoa.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "dvipdfm": {
+      "name": "dvipdfm",
+      "category": "copyleft_weak",
+      "file": "licenses/json/dvipdfm.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "eCos-2.0": {
+      "name": "eCos-2.0",
+      "category": "copyleft_weak",
+      "file": "licenses/json/eCos-2.0.json",
+      "is_deprecated": true,
+      "obligations_count": 2
+    },
+    "eGenix": {
+      "name": "eGenix",
+      "category": "permissive",
+      "file": "licenses/json/eGenix.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "etalab-2.0": {
+      "name": "etalab-2.0",
+      "category": "permissive",
+      "file": "licenses/json/etalab-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "fwlw": {
+      "name": "fwlw",
+      "category": "permissive",
+      "file": "licenses/json/fwlw.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "gSOAP-1.3b": {
+      "name": "gSOAP-1.3b",
+      "category": "permissive",
+      "file": "licenses/json/gSOAP-1.3b.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "generic-xts": {
+      "name": "generic-xts",
+      "category": "permissive",
+      "file": "licenses/json/generic-xts.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "gnuplot": {
+      "name": "gnuplot",
+      "category": "permissive",
+      "file": "licenses/json/gnuplot.json",
+      "is_deprecated": false,
+      "obligations_count": 6
+    },
+    "gtkbook": {
+      "name": "gtkbook",
+      "category": "permissive",
+      "file": "licenses/json/gtkbook.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "hdparm": {
+      "name": "hdparm",
+      "category": "permissive",
+      "file": "licenses/json/hdparm.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "hyphen-bulgarian": {
+      "name": "hyphen-bulgarian",
+      "category": "permissive",
+      "file": "licenses/json/hyphen-bulgarian.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "iMatix": {
+      "name": "iMatix",
+      "category": "permissive",
+      "file": "licenses/json/iMatix.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "jove": {
+      "name": "jove",
+      "category": "permissive",
+      "file": "licenses/json/jove.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "libpng-1.6.35": {
+      "name": "libpng-1.6.35",
+      "category": "permissive",
+      "file": "licenses/json/libpng-1.6.35.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "libpng-2.0": {
+      "name": "libpng-2.0",
+      "category": "permissive",
+      "file": "licenses/json/libpng-2.0.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "libselinux-1.0": {
+      "name": "libselinux-1.0",
+      "category": "public_domain",
+      "file": "licenses/json/libselinux-1.0.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "libtiff": {
+      "name": "libtiff",
+      "category": "permissive",
+      "file": "licenses/json/libtiff.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "libutil-David-Nugent": {
+      "name": "libutil-David-Nugent",
+      "category": "permissive",
+      "file": "licenses/json/libutil-David-Nugent.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "lsof": {
+      "name": "lsof",
+      "category": "permissive",
+      "file": "licenses/json/lsof.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "magaz": {
+      "name": "magaz",
+      "category": "permissive",
+      "file": "licenses/json/magaz.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "mailprio": {
+      "name": "mailprio",
+      "category": "permissive",
+      "file": "licenses/json/mailprio.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "man2html": {
+      "name": "man2html",
+      "category": "permissive",
+      "file": "licenses/json/man2html.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "metamail": {
+      "name": "metamail",
+      "category": "permissive",
+      "file": "licenses/json/metamail.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "mpi-permissive": {
+      "name": "mpi-permissive",
+      "category": "permissive",
+      "file": "licenses/json/mpi-permissive.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "mpich2": {
+      "name": "mpich2",
+      "category": "permissive",
+      "file": "licenses/json/mpich2.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "mplus": {
+      "name": "mplus",
+      "category": "permissive",
+      "file": "licenses/json/mplus.json",
+      "is_deprecated": false,
+      "obligations_count": 0
+    },
+    "ngrep": {
+      "name": "ngrep",
+      "category": "permissive",
+      "file": "licenses/json/ngrep.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "pkgconf": {
+      "name": "pkgconf",
+      "category": "permissive",
+      "file": "licenses/json/pkgconf.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "pnmstitch": {
+      "name": "pnmstitch",
+      "category": "permissive",
+      "file": "licenses/json/pnmstitch.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "psfrag": {
+      "name": "psfrag",
+      "category": "permissive",
+      "file": "licenses/json/psfrag.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "psutils": {
+      "name": "psutils",
+      "category": "permissive",
+      "file": "licenses/json/psutils.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "python-ldap": {
+      "name": "python-ldap",
+      "category": "permissive",
+      "file": "licenses/json/python-ldap.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "radvd": {
+      "name": "radvd",
+      "category": "permissive",
+      "file": "licenses/json/radvd.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "snprintf": {
+      "name": "snprintf",
+      "category": "permissive",
+      "file": "licenses/json/snprintf.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "softSurfer": {
+      "name": "softSurfer",
+      "category": "permissive",
+      "file": "licenses/json/softSurfer.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "ssh-keyscan": {
+      "name": "ssh-keyscan",
+      "category": "permissive",
+      "file": "licenses/json/ssh-keyscan.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "swrule": {
+      "name": "swrule",
+      "category": "permissive",
+      "file": "licenses/json/swrule.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "threeparttable": {
+      "name": "threeparttable",
+      "category": "permissive",
+      "file": "licenses/json/threeparttable.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "ulem": {
+      "name": "ulem",
+      "category": "permissive",
+      "file": "licenses/json/ulem.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "w3m": {
+      "name": "w3m",
+      "category": "permissive",
+      "file": "licenses/json/w3m.json",
+      "is_deprecated": false,
+      "obligations_count": 1
+    },
+    "wwl": {
+      "name": "wwl",
+      "category": "permissive",
+      "file": "licenses/json/wwl.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "wxWindows": {
+      "name": "wxWindows",
+      "category": "permissive",
+      "file": "licenses/json/wxWindows.json",
+      "is_deprecated": true,
+      "obligations_count": 2
+    },
+    "xinetd": {
+      "name": "xinetd",
+      "category": "permissive",
+      "file": "licenses/json/xinetd.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "xkeyboard-config-Zinoviev": {
+      "name": "xkeyboard-config-Zinoviev",
+      "category": "permissive",
+      "file": "licenses/json/xkeyboard-config-Zinoviev.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "xlock": {
+      "name": "xlock",
+      "category": "permissive",
+      "file": "licenses/json/xlock.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "xpp": {
+      "name": "xpp",
+      "category": "permissive",
+      "file": "licenses/json/xpp.json",
+      "is_deprecated": false,
+      "obligations_count": 5
+    },
+    "xzoom": {
+      "name": "xzoom",
+      "category": "permissive",
+      "file": "licenses/json/xzoom.json",
+      "is_deprecated": false,
+      "obligations_count": 3
+    },
+    "zlib-acknowledgement": {
+      "name": "zlib-acknowledgement",
+      "category": "permissive",
+      "file": "licenses/json/zlib-acknowledgement.json",
+      "is_deprecated": false,
+      "obligations_count": 4
+    }
+  }
+}
