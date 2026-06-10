@@ -157,6 +157,33 @@ jobs:
               print(f"Validation passed: {len(files)} license files OK")
           EOF
 
+      - name: Bump patch version
+        id: version
+        if: steps.spdx-check.outputs.has_work == 'true' || github.event.inputs.force_reprocess == 'true'
+        run: |
+          python3 - <<'EOF'
+          import re, os
+
+          with open("pyproject.toml", "r") as f:
+              content = f.read()
+
+          m = re.search(r'^version = "(\d+)\.(\d+)\.(\d+)"', content, re.MULTILINE)
+          major, minor, patch = int(m.group(1)), int(m.group(2)), int(m.group(3))
+          new_version = f"{major}.{minor}.{patch + 1}"
+
+          content = re.sub(
+              r'^version = "\d+\.\d+\.\d+"',
+              f'version = "{new_version}"',
+              content, count=1, flags=re.MULTILINE
+          )
+          with open("pyproject.toml", "w") as f:
+              f.write(content)
+
+          print(f"Bumped to {new_version}")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"new_version={new_version}\n")
+          EOF
+
       - name: Build change summary
         id: summary
         if: always()
@@ -198,9 +225,10 @@ jobs:
       - name: Check for data changes
         id: git-check
         run: |
-          git status --porcelain ospac/data/ | grep -q '.' && echo "changed=true" >> "$GITHUB_OUTPUT" || echo "changed=false" >> "$GITHUB_OUTPUT"
+          git status --porcelain ospac/data/ pyproject.toml | grep -q '.' && echo "changed=true" >> "$GITHUB_OUTPUT" || echo "changed=false" >> "$GITHUB_OUTPUT"
 
       - name: Create pull request
+        id: create-pr
         if: steps.git-check.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676  # v7
         with:
@@ -208,9 +236,15 @@ jobs:
           commit-message: "data: sync SPDX ${{ steps.spdx-check.outputs.spdx_version }} — ${{ steps.spdx-check.outputs.new_count }} new, ${{ steps.spdx-check.outputs.deprecated_flag_count }} deprecated"
           branch: "data/spdx-sync-${{ steps.spdx-check.outputs.spdx_version }}"
           delete-branch: true
-          title: "data: SPDX sync ${{ steps.spdx-check.outputs.spdx_version }} (${{ steps.spdx-check.outputs.new_count }} new licenses)"
+          title: "data: SPDX sync ${{ steps.spdx-check.outputs.spdx_version }} — v${{ steps.version.outputs.new_version }}"
           body: ${{ steps.summary.outputs.pr_body }}
           labels: "data,automated"
+
+      - name: Enable auto-merge
+        if: steps.git-check.outputs.changed == 'true' && steps.create-pr.outputs.pull-request-number != ''
+        run: gh pr merge --auto --squash "${{ steps.create-pr.outputs.pull-request-number }}"
+        env:
+          GH_TOKEN: ${{ secrets.WORKFLOW_PAT }}
 
       - name: No changes detected
         if: steps.git-check.outputs.changed == 'false'
