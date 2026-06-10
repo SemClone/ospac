@@ -1,0 +1,63 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - pyproject.toml
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
+        with:
+          fetch-depth: 0
+
+      - name: Read version
+        id: version
+        run: |
+          VERSION=$(python3 -c "
+          import re
+          m = re.search(r'^version = \"(\S+)\"', open('pyproject.toml').read(), re.MULTILINE)
+          print(m.group(1))
+          ")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Check tag does not already exist
+        id: tag-check
+        run: |
+          if git ls-remote --tags origin "refs/tags/v${{ steps.version.outputs.version }}" | grep -q .; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build data dump
+        if: steps.tag-check.outputs.exists == 'false'
+        run: |
+          tar -czf "ospac-data-v${{ steps.version.outputs.version }}.tar.gz" \
+            -C ospac data
+
+      - name: Create release
+        if: steps.tag-check.outputs.exists == 'false'
+        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda  # v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: "v${{ steps.version.outputs.version }}"
+          generate_release_notes: true
+          files: ospac-data-v${{ steps.version.outputs.version }}.tar.gz
+          body: |
+            ## Data dump
+
+            `ospac-data-v${{ steps.version.outputs.version }}.tar.gz` — pre-built OSPAC license dataset (SPDX + LLM analysis). Extract into your project's `ospac/data/` directory to use without running the Python pipeline.
+
+            ## Install
+
+            ```
+            pip install ospac==${{ steps.version.outputs.version }}
+            ```
