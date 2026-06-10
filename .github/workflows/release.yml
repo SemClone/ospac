@@ -3,8 +3,7 @@ name: Release
 on:
   push:
     branches: [main]
-    paths:
-      - pyproject.toml
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -15,49 +14,57 @@ jobs:
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
         with:
-          fetch-depth: 0
+          fetch-depth: 2
 
-      - name: Read version
+      - name: Detect version change
         id: version
         run: |
-          VERSION=$(python3 -c "
-          import re
-          m = re.search(r'^version = \"(\S+)\"', open('pyproject.toml').read(), re.MULTILINE)
-          print(m.group(1))
-          ")
-          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+          OLD=$(git show HEAD~1:pyproject.toml 2>/dev/null | grep -m1 '^version = ' | grep -oP '"\K[^"]+' || echo "")
+          NEW=$(grep -m1 '^version = ' pyproject.toml | grep -oP '"\K[^"]+' || echo "")
+          echo "old=$OLD" >> "$GITHUB_OUTPUT"
+          echo "new=$NEW" >> "$GITHUB_OUTPUT"
+          if [ -n "$NEW" ] && [ "$OLD" != "$NEW" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "tag=v$NEW" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Check tag does not already exist
         id: tag-check
+        if: steps.version.outputs.changed == 'true'
         run: |
-          if git ls-remote --tags origin "refs/tags/v${{ steps.version.outputs.version }}" | grep -q .; then
+          if git ls-remote --tags origin "refs/tags/v${{ steps.version.outputs.new }}" | grep -q .; then
             echo "exists=true" >> "$GITHUB_OUTPUT"
           else
             echo "exists=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build data dump
-        if: steps.tag-check.outputs.exists == 'false'
+        if: steps.version.outputs.changed == 'true' && steps.tag-check.outputs.exists == 'false'
         run: |
-          tar -czf "ospac-data-v${{ steps.version.outputs.version }}.tar.gz" \
+          tar -czf "ospac-data-v${{ steps.version.outputs.new }}.tar.gz" \
             -C ospac data
 
       - name: Create release
-        if: steps.tag-check.outputs.exists == 'false'
+        if: steps.version.outputs.changed == 'true' && steps.tag-check.outputs.exists == 'false'
         uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda  # v2
         with:
           tag_name: ${{ steps.version.outputs.tag }}
-          name: "v${{ steps.version.outputs.version }}"
+          name: "v${{ steps.version.outputs.new }}"
           generate_release_notes: true
-          files: ospac-data-v${{ steps.version.outputs.version }}.tar.gz
+          files: ospac-data-v${{ steps.version.outputs.new }}.tar.gz
           body: |
             ## Data dump
 
-            `ospac-data-v${{ steps.version.outputs.version }}.tar.gz` — pre-built OSPAC license dataset (SPDX + LLM analysis). Extract into your project's `ospac/data/` directory to use without running the Python pipeline.
+            `ospac-data-v${{ steps.version.outputs.new }}.tar.gz` — pre-built OSPAC license dataset (SPDX + LLM analysis). Extract into your project's `ospac/data/` directory to use without running the Python pipeline.
 
             ## Install
 
             ```
-            pip install ospac==${{ steps.version.outputs.version }}
+            pip install ospac==${{ steps.version.outputs.new }}
             ```
+
+      - name: No version change
+        if: steps.version.outputs.changed == 'false'
+        run: echo "Version unchanged (${{ steps.version.outputs.new }}), skipping release"
