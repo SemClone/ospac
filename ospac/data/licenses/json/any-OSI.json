@@ -1,7 +1,7 @@
 {
   "license": {
     "id": "any-OSI",
-    "name": "any-OSI",
+    "name": "Any OSI License",
     "type": "permissive",
     "spdx_id": "any-OSI",
     "properties": {
@@ -13,72 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": false,
-      "include_license": false,
+      "include_license": true,
+      "include_copyright": true,
       "include_notice": false,
-      "network_use_disclosure": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": false
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "Permissive",
-          "MIT",
-          "Apache-2.0",
-          "ISC",
-          "Unlicense",
-          "Zlib"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-1.0",
-          "LGPL-2.1",
-          "AGPL-3.0",
-          "Mozilla-Public-Licence",
-          "Eclipse-Public-Licence"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "Permissive",
-          "MIT",
-          "Apache-2.0",
-          "ISC",
-          "Unlicense",
-          "Zlib",
-          "LGPL-3.0-or-later"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-1.0",
-          "LGPL-2.1",
-          "AGPL-3.0",
-          "Mozilla-Public-Licence",
-          "Eclipse-Public-Licence",
-          "Apache-1.1"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": ""
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Choose an OSI-approved license from the list provided."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Ensure the chosen license is compliant with applicable laws and regulations."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

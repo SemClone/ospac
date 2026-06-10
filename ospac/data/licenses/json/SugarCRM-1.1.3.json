@@ -1,82 +1,61 @@
 {
   "license": {
     "id": "SugarCRM-1.1.3",
-    "name": "SugarCRM-1.1.3",
-    "type": "copyleft_weak",
+    "name": "SugarCRM Public License v1.1.3",
+    "type": "permissive",
     "spdx_id": "SugarCRM-1.1.3",
     "properties": {
       "commercial_use": true,
       "distribution": true,
       "modification": true,
-      "patent_grant": true,
+      "patent_grant": false,
       "private_use": true
     },
     "requirements": {
-      "disclose_source": true,
-      "include_copyright": true,
+      "disclose_source": false,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": true
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": false
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "LGPL-2.1"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
-      "contamination_effect": "module",
-      "notes": "The SugarCRM-1.1.3 license allows for integration with other licenses under certain conditions, particularly when using weak copyleft licenses. Care should be taken to ensure compliance with the terms of the licenses involved."
+      "contamination_effect": "none",
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Must disclose source code when distributing modifications.",
-      "Must include a copy of the license with any distribution.",
-      "Must include copyright notices in all copies or substantial portions of the software.",
-      "Must state changes made to the original code."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Provide attribution to the original authors.",
-      "Include the original license text in all copies or substantial portions of the software.",
-      "Disclose modifications made to the original code."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

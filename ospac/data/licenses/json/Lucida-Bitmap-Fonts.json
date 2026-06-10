@@ -1,79 +1,61 @@
 {
   "license": {
     "id": "Lucida-Bitmap-Fonts",
-    "name": "Lucida-Bitmap-Fonts",
-    "type": "proprietary",
+    "name": "Lucida Bitmap Fonts License",
+    "type": "permissive",
     "spdx_id": "Lucida-Bitmap-Fonts",
     "properties": {
       "commercial_use": true,
       "distribution": true,
-      "modification": false,
-      "patent_grant": true,
+      "modification": true,
+      "patent_grant": false,
       "private_use": true
     },
     "requirements": {
       "disclose_source": false,
+      "include_license": true,
       "include_copyright": true,
-      "include_license": false,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": false
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": true
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "proprietary",
-          "commercial"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL",
-          "LGPL",
-          "AGPL"
-        ],
-        "requires_review": [
-          "MPL",
-          "EPL"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "proprietary",
-          "commercial"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL",
-          "LGPL",
-          "AGPL"
-        ],
-        "requires_review": [
-          "MPL",
-          "EPL"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "The Lucida-Bitmap-Fonts license allows for proprietary use but does not permit integration with open-source licenses that require derivative works to be open-sourced."
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Include copyright notices in user documentation and internal comments.",
-      "Do not modify the appearance of the icons or glyphs except as necessary for standard resolution.",
-      "Validation by AT&T is required for the use of the OPEN LOOK trademark."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Must not change the code or output except as authorized.",
-      "Must not modify the fonts and bit-mapped images to use the Lucida trademark."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

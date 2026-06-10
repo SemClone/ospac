@@ -1,8 +1,8 @@
 {
   "license": {
     "id": "AAL",
-    "name": "AAL",
-    "type": "copyleft_strong",
+    "name": "Attribution Assurance License",
+    "type": "permissive",
     "spdx_id": "AAL",
     "properties": {
       "commercial_use": true,
@@ -13,63 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": true,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": true,
-      "state_changes": false
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
+      "same_license": false,
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": true
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "Apache-2.0",
-          "AGPL-3.0"
+          "category:any"
         ],
-        "incompatible_with": [
-          "MIT",
-          "ISC",
-          "Unlicense",
-          "ZPL-1.1"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "Apache-2.0",
-          "AGPL-3.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
+          "category:any"
         ],
-        "incompatible_with": [
-          "MIT",
-          "ISC",
-          "Unlicense",
-          "ZPL-1.1"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
-      "contamination_effect": "derivative",
-      "notes": "Note: AAL is a copyleft license, which means that if you distribute a modified version of the code, you must also make your modifications available under the same terms."
+      "contamination_effect": "none",
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Prominently display this GPG-signed text in verifiable form.",
-      "Display the Author's attribution information prominently each time the resulting executable program or a program dependent thereon is launched."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Include Attribution Assurance License (AAL) in any documentation and in any promotional materials related to the software."
+      "Attribution required"
     ],
     "spdx_metadata": {
-      "is_osi_approved": false,
+      "is_osi_approved": true,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

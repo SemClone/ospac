@@ -1,8 +1,8 @@
 {
   "license": {
     "id": "Zimbra-1.3",
-    "name": "Zimbra-1.3",
-    "type": "copyleft_weak",
+    "name": "Zimbra Public License v1.3",
+    "type": "permissive",
     "spdx_id": "Zimbra-1.3",
     "properties": {
       "commercial_use": true,
@@ -12,68 +12,50 @@
       "private_use": true
     },
     "requirements": {
-      "disclose_source": true,
-      "include_copyright": true,
+      "disclose_source": false,
       "include_license": true,
+      "include_copyright": true,
       "include_notice": false,
-      "network_use_disclosure": false,
-      "same_license": true,
-      "state_changes": true
+      "state_changes": false,
+      "same_license": false,
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "LGPL-2.1",
-          "MPL-2.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "LGPL-2.1"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
-      "contamination_effect": "module",
-      "notes": "Zimbra-1.3 allows for linking with other licenses but requires that modifications to the Zimbra-1.3 licensed code remain under the same license."
+      "contamination_effect": "none",
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Distribute source code of the Software or Modifications when distributing in compiled format.",
-      "Include a complete copy of the Zimbra Public License with any distribution.",
-      "When distributing Modifications, apply the same terms of the Zimbra Public License."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "You must have the authority to bind your corporation or entity to this Agreement if acting on their behalf.",
-      "You must provide access to the source code when distributing in compiled or object code format."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
-      "is_fsf_libre": false,
+      "is_fsf_libre": true,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

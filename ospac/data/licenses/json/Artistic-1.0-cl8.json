@@ -1,7 +1,7 @@
 {
   "license": {
     "id": "Artistic-1.0-cl8",
-    "name": "Artistic-1.0-cl8",
+    "name": "Artistic License 1.0 w/clause 8",
     "type": "permissive",
     "spdx_id": "Artistic-1.0-cl8",
     "properties": {
@@ -13,60 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": true,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": true
+      "network_use_disclosure": false
     },
     "limitations": {
       "liability": false,
-      "trademark_use": false,
-      "warranty": false
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "Artistic-1.0",
-          "Permissive"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL",
-          "LGPL",
-          "Apache-2.0"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "Artistic-1.0",
-          "Permissive"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL",
-          "LGPL",
-          "Apache-2.0"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
-      "contamination_effect": "module",
-      "notes": "The Artistic-1.0-cl8 license is compatible with other permissive licenses, but incompatible with copyleft licenses."
+      "contamination_effect": "none",
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Insert a prominent notice in each changed file stating how and when you changed that file.",
-      "Do at least ONE of the following: place your modifications in the Public Domain, make them Freely Available, use the modified Package only within your corporation or organization, rename non-standard executables and provide separate manual pages, or make other distribution arrangements with the Copyright Holder."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Insert a prominent notice in each changed file stating how and when you changed that file.",
-      "Make modifications Freely Available by posting to Usenet or an equivalent medium, placing on a major archive site, or allowing the Copyright Holder to include them in the Standard Version of the Package."
+      "Attribution required"
     ],
     "spdx_metadata": {
-      "is_osi_approved": false,
+      "is_osi_approved": true,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

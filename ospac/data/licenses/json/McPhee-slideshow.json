@@ -1,7 +1,7 @@
 {
   "license": {
     "id": "McPhee-slideshow",
-    "name": "McPhee-slideshow",
+    "name": "McPhee Slideshow License",
     "type": "permissive",
     "spdx_id": "McPhee-slideshow",
     "properties": {
@@ -13,74 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
+      "include_license": true,
       "include_copyright": true,
-      "include_license": false,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": true
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": false
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "Zlib",
-          "Unlicense"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "Zlib",
-          "Unlicense",
-          "LGPL-2.1",
-          "LGPL-3.0"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "The McPhee-slideshow license is permissive and allows for integration with other permissive licenses without imposing additional restrictions."
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Preserve the copyright notice with any significant portion of the code.",
-      "Clearly mark modifications to the original code."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Maintain the copyright notice in distributed copies or significant portions of the code.",
-      "Indicate any changes made to the original code."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

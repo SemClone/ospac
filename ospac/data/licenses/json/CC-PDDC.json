@@ -1,8 +1,8 @@
 {
   "license": {
     "id": "CC-PDDC",
-    "name": "CC-PDDC",
-    "type": "public_domain",
+    "name": "Creative Commons Public Domain Dedication and Certification",
+    "type": "permissive",
     "spdx_id": "CC-PDDC",
     "properties": {
       "commercial_use": true,
@@ -13,72 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": false,
-      "include_license": false,
+      "include_license": true,
+      "include_copyright": true,
       "include_notice": false,
-      "network_use_disclosure": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": false
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": false
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "public_domain",
-          "CC0",
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "public_domain",
-          "CC0",
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "The CC-PDDC license allows for broad compatibility with other licenses, especially those in the public domain or permissive categories. However, it is incompatible with copyleft licenses like GPL."
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "The dedicator must have taken reasonable steps to verify the copyright status of the work."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "The work is dedicated to the public domain, relinquishing all rights under copyright law."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

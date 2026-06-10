@@ -1,8 +1,8 @@
 {
   "license": {
     "id": "ANTLR-PD",
-    "name": "ANTLR-PD",
-    "type": "public_domain",
+    "name": "ANTLR Software Rights Notice",
+    "type": "permissive",
     "spdx_id": "ANTLR-PD",
     "properties": {
       "commercial_use": true,
@@ -13,61 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": false,
-      "include_license": false,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_license": true,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": false
+      "network_use_disclosure": false
     },
     "limitations": {
       "liability": false,
-      "trademark_use": false,
-      "warranty": false
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "public_domain",
-          "unlicense"
+          "category:any"
         ],
-        "incompatible_with": [
-          "bsd",
-          "mit",
-          "apache_2.0",
-          "gpl_v3"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "public_domain",
-          "unlicense"
+          "category:any"
         ],
-        "incompatible_with": [
-          "bsd",
-          "mit",
-          "apache_2.0",
-          "gpl_v3"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "No additional compatibility notes"
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Credit must be given to the developers of ANTLR"
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Intact headers in source code",
-      "Acknowledgment of ANTLR use in documentation or research report"
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

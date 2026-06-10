@@ -1,8 +1,8 @@
 {
   "license": {
     "id": "CC-BY-SA-3.0-AT",
-    "name": "CC-BY-SA-3.0-AT",
-    "type": "copyleft_strong",
+    "name": "Creative Commons Attribution Share Alike 3.0 Austria",
+    "type": "permissive",
     "spdx_id": "CC-BY-SA-3.0-AT",
     "properties": {
       "commercial_use": true,
@@ -12,72 +12,50 @@
       "private_use": true
     },
     "requirements": {
-      "disclose_source": true,
-      "include_copyright": true,
+      "disclose_source": false,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
-      "same_license": true,
-      "state_changes": true
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
+      "same_license": false,
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "CC-BY-SA-3.0",
-          "CC-BY-SA-4.0",
-          "GPL-3.0",
-          "AGPL-3.0"
+          "category:any"
         ],
-        "incompatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "CC-BY-SA-3.0",
-          "CC-BY-SA-4.0",
-          "GPL-3.0",
-          "AGPL-3.0"
+          "category:any"
         ],
-        "incompatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
-        ],
-        "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
-      "contamination_effect": "full",
-      "notes": "CC-BY-SA-3.0-AT requires that any derivative works or combined works must also be licensed under CC-BY-SA. This strong copyleft nature means that it is generally incompatible with permissive licenses."
+      "contamination_effect": "none",
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Attribution must be given to the original creator.",
-      "Any derivative works must be licensed under the same terms (ShareAlike).",
-      "License must be included with any distribution of the work or derivative."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Provide appropriate credit, link to the license, and indicate if changes were made.",
-      "Distribute any derivative works under the same license."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

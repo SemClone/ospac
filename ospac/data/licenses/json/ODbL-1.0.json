@@ -1,8 +1,8 @@
 {
   "license": {
     "id": "ODbL-1.0",
-    "name": "ODbL-1.0",
-    "type": "copyleft_weak",
+    "name": "Open Data Commons Open Database License v1.0",
+    "type": "permissive",
     "spdx_id": "ODbL-1.0",
     "properties": {
       "commercial_use": true,
@@ -12,70 +12,50 @@
       "private_use": true
     },
     "requirements": {
-      "disclose_source": true,
-      "include_copyright": true,
+      "disclose_source": false,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": true
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": false
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "LGPL-2.1",
-          "LGPL-3.0"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
-      "contamination_effect": "module",
-      "notes": "ODbL-1.0 allows for compatibility with permissive licenses but is incompatible with strong copyleft licenses like GPL. Care should be taken when combining with licenses that have similar requirements."
+      "contamination_effect": "none",
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "You must attribute the original source of the database.",
-      "You must share any derivative databases under the same license.",
-      "You must provide a copy of the ODbL license when distributing the database."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Maintain the same freedoms for others when sharing or modifying the database.",
-      "Clarify rights governing the contents of the database if they are covered by different licenses."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
-      "is_fsf_libre": false,
+      "is_fsf_libre": true,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

@@ -1,7 +1,7 @@
 {
   "license": {
     "id": "CNRI-Jython",
-    "name": "CNRI-Jython",
+    "name": "CNRI Jython License",
     "type": "permissive",
     "spdx_id": "CNRI-Jython",
     "properties": {
@@ -13,80 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": true,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": true
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": true,
-      "warranty": true
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "Zlib",
-          "ISC"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0",
-          "CC BY-SA"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "Zlib",
-          "ISC"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0",
-          "CC BY-SA"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "The CNRI-Jython license is permissive and allows for integration with other permissive licenses without imposing restrictions. However, it is incompatible with copyleft licenses that impose stricter distribution terms."
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Retain CNRI's copyright notice in all copies or substantial portions of the Software.",
-      "Indicate the nature of modifications made to the Software in any derivative work.",
-      "Display the CNRI License Agreement or a prominent notice regarding the license terms in derivative works."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Include CNRI's copyright notice in the Software and any derivative versions.",
-      "State changes made to the Software in any derivative work.",
-      "Do not use CNRI trademarks in a trademark sense to endorse or promote products or services."
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

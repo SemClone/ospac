@@ -1,7 +1,7 @@
 {
   "license": {
     "id": "AGPL-3.0",
-    "name": "AGPL-3.0",
+    "name": "GNU Affero General Public License v3.0",
     "type": "copyleft_strong",
     "spdx_id": "AGPL-3.0",
     "properties": {
@@ -13,60 +13,57 @@
     },
     "requirements": {
       "disclose_source": true,
-      "include_copyright": true,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": true,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": true,
-      "state_changes": true
+      "network_use_disclosure": false
     },
     "limitations": {
       "liability": false,
-      "trademark_use": false,
-      "warranty": false
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
+          "AGPL-3.0",
+          "category:copyleft_strong"
         ],
         "incompatible_with": [
-          "Apache-2.0",
-          "MIT-LICENSED",
-          "proprietary"
+          "category:permissive",
+          "category:proprietary"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
-          "LGPL-3.0",
-          "GPL-3.0",
-          "AGPL-3.0"
+          "category:any"
         ],
-        "incompatible_with": [
-          "Apache-2.0",
-          "MIT-LICENSED",
-          "proprietary"
-        ],
-        "requires_review": []
+        "incompatible_with": [],
+        "requires_review": [
+          "category:proprietary"
+        ]
       },
       "contamination_effect": "full",
-      "notes": "The AGPL-3.0 license is a copyleft license, which means that if you distribute derivative works based on the original work, you must also make the source code available under the same terms."
+      "notes": "Strong copyleft with viral effect"
     },
     "obligations": [
-      "The operator of a network server must provide the source code of the modified version running there to the users of that server."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "When using this license, you must assert copyright on the software and offer recipients a copy of the GNU Affero General Public License.",
-      "You must provide the source code of the modified version running on a publicly accessible server to the public."
+      "Attribution required"
     ],
     "spdx_metadata": {
-      "is_osi_approved": false,
-      "is_fsf_libre": false,
+      "is_osi_approved": true,
+      "is_fsf_libre": true,
       "is_deprecated": true
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

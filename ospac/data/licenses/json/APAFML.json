@@ -1,7 +1,7 @@
 {
   "license": {
     "id": "APAFML",
-    "name": "APAFML",
+    "name": "Adobe Postscript AFM License",
     "type": "permissive",
     "spdx_id": "APAFML",
     "properties": {
@@ -13,59 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": true,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": false
+      "network_use_disclosure": false
     },
     "limitations": {
       "liability": false,
-      "trademark_use": false,
-      "warranty": false
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "Apache-2.0",
-          "MIT"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-1.0",
-          "AGPL-3.0"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "Apache-2.0",
-          "MIT"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-1.0",
-          "AGPL-3.0"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "This license is permissive, allowing free use and modification of the software."
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Retain copyright notices",
-      "Do not distribute AFM files without this file",
-      "Prominently note modifications to the file or any of the AFM files in the modified file(s)"
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Retain all copyright notices",
-      "Ensure that all modifications are prominently noted"
+      "Attribution required"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

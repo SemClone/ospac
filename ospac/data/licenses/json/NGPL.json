@@ -1,7 +1,7 @@
 {
   "license": {
     "id": "NGPL",
-    "name": "NGPL",
+    "name": "Nethack General Public License",
     "type": "copyleft_strong",
     "spdx_id": "NGPL",
     "properties": {
@@ -13,75 +13,57 @@
     },
     "requirements": {
       "disclose_source": true,
-      "include_copyright": true,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": true,
-      "state_changes": true
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "GPL",
-          "AGPL",
-          "LGPL (version 3 or later)",
-          "MPL (version 2.0)"
+          "NGPL",
+          "category:copyleft_strong"
         ],
         "incompatible_with": [
-          "MIT",
-          "Apache 2.0",
-          "BSD",
-          "Proprietary"
+          "category:permissive",
+          "category:proprietary"
         ],
         "requires_review": [
-          "LGPL (version 2.1)",
-          "EPL"
+          "category:copyleft_weak"
         ]
       },
       "dynamic_linking": {
         "compatible_with": [
-          "GPL",
-          "AGPL",
-          "LGPL (version 3 or later)",
-          "MPL (version 2.0)"
+          "category:any"
         ],
-        "incompatible_with": [
-          "MIT",
-          "Apache 2.0",
-          "BSD",
-          "Proprietary"
-        ],
+        "incompatible_with": [],
         "requires_review": [
-          "LGPL (version 2.1)",
-          "EPL"
+          "category:proprietary"
         ]
       },
       "contamination_effect": "full",
-      "notes": "The NGPL license requires that any derivative works or combined works must also be licensed under the NGPL or a compatible license. This strong copyleft nature ensures that the freedoms granted by the license are preserved in all derivative works."
+      "notes": "Strong copyleft with viral effect"
     },
     "obligations": [
-      "Distribute verbatim copies of the source code with the license intact.",
-      "Provide recipients with a copy of the license agreement.",
-      "Include prominent notices on modified files stating changes made.",
-      "License derivative works under the same terms as this license."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Maintain copyright notices and license information in all copies.",
-      "Notify recipients of their rights under this license.",
-      "Ensure that modifications are also distributed under the same license."
+      "Attribution required"
     ],
     "spdx_metadata": {
-      "is_osi_approved": false,
+      "is_osi_approved": true,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

@@ -1,7 +1,7 @@
 {
   "license": {
     "id": "Zlib",
-    "name": "Zlib",
+    "name": "zlib License",
     "type": "permissive",
     "spdx_id": "Zlib",
     "properties": {
@@ -13,79 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": true,
       "include_license": true,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": true
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "Apache-2.0",
-          "Public Domain"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0",
-          "CC BY-SA"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "Apache-2.0",
-          "Public Domain"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0",
-          "CC BY-SA"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "The Zlib license is permissive and allows for both static and dynamic linking without imposing restrictions on the licensing of the combined work. However, care should be taken when combining with copyleft licenses."
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "The origin of the software must not be misrepresented.",
-      "Altered source versions must be plainly marked as such.",
-      "This notice may not be removed or altered from any source distribution."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "Acknowledge the original authors in product documentation (appreciated but not required).",
-      "Do not claim that you wrote the original software."
+      "Attribution required"
     ],
     "spdx_metadata": {
-      "is_osi_approved": false,
-      "is_fsf_libre": false,
+      "is_osi_approved": true,
+      "is_fsf_libre": true,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }

@@ -1,7 +1,7 @@
 {
   "license": {
     "id": "wxWindows",
-    "name": "wxWindows",
+    "name": "wxWindows Library License",
     "type": "permissive",
     "spdx_id": "wxWindows",
     "properties": {
@@ -13,78 +13,49 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_copyright": false,
-      "include_license": false,
-      "include_notice": true,
-      "network_use_disclosure": false,
+      "include_license": true,
+      "include_copyright": true,
+      "include_notice": false,
+      "state_changes": false,
       "same_license": false,
-      "state_changes": false
+      "network_use_disclosure": false
     },
     "limitations": {
-      "liability": true,
-      "trademark_use": false,
-      "warranty": true
+      "liability": false,
+      "warranty": false,
+      "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "Apache-2.0",
-          "Zlib"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0",
-          "CC BY-SA"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "BSD-2-Clause",
-          "BSD-3-Clause",
-          "Apache-2.0",
-          "Zlib",
-          "GPL-2.0",
-          "GPL-3.0"
+          "category:any"
         ],
-        "incompatible_with": [
-          "AGPL-3.0",
-          "LGPL-2.1",
-          "LGPL-3.0"
-        ],
-        "requires_review": [
-          "MPL-2.0",
-          "EPL-2.0",
-          "CC BY-SA"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "The wxWindows license is permissive and allows for both static and dynamic linking with compatible licenses. However, care should be taken when linking with copyleft licenses, especially for static linking."
+      "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "If you copy code from files under the GNU GPL or LGPL, you must delete the exception notice from such code.",
-      "If you write modifications, you may choose whether to apply the exception to your modifications."
+      "Include license text",
+      "Include copyright notice"
     ],
     "key_requirements": [
-      "You must comply with the wxWindows Library License version 3.1 or later.",
-      "You must adjust the licensing conditions notice if you do not wish the exception to apply."
+      "Attribution required"
     ],
     "spdx_metadata": {
-      "is_osi_approved": false,
+      "is_osi_approved": true,
       "is_fsf_libre": false,
       "is_deprecated": true
     },
-    "generated": "2026-06-10T07:40:11.253160",
+    "generated": "2026-06-10T16:28:22.368087",
     "spdx_list_version": "3dfd9aa"
   }
 }
