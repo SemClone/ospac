@@ -16,6 +16,25 @@ from ospac.pipeline.llm_analyzer import LicenseAnalyzer
 
 logger = logging.getLogger(__name__)
 
+# LLMs consistently misclassify these licenses; values here override LLM output.
+# "category" maps to the `category` field (license type).
+# "conditions" are merged into the `conditions` dict (any key overrides the LLM value).
+_KNOWN_OVERRIDES: Dict[str, Dict] = {
+    # LGPL permits linking from proprietary code — it is weak copyleft, not strong
+    "LGPL-2.0-only":     {"category": "copyleft_weak"},
+    "LGPL-2.0-or-later": {"category": "copyleft_weak"},
+    "LGPL-2.1-only":     {"category": "copyleft_weak"},
+    "LGPL-2.1-or-later": {"category": "copyleft_weak"},
+    "LGPL-3.0-only":     {"category": "copyleft_weak"},
+    "LGPL-3.0-or-later": {"category": "copyleft_weak"},
+    # MPL-2.0 is file-level (weak) copyleft; LLM frequently calls it permissive
+    "MPL-2.0":                       {"category": "copyleft_weak"},
+    "MPL-2.0-no-copyleft-exception": {"category": "copyleft_weak"},
+    # AGPL §13 requires network-use disclosure; LLM omits this condition
+    "AGPL-3.0-only":     {"conditions": {"network_use_disclosure": True}},
+    "AGPL-3.0-or-later": {"conditions": {"network_use_disclosure": True}},
+}
+
 
 class PolicyDataGenerator:
     """
@@ -202,6 +221,19 @@ class PolicyDataGenerator:
         logger.info(f"Found {len(licenses_to_process)} new licenses to process out of {len(all_licenses)} total")
         return licenses_to_process
 
+    def _apply_known_corrections(self, license_id: str, analysis: Dict) -> Dict:
+        """Override fields that LLMs consistently misclassify for well-known licenses."""
+        overrides = _KNOWN_OVERRIDES.get(license_id)
+        if not overrides:
+            return analysis
+        result = dict(analysis)
+        if "category" in overrides:
+            result["category"] = overrides["category"]
+        if "conditions" in overrides:
+            result["conditions"] = dict(result.get("conditions") or {})
+            result["conditions"].update(overrides["conditions"])
+        return result
+
     async def generate_all_data(self, force_download: bool = False,
                                limit: Optional[int] = None,
                                force_reprocess: bool = False) -> Dict[str, Any]:
@@ -269,6 +301,7 @@ class PolicyDataGenerator:
                 analysis["compatibility_rules"] = compatibility
                 analysis["spdx_data"] = license_data  # raw SPDX entry for OSI/FSF/deprecated flags
                 analysis["name"] = license_data.get("name", license_id)
+                analysis = self._apply_known_corrections(license_id, analysis)
                 analyzed_licenses.append(analysis)
 
                 # Generate individual policy file immediately
@@ -298,7 +331,11 @@ class PolicyDataGenerator:
             lid = lic.get("license_id")
             if lid:
                 by_id[lid] = lic
-        all_to_write = list(by_id.values())
+        # Apply overrides to the full merged set so existing on-disk files are also corrected
+        all_to_write = [
+            self._apply_known_corrections(l.get("license_id", ""), l)
+            for l in by_id.values()
+        ]
 
         compatibility_matrix = self._generate_compatibility_matrix(all_to_write)
         obligation_database = self._generate_obligation_database(all_to_write)
