@@ -116,46 +116,7 @@ jobs:
 
       - name: Validate generated data
         if: steps.spdx-check.outputs.has_work == 'true' || github.event.inputs.force_reprocess == 'true'
-        run: |
-          python3 - <<'EOF'
-          import json, pathlib, sys
-
-          json_dir = pathlib.Path("ospac/data/licenses/json")
-          files = list(json_dir.glob("*.json"))
-          errors = []
-
-          # Core fields every license file must have (spdx_metadata is new — gradual rollout)
-          required_fields = {"id", "name", "type", "properties", "requirements",
-                             "limitations", "compatibility", "obligations"}
-
-          for p in files:
-              try:
-                  d = json.load(open(p))
-                  lic = d.get("license", {})
-                  missing = required_fields - set(lic.keys())
-                  if missing:
-                      errors.append(f"{p.stem}: missing fields {missing}")
-
-                  # Validate known licenses
-                  if p.stem == "Apache-2.0":
-                      if not lic.get("properties", {}).get("patent_grant"):
-                          errors.append("Apache-2.0: patent_grant should be true")
-                      if lic.get("requirements", {}).get("same_license"):
-                          errors.append("Apache-2.0: same_license should be false")
-                      if lic.get("requirements", {}).get("disclose_source"):
-                          errors.append("Apache-2.0: disclose_source should be false")
-
-              except json.JSONDecodeError as e:
-                  errors.append(f"{p.stem}: invalid JSON — {e}")
-
-          if errors:
-              print(f"VALIDATION ERRORS ({len(errors)}):")
-              for e in errors:
-                  print(f"  - {e}")
-              sys.exit(1)
-          else:
-              print(f"Validation passed: {len(files)} license files OK")
-          EOF
+        run: python scripts/validate_data.py --data-dir ospac/data
 
       - name: Bump patch version
         id: version
