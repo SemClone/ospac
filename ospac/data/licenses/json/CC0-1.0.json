@@ -13,8 +13,8 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_license": true,
-      "include_copyright": true,
+      "include_license": false,
+      "include_copyright": false,
       "include_notice": false,
       "state_changes": false,
       "same_license": false,
@@ -43,10 +43,7 @@
       "contamination_effect": "none",
       "notes": "Default compatibility rules"
     },
-    "obligations": [
-      "Retain copyright notices",
-      "Include license text"
-    ],
+    "obligations": [],
     "key_requirements": [
       "No restrictions"
     ],
@@ -55,7 +52,7 @@
       "is_fsf_libre": true,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T17:07:03.698203",
+    "generated": "2026-06-10T20:08:59.287920",
     "spdx_list_version": "3dfd9aa"
   }
 }

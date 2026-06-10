@@ -12,12 +12,12 @@
       "private_use": true
     },
     "requirements": {
-      "disclose_source": false,
+      "disclose_source": true,
       "include_license": true,
       "include_copyright": true,
       "include_notice": false,
       "state_changes": false,
-      "same_license": false,
+      "same_license": true,
       "network_use_disclosure": false
     },
     "limitations": {
@@ -45,7 +45,9 @@
     },
     "obligations": [
       "Retain copyright notices",
-      "Include license text"
+      "Include license text",
+      "Provide or offer access to complete source code",
+      "Distribute modifications under the same license"
     ],
     "key_requirements": [
       "Attribution required",
@@ -56,7 +58,7 @@
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T17:07:03.698203",
+    "generated": "2026-06-10T20:08:59.287920",
     "spdx_list_version": "3dfd9aa"
   }
 }
