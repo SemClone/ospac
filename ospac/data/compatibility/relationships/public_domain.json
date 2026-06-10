@@ -460,6 +460,11 @@
       "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
+    "OpenMDW-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "GFDL-1.2": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
@@ -636,6 +641,11 @@
       "distribution": "unknown"
     },
     "Libpng": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "X11-no-permit-persons": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -870,6 +880,11 @@
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
+    "MIT-STK": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "CC-BY-SA-2.0": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
@@ -976,6 +991,11 @@
       "distribution": "unknown"
     },
     "HP-1989": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "HPND-sell-variant-critical-systems": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -1141,6 +1161,11 @@
       "distribution": "unknown"
     },
     "Condor-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "MMPL-1.0.1": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -1526,6 +1551,11 @@
       "distribution": "unknown"
     },
     "hdparm": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "ISO-permission": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -2090,6 +2120,11 @@
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
+    "Buddy": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "OSL-2.0": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
@@ -2296,6 +2331,11 @@
       "distribution": "unknown"
     },
     "jove": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "CAPEC-tou": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -2570,6 +2610,11 @@
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
+    "TekHVC": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "QPL-1.0": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
@@ -2599,6 +2644,11 @@
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "incompatible"
+    },
+    "ParaType-Free-Font-1.3": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
     },
     "OAR": {
       "static_linking": "compatible",
@@ -2745,6 +2795,11 @@
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
+    "Vixie-Cron": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "PHP-3.0": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
@@ -2841,6 +2896,11 @@
       "distribution": "unknown"
     },
     "NetCDF": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "UnRAR": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -3195,12 +3255,22 @@
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
+    "MVT-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "GFDL-1.3-invariants-or-later": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
     "MulanPSL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "OSC-1.0": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -3571,76 +3641,6 @@
       "distribution": "unknown"
     },
     "CC-BY-NC-SA-1.0": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "Buddy": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "CAPEC-tou": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "HPND-sell-variant-critical-systems": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "ISO-permission": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "MIT-STK": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "MMPL-1.0.1": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "MVT-1.1": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "OpenMDW-1.0": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "OSC-1.0": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "ParaType-Free-Font-1.3": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "TekHVC": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "UnRAR": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "Vixie-Cron": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "X11-no-permit-persons": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -4107,6 +4107,11 @@
       "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
+    "OpenMDW-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "GFDL-1.2": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
@@ -4283,6 +4288,11 @@
       "distribution": "unknown"
     },
     "Libpng": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "X11-no-permit-persons": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -4517,6 +4527,11 @@
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
+    "MIT-STK": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "CC-BY-SA-2.0": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
@@ -4623,6 +4638,11 @@
       "distribution": "unknown"
     },
     "HP-1989": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "HPND-sell-variant-critical-systems": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -4788,6 +4808,11 @@
       "distribution": "unknown"
     },
     "Condor-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "MMPL-1.0.1": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -5173,6 +5198,11 @@
       "distribution": "unknown"
     },
     "hdparm": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "ISO-permission": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -5737,6 +5767,11 @@
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
+    "Buddy": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "OSL-2.0": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
@@ -5943,6 +5978,11 @@
       "distribution": "unknown"
     },
     "jove": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "CAPEC-tou": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -6217,6 +6257,11 @@
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
+    "TekHVC": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "QPL-1.0": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
@@ -6246,6 +6291,11 @@
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "incompatible"
+    },
+    "ParaType-Free-Font-1.3": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
     },
     "OAR": {
       "static_linking": "compatible",
@@ -6392,6 +6442,11 @@
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
+    "Vixie-Cron": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "PHP-3.0": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
@@ -6488,6 +6543,11 @@
       "distribution": "unknown"
     },
     "NetCDF": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "UnRAR": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -6842,12 +6902,22 @@
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
+    "MVT-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "GFDL-1.3-invariants-or-later": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
     "MulanPSL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "OSC-1.0": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -7218,76 +7288,6 @@
       "distribution": "unknown"
     },
     "CC-BY-NC-SA-1.0": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "Buddy": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "CAPEC-tou": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "HPND-sell-variant-critical-systems": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "ISO-permission": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "MIT-STK": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "MMPL-1.0.1": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "MVT-1.1": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "OpenMDW-1.0": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "OSC-1.0": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "ParaType-Free-Font-1.3": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "TekHVC": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "UnRAR": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "Vixie-Cron": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "X11-no-permit-persons": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -7754,6 +7754,11 @@
       "dynamic_linking": "compatible",
       "distribution": "incompatible"
     },
+    "OpenMDW-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "GFDL-1.2": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
@@ -7930,6 +7935,11 @@
       "distribution": "unknown"
     },
     "Libpng": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "X11-no-permit-persons": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -8164,6 +8174,11 @@
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
+    "MIT-STK": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "CC-BY-SA-2.0": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
@@ -8270,6 +8285,11 @@
       "distribution": "unknown"
     },
     "HP-1989": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "HPND-sell-variant-critical-systems": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -8435,6 +8455,11 @@
       "distribution": "unknown"
     },
     "Condor-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "MMPL-1.0.1": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -8820,6 +8845,11 @@
       "distribution": "unknown"
     },
     "hdparm": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "ISO-permission": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -9384,6 +9414,11 @@
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
+    "Buddy": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "OSL-2.0": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
@@ -9590,6 +9625,11 @@
       "distribution": "unknown"
     },
     "jove": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "CAPEC-tou": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -9864,6 +9904,11 @@
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
+    "TekHVC": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "QPL-1.0": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
@@ -9893,6 +9938,11 @@
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "incompatible"
+    },
+    "ParaType-Free-Font-1.3": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
     },
     "OAR": {
       "static_linking": "compatible",
@@ -10039,6 +10089,11 @@
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
+    "Vixie-Cron": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "PHP-3.0": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
@@ -10135,6 +10190,11 @@
       "distribution": "unknown"
     },
     "NetCDF": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "UnRAR": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -10489,12 +10549,22 @@
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
+    "MVT-1.1": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
     "GFDL-1.3-invariants-or-later": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
     },
     "MulanPSL-1.0": {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "unknown"
+    },
+    "OSC-1.0": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"
@@ -10865,76 +10935,6 @@
       "distribution": "unknown"
     },
     "CC-BY-NC-SA-1.0": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "Buddy": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "CAPEC-tou": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "HPND-sell-variant-critical-systems": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "ISO-permission": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "MIT-STK": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "MMPL-1.0.1": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "MVT-1.1": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "OpenMDW-1.0": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "OSC-1.0": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "ParaType-Free-Font-1.3": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "TekHVC": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "UnRAR": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "Vixie-Cron": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "unknown"
-    },
-    "X11-no-permit-persons": {
       "static_linking": "compatible",
       "dynamic_linking": "compatible",
       "distribution": "unknown"

@@ -44,8 +44,8 @@
       "notes": "Permissive license with minimal restrictions"
     },
     "obligations": [
-      "Include license text",
-      "Include copyright notice"
+      "Retain copyright notices",
+      "Include license text"
     ],
     "key_requirements": [
       "Attribution required"
@@ -55,7 +55,7 @@
       "is_fsf_libre": true,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T16:28:22.368087",
+    "generated": "2026-06-10T17:07:03.698203",
     "spdx_list_version": "3dfd9aa"
   }
 }
