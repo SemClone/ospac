@@ -15,19 +15,21 @@ on:
         default: 0
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   sync:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5
         with:
           python-version: '3.13'
 
@@ -40,14 +42,13 @@ jobs:
         id: spdx-check
         run: |
           python3 - <<'EOF'
-          import json, urllib.request, os, sys
+          import json, urllib.request, os, re
 
           url = "https://raw.githubusercontent.com/spdx/license-list-data/main/json/licenses.json"
-          with urllib.request.urlopen(url) as r:
+          with urllib.request.urlopen(url, timeout=30) as r:
               upstream = json.load(r)
 
-          version = upstream.get("licenseListVersion", "unknown")
-          release_date = upstream.get("releaseDate", "")
+          version = re.sub(r'[^A-Za-z0-9.\-]', '', upstream.get("licenseListVersion", "unknown"))
           upstream_ids = {l["licenseId"] for l in upstream["licenses"]}
           deprecated_ids = {l["licenseId"] for l in upstream["licenses"] if l.get("isDeprecatedLicenseId")}
 
@@ -67,7 +68,7 @@ jobs:
                   if not d.get("license", {}).get("spdx_metadata", {}).get("is_deprecated"):
                       needs_flag.append(lid)
 
-          print(f"SPDX version: {version} ({release_date})")
+          print(f"SPDX version: {version}")
           print(f"Upstream: {len(upstream_ids)} licenses | OSPAC: {len(existing_ids)} licenses")
           print(f"New licenses: {len(new_ids)}: {new_ids}")
           print(f"Deprecated needing flag update: {len(needs_flag)}")
@@ -91,17 +92,18 @@ jobs:
         if: steps.spdx-check.outputs.has_work == 'true' || github.event.inputs.force_reprocess == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          INPUT_FORCE_REPROCESS: ${{ github.event.inputs.force_reprocess }}
+          INPUT_LIMIT: ${{ github.event.inputs.limit }}
         run: |
           FORCE_FLAG=""
           LIMIT_FLAG=""
 
-          if [ "${{ github.event.inputs.force_reprocess }}" = "true" ]; then
+          if [ "$INPUT_FORCE_REPROCESS" = "true" ]; then
             FORCE_FLAG="--force-reprocess"
           fi
 
-          LIMIT="${{ github.event.inputs.limit }}"
-          if [ -n "$LIMIT" ] && [ "$LIMIT" != "0" ]; then
-            LIMIT_FLAG="--limit $LIMIT"
+          if [ -n "$INPUT_LIMIT" ] && [ "$INPUT_LIMIT" != "0" ]; then
+            LIMIT_FLAG="--limit $INPUT_LIMIT"
           fi
 
           ospac data generate \
@@ -196,11 +198,11 @@ jobs:
       - name: Check for data changes
         id: git-check
         run: |
-          git diff --quiet ospac/data/ && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+          git status --porcelain ospac/data/ | grep -q '.' && echo "changed=true" >> "$GITHUB_OUTPUT" || echo "changed=false" >> "$GITHUB_OUTPUT"
 
       - name: Create pull request
         if: steps.git-check.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676  # v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "data: sync SPDX ${{ steps.spdx-check.outputs.spdx_version }} — ${{ steps.spdx-check.outputs.new_count }} new, ${{ steps.spdx-check.outputs.deprecated_flag_count }} deprecated"

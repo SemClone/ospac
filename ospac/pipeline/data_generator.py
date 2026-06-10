@@ -129,14 +129,17 @@ class PolicyDataGenerator:
         }
 
     def _load_all_processed_licenses(self) -> List[Dict]:
-        """Load all previously processed license analyses."""
+        """Load all previously processed license analyses from the canonical JSON store."""
         analyzed_licenses = []
-        spdx_dir = self.output_dir / "licenses" / "spdx"
+        json_dir = self.output_dir / "licenses" / "json"
 
-        for license_file in spdx_dir.glob("*.yaml"):
+        if not json_dir.exists():
+            return analyzed_licenses
+
+        for license_file in json_dir.glob("*.json"):
             try:
                 with open(license_file, 'r') as f:
-                    policy_data = yaml.safe_load(f)
+                    policy_data = json.load(f)
                     if "license" in policy_data:
                         analyzed_licenses.append(policy_data["license"])
             except Exception as e:
@@ -233,7 +236,9 @@ class PolicyDataGenerator:
 
         if not licenses_to_process:
             logger.info("No new licenses to process. All licenses up to date.")
-            return self._generate_summary(all_licenses)
+            # Rebuild index so deprecated-flag updates from Step 1b are reflected
+            self._rebuild_index_from_files(spdx_version=spdx_data.get("version", ""))
+            return self._generate_summary(all_licenses, spdx_data)
 
         logger.info(f"Processing {len(licenses_to_process)} licenses with progress tracking...")
 
@@ -464,31 +469,36 @@ class PolicyDataGenerator:
 
         static = resolve("static_linking")
         dynamic = resolve("dynamic_linking")
+        distribution = resolve("distribution")
 
         # Category-level fallback for any dimension not covered by LLM rules
-        if static is None or dynamic is None:
+        if static is None or dynamic is None or distribution is None:
             cat1 = license1.get("category", "permissive")
             if cat1 == "permissive" and cat2 == "permissive":
-                fallback_static, fallback_dynamic = "compatible", "compatible"
+                fallback_static, fallback_dynamic, fallback_dist = "compatible", "compatible", "compatible"
             elif cat1 == "copyleft_strong" or cat2 == "copyleft_strong":
                 if cat1 == cat2:
-                    fallback_static, fallback_dynamic = "compatible", "compatible"
+                    fallback_static, fallback_dynamic, fallback_dist = "compatible", "compatible", "compatible"
                 else:
-                    fallback_static, fallback_dynamic = "incompatible", "review_required"
+                    # Dynamic linking may be permitted under some interpretations;
+                    # distribution of the combined work under a different license is not.
+                    fallback_static, fallback_dynamic, fallback_dist = "incompatible", "review_required", "incompatible"
             elif cat1 == "copyleft_weak" or cat2 == "copyleft_weak":
-                fallback_static, fallback_dynamic = "review_required", "compatible"
+                fallback_static, fallback_dynamic, fallback_dist = "review_required", "compatible", "compatible"
             else:
-                fallback_static, fallback_dynamic = "unknown", "unknown"
+                fallback_static, fallback_dynamic, fallback_dist = "unknown", "unknown", "unknown"
 
             if static is None:
                 static = fallback_static
             if dynamic is None:
                 dynamic = fallback_dynamic
+            if distribution is None:
+                distribution = fallback_dist
 
         return {
             "static_linking": static,
             "dynamic_linking": dynamic,
-            "distribution": dynamic,
+            "distribution": distribution,
         }
 
     def _generate_obligation_database(self, licenses: List[Dict[str, Any]]) -> Dict[str, Any]:
@@ -639,17 +649,21 @@ class PolicyDataGenerator:
             updated.append(license_id)
             logger.info(f"Flagged as deprecated: {license_id}")
 
-        if updated:
-            logger.info(f"Updated deprecated flag on {len(updated)} licenses")
         return updated
 
-    def _generate_summary(self, all_licenses: List[Dict]) -> Dict[str, Any]:
-        """Return a lightweight summary when no new licenses needed processing."""
+    def _generate_summary(self, all_licenses: List[Dict], spdx_data: Dict = None) -> Dict[str, Any]:
+        """Return a summary when no new licenses needed processing."""
         licenses_json_dir = self.output_dir / "licenses" / "json"
         existing_count = len(list(licenses_json_dir.glob("*.json"))) if licenses_json_dir.exists() else 0
+        spdx_data = spdx_data or {}
         return {
             "total_licenses": existing_count,
             "new_licenses_processed": 0,
+            "spdx_version": spdx_data.get("version"),
+            "generated_at": datetime.now().isoformat(),
+            "output_directory": str(self.output_dir),
+            "categories": {},
+            "validation": {"total_licenses": existing_count, "is_valid": True, "validation_errors": []},
             "message": "All licenses already up to date",
         }
 
