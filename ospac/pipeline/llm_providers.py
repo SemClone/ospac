@@ -43,88 +43,93 @@ class LLMProvider(ABC):
 
     def _get_system_prompt(self) -> str:
         """Get the system prompt for license analysis."""
-        return """You are an expert in software licensing and open source compliance.
-Your task is to analyze software licenses and provide detailed, accurate information about:
-- License obligations and requirements
-- Compatibility with other licenses
-- Usage restrictions and permissions
-- Patent grants and trademark rules
+        return """You are a senior open source licensing attorney and SPDX expert. Your task is to produce
+machine-readable license metadata that will be used for automated compliance checks in enterprise software.
 
-Always provide information in structured JSON format.
-Be precise and accurate - licensing compliance is critical."""
+Ground-truth reference: cross-check your answers against the TLDR Legal summaries at tldrlegal.com and
+the SPDX license list at spdx.org/licenses before responding.
+
+Critical accuracy requirements — common mistakes to avoid:
+- Apache-2.0 GRANTS explicit patent rights (patent_grant=true) and does NOT require same-license or source disclosure
+- GPL-2.0 is NOT compatible with Apache-2.0 upstream (GPL-3.0 is compatible as downstream)
+- LGPL allows dynamic linking from proprietary code without triggering copyleft
+- AGPL adds network-use disclosure on top of GPL obligations
+- Public domain (CC0, Unlicense) has no obligations at all
+- "liability: true" in limitations means the license DISCLAIMS liability (standard for OSS)
+
+Always respond with valid JSON only — no prose, no markdown fences, no trailing commas."""
 
     def _get_analysis_prompt(self, license_id: str, license_text: str) -> str:
         """Get the analysis prompt for a specific license."""
-        return f"""Analyze the following license and provide detailed information in JSON format.
+        return f"""Analyze this SPDX license and return a single JSON object. No markdown, no explanation.
 
-License ID: {license_id}
-License Text (first 3000 chars):
-{license_text[:3000]}
+License SPDX ID: {license_id}
+License text:
+{license_text[:4000]}
 
-Provide a JSON response with the following structure:
+Return exactly this JSON structure (all fields required, boolean values only for booleans):
 {{
     "license_id": "{license_id}",
-    "category": "permissive|copyleft_weak|copyleft_strong|proprietary|public_domain",
+    "category": "<permissive|copyleft_weak|copyleft_strong|proprietary|public_domain>",
     "permissions": {{
-        "commercial_use": true/false,
-        "distribution": true/false,
-        "modification": true/false,
-        "patent_grant": true/false,
-        "private_use": true/false
+        "commercial_use": <bool>,
+        "distribution": <bool>,
+        "modification": <bool>,
+        "patent_grant": <bool - true if the license text explicitly grants patent rights>,
+        "private_use": <bool>
     }},
     "conditions": {{
-        "disclose_source": true/false,
-        "include_license": true/false,
-        "include_copyright": true/false,
-        "include_notice": true/false,
-        "state_changes": true/false,
-        "same_license": true/false,
-        "network_use_disclosure": true/false
+        "disclose_source": <bool - true ONLY for copyleft licenses that require source release>,
+        "include_license": <bool>,
+        "include_copyright": <bool>,
+        "include_notice": <bool>,
+        "state_changes": <bool - true if you must document changes to the source>,
+        "same_license": <bool - true ONLY for strong copyleft that requires derivatives under same license>,
+        "network_use_disclosure": <bool - true only for AGPL-style licenses>
     }},
     "limitations": {{
-        "liability": true/false,  // false = license disclaims liability (typical)
-        "warranty": true/false,   // false = license disclaims warranty (typical)
-        "trademark_use": true/false  // false = license doesn't grant trademark rights
-    }},
-    "compatibility": {{
-        "can_combine_with_permissive": true/false,
-        "can_combine_with_weak_copyleft": true/false,
-        "can_combine_with_strong_copyleft": true/false,
-        "static_linking_restrictions": "none|weak|strong",
-        "dynamic_linking_restrictions": "none|weak|strong"
+        "liability": <bool - true means the license DISCLAIMS liability, which is standard for OSS>,
+        "warranty": <bool - true means the license DISCLAIMS warranty, which is standard for OSS>,
+        "trademark_use": <bool - true means trademark use is restricted/not granted>
     }},
     "obligations": [
-        "List of specific obligations when using this license"
+        "<specific actionable obligation 1>",
+        "<specific actionable obligation 2>"
     ],
     "key_requirements": [
-        "List of key requirements for compliance"
+        "<compliance requirement 1>"
     ]
 }}"""
 
     def _get_compatibility_prompt(self, license_id: str, analysis: Dict[str, Any]) -> str:
         """Get the compatibility rules prompt."""
-        return f"""Based on the {license_id} license with category {analysis.get('category', 'unknown')},
-provide detailed compatibility rules in JSON format:
+        category = analysis.get('category', 'unknown')
+        return f"""For the {license_id} license (category: {category}), produce compatibility rules as a single JSON object.
 
+Compatibility is DIRECTIONAL: from the perspective of code USING {license_id}-licensed components.
+Cross-check against TLDR Legal (tldrlegal.com/{license_id}) before responding.
+
+Return exactly this JSON structure:
 {{
     "static_linking": {{
-        "compatible_with": ["list of compatible license IDs or categories"],
-        "incompatible_with": ["list of incompatible license IDs or categories"],
-        "requires_review": ["list of licenses requiring case-by-case review"]
+        "compatible_with": ["<SPDX IDs or category:permissive|category:copyleft_weak|category:any>"],
+        "incompatible_with": ["<SPDX IDs or category specifiers>"],
+        "requires_review": ["<SPDX IDs that need case-by-case legal review>"]
     }},
     "dynamic_linking": {{
-        "compatible_with": ["list"],
-        "incompatible_with": ["list"],
-        "requires_review": ["list"]
+        "compatible_with": ["<list>"],
+        "incompatible_with": ["<list>"],
+        "requires_review": ["<list>"]
     }},
-    "distribution": {{
-        "can_distribute_with": ["list"],
-        "cannot_distribute_with": ["list"],
-        "special_requirements": ["list of special requirements"]
-    }},
-    "contamination_effect": "none|module|derivative|full",
-    "notes": "Additional compatibility notes"
-}}"""
+    "contamination_effect": "<none|module|derivative|full>",
+    "notes": "<one sentence on key compatibility consideration>"
+}}
+
+Rules for contamination_effect:
+- none: permissive, no viral effect
+- module: only the modified file/module must stay under same license (MPL-style)
+- derivative: all derivative works must be same license (LGPL-style for static linking)
+- full: entire combined work must be same license (GPL/AGPL-style)"""
 
     def _parse_json_response(self, response_text: str, license_id: str) -> Dict[str, Any]:
         """Parse JSON from LLM response."""

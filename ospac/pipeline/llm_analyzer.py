@@ -64,7 +64,7 @@ class LicenseAnalyzer:
         """Get default model for each provider."""
         defaults = {
             "openai": "gpt-4o-mini",
-            "claude": "claude-3-haiku-20240307",
+            "claude": "claude-haiku-4-5-20251001",
             "ollama": "llama3:latest"
         }
         return defaults.get(provider, "gpt-4o-mini")

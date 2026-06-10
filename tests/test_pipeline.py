@@ -234,8 +234,8 @@ class TestPolicyDataGenerator:
         assert "categories" in summary
         assert "validation" in summary
 
-        # Check generated files
-        assert (temp_dir / "generation_summary.json").exists()
+        # index.json is rebuilt from all on-disk files after generation
+        assert (temp_dir / "index.json").exists()
 
     def test_count_categories(self):
         """Test counting license categories."""
