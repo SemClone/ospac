@@ -27,12 +27,22 @@ _KNOWN_OVERRIDES: Dict[str, Dict] = {
     "LGPL-2.1-or-later": {"category": "copyleft_weak"},
     "LGPL-3.0-only":     {"category": "copyleft_weak"},
     "LGPL-3.0-or-later": {"category": "copyleft_weak"},
-    # MPL-2.0 is file-level (weak) copyleft; LLM frequently calls it permissive
-    "MPL-2.0":                       {"category": "copyleft_weak"},
-    "MPL-2.0-no-copyleft-exception": {"category": "copyleft_weak"},
+    # MPL-2.0: file-level (weak) copyleft — modified files must stay MPL and source disclosed
+    "MPL-2.0": {
+        "category": "copyleft_weak",
+        "conditions": {"disclose_source": True, "same_license": True},
+    },
+    "MPL-2.0-no-copyleft-exception": {
+        "category": "copyleft_weak",
+        "conditions": {"disclose_source": True, "same_license": True},
+    },
     # AGPL §13 requires network-use disclosure; LLM omits this condition
     "AGPL-3.0-only":     {"conditions": {"network_use_disclosure": True}},
     "AGPL-3.0-or-later": {"conditions": {"network_use_disclosure": True}},
+    # Apache-2.0 requires documenting changes made to original files
+    "Apache-2.0": {"conditions": {"state_changes": True}},
+    # CC0 is a full public domain waiver — no copyright or license text requirements
+    "CC0-1.0": {"conditions": {"include_copyright": False, "include_license": False}},
 }
 
 
