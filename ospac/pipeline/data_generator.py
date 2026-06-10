@@ -165,9 +165,9 @@ class PolicyDataGenerator:
                     "obligations": license_data.get("obligations", []),
                     "key_requirements": license_data.get("key_requirements", []),
                     "spdx_data": {
-                        "isOsiApproved": False,  # Default values since not in YAML
-                        "isFsfLibre": False,
-                        "isDeprecatedLicenseId": False
+                        "isOsiApproved": license_data.get("spdx_metadata", {}).get("is_osi_approved", False),
+                        "isFsfLibre": license_data.get("spdx_metadata", {}).get("is_fsf_libre", False),
+                        "isDeprecatedLicenseId": license_data.get("spdx_metadata", {}).get("is_deprecated", False),
                     }
                 }
                 converted.append(converted_license)
@@ -267,7 +267,8 @@ class PolicyDataGenerator:
                 analysis = await self.llm_analyzer.analyze_license(license_id, license_text or "")
                 compatibility = await self.llm_analyzer.extract_compatibility_rules(license_id, analysis)
                 analysis["compatibility_rules"] = compatibility
-
+                analysis["spdx_data"] = license_data  # raw SPDX entry for OSI/FSF/deprecated flags
+                analysis["name"] = license_data.get("name", license_id)
                 analyzed_licenses.append(analysis)
 
                 # Generate individual policy file immediately
@@ -291,13 +292,21 @@ class PolicyDataGenerator:
         converted_analyzed = self._convert_yaml_format(analyzed_licenses)
         converted_all = self._convert_yaml_format(all_analyzed)
 
-        compatibility_matrix = self._generate_compatibility_matrix(converted_all)
-        obligation_database = self._generate_obligation_database(converted_all)
+        # Merge: existing on-disk licenses + current batch (current batch takes precedence)
+        by_id = {l.get("license_id"): l for l in converted_all}
+        for lic in converted_analyzed:
+            lid = lic.get("license_id")
+            if lid:
+                by_id[lid] = lic
+        all_to_write = list(by_id.values())
+
+        compatibility_matrix = self._generate_compatibility_matrix(all_to_write)
+        obligation_database = self._generate_obligation_database(all_to_write)
 
         # Step 5: Generate modular per-license files and rebuild the full index
         logger.info("Generating modular per-license files...")
         self._generate_modular_license_files(
-            converted_all, compatibility_matrix, obligation_database,
+            all_to_write, compatibility_matrix, obligation_database,
             spdx_version=spdx_data.get("version", "")
         )
         # Rebuild index from ALL on-disk files so delta runs don't truncate the index
