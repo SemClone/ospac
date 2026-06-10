@@ -204,7 +204,7 @@ jobs:
         if: steps.git-check.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676  # v7
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.WORKFLOW_PAT }}
           commit-message: "data: sync SPDX ${{ steps.spdx-check.outputs.spdx_version }} — ${{ steps.spdx-check.outputs.new_count }} new, ${{ steps.spdx-check.outputs.deprecated_flag_count }} deprecated"
           branch: "data/spdx-sync-${{ steps.spdx-check.outputs.spdx_version }}"
           delete-branch: true
