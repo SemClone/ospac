@@ -52,18 +52,21 @@
       "notes": "Strong copyleft with viral effect"
     },
     "obligations": [
+      "Retain copyright notices",
       "Include license text",
-      "Include copyright notice"
+      "Provide or offer access to complete source code",
+      "Distribute modifications under the same license"
     ],
     "key_requirements": [
-      "Attribution required"
+      "Attribution required",
+      "Modifications to covered files must stay open-source"
     ],
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T16:28:22.368087",
+    "generated": "2026-06-10T17:07:03.698203",
     "spdx_list_version": "3dfd9aa"
   }
 }

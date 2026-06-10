@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated": "2026-06-10T16:28:22.456142",
+  "generated": "2026-06-10T17:07:03.814547",
   "spdx_list_version": "3dfd9aa",
   "total_licenses": 729,
   "licenses": {
@@ -72,42 +72,42 @@
       "category": "copyleft_strong",
       "file": "licenses/json/AGPL-1.0-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "AGPL-1.0-or-later": {
       "name": "Affero General Public License v1.0 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/AGPL-1.0-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "AGPL-1.0": {
       "name": "Affero General Public License v1.0",
       "category": "copyleft_strong",
       "file": "licenses/json/AGPL-1.0.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "AGPL-3.0-only": {
       "name": "GNU Affero General Public License v3.0 only",
       "category": "copyleft_strong",
       "file": "licenses/json/AGPL-3.0-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "AGPL-3.0-or-later": {
       "name": "GNU Affero General Public License v3.0 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/AGPL-3.0-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "AGPL-3.0": {
       "name": "GNU Affero General Public License v3.0",
       "category": "copyleft_strong",
       "file": "licenses/json/AGPL-3.0.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "ALGLIB-Documentation": {
       "name": "ALGLIB Documentation License",
@@ -1332,7 +1332,7 @@
       "category": "copyleft_strong",
       "file": "licenses/json/CNRI-Python-GPL-Compatible.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "CNRI-Python": {
       "name": "CNRI Python License",
@@ -1983,133 +1983,133 @@
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-1.0+.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-1.0-only": {
       "name": "GNU General Public License v1.0 only",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-1.0-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-1.0-or-later": {
       "name": "GNU General Public License v1.0 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-1.0-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-1.0": {
       "name": "GNU General Public License v1.0 only",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-1.0.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-2.0+": {
       "name": "GNU General Public License v2.0 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-2.0+.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-2.0-only": {
       "name": "GNU General Public License v2.0 only",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-2.0-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-2.0-or-later": {
       "name": "GNU General Public License v2.0 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-2.0-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-2.0-with-GCC-exception": {
       "name": "GNU General Public License v2.0 w/GCC Runtime Library exception",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-2.0-with-GCC-exception.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-2.0-with-autoconf-exception": {
       "name": "GNU General Public License v2.0 w/Autoconf exception",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-2.0-with-autoconf-exception.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-2.0-with-bison-exception": {
       "name": "GNU General Public License v2.0 w/Bison exception",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-2.0-with-bison-exception.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-2.0-with-classpath-exception": {
       "name": "GNU General Public License v2.0 w/Classpath exception",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-2.0-with-classpath-exception.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-2.0-with-font-exception": {
       "name": "GNU General Public License v2.0 w/Font exception",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-2.0-with-font-exception.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-2.0": {
       "name": "GNU General Public License v2.0 only",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-2.0.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-3.0+": {
       "name": "GNU General Public License v3.0 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-3.0+.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-3.0-only": {
       "name": "GNU General Public License v3.0 only",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-3.0-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-3.0-or-later": {
       "name": "GNU General Public License v3.0 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-3.0-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-3.0-with-GCC-exception": {
       "name": "GNU General Public License v3.0 w/GCC Runtime Library exception",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-3.0-with-GCC-exception.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-3.0-with-autoconf-exception": {
       "name": "GNU General Public License v3.0 w/Autoconf exception",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-3.0-with-autoconf-exception.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GPL-3.0": {
       "name": "GNU General Public License v3.0 only",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-3.0.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "Game-Programming-Gems": {
       "name": "Game Programming Gems License",
@@ -2585,91 +2585,91 @@
       "category": "copyleft_strong",
       "file": "licenses/json/LGPL-2.0+.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "LGPL-2.0-only": {
       "name": "GNU Library General Public License v2 only",
       "category": "copyleft_weak",
       "file": "licenses/json/LGPL-2.0-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "LGPL-2.0-or-later": {
       "name": "GNU Library General Public License v2 or later",
       "category": "copyleft_weak",
       "file": "licenses/json/LGPL-2.0-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "LGPL-2.0": {
       "name": "GNU Library General Public License v2 only",
       "category": "copyleft_strong",
       "file": "licenses/json/LGPL-2.0.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "LGPL-2.1+": {
       "name": "GNU Lesser General Public License v2.1 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/LGPL-2.1+.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "LGPL-2.1-only": {
       "name": "GNU Lesser General Public License v2.1 only",
       "category": "copyleft_weak",
       "file": "licenses/json/LGPL-2.1-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "LGPL-2.1-or-later": {
       "name": "GNU Lesser General Public License v2.1 or later",
       "category": "copyleft_weak",
       "file": "licenses/json/LGPL-2.1-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "LGPL-2.1": {
       "name": "GNU Lesser General Public License v2.1 only",
       "category": "copyleft_strong",
       "file": "licenses/json/LGPL-2.1.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "LGPL-3.0+": {
       "name": "GNU Lesser General Public License v3.0 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/LGPL-3.0+.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "LGPL-3.0-only": {
       "name": "GNU Lesser General Public License v3.0 only",
       "category": "copyleft_weak",
       "file": "licenses/json/LGPL-3.0-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "LGPL-3.0-or-later": {
       "name": "GNU Lesser General Public License v3.0 or later",
       "category": "copyleft_weak",
       "file": "licenses/json/LGPL-3.0-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "LGPL-3.0": {
       "name": "GNU Lesser General Public License v3.0 only",
       "category": "copyleft_strong",
       "file": "licenses/json/LGPL-3.0.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "LGPLLR": {
       "name": "Lesser General Public License For Linguistic Resources",
       "category": "copyleft_strong",
       "file": "licenses/json/LGPLLR.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "LOOP": {
       "name": "Common Lisp LOOP License",
@@ -3173,7 +3173,7 @@
       "category": "copyleft_strong",
       "file": "licenses/json/NGPL.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "NICTA-1.0": {
       "name": "NICTA Public Software License, Version 1.0",
@@ -4013,7 +4013,7 @@
       "category": "copyleft_strong",
       "file": "licenses/json/SMAIL-GPL.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "SMLNJ": {
       "name": "Standard ML of New Jersey License",
