@@ -4,6 +4,7 @@ Combines SPDX data with LLM analysis to generate comprehensive policy files.
 """
 
 import json
+import re
 import yaml
 import logging
 import asyncio
@@ -285,6 +286,8 @@ class PolicyDataGenerator:
                                 "Network use triggers source-disclosure obligation"],
             "public_domain":   ["No restrictions"],
             "source_available":["Source visible but redistribution restricted"],
+            "noncommercial":   ["Attribution required",
+                                "Commercial use not permitted"],
             "proprietary":     ["All rights reserved, no redistribution"],
             "unknown":         ["Review license terms before use"],
         }
@@ -305,6 +308,58 @@ class PolicyDataGenerator:
         if "conditions" in overrides:
             result["conditions"] = dict(result.get("conditions") or {})
             result["conditions"].update(overrides["conditions"])
+        return result
+
+    @staticmethod
+    def _identifier_restrictions(license_id: str, name: str = "") -> Dict[str, Any]:
+        """
+        Read the restrictions that an SPDX identifier states outright.
+
+        Creative Commons encodes its terms in the identifier itself: NC means
+        NonCommercial, ND means NoDerivatives, SA means ShareAlike. These are facts about
+        the identifier, not judgements about licence text, so they are derived here rather
+        than asked of a model. Every NonCommercial licence in the dataset had been recorded
+        as commercially usable because the analysis silently fell back to a permissive
+        default, which is exactly the kind of answer a model should never be trusted for.
+
+        Matching is on hyphen-delimited components so an identifier that merely contains
+        the letters is not caught. Names are compared with punctuation and case removed,
+        because the wording varies: NCGL-UK-2.0 is the "Non-Commercial Government Licence"
+        and a plain "NonCommercial" test misses it.
+        """
+        parts = set(license_id.split("-"))
+        flat = re.sub(r"[^a-z]", "", name.lower())
+        restrictions: Dict[str, Any] = {}
+
+        if "NC" in parts or "noncommercial" in flat:
+            restrictions["commercial_use"] = False
+        if "ND" in parts or "noderivative" in flat:
+            restrictions["modification"] = False
+        if "SA" in parts or "sharealike" in flat:
+            restrictions["same_license"] = True
+
+        return restrictions
+
+    def _apply_identifier_restrictions(self, license_id: str, analysis: Dict) -> Dict:
+        """Force the terms an identifier states outright, whatever the analysis returned."""
+        restrictions = self._identifier_restrictions(license_id, analysis.get("name", ""))
+        if not restrictions:
+            return analysis
+
+        result = dict(analysis)
+        if "commercial_use" in restrictions or "modification" in restrictions:
+            result["permissions"] = dict(result.get("permissions") or {})
+            for key in ("commercial_use", "modification"):
+                if key in restrictions:
+                    result["permissions"][key] = restrictions[key]
+        if "same_license" in restrictions:
+            result["conditions"] = dict(result.get("conditions") or {})
+            result["conditions"]["same_license"] = restrictions["same_license"]
+
+        # A licence that withholds commercial use is not permissive, whatever it was called.
+        if restrictions.get("commercial_use") is False and result.get("category") == "permissive":
+            result["category"] = "noncommercial"
+
         return result
 
     async def generate_all_data(self, force_download: bool = False,
@@ -375,6 +430,7 @@ class PolicyDataGenerator:
                 analysis["spdx_data"] = license_data  # raw SPDX entry for OSI/FSF/deprecated flags
                 analysis["name"] = license_data.get("name", license_id)
                 analysis = self._apply_known_corrections(license_id, analysis)
+                analysis = self._apply_identifier_restrictions(license_id, analysis)
                 analyzed_licenses.append(analysis)
 
                 # Generate individual policy file immediately
@@ -406,7 +462,10 @@ class PolicyDataGenerator:
                 by_id[lid] = lic
         # Apply overrides to the full merged set so existing on-disk files are also corrected
         all_to_write = [
-            self._apply_known_corrections(l.get("license_id", ""), l)
+            self._apply_identifier_restrictions(
+                l.get("license_id", ""),
+                self._apply_known_corrections(l.get("license_id", ""), l),
+            )
             for l in by_id.values()
         ]
 

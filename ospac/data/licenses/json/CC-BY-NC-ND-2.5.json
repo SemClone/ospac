@@ -2,12 +2,12 @@
   "license": {
     "id": "CC-BY-NC-ND-2.5",
     "name": "Creative Commons Attribution Non Commercial No Derivatives 2.5 Generic",
-    "type": "permissive",
+    "type": "noncommercial",
     "spdx_id": "CC-BY-NC-ND-2.5",
     "properties": {
-      "commercial_use": true,
+      "commercial_use": false,
       "distribution": true,
-      "modification": true,
+      "modification": false,
       "patent_grant": false,
       "private_use": true
     },
@@ -45,10 +45,13 @@
     },
     "obligations": [
       "Retain copyright notices",
-      "Include license text"
+      "Include license text",
+      "Non-commercial use only",
+      "No modification permitted"
     ],
     "key_requirements": [
-      "Attribution required"
+      "Attribution required",
+      "Commercial use not permitted"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,

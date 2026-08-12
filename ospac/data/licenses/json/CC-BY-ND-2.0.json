@@ -7,7 +7,7 @@
     "properties": {
       "commercial_use": true,
       "distribution": true,
-      "modification": true,
+      "modification": false,
       "patent_grant": false,
       "private_use": true
     },
@@ -45,7 +45,8 @@
     },
     "obligations": [
       "Retain copyright notices",
-      "Include license text"
+      "Include license text",
+      "No modification permitted"
     ],
     "key_requirements": [
       "Attribution required"

@@ -138,6 +138,33 @@ rules:
       message: "Commercial license requires procurement and legal review"
       notify: ["legal@company.com", "procurement@company.com"]
 
+  # NonCommercial licenses
+  - id: no_noncommercial_in_commercial_products
+    description: "Prevent NonCommercial licenses in anything shipped commercially"
+    priority: 10
+    when:
+      distribution_type: ["commercial", "saas", "embedded", "mobile", "desktop", "web", "cloud", "api"]
+      license_type: "noncommercial"
+    then:
+      action: deny
+      severity: error
+      message: "NonCommercial licenses forbid commercial use, including internal use that supports a commercial product"
+      remediation: "Replace with a permissive alternative, or obtain a separate commercial licence from the rights holder"
+
+  - id: review_noncommercial
+    description: "Flag NonCommercial licenses outside commercial distribution"
+    priority: 5
+    when:
+      license_type: "noncommercial"
+    then:
+      action: flag_for_review
+      severity: warning
+      message: "NonCommercial license: confirm the use really is non-commercial"
+      notify: ["legal@company.com"]
+      requirements:
+        - "Confirm no commercial use, direct or indirect"
+        - "Retain attribution and license text"
+
   # Deprecated Licenses
   - id: warn_deprecated
     description: "Warn about deprecated licenses"

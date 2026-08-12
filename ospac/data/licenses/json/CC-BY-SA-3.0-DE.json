@@ -2,7 +2,7 @@
   "license": {
     "id": "CC-BY-SA-3.0-DE",
     "name": "Creative Commons Attribution Share Alike 3.0 Germany",
-    "type": "permissive",
+    "type": "copyleft_weak",
     "spdx_id": "CC-BY-SA-3.0-DE",
     "properties": {
       "commercial_use": true,
@@ -17,7 +17,7 @@
       "include_copyright": true,
       "include_notice": false,
       "state_changes": false,
-      "same_license": false,
+      "same_license": true,
       "network_use_disclosure": false
     },
     "limitations": {
@@ -45,10 +45,12 @@
     },
     "obligations": [
       "Retain copyright notices",
-      "Include license text"
+      "Include license text",
+      "Distribute modifications under the same license"
     ],
     "key_requirements": [
-      "Attribution required"
+      "Attribution required",
+      "Modifications to covered files must stay open-source"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,

@@ -5,9 +5,10 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.3.1] - 2026-08-11
+## [1.4.0] - 2026-08-11
 
-Clears the three items 1.3.0 left open.
+Clears the three items 1.3.0 left open, and repairs a licence dataset that had
+never actually been analysed.
 
 ### Fixed
 
@@ -30,6 +31,56 @@ Clears the three items 1.3.0 left open.
   licence for linguistic resources.
 - Corrected in the record and in `index.json`, added to the pipeline correction table so
   regeneration keeps it, and pinned in the validator spot checks as a deliberate decision.
+
+**The LLM analysis had never run, and its fallback fabricated permissive data**
+- `.github/workflows/spdx-sync.yml` installs with `pip install -e ".[llm]" 2>/dev/null || pip
+  install -e . openai`, but the `[llm]` extra contained only `strands-agents`, so the first
+  command succeeded and the fallback that installs `openai` never ran. The package the
+  provider imports was never present.
+- The provider caught the `ImportError`, set itself unavailable, and every licence fell
+  through to `_get_fallback_analysis()`, which hardcoded `category: "permissive"` with
+  `commercial_use: True` and every copyleft condition false. The job exited zero, the
+  validator passed, the pull request auto-merged and published.
+- 683 of 733 records carry that fingerprint. The 50 that do not are the GPL, LGPL, MPL and
+  public domain families, which a deterministic name matcher already handled. No record in
+  the dataset was ever produced by an actual model.
+- Provider construction now raises instead of degrading, so an explicitly requested
+  provider that cannot initialise aborts the run before any licence is processed, and the
+  workflow gained a preflight step that fails immediately on a missing package or secret.
+- The fallback now fails closed rather than open: category `unknown`, every permission
+  denied, obligations that ask for manual legal review. A run that produced any fallback
+  record reports the identifiers and exits non-zero, so a partly fabricated dataset cannot
+  be published.
+- The `[llm]` extra now installs `openai`, `anthropic` and `ollama`, which are what the
+  three providers actually import. `strands-agents` was imported nowhere and was dropped.
+
+**Every NonCommercial licence was marked commercially usable**
+- A consequence of the fallback above. `ospac evaluate -l CC-BY-NC-3.0-IGO -d commercial`
+  returned `allow`, which is the most dangerous direction for a compliance tool to be wrong
+  in. OSPAC's own dataset licence, CC BY-NC-SA 4.0, was described as permissive and
+  commercially usable, contradicting `DATA_LICENSE`.
+- 43 records repaired: 26 NonCommercial licences that permitted commercial use, 13
+  NoDerivatives licences that permitted modification, and 21 ShareAlike licences that
+  carried no same-licence requirement.
+- Creative Commons states these terms in the identifier itself, so the pipeline now derives
+  them rather than asking a model. Matching is on hyphen-delimited identifier components,
+  with a punctuation-insensitive name check that also catches `NCGL-UK-2.0` and
+  `PolyForm-Noncommercial-1.0.0`, neither of which has an `NC` component.
+- The validator gained the matching invariants as errors, so the class cannot ship again.
+- The bundled enterprise policy now denies NonCommercial licences for commercial, SaaS,
+  embedded, mobile, desktop, web, cloud and API distribution, and flags them for review
+  elsewhere. Repairing the data alone was not enough, since no rule covered them.
+
+### Added
+
+**A `noncommercial` license type**
+- Licences that permit use, modification and redistribution but withhold commercial use had
+  no honest category. `permissive` is a contradiction, `source_available` describes source
+  visibility, and `proprietary` means all rights reserved. Because policy rules match on
+  `license_type`, leaving them in `permissive` is what let a permissive-allow rule approve
+  them for commercial distribution.
+- ShareAlike licences still typed `permissive` were moved to `copyleft_weak`, since a
+  share-alike term binds derivative works.
 
 ### Changed
 

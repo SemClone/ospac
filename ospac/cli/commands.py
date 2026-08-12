@@ -335,11 +335,15 @@ def generate(output_dir: str, force: bool, force_reprocess: bool, limit: Optiona
     async def run_generation():
         # Create generator with LLM configuration
         if use_llm:
+            # require_provider=True makes provider initialization a preflight
+            # check: a missing package or API key aborts here, before any
+            # license is processed, instead of silently producing fallback data.
             generator = PolicyDataGenerator(
                 output_dir=Path(output_dir),
                 llm_provider=llm_provider,
                 llm_model=llm_model,
-                llm_api_key=llm_api_key
+                llm_api_key=llm_api_key,
+                require_provider=True
             )
             click.echo(f"Using {llm_provider.upper()} LLM provider for enhanced analysis")
         else:
@@ -372,6 +376,27 @@ def generate(output_dir: str, force: bool, force_reprocess: bool, limit: Optiona
             click.secho("✓ All data validated successfully", fg="green")
         else:
             click.secho(f"⚠ Validation issues found: {len(validation.get('validation_errors', []))}", fg="yellow")
+
+        # Fail closed if any record came from fallback instead of the LLM.
+        # A partially fabricated compliance dataset must not be publishable.
+        if use_llm:
+            fallback_ids = sorted(getattr(generator.llm_analyzer, "fallback_licenses", set()))
+            if fallback_ids:
+                preview = ", ".join(fallback_ids[:10])
+                if len(fallback_ids) > 10:
+                    preview += f", and {len(fallback_ids) - 10} more"
+                click.secho(
+                    f"✗ {len(fallback_ids)} license record(s) were produced by fallback analysis "
+                    f"instead of {llm_provider.upper()}: {preview}",
+                    fg="red", err=True
+                )
+                click.secho(
+                    "Fallback records deliberately under-permit and must not be published. "
+                    "Fix the provider errors logged above and re-run.",
+                    fg="red", err=True
+                )
+                sys.exit(1)
+            click.secho("✓ No fallback records: all licenses analyzed by the LLM provider", fg="green")
 
     try:
         asyncio.run(run_generation())

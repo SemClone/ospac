@@ -249,6 +249,7 @@ class TestSharedDataValidation:
         assert KNOWN_LICENSES["GPL-3.0-only"]["type"] == "copyleft_strong"
         assert "spdx_id" in REQUIRED_TOP_FIELDS
         assert "permissive" in VALID_TYPES
+        assert "noncommercial" in VALID_TYPES
         assert "derivative" in VALID_CONTAMINATION
 
     def test_validate_license_known_good_record(self):
@@ -301,6 +302,195 @@ class TestSharedDataValidation:
         errors, warnings = validate_license("MIT", record)
         assert errors == []
         assert warnings == []
+
+
+class TestRestrictionSemanticsRules:
+    """
+    NC / ND / SA restrictions are derivable from the SPDX identifier or the
+    license name, so the validator enforces them deterministically. A silent
+    generation failure once wrote permissive defaults (commercial_use True,
+    modification True, same_license False) into every Creative Commons
+    NonCommercial, NoDerivatives and ShareAlike record and nothing caught it.
+    """
+
+    @staticmethod
+    def _record(license_id, name, lic_type="permissive", properties=None, requirements=None):
+        """A structurally valid record with overridable fields under test."""
+        props = {
+            "commercial_use": True,
+            "distribution": True,
+            "modification": True,
+            "patent_grant": False,
+            "private_use": True,
+        }
+        props.update(properties or {})
+        reqs = {
+            "disclose_source": False,
+            "include_license": True,
+            "include_copyright": True,
+            "same_license": False,
+            "network_use_disclosure": False,
+            "state_changes": False,
+        }
+        reqs.update(requirements or {})
+        return {
+            "id": license_id,
+            "name": name,
+            "type": lic_type,
+            "spdx_id": license_id,
+            "properties": props,
+            "requirements": reqs,
+            "limitations": {"liability": True, "warranty": True, "trademark_use": False},
+            "compatibility": {
+                "static_linking": {
+                    "compatible_with": ["Apache-2.0"],
+                    "incompatible_with": [],
+                    "requires_review": [],
+                },
+                "dynamic_linking": {
+                    "compatible_with": ["Apache-2.0"],
+                    "incompatible_with": [],
+                    "requires_review": [],
+                },
+                "contamination_effect": "none",
+            },
+            "obligations": ["Include the license text"],
+            "key_requirements": ["Include copyright notice"],
+            "spdx_metadata": {
+                "is_osi_approved": False,
+                "is_fsf_libre": False,
+                "is_deprecated": False,
+            },
+        }
+
+    @classmethod
+    def _errors(cls, license_id, name, **kwargs):
+        from ospac.utils.data_validation import validate_license
+
+        errors, _ = validate_license(license_id, cls._record(license_id, name, **kwargs))
+        return errors
+
+    def test_noncommercial_id_with_commercial_use_true_is_error(self):
+        errors = self._errors(
+            "CC-BY-NC-4.0",
+            "Creative Commons Attribution Non Commercial 4.0 International",
+        )
+        assert any(
+            "NonCommercial license must have properties.commercial_use false" in e
+            for e in errors
+        )
+
+    def test_noncommercial_id_with_commercial_use_false_passes(self):
+        errors = self._errors(
+            "CC-BY-NC-4.0",
+            "Creative Commons Attribution Non Commercial 4.0 International",
+            lic_type="noncommercial",
+            properties={"commercial_use": False},
+        )
+        assert errors == []
+
+    def test_noncommercial_name_without_nc_component_is_matched(self):
+        """NCGL-UK-2.0 has no NC component but its name says Non-Commercial."""
+        errors = self._errors("NCGL-UK-2.0", "Non-Commercial Government Licence")
+        assert any(
+            "NonCommercial license must have properties.commercial_use false" in e
+            for e in errors
+        )
+
+    def test_noderivatives_id_with_modification_true_is_error(self):
+        errors = self._errors(
+            "CC-BY-ND-3.0-IGO",
+            "Creative Commons Attribution No Derivatives 3.0 IGO",
+        )
+        assert any(
+            "NoDerivatives license must have properties.modification false" in e
+            for e in errors
+        )
+
+    def test_noderivatives_id_with_modification_false_passes(self):
+        errors = self._errors(
+            "CC-BY-ND-3.0-IGO",
+            "Creative Commons Attribution No Derivatives 3.0 IGO",
+            lic_type="proprietary",
+            properties={"modification": False},
+        )
+        assert errors == []
+
+    def test_sharealike_id_with_same_license_false_is_error(self):
+        errors = self._errors(
+            "CC-BY-SA-4.0",
+            "Creative Commons Attribution Share Alike 4.0 International",
+        )
+        assert any(
+            "ShareAlike license must have requirements.same_license true" in e
+            for e in errors
+        )
+
+    def test_sharealike_id_with_same_license_true_passes(self):
+        errors = self._errors(
+            "CC-BY-SA-4.0",
+            "Creative Commons Attribution Share Alike 4.0 International",
+            lic_type="copyleft_strong",
+            requirements={"same_license": True, "disclose_source": True},
+        )
+        assert errors == []
+
+    def test_combined_nc_sa_id_reports_both_violations(self):
+        errors = self._errors(
+            "CC-BY-NC-SA-4.0",
+            "Creative Commons Attribution Non Commercial Share Alike 4.0 International",
+        )
+        assert any("NonCommercial license" in e for e in errors)
+        assert any("ShareAlike license" in e for e in errors)
+
+    def test_noncommercial_typed_permissive_is_inconsistent(self):
+        """commercial_use false and type permissive contradict each other."""
+        errors = self._errors(
+            "CC-BY-NC-4.0",
+            "Creative Commons Attribution Non Commercial 4.0 International",
+            properties={"commercial_use": False},
+        )
+        assert any(
+            "type 'permissive' contradicts properties.commercial_use false" in e
+            for e in errors
+        )
+
+    def test_commercial_use_false_with_noncommercial_type_passes_consistency(self):
+        errors = self._errors(
+            "PolyForm-Noncommercial-1.0.0",
+            "PolyForm Noncommercial License 1.0.0",
+            lic_type="noncommercial",
+            properties={"commercial_use": False},
+        )
+        assert errors == []
+
+    def test_public_domain_dedications_are_not_matched(self):
+        """CC0-1.0 and CC-PDDC must not trip the NC / ND / SA rules."""
+        errors = self._errors(
+            "CC0-1.0",
+            "Creative Commons Zero v1.0 Universal",
+            lic_type="public_domain",
+        )
+        assert errors == []
+
+        errors = self._errors(
+            "CC-PDDC",
+            "Creative Commons Public Domain Dedication and Certification",
+            lic_type="public_domain",
+        )
+        assert errors == []
+
+    def test_incidental_letters_in_id_are_not_matched(self):
+        """Ids that merely contain the letters must not match the components."""
+        for license_id, name in [
+            ("NCSA", "University of Illinois/NCSA Open Source License"),
+            ("NASA-1.3", "NASA Open Source Agreement 1.3"),
+            ("HPND", "Historical Permission Notice and Disclaimer"),
+            ("SAX-PD", "Sax Public Domain Notice"),
+            ("NCL", "NCL Source Code License"),
+        ]:
+            errors = self._errors(license_id, name)
+            assert errors == [], f"{license_id} wrongly flagged: {errors}"
 
 
 class TestDeprecatedAliasConsistency:

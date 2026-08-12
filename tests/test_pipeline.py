@@ -10,6 +10,11 @@ from pathlib import Path
 
 from ospac.pipeline.spdx_processor import SPDXProcessor
 from ospac.pipeline.llm_analyzer import LicenseAnalyzer
+from ospac.pipeline.llm_providers import (
+    LLMConfig,
+    LLMProvider,
+    ProviderUnavailableError,
+)
 from ospac.pipeline.data_generator import PolicyDataGenerator
 
 # Skip LLM tests in CI environment
@@ -125,45 +130,69 @@ class TestSPDXProcessor:
         assert saved_data["total"] == 2
 
 
+def _make_offline_analyzer() -> LicenseAnalyzer:
+    """Build an analyzer with no usable LLM provider, without any network access."""
+    analyzer = LicenseAnalyzer()
+    analyzer.llm_provider = None
+    return analyzer
+
+
+class _StubProvider(LLMProvider):
+    """Minimal concrete provider to exercise LLMProvider base class behavior."""
+
+    async def analyze_license(self, license_id, license_text):
+        return self._get_fallback_analysis(license_id)
+
+    async def extract_compatibility_rules(self, license_id, analysis):
+        return self._get_default_compatibility_rules(license_id, analysis)
+
+
 class TestLicenseAnalyzer:
     """Test the LicenseAnalyzer class."""
 
-    @skip_llm_tests
     @pytest.mark.asyncio
-    async def test_get_fallback_analysis(self):
-        """Test fallback analysis when LLM is not available."""
-        analyzer = LicenseAnalyzer()
-        analyzer.agent = None  # Ensure no agent
+    async def test_fallback_analysis_fails_closed(self):
+        """Fallback analysis must deny permissions, not grant them."""
+        analyzer = _make_offline_analyzer()
 
         analysis = await analyzer.analyze_license("MIT", "MIT License text")
 
         assert analysis["license_id"] == "MIT"
-        assert analysis["category"] == "permissive"
-        assert analysis["permissions"]["commercial_use"] is True
+        assert analysis["category"] == "unknown"
+        assert analysis["permissions"]["commercial_use"] is False
+        assert analysis["permissions"]["modification"] is False
+        assert analysis["permissions"]["distribution"] is False
         assert analysis["conditions"]["include_license"] is True
 
-    @skip_llm_tests
     @pytest.mark.asyncio
-    async def test_analyze_gpl_fallback(self):
-        """Test GPL license analysis fallback."""
-        analyzer = LicenseAnalyzer()
-        analyzer.agent = None
+    async def test_fallback_never_claims_permissive(self):
+        """No license, NonCommercial ones included, may fall back to permissive."""
+        analyzer = _make_offline_analyzer()
 
-        analysis = await analyzer.analyze_license("GPL-3.0", "GPL text")
+        for license_id in ["CC-BY-NC-3.0-IGO", "GPL-3.0", "Apache-2.0", "CC0-1.0"]:
+            analysis = await analyzer.analyze_license(license_id, "some text")
+            assert analysis["category"] != "permissive"
+            assert analysis["category"] == "unknown"
+            assert analysis["permissions"]["commercial_use"] is False
 
-        assert analysis["license_id"] == "GPL-3.0"
-        assert analysis["category"] == "copyleft_strong"
-        assert analysis["conditions"]["disclose_source"] is True
-        assert analysis["conditions"]["same_license"] is True
-        # Fallback analysis returns basic compatibility info
-        assert "compatibility" in analysis
+    @pytest.mark.asyncio
+    async def test_fallback_records_are_counted(self):
+        """Every fallback analysis must be tracked so runs can fail closed."""
+        analyzer = _make_offline_analyzer()
+        assert analyzer.fallback_count == 0
 
-    @skip_llm_tests
+        await analyzer.analyze_license("MIT", "MIT text")
+        await analyzer.analyze_license("GPL-3.0", "GPL text")
+        # Same license twice must not double-count
+        await analyzer.analyze_license("MIT", "MIT text")
+
+        assert analyzer.fallback_count == 2
+        assert analyzer.fallback_licenses == {"MIT", "GPL-3.0"}
+
     @pytest.mark.asyncio
     async def test_extract_compatibility_rules(self):
         """Test extracting compatibility rules."""
-        analyzer = LicenseAnalyzer()
-        analyzer.agent = None
+        analyzer = _make_offline_analyzer()
 
         analysis = {"category": "permissive"}
         rules = await analyzer.extract_compatibility_rules("MIT", analysis)
@@ -171,12 +200,21 @@ class TestLicenseAnalyzer:
         assert rules["static_linking"]["compatible_with"] == ["category:any"]
         assert rules["contamination_effect"] == "none"
 
-    @skip_llm_tests
+    @pytest.mark.asyncio
+    async def test_compatibility_rules_unknown_category_requires_review(self):
+        """Unknown category must not default to compatible-with-anything."""
+        analyzer = _make_offline_analyzer()
+
+        rules = await analyzer.extract_compatibility_rules("Whatever-1.0", {"category": "unknown"})
+
+        assert rules["static_linking"]["compatible_with"] == []
+        assert rules["static_linking"]["requires_review"] == ["category:any"]
+        assert rules["contamination_effect"] == "unknown"
+
     @pytest.mark.asyncio
     async def test_batch_analyze(self):
         """Test batch analysis of licenses."""
-        analyzer = LicenseAnalyzer()
-        analyzer.agent = None
+        analyzer = _make_offline_analyzer()
 
         licenses = [
             {"id": "MIT", "text": "MIT text"},
@@ -189,6 +227,130 @@ class TestLicenseAnalyzer:
         assert results[0]["license_id"] == "MIT"
         assert results[1]["license_id"] == "GPL-3.0"
         assert "compatibility_rules" in results[0]
+
+
+class TestProviderUnavailability:
+    """Requesting an unavailable provider must fail loudly, not fall back."""
+
+    def _patch_import_failure(self, package_name):
+        """Simulate a missing package without uninstalling anything."""
+        import builtins
+        real_import = builtins.__import__
+
+        def fake_import(name, *args, **kwargs):
+            if name == package_name:
+                raise ImportError(f"No module named '{package_name}'")
+            return real_import(name, *args, **kwargs)
+
+        return patch("builtins.__import__", side_effect=fake_import)
+
+    def test_missing_openai_package_raises(self):
+        """Missing openai package must raise a clear error, not return fallback data."""
+        with self._patch_import_failure("openai"):
+            with pytest.raises(ProviderUnavailableError, match="OpenAI package not installed"):
+                LicenseAnalyzer(provider="openai", require_provider=True)
+
+    def test_missing_anthropic_package_raises(self):
+        """Missing anthropic package must raise a clear error."""
+        with self._patch_import_failure("anthropic"):
+            with pytest.raises(ProviderUnavailableError, match="Anthropic package not installed"):
+                LicenseAnalyzer(provider="claude", require_provider=True)
+
+    def test_missing_ollama_package_raises(self):
+        """Missing ollama package must raise a clear error."""
+        with self._patch_import_failure("ollama"):
+            with pytest.raises(ProviderUnavailableError, match="Ollama package not installed"):
+                LicenseAnalyzer(provider="ollama", require_provider=True)
+
+    def test_missing_openai_api_key_raises(self, monkeypatch):
+        """Installed package but missing API key must also fail the preflight."""
+        pytest.importorskip("openai")
+        monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+
+        with pytest.raises(ProviderUnavailableError, match="OPENAI_API_KEY"):
+            LicenseAnalyzer(provider="openai", require_provider=True)
+
+    def test_without_require_provider_degrades_to_no_provider(self):
+        """Library callers that did not demand a provider keep the old soft behavior."""
+        with self._patch_import_failure("openai"):
+            analyzer = LicenseAnalyzer(provider="openai")
+
+        assert analyzer.llm_provider is None
+
+    def test_provider_fallback_fails_closed_and_is_counted(self):
+        """Base provider fallback must under-permit and be recorded."""
+        provider = _StubProvider(LLMConfig(provider="stub", model="stub-model"))
+
+        analysis = provider._get_fallback_analysis("CC-BY-NC-3.0-IGO")
+
+        assert analysis["category"] == "unknown"
+        assert analysis["permissions"]["commercial_use"] is False
+        assert analysis["permissions"]["distribution"] is False
+        assert analysis["permissions"]["modification"] is False
+        assert provider.fallback_count == 1
+        assert provider.fallback_licenses == {"CC-BY-NC-3.0-IGO"}
+
+
+class TestGenerateFallbackGate:
+    """ospac data generate must not exit zero if fallback records were written."""
+
+    def _make_fake_generator_class(self, fallback_licenses, captured_kwargs):
+        class FakeAnalyzer:
+            pass
+
+        FakeAnalyzer.fallback_licenses = set(fallback_licenses)
+        FakeAnalyzer.fallback_count = len(fallback_licenses)
+
+        class FakeGenerator:
+            def __init__(self, output_dir=None, **kwargs):
+                captured_kwargs.update(kwargs)
+                self.output_dir = output_dir
+                self.llm_analyzer = FakeAnalyzer()
+
+            async def generate_all_data(self, **kwargs):
+                return {
+                    "total_licenses": 3,
+                    "output_directory": str(self.output_dir),
+                    "categories": {"permissive": 2, "unknown": 1},
+                    "validation": {"is_valid": True},
+                }
+
+        return FakeGenerator
+
+    def _invoke_generate(self, monkeypatch, tmp_path, fallback_licenses):
+        from click.testing import CliRunner
+        from ospac.cli import commands as cli_commands
+
+        captured_kwargs = {}
+        fake_cls = self._make_fake_generator_class(fallback_licenses, captured_kwargs)
+        monkeypatch.setattr(cli_commands, "PolicyDataGenerator", fake_cls)
+
+        runner = CliRunner()
+        result = runner.invoke(
+            cli_commands.cli,
+            ["data", "generate", "--output-dir", str(tmp_path),
+             "--use-llm", "--llm-provider", "openai"],
+        )
+        return result, captured_kwargs
+
+    def test_generate_fails_when_fallback_records_written(self, monkeypatch, tmp_path):
+        """Any fallback record must be reported and fail the run."""
+        result, _ = self._invoke_generate(
+            monkeypatch, tmp_path, {"CC-BY-NC-3.0-IGO", "atc-game"}
+        )
+
+        assert result.exit_code != 0
+        assert "fallback" in result.output.lower()
+        assert "CC-BY-NC-3.0-IGO" in result.output
+
+    def test_generate_succeeds_without_fallback_records(self, monkeypatch, tmp_path):
+        """A clean LLM run exits zero and reports zero fallbacks."""
+        result, captured_kwargs = self._invoke_generate(monkeypatch, tmp_path, set())
+
+        assert result.exit_code == 0
+        assert "No fallback records" in result.output
+        # --use-llm must demand a working provider (preflight, fail loudly)
+        assert captured_kwargs.get("require_provider") is True
 
 
 class TestPolicyDataGenerator:
