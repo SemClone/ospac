@@ -8,44 +8,59 @@
       "commercial_use": true,
       "distribution": true,
       "modification": true,
-      "patent_grant": false,
+      "patent_grant": true,
       "private_use": true
     },
     "requirements": {
       "disclose_source": false,
       "include_license": true,
       "include_copyright": true,
-      "include_notice": false,
-      "state_changes": false,
+      "include_notice": true,
+      "state_changes": true,
       "same_license": false,
       "network_use_disclosure": false
     },
     "limitations": {
-      "liability": false,
-      "warranty": false,
-      "trademark_use": false
+      "liability": true,
+      "warranty": true,
+      "trademark_use": true
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive",
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive",
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0"
+        ],
         "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "Permissive license with minimal restrictions"
+      "notes": "APSL-1.0 is a permissive license, allowing for broad compatibility without viral effects."
     },
     "obligations": [
       "Retain copyright notices",
-      "Include license text"
+      "Include license text",
+      "Document changes made to the code"
     ],
     "key_requirements": [
       "Attribution required"
@@ -55,7 +70,7 @@
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-08-01T03:04:52.211970",
+    "generated": "2026-08-12T09:45:09.627449",
     "spdx_list_version": "e4c1f27"
   }
 }

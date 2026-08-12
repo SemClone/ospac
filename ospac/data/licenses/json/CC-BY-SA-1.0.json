@@ -12,40 +12,48 @@
       "private_use": true
     },
     "requirements": {
-      "disclose_source": false,
+      "disclose_source": true,
       "include_license": true,
       "include_copyright": true,
-      "include_notice": false,
-      "state_changes": false,
+      "include_notice": true,
+      "state_changes": true,
       "same_license": true,
       "network_use_disclosure": false
     },
     "limitations": {
-      "liability": false,
-      "warranty": false,
+      "liability": true,
+      "warranty": true,
       "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive",
+          "category:copyleft_weak"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:copyleft_strong"
+        ],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive",
+          "category:copyleft_weak"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:copyleft_strong"
+        ],
         "requires_review": []
       },
       "contamination_effect": "derivative",
-      "notes": "Weak copyleft: changes to the covered component must stay under its license"
+      "notes": "CC-BY-SA-1.0 requires derivative works to be licensed under the same terms."
     },
     "obligations": [
       "Retain copyright notices",
       "Include license text",
+      "Document changes made to the code",
+      "Provide or offer access to complete source code",
       "Distribute modifications under the same license"
     ],
     "key_requirements": [
@@ -57,7 +65,7 @@
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-08-01T03:04:52.211970",
+    "generated": "2026-08-12T09:45:09.627449",
     "spdx_list_version": "e4c1f27"
   }
 }
