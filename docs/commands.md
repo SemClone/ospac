@@ -64,16 +64,30 @@ $ ospac evaluate -l GPL-3.0 -d mobile
     "action": "deny",
     "severity": "error",
     "message": "Evaluated 1 rules",
-    "requirements": [],
+    "requirements": [
+      "GPL-3.0: Retain copyright notices",
+      "GPL-3.0: Include license text",
+      "GPL-3.0: Provide or offer access to complete source code",
+      "GPL-3.0: Distribute modifications under the same license"
+    ],
     "remediation": "Replace with MIT, Apache-2.0, or BSD licensed alternative"
+  },
+  "per_license": {
+    "GPL-3.0": {
+      "action": "deny",
+      "message": "Evaluated 2 rules"
+    }
   },
   "using_default_policy": true
 }
 ```
 
-`action` is one of `approve`, `deny`, or `flag_for_review`. When several rules match, the
-results are aggregated and the most severe action wins, reported under the synthetic
-`rule_id` of `aggregate`. `using_default_policy` tells you whether the decision came from
+`action` is one of `approve`, `deny`, or `flag_for_review`. Each license is evaluated
+independently and the verdicts aggregate with the most severe action winning, reported
+under the synthetic `rule_id` of `aggregate`; `per_license` attributes the outcome, so in
+a mixed set you can see which license drove a denial. A license that matches no rule
+comes back `flag_for_review` on its own, so one permissive license cannot answer for the
+others. `using_default_policy` tells you whether the decision came from
 your policy or the bundled one, worth asserting on in CI.
 
 Linking context matters for weak copyleft, where the same license is fine dynamically and
@@ -105,16 +119,23 @@ $ ospac check GPL-2.0 Apache-2.0
   "license2": "Apache-2.0",
   "context": "general",
   "compatible": false,
+  "requires_review": false,
   "violations": [
     {
       "rule_id": "aggregate",
-      "message": "Evaluated 1 rules",
+      "message": "Evaluated 2 rules",
       "severity": "error"
     }
   ],
+  "warnings": [],
   "using_default_policy": true
 }
 ```
+
+`compatible: false` with `requires_review: true` means a human needs to look, not that a
+conflict is known. When no conflict rule matches at all, the answer is "no known
+conflicts", so a license is always compatible with itself, and a license id that does not
+resolve in the dataset adds a warning rather than reading as a clean pass.
 
 GPL-2.0 and Apache-2.0 are the canonical incompatible pair. Apache's patent termination
 clause is an additional restriction GPL-2.0 does not permit. Text output is more readable
@@ -235,11 +256,9 @@ $ ospac data show MIT -f json
 }
 ```
 
-{: .warning }
-> `-f text` is currently broken. It reads field names from the pre-1.2.0 schema
-> (`category`, `permissions`, `conditions`), which the JSON dataset no longer uses, so it
-> prints `Category: None` and empty Permissions and Conditions sections. The data is
-> fine, only this formatter is stale. Use `-f json` or `-f yaml`.
+`-f text` prints a human-readable summary: type, permissions, conditions, limitations,
+obligations and SPDX metadata, with false values shown explicitly (`✗`) rather than
+omitted, and a marker when the identifier is deprecated.
 
 License IDs are validated before use, so a path-traversal attempt in the ID is rejected
 rather than resolved. An unknown ID exits non-zero and lists a sample of valid IDs.
@@ -257,7 +276,7 @@ ospac data generate [-o DIR] [--use-llm] [--llm-provider P] [--llm-model M]
 | Option | Effect |
 |:--|:--|
 | `-o, --output-dir` | Where to write. Default `data`. CI passes `ospac/data` to regenerate in place. |
-| `--use-llm` | Enable LLM analysis of license texts. Off by default. |
+| `--use-llm` | Required. Without a provider every record would be a fail-closed placeholder, so the command refuses to run rather than fabricate a dataset. |
 | `--llm-provider` | `openai`, `claude`, or `ollama`. |
 | `--llm-model` | Model name, if you want something other than the provider default. |
 | `--llm-api-key` | API key. Prefer the provider's environment variable. |
@@ -283,15 +302,21 @@ ospac data download-spdx [-o DIR] [--force]
 
 ### data validate
 
-{: .warning }
-> This subcommand is currently broken for the shipped dataset. It only looks for
-> `licenses/spdx/*.yaml`, the pre-1.2.0 YAML layout, which is no longer distributed, so it
-> exits with `✗ SPDX directory not found`. Use the repository's validator instead, which
-> is what CI runs:
->
-> ```bash
-> python scripts/validate_data.py --data-dir ospac/data
-> ```
->
-> That script checks every record against the current JSON schema and reports errors
-> and warnings separately, with a `--strict` flag to fail on warnings.
+Validates every record in a dataset against the schema and its semantic invariants,
+including the restriction rules: a NonCommercial identifier must not permit commercial
+use, NoDerivatives must not permit modification, ShareAlike must carry the same-license
+requirement, and a type must not contradict the record's own booleans.
+
+```
+ospac data validate [-d DIR] [--strict]
+```
+
+Defaults to the packaged data directory. Errors exit non-zero; `--strict` fails on
+warnings too. The same rules back `scripts/validate_data.py`, the maintainer script CI
+runs, so the two cannot disagree.
+
+Per-record validation cannot notice that a whole dataset is templated, which is how
+years of fabricated records once shipped with every record individually well formed.
+`scripts/corpus_quality.py` covers that: it fails a dataset whose decision fields are
+uniform across the corpus or whose records match a known fallback fingerprint, and runs
+in CI on full regenerations.

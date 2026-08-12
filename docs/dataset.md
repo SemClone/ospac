@@ -104,19 +104,19 @@ the file on disk has the extra nesting level.
       "network_use_disclosure": false
     },
     "limitations": {
-      "liability": false,
-      "warranty": false,
+      "liability": true,
+      "warranty": true,
       "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
-        "compatible_with": ["category:any"],
+        "compatible_with": ["category:permissive", "Apache-2.0", "BSD-3-Clause", "Zlib"],
         "incompatible_with": [],
         "requires_review": []
       },
       "dynamic_linking": { "...": "same shape" },
       "contamination_effect": "none",
-      "notes": "Permissive license with minimal restrictions"
+      "notes": "MIT license is permissive and does not impose restrictions on the licensing of combined works."
     },
     "obligations": [
       "Retain copyright notices",
@@ -128,7 +128,7 @@ the file on disk has the extra nesting level.
       "is_fsf_libre": true,
       "is_deprecated": false
     },
-    "generated": "2026-08-01T03:04:52.211970",
+    "generated": "2026-08-12T08:41:12.418762",
     "spdx_list_version": "e4c1f27"
   }
 }
@@ -139,7 +139,7 @@ the file on disk has the extra nesting level.
 | `type` | Family: `permissive`, `copyleft_weak`, `copyleft_strong`, `network_copyleft`, `noncommercial`, `no_derivatives`, `source_available`, `proprietary`, `public_domain`, `unknown`. Policy rules match on this via `license_type`. `noncommercial` and `no_derivatives` exist because those restrictions contradict `permissive`, and policy rules that approve by category would otherwise bless them. |
 | `properties` | What the license lets you do. |
 | `requirements` | Conditions you must satisfy. The booleans here drive `obligations`. |
-| `limitations` | What the license withholds: warranty, liability, trademark grant. |
+| `limitations` | Disclaimer analysis: `liability: true` means the license disclaims liability, which is standard for OSS. `trademark_use: true` means trademark use is restricted. |
 | `compatibility` | Per-linking-context rules. `category:any` means compatible with every family. |
 | `contamination_effect` | How far copyleft reaches: `none`, `file`, `library`, `project`. |
 | `obligations` | Human-readable duties, derived from `requirements`. |
@@ -175,17 +175,25 @@ the result reaches you as a released version.
 `.github/workflows/spdx-sync.yml` runs at 02:00 UTC on the first of each month, and can also
 be triggered manually with `workflow_dispatch`. It does this:
 
-1. **Check upstream.** Fetch SPDX `licenses.json`, diff the license IDs against the files in
+1. **Preflight.** Construct the LLM provider before anything else, so a missing package
+   or API key fails the job immediately instead of producing fabricated records.
+2. **Check upstream.** Fetch SPDX `licenses.json`, diff the license IDs against the files in
    `ospac/data/licenses/json/`, and find both genuinely new IDs and existing records whose
    `is_deprecated` flag is now stale. If neither exists, the run stops here.
-2. **Generate.** Run `ospac data generate --output-dir ospac/data --use-llm --llm-provider openai --force`.
+3. **Generate.** Run `ospac data generate --output-dir ospac/data --use-llm --llm-provider openai --force`.
    Only new licenses are analyzed; existing records are left alone unless
-   `--force-reprocess` is passed.
-3. **Validate.** Run `python scripts/validate_data.py --data-dir ospac/data`, which checks
-   every record for structural completeness and semantic correctness and spot-checks
-   well-known licenses. Errors fail the run.
-4. **Bump the patch version** in `pyproject.toml`.
-5. **Open a pull request** labelled `data,automated`, with a body summarising the SPDX
+   `--force-reprocess` is passed. A record that had to fall back instead of being analyzed
+   is deleted and fails the run, so a partly fabricated dataset cannot continue.
+4. **Validate.** Run `python scripts/validate_data.py --data-dir ospac/data`, which checks
+   every record for structural completeness, the restriction invariants, and spot-checks
+   of well-known licenses. Errors fail the run.
+5. **Upload the dataset as an artifact**, so a rejected run can still be reviewed record
+   by record.
+6. **Corpus quality gate**, on full regenerations: fail if decision fields are uniform
+   across the corpus or any record matches a known fallback fingerprint, which is the
+   failure mode per-record validation cannot see.
+7. **Bump the patch version** in `pyproject.toml`.
+8. **Open a pull request** labelled `data,automated`, with a body summarising the SPDX
    version, new license IDs, and deprecation flags changed, then enable auto-merge.
 
 So dataset changes arrive as reviewable pull requests with a diff you can read. The commit
@@ -212,8 +220,11 @@ an obligation looks wrong, the underlying boolean is wrong.
 **Known misclassifications are overridden.** A correction table pins fields that LLMs
 repeatedly got wrong for well-known licenses. Apache-2.0 is the motivating case: it was
 classified as copyleft with `same_license` and `disclose_source` set, which is simply false
-and would have denied Apache-2.0 across copyleft policy rules. The table also covers
-MPL-2.0 and CC0-1.0.
+and would have denied Apache-2.0 across copyleft policy rules. The table now pins
+roughly forty licenses, including the LGPL and AGPL families, EPL, CDDL, EUPL, OSL, SSPL,
+BUSL, Elastic, Parity, Aladdin and the CERN-OHL variants, and a deterministic layer
+derives every restriction the identifier or name states outright: NC, ND and SA
+components, Non-Profit and Reciprocal naming. The model cannot override either.
 
 The design assumption is that the LLM is a useful first pass over hundreds of license texts and not
 an authority. Validation, deterministic derivation, human PR review, and the correction
@@ -254,8 +265,8 @@ the output files.
 $ python scripts/validate_data.py --data-dir ospac/data
 ────────────────────────────────────────────────────────────
   Total files  : 733
-  Clean        : 732
-  Warnings     : 1
+  Clean        : 728
+  Warnings     : 5
   Errors       : 0
 
   PASS (strict=False)
@@ -264,5 +275,6 @@ $ python scripts/validate_data.py --data-dir ospac/data
 Warnings do not fail the exit code unless you pass `--strict`; errors always do. `--json`
 gives machine-readable output for a CI annotation.
 
-Prefer this over `ospac data validate`, which still expects the pre-1.2.0 YAML layout and
-fails against the shipped dataset.
+`ospac data validate` runs the same rules from the installed package, so either entry
+point gives the same verdict. For the corpus-level check that catches templated datasets,
+run `scripts/corpus_quality.py`, described under the monthly pipeline above.
