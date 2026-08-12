@@ -440,14 +440,21 @@ class TestPolicyResult:
             "['include_license', 'include_copyright', 'state_changes']"
         }
 
-    def test_aggregate_empty_results(self):
-        """Test aggregating empty results."""
+    def test_aggregate_empty_results_asks_for_review(self):
+        """
+        No rule matching means the policy has no answer, which must not read as approval.
+        This previously returned ALLOW, so an unanswered question and an explicit approval
+        were indistinguishable and a policy that silently stopped matching looked like a
+        clean pass.
+        """
         aggregated = PolicyResult.aggregate([])
 
         assert aggregated.rule_id == "aggregate"
-        assert aggregated.action == ActionType.ALLOW
-        assert aggregated.severity == "info"
-        assert aggregated.message == "No policies matched"
+        assert aggregated.action == ActionType.FLAG_FOR_REVIEW
+        assert aggregated.action != ActionType.ALLOW
+        assert aggregated.severity == "warning"
+        assert "review" in aggregated.message.lower()
+        assert aggregated.remediation
 
     def test_explicit_approve_outranks_default_allow(self):
         """

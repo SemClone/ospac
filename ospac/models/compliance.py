@@ -42,11 +42,19 @@ class PolicyResult:
     def aggregate(cls, results: List["PolicyResult"]) -> "PolicyResult":
         """Aggregate multiple results into a single result."""
         if not results:
+            # No rule matched, so the policy has no answer for this case. Return it for
+            # review rather than permitting it. This used to report ALLOW, which meant an
+            # unanswered question and an explicit approval were indistinguishable, and a
+            # policy that silently stopped matching read as a clean pass.
             return cls(
                 rule_id="aggregate",
-                action=ActionType.ALLOW,
-                severity="info",
-                message="No policies matched",
+                action=ActionType.FLAG_FOR_REVIEW,
+                severity="warning",
+                message="No policy rule matched, so this needs review",
+                requirements=[
+                    "Confirm the policy is meant to cover this license and distribution type"
+                ],
+                remediation="Add a rule covering this case, or approve it explicitly after review",
             )
 
         # Find the highest severity result

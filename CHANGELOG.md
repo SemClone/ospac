@@ -71,6 +71,32 @@ never actually been analysed.
   embedded, mobile, desktop, web, cloud and API distribution, and flags them for review
   elsewhere. Repairing the data alone was not enough, since no rule covered them.
 
+**An unmatched evaluation reported `allow`**
+- When no rule matched, the result was `action: allow` with `No policies matched`. A policy
+  with no rule for a case has not approved it, it has no answer, and reporting those
+  identically meant a policy whose rules had silently stopped matching read as a clean pass.
+- Unmatched evaluations now return `flag_for_review` with a warning severity and a
+  remediation suggesting either a rule for the case or an explicit approval after review.
+- This is a behaviour change for anyone whose CI treated `allow` as success. Uncovered cases
+  now arrive as `flag_for_review`.
+
+**The bundled policy denied copyleft by enumerated identifier only**
+- `no_gpl_in_products` and `no_agpl_in_services` list individual licenses, so a copyleft
+  license nobody had listed fell through every rule. `AGPL-3.0` evaluated for commercial
+  distribution came back permitted.
+- Added category rules for strong copyleft in distributed products, network copyleft in
+  hosted services, and weak copyleft under static linking. These match on `license_type`,
+  which only began working earlier in this release.
+
+**Permissive licenses were approved only if individually listed**
+- The rule approving permissive and public domain licenses by category existed solely in the
+  policy's `decision_tree` section, which the runtime never reads: it evaluates `rules` only.
+  So `MIT`, `Apache-2.0` and `BSD` passed because they are enumerated, while `ISC`, `Zlib`
+  and several hundred others matched nothing at all. Invisible while unmatched meant `allow`.
+- Ported that rule into `rules` as `approve_permissive`, and removed the `decision_tree`
+  section. Its other entries duplicated rules that already exist, and config that looks
+  authoritative while never executing is how several defects here went unnoticed.
+
 ### Added
 
 **A `noncommercial` license type**

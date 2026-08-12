@@ -29,8 +29,8 @@ runtime = PolicyRuntime(skip_default=True)      # no policy at all
 
 `PolicyRuntime._using_default` tells you whether the default policy was loaded. It is
 underscore-prefixed but it is what the CLI checks to emit its warning, and it is worth
-asserting on in automation. See the fail-open discussion in
-[Policies]({{ site.baseurl }}/policies/#nothing-matching-means-allow).
+asserting on in automation. See
+[Policies]({{ site.baseurl }}/policies/#nothing-matching-means-review-not-approval).
 
 ```python
 runtime = PolicyRuntime("./policy.yaml")
@@ -80,8 +80,8 @@ if result.action == ActionType.DENY:
 ```
 
 A context missing a field that a rule matches on causes that rule to be skipped, not to
-error. If evaluation returns `allow` with `"No policies matched"` when you expected a
-denial, check the context keys first.
+error. If evaluation returns `flag_for_review` with `"No policy rule matched"` when you
+expected a denial, the rule was skipped: check the context keys first.
 
 ### check_compatibility
 

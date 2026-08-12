@@ -131,16 +131,35 @@ variant is a rule that quietly does not cover it. Enumerate the variants you act
 encounter, and read `ospac/data/compatibility/categories.json` for the full membership of
 each family.
 
-## Nothing matching means `allow`
+## Nothing matching means review, not approval
 
-When no rule matches, the result is `action: "allow"` with `"No policies matched"`. ospac
-defaults to permitting what it was not told to forbid.
+When no rule matches, ospac returns `flag_for_review`:
 
-This matters because a broken policy and a genuinely clean set of licenses are reported
-identically. Two habits protect you:
+```json
+{
+  "action": "flag_for_review",
+  "severity": "warning",
+  "message": "No policy rule matched, so this needs review",
+  "remediation": "Add a rule covering this case, or approve it explicitly after review"
+}
+```
 
-Assert that your policy is actually loaded. `using_default_policy` is in every `evaluate`
-and `check` result for this reason:
+A policy that has no rule for a situation has not approved it, it simply has no answer, and
+those are different things. ospac reports the absence of an answer rather than treating it
+as permission.
+
+{: .note }
+> This changed in 1.4.0. Earlier versions returned `allow` here, which meant an unanswered
+> question and an explicit approval were indistinguishable, so a policy whose rules had
+> silently stopped matching read as a clean pass. If your CI treated `allow` as success,
+> note that uncovered cases now surface as `flag_for_review` instead.
+
+The practical consequence is that a policy needs to cover the licenses you actually use, or
+you will get review requests. That is the intended pressure: the alternative is a policy
+that quietly permits everything it forgot to mention.
+
+Two habits still help. Assert that your policy is actually loaded, since a policy that fails
+to parse falls back to the bundled default:
 
 ```bash
 ospac evaluate -l MIT -p ./policy.yaml -o json \
@@ -148,9 +167,9 @@ ospac evaluate -l MIT -p ./policy.yaml -o json \
   || { echo "custom policy was not loaded"; exit 1; }
 ```
 
-Keep a case in your test suite that must be denied. If your policy denies GPL for mobile,
-test exactly that, so a policy that silently stops matching fails a test instead of
-approving everything.
+And keep a case in your test suite that must be denied. If your policy denies GPL for
+mobile, test exactly that, so rules going inert fails a test rather than turning every
+answer into a review request.
 
 ## The default policy
 

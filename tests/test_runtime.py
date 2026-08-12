@@ -292,9 +292,12 @@ class TestPolicyRuntime:
         result = runtime.check_compatibility("MIT", "GPL-3.0")
         assert result.is_compliant is False
 
-        # Two permissive licenses do not trigger the rule
+        # Two permissive licenses do not trigger the rule. This policy says nothing about
+        # permissive licenses, so the result is "needs review" rather than compliant: an
+        # unmatched evaluation is an unanswered question, not an approval.
         result = runtime.check_compatibility("MIT", "Apache-2.0")
-        assert result.is_compliant is True
+        assert result.violations == []
+        assert result.needs_review is True
 
     def test_check_compatibility_unknown_license_contributes_no_type(self, temp_dir):
         """Test licenses missing from the dataset contribute no type and do not raise."""
@@ -320,8 +323,11 @@ class TestPolicyRuntime:
 
         runtime = PolicyRuntime(str(temp_dir))
 
+        # The unknown license contributes no type, so the copyleft rule cannot fire and
+        # nothing raises. Nothing matches either, so the answer is "needs review".
         result = runtime.check_compatibility("Not-A-Real-License-1.0", "MIT")
-        assert result.is_compliant is True
+        assert result.violations == []
+        assert result.needs_review is True
 
     def test_check_compatibility_gpl2_apache_still_incompatible(self):
         """Regression: GPL-2.0 and Apache-2.0 stay incompatible under the default policy."""

@@ -28,6 +28,49 @@ rules:
       message: "AGPL licenses require source disclosure for network services"
       remediation: "Use Apache-2.0 or MIT licensed alternatives"
 
+  # The two rules above name individual licenses, which only covers the licenses somebody
+  # remembered to list. The rules below match on license_type, so a copyleft license that
+  # is not enumerated anywhere is still caught. AGPL-3.0 evaluated for commercial
+  # distribution used to fall through every rule and come back permitted.
+  - id: no_strong_copyleft_in_products
+    description: "Prevent strong copyleft in distributed products, by category"
+    priority: 9
+    when:
+      distribution_type: ["commercial", "embedded", "saas", "mobile", "desktop", "web"]
+      license_type: "copyleft_strong"
+    then:
+      action: deny
+      severity: error
+      message: "Strong copyleft requires releasing the combined work under the same license"
+      remediation: "Replace with a permissive alternative, or isolate the component behind a process boundary"
+
+  - id: no_network_copyleft_in_services
+    description: "Prevent network copyleft in hosted services, by category"
+    priority: 9
+    when:
+      distribution_type: ["saas", "cloud", "api", "web"]
+      license_type: "network_copyleft"
+    then:
+      action: deny
+      severity: error
+      message: "Network copyleft triggers source disclosure for users interacting over a network"
+      remediation: "Replace with a permissive alternative, or accept the source disclosure obligation deliberately"
+
+  - id: review_weak_copyleft_static
+    description: "Weak copyleft is safe dynamically but needs review when statically linked"
+    priority: 6
+    when:
+      linking_type: "static_linking"
+      license_type: "copyleft_weak"
+    then:
+      action: flag_for_review
+      severity: warning
+      message: "Weak copyleft with static linking can extend the license to the combined work"
+      notify: ["legal@company.com"]
+      requirements:
+        - "Prefer dynamic linking, or confirm the license permits static linking here"
+        - "Provide a means to relink against a modified version of the component"
+
   # Weak Copyleft Rules
   - id: review_lgpl
     description: "Flag LGPL for legal review"
@@ -60,6 +103,24 @@ rules:
         - "Provide source or link to LGPL component"
 
   # Permissive License Rules
+  #
+  # This category rule was previously written only in the decision_tree section, which the
+  # runtime never reads, so permissive licenses were approved solely by the enumerated
+  # rules below. Anything not named there, ISC and Zlib for example, matched nothing at
+  # all. That was invisible while an unmatched evaluation returned allow, and became
+  # visible once it started returning flag_for_review.
+  - id: approve_permissive
+    description: "Approve permissive and public domain licenses by category"
+    priority: 1
+    when:
+      license_type: ["permissive", "public_domain"]
+    then:
+      action: approve
+      severity: info
+      message: "Permissive and public domain licenses are pre-approved"
+      requirements:
+        - "Retain copyright notices and license text"
+
   - id: approve_mit
     description: "Automatically approve MIT license"
     priority: 1
@@ -237,54 +298,12 @@ rules:
       message: "GPL-3.0 and GPL-2.0 are incompatible - cannot mix versions"
       remediation: "Use consistent GPL version across all components"
 
-decision_tree:
-  # Permissive licenses - always allowed
-  - if:
-      license_type: ["permissive", "public_domain"]
-    then:
-      action: approve
-      automatic: true
-      note: "Permissive and public domain licenses pre-approved"
+# The decision_tree section that used to sit here was never executed: the runtime
+# reads only the 'rules' list above. Its entries duplicated rules that already
+# exist, except the permissive approval, which has been ported to 'approve_permissive'.
+# Config that looks authoritative but never runs is how several defects in this
+# project went unnoticed, so it is removed rather than left as documentation.
 
-  # GPL in development tools
-  - if:
-      license: ["GPL-2.0", "GPL-3.0", "GPL-2.0-only", "GPL-3.0-only"]
-      usage: "development_only"
-    then:
-      action: approve
-      note: "GPL allowed for development tools that are not distributed"
-
-  # LGPL with dynamic linking
-  - if:
-      license: ["LGPL-2.1", "LGPL-3.0", "LGPL-2.1-only", "LGPL-3.0-only"]
-      linking: "dynamic"
-    then:
-      action: approve
-      note: "LGPL allowed with dynamic linking"
-
-  # Strong copyleft in products
-  - if:
-      license_category: "copyleft_strong"
-      distribution: ["commercial", "embedded", "mobile", "desktop"]
-    then:
-      action: deny
-      reason: "Strong copyleft not compatible with distributed products"
-
-  # Proprietary licenses
-  - if:
-      license_type: "proprietary"
-    then:
-      action: review
-      reason: "Proprietary licenses require legal and procurement review"
-
-  # Unknown licenses
-  - if:
-      license_type: "unknown"
-    then:
-      action: review
-      reason: "Unknown licenses require manual review"
-
-# Obligation tracking
 obligations:
   attribution:
     - MIT
