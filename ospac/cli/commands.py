@@ -87,9 +87,23 @@ def evaluate(policy_dir: str, licenses: str, context: str,
 
         license_list = [l.strip() for l in licenses.split(",")]
 
+        # Resolve license types from the dataset so rules matching on
+        # license_type (e.g. copyleft_strong) can fire. Licenses missing
+        # from the dataset simply contribute no type.
+        license_types = []
+        for license_id in license_list:
+            try:
+                license_data = runtime.lookup_license_data(license_id)
+            except ValueError:
+                continue
+            license_type = (license_data or {}).get("license", {}).get("type")
+            if license_type and license_type not in license_types:
+                license_types.append(license_type)
+
         eval_context = {
             "licenses_found": license_list,
             "licenses": license_list,  # Support both keys
+            "license_type": license_types,
             "context": context,
             "distribution": distribution,
             "distribution_type": distribution,  # Support both keys

@@ -74,7 +74,7 @@ class PolicyResult:
             action=most_restrictive.action,
             severity=highest_severity.severity,
             message=f"Evaluated {len(results)} rules",
-            requirements=list(set(all_requirements)),
+            requirements=list(dict.fromkeys(all_requirements)),
             remediation=most_restrictive.remediation,
         )
 

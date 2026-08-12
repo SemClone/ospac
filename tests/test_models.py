@@ -2,6 +2,10 @@
 Tests for OSPAC data models.
 """
 
+import os
+import subprocess
+import sys
+
 import pytest
 
 from ospac.models.license import License
@@ -369,6 +373,72 @@ class TestPolicyResult:
         assert "req1" in aggregated.requirements
         assert "req2" in aggregated.requirements
         assert "req3" in aggregated.requirements
+
+    def test_aggregate_requirements_preserve_first_seen_order(self):
+        """Aggregated requirements keep first-seen order and drop duplicates."""
+        results = [
+            PolicyResult(
+                rule_id="rule1",
+                action=ActionType.ALLOW,
+                severity="info",
+                requirements=["include_license", "include_copyright"]
+            ),
+            PolicyResult(
+                rule_id="rule2",
+                action=ActionType.ALLOW,
+                severity="info",
+                requirements=["include_copyright", "state_changes"]
+            ),
+            PolicyResult(
+                rule_id="rule3",
+                action=ActionType.ALLOW,
+                severity="info",
+                requirements=["include_license", "include_notice"]
+            )
+        ]
+
+        aggregated = PolicyResult.aggregate(results)
+
+        # Exact sequence: duplicates collapse to their first occurrence
+        assert aggregated.requirements == [
+            "include_license",
+            "include_copyright",
+            "state_changes",
+            "include_notice",
+        ]
+
+    def test_aggregate_requirements_stable_across_hash_seeds(self):
+        """Aggregation order must not depend on string hash randomization."""
+        script = (
+            "from ospac.models.compliance import PolicyResult, ActionType\n"
+            "results = [\n"
+            "    PolicyResult(rule_id='r1', action=ActionType.ALLOW,\n"
+            "                 requirements=['include_license', 'include_copyright']),\n"
+            "    PolicyResult(rule_id='r2', action=ActionType.ALLOW,\n"
+            "                 requirements=['state_changes', 'include_copyright']),\n"
+            "]\n"
+            "print(PolicyResult.aggregate(results).requirements)\n"
+        )
+
+        repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        outputs = set()
+        for seed in ("0", "1", "42"):
+            env = dict(os.environ, PYTHONHASHSEED=seed)
+            env["PYTHONPATH"] = os.pathsep.join(
+                filter(None, [repo_root, env.get("PYTHONPATH")])
+            )
+            proc = subprocess.run(
+                [sys.executable, "-c", script],
+                capture_output=True,
+                text=True,
+                env=env,
+                check=True,
+            )
+            outputs.add(proc.stdout.strip())
+
+        assert outputs == {
+            "['include_license', 'include_copyright', 'state_changes']"
+        }
 
     def test_aggregate_empty_results(self):
         """Test aggregating empty results."""

@@ -134,13 +134,8 @@ warn_unused_configs = true
 disallow_untyped_defs = false
 ignore_missing_imports = true
 
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-python_files = ["test_*.py", "*_test.py"]
-addopts = "-v --cov=osslili --cov-report=term-missing"
-
 [tool.coverage.run]
-source = ["osslili"]
+source = ["ospac"]
 omit = ["*/tests/*", "*/test_*.py"]
 
 [tool.coverage.report]

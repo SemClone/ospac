@@ -76,9 +76,13 @@ class PolicyRuntime:
         for rule in applicable_rules:
             result = self.evaluator.evaluate_rule(rule, context)
             # Convert dict result to PolicyResult
+            action_name = result.get("action", "allow").lower()
+            if action_name == "review":
+                # Policies may use "review" as shorthand for flag_for_review
+                action_name = "flag_for_review"
             policy_result = PolicyResult(
                 rule_id=result.get("rule_id", "unknown"),
-                action=ActionType[result.get("action", "allow").upper()],
+                action=ActionType[action_name.upper()],
                 severity=result.get("severity", "info"),
                 message=result.get("message"),
                 requirements=result.get("requirements", []),
@@ -141,6 +145,28 @@ class PolicyRuntime:
                         return False
                 else:
                     if value not in licenses_to_check:
+                        return False
+            elif key == "license_type":
+                # Multiple licenses may be evaluated at once, so the context
+                # value can be a scalar or a list of types. The rule matches
+                # if any evaluated license's type matches the rule value.
+                types_to_check = []
+
+                if isinstance(context_value, str):
+                    types_to_check.append(context_value)
+                elif isinstance(context_value, list):
+                    types_to_check.extend(context_value)
+
+                # If no license types are available in context, no match
+                if not types_to_check:
+                    return False
+
+                if isinstance(value, list):
+                    # Check if any type in context matches any in the rule
+                    if not any(lic_type in value for lic_type in types_to_check):
+                        return False
+                else:
+                    if value not in types_to_check:
                         return False
             else:
                 # Normal field checking
