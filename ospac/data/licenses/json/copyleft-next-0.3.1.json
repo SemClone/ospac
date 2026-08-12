@@ -28,23 +28,39 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:permissive"
+          "copyleft-next-0.3.1",
+          "category:permissive",
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "category:copyleft_weak",
-          "category:copyleft_strong"
+          "category:proprietary"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:permissive"
+          "copyleft-next-0.3.1",
+          "category:permissive",
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "category:copyleft_weak",
-          "category:copyleft_strong"
+          "category:proprietary"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
       },
       "contamination_effect": "full",
       "notes": "All derivative works must be licensed under copyleft-next-0.3.1 when using components licensed under this license."

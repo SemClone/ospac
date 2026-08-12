@@ -28,25 +28,31 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:permissive"
+          "ODbL-1.0",
+          "category:permissive",
+          "category:public_domain"
         ],
-        "incompatible_with": [
+        "incompatible_with": [],
+        "requires_review": [
           "category:copyleft_weak",
-          "category:copyleft_strong"
-        ],
-        "requires_review": []
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
+          "ODbL-1.0",
           "category:permissive",
+          "category:public_domain",
           "category:copyleft_weak"
         ],
-        "incompatible_with": [
-          "category:copyleft_strong"
-        ],
-        "requires_review": []
+        "incompatible_with": [],
+        "requires_review": [
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
       },
-      "contamination_effect": "full",
+      "contamination_effect": "module",
       "notes": "Using ODbL-1.0-licensed components in a project requires the entire work to be licensed under ODbL-1.0."
     },
     "obligations": [

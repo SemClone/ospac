@@ -5,6 +5,38 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.2] - 2026-08-12
+
+### Fixed
+
+**The record-level compatibility lists were model-generated and systematically wrong**
+- 540 of 733 records typed permissive or public domain declared themselves incompatible
+  with GPL or strong copyleft, which inverts how permissive licensing works: permissive
+  code can be incorporated into copyleft works, and that is the point of it. MPL-2.0
+  claimed incompatibility with the GPL it is expressly designed to combine with, and
+  pairs disagreed with each other, BSD-3-Clause calling GPL-3.0 incompatible while
+  GPL-3.0 called BSD-3-Clause compatible.
+- The policy engine was unaffected: `ospac check` answers from rules and was correct
+  throughout. The wrong lists were served raw in every record, and read by
+  `License.is_compatible_with`.
+- Compatibility between categories is a derivable fact, so it is now derived from the
+  record's final category plus a table of known license-level exceptions, applied on
+  every path that writes a record and pinned by the reproducibility test. The model
+  contributes only the prose notes. All 733 blocks rebuilt; the known exceptions,
+  GPL-2.0 with Apache-2.0, GPL-2.0 with GPL-3.0, and 4-clause BSD with any GPL, land in
+  both records of each pair so the claims stay symmetric.
+- Tests now assert no permissive record claims copyleft incompatibility beyond the
+  exception table, that pairwise claims never contradict each other, and that the known
+  pairs are mutually incompatible.
+
+**`License.is_compatible_with` never matched category entries**
+- Dataset entries use `category:<type>` specifiers, but the method compared the other
+  license's bare type against them, so category entries never matched and most lists
+  were silently inert. It also consulted `compatible_with` before `incompatible_with`,
+  which would have let a category match hide a named exception once the lists worked.
+  Category specifiers and `category:any` now resolve, and incompatibility is checked
+  first.
+
 ## [1.4.0] - 2026-08-11
 
 Clears the three items 1.3.0 left open, and repairs a licence dataset that had

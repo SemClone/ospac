@@ -28,35 +28,17 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "SPDX:MIT",
-          "SPDX:Apache-2.0",
-          "category:permissive"
+          "category:any"
         ],
-        "incompatible_with": [
-          "SPDX:GPL-3.0",
-          "SPDX:AGPL-3.0",
-          "category:copyleft_strong"
-        ],
-        "requires_review": [
-          "SPDX:LGPL-2.1",
-          "SPDX:LGPL-3.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "SPDX:MIT",
-          "SPDX:Apache-2.0",
-          "category:permissive"
+          "category:any"
         ],
-        "incompatible_with": [
-          "SPDX:GPL-3.0",
-          "SPDX:AGPL-3.0",
-          "category:copyleft_strong"
-        ],
-        "requires_review": [
-          "SPDX:LGPL-2.1",
-          "SPDX:LGPL-3.0"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "contamination_effect": "none",
       "notes": "The BSD-2-Clause-NetBSD license is permissive and does not impose restrictions on the licensing of derivative works."

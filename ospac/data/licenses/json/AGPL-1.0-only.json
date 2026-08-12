@@ -28,26 +28,39 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:permissive"
+          "AGPL-1.0-only",
+          "category:permissive",
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "category:copyleft_strong",
-          "AGPL-3.0-only",
-          "GPL-3.0-only"
+          "category:proprietary"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
+          "AGPL-1.0-only",
           "category:permissive",
-          "category:copyleft_weak"
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "category:copyleft_strong",
-          "AGPL-3.0-only",
-          "GPL-3.0-only"
+          "category:proprietary"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
       },
       "contamination_effect": "full",
       "notes": "AGPL-1.0-only has a strong copyleft requirement, affecting the entire combined work."

@@ -28,23 +28,49 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:permissive"
+          "GPL-3.0-only",
+          "category:permissive",
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "category:copyleft_weak",
-          "category:copyleft_strong"
+          "category:proprietary",
+          "BSD-4-Clause",
+          "BSD-4-Clause-Shortened",
+          "BSD-4-Clause-UC",
+          "GPL-2.0",
+          "GPL-2.0-only"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:permissive"
+          "GPL-3.0-only",
+          "category:permissive",
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "category:copyleft_weak",
-          "category:copyleft_strong"
+          "category:proprietary",
+          "BSD-4-Clause",
+          "BSD-4-Clause-Shortened",
+          "BSD-4-Clause-UC",
+          "GPL-2.0",
+          "GPL-2.0-only"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
       },
       "contamination_effect": "full",
       "notes": "Any combined work that includes GPL-3.0-only licensed components must be licensed under GPL-3.0-only."

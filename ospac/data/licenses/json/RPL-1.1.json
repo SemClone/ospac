@@ -28,23 +28,39 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
+          "RPL-1.1",
           "category:permissive",
-          "category:copyleft_weak"
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "category:copyleft_strong"
+          "category:proprietary"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
+          "RPL-1.1",
           "category:permissive",
-          "category:copyleft_weak"
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "category:copyleft_strong"
+          "category:proprietary"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
       },
       "contamination_effect": "full",
       "notes": "RPL-1.1 requires that any derivative works or combined works remain under the same license."

@@ -27,28 +27,20 @@
     },
     "compatibility": {
       "static_linking": {
-        "compatible_with": [
-          "category:permissive"
-        ],
-        "incompatible_with": [
-          "category:copyleft_weak",
-          "category:copyleft",
+        "compatible_with": [],
+        "incompatible_with": [],
+        "requires_review": [
           "category:any"
-        ],
-        "requires_review": []
+        ]
       },
       "dynamic_linking": {
-        "compatible_with": [
-          "category:permissive"
-        ],
-        "incompatible_with": [
-          "category:copyleft_weak",
-          "category:copyleft",
+        "compatible_with": [],
+        "incompatible_with": [],
+        "requires_review": [
           "category:any"
-        ],
-        "requires_review": []
+        ]
       },
-      "contamination_effect": "full",
+      "contamination_effect": "none",
       "notes": "CC-BY-ND-3.0-DE does not allow derivatives, which affects compatibility with copyleft licenses."
     },
     "obligations": [

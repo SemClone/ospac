@@ -28,21 +28,16 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:permissive"
+          "category:any"
         ],
-        "incompatible_with": [
-          "category:copyleft",
-          "category:copyleft_strong"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:permissive"
+          "category:any"
         ],
-        "incompatible_with": [
-          "category:copyleft_strong"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "contamination_effect": "none",

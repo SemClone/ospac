@@ -28,25 +28,31 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
+          "CC-BY-SA-2.0",
           "category:permissive",
-          "category:copyleft_weak"
+          "category:public_domain"
         ],
-        "incompatible_with": [
-          "category:copyleft_strong"
-        ],
-        "requires_review": []
+        "incompatible_with": [],
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
+          "CC-BY-SA-2.0",
           "category:permissive",
+          "category:public_domain",
           "category:copyleft_weak"
         ],
-        "incompatible_with": [
-          "category:copyleft_strong"
-        ],
-        "requires_review": []
+        "incompatible_with": [],
+        "requires_review": [
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
       },
-      "contamination_effect": "module",
+      "contamination_effect": "derivative",
       "notes": "CC-BY-SA-2.0 requires that modifications to the CC-BY-SA-2.0 licensed components remain under the same license."
     },
     "obligations": [

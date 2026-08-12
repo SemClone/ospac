@@ -570,6 +570,7 @@ class TestDatasetPipelineReproducibility:
                 "category": record["type"],
                 "permissions": dict(record["properties"]),
                 "conditions": dict(record["requirements"]),
+                "compatibility_rules": dict(record.get("compatibility", {})),
             }
             analysis = G._apply_known_corrections(G, record["id"], analysis)
             analysis = G._apply_identifier_restrictions(G, record["id"], analysis)
@@ -581,7 +582,8 @@ class TestDatasetPipelineReproducibility:
                     or analysis["permissions"] != record["properties"]
                     or analysis["conditions"] != record["requirements"]
                     or obligations != record["obligations"]
-                    or key_requirements != record["key_requirements"]):
+                    or key_requirements != record["key_requirements"]
+                    or analysis["compatibility_rules"] != record.get("compatibility")):
                 not_reproduced.append(record["id"])
 
         assert not_reproduced == [], (
@@ -612,3 +614,69 @@ class TestDatasetPipelineReproducibility:
         sa_copyleft = types.get("copyleft_weak", []) + types.get("copyleft_strong", [])
         assert "CC-BY-SA-4.0" in sa_copyleft
         assert "CC-BY-SA-4.0" not in types.get("permissive", [])
+
+
+class TestCompatibilityListSoundness:
+    """
+    The record-level compatibility lists were model-generated and systematically wrong:
+    540 permissive records declared themselves incompatible with GPL, which inverts how
+    permissive licensing works, and pairs disagreed with each other. The lists are now
+    derived from the category plus a known-exception table, so these invariants hold by
+    construction and this test keeps them held.
+    """
+
+    @staticmethod
+    def _records():
+        import json
+
+        data_dir = Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+        records = {}
+        for path in data_dir.glob("*.json"):
+            record = json.loads(path.read_text())["license"]
+            records[record["id"]] = record
+        return records
+
+    @staticmethod
+    def _claims(record, other):
+        block = record["compatibility"]["static_linking"]
+        other_cat = f"category:{other['type']}"
+        if other["id"] in block["incompatible_with"] or other_cat in block["incompatible_with"]:
+            return "incompatible"
+        if (other["id"] in block["compatible_with"] or other_cat in block["compatible_with"]
+                or "category:any" in block["compatible_with"]):
+            return "compatible"
+        return None
+
+    def test_no_permissive_record_claims_copyleft_incompatibility(self):
+        from ospac.pipeline.data_generator import _known_incompatible_ids
+
+        offenders = []
+        for record in self._records().values():
+            if record["type"] not in ("permissive", "public_domain"):
+                continue
+            allowed = set(_known_incompatible_ids(record["id"]))
+            for entry in record["compatibility"]["static_linking"]["incompatible_with"]:
+                if entry not in allowed:
+                    offenders.append(f"{record['id']} -> {entry}")
+        assert offenders == [], offenders[:10]
+
+    def test_pairwise_claims_are_symmetric(self):
+        records = self._records()
+        sample = ["MIT", "Apache-2.0", "BSD-3-Clause", "BSD-4-Clause", "GPL-2.0-only",
+                  "GPL-3.0-only", "LGPL-2.1-only", "MPL-2.0", "AGPL-3.0-only",
+                  "CC-BY-NC-4.0", "EPL-2.0"]
+        conflicts = []
+        for i, a in enumerate(sample):
+            for b in sample[i + 1:]:
+                ca = self._claims(records[a], records[b])
+                cb = self._claims(records[b], records[a])
+                if {ca, cb} == {"compatible", "incompatible"}:
+                    conflicts.append(f"{a} says {ca} of {b}, {b} says {cb} of {a}")
+        assert conflicts == [], conflicts
+
+    def test_known_exception_pairs_are_mutually_incompatible(self):
+        records = self._records()
+        for a, b in [("GPL-2.0-only", "Apache-2.0"), ("GPL-2.0-only", "GPL-3.0-only"),
+                     ("BSD-4-Clause", "GPL-3.0-only")]:
+            assert self._claims(records[a], records[b]) == "incompatible"
+            assert self._claims(records[b], records[a]) == "incompatible"

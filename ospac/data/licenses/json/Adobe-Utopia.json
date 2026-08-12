@@ -27,37 +27,17 @@
     },
     "compatibility": {
       "static_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "category:permissive"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0",
-          "category:copyleft_strong"
-        ],
+        "compatible_with": [],
+        "incompatible_with": [],
         "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
+          "category:any"
         ]
       },
       "dynamic_linking": {
-        "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "category:permissive"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0",
-          "category:copyleft_strong"
-        ],
+        "compatible_with": [],
+        "incompatible_with": [],
         "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
+          "category:any"
         ]
       },
       "contamination_effect": "none",

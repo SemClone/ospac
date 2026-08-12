@@ -110,7 +110,7 @@ the file on disk has the extra nesting level.
     },
     "compatibility": {
       "static_linking": {
-        "compatible_with": ["category:permissive", "Apache-2.0", "BSD-3-Clause", "Zlib"],
+        "compatible_with": ["category:any"],
         "incompatible_with": [],
         "requires_review": []
       },
@@ -140,7 +140,7 @@ the file on disk has the extra nesting level.
 | `properties` | What the license lets you do. |
 | `requirements` | Conditions you must satisfy. The booleans here drive `obligations`. |
 | `limitations` | Disclaimer analysis: `liability: true` means the license disclaims liability, which is standard for OSS. `trademark_use: true` means trademark use is restricted. |
-| `compatibility` | Per-linking-context rules. `category:any` means compatible with every family. |
+| `compatibility` | Per-linking-context rules, derived from the record's category plus a table of known license-level exceptions such as GPL-2.0 with Apache-2.0. Entries are license ids or `category:<type>` specifiers; `category:any` means compatible with every family. Only the prose `notes` come from the analysis. |
 | `contamination_effect` | How far copyleft reaches: `none`, `file`, `library`, `project`. |
 | `obligations` | Human-readable duties, derived from `requirements`. |
 | `spdx_metadata` | Upstream flags, including `is_deprecated`. |
