@@ -29,7 +29,7 @@ runtime = PolicyRuntime(skip_default=True)      # no policy at all
 
 `PolicyRuntime._using_default` tells you whether the default policy was loaded. It is
 underscore-prefixed but it is what the CLI checks to emit its warning, and it is worth
-asserting on in automation — see the fail-open discussion in
+asserting on in automation. See the fail-open discussion in
 [Policies]({{ site.baseurl }}/policies/#nothing-matching-means-allow).
 
 ```python
@@ -138,7 +138,7 @@ Where ospac reads license data from. Pass a path to override.
 > `PolicyRuntime.get_obligations(["MIT"])` returns `{}` for every license. It reads
 > `lookup_license_data()["obligations"]`, but obligations live at
 > `["license"]["obligations"]`, so the lookup always misses. The CLI's `ospac obligations`
-> is unaffected — it uses a separate code path.
+> is unaffected: it uses a separate code path.
 >
 > Read obligations directly until this is fixed:
 >
@@ -187,7 +187,7 @@ Both describe the same duties. Use the dataset's list when you want the same tex
 prints.
 
 `is_compatible_with` is a model-level convenience that reads the license's own
-`compatibility` block. It does not consult your policy — use `runtime.check_compatibility()`
+`compatibility` block. It does not consult your policy. Use `runtime.check_compatibility()`
 when the answer should respect policy.
 
 ## ComplianceResult and PolicyResult
@@ -211,8 +211,8 @@ from ospac import ComplianceResult
 ComplianceResult.from_policy_result(policy_result)   # convert
 ```
 
-`PolicyResult.aggregate([...])` merges several results, taking the most severe action —
-this is what produces the `rule_id: "aggregate"` you see in CLI output.
+`PolicyResult.aggregate([...])` merges several results, taking the most severe action.
+This is what produces the `rule_id: "aggregate"` you see in CLI output.
 
 ## A CI gate
 
@@ -252,5 +252,5 @@ Pair it with a case that must be denied, so the gate is proven to still bite:
 ```python
 gpl = runtime.evaluate({**base_context, "licenses": ["GPL-3.0"],
                         "licenses_found": ["GPL-3.0"]})
-assert gpl.action == ActionType.DENY, "policy stopped denying GPL — rules are inert"
+assert gpl.action == ActionType.DENY, "policy stopped denying GPL, rules are inert"
 ```

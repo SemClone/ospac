@@ -5,6 +5,112 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-08-11
+
+This release repairs a group of defects left behind by the v1.2.0 migration from YAML to
+JSON. That migration updated the dataset layout and the main evaluation paths, but several
+peripheral code paths kept reading the old schema and the old file locations. The most
+serious of them caused policy evaluation to fail open.
+
+Minor rather than patch, because the fail-open fix changes evaluation outcomes: a policy
+that previously returned `allow` may now correctly return `deny`, so builds that passed on
+1.2.11 can legitimately start failing.
+
+### Fixed
+
+**Policy templates matched nothing and approved everything (fail-open)**
+- Policies created by `ospac policy init` match on `license_type`, but `ospac evaluate`
+  never placed `license_type` in the evaluation context. Rules naming an absent context
+  field are skipped, so every generated template matched no rules and returned `allow`.
+- A mobile policy written to deny GPL therefore approved GPL. The result was permissive
+  rather than an error, so nothing surfaced the problem in CI.
+- `evaluate` now resolves each license's type from the dataset, and `license_type` matching
+  accepts any evaluated license, mirroring the existing behaviour of the `license` key.
+  Evaluating several licenses at once involves more than one type, so a single scalar could
+  not express the case.
+- `check_compatibility()` was missing the same context field and can now drive
+  `license_type` rules.
+
+**Crash on `action: review`**
+- The bundled enterprise policy and the desktop and server templates use `action: review`,
+  but `ActionType` defines only `FLAG_FOR_REVIEW`, so `ActionType["REVIEW"]` raised
+  `KeyError` and the CLI exited with `Error: 'REVIEW'`. `review` is now accepted as
+  shorthand for `flag_for_review`. The fail-open bug had prevented those rules from ever
+  firing, which is why the crash was never observed.
+
+**`ospac data validate` could not validate the shipped dataset**
+- It looked only for `licenses/spdx/*.yaml`, the pre-1.2.0 layout, which no longer ships,
+  and always exited with `SPDX directory not found`. It now validates the JSON dataset,
+  defaults to the packaged data directory, and supports `--strict`.
+
+**`ospac data show -f text` printed empty output**
+- The text formatter read `category`, `permissions` and `conditions`, which the JSON schema
+  renamed to `type`, `properties` and `requirements`, so it printed `Category: None` and
+  empty sections. It now shows type, permissions, conditions, limitations, obligations, key
+  requirements and SPDX metadata, marks deprecated identifiers, and renders false booleans
+  visibly instead of omitting them. JSON and YAML output are unchanged.
+
+**`PolicyRuntime.get_obligations()` always returned an empty dict**
+- It read `obligations` from the top level of a record that wraps its contents in a
+  `license` key, so the lookup always missed.
+
+**Obligation enrichment never ran for installed users**
+- `_enhance_result_with_obligations()` resolved a working-directory-relative `data/` path
+  instead of the packaged data directory, so it silently did nothing unless the process
+  happened to run beside a `data/` folder. It now resolves through
+  `PolicyRuntime.resolve_data_dir()`.
+
+**Aggregated requirements were not reproducible**
+- `PolicyResult.aggregate()` deduplicated through a set, so `requirements` came back in a
+  different order on every run, which broke diffing evaluation output and storing it as
+  compliance evidence. Deduplication now preserves first-seen order.
+
+**Incorrect command name in a hint**
+- The default-policy notice suggested `ospac init`, which does not exist. It now says
+  `ospac policy init`.
+
+**Six LGPL identifiers were classified as strong copyleft**
+- `LGPL-2.0`, `LGPL-2.0+`, `LGPL-2.1`, `LGPL-2.1+`, `LGPL-3.0` and `LGPL-3.0+` were typed
+  `copyleft_strong`, while the modern identifiers they are deprecated aliases of
+  (`LGPL-2.0-only`, `LGPL-2.1-only` and so on) were correctly `copyleft_weak`. An alias must
+  classify identically to the identifier it aliases, so these were wrong.
+- The correction table in the data pipeline already declared LGPL as weak copyleft, but
+  listed only the modern spellings, so the deprecated ones kept the misclassification. Those
+  bare spellings are also the ones that appear most often in real package metadata.
+- Consequence: policy rules matching `license_type: copyleft_strong` denied these
+  identifiers where the modern spelling was only flagged for review. The `desktop` and
+  `server` templates denied `LGPL-2.1` and reviewed `LGPL-3.0-only`, which are the same
+  obligation in practice.
+- This was inert until the `license_type` fix above, because no rule matching on
+  `license_type` ever fired. Fixing evaluation made the data defect start affecting
+  decisions, so both are fixed together.
+- `type` and the derived `key_requirements` are corrected in the six records and in
+  `index.json`, the aliases are added to the pipeline's correction table so regeneration
+  keeps them, and a test asserts the invariant directly against the shipped dataset for
+  every deprecated alias, not just LGPL.
+
+### Changed
+
+- `__version__` is read from installed package metadata, making `pyproject.toml` the single
+  source of truth. The SPDX sync workflow bumps only `pyproject.toml`, so the previous
+  hardcoded literal fell behind every month, and `ospac --version` and `ospac.__version__`
+  could disagree.
+- License record validation moved into `ospac.utils.data_validation`, shared by the
+  `data validate` command and `scripts/validate_data.py` instead of being duplicated.
+- Coverage configuration pointed at the `osslili` package rather than `ospac`. The dead
+  `[tool.pytest.ini_options]` block in `pyproject.toml`, shadowed by `pytest.ini`, was
+  removed so there is one source of truth.
+- `MANIFEST.in` referenced a nonexistent `ospac/ospac/data` path and an `obligations`
+  directory that does not exist, and omitted the dataset's CC BY-NC-SA notice.
+
+### Added
+
+- `tests/test_cli.py`, the first CLI-level tests in the project. The absence of any test
+  exercising the CLI's own context construction is what allowed the fail-open defect to
+  ship with a green suite: the existing tests hand-build contexts that already contain
+  `license_type`, so nothing covered the code that has to derive it.
+- Documentation site at https://semclone.github.io/ospac/ built from `docs/`.
+
 ## [1.2.6] - 2026-01-28
 
 ### Fixed

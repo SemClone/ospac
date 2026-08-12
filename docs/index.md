@@ -10,7 +10,7 @@ permalink: /
 
 ospac answers a narrow question: given a set of licenses and something you intend to do
 with them, is that allowed? It reads the licenses, applies a policy you can keep in Git,
-and returns an action — approve, deny, or flag for review — along with the obligations
+and returns an action (approve, deny, or flag for review) along with the obligations
 you take on if you proceed.
 
 The point is that the answer lives in a policy file, not in ospac's code. Compliance
@@ -72,8 +72,8 @@ Requirements:
   • Include MIT license text
 ```
 
-The same licenses can produce a different answer under a different distribution type —
-that is the whole idea. `-d mobile` is stricter than `-d internal`, because the policy
+The same licenses can produce a different answer under a different distribution type.
+That is the whole idea. `-d mobile` is stricter than `-d internal`, because the policy
 says so, not because ospac hard-codes it.
 
 And ask what you owe if you do ship something:
@@ -90,12 +90,12 @@ MIT:
 ## Two things worth knowing early
 
 **There is always a policy in play.** With no `--policy-dir`, ospac loads a bundled
-default enterprise policy and says so on stderr. That default is opinionated — it denies
+default enterprise policy and says so on stderr. That default is opinionated: it denies
 GPL for commercial distribution and flags LGPL static linking for review. Treat it as a
 starting point to copy, not as neutral ground. `ospac policy init` writes one you own.
 
 **ospac is offline.** Evaluation reads the bundled dataset and your policy files; it makes
-no network calls and consults no model. LLMs appear in exactly one place — regenerating the
+no network calls and consults no model. LLMs appear in exactly one place, regenerating the
 dataset, a maintainer task described in [The dataset]({{ site.baseurl }}/dataset/). The tool
 you install does not use them.
 

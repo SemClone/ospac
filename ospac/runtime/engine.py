@@ -76,9 +76,13 @@ class PolicyRuntime:
         for rule in applicable_rules:
             result = self.evaluator.evaluate_rule(rule, context)
             # Convert dict result to PolicyResult
+            action_name = result.get("action", "allow").lower()
+            if action_name == "review":
+                # Policies may use "review" as shorthand for flag_for_review
+                action_name = "flag_for_review"
             policy_result = PolicyResult(
                 rule_id=result.get("rule_id", "unknown"),
-                action=ActionType[result.get("action", "allow").upper()],
+                action=ActionType[action_name.upper()],
                 severity=result.get("severity", "info"),
                 message=result.get("message"),
                 requirements=result.get("requirements", []),
@@ -142,6 +146,28 @@ class PolicyRuntime:
                 else:
                     if value not in licenses_to_check:
                         return False
+            elif key == "license_type":
+                # Multiple licenses may be evaluated at once, so the context
+                # value can be a scalar or a list of types. The rule matches
+                # if any evaluated license's type matches the rule value.
+                types_to_check = []
+
+                if isinstance(context_value, str):
+                    types_to_check.append(context_value)
+                elif isinstance(context_value, list):
+                    types_to_check.extend(context_value)
+
+                # If no license types are available in context, no match
+                if not types_to_check:
+                    return False
+
+                if isinstance(value, list):
+                    # Check if any type in context matches any in the rule
+                    if not any(lic_type in value for lic_type in types_to_check):
+                        return False
+                else:
+                    if value not in types_to_check:
+                        return False
             else:
                 # Normal field checking
                 if context_value is None:
@@ -158,9 +184,23 @@ class PolicyRuntime:
     def check_compatibility(self, license1: str, license2: str,
                            context: str = "general") -> ComplianceResult:
         """Check if two licenses are compatible."""
+        # Resolve license types from the dataset so rules matching on
+        # license_type (e.g. copyleft_strong) can fire. Licenses missing
+        # from the dataset simply contribute no type.
+        license_types = []
+        for license_id in (license1, license2):
+            try:
+                license_data = self.lookup_license_data(license_id)
+            except ValueError:
+                continue
+            license_type = (license_data or {}).get("license", {}).get("type")
+            if license_type and license_type not in license_types:
+                license_types.append(license_type)
+
         eval_context = {
             "license1": license1,
             "license2": license2,
+            "license_type": license_types,
             "compatibility_context": context
         }
 
@@ -168,7 +208,19 @@ class PolicyRuntime:
         return ComplianceResult.from_policy_result(result)
 
     def get_obligations(self, licenses: List[str], data_dir: Optional[str] = None) -> Dict[str, Any]:
-        """Get all obligations for the given licenses."""
+        """
+        Get all obligations for the given licenses.
+
+        Args:
+            licenses: List of SPDX license identifiers
+            data_dir: Optional data directory path
+
+        Returns:
+            Dictionary keyed by license id. Each value is a dictionary that
+            contains an "obligations" list from the license dataset, merged
+            with any entries from obligations/ policy files. Licenses with
+            no known obligations are omitted.
+        """
         # Use package data directory if not specified
         data_dir = self.resolve_data_dir(data_dir)
 
@@ -188,7 +240,9 @@ class PolicyRuntime:
         if licenses_dir.exists():
             for license_id in licenses:
                 license_data = self.lookup_license_data(license_id, data_dir) or {}
-                license_obligations = license_data.get("obligations", [])
+                # Per-license JSON files wrap the record in a "license" key
+                license_record = license_data.get("license", license_data)
+                license_obligations = license_record.get("obligations", [])
                 if license_obligations:
                     if license_id not in obligations:
                         obligations[license_id] = {}

@@ -51,8 +51,8 @@ policy in it is loaded and all rules are pooled together.
 Three things govern the outcome, and all three surprise people at least once.
 
 **Every key in `when` must match.** Conditions are ANDed. A rule with both
-`distribution_type` and `license` fires only when both hold. To express OR, use a list —
-`distribution_type: ["mobile", "web"]` matches either — or write separate rules.
+`distribution_type` and `license` fires only when both hold. To express OR, use a list.
+`distribution_type: ["mobile", "web"]` matches either, or write separate rules.
 
 **A missing context field never matches.** If `when` names a field that is not in the
 evaluation context, the rule is skipped. It does not match loosely and it does not error;
@@ -100,7 +100,7 @@ values are conventionally more important.
 > open, so it will not draw attention to itself in CI.
 >
 > Until this is fixed, match on `license` with explicit SPDX IDs instead of on
-> `license_type`. That path works — it is what the bundled default enterprise policy uses,
+> `license_type`. That path works: it is what the bundled default enterprise policy uses,
 > and why the default policy produces correct answers while the templates do not.
 
 Rewriting the example above to match on `license` makes it fire:
@@ -125,7 +125,7 @@ $ ospac evaluate -l GPL-3.0 -d mobile -p mobile_policy.yaml
     "remediation": "Use an MIT or Apache-2.0 alternative"
 ```
 
-The cost of this approach is that ID lists need maintaining — a license family has many
+The cost of this approach is that ID lists need maintaining, since a license family has many
 spellings (`GPL-3.0`, `GPL-3.0-only`, `GPL-3.0-or-later`, `GPL-3.0+`), and a missing
 variant is a rule that quietly does not cover it. Enumerate the variants you actually
 encounter, and read `ospac/data/compatibility/categories.json` for the full membership of
@@ -175,7 +175,7 @@ Editing that file gives you a policy that already matches on `license`, which si
 ## Templates
 
 `ospac policy init -t NAME` writes one of `mobile`, `desktop`, `web`, `server`, `embedded`,
-`library`, or `custom`. They differ mainly in copyleft treatment — `mobile` denies both
+`library`, or `custom`. They differ mainly in copyleft treatment: `mobile` denies both
 strong and weak copyleft, `library` and `server` are laxer.
 
 Given the `license_type` issue above, treat these as a sketch of intent to be rewritten
@@ -188,6 +188,6 @@ ospac policy validate ./policy.yaml
 ```
 
 Run this in CI on every policy change. A policy that fails to load falls back to the
-default, so a typo replaces your rules with the bundled ones — and because the fallback
+default, so a typo replaces your rules with the bundled ones, and because the fallback
 still returns plausible answers, nothing looks broken. Pair validation with the
 `using_default_policy` assertion above.

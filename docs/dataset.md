@@ -10,7 +10,7 @@ description: How the license data is shaped, how it ships with the package, and 
 ospac's decisions are only as good as its license data, so it is worth knowing what that
 data is, where it comes from, and what it does and does not claim.
 
-The short version: 729 SPDX licenses, one JSON file each, bundled inside the installed
+The short version: every license in the SPDX list, one JSON file each, bundled inside the installed
 wheel, regenerated monthly by an automated pipeline that opens a pull request for review.
 
 ## How it ships
@@ -26,7 +26,7 @@ ospac/data/
 ├── LICENSE                       # CC BY-NC-SA 4.0, applies to this directory
 ├── licenses/
 │   └── json/
-│       ├── MIT.json              # one file per license, 729 total
+│       ├── MIT.json              # one file per license
 │       ├── Apache-2.0.json
 │       └── ...
 └── compatibility/
@@ -41,14 +41,14 @@ ospac/data/
 One file per license is deliberate. Looking up a single license reads a single small file
 rather than parsing a multi-megabyte database, which is what makes CLI startup fast.
 `index.json` exists so that listing and category questions can be answered without opening
-729 files:
+every license file:
 
 ```json
 {
   "version": "1.0",
-  "generated": "2026-06-10T20:08:59.408681",
-  "spdx_list_version": "3dfd9aa",
-  "total_licenses": 729,
+  "generated": "2026-08-01T03:04:52.358635",
+  "spdx_list_version": "e4c1f27",
+  "total_licenses": 733,
   "licenses": {
     "MIT": {
       "name": "MIT License",
@@ -67,7 +67,7 @@ dataset is traceable to a specific upstream SPDX commit and a generation timesta
 ### The dataset is licensed separately from the code
 
 ospac is dual-licensed, and this trips people up. The code is Apache-2.0. The dataset in
-`ospac/data/` is **CC BY-NC-SA 4.0** — non-commercial, attribution required, share-alike.
+`ospac/data/` is **CC BY-NC-SA 4.0**: non-commercial, attribution required, share-alike.
 See [`DATA_LICENSE`](https://github.com/SemClone/ospac/blob/main/DATA_LICENSE).
 
 Installing ospac and running it inside a commercial organization to check your own
@@ -128,8 +128,8 @@ the file on disk has the extra nesting level.
       "is_fsf_libre": true,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T20:08:59.287920",
-    "spdx_list_version": "3dfd9aa"
+    "generated": "2026-08-01T03:04:52.211970",
+    "spdx_list_version": "e4c1f27"
   }
 }
 ```
@@ -139,7 +139,7 @@ the file on disk has the extra nesting level.
 | `type` | Family: `permissive`, `copyleft_weak`, `copyleft_strong`, `proprietary`, `public_domain`. Policy rules match on this via `license_type`. |
 | `properties` | What the license lets you do. |
 | `requirements` | Conditions you must satisfy. The booleans here drive `obligations`. |
-| `limitations` | What the license withholds — warranty, liability, trademark grant. |
+| `limitations` | What the license withholds: warranty, liability, trademark grant. |
 | `compatibility` | Per-linking-context rules. `category:any` means compatible with every family. |
 | `contamination_effect` | How far copyleft reaches: `none`, `file`, `library`, `project`. |
 | `obligations` | Human-readable duties, derived from `requirements`. |
@@ -150,14 +150,14 @@ the file on disk has the extra nesting level.
 > `ospac_license_database.json` with `category`, `permissions` and `conditions` fields, that
 > describes the pre-1.2.0 layout and no longer applies. The fields are now `type`,
 > `properties` and `requirements`, and the data is split per license. Two CLI formatters
-> still read the old names — see the warnings in
+> still read the old names. See the warnings in
 > [Commands]({{ site.baseurl }}/commands/#data-show).
 
 ### Compatibility is stored sparsely
 
 `compatibility/metadata.json` records `"format": "sparse"` and
-`"default_status": "unknown"`. Pairs are not enumerated — 729 licenses would mean over
-265,000 pairs. Instead, licenses are grouped into families in `categories.json`, and only
+`"default_status": "unknown"`. Pairs are not enumerated, since the full list would mean over
+250,000 pairs. Instead, licenses are grouped into families in `categories.json`, and only
 the rules *between* families are stored, in `relationships/`. A lookup resolves each
 license to its family and consults that rule.
 
@@ -167,7 +167,7 @@ to compatible. Absence of a recorded conflict is not evidence of compatibility.
 ## How it is regenerated
 
 The dataset is rebuilt from upstream SPDX by `ospac data generate`, implemented in
-`ospac/pipeline/data_generator.py`. In normal operation you never run this — CI does, and
+`ospac/pipeline/data_generator.py`. In normal operation you never run this. CI does, and
 the result reaches you as a released version.
 
 ### The monthly pipeline
@@ -188,8 +188,8 @@ be triggered manually with `workflow_dispatch`. It does this:
 5. **Open a pull request** labelled `data,automated`, with a body summarising the SPDX
    version, new license IDs, and deprecation flags changed, then enable auto-merge.
 
-So dataset changes arrive as reviewable pull requests with a diff you can read — the commit
-history shows them as `data: sync SPDX <version> — N new, M deprecated`. Deprecation
+So dataset changes arrive as reviewable pull requests with a diff you can read. The commit
+history shows them as `data: sync SPDX <version>, N new, M deprecated`. Deprecation
 flagging (step 1b) happens without an LLM, since it only copies an upstream boolean.
 
 ### Where the LLM fits, and where it does not
@@ -197,7 +197,7 @@ flagging (step 1b) happens without an LLM, since it only copies an upstream bool
 An LLM reads license texts during generation to classify a license's family, permissions and
 conditions. Providers are OpenAI, Anthropic Claude, and local Ollama
 (`ospac/pipeline/llm_providers.py`); CI uses OpenAI. This is a maintainer-time step. The
-installed tool never calls a model, and `pip install ospac` does not pull an LLM SDK — that
+installed tool never calls a model, and `pip install ospac` does not pull an LLM SDK. That
 is what the `[llm]` extra is for.
 
 Two mechanisms exist because raw LLM output was not trustworthy enough:
@@ -206,7 +206,7 @@ Two mechanisms exist because raw LLM output was not trustworthy enough:
 computed deterministically from the `requirements` and `properties` booleans, because
 LLM-written prose for these fields came back uniformly generic. `disclose_source: true`
 always produces "Provide or offer access to complete source code", for every license, with
-identical wording. So obligation text is a mechanical function of the structured fields — if
+identical wording. So obligation text is a mechanical function of the structured fields. If
 an obligation looks wrong, the underlying boolean is wrong.
 
 **Known misclassifications are overridden.** A correction table pins fields that LLMs
@@ -215,7 +215,7 @@ classified as copyleft with `same_license` and `disclose_source` set, which is s
 and would have denied Apache-2.0 across copyleft policy rules. The table also covers
 MPL-2.0 and CC0-1.0.
 
-The design assumption is that the LLM is a useful first pass over 729 license texts and not
+The design assumption is that the LLM is a useful first pass over hundreds of license texts and not
 an authority. Validation, deterministic derivation, human PR review, and the correction
 table all exist to catch it being wrong.
 
@@ -240,7 +240,7 @@ Point ospac at your own dataset with `--data-dir`, which `obligations` accepts:
 ospac obligations -l MIT -d ./data
 ```
 
-Notes on cost and correctness. `--force-reprocess` reanalyzes all 729 licenses and is the
+Notes on cost and correctness. `--force-reprocess` reanalyzes every license and is the
 expensive path; without it, generation is a delta over what already exists, and progress is
 tracked so an interrupted run resumes. `--limit` bounds a trial run. Regenerating a record
 does not preserve manual edits, so corrections belong in the correction table rather than in
@@ -253,8 +253,8 @@ the output files.
 ```bash
 $ python scripts/validate_data.py --data-dir ospac/data
 ────────────────────────────────────────────────────────────
-  Total files  : 729
-  Clean        : 728
+  Total files  : 733
+  Clean        : 732
   Warnings     : 1
   Errors       : 0
 

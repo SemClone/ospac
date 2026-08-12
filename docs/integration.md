@@ -33,7 +33,7 @@ ACTION=$(ospac evaluate -l "$LICENSES" -d mobile | jq -r '.result.action')
 [ "$ACTION" = "deny" ] && { echo "blocked"; exit 1; }
 ```
 
-Non-zero exits are reserved for real failures — an unknown license ID, an unreadable
+Non-zero exits are reserved for real failures: an unknown license ID, an unreadable
 policy, a malformed dataset.
 
 ## A CI gate that cannot pass by accident
@@ -93,14 +93,14 @@ jobs:
           ACTION=$(ospac evaluate -l GPL-3.0 -d mobile -p ./compliance-policy.yaml \
             | jq -r '.result.action')
           if [ "$ACTION" != "deny" ]; then
-            echo "::error::GPL-3.0 was not denied — policy rules are not matching"
+            echo "::error::GPL-3.0 was not denied, policy rules are not matching"
             exit 1
           fi
 ```
 
 That last step is the one people leave out. Because unmatched rules produce `allow`, a
 policy that stops matching looks identical to a clean codebase. See
-[Policies]({{ site.baseurl }}/policies/) for why rules go inert — most often a `when` clause
+[Policies]({{ site.baseurl }}/policies/) for why rules go inert. Most often a `when` clause
 naming a context field that is not populated.
 
 ### Reporting into a pull request
@@ -154,7 +154,7 @@ ospac evaluate -l "$LICENSES" -d mobile
 }
 ```
 
-Note that `approve` still carries `requirements` — permission to ship is not the same as
+Note that `approve` still carries `requirements`. Permission to ship is not the same as
 having nothing to do. Feed those into your NOTICE file.
 
 {: .warning }
@@ -169,7 +169,7 @@ having nothing to do. Feed those into your NOTICE file.
 > ```
 >
 > The contents are stable; only the order moves. Do not diff this array between runs or
-> commit it as evidence unchanged — sort it first (`jq '.result.requirements | sort'`), or
+> commit it as evidence unchanged. Sort it first (`jq '.result.requirements | sort'`), or
 > compare as a set.
 
 Install the neighbours with the extra:
@@ -196,7 +196,7 @@ check rather than guess at licence rules. The ospac-backed tools include:
 | `get_license_details` | Full dataset record |
 | `generate_legal_notices` | NOTICE file content |
 
-JSON-first output is what makes this work — the same structures documented here are what
+JSON-first output is what makes this work: the same structures documented here are what
 the agent receives.
 
 ## Docker
@@ -216,8 +216,8 @@ docker run --rm ospac evaluate -l "MIT,GPL-3.0" -d mobile -p /policy.yaml
 ```
 
 Pin the version when the answer needs to be reproducible. Dataset changes ship in patch
-releases — see [The dataset]({{ site.baseurl }}/dataset/#the-monthly-pipeline) — so
-`ospac==1.2.10` fixes both the code and the licence data behind a decision, which matters if
+releases (see [The dataset]({{ site.baseurl }}/dataset/#the-monthly-pipeline)), so
+`ospac==1.3.0` fixes both the code and the licence data behind a decision, which matters if
 you are keeping compliance evidence.
 
 ## Pre-commit
@@ -260,6 +260,6 @@ case "$(echo "$RESULT" | jq -r '.result.action')" in
   deny)            echo "blocked"; exit 1 ;;
   flag_for_review) echo "needs review" ;;
   approve)         echo "ok" ;;
-  allow)           echo "no rule matched — check the policy covers $DIST"; exit 1 ;;
+  allow)           echo "no rule matched, check the policy covers $DIST"; exit 1 ;;
 esac
 ```

@@ -58,7 +58,7 @@ jobs:
           body: |
             ## Data dump
 
-            `ospac-data-v${{ steps.version.outputs.new }}.tar.gz` — pre-built OSPAC license dataset (SPDX + LLM analysis). Extract into your project's `ospac/data/` directory to use without running the Python pipeline.
+            `ospac-data-v${{ steps.version.outputs.new }}.tar.gz`: pre-built OSPAC license dataset (SPDX + LLM analysis). Extract into your project's `ospac/data/` directory to use without running the Python pipeline.
 
             ## Install
 

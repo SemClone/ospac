@@ -1,5 +1,5 @@
 title: ospac
-description: Open Source Policy as Code — license compliance policy engine
+description: Open Source Policy as Code, a license compliance policy engine
 url: https://semclone.github.io
 baseurl: /ospac
 
@@ -20,7 +20,7 @@ search:
 heading_anchors: true
 
 # Several pages flag known issues (a fail-open in the policy templates, two stale
-# formatters). just-the-docs only styles a callout if it is declared here — otherwise
+# formatters). just-the-docs only styles a callout if it is declared here, otherwise
 # `{: .warning }` renders as an ordinary blockquote and the warning loses its emphasis.
 callouts_level: quiet
 callouts:

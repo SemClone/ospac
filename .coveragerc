@@ -1,5 +1,5 @@
 [run]
-source = osslili
+source = ospac
 omit =
     */tests/*
     */test_*.py
