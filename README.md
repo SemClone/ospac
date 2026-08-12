@@ -1,179 +1,165 @@
 # OSPAC - Open Source Policy as Code
 
-[![Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Version](https://img.shields.io/badge/version-1.2.0-green.svg)](https://github.com/SemClone/ospac/releases)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![PyPI version](https://img.shields.io/pypi/v/ospac.svg)](https://pypi.org/project/ospac/)
 
-OSPAC (Open Source Policy as Code) is a comprehensive policy engine for automated OSS license compliance. It provides a declarative, data-driven approach where all compliance logic, rules, and decisions are defined in versionable policy files rather than hardcoded in application logic.
+OSPAC answers a narrow question: given a set of licenses and something you intend to do with them, is that allowed? It reads the licenses, applies a policy you keep in Git, and returns an action — approve, deny, or flag for review — along with the obligations you take on if you proceed.
 
-**What's New in v1.2.0:**
-- **JSON-First Architecture** - Migrated from YAML to JSON for 50% faster parsing and better MCP integration
-- **Complete SPDX Coverage** - All 712 SPDX licenses with comprehensive metadata included out-of-the-box
-- **Reduced Package Size** - Dataset optimized from 5.6MB to 2.8MB (50% reduction) while maintaining complete functionality
-- **Enhanced Policy Evaluation** - Complete obligation tracking with remediation data and requirements for all license types
-- **Build Target Templates** - Dedicated policy templates for mobile, desktop, web, server, embedded, and library projects
-- **100% Test Coverage** - Comprehensive validation across all datasets, CLI commands, and library API
-- **Improved Compatibility Checking** - Fixed critical issues like GPL-2.0 + Apache-2.0 incompatibility detection
-- **MCP Ready** - Optimized JSON output for seamless integration with Model Context Protocol systems
+The answer lives in a policy file, not in OSPAC's code. Compliance rules differ between a mobile app and an internal service, and they change as legal guidance changes, so OSPAC treats those rules as data: versioned, reviewable in a pull request, and testable.
 
-## Key Features
+It ships with a complete SPDX license dataset — 729 licenses — so it works offline the moment it is installed. Nothing needs to be generated or downloaded first.
 
-- **Policy as Code** - All compliance logic is defined in YAML/JSON policy files
-- **JSON Dataset** - High-performance JSON format with schema validation (v1.2.0)
-- **SPDX Integration** - Complete support for 712 SPDX license identifiers
-- **Compatibility Engine** - Complex license compatibility evaluation with detailed matrices
-- **Obligation Tracking** - Automated compliance checklist generation with comprehensive requirements
-- **MCP Integration** - Optimized for Model Context Protocol and external system integration
-- **Build Target Policies** - Dedicated templates for mobile, desktop, web, server, embedded, and library projects
-- **CLI & API** - Both command-line and programmatic interfaces with JSON-first output
+## Features
 
-## Core Philosophy
-
-Everything in OSPAC is policy-defined, not code-defined:
-
-- **No hardcoded business logic** - All rules are data-driven
-- **Versionable** - Policies in Git, reviewable via PR
-- **Testable** - Unit test your policies
-- **Composable** - Build complex policies from simple rules
-- **Auditable** - Clear lineage of decisions
+- **Policy as Code** — compliance rules in YAML or JSON, not hardcoded
+- **Complete SPDX dataset** — 729 licenses bundled in the wheel, no setup step
+- **Distribution-aware** — the same licenses can pass for `internal` and fail for `mobile`
+- **Compatibility engine** — per-linking-context rules for static and dynamic linking
+- **Obligation tracking** — derived deterministically from structured license fields
+- **JSON-first output** — every command defaults to JSON for scripting and MCP
+- **Offline** — evaluation makes no network calls and consults no model
 
 ## Installation
 
 ```bash
-# Latest stable release (v1.2.0)
 pip install ospac
 ```
 
-## How It Works
-
-OSPAC includes a pre-built JSON dataset with instant functionality:
-
-1. **Ready-to-Use Dataset** - 712 SPDX licenses in optimized JSON format (included with installation)
-2. **Runtime Engine** - Evaluates licenses against policies using comprehensive metadata
-3. **Optional Data Pipeline** - Advanced users can regenerate data with custom analysis
-
-### Pre-Built Dataset
-
-**No setup required!** OSPAC ships with:
-- 712 complete SPDX license definitions in JSON format
-- Comprehensive compatibility matrices for static/dynamic linking
-- Complete obligation tracking with license-specific requirements
-- Structured contamination effects and compatibility notes
-- Schema-validated data integrity
-
-### Advanced Data Generation (Optional)
-
-For custom analysis, OSPAC includes a pipeline that:
-- Downloads the latest SPDX license dataset
-- Optionally uses LLM (Ollama + llama3) for enhanced analysis via StrandsAgents SDK
-- Generates comprehensive policy files with custom requirements
-
-## Quick Start
-
-### Instant Usage (No Setup Required)
-
-With v1.2.0, OSPAC works immediately after installation:
+Requires Python 3.10 or later. The license dataset is included.
 
 ```bash
-# Get comprehensive license obligations
-ospac obligations -l "GPL-3.0,MIT" -f json
+pip install "ospac[semcl]"   # osslili + upmex, for scanning real projects
+pip install "ospac[llm]"     # LLM providers, only needed to regenerate the dataset
+pip install "ospac[all]"     # both
+```
 
-# Check license compatibility
-ospac check "GPL-2.0" "Apache-2.0"  # Correctly identifies as incompatible
+## Quick start
 
-# Evaluate licenses for mobile distribution
-ospac evaluate -l "GPL-3.0" -d mobile  # Correctly denies GPL for mobile apps
+```bash
+# Can these two licenses be combined?
+ospac check GPL-2.0 Apache-2.0
+# → incompatible
 
-# Create mobile-specific policy
+# Is this set acceptable for how we ship?
+ospac evaluate -l "GPL-3.0,MIT" -d commercial -o text
+# → deny
+
+# What do we owe if we ship MIT code?
+ospac obligations -l MIT -f checklist
+# → ☐ Retain copyright notices
+#   ☐ Include license text
+
+# Start a policy of our own
 ospac policy init --template mobile --output mobile_policy.yaml
 ```
 
-## Command Examples
+The distribution type is what makes the same input produce different answers — `-d mobile` is stricter than `-d internal` because the policy says so, not because OSPAC hard-codes it.
 
-### Policy Evaluation
+## How it works
+
+OSPAC has two halves that are worth keeping separate in your head.
+
+**The tool you install** is offline and deterministic. It reads the bundled dataset and your policy files, and returns a decision. No network, no model.
+
+**The dataset behind it** is regenerated from upstream SPDX by an automated pipeline that runs monthly, analyses new license texts with an LLM, validates the result, and opens a pull request for human review. Obligations are derived mechanically from structured boolean fields rather than written by the model, and a correction table pins fields that LLMs consistently got wrong. Dataset updates reach you as ordinary patch releases.
+
+You never run the generation pipeline to use OSPAC. See [The dataset](https://semclone.github.io/ospac/dataset/) for how it works and how to run it yourself.
+
+### Two things worth knowing early
+
+**There is always a policy in play.** With no `--policy-dir`, OSPAC loads a bundled default enterprise policy and says so on stderr. That default is opinionated — it denies GPL for commercial distribution and flags LGPL static linking for review. Treat it as a starting point to copy, not as neutral ground.
+
+**Exit codes do not reflect the decision.** `ospac evaluate` and `ospac check` exit 0 even when the answer is deny. Parse the JSON in CI:
 
 ```bash
-# Evaluate licenses against policies (JSON output by default)
-ospac evaluate -l "GPL-3.0,MIT" -d commercial
-
-# Check license compatibility
-ospac check GPL-3.0 MIT -c static_linking
-
-# Get license obligations with complete metadata
-ospac obligations -l "Apache-2.0,MIT" -f json
-
-# Create policies for specific build targets
-ospac policy init --template mobile --output mobile_policy.yaml
-ospac policy init --template desktop --output desktop_policy.yaml
-
-# Validate policy syntax
-ospac policy validate ./my_policy.yaml
-
-# Evaluate for specific distribution types
-ospac evaluate -l "GPL-3.0" -d mobile    # Correctly denies GPL for mobile
-ospac evaluate -l "MIT" -d embedded      # Allows permissive licenses
+ACTION=$(ospac evaluate -l "$LICENSES" -d mobile | jq -r '.result.action')
+[ "$ACTION" = "deny" ] && exit 1
 ```
 
+See [Integration](https://semclone.github.io/ospac/integration/) for a CI gate that cannot pass by accident.
 
-### Data Commands (Advanced Usage)
+## Python API
 
-**Note:** v1.2.0 includes a complete pre-built dataset. Data generation is only needed for custom analysis.
+```python
+from ospac import PolicyRuntime
+from ospac.models.compliance import ActionType
+
+runtime = PolicyRuntime("./compliance-policy.yaml")
+assert not runtime._using_default, "policy failed to load"
+
+licenses = ["MIT", "Apache-2.0", "GPL-3.0"]
+result = runtime.evaluate({
+    "licenses": licenses,
+    "licenses_found": licenses,
+    "distribution_type": "mobile",
+    "distribution": "mobile",
+    "context": "general",
+    "linking_type": None,
+})
+
+if result.action == ActionType.DENY:
+    raise SystemExit(result.to_dict()["remediation"])
+```
+
+Full reference at [Python API](https://semclone.github.io/ospac/api/).
+
+## Documentation
+
+Full documentation is at **[semclone.github.io/ospac](https://semclone.github.io/ospac/)**.
+
+- [Overview](https://semclone.github.io/ospac/) — what OSPAC does, installing, first run
+- [Commands](https://semclone.github.io/ospac/commands/) — every CLI command and flag, with real output
+- [Policies](https://semclone.github.io/ospac/policies/) — rule schema, how matching works, templates
+- [The dataset](https://semclone.github.io/ospac/dataset/) — how license data is shaped, shipped, and regenerated
+- [Python API](https://semclone.github.io/ospac/api/) — using OSPAC as a library
+- [Integration](https://semclone.github.io/ospac/integration/) — CI, the SEMCL.ONE toolchain, MCP
+
+## SEMCL.ONE toolchain
+
+OSPAC evaluates licenses but does not discover them. Finding out what is in a project is the job of the neighbouring tools:
+
+| Tool | Role |
+|:--|:--|
+| [osslili](https://github.com/SemClone/osslili) | Detects licenses and copyright in source trees |
+| [upmex](https://github.com/SemClone/upmex) | Extracts declared metadata from package files |
+| **ospac** | Decides whether the result is acceptable under policy |
+
+They compose over JSON on the command line:
 
 ```bash
-# Show license information (works out of the box)
-ospac data show MIT
-ospac data show GPL-3.0
+LICENSES=$(upmex extract gson-2.10.1.jar \
+  | jq -r '[.licensing.declared_licenses[].spdx_id] | join(",")')
 
-# Optional: Regenerate data with latest SPDX
-ospac data download-spdx
-ospac data generate --output-dir ./data
-
-# Advanced: Generate with LLM analysis (requires Ollama with llama3)
-ospac data generate --use-llm --output-dir ./data
-
-# Validate data integrity
-ospac data validate --data-dir ./data
+ospac evaluate -l "$LICENSES" -d mobile
 ```
 
 ## Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+See [CONTRIBUTING.md](CONTRIBUTING.md). Documentation sources live in `docs/` and are published by GitHub Pages; every page has an "Edit this page on GitHub" link.
 
 ## Support
 
-For support, please:
-- Check the [documentation](https://github.com/SemClone/ospac/tree/main/docs)
-- File an issue on [GitHub](https://github.com/SemClone/ospac/issues)
-- See [SUPPORT.md](SUPPORT.md) for more options
+- [Documentation](https://semclone.github.io/ospac/)
+- [GitHub issues](https://github.com/SemClone/ospac/issues)
+- [SUPPORT.md](SUPPORT.md) for other options
 
 ## License
 
-This project uses dual licensing:
+This project is dual-licensed, and the split matters.
 
-- **Software Code**: Apache-2.0 - See [LICENSE](LICENSE) for details
-- **License Database**: CC BY-NC-SA 4.0 - See [DATA_LICENSE](DATA_LICENSE) for details
+**Software code** — Apache-2.0. All source in this repository (Python, scripts, configuration). Commercial use, modification, and distribution are permitted. See [LICENSE](LICENSE).
 
-### Software License (Apache-2.0)
+**License database** — CC BY-NC-SA 4.0. The dataset in `ospac/data/` is Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International: non-commercial use only, attribution required, derivatives shared alike. See [DATA_LICENSE](DATA_LICENSE).
 
-All source code in this repository (Python files, scripts, configuration) is licensed under the Apache License, Version 2.0. This allows for commercial use, modification, and distribution of the software.
-
-### Dataset License (CC BY-NC-SA 4.0)
-
-The OSPAC license database located in `ospac/data/` is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. This means:
-
-- **Non-Commercial Use Only**: The dataset cannot be used for commercial purposes
-- **Attribution Required**: You must give appropriate credit when using the dataset
-- **Share-Alike**: Any derivatives must be shared under the same CC BY-NC-SA 4.0 license
-
-For academic research, open-source projects, or internal non-commercial use, you are free to use the dataset according to the CC BY-NC-SA 4.0 terms.
+Installing OSPAC and running it inside a commercial organization to check your own compliance is ordinary internal use. Redistributing the dataset, or building a commercial product on top of it, is what the NonCommercial term restricts. If you are unsure which side of that line you are on, that is a question for your counsel.
 
 ## Authors
 
-See [AUTHORS.md](AUTHORS.md) for a list of contributors.
+See [AUTHORS.md](AUTHORS.md).
 
 ## Acknowledgments
 
 - SPDX Project for license standardization
 - SEMCL.ONE ecosystem for integration capabilities
-- Open Chain Project for compliance best practices
-
+- OpenChain Project for compliance best practices
