@@ -2,12 +2,12 @@
   "license": {
     "id": "LPPL-1.3a",
     "name": "LaTeX Project Public License v1.3a",
-    "type": "permissive",
+    "type": "copyleft_weak",
     "spdx_id": "LPPL-1.3a",
     "properties": {
       "commercial_use": true,
       "distribution": true,
-      "modification": true,
+      "modification": false,
       "patent_grant": false,
       "private_use": true
     },
@@ -21,41 +21,49 @@
       "network_use_disclosure": false
     },
     "limitations": {
-      "liability": false,
-      "warranty": false,
+      "liability": true,
+      "warranty": true,
       "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive",
+          "category:copyleft_weak"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:strong_copyleft"
+        ],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive",
+          "category:copyleft_weak"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:strong_copyleft"
+        ],
         "requires_review": []
       },
-      "contamination_effect": "none",
-      "notes": "Permissive license with minimal restrictions"
+      "contamination_effect": "module",
+      "notes": "Only the modified files/modules must remain under the LPPL-1.3a license."
     },
     "obligations": [
       "Retain copyright notices",
-      "Include license text"
+      "Include license text",
+      "No modification permitted"
     ],
     "key_requirements": [
-      "Attribution required"
+      "Attribution required",
+      "Modifications to covered files must stay open-source"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": true,
       "is_deprecated": false
     },
-    "generated": "2026-08-01T03:04:52.211970",
+    "generated": "2026-08-12T09:45:09.627449",
     "spdx_list_version": "e4c1f27"
   }
 }

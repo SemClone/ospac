@@ -1,12 +1,12 @@
 {
   "version": "1.0",
-  "generated": "2026-08-01T03:04:52.358635",
+  "generated": "2026-08-12T09:45:09.769222",
   "spdx_list_version": "e4c1f27",
   "total_licenses": 733,
   "licenses": {
     "0BSD": {
       "name": "BSD Zero Clause License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/0BSD.json",
       "is_deprecated": false,
       "obligations_count": 2
@@ -44,21 +44,21 @@
       "category": "permissive",
       "file": "licenses/json/AFL-1.2.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "AFL-2.0": {
       "name": "Academic Free License v2.0",
       "category": "permissive",
       "file": "licenses/json/AFL-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "AFL-2.1": {
       "name": "Academic Free License v2.1",
       "category": "permissive",
       "file": "licenses/json/AFL-2.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "AFL-3.0": {
       "name": "Academic Free License v3.0",
@@ -72,7 +72,7 @@
       "category": "copyleft_strong",
       "file": "licenses/json/AGPL-1.0-only.json",
       "is_deprecated": false,
-      "obligations_count": 5
+      "obligations_count": 6
     },
     "AGPL-1.0-or-later": {
       "name": "Affero General Public License v1.0 or later",
@@ -93,21 +93,21 @@
       "category": "copyleft_strong",
       "file": "licenses/json/AGPL-3.0-only.json",
       "is_deprecated": false,
-      "obligations_count": 5
+      "obligations_count": 6
     },
     "AGPL-3.0-or-later": {
       "name": "GNU Affero General Public License v3.0 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/AGPL-3.0-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 5
+      "obligations_count": 6
     },
     "AGPL-3.0": {
       "name": "GNU Affero General Public License v3.0",
       "category": "copyleft_strong",
       "file": "licenses/json/AGPL-3.0.json",
       "is_deprecated": true,
-      "obligations_count": 5
+      "obligations_count": 6
     },
     "ALGLIB-Documentation": {
       "name": "ALGLIB Documentation License",
@@ -153,14 +153,14 @@
     },
     "ANTLR-PD-fallback": {
       "name": "ANTLR Software Rights Notice with license fallback",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/ANTLR-PD-fallback.json",
       "is_deprecated": false,
       "obligations_count": 2
     },
     "ANTLR-PD": {
       "name": "ANTLR Software Rights Notice",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/ANTLR-PD.json",
       "is_deprecated": false,
       "obligations_count": 2
@@ -170,7 +170,7 @@
       "category": "permissive",
       "file": "licenses/json/APAFML.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "APL-1.0": {
       "name": "Adaptive Public License 1.0",
@@ -184,14 +184,14 @@
       "category": "permissive",
       "file": "licenses/json/APSL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "APSL-1.1": {
       "name": "Apple Public Source License 1.1",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/APSL-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "APSL-1.2": {
       "name": "Apple Public Source License 1.2",
@@ -202,10 +202,10 @@
     },
     "APSL-2.0": {
       "name": "Apple Public Source License 2.0",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/APSL-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "ASWF-Digital-Assets-1.0": {
       "name": "ASWF Digital Assets License version 1.0",
@@ -219,7 +219,7 @@
       "category": "permissive",
       "file": "licenses/json/ASWF-Digital-Assets-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Abstyles": {
       "name": "Abstyles License",
@@ -233,14 +233,14 @@
       "category": "permissive",
       "file": "licenses/json/AdaCore-doc.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Adobe-2006": {
       "name": "Adobe Systems Incorporated Source Code License Agreement",
       "category": "permissive",
       "file": "licenses/json/Adobe-2006.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "Adobe-Display-PostScript": {
       "name": "Adobe Display PostScript License",
@@ -251,14 +251,14 @@
     },
     "Adobe-Glyph": {
       "name": "Adobe Glyph List License",
-      "category": "permissive",
+      "category": "no_derivatives",
       "file": "licenses/json/Adobe-Glyph.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Adobe-Utopia": {
       "name": "Adobe Utopia Font License",
-      "category": "permissive",
+      "category": "no_derivatives",
       "file": "licenses/json/Adobe-Utopia.json",
       "is_deprecated": false,
       "obligations_count": 2
@@ -275,7 +275,7 @@
       "category": "permissive",
       "file": "licenses/json/Afmparse.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Aladdin": {
       "name": "Aladdin Free Public License",
@@ -317,42 +317,42 @@
       "category": "permissive",
       "file": "licenses/json/Arphic-1999.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Artistic-1.0-Perl": {
       "name": "Artistic License 1.0 (Perl)",
       "category": "permissive",
       "file": "licenses/json/Artistic-1.0-Perl.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Artistic-1.0-cl8": {
       "name": "Artistic License 1.0 w/clause 8",
       "category": "permissive",
       "file": "licenses/json/Artistic-1.0-cl8.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Artistic-1.0": {
       "name": "Artistic License 1.0",
       "category": "permissive",
       "file": "licenses/json/Artistic-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Artistic-2.0": {
       "name": "Artistic License 2.0",
       "category": "permissive",
       "file": "licenses/json/Artistic-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Artistic-dist": {
       "name": "Artistic License 1.0 (dist)",
       "category": "permissive",
       "file": "licenses/json/Artistic-dist.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Aspell-RU": {
       "name": "Aspell Russian License",
@@ -363,10 +363,10 @@
     },
     "BOLA-1.1": {
       "name": "Buena Onda License Agreement v1.1",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/BOLA-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "BSD-1-Clause": {
       "name": "BSD 1-Clause License",
@@ -464,7 +464,7 @@
       "category": "permissive",
       "file": "licenses/json/BSD-3-Clause-Modification.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "BSD-3-Clause-No-Military-License": {
       "name": "BSD 3-Clause No Military License",
@@ -597,7 +597,7 @@
       "category": "permissive",
       "file": "licenses/json/BSD-Mark-Modifications.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "BSD-Protection": {
       "name": "BSD Protection License",
@@ -625,7 +625,7 @@
       "category": "permissive",
       "file": "licenses/json/BSD-Systemics-W3Works.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "BSD-Systemics": {
       "name": "Systemics BSD variant license",
@@ -660,7 +660,7 @@
       "category": "permissive",
       "file": "licenses/json/Bahyph.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Barr": {
       "name": "Barr License",
@@ -674,21 +674,21 @@
       "category": "permissive",
       "file": "licenses/json/Beerware.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "BitTorrent-1.0": {
       "name": "BitTorrent Open Source License v1.0",
       "category": "permissive",
       "file": "licenses/json/BitTorrent-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "BitTorrent-1.1": {
       "name": "BitTorrent Open Source License v1.1",
       "category": "permissive",
       "file": "licenses/json/BitTorrent-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Bitstream-Charter": {
       "name": "Bitstream Charter Font License",
@@ -702,35 +702,35 @@
       "category": "permissive",
       "file": "licenses/json/Bitstream-Vera.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "BlueOak-1.0.0": {
       "name": "Blue Oak Model License 1.0.0",
       "category": "permissive",
       "file": "licenses/json/BlueOak-1.0.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "Boehm-GC-without-fee": {
       "name": "Boehm-Demers-Weiser GC License (without fee)",
       "category": "permissive",
       "file": "licenses/json/Boehm-GC-without-fee.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Boehm-GC": {
       "name": "Boehm-Demers-Weiser GC License",
       "category": "permissive",
       "file": "licenses/json/Boehm-GC.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Borceux": {
       "name": "Borceux license",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/Borceux.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "Brian-Gladman-2-Clause": {
       "name": "Brian Gladman 2-Clause License",
@@ -870,7 +870,7 @@
       "category": "permissive",
       "file": "licenses/json/CC-BY-3.0-US.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "CC-BY-3.0": {
       "name": "Creative Commons Attribution 3.0 Unported",
@@ -996,14 +996,14 @@
       "category": "noncommercial",
       "file": "licenses/json/CC-BY-NC-SA-2.0-DE.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 6
     },
     "CC-BY-NC-SA-2.0-FR": {
       "name": "Creative Commons Attribution-NonCommercial-ShareAlike 2.0 France",
       "category": "noncommercial",
       "file": "licenses/json/CC-BY-NC-SA-2.0-FR.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "CC-BY-NC-SA-2.0-UK": {
       "name": "Creative Commons Attribution Non Commercial Share Alike 2.0 England and Wales",
@@ -1031,7 +1031,7 @@
       "category": "noncommercial",
       "file": "licenses/json/CC-BY-NC-SA-3.0-DE.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "CC-BY-NC-SA-3.0-IGO": {
       "name": "Creative Commons Attribution Non Commercial Share Alike 3.0 IGO",
@@ -1052,7 +1052,7 @@
       "category": "noncommercial",
       "file": "licenses/json/CC-BY-NC-SA-4.0.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 6
     },
     "CC-BY-ND-1.0": {
       "name": "Creative Commons Attribution No Derivatives 1.0 Generic",
@@ -1101,7 +1101,7 @@
       "category": "copyleft_weak",
       "file": "licenses/json/CC-BY-SA-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 3
+      "obligations_count": 5
     },
     "CC-BY-SA-2.0-UK": {
       "name": "Creative Commons Attribution Share Alike 2.0 England and Wales",
@@ -1115,70 +1115,70 @@
       "category": "copyleft_weak",
       "file": "licenses/json/CC-BY-SA-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 3
+      "obligations_count": 5
     },
     "CC-BY-SA-2.1-JP": {
       "name": "Creative Commons Attribution Share Alike 2.1 Japan",
       "category": "copyleft_weak",
       "file": "licenses/json/CC-BY-SA-2.1-JP.json",
       "is_deprecated": false,
-      "obligations_count": 3
+      "obligations_count": 5
     },
     "CC-BY-SA-2.5": {
       "name": "Creative Commons Attribution Share Alike 2.5 Generic",
-      "category": "copyleft_weak",
+      "category": "copyleft_strong",
       "file": "licenses/json/CC-BY-SA-2.5.json",
       "is_deprecated": false,
-      "obligations_count": 3
+      "obligations_count": 5
     },
     "CC-BY-SA-3.0-AT": {
       "name": "Creative Commons Attribution Share Alike 3.0 Austria",
-      "category": "copyleft_weak",
+      "category": "copyleft_strong",
       "file": "licenses/json/CC-BY-SA-3.0-AT.json",
       "is_deprecated": false,
-      "obligations_count": 3
+      "obligations_count": 5
     },
     "CC-BY-SA-3.0-DE": {
       "name": "Creative Commons Attribution Share Alike 3.0 Germany",
-      "category": "copyleft_weak",
+      "category": "copyleft_strong",
       "file": "licenses/json/CC-BY-SA-3.0-DE.json",
       "is_deprecated": false,
-      "obligations_count": 3
+      "obligations_count": 5
     },
     "CC-BY-SA-3.0-IGO": {
       "name": "Creative Commons Attribution-ShareAlike 3.0 IGO",
       "category": "copyleft_weak",
       "file": "licenses/json/CC-BY-SA-3.0-IGO.json",
       "is_deprecated": false,
-      "obligations_count": 3
+      "obligations_count": 4
     },
     "CC-BY-SA-3.0": {
       "name": "Creative Commons Attribution Share Alike 3.0 Unported",
-      "category": "copyleft_weak",
+      "category": "copyleft_strong",
       "file": "licenses/json/CC-BY-SA-3.0.json",
       "is_deprecated": false,
-      "obligations_count": 3
+      "obligations_count": 5
     },
     "CC-BY-SA-4.0": {
       "name": "Creative Commons Attribution Share Alike 4.0 International",
-      "category": "copyleft_weak",
+      "category": "copyleft_strong",
       "file": "licenses/json/CC-BY-SA-4.0.json",
       "is_deprecated": false,
-      "obligations_count": 3
+      "obligations_count": 5
     },
     "CC-PDDC": {
       "name": "Creative Commons Public Domain Dedication and Certification",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/CC-PDDC.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "CC-PDM-1.0": {
       "name": "Creative    Commons Public Domain Mark 1.0 Universal",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/CC-PDM-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "CC-SA-1.0": {
       "name": "Creative Commons Share Alike 1.0 Generic",
@@ -1206,14 +1206,14 @@
       "category": "copyleft_weak",
       "file": "licenses/json/CDDL-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "CDL-1.0": {
       "name": "Common Documentation License 1.0",
       "category": "permissive",
       "file": "licenses/json/CDL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "CDLA-Permissive-1.0": {
       "name": "Community Data License Agreement Permissive 1.0",
@@ -1227,7 +1227,7 @@
       "category": "permissive",
       "file": "licenses/json/CDLA-Permissive-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "CDLA-Sharing-1.0": {
       "name": "Community Data License Agreement Sharing 1.0",
@@ -1238,80 +1238,80 @@
     },
     "CECILL-1.0": {
       "name": "CeCILL Free Software License Agreement v1.0",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/CECILL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "CECILL-1.1": {
       "name": "CeCILL Free Software License Agreement v1.1",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/CECILL-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "CECILL-2.0": {
       "name": "CeCILL Free Software License Agreement v2.0",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/CECILL-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "CECILL-2.1": {
       "name": "CeCILL Free Software License Agreement v2.1",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/CECILL-2.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "CECILL-B": {
       "name": "CeCILL-B Free Software License Agreement",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/CECILL-B.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "CECILL-C": {
       "name": "CeCILL-C Free Software License Agreement",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/CECILL-C.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "CERN-OHL-1.1": {
       "name": "CERN Open Hardware Licence v1.1",
       "category": "permissive",
       "file": "licenses/json/CERN-OHL-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "CERN-OHL-1.2": {
       "name": "CERN Open Hardware Licence v1.2",
       "category": "permissive",
       "file": "licenses/json/CERN-OHL-1.2.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "CERN-OHL-P-2.0": {
       "name": "CERN Open Hardware Licence Version 2 - Permissive",
       "category": "permissive",
       "file": "licenses/json/CERN-OHL-P-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "CERN-OHL-S-2.0": {
       "name": "CERN Open Hardware Licence Version 2 - Strongly Reciprocal",
       "category": "copyleft_strong",
       "file": "licenses/json/CERN-OHL-S-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "CERN-OHL-W-2.0": {
       "name": "CERN Open Hardware Licence Version 2 - Weakly Reciprocal",
       "category": "copyleft_weak",
       "file": "licenses/json/CERN-OHL-W-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "CFITSIO": {
       "name": "CFITSIO License",
@@ -1339,14 +1339,14 @@
       "category": "permissive",
       "file": "licenses/json/CNRI-Jython.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "CNRI-Python-GPL-Compatible": {
       "name": "CNRI Python Open Source GPL Compatible License Agreement",
-      "category": "copyleft_strong",
+      "category": "permissive",
       "file": "licenses/json/CNRI-Python-GPL-Compatible.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 3
     },
     "CNRI-Python": {
       "name": "CNRI Python License",
@@ -1364,10 +1364,10 @@
     },
     "CPAL-1.0": {
       "name": "Common Public Attribution License 1.0",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/CPAL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "CPL-1.0": {
       "name": "Common Public License 1.0",
@@ -1381,7 +1381,7 @@
       "category": "permissive",
       "file": "licenses/json/CPOL-1.02.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "CUA-OPL-1.0": {
       "name": "CUA Office Public License v1.0",
@@ -1409,14 +1409,14 @@
       "category": "permissive",
       "file": "licenses/json/Catharon.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "ClArtistic": {
       "name": "Clarified Artistic License",
       "category": "permissive",
       "file": "licenses/json/ClArtistic.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Clips": {
       "name": "Clips License",
@@ -1437,7 +1437,7 @@
       "category": "permissive",
       "file": "licenses/json/Condor-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "Cornell-Lossless-JPEG": {
       "name": "Cornell Lossless JPEG License",
@@ -1458,35 +1458,35 @@
       "category": "permissive",
       "file": "licenses/json/Crossword.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "CryptoSwift": {
       "name": "CryptoSwift License",
       "category": "permissive",
       "file": "licenses/json/CryptoSwift.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "CrystalStacker": {
       "name": "CrystalStacker License",
       "category": "permissive",
       "file": "licenses/json/CrystalStacker.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "Cube": {
       "name": "Cube License",
       "category": "permissive",
       "file": "licenses/json/Cube.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "D-FSL-1.0": {
       "name": "Deutsche Freie Software Lizenz",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/D-FSL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "DEC-3-Clause": {
       "name": "DEC 3-Clause License",
@@ -1500,14 +1500,14 @@
       "category": "permissive",
       "file": "licenses/json/DL-DE-BY-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "DL-DE-ZERO-2.0": {
       "name": "Data licence Germany \u2013 zero \u2013 version 2.0",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/DL-DE-ZERO-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "DOC": {
       "name": "DOC License",
@@ -1542,14 +1542,14 @@
       "category": "permissive",
       "file": "licenses/json/DocBook-DTD.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "DocBook-Schema": {
       "name": "DocBook Schema License",
       "category": "permissive",
       "file": "licenses/json/DocBook-Schema.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "DocBook-Stylesheet": {
       "name": "DocBook Stylesheet License",
@@ -1567,17 +1567,17 @@
     },
     "Dotseqn": {
       "name": "Dotseqn License",
-      "category": "permissive",
+      "category": "no_derivatives",
       "file": "licenses/json/Dotseqn.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "ECL-1.0": {
       "name": "Educational Community License v1.0",
       "category": "permissive",
       "file": "licenses/json/ECL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "ECL-2.0": {
       "name": "Educational Community License v2.0",
@@ -1588,10 +1588,10 @@
     },
     "EFL-1.0": {
       "name": "Eiffel Forum License v1.0",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/EFL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "EFL-2.0": {
       "name": "Eiffel Forum License v2.0",
@@ -1605,7 +1605,7 @@
       "category": "permissive",
       "file": "licenses/json/EPICS.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "EPL-1.0": {
       "name": "Eclipse Public License 1.0",
@@ -1619,7 +1619,7 @@
       "category": "copyleft_weak",
       "file": "licenses/json/EPL-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "ESA-PL-permissive-2.4": {
       "name": "European Space Agency Public License \u2013 v2.4 \u2013 Permissive (Type 3)",
@@ -1633,14 +1633,14 @@
       "category": "copyleft_strong",
       "file": "licenses/json/ESA-PL-strong-copyleft-2.4.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "ESA-PL-weak-copyleft-2.4": {
       "name": "European Space Agency Public License \u2013 v2.4 \u2013 Weak Copyleft (Type 2)",
       "category": "copyleft_weak",
       "file": "licenses/json/ESA-PL-weak-copyleft-2.4.json",
       "is_deprecated": false,
-      "obligations_count": 3
+      "obligations_count": 4
     },
     "EUDatagrid": {
       "name": "EU DataGrid Software License",
@@ -1651,31 +1651,31 @@
     },
     "EUPL-1.0": {
       "name": "European Union Public License 1.0",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/EUPL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "EUPL-1.1": {
       "name": "European Union Public License 1.1",
       "category": "copyleft_strong",
       "file": "licenses/json/EUPL-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "EUPL-1.2": {
       "name": "European Union Public License 1.2",
       "category": "copyleft_strong",
       "file": "licenses/json/EUPL-1.2.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "Elastic-2.0": {
       "name": "Elastic License 2.0",
       "category": "source_available",
       "file": "licenses/json/Elastic-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Entessa": {
       "name": "Entessa Public License v1.0",
@@ -1696,7 +1696,7 @@
       "category": "permissive",
       "file": "licenses/json/Eurosym.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "FBM": {
       "name": "Fuzzy Bitmap License",
@@ -1710,7 +1710,7 @@
       "category": "permissive",
       "file": "licenses/json/FDK-AAC.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "FSFAP-no-warranty-disclaimer": {
       "name": "FSF All Permissive License (without Warranty)",
@@ -1721,10 +1721,10 @@
     },
     "FSFAP": {
       "name": "FSF All Permissive License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/FSFAP.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "FSFUL": {
       "name": "FSF Unlimited License",
@@ -1735,17 +1735,17 @@
     },
     "FSFULLR": {
       "name": "FSF Unlimited License (with License Retention)",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/FSFULLR.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "FSFULLRSD": {
       "name": "FSF Unlimited License (with License Retention and Short Disclaimer)",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/FSFULLRSD.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "FSFULLRWD": {
       "name": "FSF Unlimited License (With License Retention and Warranty Disclaimer)",
@@ -1756,10 +1756,10 @@
     },
     "FSL-1.1-ALv2": {
       "name": "Functional Source License, Version 1.1, ALv2 Future License",
-      "category": "permissive",
+      "category": "noncommercial",
       "file": "licenses/json/FSL-1.1-ALv2.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "FSL-1.1-MIT": {
       "name": "Functional Source License, Version 1.1, MIT Future License",
@@ -1773,7 +1773,7 @@
       "category": "permissive",
       "file": "licenses/json/FTL.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Fair": {
       "name": "Fair License",
@@ -1787,14 +1787,14 @@
       "category": "permissive",
       "file": "licenses/json/Ferguson-Twofish.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "Frameworx-1.0": {
       "name": "Frameworx Open License 1.0",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/Frameworx-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "FreeBSD-DOC": {
       "name": "FreeBSD Documentation License",
@@ -1833,213 +1833,213 @@
     },
     "GFDL-1.1-invariants-only": {
       "name": "GNU Free Documentation License v1.1 only - invariants",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.1-invariants-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.1-invariants-or-later": {
       "name": "GNU Free Documentation License v1.1 or later - invariants",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.1-invariants-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.1-no-invariants-only": {
       "name": "GNU Free Documentation License v1.1 only - no invariants",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.1-no-invariants-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.1-no-invariants-or-later": {
       "name": "GNU Free Documentation License v1.1 or later - no invariants",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.1-no-invariants-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.1-only": {
       "name": "GNU Free Documentation License v1.1 only",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.1-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.1-or-later": {
       "name": "GNU Free Documentation License v1.1 or later",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.1-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.1": {
       "name": "GNU Free Documentation License v1.1",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.1.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.2-invariants-only": {
       "name": "GNU Free Documentation License v1.2 only - invariants",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.2-invariants-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.2-invariants-or-later": {
       "name": "GNU Free Documentation License v1.2 or later - invariants",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.2-invariants-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.2-no-invariants-only": {
       "name": "GNU Free Documentation License v1.2 only - no invariants",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.2-no-invariants-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.2-no-invariants-or-later": {
       "name": "GNU Free Documentation License v1.2 or later - no invariants",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.2-no-invariants-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.2-only": {
       "name": "GNU Free Documentation License v1.2 only",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.2-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.2-or-later": {
       "name": "GNU Free Documentation License v1.2 or later",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.2-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.2": {
       "name": "GNU Free Documentation License v1.2",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.2.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.3-invariants-only": {
       "name": "GNU Free Documentation License v1.3 only - invariants",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.3-invariants-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.3-invariants-or-later": {
       "name": "GNU Free Documentation License v1.3 or later - invariants",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.3-invariants-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.3-no-invariants-only": {
       "name": "GNU Free Documentation License v1.3 only - no invariants",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.3-no-invariants-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.3-no-invariants-or-later": {
       "name": "GNU Free Documentation License v1.3 or later - no invariants",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.3-no-invariants-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.3-only": {
       "name": "GNU Free Documentation License v1.3 only",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.3-only.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.3-or-later": {
       "name": "GNU Free Documentation License v1.3 or later",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.3-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GFDL-1.3": {
       "name": "GNU Free Documentation License v1.3",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/GFDL-1.3.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "GL2PS": {
       "name": "GL2PS License",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/GL2PS.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "GLWTPL": {
       "name": "Good Luck With That Public License",
       "category": "permissive",
       "file": "licenses/json/GLWTPL.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "GPL-1.0+": {
       "name": "GNU General Public License v1.0 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-1.0+.json",
       "is_deprecated": true,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "GPL-1.0-only": {
       "name": "GNU General Public License v1.0 only",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-1.0-only.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "GPL-1.0-or-later": {
       "name": "GNU General Public License v1.0 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-1.0-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "GPL-1.0": {
       "name": "GNU General Public License v1.0 only",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-1.0.json",
       "is_deprecated": true,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "GPL-2.0+": {
       "name": "GNU General Public License v2.0 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-2.0+.json",
       "is_deprecated": true,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "GPL-2.0-only": {
       "name": "GNU General Public License v2.0 only",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-2.0-only.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "GPL-2.0-or-later": {
       "name": "GNU General Public License v2.0 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-2.0-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "GPL-2.0-with-GCC-exception": {
       "name": "GNU General Public License v2.0 w/GCC Runtime Library exception",
@@ -2053,7 +2053,7 @@
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-2.0-with-autoconf-exception.json",
       "is_deprecated": true,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "GPL-2.0-with-bison-exception": {
       "name": "GNU General Public License v2.0 w/Bison exception",
@@ -2064,7 +2064,7 @@
     },
     "GPL-2.0-with-classpath-exception": {
       "name": "GNU General Public License v2.0 w/Classpath exception",
-      "category": "copyleft_strong",
+      "category": "copyleft_weak",
       "file": "licenses/json/GPL-2.0-with-classpath-exception.json",
       "is_deprecated": true,
       "obligations_count": 4
@@ -2074,35 +2074,35 @@
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-2.0-with-font-exception.json",
       "is_deprecated": true,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "GPL-2.0": {
       "name": "GNU General Public License v2.0 only",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-2.0.json",
       "is_deprecated": true,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "GPL-3.0+": {
       "name": "GNU General Public License v3.0 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-3.0+.json",
       "is_deprecated": true,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "GPL-3.0-only": {
       "name": "GNU General Public License v3.0 only",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-3.0-only.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "GPL-3.0-or-later": {
       "name": "GNU General Public License v3.0 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-3.0-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "GPL-3.0-with-GCC-exception": {
       "name": "GNU General Public License v3.0 w/GCC Runtime Library exception",
@@ -2116,35 +2116,35 @@
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-3.0-with-autoconf-exception.json",
       "is_deprecated": true,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "GPL-3.0": {
       "name": "GNU General Public License v3.0 only",
       "category": "copyleft_strong",
       "file": "licenses/json/GPL-3.0.json",
       "is_deprecated": true,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "Game-Programming-Gems": {
       "name": "Game Programming Gems License",
       "category": "permissive",
       "file": "licenses/json/Game-Programming-Gems.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "Giftware": {
       "name": "Giftware License",
       "category": "permissive",
       "file": "licenses/json/Giftware.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "Glide": {
       "name": "3dfx Glide License",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/Glide.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Glulxe": {
       "name": "Glulxe License",
@@ -2158,14 +2158,14 @@
       "category": "permissive",
       "file": "licenses/json/Graphics-Gems.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "Gutmann": {
       "name": "Gutmann License",
       "category": "permissive",
       "file": "licenses/json/Gutmann.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "HDF5": {
       "name": "HDF5 License",
@@ -2176,10 +2176,10 @@
     },
     "HIDAPI": {
       "name": "HIDAPI License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/HIDAPI.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "HP-1986": {
       "name": "Hewlett-Packard 1986 License",
@@ -2221,7 +2221,7 @@
       "category": "permissive",
       "file": "licenses/json/HPND-Intel.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "HPND-Kevlin-Henney": {
       "name": "Historical Permission Notice and Disclaimer - Kevlin Henney variant",
@@ -2305,7 +2305,7 @@
       "category": "permissive",
       "file": "licenses/json/HPND-export-US-modify.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "HPND-export-US": {
       "name": "HPND with US Government export control warning",
@@ -2382,21 +2382,21 @@
       "category": "permissive",
       "file": "licenses/json/HTMLTIDY.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "HaskellReport": {
       "name": "Haskell Language Report License",
       "category": "permissive",
       "file": "licenses/json/HaskellReport.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Hippocratic-2.1": {
       "name": "Hippocratic License 2.1",
       "category": "permissive",
       "file": "licenses/json/Hippocratic-2.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "IBM-pibs": {
       "name": "IBM PowerPC Initialization and Boot Software",
@@ -2424,14 +2424,14 @@
       "category": "permissive",
       "file": "licenses/json/IJG-short.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "IJG": {
       "name": "Independent JPEG Group License",
       "category": "permissive",
       "file": "licenses/json/IJG.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "IPA": {
       "name": "IPA Font License",
@@ -2487,14 +2487,14 @@
       "category": "permissive",
       "file": "licenses/json/Info-ZIP.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Informatica": {
       "name": "Informatica License",
-      "category": "permissive",
+      "category": "noncommercial",
       "file": "licenses/json/Informatica.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Inner-Net-2.0": {
       "name": "Inner Net License v2.0",
@@ -2508,14 +2508,14 @@
       "category": "permissive",
       "file": "licenses/json/InnoSetup.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Intel-ACPI": {
       "name": "Intel ACPI Software License Agreement",
       "category": "permissive",
       "file": "licenses/json/Intel-ACPI.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Intel": {
       "name": "Intel Open Source License",
@@ -2533,10 +2533,10 @@
     },
     "JPL-image": {
       "name": "JPL Image Use Policy",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/JPL-image.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "JPNIC": {
       "name": "Japan Network Information Center License",
@@ -2557,7 +2557,7 @@
       "category": "permissive",
       "file": "licenses/json/Jam.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "JasPer-2.0": {
       "name": "JasPer License",
@@ -2578,28 +2578,28 @@
       "category": "permissive",
       "file": "licenses/json/Kazlib.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Knuth-CTAN": {
       "name": "Knuth CTAN License",
-      "category": "permissive",
+      "category": "no_derivatives",
       "file": "licenses/json/Knuth-CTAN.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "LAL-1.2": {
       "name": "Licence Art Libre 1.2",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/LAL-1.2.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "LAL-1.3": {
       "name": "Licence Art Libre 1.3",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/LAL-1.3.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "LGPL-2.0+": {
       "name": "GNU Library General Public License v2 or later",
@@ -2701,10 +2701,10 @@
     },
     "LPD-document": {
       "name": "LPD Documentation License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/LPD-document.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "LPL-1.0": {
       "name": "Lucent Public License Version 1.0",
@@ -2722,52 +2722,52 @@
     },
     "LPPL-1.0": {
       "name": "LaTeX Project Public License v1.0",
-      "category": "permissive",
+      "category": "no_derivatives",
       "file": "licenses/json/LPPL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "LPPL-1.1": {
       "name": "LaTeX Project Public License v1.1",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/LPPL-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "LPPL-1.2": {
       "name": "LaTeX Project Public License v1.2",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/LPPL-1.2.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "LPPL-1.3a": {
       "name": "LaTeX Project Public License v1.3a",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/LPPL-1.3a.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "LPPL-1.3c": {
       "name": "LaTeX Project Public License v1.3c",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/LPPL-1.3c.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "LZMA-SDK-9.11-to-9.20": {
       "name": "LZMA SDK License (versions 9.11 to 9.20)",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/LZMA-SDK-9.11-to-9.20.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "LZMA-SDK-9.22": {
       "name": "LZMA SDK License (versions 9.22 and beyond)",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/LZMA-SDK-9.22.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "Latex2e-translated-notice": {
       "name": "Latex2e with translated notice permission",
@@ -2788,35 +2788,35 @@
       "category": "permissive",
       "file": "licenses/json/Leptonica.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "LiLiQ-P-1.1": {
       "name": "Licence Libre du Qu\u00e9bec \u2013 Permissive version 1.1",
       "category": "permissive",
       "file": "licenses/json/LiLiQ-P-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "LiLiQ-R-1.1": {
       "name": "Licence Libre du Qu\u00e9bec \u2013 R\u00e9ciprocit\u00e9 version 1.1",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/LiLiQ-R-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "LiLiQ-Rplus-1.1": {
       "name": "Licence Libre du Qu\u00e9bec \u2013 R\u00e9ciprocit\u00e9 forte version 1.1",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/LiLiQ-Rplus-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "Libpng": {
       "name": "libpng License",
       "category": "permissive",
       "file": "licenses/json/Libpng.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Linux-OpenIB": {
       "name": "Linux Kernel Variant of OpenIB.org license",
@@ -2830,7 +2830,7 @@
       "category": "permissive",
       "file": "licenses/json/Linux-man-pages-1-para.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Linux-man-pages-copyleft-2-para": {
       "name": "Linux man-pages Copyleft - 2 paragraphs",
@@ -2848,10 +2848,10 @@
     },
     "Linux-man-pages-copyleft": {
       "name": "Linux man-pages Copyleft",
-      "category": "copyleft_weak",
+      "category": "copyleft_strong",
       "file": "licenses/json/Linux-man-pages-copyleft.json",
       "is_deprecated": false,
-      "obligations_count": 3
+      "obligations_count": 4
     },
     "Lucida-Bitmap-Fonts": {
       "name": "Lucida Bitmap Fonts License",
@@ -2893,7 +2893,7 @@
       "category": "permissive",
       "file": "licenses/json/MIT-Festival.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "MIT-Khronos-old": {
       "name": "MIT Khronos - old variant",
@@ -2921,7 +2921,7 @@
       "category": "permissive",
       "file": "licenses/json/MIT-Wu.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "MIT-advertising": {
       "name": "Enlightenment License (e16)",
@@ -2970,21 +2970,21 @@
       "category": "permissive",
       "file": "licenses/json/MITNFA.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "MMIXware": {
       "name": "MMIXware License",
-      "category": "permissive",
+      "category": "no_derivatives",
       "file": "licenses/json/MMIXware.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "MMPL-1.0.1": {
       "name": "Minecraft Mod Public License v1.0.1",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/MMPL-1.0.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "MPEG-SSG": {
       "name": "MPEG Software Simulation",
@@ -2995,17 +2995,17 @@
     },
     "MPL-1.0": {
       "name": "Mozilla Public License 1.0",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/MPL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "MPL-1.1": {
       "name": "Mozilla Public License 1.1",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/MPL-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "MPL-2.0-no-copyleft-exception": {
       "name": "Mozilla Public License 2.0 (no copyleft exception)",
@@ -3019,7 +3019,7 @@
       "category": "copyleft_weak",
       "file": "licenses/json/MPL-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "MS-LPL": {
       "name": "Microsoft Limited Public License",
@@ -3040,7 +3040,7 @@
       "category": "copyleft_weak",
       "file": "licenses/json/MS-RL.json",
       "is_deprecated": false,
-      "obligations_count": 3
+      "obligations_count": 4
     },
     "MTLL": {
       "name": "Matrix Template Library License",
@@ -3089,7 +3089,7 @@
       "category": "permissive",
       "file": "licenses/json/McPhee-slideshow.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Minpack": {
       "name": "Minpack License",
@@ -3107,10 +3107,10 @@
     },
     "Motosoto": {
       "name": "Motosoto License",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/Motosoto.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "MulanPSL-1.0": {
       "name": "Mulan Permissive Software License, Version 1",
@@ -3138,7 +3138,7 @@
       "category": "permissive",
       "file": "licenses/json/Mup.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "NAIST-2003": {
       "name": "Nara Institute of Science and Technology License (2003)",
@@ -3159,14 +3159,14 @@
       "category": "permissive",
       "file": "licenses/json/NBPL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "NCBI-PD": {
       "name": "NCBI Public Domain Notice",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/NCBI-PD.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "NCGL-UK-2.0": {
       "name": "Non-Commercial Government Licence",
@@ -3194,7 +3194,7 @@
       "category": "copyleft_strong",
       "file": "licenses/json/NGPL.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "NICTA-1.0": {
       "name": "NICTA Public Software License, Version 1.0",
@@ -3205,28 +3205,28 @@
     },
     "NIST-PD-TNT": {
       "name": "NIST    Public Domain Notice TNT variant",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/NIST-PD-TNT.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "NIST-PD-fallback": {
       "name": "NIST Public Domain Notice with license fallback",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/NIST-PD-fallback.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "NIST-PD": {
       "name": "NIST Public Domain Notice",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/NIST-PD.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "NIST-Software": {
       "name": "NIST Software License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/NIST-Software.json",
       "is_deprecated": false,
       "obligations_count": 2
@@ -3236,21 +3236,21 @@
       "category": "permissive",
       "file": "licenses/json/NLOD-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "NLOD-2.0": {
       "name": "Norwegian Licence for Open Government Data (NLOD) 2.0",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/NLOD-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "NLPL": {
       "name": "No Limit Public License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/NLPL.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "NOSL": {
       "name": "Netizen Open Source License",
@@ -3268,7 +3268,7 @@
     },
     "NPL-1.1": {
       "name": "Netscape Public License v1.1",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/NPL-1.1.json",
       "is_deprecated": false,
       "obligations_count": 2
@@ -3278,7 +3278,7 @@
       "category": "noncommercial",
       "file": "licenses/json/NPOSL-3.0.json",
       "is_deprecated": false,
-      "obligations_count": 3
+      "obligations_count": 6
     },
     "NRL": {
       "name": "NRL License",
@@ -3289,10 +3289,10 @@
     },
     "NTIA-PD": {
       "name": "NTIA Public Domain Notice",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/NTIA-PD.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "NTP-0": {
       "name": "NTP No Attribution",
@@ -3313,7 +3313,7 @@
       "category": "permissive",
       "file": "licenses/json/Naumen.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Net-SNMP": {
       "name": "Net-SNMP License",
@@ -3334,7 +3334,7 @@
       "category": "permissive",
       "file": "licenses/json/Newsletr.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Nokia": {
       "name": "Nokia Open Source License",
@@ -3355,7 +3355,7 @@
       "category": "permissive",
       "file": "licenses/json/Nunit.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "O-UDA-1.0": {
       "name": "Open Use of Data Agreement v1.0",
@@ -3369,14 +3369,14 @@
       "category": "permissive",
       "file": "licenses/json/OAR.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "OCCT-PL": {
       "name": "Open CASCADE Technology Public License",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/OCCT-PL.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "OCLC-2.0": {
       "name": "OCLC Research Public License 2.0",
@@ -3397,7 +3397,7 @@
       "category": "copyleft_weak",
       "file": "licenses/json/ODbL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 3
+      "obligations_count": 5
     },
     "OFFIS": {
       "name": "OFFIS License",
@@ -3429,10 +3429,10 @@
     },
     "OFL-1.1-RFN": {
       "name": "SIL Open Font License 1.1 with Reserved Font Name",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/OFL-1.1-RFN.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "OFL-1.1-no-RFN": {
       "name": "SIL Open Font License 1.1 with no Reserved Font Name",
@@ -3453,7 +3453,7 @@
       "category": "permissive",
       "file": "licenses/json/OGC-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "OGDL-Taiwan-1.0": {
       "name": "Taiwan Open Government Data License, version 1.0",
@@ -3467,7 +3467,7 @@
       "category": "permissive",
       "file": "licenses/json/OGL-Canada-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "OGL-UK-1.0": {
       "name": "Open Government Licence v1.0",
@@ -3481,49 +3481,49 @@
       "category": "permissive",
       "file": "licenses/json/OGL-UK-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "OGL-UK-3.0": {
       "name": "Open Government Licence v3.0",
       "category": "permissive",
       "file": "licenses/json/OGL-UK-3.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "OGTSL": {
       "name": "Open Group Test Suite License",
       "category": "permissive",
       "file": "licenses/json/OGTSL.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "OLDAP-1.1": {
       "name": "Open LDAP Public License v1.1",
       "category": "permissive",
       "file": "licenses/json/OLDAP-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "OLDAP-1.2": {
       "name": "Open LDAP Public License v1.2",
       "category": "permissive",
       "file": "licenses/json/OLDAP-1.2.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "OLDAP-1.3": {
       "name": "Open LDAP Public License v1.3",
       "category": "permissive",
       "file": "licenses/json/OLDAP-1.3.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "OLDAP-1.4": {
       "name": "Open LDAP Public License v1.4",
       "category": "permissive",
       "file": "licenses/json/OLDAP-1.4.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "OLDAP-2.0.1": {
       "name": "Open LDAP Public License v2.0.1",
@@ -3639,10 +3639,10 @@
     },
     "OPUBL-1.0": {
       "name": "Open Publication License v1.0",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/OPUBL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "OSC-1.0": {
       "name": "OSC License 1.0",
@@ -3653,45 +3653,45 @@
     },
     "OSET-PL-2.1": {
       "name": "OSET Public License version 2.1",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/OSET-PL-2.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "OSL-1.0": {
       "name": "Open Software License 1.0",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/OSL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "OSL-1.1": {
       "name": "Open Software License 1.1",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/OSL-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "OSL-2.0": {
       "name": "Open Software License 2.0",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/OSL-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "OSL-2.1": {
       "name": "Open Software License 2.1",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/OSL-2.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "OSL-3.0": {
       "name": "Open Software License 3.0",
       "category": "network_copyleft",
       "file": "licenses/json/OSL-3.0.json",
       "is_deprecated": false,
-      "obligations_count": 5
+      "obligations_count": 6
     },
     "OSSP": {
       "name": "OSSP License",
@@ -3709,7 +3709,7 @@
     },
     "OpenPBS-2.3": {
       "name": "OpenPBS v2.3 Software License",
-      "category": "permissive",
+      "category": "noncommercial",
       "file": "licenses/json/OpenPBS-2.3.json",
       "is_deprecated": false,
       "obligations_count": 2
@@ -3744,10 +3744,10 @@
     },
     "PDDL-1.0": {
       "name": "Open Data Commons Public Domain Dedication & License 1.0",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/PDDL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "PHP-3.0": {
       "name": "PHP License v3.0",
@@ -3765,17 +3765,17 @@
     },
     "PPL": {
       "name": "Peer Production License",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/PPL.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "PSF-2.0": {
       "name": "Python Software Foundation License 2.0",
       "category": "permissive",
       "file": "licenses/json/PSF-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "ParaType-Free-Font-1.3": {
       "name": "ParaType Free Font Licensing Agreement v1.3",
@@ -3786,10 +3786,10 @@
     },
     "Parity-6.0.0": {
       "name": "The Parity Public License 6.0.0",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/Parity-6.0.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "Parity-7.0.0": {
       "name": "The Parity Public License 7.0.0",
@@ -3838,35 +3838,35 @@
       "category": "permissive",
       "file": "licenses/json/Python-2.0.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Python-2.0": {
       "name": "Python License 2.0",
       "category": "permissive",
       "file": "licenses/json/Python-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "QPL-1.0-INRIA-2004": {
       "name": "Q Public License 1.0 - INRIA 2004 variant",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/QPL-1.0-INRIA-2004.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "QPL-1.0": {
       "name": "Q Public License 1.0",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/QPL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Qhull": {
       "name": "Qhull License",
       "category": "permissive",
       "file": "licenses/json/Qhull.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "RHeCos-1.1": {
       "name": "Red Hat eCos Public License v1.1",
@@ -3880,14 +3880,14 @@
       "category": "copyleft_strong",
       "file": "licenses/json/RPL-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "RPL-1.5": {
       "name": "Reciprocal Public License 1.5",
       "category": "copyleft_strong",
       "file": "licenses/json/RPL-1.5.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "RPSL-1.0": {
       "name": "RealNetworks Public Source License v1.0",
@@ -3915,7 +3915,7 @@
       "category": "permissive",
       "file": "licenses/json/Rdisc.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "Ruby-pty": {
       "name": "Ruby pty extension license",
@@ -3933,24 +3933,24 @@
     },
     "SAX-PD-2.0": {
       "name": "Sax Public Domain Notice 2.0",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/SAX-PD-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "SAX-PD": {
       "name": "Sax Public Domain Notice",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/SAX-PD.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "SCEA": {
       "name": "SCEA Shared Source License",
-      "category": "permissive",
+      "category": "source_available",
       "file": "licenses/json/SCEA.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "SGI-B-1.0": {
       "name": "SGI Free Software License B v1.0",
@@ -3989,7 +3989,7 @@
     },
     "SGP4": {
       "name": "SGP4 Permission Notice",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/SGP4.json",
       "is_deprecated": false,
       "obligations_count": 2
@@ -4024,7 +4024,7 @@
     },
     "SL": {
       "name": "SL License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/SL.json",
       "is_deprecated": false,
       "obligations_count": 2
@@ -4034,7 +4034,7 @@
       "category": "copyleft_strong",
       "file": "licenses/json/SMAIL-GPL.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "SMLNJ": {
       "name": "Standard ML of New Jersey License",
@@ -4062,7 +4062,7 @@
       "category": "permissive",
       "file": "licenses/json/SOFA.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "SPL-1.0": {
       "name": "Sun Public License v1.0",
@@ -4076,7 +4076,7 @@
       "category": "permissive",
       "file": "licenses/json/SSH-OpenSSH.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "SSH-short": {
       "name": "SSH short notice",
@@ -4097,14 +4097,14 @@
       "category": "network_copyleft",
       "file": "licenses/json/SSPL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 5
+      "obligations_count": 6
     },
     "SUL-1.0": {
       "name": "Sustainable Use License v1.0",
-      "category": "permissive",
+      "category": "noncommercial",
       "file": "licenses/json/SUL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "SWL": {
       "name": "Scheme Widget Library (SWL) Software License Agreement",
@@ -4122,10 +4122,10 @@
     },
     "SchemeReport": {
       "name": "Scheme Language Report License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/SchemeReport.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "Sendmail-8.23": {
       "name": "Sendmail License 8.23",
@@ -4150,10 +4150,10 @@
     },
     "SimPL-2.0": {
       "name": "Simple Public License 2.0",
-      "category": "permissive",
+      "category": "copyleft_strong",
       "file": "licenses/json/SimPL-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 5
     },
     "Sleepycat": {
       "name": "Sleepycat License",
@@ -4167,21 +4167,21 @@
       "category": "permissive",
       "file": "licenses/json/Soundex.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Spencer-86": {
       "name": "Spencer License 86",
       "category": "permissive",
       "file": "licenses/json/Spencer-86.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Spencer-94": {
       "name": "Spencer License 94",
       "category": "permissive",
       "file": "licenses/json/Spencer-94.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Spencer-99": {
       "name": "Spencer License 99",
@@ -4199,10 +4199,10 @@
     },
     "SugarCRM-1.1.3": {
       "name": "SugarCRM Public License v1.1.3",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/SugarCRM-1.1.3.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Sun-PPP-2000": {
       "name": "Sun PPP License (2000)",
@@ -4227,17 +4227,17 @@
     },
     "Symlinks": {
       "name": "Symlinks License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/Symlinks.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "TAPR-OHL-1.0": {
       "name": "TAPR Open Hardware License v1.0",
       "category": "permissive",
       "file": "licenses/json/TAPR-OHL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "TCL": {
       "name": "TCL/TK License",
@@ -4290,10 +4290,10 @@
     },
     "TPL-1.0": {
       "name": "THOR Public License 1.0",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/TPL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 4
     },
     "TTWL": {
       "name": "Text-Tabs+Wrap License",
@@ -4307,7 +4307,7 @@
       "category": "permissive",
       "file": "licenses/json/TTYP0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "TU-Berlin-1.0": {
       "name": "Technische Universitaet Berlin License 1.0",
@@ -4384,7 +4384,7 @@
       "category": "permissive",
       "file": "licenses/json/URT-RLE.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Ubuntu-font-1.0": {
       "name": "Ubuntu Font Licence v1.0",
@@ -4398,7 +4398,7 @@
       "category": "permissive",
       "file": "licenses/json/UnRAR.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "Unicode-3.0": {
       "name": "Unicode License v3",
@@ -4412,7 +4412,7 @@
       "category": "permissive",
       "file": "licenses/json/Unicode-DFS-2015.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Unicode-DFS-2016": {
       "name": "Unicode License Agreement - Data Files and Software (2016)",
@@ -4440,28 +4440,28 @@
       "category": "public_domain",
       "file": "licenses/json/Unlicense-libtelnet.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "Unlicense-libwhirlpool": {
       "name": "Unlicense - libwhirlpool variant",
       "category": "public_domain",
       "file": "licenses/json/Unlicense-libwhirlpool.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "Unlicense": {
       "name": "The Unlicense",
       "category": "public_domain",
       "file": "licenses/json/Unlicense.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "VOSTROM": {
       "name": "VOSTROM Public License for Open Source",
       "category": "permissive",
       "file": "licenses/json/VOSTROM.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "VSL-1.0": {
       "name": "Vovida Software License v1.0",
@@ -4472,52 +4472,52 @@
     },
     "Vim": {
       "name": "Vim License",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/Vim.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Vixie-Cron": {
       "name": "Vixie Cron License",
       "category": "permissive",
       "file": "licenses/json/Vixie-Cron.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "W3C-19980720": {
       "name": "W3C Software Notice and License (1998-07-20)",
       "category": "permissive",
       "file": "licenses/json/W3C-19980720.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "W3C-20150513": {
       "name": "W3C Software Notice and Document License (2015-05-13)",
       "category": "permissive",
       "file": "licenses/json/W3C-20150513.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "W3C": {
       "name": "W3C Software Notice and License (2002-12-31)",
       "category": "permissive",
       "file": "licenses/json/W3C.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "WTFNMFPL": {
       "name": "Do What The F*ck You Want To But It's Not My Fault Public License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/WTFNMFPL.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "WTFPL": {
       "name": "Do What The F*ck You Want To Public License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/WTFPL.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "Watcom-1.0": {
       "name": "Sybase Open Watcom Public License 1.0",
@@ -4545,7 +4545,7 @@
       "category": "permissive",
       "file": "licenses/json/Wsuipa.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "X11-distribute-modifications-variant": {
       "name": "X11 License Distribution Modification Variant",
@@ -4587,7 +4587,7 @@
       "category": "permissive",
       "file": "licenses/json/XSkat.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Xdebug-1.03": {
       "name": "Xdebug License v 1.03",
@@ -4622,14 +4622,14 @@
       "category": "permissive",
       "file": "licenses/json/YPL-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "YPL-1.1": {
       "name": "Yahoo! Public License v1.1",
       "category": "permissive",
       "file": "licenses/json/YPL-1.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "ZPL-1.1": {
       "name": "Zope Public License 1.1",
@@ -4643,21 +4643,21 @@
       "category": "permissive",
       "file": "licenses/json/ZPL-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "ZPL-2.1": {
       "name": "Zope Public License 2.1",
       "category": "permissive",
       "file": "licenses/json/ZPL-2.1.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Zed": {
       "name": "Zed License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/Zed.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "Zeeff": {
       "name": "Zeeff License",
@@ -4678,21 +4678,21 @@
       "category": "permissive",
       "file": "licenses/json/Zimbra-1.3.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "Zimbra-1.4": {
       "name": "Zimbra Public License v1.4",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/Zimbra-1.4.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "Zlib": {
       "name": "zlib License",
       "category": "permissive",
       "file": "licenses/json/Zlib.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "any-OSI-perl-modules": {
       "name": "Any OSI License - Perl Modules",
@@ -4717,31 +4717,31 @@
     },
     "bcrypt-Solar-Designer": {
       "name": "bcrypt Solar Designer License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/bcrypt-Solar-Designer.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "blessing": {
       "name": "SQLite Blessing",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/blessing.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "bzip2-1.0.5": {
       "name": "bzip2 and libbzip2 License v1.0.5",
       "category": "permissive",
       "file": "licenses/json/bzip2-1.0.5.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "bzip2-1.0.6": {
       "name": "bzip2 and libbzip2 License v1.0.6",
       "category": "permissive",
       "file": "licenses/json/bzip2-1.0.6.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "check-cvs": {
       "name": "check-cvs License",
@@ -4759,17 +4759,17 @@
     },
     "copyleft-next-0.3.0": {
       "name": "copyleft-next 0.3.0",
-      "category": "copyleft_weak",
+      "category": "copyleft_strong",
       "file": "licenses/json/copyleft-next-0.3.0.json",
       "is_deprecated": false,
-      "obligations_count": 3
+      "obligations_count": 4
     },
     "copyleft-next-0.3.1": {
       "name": "copyleft-next 0.3.1",
-      "category": "copyleft_weak",
+      "category": "copyleft_strong",
       "file": "licenses/json/copyleft-next-0.3.1.json",
       "is_deprecated": false,
-      "obligations_count": 3
+      "obligations_count": 4
     },
     "curl": {
       "name": "curl License",
@@ -4787,10 +4787,10 @@
     },
     "diffmark": {
       "name": "diffmark license",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/diffmark.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "dtoa": {
       "name": "David M. Gay dtoa License",
@@ -4801,31 +4801,31 @@
     },
     "dvipdfm": {
       "name": "dvipdfm License",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/dvipdfm.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "eCos-2.0": {
       "name": "eCos license version 2.0",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/eCos-2.0.json",
       "is_deprecated": true,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "eGenix": {
       "name": "eGenix.com Public License 1.1.0",
       "category": "permissive",
       "file": "licenses/json/eGenix.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "etalab-2.0": {
       "name": "Etalab Open License 2.0",
       "category": "permissive",
       "file": "licenses/json/etalab-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "fwlw": {
       "name": "fwlw License",
@@ -4853,14 +4853,14 @@
       "category": "permissive",
       "file": "licenses/json/gnuplot.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "gtkbook": {
       "name": "gtkbook License",
       "category": "permissive",
       "file": "licenses/json/gtkbook.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "hdparm": {
       "name": "hdparm License",
@@ -4881,7 +4881,7 @@
       "category": "permissive",
       "file": "licenses/json/iMatix.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "jove": {
       "name": "Jove License",
@@ -4895,21 +4895,21 @@
       "category": "permissive",
       "file": "licenses/json/libpng-1.6.35.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "libpng-2.0": {
       "name": "PNG Reference Library version 2",
       "category": "permissive",
       "file": "licenses/json/libpng-2.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "libselinux-1.0": {
       "name": "libselinux public domain notice",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/libselinux-1.0.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "libtiff": {
       "name": "libtiff License",
@@ -4930,7 +4930,7 @@
       "category": "permissive",
       "file": "licenses/json/lsof.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "magaz": {
       "name": "magaz License",
@@ -4944,7 +4944,7 @@
       "category": "permissive",
       "file": "licenses/json/mailprio.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "man2html": {
       "name": "man2html License",
@@ -4976,17 +4976,17 @@
     },
     "mplus": {
       "name": "mplus Font License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/mplus.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "ngrep": {
       "name": "ngrep License",
       "category": "permissive",
       "file": "licenses/json/ngrep.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "pkgconf": {
       "name": "pkgconf License",
@@ -5004,10 +5004,10 @@
     },
     "psfrag": {
       "name": "psfrag License",
-      "category": "permissive",
+      "category": "copyleft_weak",
       "file": "licenses/json/psfrag.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "psutils": {
       "name": "psutils License",
@@ -5032,14 +5032,14 @@
     },
     "snprintf": {
       "name": "snprintf License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/snprintf.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "softSurfer": {
       "name": "softSurfer License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/softSurfer.json",
       "is_deprecated": false,
       "obligations_count": 2
@@ -5067,10 +5067,10 @@
     },
     "ulem": {
       "name": "ulem License",
-      "category": "permissive",
+      "category": "public_domain",
       "file": "licenses/json/ulem.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 1
     },
     "w3m": {
       "name": "w3m License",
@@ -5098,14 +5098,14 @@
       "category": "permissive",
       "file": "licenses/json/xinetd.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "xkeyboard-config-Zinoviev": {
       "name": "xkeyboard-config Zinoviev License",
       "category": "permissive",
       "file": "licenses/json/xkeyboard-config-Zinoviev.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "xlock": {
       "name": "xlock License",
@@ -5126,14 +5126,14 @@
       "category": "permissive",
       "file": "licenses/json/xzoom.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     },
     "zlib-acknowledgement": {
       "name": "zlib/libpng License with Acknowledgement",
       "category": "permissive",
       "file": "licenses/json/zlib-acknowledgement.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 3
     }
   }
 }

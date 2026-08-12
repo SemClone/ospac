@@ -16,46 +16,50 @@
       "include_license": true,
       "include_copyright": true,
       "include_notice": false,
-      "state_changes": false,
-      "same_license": true,
+      "state_changes": true,
+      "same_license": false,
       "network_use_disclosure": false
     },
     "limitations": {
-      "liability": false,
-      "warranty": false,
+      "liability": true,
+      "warranty": true,
       "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "LGPL-2.1+",
-          "category:copyleft_strong"
+          "category:permissive",
+          "category:copyleft_weak"
         ],
         "incompatible_with": [
-          "category:permissive",
-          "category:proprietary"
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
         ],
-        "requires_review": [
-          "category:copyleft_weak"
-        ]
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive",
+          "category:copyleft_weak",
+          "LGPL-2.0",
+          "LGPL-3.0"
         ],
-        "incompatible_with": [],
-        "requires_review": [
-          "category:proprietary"
-        ]
+        "incompatible_with": [
+          "GPL-2.0",
+          "GPL-3.0",
+          "AGPL-3.0"
+        ],
+        "requires_review": []
       },
-      "contamination_effect": "module",
-      "notes": "Weak copyleft: changes to the covered component must stay under its license"
+      "contamination_effect": "none",
+      "notes": "LGPL-2.1+ allows for linking with permissive and weak copyleft licenses without imposing the same license on the entire work."
     },
     "obligations": [
       "Retain copyright notices",
       "Include license text",
-      "Provide or offer access to complete source code",
-      "Distribute modifications under the same license"
+      "Document changes made to the code",
+      "Provide or offer access to complete source code"
     ],
     "key_requirements": [
       "Attribution required",
@@ -66,7 +70,7 @@
       "is_fsf_libre": true,
       "is_deprecated": true
     },
-    "generated": "2026-08-01T03:04:52.211970",
+    "generated": "2026-08-12T09:45:09.627449",
     "spdx_list_version": "e4c1f27"
   }
 }

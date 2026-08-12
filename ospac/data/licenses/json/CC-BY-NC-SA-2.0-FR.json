@@ -15,37 +15,43 @@
       "disclose_source": false,
       "include_license": true,
       "include_copyright": true,
-      "include_notice": false,
-      "state_changes": false,
+      "include_notice": true,
+      "state_changes": true,
       "same_license": true,
       "network_use_disclosure": false
     },
     "limitations": {
-      "liability": false,
-      "warranty": false,
+      "liability": true,
+      "warranty": true,
       "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:copyleft",
+          "category:strong_copyleft"
+        ],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:strong_copyleft"
+        ],
         "requires_review": []
       },
-      "contamination_effect": "none",
-      "notes": "NonCommercial license: commercial use is not permitted"
+      "contamination_effect": "module",
+      "notes": "The CC-BY-NC-SA-2.0-FR license requires that modifications to the licensed work remain under the same license, but does not impose this requirement on the entire combined work."
     },
     "obligations": [
       "Retain copyright notices",
       "Include license text",
+      "Document changes made to the code",
       "Distribute modifications under the same license",
       "Non-commercial use only"
     ],
@@ -58,7 +64,7 @@
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-08-01T03:04:52.211970",
+    "generated": "2026-08-12T09:45:09.627449",
     "spdx_list_version": "e4c1f27"
   }
 }

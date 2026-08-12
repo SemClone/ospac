@@ -21,27 +21,33 @@
       "network_use_disclosure": false
     },
     "limitations": {
-      "liability": false,
-      "warranty": false,
+      "liability": true,
+      "warranty": true,
       "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:copyleft",
+          "category:copyleft_strong"
+        ],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:copyleft",
+          "category:copyleft_strong"
+        ],
         "requires_review": []
       },
-      "contamination_effect": "none",
-      "notes": "NonCommercial license: commercial use is not permitted"
+      "contamination_effect": "full",
+      "notes": "CC-BY-NC-ND-1.0 does not allow for commercial use or derivative works, which limits compatibility with many licenses."
     },
     "obligations": [
       "Retain copyright notices",
@@ -58,7 +64,7 @@
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-08-01T03:04:52.211970",
+    "generated": "2026-08-12T09:45:09.627449",
     "spdx_list_version": "e4c1f27"
   }
 }

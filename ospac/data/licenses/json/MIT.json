@@ -21,27 +21,49 @@
       "network_use_disclosure": false
     },
     "limitations": {
-      "liability": false,
-      "warranty": false,
+      "liability": true,
+      "warranty": true,
       "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "MIT",
+          "Zlib",
+          "Unlicense"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0",
+          "LGPL-2.1"
+        ],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive",
+          "Apache-2.0",
+          "BSD-2-Clause",
+          "BSD-3-Clause",
+          "MIT",
+          "Zlib",
+          "Unlicense"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "LGPL-3.0",
+          "LGPL-2.1"
+        ],
         "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "Permissive license with minimal restrictions"
+      "notes": "MIT license is permissive and does not impose restrictions on the licensing of combined works."
     },
     "obligations": [
       "Retain copyright notices",
@@ -55,7 +77,7 @@
       "is_fsf_libre": true,
       "is_deprecated": false
     },
-    "generated": "2026-08-01T03:04:52.211970",
+    "generated": "2026-08-12T09:45:09.627449",
     "spdx_list_version": "e4c1f27"
   }
 }
