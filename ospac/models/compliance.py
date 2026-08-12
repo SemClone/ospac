@@ -53,13 +53,18 @@ class PolicyResult:
         severity_order = {"error": 3, "warning": 2, "info": 1}
         highest_severity = max(results, key=lambda r: severity_order.get(r.severity, 0))
 
-        # Determine overall action (most restrictive wins)
+        # Determine overall action (most restrictive wins). Neither ALLOW nor APPROVE is
+        # more restrictive than the other, so between those two the more informative one
+        # wins: APPROVE means a rule explicitly permitted this, while ALLOW is what a rule
+        # falls back to when it states no action. Ranking ALLOW higher let a single
+        # actionless rule report "allow" even though rules had matched, which is the value
+        # callers are told means "no rule matched" and treat as a policy bug.
         action_priority = {
             ActionType.DENY: 5,
             ActionType.CONTAMINATE: 4,
             ActionType.FLAG_FOR_REVIEW: 3,
-            ActionType.ALLOW: 2,
-            ActionType.APPROVE: 1,
+            ActionType.APPROVE: 2,
+            ActionType.ALLOW: 1,
         }
 
         most_restrictive = max(results, key=lambda r: action_priority.get(r.action, 0))

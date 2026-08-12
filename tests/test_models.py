@@ -448,3 +448,31 @@ class TestPolicyResult:
         assert aggregated.action == ActionType.ALLOW
         assert aggregated.severity == "info"
         assert aggregated.message == "No policies matched"
+
+    def test_explicit_approve_outranks_default_allow(self):
+        """
+        A rule that states no action falls back to ALLOW. When another rule explicitly
+        approves, the aggregate must report approve: callers are told that allow means no
+        rule matched and treat it as a policy bug, so letting an actionless rule report
+        allow made a correct policy look broken.
+        """
+        results = [
+            PolicyResult(rule_id="explicit", action=ActionType.APPROVE, severity="info",
+                         message="vetted"),
+            PolicyResult(rule_id="actionless", action=ActionType.ALLOW, severity="info",
+                         message="noted"),
+        ]
+
+        assert PolicyResult.aggregate(results).action == ActionType.APPROVE
+        # Order of the inputs must not change the outcome.
+        assert PolicyResult.aggregate(list(reversed(results))).action == ActionType.APPROVE
+
+    def test_restrictive_actions_still_dominate_approve(self):
+        """Raising APPROVE above ALLOW must not let it outrank a real restriction."""
+        approve = PolicyResult(rule_id="a", action=ActionType.APPROVE, severity="info",
+                               message="vetted")
+        for stronger in (ActionType.DENY, ActionType.CONTAMINATE, ActionType.FLAG_FOR_REVIEW):
+            other = PolicyResult(rule_id="b", action=stronger, severity="error",
+                                 message="restricted")
+            assert PolicyResult.aggregate([approve, other]).action == stronger
+            assert PolicyResult.aggregate([other, approve]).action == stronger

@@ -2687,7 +2687,7 @@
     },
     "LGPLLR": {
       "name": "Lesser General Public License For Linguistic Resources",
-      "category": "copyleft_strong",
+      "category": "copyleft_weak",
       "file": "licenses/json/LGPLLR.json",
       "is_deprecated": false,
       "obligations_count": 4

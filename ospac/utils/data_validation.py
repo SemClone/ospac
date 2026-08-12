@@ -57,6 +57,12 @@ KNOWN_LICENSES = {
         "type": "copyleft_weak",
         "requirements": {"disclose_source": True},
     },
+    # Pinned after a deliberate reclassification: every structured field matches LGPL-2.1,
+    # so it belongs in the same category rather than in strong copyleft.
+    "LGPLLR": {
+        "type": "copyleft_weak",
+        "requirements": {"disclose_source": True},
+    },
     "AGPL-3.0-only": {
         "type": "copyleft_strong",
         "requirements": {"disclose_source": True, "same_license": True, "network_use_disclosure": True},

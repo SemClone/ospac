@@ -37,6 +37,11 @@ _KNOWN_OVERRIDES: Dict[str, Dict] = {
     "LGPL-2.1+":         {"category": "copyleft_weak"},
     "LGPL-3.0":          {"category": "copyleft_weak"},
     "LGPL-3.0+":         {"category": "copyleft_weak"},
+    # LGPLLR is the lesser licence for linguistic resources. It is not an alias of any
+    # LGPL identifier, but its properties, requirements, limitations and contamination
+    # effect are identical to LGPL-2.1's, so typing it strong while LGPL-2.1 is weak was
+    # inconsistent on the dataset's own terms.
+    "LGPLLR":            {"category": "copyleft_weak"},
     # MPL-2.0: file-level (weak) copyleft, modified files must stay MPL and source disclosed
     "MPL-2.0": {
         "category": "copyleft_weak",

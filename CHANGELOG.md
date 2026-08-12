@@ -5,6 +5,44 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2026-08-11
+
+Clears the three items 1.3.0 left open.
+
+### Fixed
+
+**An explicit approval could be reported as `allow`**
+- A policy rule that states no action falls back to `ALLOW`, and the aggregate ranked
+  `ALLOW` above `APPROVE`, so a single actionless rule made the whole evaluation report
+  `allow` even when another rule had explicitly approved the licenses.
+- That contradicts the documented meaning of the field, where `allow` indicates that no
+  rule matched and is worth treating as a policy bug. A correct policy mixing an explicit
+  `approve` rule with an actionless one therefore looked broken, and CI written against the
+  documented values would fail on it.
+- Between `ALLOW` and `APPROVE` neither is more restrictive, so the more informative one
+  now wins. `DENY`, `CONTAMINATE` and `FLAG_FOR_REVIEW` still outrank both, and an
+  evaluation where nothing matches still reports `allow` with `No policies matched`.
+
+**`LGPLLR` was classified as strong copyleft**
+- Its properties, requirements, limitations and contamination effect are all identical to
+  `LGPL-2.1`, so typing it `copyleft_strong` while `LGPL-2.1` is `copyleft_weak` was
+  inconsistent on the dataset's own terms. It is also, by name and design, the lesser
+  licence for linguistic resources.
+- Corrected in the record and in `index.json`, added to the pipeline correction table so
+  regeneration keeps it, and pinned in the validator spot checks as a deliberate decision.
+
+### Changed
+
+**CI coverage now actually runs**
+- `pytest-cov` was installed and `coverage.xml` was uploaded to Codecov, but no `--cov`
+  flag was ever passed, so the file was never written and the upload silently did nothing.
+  This is why coverage being pointed at the `osslili` package went unnoticed for so long,
+  and why an earlier README could claim full coverage.
+- The test job now passes `--cov=ospac` with terminal and XML reports. A `codecov.yml`
+  marks both the project and patch statuses as informational, so coverage is reported and
+  commented but can never fail a pull request. Enforcing a target remains a separate
+  decision. Current coverage is 64%.
+
 ## [1.3.0] - 2026-08-11
 
 This release repairs a group of defects left behind by the v1.2.0 migration from YAML to
