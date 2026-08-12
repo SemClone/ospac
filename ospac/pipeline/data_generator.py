@@ -4,6 +4,7 @@ Combines SPDX data with LLM analysis to generate comprehensive policy files.
 """
 
 import json
+import re
 import yaml
 import logging
 import asyncio
@@ -20,14 +21,82 @@ logger = logging.getLogger(__name__)
 # "category" maps to the `category` field (license type).
 # "conditions" are merged into the `conditions` dict (any key overrides the LLM value).
 _KNOWN_OVERRIDES: Dict[str, Dict] = {
-    # LGPL permits linking from proprietary code — it is weak copyleft, not strong
+    # LGPL permits linking from proprietary code, so it is weak copyleft, not strong
     "LGPL-2.0-only":     {"category": "copyleft_weak"},
     "LGPL-2.0-or-later": {"category": "copyleft_weak"},
     "LGPL-2.1-only":     {"category": "copyleft_weak"},
     "LGPL-2.1-or-later": {"category": "copyleft_weak"},
     "LGPL-3.0-only":     {"category": "copyleft_weak"},
     "LGPL-3.0-or-later": {"category": "copyleft_weak"},
-    # MPL-2.0: file-level (weak) copyleft — modified files must stay MPL and source disclosed
+    # The deprecated bare and "+" spellings are aliases of the identifiers above, so they
+    # must classify identically. They were missing here, so the LLM kept marking them
+    # strong while their modern equivalents were corrected to weak. These are also the
+    # spellings that appear most often in real package metadata.
+    "LGPL-2.0":          {"category": "copyleft_weak"},
+    "LGPL-2.0+":         {"category": "copyleft_weak"},
+    "LGPL-2.1":          {"category": "copyleft_weak"},
+    "LGPL-2.1+":         {"category": "copyleft_weak"},
+    "LGPL-3.0":          {"category": "copyleft_weak"},
+    "LGPL-3.0+":         {"category": "copyleft_weak"},
+    # LGPLLR is the lesser licence for linguistic resources. It is not an alias of any
+    # LGPL identifier, but its properties, requirements, limitations and contamination
+    # effect are identical to LGPL-2.1's, so typing it strong while LGPL-2.1 is weak was
+    # inconsistent on the dataset's own terms.
+    "LGPLLR":            {"category": "copyleft_weak"},
+    # Mainstream licenses the broken analysis recorded as freely permissive. Each entry
+    # states what the license text says, so a regeneration cannot reintroduce the error.
+    # EPL and CDDL are weak copyleft with file-level source disclosure.
+    "EPL-1.0":  {"category": "copyleft_weak",
+                 "conditions": {"disclose_source": True, "same_license": True}},
+    "EPL-2.0":  {"category": "copyleft_weak",
+                 "conditions": {"disclose_source": True, "same_license": True}},
+    "CDDL-1.0": {"category": "copyleft_weak",
+                 "conditions": {"disclose_source": True, "same_license": True}},
+    "CDDL-1.1": {"category": "copyleft_weak",
+                 "conditions": {"disclose_source": True, "same_license": True}},
+    # EUPL is copyleft for the work as a whole, with an interoperability compatibility list
+    "EUPL-1.1": {"category": "copyleft_strong",
+                 "conditions": {"disclose_source": True, "same_license": True}},
+    "EUPL-1.2": {"category": "copyleft_strong",
+                 "conditions": {"disclose_source": True, "same_license": True}},
+    # OSL and CAL treat network use as distribution; SSPL extends disclosure to the whole
+    # service stack
+    "OSL-3.0":  {"category": "network_copyleft",
+                 "conditions": {"disclose_source": True, "same_license": True,
+                                "network_use_disclosure": True}},
+    "CAL-1.0":  {"category": "network_copyleft",
+                 "conditions": {"disclose_source": True, "same_license": True,
+                                "network_use_disclosure": True}},
+    "SSPL-1.0": {"category": "network_copyleft",
+                 "conditions": {"disclose_source": True, "same_license": True,
+                                "network_use_disclosure": True}},
+    # Source-available: source is published but use is restricted, so not open source
+    "BUSL-1.1":    {"category": "source_available"},
+    "Elastic-2.0": {"category": "source_available"},
+    # Parity requires releasing all software that uses the work
+    "Parity-7.0.0": {"category": "copyleft_strong",
+                     "conditions": {"disclose_source": True, "same_license": True}},
+    # Aladdin (AFPL) and NPOSL forbid commercial use outright
+    "Aladdin":    {"category": "noncommercial", "permissions": {"commercial_use": False}},
+    "NPOSL-3.0":  {"category": "noncommercial", "permissions": {"commercial_use": False}},
+    # ODbL and CDLA-Sharing are share-alike for data
+    "ODbL-1.0":         {"category": "copyleft_weak", "conditions": {"same_license": True}},
+    "CDLA-Sharing-1.0": {"category": "copyleft_weak", "conditions": {"same_license": True}},
+    # CERN OHL v2: S is strongly reciprocal, W weakly; the name says so
+    "CERN-OHL-S-2.0": {"category": "copyleft_strong",
+                       "conditions": {"disclose_source": True, "same_license": True}},
+    "CERN-OHL-W-2.0": {"category": "copyleft_weak",
+                       "conditions": {"disclose_source": True, "same_license": True}},
+    # RPL extends reciprocity to internal deployment, and ESA-PL's strong variant says
+    # strong in its own name; the reciprocity name stem alone would floor these at weak
+    "RPL-1.1": {"category": "copyleft_strong",
+                "conditions": {"disclose_source": True, "same_license": True}},
+    "RPL-1.5": {"category": "copyleft_strong",
+                "conditions": {"disclose_source": True, "same_license": True}},
+    "ESA-PL-strong-copyleft-2.4": {"category": "copyleft_strong",
+                                   "conditions": {"disclose_source": True,
+                                                  "same_license": True}},
+    # MPL-2.0: file-level (weak) copyleft, modified files must stay MPL and source disclosed
     "MPL-2.0": {
         "category": "copyleft_weak",
         "conditions": {"disclose_source": True, "same_license": True},
@@ -36,12 +105,25 @@ _KNOWN_OVERRIDES: Dict[str, Dict] = {
         "category": "copyleft_weak",
         "conditions": {"disclose_source": True, "same_license": True},
     },
-    # AGPL §13 requires network-use disclosure; LLM omits this condition
-    "AGPL-3.0-only":     {"conditions": {"network_use_disclosure": True}},
-    "AGPL-3.0-or-later": {"conditions": {"network_use_disclosure": True}},
+    # AGPL is strong copyleft plus the network clause, not one instead of the other.
+    # Models reasonably answer network_copyleft, which would soften commercial
+    # distribution from deny to review, so the category is pinned. All spellings carry
+    # the network-use disclosure condition, including AGPL-1.0's own clause 2(d).
+    "AGPL-3.0-only":     {"category": "copyleft_strong",
+                          "conditions": {"network_use_disclosure": True}},
+    "AGPL-3.0-or-later": {"category": "copyleft_strong",
+                          "conditions": {"network_use_disclosure": True}},
+    "AGPL-3.0":          {"category": "copyleft_strong",
+                          "conditions": {"network_use_disclosure": True}},
+    "AGPL-1.0":          {"category": "copyleft_strong",
+                          "conditions": {"network_use_disclosure": True}},
+    "AGPL-1.0-only":     {"category": "copyleft_strong",
+                          "conditions": {"network_use_disclosure": True}},
+    "AGPL-1.0-or-later": {"category": "copyleft_strong",
+                          "conditions": {"network_use_disclosure": True}},
     # Apache-2.0 requires documenting changes made to original files
     "Apache-2.0": {"conditions": {"state_changes": True}},
-    # CC0 is a full public domain waiver — no copyright or license text requirements
+    # CC0 is a full public domain waiver, with no copyright or license text requirements
     "CC0-1.0": {"conditions": {"include_copyright": False, "include_license": False}},
 }
 
@@ -270,7 +352,11 @@ class PolicyDataGenerator:
                                 "Network use triggers source-disclosure obligation"],
             "public_domain":   ["No restrictions"],
             "source_available":["Source visible but redistribution restricted"],
-            "proprietary":     ["All rights reserved — no redistribution"],
+            "noncommercial":   ["Attribution required",
+                                "Commercial use not permitted"],
+            "no_derivatives":  ["Attribution required",
+                                "Distribution of modified versions not permitted"],
+            "proprietary":     ["All rights reserved, no redistribution"],
             "unknown":         ["Review license terms before use"],
         }
         key_reqs = list(_CATEGORY_KEY.get(category, ["Review license terms before use"]))
@@ -290,6 +376,80 @@ class PolicyDataGenerator:
         if "conditions" in overrides:
             result["conditions"] = dict(result.get("conditions") or {})
             result["conditions"].update(overrides["conditions"])
+        if "permissions" in overrides:
+            result["permissions"] = dict(result.get("permissions") or {})
+            result["permissions"].update(overrides["permissions"])
+        return result
+
+    @staticmethod
+    def _identifier_restrictions(license_id: str, name: str = "") -> Dict[str, Any]:
+        """
+        Read the restrictions that an SPDX identifier states outright.
+
+        Creative Commons encodes its terms in the identifier itself: NC means
+        NonCommercial, ND means NoDerivatives, SA means ShareAlike. These are facts about
+        the identifier, not judgements about licence text, so they are derived here rather
+        than asked of a model. Every NonCommercial licence in the dataset had been recorded
+        as commercially usable because the analysis silently fell back to a permissive
+        default, which is exactly the kind of answer a model should never be trusted for.
+
+        Matching is on hyphen-delimited components so an identifier that merely contains
+        the letters is not caught. Names are compared with punctuation and case removed,
+        because the wording varies: NCGL-UK-2.0 is the "Non-Commercial Government Licence"
+        and a plain "NonCommercial" test misses it.
+        """
+        parts = set(license_id.split("-"))
+        flat = re.sub(r"[^a-z]", "", name.lower())
+        restrictions: Dict[str, Any] = {}
+
+        if "NC" in parts or "noncommercial" in flat or "nonprofit" in flat:
+            restrictions["commercial_use"] = False
+        if "ND" in parts or "noderivative" in flat:
+            restrictions["modification"] = False
+        # Reciprocity is frequently stated in the name itself: ShareAlike (CC), Reciprocal
+        # (MS-RL, RPL), or plain copyleft (copyleft-next, the ESA-PL variants).
+        if ("SA" in parts or "sharealike" in flat or "reciprocal" in flat
+                or "copyleft" in flat):
+            restrictions["same_license"] = True
+
+        return restrictions
+
+    def _apply_identifier_restrictions(self, license_id: str, analysis: Dict) -> Dict:
+        """
+        Force the terms the identifier states outright, then coerce the category to be
+        honest about the record's final booleans. No early return when the identifier has
+        no markers: the coercion must also cover restrictions only the analysis reports.
+        """
+        restrictions = self._identifier_restrictions(license_id, analysis.get("name", ""))
+
+        result = dict(analysis)
+        if "commercial_use" in restrictions or "modification" in restrictions:
+            result["permissions"] = dict(result.get("permissions") or {})
+            for key in ("commercial_use", "modification"):
+                if key in restrictions:
+                    result["permissions"][key] = restrictions[key]
+        if "same_license" in restrictions:
+            result["conditions"] = dict(result.get("conditions") or {})
+            result["conditions"]["same_license"] = restrictions["same_license"]
+
+        # The category must be honest about the restriction, because policy rules match on
+        # it. The coercion reads the record's final booleans, not only the
+        # identifier-derived ones: the first real analysis run returned modification false
+        # for two Adobe licenses while calling them permissive, which the identifier says
+        # nothing about, and only the validator caught the contradiction. NonCommercial
+        # dominates and is forced regardless of the incoming category, so a model
+        # classifying CC-BY-NC-SA as copyleft cannot bypass the noncommercial deny rules.
+        # ShareAlike and NoDerivatives only lift a record out of permissive: a stronger
+        # category already expresses the restriction.
+        permissions = result.get("permissions") or {}
+        conditions = result.get("conditions") or {}
+        if permissions.get("commercial_use") is False:
+            result["category"] = "noncommercial"
+        elif conditions.get("same_license") is True and result.get("category") == "permissive":
+            result["category"] = "copyleft_weak"
+        if permissions.get("modification") is False and result.get("category") == "permissive":
+            result["category"] = "no_derivatives"
+
         return result
 
     async def generate_all_data(self, force_download: bool = False,
@@ -360,6 +520,7 @@ class PolicyDataGenerator:
                 analysis["spdx_data"] = license_data  # raw SPDX entry for OSI/FSF/deprecated flags
                 analysis["name"] = license_data.get("name", license_id)
                 analysis = self._apply_known_corrections(license_id, analysis)
+                analysis = self._apply_identifier_restrictions(license_id, analysis)
                 analyzed_licenses.append(analysis)
 
                 # Generate individual policy file immediately
@@ -391,7 +552,10 @@ class PolicyDataGenerator:
                 by_id[lid] = lic
         # Apply overrides to the full merged set so existing on-disk files are also corrected
         all_to_write = [
-            self._apply_known_corrections(l.get("license_id", ""), l)
+            self._apply_identifier_restrictions(
+                l.get("license_id", ""),
+                self._apply_known_corrections(l.get("license_id", ""), l),
+            )
             for l in by_id.values()
         ]
 
@@ -569,7 +733,7 @@ class PolicyDataGenerator:
                 if entry == f"category:{cat2}":
                     return "incompatible"
 
-            return None  # not specified — fall through to category logic
+            return None  # not specified, fall through to category logic
 
         static = resolve("static_linking")
         dynamic = resolve("dynamic_linking")
@@ -860,7 +1024,7 @@ class PolicyDataGenerator:
                 json.dump(license_file_data, f, indent=2)
 
         logger.info(f"Wrote {len(licenses)} license files to {licenses_json_dir}")
-        # Index is rebuilt from ALL files after the delta — see _rebuild_index_from_files
+        # Index is rebuilt from ALL files after the delta, see _rebuild_index_from_files
 
     def _rebuild_index_from_files(self, spdx_version: str = "") -> None:
         """Build index.json from ALL license JSON files on disk, not just the current batch."""

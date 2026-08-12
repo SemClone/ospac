@@ -8,7 +8,7 @@
       "commercial_use": true,
       "distribution": true,
       "modification": true,
-      "patent_grant": false,
+      "patent_grant": true,
       "private_use": true
     },
     "requirements": {
@@ -21,27 +21,32 @@
       "network_use_disclosure": false
     },
     "limitations": {
-      "liability": false,
-      "warranty": false,
+      "liability": true,
+      "warranty": true,
       "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:copyleft_strong"
+        ],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive",
+          "category:copyleft_weak"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:copyleft_strong"
+        ],
         "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "Permissive license with minimal restrictions"
+      "notes": "RSCPL is permissive and does not impose viral effects on linked code."
     },
     "obligations": [
       "Retain copyright notices",
@@ -55,7 +60,7 @@
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T20:08:59.287920",
-    "spdx_list_version": "3dfd9aa"
+    "generated": "2026-08-12T09:45:09.627449",
+    "spdx_list_version": "e4c1f27"
   }
 }

@@ -16,6 +16,7 @@ from ospac.models.compliance import ComplianceStatus
 from ospac.pipeline.spdx_processor import SPDXProcessor
 from ospac.pipeline.data_generator import PolicyDataGenerator
 from ospac.utils.validation import validate_license_id
+from ospac.utils.data_validation import validate_license
 
 # Initialize colorama
 init(autoreset=True)
@@ -83,23 +84,26 @@ def evaluate(policy_dir: str, licenses: str, context: str,
         runtime = PolicyRuntime(policy_dir)
 
         if runtime._using_default and output == "text":
-            click.secho("Using default enterprise policy. Create a custom policy with 'ospac init' to customize.", fg="yellow")
+            click.secho("Using default enterprise policy. Create a custom policy with 'ospac policy init' to customize.", fg="yellow")
 
         license_list = [l.strip() for l in licenses.split(",")]
 
-        eval_context = {
-            "licenses_found": license_list,
-            "licenses": license_list,  # Support both keys
+        base_context = {
             "context": context,
             "distribution": distribution,
             "distribution_type": distribution,  # Support both keys
             "linking_type": context if "linking" in context else None
         }
 
-        result = runtime.evaluate(eval_context)
+        # Each license is evaluated on its own, then the verdicts are aggregated with
+        # most-restrictive-wins. Evaluating the set in one pass let a single license's
+        # approval answer for licenses that matched no rule at all: "MIT,AGPL-3.0" was
+        # approved because MIT fired the permissive rule and the no-match fail-safe
+        # therefore never ran for AGPL.
+        result, per_license = runtime.evaluate_licenses(license_list, base_context)
 
         # Add license obligations to requirements regardless of policy decision
-        _enhance_result_with_obligations(result, license_list)
+        _enhance_result_with_obligations(result, license_list, runtime)
 
         if output == "json":
             # Convert result to JSON-serializable format
@@ -110,6 +114,10 @@ def evaluate(policy_dir: str, licenses: str, context: str,
                 "context": context,
                 "distribution": distribution,
                 "result": result_dict,
+                "per_license": {
+                    lid: {"action": r.action.value, "message": r.message}
+                    for lid, r in per_license.items()
+                },
                 "using_default_policy": runtime._using_default
             }
             click.echo(json.dumps(output_data, indent=2))
@@ -149,9 +157,20 @@ def check(license1: str, license2: str, context: str, policy_dir: str, output: s
         runtime = PolicyRuntime(policy_dir)
 
         if runtime._using_default and output == "text":
-            click.secho("Using default enterprise policy. Create a custom policy with 'ospac init' to customize.", fg="yellow")
+            click.secho("Using default enterprise policy. Create a custom policy with 'ospac policy init' to customize.", fg="yellow")
 
         result = runtime.check_compatibility(license1, license2, context)
+
+        # A license id that does not resolve in the dataset cannot be checked, only not
+        # contradicted. Say so instead of letting a typo read as a clean compatibility.
+        warnings = list(result.warnings) if result.warnings else []
+        for license_id in (license1, license2):
+            if runtime.resolve_license_type(license_id) is None:
+                warnings.append({
+                    "rule_id": "unknown_license",
+                    "message": f"{license_id} is not in the license dataset, so this "
+                               f"compatibility is unverified"
+                })
 
         if output == "json":
             output_data = {
@@ -159,7 +178,9 @@ def check(license1: str, license2: str, context: str, policy_dir: str, output: s
                 "license2": license2,
                 "context": context,
                 "compatible": result.is_compliant,
+                "requires_review": result.needs_review,
                 "violations": result.violations if result.violations else [],
+                "warnings": warnings,
                 "using_default_policy": runtime._using_default
             }
             click.echo(json.dumps(output_data, indent=2))
@@ -167,6 +188,8 @@ def check(license1: str, license2: str, context: str, policy_dir: str, output: s
             # Text output
             if result.is_compliant:
                 click.secho(f"✓ {license1} and {license2} are compatible", fg="green")
+            elif result.needs_review:
+                click.secho(f"? {license1} and {license2} require review", fg="yellow")
             else:
                 click.secho(f"✗ {license1} and {license2} are incompatible", fg="red")
 
@@ -174,6 +197,8 @@ def check(license1: str, license2: str, context: str, policy_dir: str, output: s
                     click.echo("\nViolations:")
                     for violation in result.violations:
                         click.echo(f"  - {violation['message']}")
+            for warning in warnings:
+                click.secho(f"  ! {warning['message']}", fg="yellow")
 
     except Exception as e:
         click.secho(f"Error: {e}", fg="red", err=True)
@@ -320,17 +345,28 @@ def generate(output_dir: str, force: bool, force_reprocess: bool, limit: Optiona
     async def run_generation():
         # Create generator with LLM configuration
         if use_llm:
+            # require_provider=True makes provider initialization a preflight
+            # check: a missing package or API key aborts here, before any
+            # license is processed, instead of silently producing fallback data.
             generator = PolicyDataGenerator(
                 output_dir=Path(output_dir),
                 llm_provider=llm_provider,
                 llm_model=llm_model,
-                llm_api_key=llm_api_key
+                llm_api_key=llm_api_key,
+                require_provider=True
             )
             click.echo(f"Using {llm_provider.upper()} LLM provider for enhanced analysis")
         else:
-            generator = PolicyDataGenerator(Path(output_dir))
-            click.secho("⚠ Running without LLM analysis. Data will be basic.", fg="yellow")
-            click.echo("To enable LLM analysis, use --use-llm flag with --llm-provider")
+            # Without a provider every record comes from the fail-closed fallback:
+            # type unknown, every permission denied. That output exists so a failed
+            # analysis cannot over-permit, not to be a dataset, so refuse to write a
+            # whole corpus of it. The shipped package already includes real data.
+            click.secho(
+                "✗ data generate requires --use-llm. Without a provider every record "
+                "is a conservative placeholder (type unknown, all permissions denied), "
+                "which is not a usable dataset.", fg="red", err=True)
+            click.echo("Use --use-llm with --llm-provider openai|claude|ollama.", err=True)
+            sys.exit(1)
 
         click.echo(f"Generating policy data in {output_dir}...")
 
@@ -357,6 +393,40 @@ def generate(output_dir: str, force: bool, force_reprocess: bool, limit: Optiona
             click.secho("✓ All data validated successfully", fg="green")
         else:
             click.secho(f"⚠ Validation issues found: {len(validation.get('validation_errors', []))}", fg="yellow")
+
+        # Fail closed if any record came from fallback instead of the LLM.
+        # A partially fabricated compliance dataset must not be publishable.
+        if use_llm:
+            fallback_ids = sorted(getattr(generator.llm_analyzer, "fallback_licenses", set()))
+            if fallback_ids:
+                preview = ", ".join(fallback_ids[:10])
+                if len(fallback_ids) > 10:
+                    preview += f", and {len(fallback_ids) - 10} more"
+                click.secho(
+                    f"✗ {len(fallback_ids)} license record(s) were produced by fallback analysis "
+                    f"instead of {llm_provider.upper()}: {preview}",
+                    fg="red", err=True
+                )
+                # Remove the fabricated records. Delta processing uses on-disk files as
+                # its record of what is done, so leaving these in place would make the
+                # next run skip them and report a clean dataset over stale placeholders.
+                removed = 0
+                for fallback_id in fallback_ids:
+                    record_path = Path(output_dir) / "licenses" / "json" / f"{fallback_id}.json"
+                    if record_path.exists():
+                        record_path.unlink()
+                        removed += 1
+                if removed:
+                    click.secho(
+                        f"  Removed {removed} placeholder record(s) so the next run "
+                        f"reprocesses them.", fg="yellow", err=True)
+                click.secho(
+                    "Fallback records deliberately under-permit and must not be published. "
+                    "Fix the provider errors logged above and re-run.",
+                    fg="red", err=True
+                )
+                sys.exit(1)
+            click.secho("✓ No fallback records: all licenses analyzed by the LLM provider", fg="green")
 
     try:
         asyncio.run(run_generation())
@@ -411,29 +481,21 @@ def show(license_id: str, format: str):
         # Load from JSON file (preferred format)
         json_file = data_dir / "licenses" / "json" / f"{license_id}.json"
 
-        if json_file.exists():
-            with open(json_file) as f:
-                data = json.load(f)
-            license_data = data.get("license", {})
-        else:
-            # Fallback to YAML file
-            yaml_file = data_dir / "licenses" / "spdx" / f"{license_id}.yaml"
+        if not json_file.exists():
+            click.secho(f"License {license_id} not found", fg="red")
 
-            if not yaml_file.exists():
-                click.secho(f"License {license_id} not found", fg="red")
+            # Show available licenses
+            json_dir = data_dir / "licenses" / "json"
+            if json_dir.exists():
+                available = [f.stem for f in json_dir.glob("*.json")][:10]
+                click.echo("\nAvailable licenses (first 10):")
+                for lid in available:
+                    click.echo(f"  - {lid}")
+            sys.exit(1)
 
-                # Show available licenses
-                json_dir = data_dir / "licenses" / "json"
-                if json_dir.exists():
-                    available = [f.stem for f in json_dir.glob("*.json")][:10]
-                    click.echo("\nAvailable licenses (first 10):")
-                    for lid in available:
-                        click.echo(f"  - {lid}")
-                sys.exit(1)
-
-            with open(yaml_file) as f:
-                data = yaml.safe_load(f)
-            license_data = data.get("license", {})
+        with open(json_file) as f:
+            data = json.load(f)
+        license_data = data.get("license", {})
 
         if format == "json":
             click.echo(json.dumps(license_data, indent=2))
@@ -442,22 +504,50 @@ def show(license_id: str, format: str):
         else:
             # Text format
             click.secho(f"License: {license_id}", fg="cyan", bold=True)
-            click.echo(f"Category: {license_data.get('category')}")
             click.echo(f"Name: {license_data.get('name')}")
+            click.echo(f"Type: {license_data.get('type')}")
 
-            click.echo("\nPermissions:")
-            for perm, value in license_data.get("permissions", {}).items():
-                symbol = "✓" if value else "✗"
-                click.echo(f"  {symbol} {perm}")
+            spdx_metadata = license_data.get("spdx_metadata", {})
+            if spdx_metadata.get("is_deprecated"):
+                click.secho("⚠ This license identifier is DEPRECATED", fg="yellow")
 
-            click.echo("\nConditions:")
-            for cond, value in license_data.get("conditions", {}).items():
-                if value:
-                    click.echo(f"  • {cond}")
+            def bool_mark(value):
+                return "✓" if value else "✗"
 
-            click.echo("\nObligations:")
-            for obligation in license_data.get("obligations", []):
-                click.echo(f"  • {obligation}")
+            permissions = license_data.get("properties", {})
+            if permissions:
+                click.echo("\nPermissions:")
+                for perm, value in permissions.items():
+                    click.echo(f"  {bool_mark(value)} {perm}")
+
+            conditions = license_data.get("requirements", {})
+            if conditions:
+                click.echo("\nConditions:")
+                for cond, value in conditions.items():
+                    click.echo(f"  {bool_mark(value)} {cond}")
+
+            limitations = license_data.get("limitations", {})
+            if limitations:
+                click.echo("\nLimitations:")
+                for limitation, value in limitations.items():
+                    click.echo(f"  {bool_mark(value)} {limitation}")
+
+            obligations_list = license_data.get("obligations", [])
+            if obligations_list:
+                click.echo("\nObligations:")
+                for obligation in obligations_list:
+                    click.echo(f"  • {obligation}")
+
+            key_requirements = license_data.get("key_requirements", [])
+            if key_requirements:
+                click.echo("\nKey requirements:")
+                for req in key_requirements:
+                    click.echo(f"  • {req}")
+
+            if spdx_metadata:
+                click.echo("\nSPDX metadata:")
+                for key, value in spdx_metadata.items():
+                    click.echo(f"  {bool_mark(value)} {key}")
 
     except Exception as e:
         click.secho(f"Error: {e}", fg="red", err=True)
@@ -466,61 +556,79 @@ def show(license_id: str, format: str):
 
 @data.command()
 @click.option("--data-dir", "-d", type=click.Path(exists=True),
-              default=None, help="Directory containing generated data")
-def validate(data_dir: Optional[str]):
-    """Validate SPDX license data."""
-    import yaml
+              default=None, help="Directory containing generated data (defaults to packaged data)")
+@click.option("--strict", is_flag=True,
+              help="Treat warnings as errors")
+def validate(data_dir: Optional[str], strict: bool):
+    """Validate the license JSON dataset."""
     try:
         # Use package data directory if not specified
         if data_dir is None:
             data_dir = str(Path(__file__).parent.parent / "data")
 
-        data_path = Path(data_dir)
-
-        # Check SPDX directory exists
-        spdx_dir = data_path / "licenses" / "spdx"
-        if not spdx_dir.exists():
-            click.secho(f"✗ SPDX directory not found: {spdx_dir}", fg="red")
+        licenses_dir = Path(data_dir) / "licenses" / "json"
+        if not licenses_dir.exists():
+            click.secho(f"✗ License JSON directory not found: {licenses_dir}", fg="red")
             sys.exit(1)
 
-        # Count and validate SPDX files
-        yaml_files = list(spdx_dir.glob("*.yaml"))
-        total = len(yaml_files)
+        json_files = sorted(licenses_dir.glob("*.json"))
+        total = len(json_files)
 
         if total == 0:
-            click.secho(f"✗ No SPDX YAML files found in {spdx_dir}", fg="red")
+            click.secho(f"✗ No license JSON files found in {licenses_dir}", fg="red")
             sys.exit(1)
 
-        click.echo(f"Validating {total} SPDX licenses...")
+        click.echo(f"Validating {total} license JSON files...")
 
-        issues = []
-        required_fields = {"id", "name", "type", "properties", "requirements", "limitations", "obligations"}
+        all_errors = {}
+        all_warnings = {}
 
-        for yaml_file in yaml_files:
+        for json_file in json_files:
+            license_id = json_file.stem
             try:
-                with open(yaml_file) as f:
-                    data = yaml.safe_load(f)
+                with open(json_file) as f:
+                    raw = json.load(f)
+            except json.JSONDecodeError as e:
+                all_errors[license_id] = [f"invalid JSON: {e}"]
+                continue
 
-                if "license" not in data:
-                    issues.append(f"{yaml_file.name}: Missing 'license' section")
-                    continue
+            license_record = raw.get("license", {})
+            if not license_record:
+                all_errors[license_id] = ["top-level 'license' key missing or empty"]
+                continue
 
-                license_data = data["license"]
-                missing_fields = required_fields - set(license_data.keys())
-                if missing_fields:
-                    issues.append(f"{yaml_file.name}: Missing fields: {missing_fields}")
+            errors, warnings = validate_license(license_id, license_record)
+            if errors:
+                all_errors[license_id] = errors
+            if warnings:
+                all_warnings[license_id] = warnings
 
-            except Exception as e:
-                issues.append(f"{yaml_file.name}: Parse error - {e}")
+        clean = total - len(set(all_errors) | set(all_warnings))
 
-        if issues:
-            click.secho(f"⚠ Found {len(issues)} validation issues:", fg="yellow")
-            for issue in issues[:10]:  # Show first 10
-                click.echo(f"  - {issue}")
-        else:
-            click.secho(f"✓ All {total} licenses validated successfully", fg="green")
+        if all_errors:
+            click.secho(f"\n✗ Errors in {len(all_errors)} files:", fg="red")
+            for license_id, messages in sorted(all_errors.items())[:10]:
+                for message in messages:
+                    click.echo(f"  - {license_id}: {message}")
+            if len(all_errors) > 10:
+                click.echo(f"  ... and {len(all_errors) - 10} more files with errors")
 
-        click.echo(f"\nData summary: {total} SPDX license files validated")
+        if all_warnings:
+            click.secho(f"\n⚠ Warnings in {len(all_warnings)} files:", fg="yellow")
+            for license_id, messages in sorted(all_warnings.items())[:10]:
+                for message in messages:
+                    click.echo(f"  - {license_id}: {message}")
+            if len(all_warnings) > 10:
+                click.echo(f"  ... and {len(all_warnings) - 10} more files with warnings")
+
+        click.echo(f"\nData summary: {total} files, {clean} clean, "
+                   f"{len(all_warnings)} with warnings, {len(all_errors)} with errors")
+
+        if all_errors or (strict and all_warnings):
+            click.secho("✗ Validation failed", fg="red")
+            sys.exit(1)
+
+        click.secho(f"✓ All {total} licenses validated successfully", fg="green")
 
     except Exception as e:
         click.secho(f"Error: {e}", fg="red", err=True)
@@ -570,6 +678,28 @@ def init(template: str, output: str, format: str):
                     "description": "Allow permissive licenses",
                     "when": {"license_type": ["permissive", "public_domain"]},
                     "then": {"action": "approve"}
+                },
+                {
+                    "id": "deny_noncommercial",
+                    "description": "Deny NonCommercial licenses in distributed products",
+                    "when": {"license_type": "noncommercial"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "NonCommercial licenses forbid commercial use",
+                        "remediation": "Replace with a permissive alternative, or obtain a commercial license from the rights holder"
+                    }
+                },
+                {
+                    "id": "review_restricted",
+                    "description": "Review licenses with restrictions the tool cannot verify",
+                    "when": {"license_type": ["no_derivatives", "source_available",
+                                              "network_copyleft", "unknown"]},
+                    "then": {
+                        "action": "flag_for_review",
+                        "severity": "warning",
+                        "message": "This license carries restrictions that need human review"
+                    }
                 }
             ]
         },
@@ -603,6 +733,28 @@ def init(template: str, output: str, format: str):
                     "description": "Allow permissive licenses",
                     "when": {"license_type": ["permissive", "public_domain"]},
                     "then": {"action": "approve"}
+                },
+                {
+                    "id": "deny_noncommercial",
+                    "description": "Deny NonCommercial licenses in distributed products",
+                    "when": {"license_type": "noncommercial"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "NonCommercial licenses forbid commercial use",
+                        "remediation": "Replace with a permissive alternative, or obtain a commercial license from the rights holder"
+                    }
+                },
+                {
+                    "id": "review_restricted",
+                    "description": "Review licenses with restrictions the tool cannot verify",
+                    "when": {"license_type": ["no_derivatives", "source_available",
+                                              "network_copyleft", "unknown"]},
+                    "then": {
+                        "action": "flag_for_review",
+                        "severity": "warning",
+                        "message": "This license carries restrictions that need human review"
+                    }
                 }
             ]
         },
@@ -638,6 +790,28 @@ def init(template: str, output: str, format: str):
                     "description": "Allow permissive licenses",
                     "when": {"license_type": ["permissive", "public_domain"]},
                     "then": {"action": "approve"}
+                },
+                {
+                    "id": "deny_noncommercial",
+                    "description": "Deny NonCommercial licenses in distributed products",
+                    "when": {"license_type": "noncommercial"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "NonCommercial licenses forbid commercial use",
+                        "remediation": "Replace with a permissive alternative, or obtain a commercial license from the rights holder"
+                    }
+                },
+                {
+                    "id": "review_restricted",
+                    "description": "Review licenses with restrictions the tool cannot verify",
+                    "when": {"license_type": ["no_derivatives", "source_available",
+                                              "network_copyleft", "unknown"]},
+                    "then": {
+                        "action": "flag_for_review",
+                        "severity": "warning",
+                        "message": "This license carries restrictions that need human review"
+                    }
                 }
             ]
         },
@@ -671,6 +845,28 @@ def init(template: str, output: str, format: str):
                     "description": "Allow permissive licenses",
                     "when": {"license_type": ["permissive", "public_domain"]},
                     "then": {"action": "approve"}
+                },
+                {
+                    "id": "deny_noncommercial",
+                    "description": "Deny NonCommercial licenses in distributed products",
+                    "when": {"license_type": "noncommercial"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "NonCommercial licenses forbid commercial use",
+                        "remediation": "Replace with a permissive alternative, or obtain a commercial license from the rights holder"
+                    }
+                },
+                {
+                    "id": "review_restricted",
+                    "description": "Review licenses with restrictions the tool cannot verify",
+                    "when": {"license_type": ["no_derivatives", "source_available",
+                                              "network_copyleft", "unknown"]},
+                    "then": {
+                        "action": "flag_for_review",
+                        "severity": "warning",
+                        "message": "This license carries restrictions that need human review"
+                    }
                 }
             ]
         },
@@ -706,6 +902,28 @@ def init(template: str, output: str, format: str):
                     "description": "Allow permissive licenses for embedded",
                     "when": {"license_type": ["permissive", "public_domain"]},
                     "then": {"action": "approve"}
+                },
+                {
+                    "id": "deny_noncommercial",
+                    "description": "Deny NonCommercial licenses in distributed products",
+                    "when": {"license_type": "noncommercial"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "NonCommercial licenses forbid commercial use",
+                        "remediation": "Replace with a permissive alternative, or obtain a commercial license from the rights holder"
+                    }
+                },
+                {
+                    "id": "review_restricted",
+                    "description": "Review licenses with restrictions the tool cannot verify",
+                    "when": {"license_type": ["no_derivatives", "source_available",
+                                              "network_copyleft", "unknown"]},
+                    "then": {
+                        "action": "flag_for_review",
+                        "severity": "warning",
+                        "message": "This license carries restrictions that need human review"
+                    }
                 }
             ]
         },
@@ -741,6 +959,28 @@ def init(template: str, output: str, format: str):
                     "description": "Allow permissive licenses",
                     "when": {"license_type": ["permissive", "public_domain"]},
                     "then": {"action": "approve"}
+                },
+                {
+                    "id": "deny_noncommercial",
+                    "description": "Deny NonCommercial licenses in distributed products",
+                    "when": {"license_type": "noncommercial"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "NonCommercial licenses forbid commercial use",
+                        "remediation": "Replace with a permissive alternative, or obtain a commercial license from the rights holder"
+                    }
+                },
+                {
+                    "id": "review_restricted",
+                    "description": "Review licenses with restrictions the tool cannot verify",
+                    "when": {"license_type": ["no_derivatives", "source_available",
+                                              "network_copyleft", "unknown"]},
+                    "then": {
+                        "action": "flag_for_review",
+                        "severity": "warning",
+                        "message": "This license carries restrictions that need human review"
+                    }
                 }
             ]
         },
@@ -780,8 +1020,18 @@ def _output_text(result, licenses):
     click.echo("-" * 50)
 
     if hasattr(result, "action"):
-        action_color = "green" if result.action.value == "allow" else "red"
-        click.secho(f"Action: {result.action.value}", fg=action_color)
+        # Colour by what the action means, not by string equality with one value.
+        # Approvals were rendered red because only "allow" was treated as good, and the
+        # markdown renderer below printed "Denied" for them outright.
+        _ACTION_STYLE = {
+            "approve": "green",
+            "allow": "green",
+            "flag_for_review": "yellow",
+            "contaminate": "red",
+            "deny": "red",
+        }
+        click.secho(f"Action: {result.action.value}",
+                    fg=_ACTION_STYLE.get(result.action.value, "yellow"))
 
         if result.message:
             click.echo(f"Message: {result.message}")
@@ -798,7 +1048,14 @@ def _output_markdown(result, licenses):
     click.echo(f"**Licenses evaluated:** {', '.join(licenses)}\n")
 
     if hasattr(result, "action"):
-        status = "✅ Allowed" if result.action.value == "allow" else "❌ Denied"
+        _ACTION_STATUS = {
+            "approve": "✅ Approved",
+            "allow": "✅ Allowed",
+            "flag_for_review": "⚠️ Requires review",
+            "contaminate": "❌ Denied (contaminating)",
+            "deny": "❌ Denied",
+        }
+        status = _ACTION_STATUS.get(result.action.value, f"⚠️ {result.action.value}")
         click.echo(f"## Status: {status}\n")
 
         if result.message:
@@ -926,12 +1183,16 @@ def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -
     return license_data_result
 
 
-def _enhance_result_with_obligations(result, license_list: list):
-    """Add license obligations to policy result requirements."""
-    import json
-    from pathlib import Path
+def _enhance_result_with_obligations(result, license_list: list, runtime: PolicyRuntime,
+                                     data_dir: Optional[str] = None):
+    """Add license obligations to policy result requirements.
 
-    # Get license obligations from JSON files (preferred) or YAML files
+    Loads obligations from the packaged license JSON dataset (or an explicit
+    data_dir override) so enrichment works regardless of the current working
+    directory. The legacy YAML layout no longer ships, so there is no fallback.
+    """
+    json_dir = Path(runtime.resolve_data_dir(data_dir)) / "licenses" / "json"
+
     all_obligations = []
 
     for license_id in license_list:
@@ -942,9 +1203,7 @@ def _enhance_result_with_obligations(result, license_list: list):
             # Skip invalid license IDs
             continue
 
-        # Try JSON first, then fallback to YAML
-        json_file = Path("data") / "licenses" / "json" / f"{license_id}.json"
-        yaml_file = Path("data") / "licenses" / "spdx" / f"{license_id}.yaml"
+        json_file = json_dir / f"{license_id}.json"
 
         spdx_data = None
 
@@ -952,14 +1211,6 @@ def _enhance_result_with_obligations(result, license_list: list):
             try:
                 with open(json_file) as f:
                     spdx_data = json.load(f)
-            except Exception:
-                pass
-
-        if spdx_data is None and yaml_file.exists():
-            try:
-                import yaml
-                with open(yaml_file) as f:
-                    spdx_data = yaml.safe_load(f)
             except Exception:
                 pass
 

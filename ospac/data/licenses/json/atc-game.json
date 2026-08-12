@@ -1,0 +1,81 @@
+{
+  "license": {
+    "id": "atc-game",
+    "name": "atc Game License",
+    "type": "permissive",
+    "spdx_id": "atc-game",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_license": true,
+      "include_copyright": true,
+      "include_notice": true,
+      "state_changes": false,
+      "same_license": false,
+      "network_use_disclosure": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademark_use": false
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "category:permissive"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "category:copyleft_strong"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "category:permissive"
+        ],
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "category:copyleft_strong"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
+      },
+      "contamination_effect": "none",
+      "notes": "atc-game license is permissive and does not impose viral effects on linked code."
+    },
+    "obligations": [
+      "Retain copyright notices",
+      "Include license text"
+    ],
+    "key_requirements": [
+      "Attribution required"
+    ],
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-08-12T09:45:09.627449",
+    "spdx_list_version": "e4c1f27"
+  }
+}

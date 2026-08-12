@@ -2,60 +2,70 @@
   "license": {
     "id": "OSL-1.1",
     "name": "Open Software License 1.1",
-    "type": "permissive",
+    "type": "copyleft_strong",
     "spdx_id": "OSL-1.1",
     "properties": {
       "commercial_use": true,
       "distribution": true,
       "modification": true,
-      "patent_grant": false,
+      "patent_grant": true,
       "private_use": true
     },
     "requirements": {
-      "disclose_source": false,
+      "disclose_source": true,
       "include_license": true,
       "include_copyright": true,
-      "include_notice": false,
-      "state_changes": false,
-      "same_license": false,
+      "include_notice": true,
+      "state_changes": true,
+      "same_license": true,
       "network_use_disclosure": false
     },
     "limitations": {
-      "liability": false,
-      "warranty": false,
-      "trademark_use": false
+      "liability": true,
+      "warranty": true,
+      "trademark_use": true
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:copyleft_weak",
+          "category:copyleft_strong"
+        ],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive",
+          "category:copyleft_weak"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:copyleft_strong"
+        ],
         "requires_review": []
       },
-      "contamination_effect": "none",
-      "notes": "Permissive license with minimal restrictions"
+      "contamination_effect": "full",
+      "notes": "OSL-1.1 has a strong copyleft nature, requiring the entire combined work to be licensed under OSL-1.1."
     },
     "obligations": [
       "Retain copyright notices",
-      "Include license text"
+      "Include license text",
+      "Document changes made to the code",
+      "Provide or offer access to complete source code",
+      "Distribute modifications under the same license"
     ],
     "key_requirements": [
-      "Attribution required"
+      "Attribution required",
+      "Combined works must be released under the same license"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": true,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T20:08:59.287920",
-    "spdx_list_version": "3dfd9aa"
+    "generated": "2026-08-12T09:45:09.627449",
+    "spdx_list_version": "e4c1f27"
   }
 }

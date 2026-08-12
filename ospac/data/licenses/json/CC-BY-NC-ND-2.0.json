@@ -2,12 +2,12 @@
   "license": {
     "id": "CC-BY-NC-ND-2.0",
     "name": "Creative Commons Attribution Non Commercial No Derivatives 2.0 Generic",
-    "type": "permissive",
+    "type": "noncommercial",
     "spdx_id": "CC-BY-NC-ND-2.0",
     "properties": {
-      "commercial_use": true,
+      "commercial_use": false,
       "distribution": true,
-      "modification": true,
+      "modification": false,
       "patent_grant": false,
       "private_use": true
     },
@@ -15,47 +15,56 @@
       "disclose_source": false,
       "include_license": true,
       "include_copyright": true,
-      "include_notice": false,
+      "include_notice": true,
       "state_changes": false,
       "same_license": false,
       "network_use_disclosure": false
     },
     "limitations": {
-      "liability": false,
-      "warranty": false,
+      "liability": true,
+      "warranty": true,
       "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:copyleft",
+          "category:copyleft_strong"
+        ],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:copyleft",
+          "category:copyleft_strong"
+        ],
         "requires_review": []
       },
-      "contamination_effect": "none",
-      "notes": "Permissive license with minimal restrictions"
+      "contamination_effect": "full",
+      "notes": "Using CC-BY-NC-ND-2.0 components in a project requires the entire work to be under the same license due to the no derivatives clause."
     },
     "obligations": [
       "Retain copyright notices",
-      "Include license text"
+      "Include license text",
+      "Non-commercial use only",
+      "No modification permitted"
     ],
     "key_requirements": [
-      "Attribution required"
+      "Attribution required",
+      "Commercial use not permitted"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T20:08:59.287920",
-    "spdx_list_version": "3dfd9aa"
+    "generated": "2026-08-12T09:45:09.627449",
+    "spdx_list_version": "e4c1f27"
   }
 }

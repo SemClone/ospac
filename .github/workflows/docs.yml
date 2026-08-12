@@ -1,0 +1,50 @@
+name: Docs
+
+# The published site is built by GitHub Pages from docs/ on main. Pages only
+# reports a failure after the merge, so build the same way here and catch a
+# broken site while it is still a pull request.
+on:
+  pull_request:
+    paths:
+      - 'docs/**'
+      - '.github/workflows/docs.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+
+jobs:
+  build:
+    name: Build the site
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+          working-directory: docs
+
+      - name: Build with Jekyll
+        working-directory: docs
+        run: bundle exec jekyll build --strict_front_matter --trace
+
+      - name: Check that internal links resolve in the built site
+        working-directory: docs
+        run: |
+          # Checked against _site rather than the sources, so a link that points
+          # at a path the permalink style does not produce is caught too.
+          missing=0
+          for target in $(grep -rho '{{ site.baseurl }}/[a-z-]*/' *.md | sed 's|{{ site.baseurl }}/||; s|/$||' | sort -u); do
+            if [ ! -f "_site/${target}/index.html" ] && [ ! -f "_site/${target}.html" ]; then
+              echo "link target is not in the built site: /${target}/"
+              missing=1
+            fi
+          done
+
+          if [ $missing -eq 0 ]; then
+            echo "all internal links resolve"
+          fi
+          exit $missing

@@ -62,10 +62,15 @@ class PolicyRuntime:
         """Create a PolicyRuntime instance from a policy directory."""
         return cls(policy_path)
 
-    def evaluate(self, context: Dict[str, Any]) -> PolicyResult:
+    def evaluate(self, context: Dict[str, Any],
+                 when_unmatched: str = "review") -> PolicyResult:
         """
         Evaluate context against all loaded policies.
         No business logic here - just policy execution.
+
+        Evaluates the context as a single unit. For a list of licenses prefer
+        evaluate_licenses(), which evaluates each license independently so that one
+        license matching a rule cannot answer for the others.
         """
         if not self.evaluator:
             raise RuntimeError("No policies loaded. Call load_policies() first.")
@@ -76,9 +81,13 @@ class PolicyRuntime:
         for rule in applicable_rules:
             result = self.evaluator.evaluate_rule(rule, context)
             # Convert dict result to PolicyResult
+            action_name = result.get("action", "allow").lower()
+            if action_name == "review":
+                # Policies may use "review" as shorthand for flag_for_review
+                action_name = "flag_for_review"
             policy_result = PolicyResult(
                 rule_id=result.get("rule_id", "unknown"),
-                action=ActionType[result.get("action", "allow").upper()],
+                action=ActionType[action_name.upper()],
                 severity=result.get("severity", "info"),
                 message=result.get("message"),
                 requirements=result.get("requirements", []),
@@ -86,7 +95,45 @@ class PolicyRuntime:
             )
             results.append(policy_result)
 
-        return PolicyResult.aggregate(results)
+        return PolicyResult.aggregate(results, when_unmatched=when_unmatched)
+
+    def resolve_license_type(self, license_id: str,
+                             data_dir: Optional[str] = None) -> Optional[str]:
+        """Look up a license's type from the dataset, or None if unresolvable."""
+        try:
+            record = self.lookup_license_data(license_id, data_dir)
+        except ValueError:
+            return None
+        return ((record or {}).get("license") or {}).get("type")
+
+    def evaluate_licenses(self, licenses: List[str],
+                          base_context: Dict[str, Any]) -> tuple:
+        """
+        Evaluate each license independently, then aggregate the per-license verdicts.
+
+        Set-level evaluation let one license answer for the whole set: an approve rule
+        matching MIT approved "MIT,AGPL-3.0", because the rule list was non-empty and the
+        no-match fail-safe never ran for the AGPL that matched nothing. Evaluating per
+        license means every license either gets a verdict from a rule or falls to the
+        fail-safe on its own.
+
+        Returns (aggregated PolicyResult, {license_id: per-license PolicyResult}).
+        base_context carries the shared fields (distribution_type, context, linking_type);
+        the per-license fields are filled in here.
+        """
+        per_license: Dict[str, PolicyResult] = {}
+        for license_id in licenses:
+            license_type = self.resolve_license_type(license_id)
+            ctx = dict(base_context)
+            ctx["licenses"] = [license_id]
+            ctx["licenses_found"] = [license_id]
+            ctx["license_type"] = [license_type] if license_type else []
+            per_license[license_id] = self.evaluate(ctx)
+
+        combined = PolicyResult.aggregate(list(per_license.values()))
+        if len(licenses) > 1:
+            combined.message = f"Evaluated {len(licenses)} licenses"
+        return combined, per_license
 
     def _find_applicable_rules(self, context: Dict[str, Any]) -> List[Dict]:
         """Find all rules that apply to the given context."""
@@ -142,6 +189,28 @@ class PolicyRuntime:
                 else:
                     if value not in licenses_to_check:
                         return False
+            elif key == "license_type":
+                # Multiple licenses may be evaluated at once, so the context
+                # value can be a scalar or a list of types. The rule matches
+                # if any evaluated license's type matches the rule value.
+                types_to_check = []
+
+                if isinstance(context_value, str):
+                    types_to_check.append(context_value)
+                elif isinstance(context_value, list):
+                    types_to_check.extend(context_value)
+
+                # If no license types are available in context, no match
+                if not types_to_check:
+                    return False
+
+                if isinstance(value, list):
+                    # Check if any type in context matches any in the rule
+                    if not any(lic_type in value for lic_type in types_to_check):
+                        return False
+                else:
+                    if value not in types_to_check:
+                        return False
             else:
                 # Normal field checking
                 if context_value is None:
@@ -158,17 +227,48 @@ class PolicyRuntime:
     def check_compatibility(self, license1: str, license2: str,
                            context: str = "general") -> ComplianceResult:
         """Check if two licenses are compatible."""
+        # Resolve license types from the dataset so rules matching on
+        # license_type (e.g. copyleft_strong) can fire. Licenses missing
+        # from the dataset simply contribute no type.
+        license_types = []
+        for license_id in (license1, license2):
+            try:
+                license_data = self.lookup_license_data(license_id)
+            except ValueError:
+                continue
+            license_type = (license_data or {}).get("license", {}).get("type")
+            if license_type and license_type not in license_types:
+                license_types.append(license_type)
+
         eval_context = {
             "license1": license1,
             "license2": license2,
+            "license_type": license_types,
             "compatibility_context": context
         }
 
-        result = self.evaluate(eval_context)
+        # A compatibility check asks whether a conflict is known, so no rule matching
+        # means "no known conflict", not "needs review". The review default belongs to
+        # permission questions; applying it here made every license read as incompatible
+        # with itself, since this context carries no distribution_type and most rules
+        # therefore cannot match.
+        result = self.evaluate(eval_context, when_unmatched="allow")
         return ComplianceResult.from_policy_result(result)
 
     def get_obligations(self, licenses: List[str], data_dir: Optional[str] = None) -> Dict[str, Any]:
-        """Get all obligations for the given licenses."""
+        """
+        Get all obligations for the given licenses.
+
+        Args:
+            licenses: List of SPDX license identifiers
+            data_dir: Optional data directory path
+
+        Returns:
+            Dictionary keyed by license id. Each value is a dictionary that
+            contains an "obligations" list from the license dataset, merged
+            with any entries from obligations/ policy files. Licenses with
+            no known obligations are omitted.
+        """
         # Use package data directory if not specified
         data_dir = self.resolve_data_dir(data_dir)
 
@@ -188,7 +288,9 @@ class PolicyRuntime:
         if licenses_dir.exists():
             for license_id in licenses:
                 license_data = self.lookup_license_data(license_id, data_dir) or {}
-                license_obligations = license_data.get("obligations", [])
+                # Per-license JSON files wrap the record in a "license" key
+                license_record = license_data.get("license", license_data)
+                license_obligations = license_record.get("obligations", [])
                 if license_obligations:
                     if license_id not in obligations:
                         obligations[license_id] = {}

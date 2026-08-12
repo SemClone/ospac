@@ -2,7 +2,7 @@
   "license": {
     "id": "LGPL-2.0",
     "name": "GNU Library General Public License v2 only",
-    "type": "copyleft_strong",
+    "type": "copyleft_weak",
     "spdx_id": "LGPL-2.0",
     "properties": {
       "commercial_use": true,
@@ -16,57 +16,55 @@
       "include_license": true,
       "include_copyright": true,
       "include_notice": false,
-      "state_changes": false,
-      "same_license": true,
+      "state_changes": true,
+      "same_license": false,
       "network_use_disclosure": false
     },
     "limitations": {
-      "liability": false,
-      "warranty": false,
+      "liability": true,
+      "warranty": true,
       "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "LGPL-2.0",
-          "category:copyleft_strong"
+          "category:permissive",
+          "category:copyleft_weak"
         ],
         "incompatible_with": [
-          "category:permissive",
-          "category:proprietary"
+          "category:copyleft_strong"
         ],
-        "requires_review": [
-          "category:copyleft_weak"
-        ]
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive",
+          "category:copyleft_weak"
         ],
-        "incompatible_with": [],
-        "requires_review": [
-          "category:proprietary"
-        ]
+        "incompatible_with": [
+          "category:copyleft_strong"
+        ],
+        "requires_review": []
       },
-      "contamination_effect": "full",
-      "notes": "Strong copyleft with viral effect"
+      "contamination_effect": "derivative",
+      "notes": "Static linking creates a derivative work, while dynamic linking does not impose the same restrictions."
     },
     "obligations": [
       "Retain copyright notices",
       "Include license text",
-      "Provide or offer access to complete source code",
-      "Distribute modifications under the same license"
+      "Document changes made to the code",
+      "Provide or offer access to complete source code"
     ],
     "key_requirements": [
       "Attribution required",
-      "Combined works must be released under the same license"
+      "Modifications to covered files must stay open-source"
     ],
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": false,
       "is_deprecated": true
     },
-    "generated": "2026-06-10T20:08:59.287920",
-    "spdx_list_version": "3dfd9aa"
+    "generated": "2026-08-12T09:45:09.627449",
+    "spdx_list_version": "e4c1f27"
   }
 }

@@ -2,6 +2,10 @@
 Tests for OSPAC data models.
 """
 
+import os
+import subprocess
+import sys
+
 import pytest
 
 from ospac.models.license import License
@@ -370,11 +374,112 @@ class TestPolicyResult:
         assert "req2" in aggregated.requirements
         assert "req3" in aggregated.requirements
 
-    def test_aggregate_empty_results(self):
-        """Test aggregating empty results."""
+    def test_aggregate_requirements_preserve_first_seen_order(self):
+        """Aggregated requirements keep first-seen order and drop duplicates."""
+        results = [
+            PolicyResult(
+                rule_id="rule1",
+                action=ActionType.ALLOW,
+                severity="info",
+                requirements=["include_license", "include_copyright"]
+            ),
+            PolicyResult(
+                rule_id="rule2",
+                action=ActionType.ALLOW,
+                severity="info",
+                requirements=["include_copyright", "state_changes"]
+            ),
+            PolicyResult(
+                rule_id="rule3",
+                action=ActionType.ALLOW,
+                severity="info",
+                requirements=["include_license", "include_notice"]
+            )
+        ]
+
+        aggregated = PolicyResult.aggregate(results)
+
+        # Exact sequence: duplicates collapse to their first occurrence
+        assert aggregated.requirements == [
+            "include_license",
+            "include_copyright",
+            "state_changes",
+            "include_notice",
+        ]
+
+    def test_aggregate_requirements_stable_across_hash_seeds(self):
+        """Aggregation order must not depend on string hash randomization."""
+        script = (
+            "from ospac.models.compliance import PolicyResult, ActionType\n"
+            "results = [\n"
+            "    PolicyResult(rule_id='r1', action=ActionType.ALLOW,\n"
+            "                 requirements=['include_license', 'include_copyright']),\n"
+            "    PolicyResult(rule_id='r2', action=ActionType.ALLOW,\n"
+            "                 requirements=['state_changes', 'include_copyright']),\n"
+            "]\n"
+            "print(PolicyResult.aggregate(results).requirements)\n"
+        )
+
+        repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        outputs = set()
+        for seed in ("0", "1", "42"):
+            env = dict(os.environ, PYTHONHASHSEED=seed)
+            env["PYTHONPATH"] = os.pathsep.join(
+                filter(None, [repo_root, env.get("PYTHONPATH")])
+            )
+            proc = subprocess.run(
+                [sys.executable, "-c", script],
+                capture_output=True,
+                text=True,
+                env=env,
+                check=True,
+            )
+            outputs.add(proc.stdout.strip())
+
+        assert outputs == {
+            "['include_license', 'include_copyright', 'state_changes']"
+        }
+
+    def test_aggregate_empty_results_asks_for_review(self):
+        """
+        No rule matching means the policy has no answer, which must not read as approval.
+        This previously returned ALLOW, so an unanswered question and an explicit approval
+        were indistinguishable and a policy that silently stopped matching looked like a
+        clean pass.
+        """
         aggregated = PolicyResult.aggregate([])
 
         assert aggregated.rule_id == "aggregate"
-        assert aggregated.action == ActionType.ALLOW
-        assert aggregated.severity == "info"
-        assert aggregated.message == "No policies matched"
+        assert aggregated.action == ActionType.FLAG_FOR_REVIEW
+        assert aggregated.action != ActionType.ALLOW
+        assert aggregated.severity == "warning"
+        assert "review" in aggregated.message.lower()
+        assert aggregated.remediation
+
+    def test_explicit_approve_outranks_default_allow(self):
+        """
+        A rule that states no action falls back to ALLOW. When another rule explicitly
+        approves, the aggregate must report approve: callers are told that allow means no
+        rule matched and treat it as a policy bug, so letting an actionless rule report
+        allow made a correct policy look broken.
+        """
+        results = [
+            PolicyResult(rule_id="explicit", action=ActionType.APPROVE, severity="info",
+                         message="vetted"),
+            PolicyResult(rule_id="actionless", action=ActionType.ALLOW, severity="info",
+                         message="noted"),
+        ]
+
+        assert PolicyResult.aggregate(results).action == ActionType.APPROVE
+        # Order of the inputs must not change the outcome.
+        assert PolicyResult.aggregate(list(reversed(results))).action == ActionType.APPROVE
+
+    def test_restrictive_actions_still_dominate_approve(self):
+        """Raising APPROVE above ALLOW must not let it outrank a real restriction."""
+        approve = PolicyResult(rule_id="a", action=ActionType.APPROVE, severity="info",
+                               message="vetted")
+        for stronger in (ActionType.DENY, ActionType.CONTAMINATE, ActionType.FLAG_FOR_REVIEW):
+            other = PolicyResult(rule_id="b", action=stronger, severity="error",
+                                 message="restricted")
+            assert PolicyResult.aggregate([approve, other]).action == stronger
+            assert PolicyResult.aggregate([other, approve]).action == stronger

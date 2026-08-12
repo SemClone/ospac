@@ -2,7 +2,7 @@
   "license": {
     "id": "GFDL-1.3-invariants-or-later",
     "name": "GNU Free Documentation License v1.3 or later - invariants",
-    "type": "permissive",
+    "type": "copyleft_strong",
     "spdx_id": "GFDL-1.3-invariants-or-later",
     "properties": {
       "commercial_use": true,
@@ -12,50 +12,59 @@
       "private_use": true
     },
     "requirements": {
-      "disclose_source": false,
+      "disclose_source": true,
       "include_license": true,
       "include_copyright": true,
-      "include_notice": false,
-      "state_changes": false,
-      "same_license": false,
+      "include_notice": true,
+      "state_changes": true,
+      "same_license": true,
       "network_use_disclosure": false
     },
     "limitations": {
-      "liability": false,
-      "warranty": false,
+      "liability": true,
+      "warranty": true,
       "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive",
+          "category:copyleft_weak"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:copyleft_strong"
+        ],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive",
+          "category:copyleft_weak",
+          "category:copyleft_strong"
         ],
         "incompatible_with": [],
         "requires_review": []
       },
-      "contamination_effect": "none",
-      "notes": "Permissive license with minimal restrictions"
+      "contamination_effect": "full",
+      "notes": "Static linking with GFDL-1.3-invariants-or-later licensed components requires the entire combined work to be under the same license."
     },
     "obligations": [
       "Retain copyright notices",
-      "Include license text"
+      "Include license text",
+      "Document changes made to the code",
+      "Provide or offer access to complete source code",
+      "Distribute modifications under the same license"
     ],
     "key_requirements": [
-      "Attribution required"
+      "Attribution required",
+      "Combined works must be released under the same license"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T20:08:59.287920",
-    "spdx_list_version": "3dfd9aa"
+    "generated": "2026-08-12T09:45:09.627449",
+    "spdx_list_version": "e4c1f27"
   }
 }

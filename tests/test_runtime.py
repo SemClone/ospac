@@ -3,6 +3,7 @@ Tests for the policy runtime engine.
 """
 
 import pytest
+import yaml
 from pathlib import Path
 
 from ospac.runtime.engine import PolicyRuntime
@@ -238,3 +239,108 @@ class TestPolicyRuntime:
         context = {"any": "context"}
 
         assert runtime._rule_applies(rule, context) is True
+
+    def test_get_obligations_from_license_dataset(self):
+        """Test obligations are read from the packaged per-license JSON files."""
+        runtime = PolicyRuntime()
+
+        obligations = runtime.get_obligations(["MIT", "Apache-2.0"])
+
+        assert obligations["MIT"]["obligations"] == [
+            "Retain copyright notices",
+            "Include license text"
+        ]
+        assert obligations["Apache-2.0"]["obligations"] == [
+            "Retain copyright notices",
+            "Include license text",
+            "Document changes made to the code"
+        ]
+
+    def test_get_obligations_unknown_license(self):
+        """Test unknown license ids return cleanly with no entry."""
+        runtime = PolicyRuntime()
+
+        obligations = runtime.get_obligations(["Not-A-Real-License-1.0"])
+
+        assert obligations == {}
+
+    def test_check_compatibility_fires_license_type_rule(self, temp_dir):
+        """Test check_compatibility resolves license types so type rules fire."""
+        policy = {
+            "version": "1.0",
+            "name": "Type Rule Policy",
+            "rules": [
+                {
+                    "id": "deny_strong_copyleft",
+                    "when": {"license_type": "copyleft_strong"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "Strong copyleft is not allowed"
+                    }
+                }
+            ]
+        }
+
+        policy_file = temp_dir / "type_policy.yaml"
+        with open(policy_file, "w") as f:
+            yaml.dump(policy, f)
+
+        runtime = PolicyRuntime(str(temp_dir))
+
+        # GPL-3.0 is copyleft_strong in the dataset, so the rule must fire
+        result = runtime.check_compatibility("MIT", "GPL-3.0")
+        assert result.is_compliant is False
+
+        # Two permissive licenses do not trigger the rule, and a compatibility question
+        # answers "no known conflict" when no conflict rule matches. The review default
+        # belongs to permission questions; applying it here made every license read as
+        # incompatible with itself.
+        result = runtime.check_compatibility("MIT", "Apache-2.0")
+        assert result.violations == []
+        assert result.is_compliant is True
+
+    def test_check_compatibility_unknown_license_contributes_no_type(self, temp_dir):
+        """Test licenses missing from the dataset contribute no type and do not raise."""
+        policy = {
+            "version": "1.0",
+            "name": "Type Rule Policy",
+            "rules": [
+                {
+                    "id": "deny_strong_copyleft",
+                    "when": {"license_type": "copyleft_strong"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "Strong copyleft is not allowed"
+                    }
+                }
+            ]
+        }
+
+        policy_file = temp_dir / "type_policy.yaml"
+        with open(policy_file, "w") as f:
+            yaml.dump(policy, f)
+
+        runtime = PolicyRuntime(str(temp_dir))
+
+        # The unknown license contributes no type, so the copyleft rule cannot fire and
+        # nothing raises. No conflict rule matches, so no conflict is known. The CLI adds
+        # an unverified-license warning for ids the dataset cannot resolve.
+        result = runtime.check_compatibility("Not-A-Real-License-1.0", "MIT")
+        assert result.violations == []
+        assert result.is_compliant is True
+
+    def test_check_compatibility_gpl2_apache_still_incompatible(self):
+        """Regression: GPL-2.0 and Apache-2.0 stay incompatible under the default policy."""
+        runtime = PolicyRuntime()
+
+        result = runtime.check_compatibility("GPL-2.0", "Apache-2.0")
+        assert result.is_compliant is False
+
+    def test_check_compatibility_mit_gpl3_still_compatible(self):
+        """Regression: MIT and GPL-3.0 stay compatible under the default policy."""
+        runtime = PolicyRuntime()
+
+        result = runtime.check_compatibility("MIT", "GPL-3.0")
+        assert result.is_compliant is True

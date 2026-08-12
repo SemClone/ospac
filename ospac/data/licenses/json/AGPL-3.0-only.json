@@ -15,45 +15,46 @@
       "disclose_source": true,
       "include_license": true,
       "include_copyright": true,
-      "include_notice": false,
-      "state_changes": false,
+      "include_notice": true,
+      "state_changes": true,
       "same_license": true,
       "network_use_disclosure": true
     },
     "limitations": {
-      "liability": false,
-      "warranty": false,
+      "liability": true,
+      "warranty": true,
       "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "AGPL-3.0-only",
-          "category:copyleft_strong"
+          "category:permissive"
         ],
         "incompatible_with": [
-          "category:permissive",
-          "category:proprietary"
+          "AGPL-3.0",
+          "GPL-3.0",
+          "category:copyleft_strong"
         ],
-        "requires_review": [
-          "category:copyleft_weak"
-        ]
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive"
         ],
-        "incompatible_with": [],
-        "requires_review": [
-          "category:proprietary"
-        ]
+        "incompatible_with": [
+          "AGPL-3.0",
+          "GPL-3.0",
+          "category:copyleft_strong"
+        ],
+        "requires_review": []
       },
       "contamination_effect": "full",
-      "notes": "Strong copyleft with viral effect"
+      "notes": "Any use of AGPL-3.0-only licensed components in a combined work requires the entire work to be licensed under AGPL-3.0-only."
     },
     "obligations": [
       "Retain copyright notices",
       "Include license text",
+      "Document changes made to the code",
       "Provide or offer access to complete source code",
       "Distribute modifications under the same license",
       "Make source available to users interacting over a network"
@@ -68,7 +69,7 @@
       "is_fsf_libre": true,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T20:08:59.287920",
-    "spdx_list_version": "3dfd9aa"
+    "generated": "2026-08-12T09:45:09.627449",
+    "spdx_list_version": "e4c1f27"
   }
 }

@@ -1,0 +1,21 @@
+# Coverage is reported but never gates a merge.
+#
+# Until now no coverage was produced at all: pytest-cov was installed, no --cov flag was
+# passed, and the upload step pointed at a coverage.xml that nothing wrote. Turning real
+# reporting on would otherwise let Codecov's default project status start failing pull
+# requests on any coverage dip, which is not a gate this project has opted into.
+#
+# informational keeps the status advisory, so Codecov comments and reports without ever
+# marking a check as failed. Remove these once the team decides to enforce a target.
+coverage:
+  status:
+    project:
+      default:
+        informational: true
+    patch:
+      default:
+        informational: true
+
+comment:
+  layout: "reach, diff, files"
+  require_changes: true

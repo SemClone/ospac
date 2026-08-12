@@ -36,7 +36,21 @@ jobs:
       - name: Install OSPAC and dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -e ".[llm]" 2>/dev/null || pip install -e . openai
+          pip install -e ".[llm]"
+
+      - name: Preflight LLM provider check
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python3 - <<'EOF'
+          from ospac.pipeline.llm_analyzer import LicenseAnalyzer
+
+          # Raises ProviderUnavailableError if the openai package is missing
+          # or the OPENAI_API_KEY secret is not set, failing the job before
+          # any data generation can produce fabricated fallback records.
+          LicenseAnalyzer(provider="openai", require_provider=True)
+          print("Preflight OK: openai package installed and API key present")
+          EOF
 
       - name: Check SPDX upstream state
         id: spdx-check
@@ -118,6 +132,27 @@ jobs:
         if: steps.spdx-check.outputs.has_work == 'true' || github.event.inputs.force_reprocess == 'true'
         run: python scripts/validate_data.py --data-dir ospac/data
 
+      - name: Upload generated data for review
+        # A partial reprocess is expected to fail the corpus gate below while fabricated
+        # records remain, and a failed job discards its workspace. Uploading the dataset
+        # first means a trial run's output can still be reviewed record by record.
+        if: always() && (steps.spdx-check.outputs.has_work == 'true' || github.event.inputs.force_reprocess == 'true')
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-data-${{ github.run_id }}
+          path: ospac/data/
+          retention-days: 14
+
+      - name: Corpus quality gate
+        # Per-record validation cannot see that the whole corpus is templated, which is
+        # exactly how years of fabricated fallback data shipped: every record was
+        # individually well formed. This gate fails if decision fields are uniform across
+        # the corpus or any record matches a known fallback fingerprint. It runs on full
+        # regenerations; routine deltas would fail on the pre-existing fabricated records
+        # until the first full regeneration clears them.
+        if: github.event.inputs.force_reprocess == 'true'
+        run: python scripts/corpus_quality.py --data-dir ospac/data
+
       - name: Bump patch version
         id: version
         if: steps.spdx-check.outputs.has_work == 'true' || github.event.inputs.force_reprocess == 'true'
@@ -194,10 +229,10 @@ jobs:
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1  # v8.1.1
         with:
           token: ${{ secrets.WORKFLOW_PAT }}
-          commit-message: "data: sync SPDX ${{ steps.spdx-check.outputs.spdx_version }} — ${{ steps.spdx-check.outputs.new_count }} new, ${{ steps.spdx-check.outputs.deprecated_flag_count }} deprecated"
+          commit-message: "data: sync SPDX ${{ steps.spdx-check.outputs.spdx_version }}: ${{ steps.spdx-check.outputs.new_count }} new, ${{ steps.spdx-check.outputs.deprecated_flag_count }} deprecated"
           branch: "data/spdx-sync-${{ steps.spdx-check.outputs.spdx_version }}"
           delete-branch: true
-          title: "data: SPDX sync ${{ steps.spdx-check.outputs.spdx_version }} — v${{ steps.version.outputs.new_version }}"
+          title: "data: SPDX sync ${{ steps.spdx-check.outputs.spdx_version }} (v${{ steps.version.outputs.new_version }})"
           body: ${{ steps.summary.outputs.pr_body }}
           labels: "data,automated"
 

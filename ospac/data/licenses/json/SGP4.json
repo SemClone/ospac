@@ -2,7 +2,7 @@
   "license": {
     "id": "SGP4",
     "name": "SGP4 Permission Notice",
-    "type": "permissive",
+    "type": "public_domain",
     "spdx_id": "SGP4",
     "properties": {
       "commercial_use": true,
@@ -15,47 +15,53 @@
       "disclose_source": false,
       "include_license": true,
       "include_copyright": true,
-      "include_notice": false,
+      "include_notice": true,
       "state_changes": false,
       "same_license": false,
       "network_use_disclosure": false
     },
     "limitations": {
-      "liability": false,
-      "warranty": false,
+      "liability": true,
+      "warranty": true,
       "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:copyleft",
+          "category:copyleft_strong"
+        ],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:any"
+          "category:permissive",
+          "category:copyleft_weak"
         ],
-        "incompatible_with": [],
+        "incompatible_with": [
+          "category:copyleft_strong"
+        ],
         "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "Permissive license with minimal restrictions"
+      "notes": "SGP4 is public domain, allowing for broad compatibility without viral effects."
     },
     "obligations": [
       "Retain copyright notices",
       "Include license text"
     ],
     "key_requirements": [
-      "Attribution required"
+      "No restrictions"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T20:08:59.287920",
-    "spdx_list_version": "3dfd9aa"
+    "generated": "2026-08-12T09:45:09.627449",
+    "spdx_list_version": "e4c1f27"
   }
 }

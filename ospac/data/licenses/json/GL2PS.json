@@ -2,7 +2,7 @@
   "license": {
     "id": "GL2PS",
     "name": "GL2PS License",
-    "type": "permissive",
+    "type": "copyleft_weak",
     "spdx_id": "GL2PS",
     "properties": {
       "commercial_use": true,
@@ -12,50 +12,73 @@
       "private_use": true
     },
     "requirements": {
-      "disclose_source": false,
+      "disclose_source": true,
       "include_license": true,
       "include_copyright": true,
-      "include_notice": false,
+      "include_notice": true,
       "state_changes": false,
-      "same_license": false,
+      "same_license": true,
       "network_use_disclosure": false
     },
     "limitations": {
-      "liability": false,
-      "warranty": false,
+      "liability": true,
+      "warranty": true,
       "trademark_use": false
     },
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:any"
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "category:permissive"
         ],
-        "incompatible_with": [],
-        "requires_review": []
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "category:copyleft_strong"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:any"
+          "MIT",
+          "Apache-2.0",
+          "BSD-3-Clause",
+          "category:permissive"
         ],
-        "incompatible_with": [],
-        "requires_review": []
+        "incompatible_with": [
+          "GPL-3.0",
+          "AGPL-3.0",
+          "category:copyleft_strong"
+        ],
+        "requires_review": [
+          "LGPL-2.1",
+          "LGPL-3.0"
+        ]
       },
-      "contamination_effect": "none",
-      "notes": "Permissive license with minimal restrictions"
+      "contamination_effect": "module",
+      "notes": "GL2PS allows linking with permissive licenses but requires that modifications to GL2PS itself remain under the same license."
     },
     "obligations": [
       "Retain copyright notices",
-      "Include license text"
+      "Include license text",
+      "Provide or offer access to complete source code",
+      "Distribute modifications under the same license"
     ],
     "key_requirements": [
-      "Attribution required"
+      "Attribution required",
+      "Modifications to covered files must stay open-source"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
       "is_deprecated": false
     },
-    "generated": "2026-06-10T20:08:59.287920",
-    "spdx_list_version": "3dfd9aa"
+    "generated": "2026-08-12T09:45:09.627449",
+    "spdx_list_version": "e4c1f27"
   }
 }
