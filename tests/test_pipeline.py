@@ -463,3 +463,43 @@ class TestPolicyDataGenerator:
         assert report["missing_obligations"] == 1
         assert report["is_valid"] is False
         assert len(report["validation_errors"]) > 0
+
+class TestAnalysisCategoryCoercion:
+    """
+    The category coercion must read the record's final booleans, not only the
+    identifier-derived restrictions. The first real analysis run returned
+    modification false for Adobe-Glyph while calling it permissive; the identifier
+    carries no ND marker, so the record shipped to validation with a contradiction.
+    """
+
+    def _coerce(self, license_id, name, category, permissions, conditions):
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+
+        analysis = {"license_id": license_id, "name": name, "category": category,
+                    "permissions": permissions, "conditions": conditions}
+        return PolicyDataGenerator._apply_identifier_restrictions(
+            PolicyDataGenerator, license_id, analysis)["category"]
+
+    def test_model_reported_no_modification_is_coerced(self):
+        assert self._coerce(
+            "Adobe-Glyph", "Adobe Glyph List License", "permissive",
+            {"commercial_use": True, "modification": False}, {},
+        ) == "no_derivatives"
+
+    def test_model_reported_noncommercial_is_coerced(self):
+        assert self._coerce(
+            "Some-License", "Some License", "permissive",
+            {"commercial_use": False, "modification": True}, {},
+        ) == "noncommercial"
+
+    def test_model_reported_share_alike_is_coerced(self):
+        assert self._coerce(
+            "Some-License", "Some License", "permissive",
+            {"commercial_use": True, "modification": True}, {"same_license": True},
+        ) == "copyleft_weak"
+
+    def test_genuinely_permissive_record_is_untouched(self):
+        assert self._coerce(
+            "MIT", "MIT License", "permissive",
+            {"commercial_use": True, "modification": True}, {"same_license": False},
+        ) == "permissive"

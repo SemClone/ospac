@@ -402,10 +402,12 @@ class PolicyDataGenerator:
         return restrictions
 
     def _apply_identifier_restrictions(self, license_id: str, analysis: Dict) -> Dict:
-        """Force the terms an identifier states outright, whatever the analysis returned."""
+        """
+        Force the terms the identifier states outright, then coerce the category to be
+        honest about the record's final booleans. No early return when the identifier has
+        no markers: the coercion must also cover restrictions only the analysis reports.
+        """
         restrictions = self._identifier_restrictions(license_id, analysis.get("name", ""))
-        if not restrictions:
-            return analysis
 
         result = dict(analysis)
         if "commercial_use" in restrictions or "modification" in restrictions:
@@ -417,18 +419,22 @@ class PolicyDataGenerator:
             result["conditions"] = dict(result.get("conditions") or {})
             result["conditions"]["same_license"] = restrictions["same_license"]
 
-        # The category must be honest about the restriction, whatever the analysis said,
-        # because policy rules match on it. NonCommercial dominates the other markers, and
-        # is forced regardless of the incoming category so a model classifying CC-BY-NC-SA
-        # as copyleft cannot bypass the noncommercial deny rules. ShareAlike and
-        # NoDerivatives only lift a record out of permissive: a stronger category already
-        # expresses the restriction. Leaving these as hand edits in the data was the
-        # original mistake; a regeneration silently reverted them.
-        if restrictions.get("commercial_use") is False:
+        # The category must be honest about the restriction, because policy rules match on
+        # it. The coercion reads the record's final booleans, not only the
+        # identifier-derived ones: the first real analysis run returned modification false
+        # for two Adobe licenses while calling them permissive, which the identifier says
+        # nothing about, and only the validator caught the contradiction. NonCommercial
+        # dominates and is forced regardless of the incoming category, so a model
+        # classifying CC-BY-NC-SA as copyleft cannot bypass the noncommercial deny rules.
+        # ShareAlike and NoDerivatives only lift a record out of permissive: a stronger
+        # category already expresses the restriction.
+        permissions = result.get("permissions") or {}
+        conditions = result.get("conditions") or {}
+        if permissions.get("commercial_use") is False:
             result["category"] = "noncommercial"
-        elif restrictions.get("same_license") is True and result.get("category") == "permissive":
+        elif conditions.get("same_license") is True and result.get("category") == "permissive":
             result["category"] = "copyleft_weak"
-        if restrictions.get("modification") is False and result.get("category") == "permissive":
+        if permissions.get("modification") is False and result.get("category") == "permissive":
             result["category"] = "no_derivatives"
 
         return result
