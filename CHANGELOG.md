@@ -41,7 +41,9 @@ Clears the three items 1.3.0 left open.
 - The test job now passes `--cov=ospac` with terminal and XML reports. A `codecov.yml`
   marks both the project and patch statuses as informational, so coverage is reported and
   commented but can never fail a pull request. Enforcing a target remains a separate
-  decision. Current coverage is 64%.
+  decision. Coverage measures 54% in CI. It reads higher on a developer machine that has
+  the optional LLM SDKs installed, because the pipeline modules then take import branches
+  the runner does not, so the CI figure is the one to trust.
 
 ## [1.3.0] - 2026-08-11
 
