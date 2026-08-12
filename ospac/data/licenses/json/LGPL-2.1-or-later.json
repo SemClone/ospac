@@ -28,36 +28,31 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "category:permissive"
+          "LGPL-2.1-or-later",
+          "category:permissive",
+          "category:public_domain"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0",
-          "category:copyleft_strong"
-        ],
-        "requires_review": []
+        "incompatible_with": [],
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
+          "LGPL-2.1-or-later",
           "category:permissive",
-          "LGPL-2.0"
+          "category:public_domain",
+          "category:copyleft_weak"
         ],
-        "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0",
-          "category:copyleft_strong"
-        ],
-        "requires_review": []
+        "incompatible_with": [],
+        "requires_review": [
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
       },
-      "contamination_effect": "none",
+      "contamination_effect": "module",
       "notes": "LGPL-2.1-or-later allows linking with permissive licenses without imposing the same license on the entire work."
     },
     "obligations": [

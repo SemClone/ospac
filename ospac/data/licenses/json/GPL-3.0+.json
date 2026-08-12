@@ -28,28 +28,38 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:permissive"
+          "GPL-3.0+",
+          "category:permissive",
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "category:copyleft_weak",
-          "category:copyleft_strong"
+          "category:proprietary"
         ],
         "requires_review": [
-          "GPL-2.0",
-          "AGPL-3.0"
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
         ]
       },
       "dynamic_linking": {
         "compatible_with": [
+          "GPL-3.0+",
           "category:permissive",
-          "category:copyleft_weak"
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "category:copyleft_strong"
+          "category:proprietary"
         ],
         "requires_review": [
-          "GPL-2.0",
-          "AGPL-3.0"
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
         ]
       },
       "contamination_effect": "full",

@@ -28,31 +28,39 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "category:permissive"
+          "GPL-2.0-with-autoconf-exception",
+          "category:permissive",
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0",
-          "category:copyleft_strong"
+          "category:proprietary"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "category:permissive"
+          "GPL-2.0-with-autoconf-exception",
+          "category:permissive",
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0",
-          "category:copyleft_strong"
+          "category:proprietary"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
       },
       "contamination_effect": "full",
       "notes": "The GPL-2.0-with-autoconf-exception requires that any combined work remains under the GPL-2.0 license."

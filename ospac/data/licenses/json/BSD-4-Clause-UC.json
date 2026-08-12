@@ -28,20 +28,29 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:permissive"
+          "category:any"
         ],
         "incompatible_with": [
-          "category:copyleft_strong"
+          "GPL-2.0",
+          "GPL-2.0-only",
+          "GPL-2.0-or-later",
+          "GPL-3.0",
+          "GPL-3.0-only",
+          "GPL-3.0-or-later"
         ],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:permissive",
-          "category:copyleft_weak"
+          "category:any"
         ],
         "incompatible_with": [
-          "category:copyleft_strong"
+          "GPL-2.0",
+          "GPL-2.0-only",
+          "GPL-2.0-or-later",
+          "GPL-3.0",
+          "GPL-3.0-only",
+          "GPL-3.0-or-later"
         ],
         "requires_review": []
       },

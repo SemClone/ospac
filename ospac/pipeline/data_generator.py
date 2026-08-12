@@ -128,6 +128,33 @@ _KNOWN_OVERRIDES: Dict[str, Dict] = {
 }
 
 
+# License-level compatibility exceptions that category reasoning cannot express. Each
+# pair lands in both records' incompatible_with, so the claims stay symmetric.
+_KNOWN_INCOMPATIBLE_PAIRS = [
+    # GPL-2.0's "no further restrictions" clause conflicts with Apache-2.0's patent
+    # termination. GPL-2.0-or-later escapes by upgrading, so it is not listed.
+    ({"GPL-2.0", "GPL-2.0-only"}, {"Apache-2.0"}),
+    # The GPL versions are mutually incompatible unless or-later allows upgrading.
+    ({"GPL-2.0", "GPL-2.0-only"}, {"GPL-3.0", "GPL-3.0-only"}),
+    # The 4-clause BSD advertising requirement is an additional restriction no GPL
+    # version permits.
+    ({"BSD-4-Clause", "BSD-4-Clause-UC", "BSD-4-Clause-Shortened"},
+     {"GPL-2.0", "GPL-2.0-only", "GPL-2.0-or-later",
+      "GPL-3.0", "GPL-3.0-only", "GPL-3.0-or-later"}),
+]
+
+
+def _known_incompatible_ids(license_id: str) -> list:
+    """Every license id the exception table declares incompatible with this one."""
+    ids = set()
+    for side_a, side_b in _KNOWN_INCOMPATIBLE_PAIRS:
+        if license_id in side_a:
+            ids.update(side_b)
+        elif license_id in side_b:
+            ids.update(side_a)
+    return sorted(ids)
+
+
 class PolicyDataGenerator:
     """
     Generate comprehensive policy data from SPDX licenses.
@@ -414,6 +441,93 @@ class PolicyDataGenerator:
 
         return restrictions
 
+    @staticmethod
+    def _derive_compatibility(license_id: str, category: str,
+                              notes: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Build the record's compatibility block from its category plus the known
+        license-level exceptions.
+
+        The model was asked for these lists per license and got them systematically
+        wrong: 540 permissive records declared themselves incompatible with GPL, which
+        inverts how permissive licensing works, MPL-2.0 claimed incompatibility with the
+        GPL it is expressly designed to combine with, and pairs disagreed with each
+        other. Compatibility between categories is a derivable fact, so it is derived;
+        the model contributes only the prose notes.
+        """
+        known_incompatible = _known_incompatible_ids(license_id)
+
+        if category in ("permissive", "public_domain"):
+            static = {
+                "compatible_with": ["category:any"],
+                "incompatible_with": list(known_incompatible),
+                "requires_review": [],
+            }
+            dynamic = dict(static)
+            contamination = "none"
+            default_note = ("Permissive terms: can be incorporated into works under "
+                            "any license")
+        elif category == "copyleft_weak":
+            static = {
+                "compatible_with": [license_id, "category:permissive",
+                                    "category:public_domain"],
+                "incompatible_with": list(known_incompatible),
+                "requires_review": ["category:copyleft_weak", "category:copyleft_strong",
+                                    "category:network_copyleft"],
+            }
+            dynamic = {
+                "compatible_with": [license_id, "category:permissive",
+                                    "category:public_domain", "category:copyleft_weak"],
+                "incompatible_with": list(known_incompatible),
+                "requires_review": ["category:copyleft_strong",
+                                    "category:network_copyleft"],
+            }
+            contamination = "module"
+            default_note = ("Weak copyleft: changes to the covered component must stay "
+                            "under its license")
+        elif category in ("copyleft_strong", "network_copyleft"):
+            block = {
+                "compatible_with": [license_id, "category:permissive",
+                                    "category:public_domain"],
+                "incompatible_with": ["category:proprietary"] + list(known_incompatible),
+                "requires_review": ["category:copyleft_weak", "category:copyleft_strong",
+                                    "category:network_copyleft", "category:noncommercial",
+                                    "category:no_derivatives",
+                                    "category:source_available"],
+            }
+            static = block
+            dynamic = dict(block)
+            contamination = "full"
+            default_note = ("Strong copyleft: the combined work must be released under "
+                            "the same license")
+            if category == "network_copyleft":
+                default_note = ("Network copyleft: serving users over a network triggers "
+                                "source disclosure for the combined work")
+        else:
+            # noncommercial, no_derivatives, source_available, proprietary, unknown:
+            # nothing is asserted without a human looking at the terms.
+            block = {
+                "compatible_with": [],
+                "incompatible_with": [],
+                "requires_review": ["category:any"],
+            }
+            static = block
+            dynamic = dict(block)
+            contamination = "none" if category in ("noncommercial",
+                                                   "no_derivatives") else "unknown"
+            default_note = "Restricted license: combination requires review of the terms"
+
+        # ShareAlike-style reciprocity binds derivative works specifically.
+        if category == "copyleft_weak" and "SA" in license_id.split("-"):
+            contamination = "derivative"
+
+        return {
+            "static_linking": static,
+            "dynamic_linking": dynamic,
+            "contamination_effect": contamination,
+            "notes": notes or default_note,
+        }
+
     def _apply_identifier_restrictions(self, license_id: str, analysis: Dict) -> Dict:
         """
         Force the terms the identifier states outright, then coerce the category to be
@@ -449,6 +563,13 @@ class PolicyDataGenerator:
             result["category"] = "copyleft_weak"
         if permissions.get("modification") is False and result.get("category") == "permissive":
             result["category"] = "no_derivatives"
+
+        # The compatibility lists are derived from the final category, keeping whatever
+        # prose notes the analysis produced. This runs on every path that writes a
+        # record, so the lists cannot drift from the category they describe.
+        existing_notes = (result.get("compatibility_rules") or {}).get("notes")
+        result["compatibility_rules"] = PolicyDataGenerator._derive_compatibility(
+            license_id, result["category"], existing_notes)
 
         return result
 

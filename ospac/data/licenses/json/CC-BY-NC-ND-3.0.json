@@ -27,26 +27,20 @@
     },
     "compatibility": {
       "static_linking": {
-        "compatible_with": [
-          "category:permissive"
-        ],
-        "incompatible_with": [
-          "category:copyleft",
-          "category:copyleft_weak"
-        ],
-        "requires_review": []
+        "compatible_with": [],
+        "incompatible_with": [],
+        "requires_review": [
+          "category:any"
+        ]
       },
       "dynamic_linking": {
-        "compatible_with": [
-          "category:permissive"
-        ],
-        "incompatible_with": [
-          "category:copyleft",
-          "category:copyleft_weak"
-        ],
-        "requires_review": []
+        "compatible_with": [],
+        "incompatible_with": [],
+        "requires_review": [
+          "category:any"
+        ]
       },
-      "contamination_effect": "full",
+      "contamination_effect": "none",
       "notes": "CC-BY-NC-ND-3.0 does not allow for commercial use or derivative works, which limits compatibility with many licenses."
     },
     "obligations": [

@@ -28,28 +28,16 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:permissive",
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:permissive",
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
+        "incompatible_with": [],
         "requires_review": []
       },
       "contamination_effect": "none",

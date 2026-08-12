@@ -24,22 +24,25 @@ class License:
         if context not in self.compatibility:
             context = "general"
 
+        def matches(entries: list) -> bool:
+            # Dataset entries are license ids or "category:<type>" specifiers. This
+            # previously compared other.type against the entries verbatim, so a
+            # "category:permissive" entry never matched anything and category rules
+            # were silently inert.
+            return (other.id in entries
+                    or f"category:{other.type}" in entries
+                    or "category:any" in entries)
+
         if context in self.compatibility:
             compat_rules = self.compatibility[context]
 
-            # Check explicit compatible list
-            if "compatible_with" in compat_rules:
-                if other.id in compat_rules["compatible_with"]:
-                    return True
-                if other.type in compat_rules["compatible_with"]:
-                    return True
-
-            # Check explicit incompatible list
-            if "incompatible_with" in compat_rules:
-                if other.id in compat_rules["incompatible_with"]:
-                    return False
-                if other.type in compat_rules["incompatible_with"]:
-                    return False
+            # Incompatibility is checked first: a known conflict outranks a category
+            # match, which is how the GPL-2.0 and Apache-2.0 records can both say
+            # category:permissive is fine while naming each other as exceptions.
+            if matches(compat_rules.get("incompatible_with", [])):
+                return False
+            if matches(compat_rules.get("compatible_with", [])):
+                return True
 
         # Default: permissive licenses are generally compatible
         if self.type == "permissive" and other.type == "permissive":

@@ -28,23 +28,29 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
+          "Linux-man-pages-copyleft-2-para",
           "category:permissive",
-          "category:copyleft_weak"
+          "category:public_domain"
         ],
-        "incompatible_with": [
-          "category:copyleft_strong"
-        ],
-        "requires_review": []
+        "incompatible_with": [],
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
+          "Linux-man-pages-copyleft-2-para",
           "category:permissive",
+          "category:public_domain",
           "category:copyleft_weak"
         ],
-        "incompatible_with": [
-          "category:copyleft_strong"
-        ],
-        "requires_review": []
+        "incompatible_with": [],
+        "requires_review": [
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
       },
       "contamination_effect": "module",
       "notes": "Only the modified files/modules must remain under the same license."

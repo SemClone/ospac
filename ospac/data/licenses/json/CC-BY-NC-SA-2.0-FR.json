@@ -27,25 +27,20 @@
     },
     "compatibility": {
       "static_linking": {
-        "compatible_with": [
-          "category:permissive"
-        ],
-        "incompatible_with": [
-          "category:copyleft",
-          "category:strong_copyleft"
-        ],
-        "requires_review": []
+        "compatible_with": [],
+        "incompatible_with": [],
+        "requires_review": [
+          "category:any"
+        ]
       },
       "dynamic_linking": {
-        "compatible_with": [
-          "category:permissive"
-        ],
-        "incompatible_with": [
-          "category:strong_copyleft"
-        ],
-        "requires_review": []
+        "compatible_with": [],
+        "incompatible_with": [],
+        "requires_review": [
+          "category:any"
+        ]
       },
-      "contamination_effect": "module",
+      "contamination_effect": "none",
       "notes": "The CC-BY-NC-SA-2.0-FR license requires that modifications to the licensed work remain under the same license, but does not impose this requirement on the entire combined work."
     },
     "obligations": [

@@ -27,24 +27,18 @@
     },
     "compatibility": {
       "static_linking": {
-        "compatible_with": [
-          "category:permissive"
-        ],
-        "incompatible_with": [
-          "category:copyleft",
-          "category:copyleft_strong"
-        ],
-        "requires_review": []
+        "compatible_with": [],
+        "incompatible_with": [],
+        "requires_review": [
+          "category:any"
+        ]
       },
       "dynamic_linking": {
-        "compatible_with": [
-          "category:permissive"
-        ],
-        "incompatible_with": [
-          "category:copyleft",
-          "category:copyleft_strong"
-        ],
-        "requires_review": []
+        "compatible_with": [],
+        "incompatible_with": [],
+        "requires_review": [
+          "category:any"
+        ]
       },
       "contamination_effect": "none",
       "notes": "The CC-BY-NC-ND-3.0-IGO license does not allow for commercial use or derivative works, making it compatible primarily with permissive licenses."

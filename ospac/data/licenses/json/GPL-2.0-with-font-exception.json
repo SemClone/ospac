@@ -28,27 +28,39 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
+          "GPL-2.0-with-font-exception",
           "category:permissive",
-          "category:copyleft_weak"
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
+          "category:proprietary"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
+          "GPL-2.0-with-font-exception",
           "category:permissive",
-          "category:copyleft_weak"
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "GPL-2.0",
-          "GPL-3.0",
-          "AGPL-3.0"
+          "category:proprietary"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
       },
       "contamination_effect": "full",
       "notes": "Using GPL-2.0-with-font-exception components in a project requires the entire project to be licensed under GPL-2.0-with-font-exception."

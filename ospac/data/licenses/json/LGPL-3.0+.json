@@ -28,29 +28,31 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
+          "LGPL-3.0+",
           "category:permissive",
-          "category:copyleft_weak"
+          "category:public_domain"
         ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
+        "incompatible_with": [],
         "requires_review": [
-          "MPL-2.0"
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft"
         ]
       },
       "dynamic_linking": {
         "compatible_with": [
+          "LGPL-3.0+",
           "category:permissive",
+          "category:public_domain",
           "category:copyleft_weak"
         ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": []
+        "incompatible_with": [],
+        "requires_review": [
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
       },
-      "contamination_effect": "derivative",
+      "contamination_effect": "module",
       "notes": "Static linking may impose LGPL requirements on the entire derivative work, while dynamic linking generally does not."
     },
     "obligations": [

@@ -27,25 +27,20 @@
     },
     "compatibility": {
       "static_linking": {
-        "compatible_with": [
-          "category:permissive"
-        ],
-        "incompatible_with": [
-          "category:copyleft",
-          "category:copyleft_strong"
-        ],
-        "requires_review": []
+        "compatible_with": [],
+        "incompatible_with": [],
+        "requires_review": [
+          "category:any"
+        ]
       },
       "dynamic_linking": {
-        "compatible_with": [
-          "category:permissive"
-        ],
-        "incompatible_with": [
-          "category:copyleft_strong"
-        ],
-        "requires_review": []
+        "compatible_with": [],
+        "incompatible_with": [],
+        "requires_review": [
+          "category:any"
+        ]
       },
-      "contamination_effect": "derivative",
+      "contamination_effect": "none",
       "notes": "Using CC-BY-NC-SA-2.5 components in a project may require the entire derivative work to be licensed under the same terms."
     },
     "obligations": [

@@ -28,25 +28,39 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:permissive"
+          "AGPL-3.0",
+          "category:permissive",
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "category:copyleft_strong",
-          "AGPL-3.0",
-          "GPL-3.0"
+          "category:proprietary"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:permissive"
+          "AGPL-3.0",
+          "category:permissive",
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "AGPL-3.0",
-          "GPL-3.0",
-          "category:copyleft_strong"
+          "category:proprietary"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
       },
       "contamination_effect": "full",
       "notes": "Using AGPL-3.0 components in any form requires the entire work to be licensed under AGPL-3.0."

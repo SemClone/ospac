@@ -28,31 +28,17 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:permissive",
-          "MIT",
-          "Apache-2.0"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL",
-          "AGPL"
-        ],
-        "requires_review": [
-          "LGPL"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:permissive",
-          "MIT",
-          "Apache-2.0"
+          "category:any"
         ],
-        "incompatible_with": [
-          "GPL",
-          "AGPL"
-        ],
-        "requires_review": [
-          "LGPL"
-        ]
+        "incompatible_with": [],
+        "requires_review": []
       },
       "contamination_effect": "none",
       "notes": "The BSD-Protection license is permissive and does not impose viral effects on combined works."

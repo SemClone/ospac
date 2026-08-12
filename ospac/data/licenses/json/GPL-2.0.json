@@ -28,36 +28,50 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "category:permissive"
+          "GPL-2.0",
+          "category:permissive",
+          "category:public_domain"
         ],
         "incompatible_with": [
+          "category:proprietary",
+          "Apache-2.0",
+          "BSD-4-Clause",
+          "BSD-4-Clause-Shortened",
+          "BSD-4-Clause-UC",
           "GPL-3.0",
-          "AGPL-3.0",
-          "category:copyleft_strong"
+          "GPL-3.0-only"
         ],
         "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
         ]
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "category:permissive"
+          "GPL-2.0",
+          "category:permissive",
+          "category:public_domain"
         ],
         "incompatible_with": [
+          "category:proprietary",
+          "Apache-2.0",
+          "BSD-4-Clause",
+          "BSD-4-Clause-Shortened",
+          "BSD-4-Clause-UC",
           "GPL-3.0",
-          "AGPL-3.0",
-          "category:copyleft_strong"
+          "GPL-3.0-only"
         ],
         "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
         ]
       },
       "contamination_effect": "full",

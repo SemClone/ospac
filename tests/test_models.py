@@ -483,3 +483,56 @@ class TestPolicyResult:
                                  message="restricted")
             assert PolicyResult.aggregate([approve, other]).action == stronger
             assert PolicyResult.aggregate([other, approve]).action == stronger
+
+class TestIsCompatibleWithCategoryEntries:
+    """
+    Dataset compatibility entries use "category:<type>" specifiers, but this method
+    compared other.type verbatim, so category entries never matched anything and the
+    lists were silently inert. It also read compatible_with before incompatible_with,
+    which would have let a category match hide a named exception.
+    """
+
+    def _license(self, lid, ltype, compatible, incompatible):
+        return License(
+            id=lid, name=lid, type=ltype,
+            compatibility={"general": {
+                "compatible_with": compatible,
+                "incompatible_with": incompatible,
+                "requires_review": [],
+            }},
+        )
+
+    def test_category_any_matches(self):
+        mit = self._license("MIT", "permissive", ["category:any"], [])
+        gpl = self._license("GPL-3.0-only", "copyleft_strong", [], [])
+        assert mit.is_compatible_with(gpl) is True
+
+    def test_category_specifier_matches_the_other_type(self):
+        gpl = self._license("GPL-3.0-only", "copyleft_strong",
+                            ["category:permissive"], [])
+        mit = self._license("MIT", "permissive", [], [])
+        assert gpl.is_compatible_with(mit) is True
+
+    def test_named_exception_outranks_category_match(self):
+        gpl2 = self._license("GPL-2.0-only", "copyleft_strong",
+                             ["category:permissive"], ["Apache-2.0"])
+        apache = self._license("Apache-2.0", "permissive", [], [])
+        assert gpl2.is_compatible_with(apache) is False
+
+    def test_shipped_records_answer_correctly_both_directions(self):
+        import json
+        from pathlib import Path
+
+        data_dir = Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+
+        def load(lid):
+            record = json.loads((data_dir / f"{lid}.json").read_text())["license"]
+            return License.from_dict(record)
+
+        mit, gpl3 = load("MIT"), load("GPL-3.0-only")
+        assert mit.is_compatible_with(gpl3, "static_linking") is True
+        assert gpl3.is_compatible_with(mit, "static_linking") is True
+
+        gpl2, apache = load("GPL-2.0-only"), load("Apache-2.0")
+        assert gpl2.is_compatible_with(apache, "static_linking") is False
+        assert apache.is_compatible_with(gpl2, "static_linking") is False

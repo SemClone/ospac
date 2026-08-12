@@ -28,23 +28,29 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
+          "EUPL-1.0",
           "category:permissive",
-          "category:copyleft_weak"
+          "category:public_domain"
         ],
-        "incompatible_with": [
-          "category:copyleft_strong"
-        ],
-        "requires_review": []
+        "incompatible_with": [],
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
+          "EUPL-1.0",
           "category:permissive",
+          "category:public_domain",
           "category:copyleft_weak"
         ],
-        "incompatible_with": [
-          "category:copyleft_strong"
-        ],
-        "requires_review": []
+        "incompatible_with": [],
+        "requires_review": [
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
       },
       "contamination_effect": "module",
       "notes": "EUPL-1.0 allows linking with permissive and weak copyleft licenses, but modified files must remain under EUPL-1.0."

@@ -28,27 +28,31 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
+          "LGPL-2.0+",
           "category:permissive",
-          "category:copyleft_weak"
+          "category:public_domain"
         ],
-        "incompatible_with": [
-          "category:copyleft_strong"
-        ],
-        "requires_review": []
+        "incompatible_with": [],
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:permissive",
-          "category:copyleft_weak",
           "LGPL-2.0+",
-          "GPL-2.0"
+          "category:permissive",
+          "category:public_domain",
+          "category:copyleft_weak"
         ],
-        "incompatible_with": [
-          "category:copyleft_strong"
-        ],
-        "requires_review": []
+        "incompatible_with": [],
+        "requires_review": [
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
       },
-      "contamination_effect": "derivative",
+      "contamination_effect": "module",
       "notes": "Static linking requires derivative works to be licensed under LGPL-2.0+."
     },
     "obligations": [

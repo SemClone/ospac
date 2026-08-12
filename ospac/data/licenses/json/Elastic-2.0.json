@@ -27,28 +27,20 @@
     },
     "compatibility": {
       "static_linking": {
-        "compatible_with": [
-          "category:permissive"
-        ],
-        "incompatible_with": [
-          "category:copyleft",
-          "GPL",
-          "AGPL"
-        ],
-        "requires_review": []
+        "compatible_with": [],
+        "incompatible_with": [],
+        "requires_review": [
+          "category:any"
+        ]
       },
       "dynamic_linking": {
-        "compatible_with": [
-          "category:permissive",
-          "category:copyleft_weak"
-        ],
-        "incompatible_with": [
-          "GPL",
-          "AGPL"
-        ],
-        "requires_review": []
+        "compatible_with": [],
+        "incompatible_with": [],
+        "requires_review": [
+          "category:any"
+        ]
       },
-      "contamination_effect": "none",
+      "contamination_effect": "unknown",
       "notes": "Elastic-2.0 is permissive and does not impose viral effects on linked code."
     },
     "obligations": [

@@ -27,28 +27,20 @@
     },
     "compatibility": {
       "static_linking": {
-        "compatible_with": [
-          "category:permissive"
-        ],
-        "incompatible_with": [
-          "category:copyleft_strong",
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": []
+        "compatible_with": [],
+        "incompatible_with": [],
+        "requires_review": [
+          "category:any"
+        ]
       },
       "dynamic_linking": {
-        "compatible_with": [
-          "category:permissive",
-          "category:copyleft_weak"
-        ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": []
+        "compatible_with": [],
+        "incompatible_with": [],
+        "requires_review": [
+          "category:any"
+        ]
       },
-      "contamination_effect": "module",
+      "contamination_effect": "unknown",
       "notes": "BUSL-1.1 allows for linking with permissive licenses but requires modifications to remain under BUSL-1.1."
     },
     "obligations": [

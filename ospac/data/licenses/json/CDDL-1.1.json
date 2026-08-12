@@ -28,36 +28,28 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "category:permissive"
+          "CDDL-1.1",
+          "category:permissive",
+          "category:public_domain"
         ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0",
-          "category:copyleft_strong"
-        ],
+        "incompatible_with": [],
         "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft"
         ]
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "category:permissive"
+          "CDDL-1.1",
+          "category:permissive",
+          "category:public_domain",
+          "category:copyleft_weak"
         ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0",
-          "category:copyleft_strong"
-        ],
+        "incompatible_with": [],
         "requires_review": [
-          "LGPL-2.1",
-          "LGPL-3.0"
+          "category:copyleft_strong",
+          "category:network_copyleft"
         ]
       },
       "contamination_effect": "module",

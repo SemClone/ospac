@@ -28,29 +28,29 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "category:permissive"
+          "Vim",
+          "category:permissive",
+          "category:public_domain"
         ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": []
+        "incompatible_with": [],
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
-          "MIT",
-          "Apache-2.0",
-          "BSD-3-Clause",
-          "category:permissive"
+          "Vim",
+          "category:permissive",
+          "category:public_domain",
+          "category:copyleft_weak"
         ],
-        "incompatible_with": [
-          "GPL-3.0",
-          "AGPL-3.0"
-        ],
-        "requires_review": []
+        "incompatible_with": [],
+        "requires_review": [
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
       },
       "contamination_effect": "module",
       "notes": "Vim license allows linking with permissive licenses but requires modifications to be under the same license."

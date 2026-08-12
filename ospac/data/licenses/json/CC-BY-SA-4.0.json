@@ -28,22 +28,39 @@
     "compatibility": {
       "static_linking": {
         "compatible_with": [
-          "category:permissive"
+          "CC-BY-SA-4.0",
+          "category:permissive",
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "category:copyleft_weak",
-          "category:copyleft_strong"
+          "category:proprietary"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
       },
       "dynamic_linking": {
         "compatible_with": [
-          "category:permissive"
+          "CC-BY-SA-4.0",
+          "category:permissive",
+          "category:public_domain"
         ],
         "incompatible_with": [
-          "category:copyleft_strong"
+          "category:proprietary"
         ],
-        "requires_review": []
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
       },
       "contamination_effect": "full",
       "notes": "Using CC-BY-SA-4.0 components in a project requires the entire work to be licensed under CC-BY-SA-4.0."
