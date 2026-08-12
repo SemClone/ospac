@@ -2,7 +2,7 @@
   "license": {
     "id": "LGPLLR",
     "name": "Lesser General Public License For Linguistic Resources",
-    "type": "copyleft_strong",
+    "type": "copyleft_weak",
     "spdx_id": "LGPLLR",
     "properties": {
       "commercial_use": true,
@@ -48,8 +48,8 @@
           "category:proprietary"
         ]
       },
-      "contamination_effect": "full",
-      "notes": "Strong copyleft with viral effect"
+      "contamination_effect": "module",
+      "notes": "Weak copyleft: changes to the covered component must stay under its license"
     },
     "obligations": [
       "Retain copyright notices",
@@ -59,7 +59,7 @@
     ],
     "key_requirements": [
       "Attribution required",
-      "Combined works must be released under the same license"
+      "Modifications to covered files must stay open-source"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,

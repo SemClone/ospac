@@ -2,7 +2,7 @@
   "license": {
     "id": "Parity-7.0.0",
     "name": "The Parity Public License 7.0.0",
-    "type": "permissive",
+    "type": "copyleft_strong",
     "spdx_id": "Parity-7.0.0",
     "properties": {
       "commercial_use": true,
@@ -12,12 +12,12 @@
       "private_use": true
     },
     "requirements": {
-      "disclose_source": false,
+      "disclose_source": true,
       "include_license": true,
       "include_copyright": true,
       "include_notice": false,
       "state_changes": false,
-      "same_license": false,
+      "same_license": true,
       "network_use_disclosure": false
     },
     "limitations": {
@@ -40,15 +40,18 @@
         "incompatible_with": [],
         "requires_review": []
       },
-      "contamination_effect": "none",
-      "notes": "Permissive license with minimal restrictions"
+      "contamination_effect": "full",
+      "notes": "Strong copyleft: the combined work must be released under the same license"
     },
     "obligations": [
       "Retain copyright notices",
-      "Include license text"
+      "Include license text",
+      "Provide or offer access to complete source code",
+      "Distribute modifications under the same license"
     ],
     "key_requirements": [
-      "Attribution required"
+      "Attribution required",
+      "Combined works must be released under the same license"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,

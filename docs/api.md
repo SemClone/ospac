@@ -29,8 +29,8 @@ runtime = PolicyRuntime(skip_default=True)      # no policy at all
 
 `PolicyRuntime._using_default` tells you whether the default policy was loaded. It is
 underscore-prefixed but it is what the CLI checks to emit its warning, and it is worth
-asserting on in automation. See the fail-open discussion in
-[Policies]({{ site.baseurl }}/policies/#nothing-matching-means-allow).
+asserting on in automation. See
+[Policies]({{ site.baseurl }}/policies/#nothing-matching-means-review-not-approval).
 
 ```python
 runtime = PolicyRuntime("./policy.yaml")
@@ -80,8 +80,28 @@ if result.action == ActionType.DENY:
 ```
 
 A context missing a field that a rule matches on causes that rule to be skipped, not to
-error. If evaluation returns `allow` with `"No policies matched"` when you expected a
-denial, check the context keys first.
+error. If evaluation returns `flag_for_review` with `"No policy rule matched"` when you
+expected a denial, the rule was skipped: check the context keys first.
+
+### evaluate_licenses
+
+```python
+result, per_license = runtime.evaluate_licenses(
+    ["MIT", "MPL-2.0"],
+    {"distribution_type": "commercial", "distribution": "commercial",
+     "context": "general", "linking_type": None},
+)
+```
+
+The per-license entry point, and the one the CLI uses. Each license is evaluated
+independently, with its own `license_type` resolved from the dataset, and the verdicts
+aggregate with most-restrictive-wins. `evaluate()` judges the context as a single unit, so
+a rule matched by one license produces a result and the no-match fail-safe never runs for
+the others: with `evaluate()`, one permissive license in the list can answer for a license
+that matched nothing. Use `evaluate_licenses` whenever the input is a list of licenses.
+
+`per_license` maps each license id to its own `PolicyResult`, so you can report which
+license drove the aggregate verdict.
 
 ### check_compatibility
 

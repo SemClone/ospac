@@ -39,27 +39,56 @@ class PolicyResult:
     remediation: Optional[str] = None
 
     @classmethod
-    def aggregate(cls, results: List["PolicyResult"]) -> "PolicyResult":
-        """Aggregate multiple results into a single result."""
+    def aggregate(cls, results: List["PolicyResult"],
+                  when_unmatched: str = "review") -> "PolicyResult":
+        """
+        Aggregate multiple results into a single result.
+
+        when_unmatched controls the answer when no rule matched at all. "review" is the
+        default and right for permission questions (evaluate): a policy with no rule for a
+        case has not approved it. "allow" is for conflict questions (check_compatibility),
+        where the absence of any conflict rule genuinely means no known conflict, and where
+        the review default made a licence read as incompatible with itself.
+        """
         if not results:
+            if when_unmatched == "allow":
+                return cls(
+                    rule_id="aggregate",
+                    action=ActionType.ALLOW,
+                    severity="info",
+                    message="No known conflicts",
+                )
+            # No rule matched, so the policy has no answer for this case. Return it for
+            # review rather than permitting it. This used to report ALLOW, which meant an
+            # unanswered question and an explicit approval were indistinguishable, and a
+            # policy that silently stopped matching read as a clean pass.
             return cls(
                 rule_id="aggregate",
-                action=ActionType.ALLOW,
-                severity="info",
-                message="No policies matched",
+                action=ActionType.FLAG_FOR_REVIEW,
+                severity="warning",
+                message="No policy rule matched, so this needs review",
+                requirements=[
+                    "Confirm the policy is meant to cover this license and distribution type"
+                ],
+                remediation="Add a rule covering this case, or approve it explicitly after review",
             )
 
         # Find the highest severity result
         severity_order = {"error": 3, "warning": 2, "info": 1}
         highest_severity = max(results, key=lambda r: severity_order.get(r.severity, 0))
 
-        # Determine overall action (most restrictive wins)
+        # Determine overall action (most restrictive wins). Neither ALLOW nor APPROVE is
+        # more restrictive than the other, so between those two the more informative one
+        # wins: APPROVE means a rule explicitly permitted this, while ALLOW is what a rule
+        # falls back to when it states no action. Ranking ALLOW higher let a single
+        # actionless rule report "allow" even though rules had matched, which is the value
+        # callers are told means "no rule matched" and treat as a policy bug.
         action_priority = {
             ActionType.DENY: 5,
             ActionType.CONTAMINATE: 4,
             ActionType.FLAG_FOR_REVIEW: 3,
-            ActionType.ALLOW: 2,
-            ActionType.APPROVE: 1,
+            ActionType.APPROVE: 2,
+            ActionType.ALLOW: 1,
         }
 
         most_restrictive = max(results, key=lambda r: action_priority.get(r.action, 0))

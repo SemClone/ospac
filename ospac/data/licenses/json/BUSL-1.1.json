@@ -2,7 +2,7 @@
   "license": {
     "id": "BUSL-1.1",
     "name": "Business Source License 1.1",
-    "type": "permissive",
+    "type": "source_available",
     "spdx_id": "BUSL-1.1",
     "properties": {
       "commercial_use": true,
@@ -40,15 +40,15 @@
         "incompatible_with": [],
         "requires_review": []
       },
-      "contamination_effect": "none",
-      "notes": "Permissive license with minimal restrictions"
+      "contamination_effect": "unknown",
+      "notes": "Source-available license: usage restrictions apply, review the terms"
     },
     "obligations": [
       "Retain copyright notices",
       "Include license text"
     ],
     "key_requirements": [
-      "Attribution required"
+      "Source visible but redistribution restricted"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,

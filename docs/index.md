@@ -99,10 +99,7 @@ no network calls and consults no model. LLMs appear in exactly one place, regene
 dataset, a maintainer task described in [The dataset]({{ site.baseurl }}/dataset/). The tool
 you install does not use them.
 
-Decisions are reproducible, with one wrinkle: the `requirements` array comes back in a
-different order on each run. See
-[Integration]({{ site.baseurl }}/integration/#the-semclone-toolchain) before you diff ospac
-output between runs.
+Decisions are reproducible, so the same inputs give byte-identical output run to run.
 
 ## Where to go next
 

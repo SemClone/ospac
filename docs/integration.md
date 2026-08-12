@@ -38,9 +38,9 @@ policy, a malformed dataset.
 
 ## A CI gate that cannot pass by accident
 
-Three things can make a compliance check silently succeed: the decision is ignored (above),
-the custom policy failed to load and the default answered instead, or the rules matched
-nothing and the result defaulted to `allow`. This job guards all three.
+Two things can still make a compliance check pass without meaning much: the decision is
+ignored (above), or the custom policy failed to load and the bundled default answered
+instead. This job guards both, and also treats an unanswered case as a failure.
 
 ```yaml
 name: License compliance
@@ -88,8 +88,8 @@ jobs:
 
       - name: Prove the policy still bites
         run: |
-          # A policy whose rules have gone inert returns "allow" for everything.
-          # Assert on a case that must be denied.
+          # Rules going inert now surfaces as flag_for_review rather than a silent pass,
+          # but asserting on a case that must be denied still catches it soonest.
           ACTION=$(ospac evaluate -l GPL-3.0 -d mobile -p ./compliance-policy.yaml \
             | jq -r '.result.action')
           if [ "$ACTION" != "deny" ]; then
@@ -98,8 +98,9 @@ jobs:
           fi
 ```
 
-That last step is the one people leave out. Because unmatched rules produce `allow`, a
-policy that stops matching looks identical to a clean codebase. See
+That last step is worth keeping even though the fail-safe default now covers the same
+ground. It fails on the specific rule you care about rather than on a generic review
+request, which is a much faster diagnosis. See
 [Policies]({{ site.baseurl }}/policies/) for why rules go inert. Most often a `when` clause
 naming a context field that is not populated.
 
@@ -156,21 +157,6 @@ ospac evaluate -l "$LICENSES" -d mobile
 
 Note that `approve` still carries `requirements`. Permission to ship is not the same as
 having nothing to do. Feed those into your NOTICE file.
-
-{: .warning }
-> **`requirements` ordering is not stable.** `PolicyResult.aggregate` deduplicates through a
-> `set`, so the array comes back in a different order on each run:
->
-> ```bash
-> $ for i in 1 2 3; do ospac evaluate -l Apache-2.0 -d mobile | jq -c '.result.requirements'; done
-> ["Include Apache 2.0 license text","State changes made to the code","Preserve copyright and NOTICE file if present"]
-> ["State changes made to the code","Include Apache 2.0 license text","Preserve copyright and NOTICE file if present"]
-> ["State changes made to the code","Preserve copyright and NOTICE file if present","Include Apache 2.0 license text"]
-> ```
->
-> The contents are stable; only the order moves. Do not diff this array between runs or
-> commit it as evidence unchanged. Sort it first (`jq '.result.requirements | sort'`), or
-> compare as a set.
 
 Install the neighbours with the extra:
 
@@ -239,27 +225,45 @@ The fields worth building on, all present in `evaluate` output:
 
 | Field | Use |
 |:--|:--|
-| `result.action` | The decision: `approve`, `deny`, `flag_for_review`, or `allow` when nothing matched |
+| `result.action` | The decision: `approve`, `deny`, or `flag_for_review`. Also `allow` when a matched rule states no action of its own |
 | `result.severity` | `error`, `warning`, `info` |
 | `result.message` | Why |
 | `result.remediation` | What to do instead, on a denial |
 | `result.requirements` | Obligations attached to the decision |
 | `using_default_policy` | Whether your policy or the bundled default answered |
 
-`check` returns `compatible` as a boolean plus `violations`. `obligations -f json` returns
+`evaluate` also returns a `per_license` map with each license's own action, so a review or
+denial can be attributed to the license that caused it rather than to the set.
+
+`check` returns `compatible` plus `requires_review`, `violations` and `warnings`.
+`compatible: false` with `requires_review: true` means a human needs to look, not that a
+conflict is known; a warning is added when a license id does not resolve in the dataset,
+so a typo cannot read as clean compatibility. When no conflict rule matches, `check`
+answers "no known conflicts" rather than review, so a license is always compatible with
+itself. `obligations -f json` returns
 the full licence records under `license_data`, whose schema is in
 [The dataset]({{ site.baseurl }}/dataset/#what-a-license-record-contains).
 
-Treat `allow` and `approve` as distinct. `approve` means a rule matched and permitted it;
-`allow` means nothing matched at all. The second is frequently a policy bug, and it is worth
-logging differently:
+An evaluation that matches no rule returns `flag_for_review`, not `allow`. A policy with no
+rule for a case has not approved it, it has no answer, so ospac surfaces that rather than
+permitting it. Handle all four values explicitly:
 
 ```bash
 RESULT=$(ospac evaluate -l "$LICENSES" -d "$DIST" -p ./policy.yaml)
 case "$(echo "$RESULT" | jq -r '.result.action')" in
   deny)            echo "blocked"; exit 1 ;;
-  flag_for_review) echo "needs review" ;;
+  flag_for_review) echo "needs review"; exit 1 ;;
   approve)         echo "ok" ;;
-  allow)           echo "no rule matched, check the policy covers $DIST"; exit 1 ;;
+  allow)           echo "permitted by a rule that states no action" ;;
 esac
 ```
+
+Whether `flag_for_review` should fail the build is yours to decide. Failing is the safer
+default, since it covers both "legal must look at this" and "the policy does not mention
+this case". If you let it pass, log it somewhere a human reads, otherwise a policy that has
+drifted out of coverage becomes invisible again.
+
+{: .note }
+> Before 1.4.0 an unmatched evaluation returned `allow`, so a CI job checking only for `deny`
+> would pass on a policy whose rules had stopped matching entirely. If you wrote such a job
+> against an earlier version, uncovered cases now arrive as `flag_for_review`.

@@ -74,8 +74,10 @@ You never run the generation pipeline to use OSPAC. See [The dataset](https://se
 
 ```bash
 ACTION=$(ospac evaluate -l "$LICENSES" -d mobile | jq -r '.result.action')
-[ "$ACTION" = "deny" ] && exit 1
+case "$ACTION" in deny|flag_for_review) exit 1 ;; esac
 ```
+
+**An unanswered question is not an approval.** When no rule matches, OSPAC returns `flag_for_review`, not `allow`. A policy with no rule for a case has not permitted it, so the gap is reported rather than treated as a pass.
 
 See [Integration](https://semclone.github.io/ospac/integration/) for a CI gate that cannot pass by accident.
 

@@ -5,6 +5,208 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-08-11
+
+Clears the three items 1.3.0 left open, and repairs a licence dataset that had
+never actually been analysed.
+
+### Fixed
+
+**An explicit approval could be reported as `allow`**
+- A policy rule that states no action falls back to `ALLOW`, and the aggregate ranked
+  `ALLOW` above `APPROVE`, so a single actionless rule made the whole evaluation report
+  `allow` even when another rule had explicitly approved the licenses.
+- That contradicts the documented meaning of the field, where `allow` indicates that no
+  rule matched and is worth treating as a policy bug. A correct policy mixing an explicit
+  `approve` rule with an actionless one therefore looked broken, and CI written against the
+  documented values would fail on it.
+- Between `ALLOW` and `APPROVE` neither is more restrictive, so the more informative one
+  now wins. `DENY`, `CONTAMINATE` and `FLAG_FOR_REVIEW` still outrank both. An evaluation
+  where nothing matches returns `flag_for_review`, described under its own entry below.
+
+**`LGPLLR` was classified as strong copyleft**
+- Its properties, requirements, limitations and contamination effect are all identical to
+  `LGPL-2.1`, so typing it `copyleft_strong` while `LGPL-2.1` is `copyleft_weak` was
+  inconsistent on the dataset's own terms. It is also, by name and design, the lesser
+  licence for linguistic resources.
+- Corrected in the record and in `index.json`, added to the pipeline correction table so
+  regeneration keeps it, and pinned in the validator spot checks as a deliberate decision.
+
+**The LLM analysis had never run, and its fallback fabricated permissive data**
+- `.github/workflows/spdx-sync.yml` installs with `pip install -e ".[llm]" 2>/dev/null || pip
+  install -e . openai`, but the `[llm]` extra contained only `strands-agents`, so the first
+  command succeeded and the fallback that installs `openai` never ran. The package the
+  provider imports was never present.
+- The provider caught the `ImportError`, set itself unavailable, and every licence fell
+  through to `_get_fallback_analysis()`, which hardcoded `category: "permissive"` with
+  `commercial_use: True` and every copyleft condition false. The job exited zero, the
+  validator passed, the pull request auto-merged and published.
+- 683 of 733 records carry that fingerprint. The 50 that do not are the GPL, LGPL, MPL and
+  public domain families, which a deterministic name matcher already handled. No record in
+  the dataset was ever produced by an actual model.
+- Provider construction now raises instead of degrading, so an explicitly requested
+  provider that cannot initialise aborts the run before any licence is processed, and the
+  workflow gained a preflight step that fails immediately on a missing package or secret.
+- The fallback now fails closed rather than open: category `unknown`, every permission
+  denied, obligations that ask for manual legal review. A run that produced any fallback
+  record reports the identifiers and exits non-zero, so a partly fabricated dataset cannot
+  be published.
+- The `[llm]` extra now installs `openai`, `anthropic` and `ollama`, which are what the
+  three providers actually import. `strands-agents` was imported nowhere and was dropped.
+
+**Every NonCommercial licence was marked commercially usable**
+- A consequence of the fallback above. `ospac evaluate -l CC-BY-NC-3.0-IGO -d commercial`
+  returned `allow`, which is the most dangerous direction for a compliance tool to be wrong
+  in. OSPAC's own dataset licence, CC BY-NC-SA 4.0, was described as permissive and
+  commercially usable, contradicting `DATA_LICENSE`.
+- 43 records repaired: 26 NonCommercial licences that permitted commercial use, 13
+  NoDerivatives licences that permitted modification, and 21 ShareAlike licences that
+  carried no same-licence requirement.
+- Creative Commons states these terms in the identifier itself, so the pipeline now derives
+  them rather than asking a model. Matching is on hyphen-delimited identifier components,
+  with a punctuation-insensitive name check that also catches `NCGL-UK-2.0` and
+  `PolyForm-Noncommercial-1.0.0`, neither of which has an `NC` component.
+- The validator gained the matching invariants as errors, so the class cannot ship again.
+- The bundled enterprise policy now denies NonCommercial licences for commercial, SaaS,
+  embedded, mobile, desktop, web, cloud and API distribution, and flags them for review
+  elsewhere. Repairing the data alone was not enough, since no rule covered them.
+
+**An unmatched evaluation reported `allow`**
+- When no rule matched, the result was `action: allow` with `No policies matched`. A policy
+  with no rule for a case has not approved it, it has no answer, and reporting those
+  identically meant a policy whose rules had silently stopped matching read as a clean pass.
+- Unmatched evaluations now return `flag_for_review` with a warning severity and a
+  remediation suggesting either a rule for the case or an explicit approval after review.
+- This is a behaviour change for anyone whose CI treated `allow` as success. Uncovered cases
+  now arrive as `flag_for_review`.
+
+**The bundled policy denied copyleft by enumerated identifier only**
+- `no_gpl_in_products` and `no_agpl_in_services` list individual licenses, so a copyleft
+  license nobody had listed fell through every rule. `AGPL-3.0` evaluated for commercial
+  distribution came back permitted.
+- Added category rules for strong copyleft in distributed products, network copyleft in
+  hosted services, and weak copyleft under static linking. These match on `license_type`,
+  which only began working earlier in this release.
+
+**Permissive licenses were approved only if individually listed**
+- The rule approving permissive and public domain licenses by category existed solely in the
+  policy's `decision_tree` section, which the runtime never reads: it evaluates `rules` only.
+  So `MIT`, `Apache-2.0` and `BSD` passed because they are enumerated, while `ISC`, `Zlib`
+  and several hundred others matched nothing at all. Invisible while unmatched meant `allow`.
+- Ported that rule into `rules` as `approve_permissive`, and removed the `decision_tree`
+  section. Its other entries duplicated rules that already exist, and config that looks
+  authoritative while never executing is how several defects here went unnoticed.
+
+**One license in a set could answer for all of them**
+- Evaluation ran once over the whole license list, so a rule matched by any license
+  produced a result and the no-match fail-safe never ran for the others.
+  `evaluate -l "MIT,AGPL-3.0"` was approved: MIT fired the permissive rule, AGPL matched
+  nothing, and nothing spoke for it. Real dependency lists almost always contain a
+  permissive license, so the fail-safe was inert exactly where it mattered.
+- Each license is now evaluated independently and the verdicts aggregate with
+  most-restrictive-wins. A license that matches no rule falls to the fail-safe on its own,
+  so `MIT,MPL-2.0` reports `flag_for_review` and `MIT,AGPL-3.0` reports `deny`. The JSON
+  output gains a `per_license` map showing each license's own verdict.
+
+**`ospac check` reported a license as incompatible with itself**
+- The fail-safe applied to compatibility checks too, and the check context carries no
+  distribution type, so no category rule could match, nothing matched at all, and the
+  review answer surfaced as `compatible: false` with empty violations for 80 licenses,
+  including `check GPL-3.0-only GPL-3.0-only`.
+- A compatibility question asks whether a conflict is known, so no conflict rule matching
+  now answers "no known conflicts" rather than "needs review". The review default remains
+  for `evaluate`, where an unmatched case genuinely is an unanswered question.
+- `check` output gains `requires_review` and `warnings`, and warns when a license id does
+  not resolve in the dataset instead of letting a typo read as clean compatibility.
+
+**The policy's compatibility matrix was dead config**
+- The `compatibility:` section in the bundled policy was never read by the runtime, so
+  `ospac check BSD-4-Clause GPL-3.0-only` reported compatible while the policy's own file
+  declared that pair incompatible. Its pairs are now real rules, including both directions
+  of the BSD-4-Clause advertising-clause conflict and the one-way MIT into GPL-2.0 and
+  Apache-2.0 into GPL-3.0 combinations, and the dead section is removed.
+
+**Weak copyleft had no passing path**
+- The category rules added for weak copyleft could deny and review but nothing ever
+  approved, so `MPL-2.0` had no outcome other than review in any context. A category rule
+  now approves weak copyleft under dynamic linking with the containment requirements, and
+  the general context stays a review because the tool cannot see how the component is
+  linked.
+
+**`-o markdown` rendered every approval as Denied**
+- The renderer treated only the literal action `allow` as good, so `approve` printed
+  `❌ Denied` and the text renderer coloured it red. Category approval moved 645 licenses
+  from `allow` to `approve`, turning a latent bug into "Denied" for Zlib and ISC in
+  anything that pasted the markdown into a report. Both renderers now map every action to
+  an honest status, including `⚠️ Requires review`.
+
+**`data generate` without `--use-llm` wrote an inverted dataset**
+- With the fallback now failing closed, the no-provider path produced records claiming
+  0BSD forbids commercial use and requires source disclosure, printed a green checkmark
+  and exited zero. The command now refuses to run without `--use-llm`, since every record
+  on that path is a placeholder, and the shipped package already contains real data.
+- When the fallback gate does trip on an LLM run, the fabricated records are now deleted
+  before exiting, because delta processing treats on-disk files as complete and a rerun
+  would have skipped the poisoned records while reporting a clean dataset.
+
+**Restrictions stated in license names and identifiers are now derived, not hand edits**
+- The ShareAlike retypes shipped earlier in this release existed only as edited JSON: the
+  pipeline would have written `permissive` back over them on the next regeneration, and
+  the validator would have accepted it. The same silent-revert failure this release
+  diagnoses elsewhere, one field over.
+- The pipeline now retypes ShareAlike and reciprocal licenses out of `permissive` itself,
+  types NoDerivatives records as `no_derivatives`, and forces `noncommercial` regardless
+  of what the analysis claimed. Name stems catch Non-Profit, Reciprocal and copyleft
+  naming, adding `NPOSL-3.0`, `MS-RL`, `RPL`, `CERN-OHL` and the `copyleft-next` family.
+- Mainstream licenses the fabricated data recorded as freely permissive are pinned in the
+  correction table with what their texts actually say: EPL, CDDL, EUPL, OSL, SSPL, CAL,
+  BUSL, Elastic, Parity, Aladdin, ODbL and CDLA-Sharing. `SSPL-1.0` for SaaS now denies.
+- A test asserts every shipped record is exactly what the pipeline reproduces for it, so a
+  repair that exists only as a hand edit can no longer ship.
+- Validator invariants strengthened accordingly: `commercial_use` false requires the
+  `noncommercial` type, `modification` false and `same_license` true each contradict
+  `permissive`. 86 records were re-repaired under these rules, and compatibility
+  descriptors on retyped records no longer describe them as permissive.
+
+### Added
+
+**A corpus-level quality gate**
+- Per-record validation cannot see that a whole dataset is templated, which is exactly how
+  years of fabricated records shipped: each record was individually well formed.
+  `scripts/corpus_quality.py` fails when decision fields are uniform across the corpus or
+  when any record matches a known fallback fingerprint, and runs in the sync workflow on
+  full regenerations.
+
+**A `no_derivatives` license type**
+- NoDerivatives licenses permit verbatim redistribution, including commercially, but
+  forbid distributing modified versions. They sat in `permissive` with
+  `modification: false`, which the category approval rule blessed for commercial
+  distribution without surfacing the restriction. The bundled policy flags them for a
+  human to confirm the component is unmodified.
+
+**A `noncommercial` license type**
+- Licences that permit use, modification and redistribution but withhold commercial use had
+  no honest category. `permissive` is a contradiction, `source_available` describes source
+  visibility, and `proprietary` means all rights reserved. Because policy rules match on
+  `license_type`, leaving them in `permissive` is what let a permissive-allow rule approve
+  them for commercial distribution.
+- ShareAlike licences still typed `permissive` were moved to `copyleft_weak`, since a
+  share-alike term binds derivative works.
+
+### Changed
+
+**CI coverage now actually runs**
+- `pytest-cov` was installed and `coverage.xml` was uploaded to Codecov, but no `--cov`
+  flag was ever passed, so the file was never written and the upload silently did nothing.
+  This is why coverage being pointed at the `osslili` package went unnoticed for so long,
+  and why an earlier README could claim full coverage.
+- The test job now passes `--cov=ospac` with terminal and XML reports. A `codecov.yml`
+  marks both the project and patch statuses as informational, so coverage is reported and
+  commented but can never fail a pull request. Enforcing a target remains a separate
+  decision. Coverage measures 54% in CI. It reads higher on a developer machine that has
+  the optional LLM SDKs installed, because the pipeline modules then take import branches
+  the runner does not, so the CI figure is the one to trust.
+
 ## [1.3.0] - 2026-08-11
 
 This release repairs a group of defects left behind by the v1.2.0 migration from YAML to

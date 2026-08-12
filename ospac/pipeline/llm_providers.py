@@ -6,11 +6,22 @@ Supports OpenAI, Anthropic Claude, and local Ollama.
 import json
 import logging
 import asyncio
+import os
 from abc import ABC, abstractmethod
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Set
 from dataclasses import dataclass
 
 logger = logging.getLogger(__name__)
+
+
+class ProviderUnavailableError(RuntimeError):
+    """
+    Raised when a requested LLM provider cannot be initialized.
+
+    Callers that explicitly requested a provider must abort instead of
+    silently degrading to fabricated fallback data.
+    """
+    pass
 
 
 @dataclass
@@ -30,6 +41,21 @@ class LLMProvider(ABC):
     def __init__(self, config: LLMConfig):
         self.config = config
         self.logger = logging.getLogger(f"{__name__}.{self.__class__.__name__}")
+        self.available = False
+        # License IDs for which any part of the analysis came from a fallback
+        # instead of a real LLM response. A non-empty set means the generated
+        # dataset contains fabricated records and must not be published.
+        self.fallback_licenses: Set[str] = set()
+
+    @property
+    def fallback_count(self) -> int:
+        """Number of licenses whose analysis fell back instead of using the LLM."""
+        return len(self.fallback_licenses)
+
+    def _record_fallback(self, license_id: str, reason: str) -> None:
+        """Record that a license record was produced by fallback, not the LLM."""
+        self.fallback_licenses.add(license_id)
+        self.logger.warning(f"Fallback record for {license_id}: {reason}")
 
     @abstractmethod
     async def analyze_license(self, license_id: str, license_text: str) -> Dict[str, Any]:
@@ -70,7 +96,7 @@ License text:
 Return exactly this JSON structure (all fields required, boolean values only for booleans):
 {{
     "license_id": "{license_id}",
-    "category": "<permissive|copyleft_weak|copyleft_strong|proprietary|public_domain>",
+    "category": "<permissive|copyleft_weak|copyleft_strong|network_copyleft|source_available|noncommercial|no_derivatives|proprietary|public_domain>",
     "permissions": {{
         "commercial_use": <bool>,
         "distribution": <bool>,
@@ -149,61 +175,101 @@ Rules for contamination_effect:
             return self._get_fallback_analysis(license_id)
 
     def _get_fallback_analysis(self, license_id: str) -> Dict[str, Any]:
-        """Get fallback analysis for when LLM fails."""
-        analysis = {
+        """
+        Conservative placeholder used when LLM analysis fails.
+
+        Fails closed: category is "unknown" and every permission is denied,
+        so a record built from this can never silently authorize use of an
+        unanalyzed license. It is meant to be obviously wrong and to force
+        manual review, never to pass as a real analysis.
+        """
+        self._record_fallback(license_id, "LLM analysis unavailable or failed")
+        return {
             "license_id": license_id,
-            "category": "permissive",
+            "category": "unknown",
             "permissions": {
-                "commercial_use": True,
-                "distribution": True,
-                "modification": True,
+                "commercial_use": False,
+                "distribution": False,
+                "modification": False,
                 "patent_grant": False,
-                "private_use": True
+                "private_use": False
             },
             "conditions": {
-                "disclose_source": False,
+                "disclose_source": True,
                 "include_license": True,
                 "include_copyright": True,
-                "include_notice": False,
-                "state_changes": False,
-                "same_license": False,
-                "network_use_disclosure": False
+                "include_notice": True,
+                "state_changes": True,
+                "same_license": True,
+                "network_use_disclosure": True
             },
             "limitations": {
                 "liability": False,
                 "warranty": False,
-                "trademark_use": False
+                "trademark_use": True
             },
             "compatibility": {
-                "can_combine_with_permissive": True,
-                "can_combine_with_weak_copyleft": True,
+                "can_combine_with_permissive": False,
+                "can_combine_with_weak_copyleft": False,
                 "can_combine_with_strong_copyleft": False,
-                "static_linking_restrictions": "none",
-                "dynamic_linking_restrictions": "none"
+                "static_linking_restrictions": "unknown",
+                "dynamic_linking_restrictions": "unknown"
             },
-            "obligations": ["Include license text", "Include copyright notice"],
-            "key_requirements": ["Attribution required"]
+            "obligations": ["Automated license analysis failed, manual legal review required"],
+            "key_requirements": ["Do not rely on this record, manual review required"]
         }
 
-        # Customize based on known patterns
-        if "GPL" in license_id:
-            analysis["category"] = "copyleft_strong"
-            analysis["conditions"]["disclose_source"] = True
-            analysis["conditions"]["same_license"] = True
-        elif "LGPL" in license_id:
-            analysis["category"] = "copyleft_weak"
-            analysis["conditions"]["disclose_source"] = True
-        elif "AGPL" in license_id:
-            analysis["category"] = "copyleft_strong"
-            analysis["conditions"]["network_use_disclosure"] = True
-        elif "Apache" in license_id:
-            analysis["permissions"]["patent_grant"] = True
-            analysis["conditions"]["disclose_source"] = False
-            analysis["conditions"]["same_license"] = False
-        elif "CC0" in license_id or "Unlicense" in license_id:
-            analysis["category"] = "public_domain"
+    def _get_default_compatibility_rules(self, license_id: str, analysis: Dict[str, Any]) -> Dict[str, Any]:
+        """Get default compatibility rules used when LLM extraction fails."""
+        self._record_fallback(license_id, "compatibility rules fell back to category defaults")
+        category = analysis.get("category", "unknown")
 
-        return analysis
+        if category == "permissive":
+            return {
+                "static_linking": {
+                    "compatible_with": ["category:any"],
+                    "incompatible_with": [],
+                    "requires_review": []
+                },
+                "dynamic_linking": {
+                    "compatible_with": ["category:any"],
+                    "incompatible_with": [],
+                    "requires_review": []
+                },
+                "contamination_effect": "none",
+                "notes": "Permissive license with minimal restrictions"
+            }
+        elif category == "copyleft_strong":
+            return {
+                "static_linking": {
+                    "compatible_with": [license_id, "category:copyleft_strong"],
+                    "incompatible_with": ["category:permissive", "category:proprietary"],
+                    "requires_review": ["category:copyleft_weak"]
+                },
+                "dynamic_linking": {
+                    "compatible_with": ["category:any"],
+                    "incompatible_with": [],
+                    "requires_review": ["category:proprietary"]
+                },
+                "contamination_effect": "full",
+                "notes": "Strong copyleft with viral effect"
+            }
+        else:
+            # Unknown or unrecognized category: fail closed, require review
+            return {
+                "static_linking": {
+                    "compatible_with": [],
+                    "incompatible_with": [],
+                    "requires_review": ["category:any"]
+                },
+                "dynamic_linking": {
+                    "compatible_with": [],
+                    "incompatible_with": [],
+                    "requires_review": ["category:any"]
+                },
+                "contamination_effect": "unknown",
+                "notes": "Category unknown or unrecognized, manual review required"
+            }
 
 
 class OpenAIProvider(LLMProvider):
@@ -213,14 +279,23 @@ class OpenAIProvider(LLMProvider):
         super().__init__(config)
         try:
             import openai
+        except ImportError as e:
+            raise ProviderUnavailableError(
+                "OpenAI package not installed. "
+                "Install with: pip install openai (or pip install 'ospac[llm]')"
+            ) from e
+
+        if not config.api_key and not os.getenv("OPENAI_API_KEY"):
+            raise ProviderUnavailableError(
+                "OpenAI API key not set. "
+                "Pass --llm-api-key or set the OPENAI_API_KEY environment variable."
+            )
+
+        try:
             self.client = openai.AsyncOpenAI(api_key=config.api_key)
-            self.available = True
-        except ImportError:
-            self.logger.error("OpenAI package not installed. Install with: pip install openai")
-            self.available = False
         except Exception as e:
-            self.logger.error(f"Failed to initialize OpenAI client: {e}")
-            self.available = False
+            raise ProviderUnavailableError(f"Failed to initialize OpenAI client: {e}") from e
+        self.available = True
 
     async def analyze_license(self, license_id: str, license_text: str) -> Dict[str, Any]:
         """Analyze license using OpenAI."""
@@ -268,56 +343,6 @@ class OpenAIProvider(LLMProvider):
             self.logger.error(f"OpenAI compatibility extraction failed for {license_id}: {e}")
             return self._get_default_compatibility_rules(license_id, analysis)
 
-    def _get_default_compatibility_rules(self, license_id: str, analysis: Dict[str, Any]) -> Dict[str, Any]:
-        """Get default compatibility rules."""
-        category = analysis.get("category", "permissive")
-
-        if category == "permissive":
-            return {
-                "static_linking": {
-                    "compatible_with": ["category:any"],
-                    "incompatible_with": [],
-                    "requires_review": []
-                },
-                "dynamic_linking": {
-                    "compatible_with": ["category:any"],
-                    "incompatible_with": [],
-                    "requires_review": []
-                },
-                "contamination_effect": "none",
-                "notes": "Permissive license with minimal restrictions"
-            }
-        elif category == "copyleft_strong":
-            return {
-                "static_linking": {
-                    "compatible_with": [license_id, "category:copyleft_strong"],
-                    "incompatible_with": ["category:permissive", "category:proprietary"],
-                    "requires_review": ["category:copyleft_weak"]
-                },
-                "dynamic_linking": {
-                    "compatible_with": ["category:any"],
-                    "incompatible_with": [],
-                    "requires_review": ["category:proprietary"]
-                },
-                "contamination_effect": "full",
-                "notes": "Strong copyleft with viral effect"
-            }
-        else:
-            return {
-                "static_linking": {
-                    "compatible_with": ["category:any"],
-                    "incompatible_with": [],
-                    "requires_review": []
-                },
-                "dynamic_linking": {
-                    "compatible_with": ["category:any"],
-                    "incompatible_with": [],
-                    "requires_review": []
-                },
-                "contamination_effect": "none",
-                "notes": "Default compatibility rules"
-            }
-
 
 class ClaudeProvider(LLMProvider):
     """Anthropic Claude LLM provider using Anthropic API."""
@@ -326,14 +351,23 @@ class ClaudeProvider(LLMProvider):
         super().__init__(config)
         try:
             import anthropic
+        except ImportError as e:
+            raise ProviderUnavailableError(
+                "Anthropic package not installed. "
+                "Install with: pip install anthropic (or pip install 'ospac[llm]')"
+            ) from e
+
+        if not config.api_key and not os.getenv("ANTHROPIC_API_KEY"):
+            raise ProviderUnavailableError(
+                "Anthropic API key not set. "
+                "Pass --llm-api-key or set the ANTHROPIC_API_KEY environment variable."
+            )
+
+        try:
             self.client = anthropic.AsyncAnthropic(api_key=config.api_key)
-            self.available = True
-        except ImportError:
-            self.logger.error("Anthropic package not installed. Install with: pip install anthropic")
-            self.available = False
         except Exception as e:
-            self.logger.error(f"Failed to initialize Claude client: {e}")
-            self.available = False
+            raise ProviderUnavailableError(f"Failed to initialize Claude client: {e}") from e
+        self.available = True
 
     async def analyze_license(self, license_id: str, license_text: str) -> Dict[str, Any]:
         """Analyze license using Claude."""
@@ -381,10 +415,6 @@ class ClaudeProvider(LLMProvider):
             self.logger.error(f"Claude compatibility extraction failed for {license_id}: {e}")
             return self._get_default_compatibility_rules(license_id, analysis)
 
-    def _get_default_compatibility_rules(self, license_id: str, analysis: Dict[str, Any]) -> Dict[str, Any]:
-        """Get default compatibility rules (same as OpenAI)."""
-        return OpenAIProvider._get_default_compatibility_rules(self, license_id, analysis)
-
 
 class OllamaProvider(LLMProvider):
     """Local Ollama LLM provider."""
@@ -393,23 +423,29 @@ class OllamaProvider(LLMProvider):
         super().__init__(config)
         try:
             import ollama
+        except ImportError as e:
+            raise ProviderUnavailableError(
+                "Ollama package not installed. "
+                "Install with: pip install ollama (or pip install 'ospac[llm]')"
+            ) from e
+
+        try:
             # Test connection
             models = ollama.list()
             available_models = [model.model for model in models.models]
-
-            if config.model not in available_models:
-                self.logger.warning(f"Model {config.model} not found. Available: {available_models}")
-                self.available = False
-            else:
-                self.client = ollama
-                self.available = True
-
-        except ImportError:
-            self.logger.error("Ollama package not installed. Install with: pip install ollama")
-            self.available = False
         except Exception as e:
-            self.logger.error(f"Failed to initialize Ollama client: {e}")
-            self.available = False
+            raise ProviderUnavailableError(
+                f"Failed to connect to Ollama server: {e}. Is Ollama running?"
+            ) from e
+
+        if config.model not in available_models:
+            raise ProviderUnavailableError(
+                f"Ollama model {config.model} not found. Available: {available_models}. "
+                f"Pull it with: ollama pull {config.model}"
+            )
+
+        self.client = ollama
+        self.available = True
 
     async def analyze_license(self, license_id: str, license_text: str) -> Dict[str, Any]:
         """Analyze license using Ollama."""
@@ -453,13 +489,16 @@ class OllamaProvider(LLMProvider):
             self.logger.error(f"Ollama compatibility extraction failed for {license_id}: {e}")
             return self._get_default_compatibility_rules(license_id, analysis)
 
-    def _get_default_compatibility_rules(self, license_id: str, analysis: Dict[str, Any]) -> Dict[str, Any]:
-        """Get default compatibility rules (same as OpenAI)."""
-        return OpenAIProvider._get_default_compatibility_rules(self, license_id, analysis)
-
 
 def create_llm_provider(config: LLMConfig) -> LLMProvider:
-    """Factory function to create appropriate LLM provider."""
+    """
+    Factory function to create appropriate LLM provider.
+
+    Raises:
+        ProviderUnavailableError: if the requested provider cannot be
+            initialized (missing package, missing API key, unreachable server).
+        ValueError: if the provider name is not recognized.
+    """
     if config.provider.lower() == "openai":
         return OpenAIProvider(config)
     elif config.provider.lower() == "claude":

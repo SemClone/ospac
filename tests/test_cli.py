@@ -269,3 +269,104 @@ class TestObligationEnrichment:
                 f"requirements regardless of cwd, got: {requirements}"
             )
             assert "MIT: Retain copyright notices" in requirements
+
+
+class TestPerLicenseEvaluation:
+    """
+    Each license is evaluated independently and the verdicts aggregate with
+    most-restrictive-wins. Set-level evaluation let one license answer for the whole
+    set: an approve rule matching MIT approved "MIT,AGPL-3.0" because the rule list was
+    non-empty, so the no-match fail-safe never ran for the AGPL that matched nothing.
+    """
+
+    def _action(self, runner, licenses, distribution):
+        result = runner.invoke(cli, ["evaluate", "-l", licenses, "-d", distribution])
+        assert result.exit_code == 0, result.output
+        return json.loads(result.output)
+
+    def test_permissive_license_cannot_mask_an_unmatched_one(self, runner):
+        alone = self._action(runner, "MPL-2.0", "commercial")
+        paired = self._action(runner, "MIT,MPL-2.0", "commercial")
+        assert alone["result"]["action"] == "flag_for_review"
+        assert paired["result"]["action"] == "flag_for_review", (
+            "adding MIT must never upgrade the verdict of the other licenses"
+        )
+
+    def test_permissive_license_cannot_mask_an_unknown_one(self, runner):
+        paired = self._action(runner, "MIT,No-Such-License-1.0", "commercial")
+        assert paired["result"]["action"] == "flag_for_review"
+
+    def test_deny_still_dominates_in_a_mixed_set(self, runner):
+        paired = self._action(runner, "MIT,AGPL-3.0", "commercial")
+        assert paired["result"]["action"] == "deny"
+
+    def test_all_permissive_set_still_approves(self, runner):
+        paired = self._action(runner, "MIT,Apache-2.0,ISC", "commercial")
+        assert paired["result"]["action"] == "approve"
+
+    def test_per_license_breakdown_is_reported(self, runner):
+        data = self._action(runner, "MIT,MPL-2.0", "commercial")
+        assert data["per_license"]["MIT"]["action"] == "approve"
+        assert data["per_license"]["MPL-2.0"]["action"] == "flag_for_review"
+
+
+class TestCheckConflictSemantics:
+    """
+    A compatibility check answers "is a conflict known", so no rule matching means no
+    known conflict. The review default belongs to permission questions; applying it to
+    check made every license read as incompatible with itself.
+    """
+
+    def _check(self, runner, a, b):
+        result = runner.invoke(cli, ["check", a, b])
+        assert result.exit_code == 0, result.output
+        return json.loads(result.output)
+
+    def test_every_license_is_compatible_with_itself(self, runner):
+        for lid in ("MIT", "GPL-3.0-only", "LGPL-2.1", "MPL-2.0"):
+            data = self._check(runner, lid, lid)
+            assert data["compatible"] is True, f"{lid} vs itself must be compatible"
+
+    def test_known_incompatible_pair_still_denies(self, runner):
+        data = self._check(runner, "GPL-2.0", "Apache-2.0")
+        assert data["compatible"] is False
+        assert data["requires_review"] is False
+
+    def test_pair_from_former_dead_matrix_now_denies(self, runner):
+        data = self._check(runner, "BSD-4-Clause", "GPL-3.0-only")
+        assert data["compatible"] is False
+
+    def test_unknown_license_id_is_flagged_as_unverified(self, runner):
+        data = self._check(runner, "MIT", "No-Such-License-9.9")
+        assert any("unverified" in w["message"] for w in data["warnings"])
+
+
+class TestOutputRendering:
+    """Approvals were rendered as denials: only the literal action "allow" was good."""
+
+    def test_markdown_renders_approval_as_approved(self, runner):
+        result = runner.invoke(cli, ["evaluate", "-l", "Zlib", "-d", "commercial",
+                                     "-o", "markdown"])
+        assert result.exit_code == 0
+        assert "✅ Approved" in result.output
+        assert "❌" not in result.output
+
+    def test_markdown_renders_review_as_review(self, runner):
+        result = runner.invoke(cli, ["evaluate", "-l", "MPL-2.0", "-d", "commercial",
+                                     "-o", "markdown"])
+        assert result.exit_code == 0
+        assert "Requires review" in result.output
+        assert "❌" not in result.output
+
+
+class TestGenerateRefusesToFabricate:
+    """Without a provider every record is the fail-closed placeholder, not a dataset."""
+
+    def test_generate_without_use_llm_exits_nonzero_and_writes_nothing(self, runner, tmp_path):
+        out = tmp_path / "generated"
+        result = runner.invoke(cli, ["data", "generate", "--output-dir", str(out),
+                                     "--limit", "1"])
+        assert result.exit_code == 1
+        assert "requires --use-llm" in result.output
+        assert not list((out / "licenses" / "json").glob("*.json")) if (
+            out / "licenses" / "json").exists() else True

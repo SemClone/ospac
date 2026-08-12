@@ -2,12 +2,12 @@
   "license": {
     "id": "CC-BY-ND-4.0",
     "name": "Creative Commons Attribution No Derivatives 4.0 International",
-    "type": "permissive",
+    "type": "no_derivatives",
     "spdx_id": "CC-BY-ND-4.0",
     "properties": {
       "commercial_use": true,
       "distribution": true,
-      "modification": true,
+      "modification": false,
       "patent_grant": false,
       "private_use": true
     },
@@ -41,14 +41,16 @@
         "requires_review": []
       },
       "contamination_effect": "none",
-      "notes": "Permissive license with minimal restrictions"
+      "notes": "No-derivatives license: modified versions may not be distributed"
     },
     "obligations": [
       "Retain copyright notices",
-      "Include license text"
+      "Include license text",
+      "No modification permitted"
     ],
     "key_requirements": [
-      "Attribution required"
+      "Attribution required",
+      "Distribution of modified versions not permitted"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,

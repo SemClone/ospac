@@ -136,7 +136,7 @@ the file on disk has the extra nesting level.
 
 | Field | Meaning |
 |:--|:--|
-| `type` | Family: `permissive`, `copyleft_weak`, `copyleft_strong`, `proprietary`, `public_domain`. Policy rules match on this via `license_type`. |
+| `type` | Family: `permissive`, `copyleft_weak`, `copyleft_strong`, `network_copyleft`, `noncommercial`, `no_derivatives`, `source_available`, `proprietary`, `public_domain`, `unknown`. Policy rules match on this via `license_type`. `noncommercial` and `no_derivatives` exist because those restrictions contradict `permissive`, and policy rules that approve by category would otherwise bless them. |
 | `properties` | What the license lets you do. |
 | `requirements` | Conditions you must satisfy. The booleans here drive `obligations`. |
 | `limitations` | What the license withholds: warranty, liability, trademark grant. |

@@ -35,7 +35,11 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest tests/ -v --tb=short
+        # pytest-cov was installed and coverage.xml was uploaded, but no --cov flag was
+        # ever passed, so the file was never written and the upload silently did nothing.
+        # That is why coverage pointing at the wrong package went unnoticed.
+        pytest tests/ -v --tb=short \
+          --cov=ospac --cov-report=term-missing --cov-report=xml
 
     - name: Upload coverage
       if: matrix.os == 'ubuntu-latest'

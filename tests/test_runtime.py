@@ -292,8 +292,12 @@ class TestPolicyRuntime:
         result = runtime.check_compatibility("MIT", "GPL-3.0")
         assert result.is_compliant is False
 
-        # Two permissive licenses do not trigger the rule
+        # Two permissive licenses do not trigger the rule, and a compatibility question
+        # answers "no known conflict" when no conflict rule matches. The review default
+        # belongs to permission questions; applying it here made every license read as
+        # incompatible with itself.
         result = runtime.check_compatibility("MIT", "Apache-2.0")
+        assert result.violations == []
         assert result.is_compliant is True
 
     def test_check_compatibility_unknown_license_contributes_no_type(self, temp_dir):
@@ -320,7 +324,11 @@ class TestPolicyRuntime:
 
         runtime = PolicyRuntime(str(temp_dir))
 
+        # The unknown license contributes no type, so the copyleft rule cannot fire and
+        # nothing raises. No conflict rule matches, so no conflict is known. The CLI adds
+        # an unverified-license warning for ids the dataset cannot resolve.
         result = runtime.check_compatibility("Not-A-Real-License-1.0", "MIT")
+        assert result.violations == []
         assert result.is_compliant is True
 
     def test_check_compatibility_gpl2_apache_still_incompatible(self):
