@@ -105,9 +105,22 @@ _KNOWN_OVERRIDES: Dict[str, Dict] = {
         "category": "copyleft_weak",
         "conditions": {"disclose_source": True, "same_license": True},
     },
-    # AGPL §13 requires network-use disclosure; LLM omits this condition
-    "AGPL-3.0-only":     {"conditions": {"network_use_disclosure": True}},
-    "AGPL-3.0-or-later": {"conditions": {"network_use_disclosure": True}},
+    # AGPL is strong copyleft plus the network clause, not one instead of the other.
+    # Models reasonably answer network_copyleft, which would soften commercial
+    # distribution from deny to review, so the category is pinned. All spellings carry
+    # the network-use disclosure condition, including AGPL-1.0's own clause 2(d).
+    "AGPL-3.0-only":     {"category": "copyleft_strong",
+                          "conditions": {"network_use_disclosure": True}},
+    "AGPL-3.0-or-later": {"category": "copyleft_strong",
+                          "conditions": {"network_use_disclosure": True}},
+    "AGPL-3.0":          {"category": "copyleft_strong",
+                          "conditions": {"network_use_disclosure": True}},
+    "AGPL-1.0":          {"category": "copyleft_strong",
+                          "conditions": {"network_use_disclosure": True}},
+    "AGPL-1.0-only":     {"category": "copyleft_strong",
+                          "conditions": {"network_use_disclosure": True}},
+    "AGPL-1.0-or-later": {"category": "copyleft_strong",
+                          "conditions": {"network_use_disclosure": True}},
     # Apache-2.0 requires documenting changes made to original files
     "Apache-2.0": {"conditions": {"state_changes": True}},
     # CC0 is a full public domain waiver, with no copyright or license text requirements

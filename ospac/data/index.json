@@ -72,21 +72,21 @@
       "category": "copyleft_strong",
       "file": "licenses/json/AGPL-1.0-only.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "AGPL-1.0-or-later": {
       "name": "Affero General Public License v1.0 or later",
       "category": "copyleft_strong",
       "file": "licenses/json/AGPL-1.0-or-later.json",
       "is_deprecated": false,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "AGPL-1.0": {
       "name": "Affero General Public License v1.0",
       "category": "copyleft_strong",
       "file": "licenses/json/AGPL-1.0.json",
       "is_deprecated": true,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "AGPL-3.0-only": {
       "name": "GNU Affero General Public License v3.0 only",
@@ -107,7 +107,7 @@
       "category": "copyleft_strong",
       "file": "licenses/json/AGPL-3.0.json",
       "is_deprecated": true,
-      "obligations_count": 4
+      "obligations_count": 5
     },
     "ALGLIB-Documentation": {
       "name": "ALGLIB Documentation License",

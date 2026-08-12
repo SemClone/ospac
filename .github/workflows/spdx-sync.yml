@@ -140,9 +140,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: generated-data-${{ github.run_id }}
-          path: |
-            ospac/data/licenses/json/
-            ospac/data/index.json
+          path: ospac/data/
           retention-days: 14
 
       - name: Corpus quality gate
