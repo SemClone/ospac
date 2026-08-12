@@ -38,6 +38,13 @@ LEGACY_FALLBACK_REQUIREMENTS = {
     "include_notice": False, "state_changes": False, "same_license": False,
     "network_use_disclosure": False,
 }
+# The fabricated records never carried real disclaimer analysis, so their limitations
+# were uniformly false. A genuinely permissive license can legitimately match the
+# property and requirement templates, but real analysis reports the disclaimers, so
+# limitations distinguish fabricated from coincidentally similar.
+LEGACY_FALLBACK_LIMITATIONS = {
+    "liability": False, "warranty": False, "trademark_use": False,
+}
 
 # Fields a person reads to make a decision. These must not be templated corpus-wide.
 DECISION_FIELDS = {
@@ -96,7 +103,8 @@ def run(data_dir, strict):
         1 for r in records
         if r.get("type") == "permissive"
         and r.get("properties") == LEGACY_FALLBACK_PROPERTIES
-        and r.get("requirements") == LEGACY_FALLBACK_REQUIREMENTS)
+        and r.get("requirements") == LEGACY_FALLBACK_REQUIREMENTS
+        and r.get("limitations") == LEGACY_FALLBACK_LIMITATIONS)
     unknown = sum(1 for r in records if r.get("type") == "unknown")
 
     print()

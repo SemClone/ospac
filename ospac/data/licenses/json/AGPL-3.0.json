@@ -18,7 +18,7 @@
       "include_notice": false,
       "state_changes": false,
       "same_license": true,
-      "network_use_disclosure": false
+      "network_use_disclosure": true
     },
     "limitations": {
       "liability": false,
@@ -55,11 +55,13 @@
       "Retain copyright notices",
       "Include license text",
       "Provide or offer access to complete source code",
-      "Distribute modifications under the same license"
+      "Distribute modifications under the same license",
+      "Make source available to users interacting over a network"
     ],
     "key_requirements": [
       "Attribution required",
-      "Combined works must be released under the same license"
+      "Combined works must be released under the same license",
+      "Network use triggers source-disclosure obligation"
     ],
     "spdx_metadata": {
       "is_osi_approved": true,
