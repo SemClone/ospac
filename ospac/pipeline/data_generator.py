@@ -20,14 +20,14 @@ logger = logging.getLogger(__name__)
 # "category" maps to the `category` field (license type).
 # "conditions" are merged into the `conditions` dict (any key overrides the LLM value).
 _KNOWN_OVERRIDES: Dict[str, Dict] = {
-    # LGPL permits linking from proprietary code — it is weak copyleft, not strong
+    # LGPL permits linking from proprietary code, so it is weak copyleft, not strong
     "LGPL-2.0-only":     {"category": "copyleft_weak"},
     "LGPL-2.0-or-later": {"category": "copyleft_weak"},
     "LGPL-2.1-only":     {"category": "copyleft_weak"},
     "LGPL-2.1-or-later": {"category": "copyleft_weak"},
     "LGPL-3.0-only":     {"category": "copyleft_weak"},
     "LGPL-3.0-or-later": {"category": "copyleft_weak"},
-    # MPL-2.0: file-level (weak) copyleft — modified files must stay MPL and source disclosed
+    # MPL-2.0: file-level (weak) copyleft, modified files must stay MPL and source disclosed
     "MPL-2.0": {
         "category": "copyleft_weak",
         "conditions": {"disclose_source": True, "same_license": True},
@@ -41,7 +41,7 @@ _KNOWN_OVERRIDES: Dict[str, Dict] = {
     "AGPL-3.0-or-later": {"conditions": {"network_use_disclosure": True}},
     # Apache-2.0 requires documenting changes made to original files
     "Apache-2.0": {"conditions": {"state_changes": True}},
-    # CC0 is a full public domain waiver — no copyright or license text requirements
+    # CC0 is a full public domain waiver, with no copyright or license text requirements
     "CC0-1.0": {"conditions": {"include_copyright": False, "include_license": False}},
 }
 
@@ -270,7 +270,7 @@ class PolicyDataGenerator:
                                 "Network use triggers source-disclosure obligation"],
             "public_domain":   ["No restrictions"],
             "source_available":["Source visible but redistribution restricted"],
-            "proprietary":     ["All rights reserved — no redistribution"],
+            "proprietary":     ["All rights reserved, no redistribution"],
             "unknown":         ["Review license terms before use"],
         }
         key_reqs = list(_CATEGORY_KEY.get(category, ["Review license terms before use"]))
@@ -569,7 +569,7 @@ class PolicyDataGenerator:
                 if entry == f"category:{cat2}":
                     return "incompatible"
 
-            return None  # not specified — fall through to category logic
+            return None  # not specified, fall through to category logic
 
         static = resolve("static_linking")
         dynamic = resolve("dynamic_linking")
@@ -860,7 +860,7 @@ class PolicyDataGenerator:
                 json.dump(license_file_data, f, indent=2)
 
         logger.info(f"Wrote {len(licenses)} license files to {licenses_json_dir}")
-        # Index is rebuilt from ALL files after the delta — see _rebuild_index_from_files
+        # Index is rebuilt from ALL files after the delta, see _rebuild_index_from_files
 
     def _rebuild_index_from_files(self, spdx_version: str = "") -> None:
         """Build index.json from ALL license JSON files on disk, not just the current batch."""

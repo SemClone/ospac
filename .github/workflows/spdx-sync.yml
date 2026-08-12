@@ -194,10 +194,10 @@ jobs:
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1  # v8.1.1
         with:
           token: ${{ secrets.WORKFLOW_PAT }}
-          commit-message: "data: sync SPDX ${{ steps.spdx-check.outputs.spdx_version }} — ${{ steps.spdx-check.outputs.new_count }} new, ${{ steps.spdx-check.outputs.deprecated_flag_count }} deprecated"
+          commit-message: "data: sync SPDX ${{ steps.spdx-check.outputs.spdx_version }}: ${{ steps.spdx-check.outputs.new_count }} new, ${{ steps.spdx-check.outputs.deprecated_flag_count }} deprecated"
           branch: "data/spdx-sync-${{ steps.spdx-check.outputs.spdx_version }}"
           delete-branch: true
-          title: "data: SPDX sync ${{ steps.spdx-check.outputs.spdx_version }} — v${{ steps.version.outputs.new_version }}"
+          title: "data: SPDX sync ${{ steps.spdx-check.outputs.spdx_version }} (v${{ steps.version.outputs.new_version }})"
           body: ${{ steps.summary.outputs.pr_body }}
           labels: "data,automated"
 

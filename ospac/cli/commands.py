@@ -16,6 +16,7 @@ from ospac.models.compliance import ComplianceStatus
 from ospac.pipeline.spdx_processor import SPDXProcessor
 from ospac.pipeline.data_generator import PolicyDataGenerator
 from ospac.utils.validation import validate_license_id
+from ospac.utils.data_validation import validate_license
 
 # Initialize colorama
 init(autoreset=True)
@@ -83,7 +84,7 @@ def evaluate(policy_dir: str, licenses: str, context: str,
         runtime = PolicyRuntime(policy_dir)
 
         if runtime._using_default and output == "text":
-            click.secho("Using default enterprise policy. Create a custom policy with 'ospac init' to customize.", fg="yellow")
+            click.secho("Using default enterprise policy. Create a custom policy with 'ospac policy init' to customize.", fg="yellow")
 
         license_list = [l.strip() for l in licenses.split(",")]
 
@@ -113,7 +114,7 @@ def evaluate(policy_dir: str, licenses: str, context: str,
         result = runtime.evaluate(eval_context)
 
         # Add license obligations to requirements regardless of policy decision
-        _enhance_result_with_obligations(result, license_list)
+        _enhance_result_with_obligations(result, license_list, runtime)
 
         if output == "json":
             # Convert result to JSON-serializable format
@@ -163,7 +164,7 @@ def check(license1: str, license2: str, context: str, policy_dir: str, output: s
         runtime = PolicyRuntime(policy_dir)
 
         if runtime._using_default and output == "text":
-            click.secho("Using default enterprise policy. Create a custom policy with 'ospac init' to customize.", fg="yellow")
+            click.secho("Using default enterprise policy. Create a custom policy with 'ospac policy init' to customize.", fg="yellow")
 
         result = runtime.check_compatibility(license1, license2, context)
 
@@ -425,29 +426,21 @@ def show(license_id: str, format: str):
         # Load from JSON file (preferred format)
         json_file = data_dir / "licenses" / "json" / f"{license_id}.json"
 
-        if json_file.exists():
-            with open(json_file) as f:
-                data = json.load(f)
-            license_data = data.get("license", {})
-        else:
-            # Fallback to YAML file
-            yaml_file = data_dir / "licenses" / "spdx" / f"{license_id}.yaml"
+        if not json_file.exists():
+            click.secho(f"License {license_id} not found", fg="red")
 
-            if not yaml_file.exists():
-                click.secho(f"License {license_id} not found", fg="red")
+            # Show available licenses
+            json_dir = data_dir / "licenses" / "json"
+            if json_dir.exists():
+                available = [f.stem for f in json_dir.glob("*.json")][:10]
+                click.echo("\nAvailable licenses (first 10):")
+                for lid in available:
+                    click.echo(f"  - {lid}")
+            sys.exit(1)
 
-                # Show available licenses
-                json_dir = data_dir / "licenses" / "json"
-                if json_dir.exists():
-                    available = [f.stem for f in json_dir.glob("*.json")][:10]
-                    click.echo("\nAvailable licenses (first 10):")
-                    for lid in available:
-                        click.echo(f"  - {lid}")
-                sys.exit(1)
-
-            with open(yaml_file) as f:
-                data = yaml.safe_load(f)
-            license_data = data.get("license", {})
+        with open(json_file) as f:
+            data = json.load(f)
+        license_data = data.get("license", {})
 
         if format == "json":
             click.echo(json.dumps(license_data, indent=2))
@@ -456,22 +449,50 @@ def show(license_id: str, format: str):
         else:
             # Text format
             click.secho(f"License: {license_id}", fg="cyan", bold=True)
-            click.echo(f"Category: {license_data.get('category')}")
             click.echo(f"Name: {license_data.get('name')}")
+            click.echo(f"Type: {license_data.get('type')}")
 
-            click.echo("\nPermissions:")
-            for perm, value in license_data.get("permissions", {}).items():
-                symbol = "✓" if value else "✗"
-                click.echo(f"  {symbol} {perm}")
+            spdx_metadata = license_data.get("spdx_metadata", {})
+            if spdx_metadata.get("is_deprecated"):
+                click.secho("⚠ This license identifier is DEPRECATED", fg="yellow")
 
-            click.echo("\nConditions:")
-            for cond, value in license_data.get("conditions", {}).items():
-                if value:
-                    click.echo(f"  • {cond}")
+            def bool_mark(value):
+                return "✓" if value else "✗"
 
-            click.echo("\nObligations:")
-            for obligation in license_data.get("obligations", []):
-                click.echo(f"  • {obligation}")
+            permissions = license_data.get("properties", {})
+            if permissions:
+                click.echo("\nPermissions:")
+                for perm, value in permissions.items():
+                    click.echo(f"  {bool_mark(value)} {perm}")
+
+            conditions = license_data.get("requirements", {})
+            if conditions:
+                click.echo("\nConditions:")
+                for cond, value in conditions.items():
+                    click.echo(f"  {bool_mark(value)} {cond}")
+
+            limitations = license_data.get("limitations", {})
+            if limitations:
+                click.echo("\nLimitations:")
+                for limitation, value in limitations.items():
+                    click.echo(f"  {bool_mark(value)} {limitation}")
+
+            obligations_list = license_data.get("obligations", [])
+            if obligations_list:
+                click.echo("\nObligations:")
+                for obligation in obligations_list:
+                    click.echo(f"  • {obligation}")
+
+            key_requirements = license_data.get("key_requirements", [])
+            if key_requirements:
+                click.echo("\nKey requirements:")
+                for req in key_requirements:
+                    click.echo(f"  • {req}")
+
+            if spdx_metadata:
+                click.echo("\nSPDX metadata:")
+                for key, value in spdx_metadata.items():
+                    click.echo(f"  {bool_mark(value)} {key}")
 
     except Exception as e:
         click.secho(f"Error: {e}", fg="red", err=True)
@@ -480,61 +501,79 @@ def show(license_id: str, format: str):
 
 @data.command()
 @click.option("--data-dir", "-d", type=click.Path(exists=True),
-              default=None, help="Directory containing generated data")
-def validate(data_dir: Optional[str]):
-    """Validate SPDX license data."""
-    import yaml
+              default=None, help="Directory containing generated data (defaults to packaged data)")
+@click.option("--strict", is_flag=True,
+              help="Treat warnings as errors")
+def validate(data_dir: Optional[str], strict: bool):
+    """Validate the license JSON dataset."""
     try:
         # Use package data directory if not specified
         if data_dir is None:
             data_dir = str(Path(__file__).parent.parent / "data")
 
-        data_path = Path(data_dir)
-
-        # Check SPDX directory exists
-        spdx_dir = data_path / "licenses" / "spdx"
-        if not spdx_dir.exists():
-            click.secho(f"✗ SPDX directory not found: {spdx_dir}", fg="red")
+        licenses_dir = Path(data_dir) / "licenses" / "json"
+        if not licenses_dir.exists():
+            click.secho(f"✗ License JSON directory not found: {licenses_dir}", fg="red")
             sys.exit(1)
 
-        # Count and validate SPDX files
-        yaml_files = list(spdx_dir.glob("*.yaml"))
-        total = len(yaml_files)
+        json_files = sorted(licenses_dir.glob("*.json"))
+        total = len(json_files)
 
         if total == 0:
-            click.secho(f"✗ No SPDX YAML files found in {spdx_dir}", fg="red")
+            click.secho(f"✗ No license JSON files found in {licenses_dir}", fg="red")
             sys.exit(1)
 
-        click.echo(f"Validating {total} SPDX licenses...")
+        click.echo(f"Validating {total} license JSON files...")
 
-        issues = []
-        required_fields = {"id", "name", "type", "properties", "requirements", "limitations", "obligations"}
+        all_errors = {}
+        all_warnings = {}
 
-        for yaml_file in yaml_files:
+        for json_file in json_files:
+            license_id = json_file.stem
             try:
-                with open(yaml_file) as f:
-                    data = yaml.safe_load(f)
+                with open(json_file) as f:
+                    raw = json.load(f)
+            except json.JSONDecodeError as e:
+                all_errors[license_id] = [f"invalid JSON: {e}"]
+                continue
 
-                if "license" not in data:
-                    issues.append(f"{yaml_file.name}: Missing 'license' section")
-                    continue
+            license_record = raw.get("license", {})
+            if not license_record:
+                all_errors[license_id] = ["top-level 'license' key missing or empty"]
+                continue
 
-                license_data = data["license"]
-                missing_fields = required_fields - set(license_data.keys())
-                if missing_fields:
-                    issues.append(f"{yaml_file.name}: Missing fields: {missing_fields}")
+            errors, warnings = validate_license(license_id, license_record)
+            if errors:
+                all_errors[license_id] = errors
+            if warnings:
+                all_warnings[license_id] = warnings
 
-            except Exception as e:
-                issues.append(f"{yaml_file.name}: Parse error - {e}")
+        clean = total - len(set(all_errors) | set(all_warnings))
 
-        if issues:
-            click.secho(f"⚠ Found {len(issues)} validation issues:", fg="yellow")
-            for issue in issues[:10]:  # Show first 10
-                click.echo(f"  - {issue}")
-        else:
-            click.secho(f"✓ All {total} licenses validated successfully", fg="green")
+        if all_errors:
+            click.secho(f"\n✗ Errors in {len(all_errors)} files:", fg="red")
+            for license_id, messages in sorted(all_errors.items())[:10]:
+                for message in messages:
+                    click.echo(f"  - {license_id}: {message}")
+            if len(all_errors) > 10:
+                click.echo(f"  ... and {len(all_errors) - 10} more files with errors")
 
-        click.echo(f"\nData summary: {total} SPDX license files validated")
+        if all_warnings:
+            click.secho(f"\n⚠ Warnings in {len(all_warnings)} files:", fg="yellow")
+            for license_id, messages in sorted(all_warnings.items())[:10]:
+                for message in messages:
+                    click.echo(f"  - {license_id}: {message}")
+            if len(all_warnings) > 10:
+                click.echo(f"  ... and {len(all_warnings) - 10} more files with warnings")
+
+        click.echo(f"\nData summary: {total} files, {clean} clean, "
+                   f"{len(all_warnings)} with warnings, {len(all_errors)} with errors")
+
+        if all_errors or (strict and all_warnings):
+            click.secho("✗ Validation failed", fg="red")
+            sys.exit(1)
+
+        click.secho(f"✓ All {total} licenses validated successfully", fg="green")
 
     except Exception as e:
         click.secho(f"Error: {e}", fg="red", err=True)
@@ -940,12 +979,16 @@ def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -
     return license_data_result
 
 
-def _enhance_result_with_obligations(result, license_list: list):
-    """Add license obligations to policy result requirements."""
-    import json
-    from pathlib import Path
+def _enhance_result_with_obligations(result, license_list: list, runtime: PolicyRuntime,
+                                     data_dir: Optional[str] = None):
+    """Add license obligations to policy result requirements.
 
-    # Get license obligations from JSON files (preferred) or YAML files
+    Loads obligations from the packaged license JSON dataset (or an explicit
+    data_dir override) so enrichment works regardless of the current working
+    directory. The legacy YAML layout no longer ships, so there is no fallback.
+    """
+    json_dir = Path(runtime.resolve_data_dir(data_dir)) / "licenses" / "json"
+
     all_obligations = []
 
     for license_id in license_list:
@@ -956,9 +999,7 @@ def _enhance_result_with_obligations(result, license_list: list):
             # Skip invalid license IDs
             continue
 
-        # Try JSON first, then fallback to YAML
-        json_file = Path("data") / "licenses" / "json" / f"{license_id}.json"
-        yaml_file = Path("data") / "licenses" / "spdx" / f"{license_id}.yaml"
+        json_file = json_dir / f"{license_id}.json"
 
         spdx_data = None
 
@@ -966,14 +1007,6 @@ def _enhance_result_with_obligations(result, license_list: list):
             try:
                 with open(json_file) as f:
                     spdx_data = json.load(f)
-            except Exception:
-                pass
-
-        if spdx_data is None and yaml_file.exists():
-            try:
-                import yaml
-                with open(yaml_file) as f:
-                    spdx_data = yaml.safe_load(f)
             except Exception:
                 pass
 

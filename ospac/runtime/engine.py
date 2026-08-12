@@ -184,9 +184,23 @@ class PolicyRuntime:
     def check_compatibility(self, license1: str, license2: str,
                            context: str = "general") -> ComplianceResult:
         """Check if two licenses are compatible."""
+        # Resolve license types from the dataset so rules matching on
+        # license_type (e.g. copyleft_strong) can fire. Licenses missing
+        # from the dataset simply contribute no type.
+        license_types = []
+        for license_id in (license1, license2):
+            try:
+                license_data = self.lookup_license_data(license_id)
+            except ValueError:
+                continue
+            license_type = (license_data or {}).get("license", {}).get("type")
+            if license_type and license_type not in license_types:
+                license_types.append(license_type)
+
         eval_context = {
             "license1": license1,
             "license2": license2,
+            "license_type": license_types,
             "compatibility_context": context
         }
 
@@ -194,7 +208,19 @@ class PolicyRuntime:
         return ComplianceResult.from_policy_result(result)
 
     def get_obligations(self, licenses: List[str], data_dir: Optional[str] = None) -> Dict[str, Any]:
-        """Get all obligations for the given licenses."""
+        """
+        Get all obligations for the given licenses.
+
+        Args:
+            licenses: List of SPDX license identifiers
+            data_dir: Optional data directory path
+
+        Returns:
+            Dictionary keyed by license id. Each value is a dictionary that
+            contains an "obligations" list from the license dataset, merged
+            with any entries from obligations/ policy files. Licenses with
+            no known obligations are omitted.
+        """
         # Use package data directory if not specified
         data_dir = self.resolve_data_dir(data_dir)
 
@@ -214,7 +240,9 @@ class PolicyRuntime:
         if licenses_dir.exists():
             for license_id in licenses:
                 license_data = self.lookup_license_data(license_id, data_dir) or {}
-                license_obligations = license_data.get("obligations", [])
+                # Per-license JSON files wrap the record in a "license" key
+                license_record = license_data.get("license", license_data)
+                license_obligations = license_record.get("obligations", [])
                 if license_obligations:
                     if license_id not in obligations:
                         obligations[license_id] = {}

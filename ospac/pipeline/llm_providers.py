@@ -49,7 +49,7 @@ machine-readable license metadata that will be used for automated compliance che
 Ground-truth reference: cross-check your answers against the TLDR Legal summaries at tldrlegal.com and
 the SPDX license list at spdx.org/licenses before responding.
 
-Critical accuracy requirements — common mistakes to avoid:
+Critical accuracy requirements, common mistakes to avoid:
 - Apache-2.0 GRANTS explicit patent rights (patent_grant=true) and does NOT require same-license or source disclosure
 - GPL-2.0 is NOT compatible with Apache-2.0 upstream (GPL-3.0 is compatible as downstream)
 - LGPL allows dynamic linking from proprietary code without triggering copyleft
@@ -57,7 +57,7 @@ Critical accuracy requirements — common mistakes to avoid:
 - Public domain (CC0, Unlicense) has no obligations at all
 - "liability: true" in limitations means the license DISCLAIMS liability (standard for OSS)
 
-Always respond with valid JSON only — no prose, no markdown fences, no trailing commas."""
+Always respond with valid JSON only: no prose, no markdown fences, no trailing commas."""
 
     def _get_analysis_prompt(self, license_id: str, license_text: str) -> str:
         """Get the analysis prompt for a specific license."""

@@ -44,7 +44,7 @@ ospac evaluate -l LICENSES [-d DIST] [-c CONTEXT] [-p DIR] [-o FORMAT]
 The distribution type is what makes the same input produce different answers:
 
 ```bash
-ospac evaluate -l GPL-3.0 -d mobile       # deny — app store terms
+ospac evaluate -l GPL-3.0 -d mobile       # deny, app store terms
 ospac evaluate -l GPL-3.0 -d open_source  # policy-dependent
 ospac evaluate -l MIT -d embedded         # approve
 ```
@@ -74,7 +74,7 @@ $ ospac evaluate -l GPL-3.0 -d mobile
 `action` is one of `approve`, `deny`, or `flag_for_review`. When several rules match, the
 results are aggregated and the most severe action wins, reported under the synthetic
 `rule_id` of `aggregate`. `using_default_policy` tells you whether the decision came from
-your policy or the bundled one — worth asserting on in CI.
+your policy or the bundled one, worth asserting on in CI.
 
 Linking context matters for weak copyleft, where the same license is fine dynamically and
 needs review statically:
@@ -116,7 +116,7 @@ $ ospac check GPL-2.0 Apache-2.0
 }
 ```
 
-GPL-2.0 and Apache-2.0 are the canonical incompatible pair — Apache's patent termination
+GPL-2.0 and Apache-2.0 are the canonical incompatible pair. Apache's patent termination
 clause is an additional restriction GPL-2.0 does not permit. Text output is more readable
 when a human is watching:
 
@@ -158,7 +158,7 @@ MIT:
 ```
 
 The `json` format returns the full license record under `license_data`, not just the
-obligation strings — the same structure documented in
+obligation strings, the same structure documented in
 [The dataset]({{ site.baseurl }}/dataset/). That is the format to consume programmatically,
 because it carries `requirements`, `properties` and `compatibility` alongside the
 human-readable obligation list.
@@ -239,7 +239,7 @@ $ ospac data show MIT -f json
 > `-f text` is currently broken. It reads field names from the pre-1.2.0 schema
 > (`category`, `permissions`, `conditions`), which the JSON dataset no longer uses, so it
 > prints `Category: None` and empty Permissions and Conditions sections. The data is
-> fine — only this formatter is stale. Use `-f json` or `-f yaml`.
+> fine, only this formatter is stale. Use `-f json` or `-f yaml`.
 
 License IDs are validated before use, so a path-traversal attempt in the ID is rejected
 rather than resolved. An unknown ID exits non-zero and lists a sample of valid IDs.
@@ -247,7 +247,7 @@ rather than resolved. An unknown ID exits non-zero and lists a sample of valid I
 ### data generate
 
 Regenerates the license dataset from upstream SPDX. This is a maintainer operation that
-normally runs in CI once a month — you do not need it to use ospac.
+normally runs in CI once a month, you do not need it to use ospac.
 
 ```
 ospac data generate [-o DIR] [--use-llm] [--llm-provider P] [--llm-model M]
@@ -293,5 +293,5 @@ ospac data download-spdx [-o DIR] [--force]
 > python scripts/validate_data.py --data-dir ospac/data
 > ```
 >
-> That script checks all 729 records against the current JSON schema and reports errors
+> That script checks every record against the current JSON schema and reports errors
 > and warnings separately, with a `--strict` flag to fail on warnings.

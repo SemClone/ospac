@@ -9,6 +9,7 @@ would never catch a CLI that forgets to populate it.
 """
 
 import json
+from pathlib import Path
 
 import pytest
 from click.testing import CliRunner
@@ -159,3 +160,112 @@ class TestEvaluateDefaultPolicy:
 
         assert output["using_default_policy"] is True
         assert output["result"]["action"] != "deny"
+
+    def test_default_policy_hint_names_a_real_command(self, runner):
+        result = runner.invoke(cli, ["evaluate", "-l", "MIT", "-o", "text"])
+
+        assert result.exit_code == 0, result.output
+        assert "ospac policy init" in result.output
+        assert "'ospac init'" not in result.output, (
+            "There is no 'ospac init' command; the hint must say "
+            "'ospac policy init'"
+        )
+
+
+class TestDataShow:
+    """`data show` must read the migrated JSON schema, not pre-v1.2.0 fields."""
+
+    def test_text_output_uses_migrated_fields(self, runner):
+        result = runner.invoke(cli, ["data", "show", "MIT", "-f", "text"])
+
+        assert result.exit_code == 0, result.output
+        assert "Type: permissive" in result.output
+        assert "Category: None" not in result.output, (
+            "'category' is a pre-migration field; the dataset uses 'type'"
+        )
+        # Permissions come from 'properties', conditions from 'requirements'
+        assert "commercial_use" in result.output
+        assert "include_license" in result.output
+        # False values must be shown explicitly, not silently omitted
+        assert "✗ disclose_source" in result.output
+        assert "✗ warranty" in result.output
+        assert "is_osi_approved" in result.output
+
+    def test_json_output_shape_is_unchanged(self, runner):
+        result = runner.invoke(cli, ["data", "show", "MIT", "-f", "json"])
+
+        assert result.exit_code == 0, result.output
+        data = json.loads(result.output)
+        assert data["id"] == "MIT"
+        assert data["type"] == "permissive"
+        assert data["properties"]["commercial_use"] is True
+        assert data["requirements"]["include_license"] is True
+        assert data["spdx_metadata"]["is_osi_approved"] is True
+        assert data["obligations"] == [
+            "Retain copyright notices",
+            "Include license text",
+        ]
+
+
+class TestDataValidate:
+    """`data validate` must validate the JSON dataset that actually ships."""
+
+    def test_shipped_dataset_validates(self, runner):
+        result = runner.invoke(cli, ["data", "validate"])
+
+        assert result.exit_code == 0, result.output
+        assert "licenses/spdx" not in result.output, (
+            "The pre-migration YAML layout no longer ships and must not "
+            "be required for validation"
+        )
+        assert "Data summary" in result.output
+
+    def test_shipped_dataset_validates_with_explicit_dir(self, runner):
+        import ospac
+
+        data_dir = Path(ospac.__file__).parent / "data"
+        result = runner.invoke(cli, ["data", "validate", "-d", str(data_dir)])
+
+        assert result.exit_code == 0, result.output
+
+    def test_corrupt_dataset_fails(self, runner, tmp_path):
+        json_dir = tmp_path / "licenses" / "json"
+        json_dir.mkdir(parents=True)
+        # id does not match the filename and every required field is missing
+        (json_dir / "Broken-1.0.json").write_text('{"license": {"id": "Other"}}')
+
+        result = runner.invoke(cli, ["data", "validate", "-d", str(tmp_path)])
+
+        assert result.exit_code != 0, result.output
+        assert "Broken-1.0" in result.output
+
+    def test_unparseable_json_fails(self, runner, tmp_path):
+        json_dir = tmp_path / "licenses" / "json"
+        json_dir.mkdir(parents=True)
+        (json_dir / "Mangled-1.0.json").write_text("{not json")
+
+        result = runner.invoke(cli, ["data", "validate", "-d", str(tmp_path)])
+
+        assert result.exit_code != 0, result.output
+
+
+class TestObligationEnrichment:
+    """Obligation enrichment must use packaged data, not the process cwd."""
+
+    def test_evaluate_carries_obligations_without_local_data_dir(self, runner):
+        # isolated_filesystem chdirs into an empty temp directory, so a
+        # cwd-relative "data/" lookup would find nothing and enrichment
+        # would silently become a no-op.
+        with runner.isolated_filesystem():
+            result = runner.invoke(
+                cli, ["evaluate", "-l", "MIT", "--output", "json"]
+            )
+
+            assert result.exit_code == 0, result.output
+            output = json.loads(result.output)
+            requirements = output["result"]["requirements"]
+            assert any(r.startswith("MIT: ") for r in requirements), (
+                "evaluate must carry per-license obligations in its "
+                f"requirements regardless of cwd, got: {requirements}"
+            )
+            assert "MIT: Retain copyright notices" in requirements

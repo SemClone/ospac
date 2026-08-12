@@ -17,189 +17,15 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-# ── Known-correct values for well-known licenses ─────────────────────────────
-KNOWN_LICENSES = {
-    "Apache-2.0": {
-        "type": "permissive",
-        "properties": {"patent_grant": True},
-        "requirements": {"disclose_source": False, "same_license": False},
-        "spdx_metadata": {"is_osi_approved": True},
-    },
-    "MIT": {
-        "type": "permissive",
-        "requirements": {"disclose_source": False, "same_license": False},
-        "spdx_metadata": {"is_osi_approved": True},
-    },
-    "GPL-3.0-only": {
-        "type": "copyleft_strong",
-        "requirements": {"disclose_source": True, "same_license": True},
-        "spdx_metadata": {"is_osi_approved": True},
-    },
-    "GPL-2.0-only": {
-        "type": "copyleft_strong",
-        "requirements": {"disclose_source": True, "same_license": True},
-        "spdx_metadata": {"is_osi_approved": True},
-    },
-    "LGPL-2.1-only": {
-        "type": "copyleft_weak",
-        "requirements": {"disclose_source": True},
-        "spdx_metadata": {"is_osi_approved": True},
-    },
-    "LGPL-3.0-only": {
-        "type": "copyleft_weak",
-        "requirements": {"disclose_source": True},
-        "spdx_metadata": {"is_osi_approved": True},
-    },
-    "AGPL-3.0-only": {
-        "type": "copyleft_strong",
-        "requirements": {"disclose_source": True, "same_license": True, "network_use_disclosure": True},
-        "spdx_metadata": {"is_osi_approved": True},
-    },
-    "BSD-2-Clause": {
-        "type": "permissive",
-        "requirements": {"disclose_source": False, "same_license": False},
-        "spdx_metadata": {"is_osi_approved": True},
-    },
-    "BSD-3-Clause": {
-        "type": "permissive",
-        "requirements": {"disclose_source": False, "same_license": False},
-        "spdx_metadata": {"is_osi_approved": True},
-    },
-    "CC0-1.0": {
-        "type": "public_domain",
-        "requirements": {"disclose_source": False, "same_license": False},
-    },
-    "ISC": {
-        "type": "permissive",
-        "spdx_metadata": {"is_osi_approved": True},
-    },
-    "MPL-2.0": {
-        "type": "copyleft_weak",
-        "spdx_metadata": {"is_osi_approved": True},
-    },
-}
+# Make the source checkout importable when the script is run directly,
+# e.g. `python scripts/validate_data.py` without PYTHONPATH set.
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
 
-REQUIRED_TOP_FIELDS = {"id", "name", "type", "spdx_id", "properties", "requirements",
-                        "limitations", "compatibility", "obligations", "key_requirements",
-                        "spdx_metadata"}
-
-REQUIRED_PROPERTIES = {"commercial_use", "distribution", "modification", "patent_grant", "private_use"}
-REQUIRED_REQUIREMENTS = {"disclose_source", "include_license", "include_copyright",
-                          "same_license", "network_use_disclosure", "state_changes"}
-REQUIRED_LIMITATIONS = {"liability", "warranty", "trademark_use"}
-REQUIRED_COMPAT_KEYS = {"static_linking", "dynamic_linking", "contamination_effect"}
-REQUIRED_COMPAT_LINK_KEYS = {"compatible_with", "incompatible_with", "requires_review"}
-
-VALID_TYPES = {"permissive", "copyleft_strong", "copyleft_weak", "public_domain",
-               "network_copyleft", "source_available", "proprietary", "unknown"}
-# 'derivative' is valid for share-alike licenses (CC-BY-SA etc.) where only derivative
-# works must use the same license, not the whole combined work.
-VALID_CONTAMINATION = {"none", "module", "full", "derivative", "unknown"}
-
-
-def validate_license(lid: str, lic: dict) -> tuple[list, list]:
-    """Return (errors, warnings) for one license dict."""
-    errors = []
-    warnings = []
-
-    def err(msg): errors.append(msg)
-    def warn(msg): warnings.append(msg)
-
-    # ── Top-level fields ──────────────────────────────────────────────────────
-    missing_top = REQUIRED_TOP_FIELDS - set(lic.keys())
-    for f in sorted(missing_top):
-        err(f"missing top-level field '{f}'")
-
-    # ── id / name / type ──────────────────────────────────────────────────────
-    if lic.get("id") != lid:
-        err(f"id field '{lic.get('id')}' does not match filename '{lid}'")
-    if lic.get("name", "") == lid:
-        warn("name is same as id — should be human-readable (e.g. 'MIT License')")
-    lic_type_raw = lic.get("type", "")
-    if lic_type_raw and lic_type_raw not in VALID_TYPES:
-        if "|" in lic_type_raw:
-            # LLM returned ambiguous type for a genuinely grey license — warn, don't fail
-            warn(f"ambiguous type '{lic_type_raw}' — resolve to one of {VALID_TYPES}")
-        else:
-            err(f"invalid type '{lic_type_raw}' — must be one of {VALID_TYPES}")
-
-    # ── properties ────────────────────────────────────────────────────────────
-    props = lic.get("properties", {})
-    for f in REQUIRED_PROPERTIES - set(props.keys()):
-        err(f"properties.{f} missing")
-    for f, v in props.items():
-        if not isinstance(v, bool):
-            err(f"properties.{f} must be bool, got {type(v).__name__}")
-
-    # ── requirements ──────────────────────────────────────────────────────────
-    reqs = lic.get("requirements", {})
-    for f in REQUIRED_REQUIREMENTS - set(reqs.keys()):
-        warn(f"requirements.{f} missing")
-    for f, v in reqs.items():
-        if not isinstance(v, bool):
-            err(f"requirements.{f} must be bool, got {type(v).__name__}")
-
-    # ── limitations ───────────────────────────────────────────────────────────
-    lims = lic.get("limitations", {})
-    for f in REQUIRED_LIMITATIONS - set(lims.keys()):
-        warn(f"limitations.{f} missing")
-
-    # ── compatibility ─────────────────────────────────────────────────────────
-    compat = lic.get("compatibility", {})
-    for f in REQUIRED_COMPAT_KEYS - set(compat.keys()):
-        err(f"compatibility.{f} missing")
-
-    for link in ("static_linking", "dynamic_linking"):
-        section = compat.get(link, {})
-        if not isinstance(section, dict):
-            err(f"compatibility.{link} must be a dict")
-            continue
-        for f in REQUIRED_COMPAT_LINK_KEYS - set(section.keys()):
-            warn(f"compatibility.{link}.{f} missing")
-        # At least some entries should be non-empty
-        if (isinstance(section.get("compatible_with"), list) and
-                isinstance(section.get("incompatible_with"), list) and
-                not section["compatible_with"] and not section["incompatible_with"]):
-            warn(f"compatibility.{link} has empty compatible_with AND incompatible_with")
-
-    contamination = compat.get("contamination_effect", "")
-    if contamination and contamination not in VALID_CONTAMINATION:
-        err(f"compatibility.contamination_effect '{contamination}' not in {VALID_CONTAMINATION}")
-
-    # ── obligations / key_requirements ────────────────────────────────────────
-    obligs = lic.get("obligations", [])
-    lic_type = lic.get("type", "")
-    if not obligs and lic_type not in ("public_domain",):
-        warn("obligations list is empty")
-    if not isinstance(obligs, list):
-        err(f"obligations must be a list, got {type(obligs).__name__}")
-
-    krs = lic.get("key_requirements", [])
-    if not isinstance(krs, list):
-        err(f"key_requirements must be a list, got {type(krs).__name__}")
-
-    # ── spdx_metadata ─────────────────────────────────────────────────────────
-    meta = lic.get("spdx_metadata", {})
-    for f in ("is_osi_approved", "is_fsf_libre", "is_deprecated"):
-        if f not in meta:
-            warn(f"spdx_metadata.{f} missing")
-        elif not isinstance(meta[f], bool):
-            err(f"spdx_metadata.{f} must be bool, got {type(meta[f]).__name__}")
-
-    # ── Known-license spot checks ─────────────────────────────────────────────
-    if lid in KNOWN_LICENSES:
-        spec = KNOWN_LICENSES[lid]
-        if "type" in spec and lic.get("type") != spec["type"]:
-            err(f"known-license: type should be '{spec['type']}', got '{lic.get('type')}'")
-        for section, expected in spec.items():
-            if section == "type":
-                continue
-            actual = lic.get(section, {})
-            for k, v in expected.items():
-                if actual.get(k) != v:
-                    err(f"known-license: {section}.{k} should be {v}, got {actual.get(k)!r}")
-
-    return errors, warnings
+# Single source of truth for the validation rules, shared with the
+# `ospac data validate` CLI command.
+from ospac.utils.data_validation import validate_license  # noqa: E402
 
 
 def run(data_dir: Path, strict: bool, as_json: bool) -> int:
@@ -222,7 +48,7 @@ def run(data_dir: Path, strict: bool, as_json: bool) -> int:
         try:
             raw = json.loads(p.read_text())
         except json.JSONDecodeError as e:
-            parse_failures.append(f"{lid}: invalid JSON — {e}")
+            parse_failures.append(f"{lid}: invalid JSON: {e}")
             continue
 
         lic = raw.get("license", {})
@@ -246,11 +72,11 @@ def run(data_dir: Path, strict: bool, as_json: bool) -> int:
     warning_categories: dict[str, int] = defaultdict(int)
     for msgs in all_errors.values():
         for m in msgs:
-            key = m.split("'")[0].strip().rstrip(" —").split(":")[0]
+            key = m.split("'")[0].strip().rstrip(" ,").split(":")[0]
             error_categories[key] += 1
     for msgs in all_warnings.values():
         for m in msgs:
-            key = m.split("'")[0].strip().rstrip(" —").split(":")[0]
+            key = m.split("'")[0].strip().rstrip(" ,").split(":")[0]
             warning_categories[key] += 1
 
     if as_json:
@@ -278,14 +104,14 @@ def run(data_dir: Path, strict: bool, as_json: bool) -> int:
             print(f"  ✗ {m}")
 
     if all_errors:
-        print(f"\n{E}ERRORS — {n_err} files affected{RESET}")
+        print(f"\n{E}ERRORS: {n_err} files affected{RESET}")
         for lid, msgs in sorted(all_errors.items()):
             print(f"  {lid}:")
             for m in msgs:
                 print(f"    ✗ {m}")
 
     if all_warnings:
-        print(f"\n{W}WARNINGS — {n_warn} files affected{RESET}")
+        print(f"\n{W}WARNINGS: {n_warn} files affected{RESET}")
         # Group by category to avoid flooding output
         for cat, count in sorted(warning_categories.items(), key=lambda x: -x[1])[:15]:
             print(f"  [{count:4d} files]  {cat}…")

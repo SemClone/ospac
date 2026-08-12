@@ -211,3 +211,93 @@ class TestIntegrationSecurity:
         assert result1 is None or isinstance(result1, dict)
         assert result2 is None or isinstance(result2, dict)
         assert result3 is None or isinstance(result3, dict)
+
+
+class TestSharedDataValidation:
+    """The dataset validation rules must have exactly one implementation."""
+
+    def test_cli_uses_shared_implementation(self):
+        """The CLI command resolves validate_license to the shared function."""
+        import ospac.cli.commands as commands
+        from ospac.utils import data_validation
+
+        assert commands.validate_license is data_validation.validate_license
+
+    def test_script_uses_shared_implementation(self):
+        """scripts/validate_data.py resolves validate_license to the shared function."""
+        import importlib.util
+
+        from ospac.utils import data_validation
+
+        script_path = Path(__file__).parent.parent / "scripts" / "validate_data.py"
+        spec = importlib.util.spec_from_file_location("validate_data_script", script_path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        assert module.validate_license is data_validation.validate_license
+
+    def test_shared_rule_constants(self):
+        """Sanity-check the shared rule tables."""
+        from ospac.utils.data_validation import (
+            KNOWN_LICENSES,
+            REQUIRED_TOP_FIELDS,
+            VALID_CONTAMINATION,
+            VALID_TYPES,
+        )
+
+        assert "MIT" in KNOWN_LICENSES
+        assert KNOWN_LICENSES["GPL-3.0-only"]["type"] == "copyleft_strong"
+        assert "spdx_id" in REQUIRED_TOP_FIELDS
+        assert "permissive" in VALID_TYPES
+        assert "derivative" in VALID_CONTAMINATION
+
+    def test_validate_license_known_good_record(self):
+        """A well-formed record produces no errors and no warnings."""
+        from ospac.utils.data_validation import validate_license
+
+        record = {
+            "id": "MIT",
+            "name": "MIT License",
+            "type": "permissive",
+            "spdx_id": "MIT",
+            "properties": {
+                "commercial_use": True,
+                "distribution": True,
+                "modification": True,
+                "patent_grant": False,
+                "private_use": True,
+            },
+            "requirements": {
+                "disclose_source": False,
+                "include_license": True,
+                "include_copyright": True,
+                "same_license": False,
+                "network_use_disclosure": False,
+                "state_changes": False,
+            },
+            "limitations": {"liability": True, "warranty": True, "trademark_use": False},
+            "compatibility": {
+                "static_linking": {
+                    "compatible_with": ["Apache-2.0"],
+                    "incompatible_with": [],
+                    "requires_review": [],
+                },
+                "dynamic_linking": {
+                    "compatible_with": ["Apache-2.0"],
+                    "incompatible_with": [],
+                    "requires_review": [],
+                },
+                "contamination_effect": "none",
+            },
+            "obligations": ["Include the license text"],
+            "key_requirements": ["Include copyright notice"],
+            "spdx_metadata": {
+                "is_osi_approved": True,
+                "is_fsf_libre": True,
+                "is_deprecated": False,
+            },
+        }
+
+        errors, warnings = validate_license("MIT", record)
+        assert errors == []
+        assert warnings == []
