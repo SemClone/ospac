@@ -88,30 +88,19 @@ def evaluate(policy_dir: str, licenses: str, context: str,
 
         license_list = [l.strip() for l in licenses.split(",")]
 
-        # Resolve license types from the dataset so rules matching on
-        # license_type (e.g. copyleft_strong) can fire. Licenses missing
-        # from the dataset simply contribute no type.
-        license_types = []
-        for license_id in license_list:
-            try:
-                license_data = runtime.lookup_license_data(license_id)
-            except ValueError:
-                continue
-            license_type = (license_data or {}).get("license", {}).get("type")
-            if license_type and license_type not in license_types:
-                license_types.append(license_type)
-
-        eval_context = {
-            "licenses_found": license_list,
-            "licenses": license_list,  # Support both keys
-            "license_type": license_types,
+        base_context = {
             "context": context,
             "distribution": distribution,
             "distribution_type": distribution,  # Support both keys
             "linking_type": context if "linking" in context else None
         }
 
-        result = runtime.evaluate(eval_context)
+        # Each license is evaluated on its own, then the verdicts are aggregated with
+        # most-restrictive-wins. Evaluating the set in one pass let a single license's
+        # approval answer for licenses that matched no rule at all: "MIT,AGPL-3.0" was
+        # approved because MIT fired the permissive rule and the no-match fail-safe
+        # therefore never ran for AGPL.
+        result, per_license = runtime.evaluate_licenses(license_list, base_context)
 
         # Add license obligations to requirements regardless of policy decision
         _enhance_result_with_obligations(result, license_list, runtime)
@@ -125,6 +114,10 @@ def evaluate(policy_dir: str, licenses: str, context: str,
                 "context": context,
                 "distribution": distribution,
                 "result": result_dict,
+                "per_license": {
+                    lid: {"action": r.action.value, "message": r.message}
+                    for lid, r in per_license.items()
+                },
                 "using_default_policy": runtime._using_default
             }
             click.echo(json.dumps(output_data, indent=2))
@@ -168,13 +161,26 @@ def check(license1: str, license2: str, context: str, policy_dir: str, output: s
 
         result = runtime.check_compatibility(license1, license2, context)
 
+        # A license id that does not resolve in the dataset cannot be checked, only not
+        # contradicted. Say so instead of letting a typo read as a clean compatibility.
+        warnings = list(result.warnings) if result.warnings else []
+        for license_id in (license1, license2):
+            if runtime.resolve_license_type(license_id) is None:
+                warnings.append({
+                    "rule_id": "unknown_license",
+                    "message": f"{license_id} is not in the license dataset, so this "
+                               f"compatibility is unverified"
+                })
+
         if output == "json":
             output_data = {
                 "license1": license1,
                 "license2": license2,
                 "context": context,
                 "compatible": result.is_compliant,
+                "requires_review": result.needs_review,
                 "violations": result.violations if result.violations else [],
+                "warnings": warnings,
                 "using_default_policy": runtime._using_default
             }
             click.echo(json.dumps(output_data, indent=2))
@@ -182,6 +188,8 @@ def check(license1: str, license2: str, context: str, policy_dir: str, output: s
             # Text output
             if result.is_compliant:
                 click.secho(f"✓ {license1} and {license2} are compatible", fg="green")
+            elif result.needs_review:
+                click.secho(f"? {license1} and {license2} require review", fg="yellow")
             else:
                 click.secho(f"✗ {license1} and {license2} are incompatible", fg="red")
 
@@ -189,6 +197,8 @@ def check(license1: str, license2: str, context: str, policy_dir: str, output: s
                     click.echo("\nViolations:")
                     for violation in result.violations:
                         click.echo(f"  - {violation['message']}")
+            for warning in warnings:
+                click.secho(f"  ! {warning['message']}", fg="yellow")
 
     except Exception as e:
         click.secho(f"Error: {e}", fg="red", err=True)
@@ -347,9 +357,16 @@ def generate(output_dir: str, force: bool, force_reprocess: bool, limit: Optiona
             )
             click.echo(f"Using {llm_provider.upper()} LLM provider for enhanced analysis")
         else:
-            generator = PolicyDataGenerator(Path(output_dir))
-            click.secho("⚠ Running without LLM analysis. Data will be basic.", fg="yellow")
-            click.echo("To enable LLM analysis, use --use-llm flag with --llm-provider")
+            # Without a provider every record comes from the fail-closed fallback:
+            # type unknown, every permission denied. That output exists so a failed
+            # analysis cannot over-permit, not to be a dataset, so refuse to write a
+            # whole corpus of it. The shipped package already includes real data.
+            click.secho(
+                "✗ data generate requires --use-llm. Without a provider every record "
+                "is a conservative placeholder (type unknown, all permissions denied), "
+                "which is not a usable dataset.", fg="red", err=True)
+            click.echo("Use --use-llm with --llm-provider openai|claude|ollama.", err=True)
+            sys.exit(1)
 
         click.echo(f"Generating policy data in {output_dir}...")
 
@@ -390,6 +407,19 @@ def generate(output_dir: str, force: bool, force_reprocess: bool, limit: Optiona
                     f"instead of {llm_provider.upper()}: {preview}",
                     fg="red", err=True
                 )
+                # Remove the fabricated records. Delta processing uses on-disk files as
+                # its record of what is done, so leaving these in place would make the
+                # next run skip them and report a clean dataset over stale placeholders.
+                removed = 0
+                for fallback_id in fallback_ids:
+                    record_path = Path(output_dir) / "licenses" / "json" / f"{fallback_id}.json"
+                    if record_path.exists():
+                        record_path.unlink()
+                        removed += 1
+                if removed:
+                    click.secho(
+                        f"  Removed {removed} placeholder record(s) so the next run "
+                        f"reprocesses them.", fg="yellow", err=True)
                 click.secho(
                     "Fallback records deliberately under-permit and must not be published. "
                     "Fix the provider errors logged above and re-run.",
@@ -648,6 +678,28 @@ def init(template: str, output: str, format: str):
                     "description": "Allow permissive licenses",
                     "when": {"license_type": ["permissive", "public_domain"]},
                     "then": {"action": "approve"}
+                },
+                {
+                    "id": "deny_noncommercial",
+                    "description": "Deny NonCommercial licenses in distributed products",
+                    "when": {"license_type": "noncommercial"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "NonCommercial licenses forbid commercial use",
+                        "remediation": "Replace with a permissive alternative, or obtain a commercial license from the rights holder"
+                    }
+                },
+                {
+                    "id": "review_restricted",
+                    "description": "Review licenses with restrictions the tool cannot verify",
+                    "when": {"license_type": ["no_derivatives", "source_available",
+                                              "network_copyleft", "unknown"]},
+                    "then": {
+                        "action": "flag_for_review",
+                        "severity": "warning",
+                        "message": "This license carries restrictions that need human review"
+                    }
                 }
             ]
         },
@@ -681,6 +733,28 @@ def init(template: str, output: str, format: str):
                     "description": "Allow permissive licenses",
                     "when": {"license_type": ["permissive", "public_domain"]},
                     "then": {"action": "approve"}
+                },
+                {
+                    "id": "deny_noncommercial",
+                    "description": "Deny NonCommercial licenses in distributed products",
+                    "when": {"license_type": "noncommercial"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "NonCommercial licenses forbid commercial use",
+                        "remediation": "Replace with a permissive alternative, or obtain a commercial license from the rights holder"
+                    }
+                },
+                {
+                    "id": "review_restricted",
+                    "description": "Review licenses with restrictions the tool cannot verify",
+                    "when": {"license_type": ["no_derivatives", "source_available",
+                                              "network_copyleft", "unknown"]},
+                    "then": {
+                        "action": "flag_for_review",
+                        "severity": "warning",
+                        "message": "This license carries restrictions that need human review"
+                    }
                 }
             ]
         },
@@ -716,6 +790,28 @@ def init(template: str, output: str, format: str):
                     "description": "Allow permissive licenses",
                     "when": {"license_type": ["permissive", "public_domain"]},
                     "then": {"action": "approve"}
+                },
+                {
+                    "id": "deny_noncommercial",
+                    "description": "Deny NonCommercial licenses in distributed products",
+                    "when": {"license_type": "noncommercial"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "NonCommercial licenses forbid commercial use",
+                        "remediation": "Replace with a permissive alternative, or obtain a commercial license from the rights holder"
+                    }
+                },
+                {
+                    "id": "review_restricted",
+                    "description": "Review licenses with restrictions the tool cannot verify",
+                    "when": {"license_type": ["no_derivatives", "source_available",
+                                              "network_copyleft", "unknown"]},
+                    "then": {
+                        "action": "flag_for_review",
+                        "severity": "warning",
+                        "message": "This license carries restrictions that need human review"
+                    }
                 }
             ]
         },
@@ -749,6 +845,28 @@ def init(template: str, output: str, format: str):
                     "description": "Allow permissive licenses",
                     "when": {"license_type": ["permissive", "public_domain"]},
                     "then": {"action": "approve"}
+                },
+                {
+                    "id": "deny_noncommercial",
+                    "description": "Deny NonCommercial licenses in distributed products",
+                    "when": {"license_type": "noncommercial"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "NonCommercial licenses forbid commercial use",
+                        "remediation": "Replace with a permissive alternative, or obtain a commercial license from the rights holder"
+                    }
+                },
+                {
+                    "id": "review_restricted",
+                    "description": "Review licenses with restrictions the tool cannot verify",
+                    "when": {"license_type": ["no_derivatives", "source_available",
+                                              "network_copyleft", "unknown"]},
+                    "then": {
+                        "action": "flag_for_review",
+                        "severity": "warning",
+                        "message": "This license carries restrictions that need human review"
+                    }
                 }
             ]
         },
@@ -784,6 +902,28 @@ def init(template: str, output: str, format: str):
                     "description": "Allow permissive licenses for embedded",
                     "when": {"license_type": ["permissive", "public_domain"]},
                     "then": {"action": "approve"}
+                },
+                {
+                    "id": "deny_noncommercial",
+                    "description": "Deny NonCommercial licenses in distributed products",
+                    "when": {"license_type": "noncommercial"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "NonCommercial licenses forbid commercial use",
+                        "remediation": "Replace with a permissive alternative, or obtain a commercial license from the rights holder"
+                    }
+                },
+                {
+                    "id": "review_restricted",
+                    "description": "Review licenses with restrictions the tool cannot verify",
+                    "when": {"license_type": ["no_derivatives", "source_available",
+                                              "network_copyleft", "unknown"]},
+                    "then": {
+                        "action": "flag_for_review",
+                        "severity": "warning",
+                        "message": "This license carries restrictions that need human review"
+                    }
                 }
             ]
         },
@@ -819,6 +959,28 @@ def init(template: str, output: str, format: str):
                     "description": "Allow permissive licenses",
                     "when": {"license_type": ["permissive", "public_domain"]},
                     "then": {"action": "approve"}
+                },
+                {
+                    "id": "deny_noncommercial",
+                    "description": "Deny NonCommercial licenses in distributed products",
+                    "when": {"license_type": "noncommercial"},
+                    "then": {
+                        "action": "deny",
+                        "severity": "error",
+                        "message": "NonCommercial licenses forbid commercial use",
+                        "remediation": "Replace with a permissive alternative, or obtain a commercial license from the rights holder"
+                    }
+                },
+                {
+                    "id": "review_restricted",
+                    "description": "Review licenses with restrictions the tool cannot verify",
+                    "when": {"license_type": ["no_derivatives", "source_available",
+                                              "network_copyleft", "unknown"]},
+                    "then": {
+                        "action": "flag_for_review",
+                        "severity": "warning",
+                        "message": "This license carries restrictions that need human review"
+                    }
                 }
             ]
         },
@@ -858,8 +1020,18 @@ def _output_text(result, licenses):
     click.echo("-" * 50)
 
     if hasattr(result, "action"):
-        action_color = "green" if result.action.value == "allow" else "red"
-        click.secho(f"Action: {result.action.value}", fg=action_color)
+        # Colour by what the action means, not by string equality with one value.
+        # Approvals were rendered red because only "allow" was treated as good, and the
+        # markdown renderer below printed "Denied" for them outright.
+        _ACTION_STYLE = {
+            "approve": "green",
+            "allow": "green",
+            "flag_for_review": "yellow",
+            "contaminate": "red",
+            "deny": "red",
+        }
+        click.secho(f"Action: {result.action.value}",
+                    fg=_ACTION_STYLE.get(result.action.value, "yellow"))
 
         if result.message:
             click.echo(f"Message: {result.message}")
@@ -876,7 +1048,14 @@ def _output_markdown(result, licenses):
     click.echo(f"**Licenses evaluated:** {', '.join(licenses)}\n")
 
     if hasattr(result, "action"):
-        status = "✅ Allowed" if result.action.value == "allow" else "❌ Denied"
+        _ACTION_STATUS = {
+            "approve": "✅ Approved",
+            "allow": "✅ Allowed",
+            "flag_for_review": "⚠️ Requires review",
+            "contaminate": "❌ Denied (contaminating)",
+            "deny": "❌ Denied",
+        }
+        status = _ACTION_STATUS.get(result.action.value, f"⚠️ {result.action.value}")
         click.echo(f"## Status: {status}\n")
 
         if result.message:

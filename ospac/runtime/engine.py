@@ -62,10 +62,15 @@ class PolicyRuntime:
         """Create a PolicyRuntime instance from a policy directory."""
         return cls(policy_path)
 
-    def evaluate(self, context: Dict[str, Any]) -> PolicyResult:
+    def evaluate(self, context: Dict[str, Any],
+                 when_unmatched: str = "review") -> PolicyResult:
         """
         Evaluate context against all loaded policies.
         No business logic here - just policy execution.
+
+        Evaluates the context as a single unit. For a list of licenses prefer
+        evaluate_licenses(), which evaluates each license independently so that one
+        license matching a rule cannot answer for the others.
         """
         if not self.evaluator:
             raise RuntimeError("No policies loaded. Call load_policies() first.")
@@ -90,7 +95,45 @@ class PolicyRuntime:
             )
             results.append(policy_result)
 
-        return PolicyResult.aggregate(results)
+        return PolicyResult.aggregate(results, when_unmatched=when_unmatched)
+
+    def resolve_license_type(self, license_id: str,
+                             data_dir: Optional[str] = None) -> Optional[str]:
+        """Look up a license's type from the dataset, or None if unresolvable."""
+        try:
+            record = self.lookup_license_data(license_id, data_dir)
+        except ValueError:
+            return None
+        return ((record or {}).get("license") or {}).get("type")
+
+    def evaluate_licenses(self, licenses: List[str],
+                          base_context: Dict[str, Any]) -> tuple:
+        """
+        Evaluate each license independently, then aggregate the per-license verdicts.
+
+        Set-level evaluation let one license answer for the whole set: an approve rule
+        matching MIT approved "MIT,AGPL-3.0", because the rule list was non-empty and the
+        no-match fail-safe never ran for the AGPL that matched nothing. Evaluating per
+        license means every license either gets a verdict from a rule or falls to the
+        fail-safe on its own.
+
+        Returns (aggregated PolicyResult, {license_id: per-license PolicyResult}).
+        base_context carries the shared fields (distribution_type, context, linking_type);
+        the per-license fields are filled in here.
+        """
+        per_license: Dict[str, PolicyResult] = {}
+        for license_id in licenses:
+            license_type = self.resolve_license_type(license_id)
+            ctx = dict(base_context)
+            ctx["licenses"] = [license_id]
+            ctx["licenses_found"] = [license_id]
+            ctx["license_type"] = [license_type] if license_type else []
+            per_license[license_id] = self.evaluate(ctx)
+
+        combined = PolicyResult.aggregate(list(per_license.values()))
+        if len(licenses) > 1:
+            combined.message = f"Evaluated {len(licenses)} licenses"
+        return combined, per_license
 
     def _find_applicable_rules(self, context: Dict[str, Any]) -> List[Dict]:
         """Find all rules that apply to the given context."""
@@ -204,7 +247,12 @@ class PolicyRuntime:
             "compatibility_context": context
         }
 
-        result = self.evaluate(eval_context)
+        # A compatibility check asks whether a conflict is known, so no rule matching
+        # means "no known conflict", not "needs review". The review default belongs to
+        # permission questions; applying it here made every license read as incompatible
+        # with itself, since this context carries no distribution_type and most rules
+        # therefore cannot match.
+        result = self.evaluate(eval_context, when_unmatched="allow")
         return ComplianceResult.from_policy_result(result)
 
     def get_obligations(self, licenses: List[str], data_dir: Optional[str] = None) -> Dict[str, Any]:

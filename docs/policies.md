@@ -77,45 +77,27 @@ values are conventionally more important.
 | `context` | The `-c` value | `general` by default. |
 | `linking_type` | The `-c` value, but **only if it contains "linking"** | `null` otherwise, so a `linking_type` rule is inert unless you pass `-c static_linking` or `-c dynamic_linking`. |
 
-{: .warning }
-> **`license_type` does not work, and the built-in templates depend on it.**
->
-> `ospac evaluate` never puts `license_type` into the context, so any rule matching on
-> `license_type: copyleft_strong` is silently skipped. Every policy written by
-> `ospac policy init` matches on `license_type`, which means the generated templates match
-> nothing:
->
-> ```bash
-> $ ospac policy init --template mobile --output mobile_policy.yaml
-> $ ospac evaluate -l GPL-3.0 -d mobile -p mobile_policy.yaml
-> {
->   "result": {
->     "action": "allow",
->     "message": "No policies matched"
->   }
-> }
-> ```
->
-> GPL-3.0 under a mobile policy that is written to deny it returns `allow`. This fails
-> open, so it will not draw attention to itself in CI.
->
-> Until this is fixed, match on `license` with explicit SPDX IDs instead of on
-> `license_type`. That path works: it is what the bundled default enterprise policy uses,
-> and why the default policy produces correct answers while the templates do not.
+{: .note }
+> **Before 1.3.0, `license_type` never reached the evaluation context**, so rules
+> matching on it were silently skipped and the generated templates matched nothing. That
+> is fixed: `evaluate` resolves each license's type from the dataset, and each license in
+> a multi-license evaluation is judged independently, so one permissive license cannot
+> answer for the others.
 
-Rewriting the example above to match on `license` makes it fire:
+Matching on `license_type` is now the preferred way to write category rules, because it
+covers licenses nobody remembered to enumerate:
 
 ```yaml
 rules:
-  - id: deny_gpl_mobile
+  - id: deny_strong_copyleft_mobile
     priority: 10
     when:
       distribution_type: ["mobile"]
-      license: ["GPL-2.0", "GPL-3.0", "GPL-3.0-only", "GPL-3.0-or-later"]
+      license_type: "copyleft_strong"
     then:
       action: deny
       severity: error
-      message: "GPL conflicts with app store terms"
+      message: "Strong copyleft conflicts with app store terms"
       remediation: "Use an MIT or Apache-2.0 alternative"
 ```
 
@@ -125,11 +107,17 @@ $ ospac evaluate -l GPL-3.0 -d mobile -p mobile_policy.yaml
     "remediation": "Use an MIT or Apache-2.0 alternative"
 ```
 
-The cost of this approach is that ID lists need maintaining, since a license family has many
-spellings (`GPL-3.0`, `GPL-3.0-only`, `GPL-3.0-or-later`, `GPL-3.0+`), and a missing
-variant is a rule that quietly does not cover it. Enumerate the variants you actually
-encounter, and read `ospac/data/compatibility/categories.json` for the full membership of
-each family.
+The types the dataset uses are listed in
+[The dataset]({{ site.baseurl }}/dataset/#what-a-license-record-contains). Two exist
+precisely so category rules stay honest: `noncommercial` for licenses that forbid
+commercial use, and `no_derivatives` for licenses that forbid distributing modified
+versions. Neither may sit in `permissive`, so a rule approving permissive licenses cannot
+bless them by accident.
+
+Matching on `license` with explicit SPDX IDs still works and is right for rules about one
+specific license. Its cost is that ID lists need maintaining, since a license family has
+many spellings (`GPL-3.0`, `GPL-3.0-only`, `GPL-3.0-or-later`, `GPL-3.0+`), and a missing
+variant is a rule that quietly does not cover it.
 
 ## Nothing matching means review, not approval
 
@@ -176,10 +164,14 @@ answer into a review request.
 With no `-p`, ospac loads `ospac/defaults/enterprise_policy.yaml` and prints a notice on
 stderr. It is a real, opinionated policy:
 
-- GPL is denied for `commercial`, `embedded`, `saas`, `mobile`, `desktop` and `web`
-- AGPL is denied for `saas`, `cloud` and `api`
-- LGPL with `static_linking` is flagged for review, with requirements attached
-- LGPL with dynamic linking is allowed
+- strong copyleft is denied for `commercial`, `embedded`, `saas`, `mobile`, `desktop` and `web`, by category
+- network copyleft is denied for `saas`, `cloud`, `api` and `web`
+- NonCommercial licenses are denied for every commercial-adjacent distribution type
+- weak copyleft is approved under `dynamic_linking`, reviewed under `static_linking`, and
+  reviewed when the linking context is unknown
+- permissive and public domain licenses are approved by category
+- no-derivatives, source-available and unknown licenses are flagged for review
+- known incompatible pairs, such as GPL-2.0 with Apache-2.0, are denied by `check`
 
 Those are defensible defaults for a commercial product and wrong for plenty of other
 projects. Copy it as a starting point rather than inheriting it by accident:
@@ -188,17 +180,17 @@ projects. Copy it as a starting point rather than inheriting it by accident:
 cp "$(python -c 'import ospac,pathlib;print(pathlib.Path(ospac.__file__).parent)')/defaults/enterprise_policy.yaml" ./policy.yaml
 ```
 
-Editing that file gives you a policy that already matches on `license`, which sidesteps the
-`license_type` problem entirely.
-
 ## Templates
 
 `ospac policy init -t NAME` writes one of `mobile`, `desktop`, `web`, `server`, `embedded`,
 `library`, or `custom`. They differ mainly in copyleft treatment: `mobile` denies both
-strong and weak copyleft, `library` and `server` are laxer.
+strong and weak copyleft, `library` and `server` are laxer. All of them deny
+`noncommercial` licenses and flag `no_derivatives`, `source_available`,
+`network_copyleft` and `unknown` for review.
 
-Given the `license_type` issue above, treat these as a sketch of intent to be rewritten
-against `license`, not as working policies.
+They are working starting points. Edit them rather than inheriting them unread: the
+choices they make, such as denying weak copyleft outright on mobile, are defensible
+defaults and not universal truths.
 
 ## Validating
 

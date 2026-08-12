@@ -40,8 +40,8 @@
         "incompatible_with": [],
         "requires_review": []
       },
-      "contamination_effect": "none",
-      "notes": "Permissive license with minimal restrictions"
+      "contamination_effect": "module",
+      "notes": "Weak copyleft: changes to the covered component must stay under its license"
     },
     "obligations": [
       "Retain copyright notices",

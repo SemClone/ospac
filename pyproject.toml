@@ -74,7 +74,7 @@ semcl = [
 llm = [
     "openai>=1.0.0",     # OpenAI provider (--llm-provider openai)
     "anthropic>=0.34.0", # Anthropic provider (--llm-provider claude)
-    "ollama>=0.3.0",     # Local Ollama provider (--llm-provider ollama)
+    "ollama>=0.4.0",   # Local Ollama provider; 0.4.0 introduced the response API the provider uses
 ]
 all = [
     "ospac[semcl,llm]",

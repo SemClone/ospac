@@ -232,7 +232,15 @@ The fields worth building on, all present in `evaluate` output:
 | `result.requirements` | Obligations attached to the decision |
 | `using_default_policy` | Whether your policy or the bundled default answered |
 
-`check` returns `compatible` as a boolean plus `violations`. `obligations -f json` returns
+`evaluate` also returns a `per_license` map with each license's own action, so a review or
+denial can be attributed to the license that caused it rather than to the set.
+
+`check` returns `compatible` plus `requires_review`, `violations` and `warnings`.
+`compatible: false` with `requires_review: true` means a human needs to look, not that a
+conflict is known; a warning is added when a license id does not resolve in the dataset,
+so a typo cannot read as clean compatibility. When no conflict rule matches, `check`
+answers "no known conflicts" rather than review, so a license is always compatible with
+itself. `obligations -f json` returns
 the full licence records under `license_data`, whose schema is in
 [The dataset]({{ site.baseurl }}/dataset/#what-a-license-record-contains).
 

@@ -132,6 +132,16 @@ jobs:
         if: steps.spdx-check.outputs.has_work == 'true' || github.event.inputs.force_reprocess == 'true'
         run: python scripts/validate_data.py --data-dir ospac/data
 
+      - name: Corpus quality gate
+        # Per-record validation cannot see that the whole corpus is templated, which is
+        # exactly how years of fabricated fallback data shipped: every record was
+        # individually well formed. This gate fails if decision fields are uniform across
+        # the corpus or any record matches a known fallback fingerprint. It runs on full
+        # regenerations; routine deltas would fail on the pre-existing fabricated records
+        # until the first full regeneration clears them.
+        if: github.event.inputs.force_reprocess == 'true'
+        run: python scripts/corpus_quality.py --data-dir ospac/data
+
       - name: Bump patch version
         id: version
         if: steps.spdx-check.outputs.has_work == 'true' || github.event.inputs.force_reprocess == 'true'

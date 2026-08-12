@@ -71,6 +71,39 @@ rules:
         - "Prefer dynamic linking, or confirm the license permits static linking here"
         - "Provide a means to relink against a modified version of the component"
 
+  - id: allow_weak_copyleft_dynamic
+    description: "Approve weak copyleft with dynamic linking, by category"
+    priority: 3
+    when:
+      linking_type: "dynamic_linking"
+      license_type: "copyleft_weak"
+    then:
+      action: approve
+      severity: info
+      message: "Weak copyleft is contained at the library boundary when dynamically linked"
+      requirements:
+        - "Include the license text"
+        - "Keep modifications to the covered component under its own license"
+        - "Provide source, or a link to it, for the covered component"
+
+  # No-derivatives licenses permit verbatim redistribution, including commercially, but
+  # forbid distributing modified versions. Whether a use complies depends on whether the
+  # component is patched, which the tool cannot see, so this is a review rather than a
+  # verdict either way.
+  - id: review_no_derivatives
+    description: "No-derivatives licenses need a human to confirm the component is unmodified"
+    priority: 5
+    when:
+      license_type: "no_derivatives"
+    then:
+      action: flag_for_review
+      severity: warning
+      message: "No-derivatives license: distribution is only permitted for unmodified copies"
+      notify: ["legal@company.com"]
+      requirements:
+        - "Confirm the component is redistributed without modification"
+        - "Retain attribution and license text"
+
   # Weak Copyleft Rules
   - id: review_lgpl
     description: "Flag LGPL for legal review"
@@ -298,54 +331,108 @@ rules:
       message: "GPL-3.0 and GPL-2.0 are incompatible - cannot mix versions"
       remediation: "Use consistent GPL version across all components"
 
-# The decision_tree section that used to sit here was never executed: the runtime
-# reads only the 'rules' list above. Its entries duplicated rules that already
-# exist, except the permissive approval, which has been ported to 'approve_permissive'.
-# Config that looks authoritative but never runs is how several defects in this
-# project went unnoticed, so it is removed rather than left as documentation.
+  # Ported from the file's former compatibility matrix, which the runtime never read.
+  # These pairs sat in dead config while 'ospac check' reported them compatible.
+  - id: gpl3_bsd4_incompatible
+    description: "GPL-3.0 and BSD-4-Clause are incompatible"
+    priority: 10
+    when:
+      license1: ["GPL-3.0", "GPL-3.0-only", "GPL-3.0-or-later"]
+      license2: ["BSD-4-Clause"]
+    then:
+      action: deny
+      severity: error
+      message: "BSD-4-Clause's advertising clause is an additional restriction GPL-3.0 does not permit"
+      remediation: "Replace the BSD-4-Clause component, or obtain it under a 3-clause license"
 
-obligations:
-  attribution:
-    - MIT
-    - Apache-2.0
-    - BSD-2-Clause
-    - BSD-3-Clause
+  - id: bsd4_gpl3_incompatible
+    description: "BSD-4-Clause and GPL-3.0 are incompatible (reverse check)"
+    priority: 10
+    when:
+      license1: ["BSD-4-Clause"]
+      license2: ["GPL-3.0", "GPL-3.0-only", "GPL-3.0-or-later"]
+    then:
+      action: deny
+      severity: error
+      message: "BSD-4-Clause's advertising clause is an additional restriction GPL-3.0 does not permit"
+      remediation: "Replace the BSD-4-Clause component, or obtain it under a 3-clause license"
 
-  include_license:
-    - MIT
-    - Apache-2.0
-    - BSD-2-Clause
-    - BSD-3-Clause
-    - GPL-2.0-only
-    - GPL-3.0-only
-    - LGPL-2.1-only
-    - LGPL-3.0-only
+  - id: mit_gpl2_one_way
+    description: "MIT into GPL-2.0 is one-way; the combination is GPL-2.0"
+    priority: 5
+    when:
+      license1: ["MIT"]
+      license2: ["GPL-2.0", "GPL-2.0-only"]
+    then:
+      action: flag_for_review
+      severity: warning
+      message: "Compatibility is one-way, the combined work must be distributed under GPL-2.0"
+      requirements:
+        - "Confirm the combined work is distributed under GPL-2.0 terms"
 
-  source_disclosure:
-    conditions:
-      - license: ["GPL-2.0-only", "GPL-3.0-only"]
-        distribution: ["commercial", "embedded"]
-      - license: ["LGPL-2.1-only", "LGPL-3.0-only"]
-        linking: "static"
+  - id: gpl2_mit_one_way
+    description: "MIT into GPL-2.0 is one-way (reverse check)"
+    priority: 5
+    when:
+      license1: ["GPL-2.0", "GPL-2.0-only"]
+      license2: ["MIT"]
+    then:
+      action: flag_for_review
+      severity: warning
+      message: "Compatibility is one-way, the combined work must be distributed under GPL-2.0"
+      requirements:
+        - "Confirm the combined work is distributed under GPL-2.0 terms"
 
-  state_changes:
-    - Apache-2.0
+  - id: apache_gpl3_one_way
+    description: "Apache-2.0 into GPL-3.0 is one-way; the combination is GPL-3.0"
+    priority: 5
+    when:
+      license1: ["Apache-2.0"]
+      license2: ["GPL-3.0", "GPL-3.0-only"]
+    then:
+      action: flag_for_review
+      severity: warning
+      message: "Compatibility is one-way, the combined work must be distributed under GPL-3.0"
+      requirements:
+        - "Confirm the combined work is distributed under GPL-3.0 terms"
 
-  patent_grant:
-    - Apache-2.0
+  - id: gpl3_apache_one_way
+    description: "Apache-2.0 into GPL-3.0 is one-way (reverse check)"
+    priority: 5
+    when:
+      license1: ["GPL-3.0", "GPL-3.0-only"]
+      license2: ["Apache-2.0"]
+    then:
+      action: flag_for_review
+      severity: warning
+      message: "Compatibility is one-way, the combined work must be distributed under GPL-3.0"
+      requirements:
+        - "Confirm the combined work is distributed under GPL-3.0 terms"
 
-  no_endorsement:
-    - BSD-3-Clause
-    - Apache-2.0
+  - id: lgpl21_lgpl30_review
+    description: "LGPL-2.1-only and LGPL-3.0-only mix needs review"
+    priority: 5
+    when:
+      license1: ["LGPL-2.1-only"]
+      license2: ["LGPL-3.0-only"]
+    then:
+      action: flag_for_review
+      severity: warning
+      message: "LGPL-2.1-only and LGPL-3.0-only combine one-way; review the direction"
 
-# Compatibility matrix overrides
-compatibility:
-  incompatible:
-    - ["GPL-2.0-only", "GPL-3.0-only"]
-    - ["GPL-2.0-only", "Apache-2.0"]  # Due to GPL-2.0 patent clause conflict
-    - ["GPL-3.0-only", "BSD-4-Clause"]  # Due to advertising clause
+  - id: lgpl30_lgpl21_review
+    description: "LGPL-2.1-only and LGPL-3.0-only mix needs review (reverse check)"
+    priority: 5
+    when:
+      license1: ["LGPL-3.0-only"]
+      license2: ["LGPL-2.1-only"]
+    then:
+      action: flag_for_review
+      severity: warning
+      message: "LGPL-2.1-only and LGPL-3.0-only combine one-way; review the direction"
 
-  require_review:
-    - ["MIT", "GPL-2.0-only"]  # One-way compatibility
-    - ["Apache-2.0", "GPL-3.0-only"]  # One-way compatibility
-    - ["LGPL-2.1-only", "LGPL-3.0-only"]
+  # Ported from the file's former '# The obligations map and the compatibility matrix that used to sit here were dead
+# config: the runtime reads only the 'rules' list, so neither ever influenced a
+# decision, and 'ospac check' contradicted the matrix outright. The matrix pairs are
+# now real rules above (gpl3_bsd4_incompatible, mit_gpl2_one_way and friends), and
+# per-license obligations live in the dataset records.

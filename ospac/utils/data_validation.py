@@ -109,9 +109,13 @@ REQUIRED_COMPAT_LINK_KEYS = {"compatible_with", "incompatible_with", "requires_r
 # redistribution but forbid commercial use (CC-BY-NC-*, PolyForm-Noncommercial).
 # They cannot sit in 'permissive': policy rules match on license_type, and a
 # permissive-allow rule would approve them for commercial distribution.
+# 'no_derivatives' covers licenses that permit verbatim redistribution, including
+# commercially, but forbid distributing modified versions (the CC BY-ND family). They
+# cannot sit in 'permissive' for the same reason 'noncommercial' cannot: policy rules
+# match on license_type, and a permissive-approve rule would silently bless them.
 VALID_TYPES = {"permissive", "copyleft_strong", "copyleft_weak", "public_domain",
                "network_copyleft", "source_available", "proprietary", "noncommercial",
-               "unknown"}
+               "no_derivatives", "unknown"}
 # 'derivative' is valid for share-alike licenses (CC-BY-SA etc.) where only derivative
 # works must use the same license, not the whole combined work.
 VALID_CONTAMINATION = {"none", "module", "full", "derivative", "unknown"}
@@ -252,11 +256,18 @@ def validate_license(lid: str, lic: dict) -> tuple[list, list]:
         err(f"ShareAlike license must have requirements.same_license true, "
             f"got {reqs.get('same_license')!r}")
 
-    # A permissive license permits commercial use by definition, so a record
-    # that forbids commercial use cannot be typed permissive.
-    if props.get("commercial_use") is False and lic.get("type") == "permissive":
-        err("type 'permissive' contradicts properties.commercial_use false, "
-            "a permissive license permits commercial use")
+    # The type must be honest about what the booleans say, because policy rules match on
+    # license_type. These are direction-specific: a record whose booleans state a
+    # restriction may not sit in a category that policy rules treat as unrestricted.
+    if props.get("commercial_use") is False and lic.get("type") != "noncommercial":
+        err(f"properties.commercial_use false requires type 'noncommercial', got "
+            f"'{lic.get('type')}'; any other type bypasses the noncommercial policy rules")
+    if props.get("modification") is False and lic.get("type") == "permissive":
+        err("type 'permissive' contradicts properties.modification false, "
+            "a permissive license permits modification")
+    if reqs.get("same_license") is True and lic.get("type") in ("permissive", "public_domain"):
+        err(f"requirements.same_license true contradicts type '{lic.get('type')}', "
+            "a share-alike term binds derivative works")
 
     # Known-license spot checks
     if lid in KNOWN_LICENSES:

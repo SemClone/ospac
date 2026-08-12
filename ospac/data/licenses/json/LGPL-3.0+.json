@@ -48,8 +48,8 @@
           "category:proprietary"
         ]
       },
-      "contamination_effect": "full",
-      "notes": "Strong copyleft with viral effect"
+      "contamination_effect": "module",
+      "notes": "Weak copyleft: changes to the covered component must stay under its license"
     },
     "obligations": [
       "Retain copyright notices",

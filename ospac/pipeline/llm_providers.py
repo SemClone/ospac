@@ -96,7 +96,7 @@ License text:
 Return exactly this JSON structure (all fields required, boolean values only for booleans):
 {{
     "license_id": "{license_id}",
-    "category": "<permissive|copyleft_weak|copyleft_strong|proprietary|public_domain>",
+    "category": "<permissive|copyleft_weak|copyleft_strong|network_copyleft|source_available|noncommercial|no_derivatives|proprietary|public_domain>",
     "permissions": {{
         "commercial_use": <bool>,
         "distribution": <bool>,

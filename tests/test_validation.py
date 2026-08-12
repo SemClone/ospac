@@ -451,7 +451,7 @@ class TestRestrictionSemanticsRules:
             properties={"commercial_use": False},
         )
         assert any(
-            "type 'permissive' contradicts properties.commercial_use false" in e
+            "properties.commercial_use false requires type 'noncommercial'" in e
             for e in errors
         )
 
@@ -545,3 +545,65 @@ class TestDeprecatedAliasConsistency:
             assert records[license_id]["type"] == "copyleft_weak", (
                 f"{license_id} should be copyleft_weak, got {records[license_id]['type']}"
             )
+
+
+class TestDatasetPipelineReproducibility:
+    """
+    Every record in the shipped dataset must be exactly what the generation pipeline
+    produces for it. Repairs that existed only as hand-edited JSON were silently
+    reverted by the next regeneration: the ShareAlike retypes survived on disk while
+    the pipeline would have written permissive back over them.
+    """
+
+    def test_pipeline_reproduces_every_shipped_record(self):
+        import json
+
+        from ospac.pipeline.data_generator import PolicyDataGenerator as G
+
+        data_dir = Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+        not_reproduced = []
+        for path in sorted(data_dir.glob("*.json")):
+            record = json.loads(path.read_text())["license"]
+            analysis = {
+                "license_id": record["id"],
+                "name": record.get("name", ""),
+                "category": record["type"],
+                "permissions": dict(record["properties"]),
+                "conditions": dict(record["requirements"]),
+            }
+            analysis = G._apply_known_corrections(G, record["id"], analysis)
+            analysis = G._apply_identifier_restrictions(G, record["id"], analysis)
+            obligations, key_requirements = G._derive_obligations(
+                G, record["id"], analysis["category"],
+                analysis["conditions"], analysis["permissions"])
+
+            if (analysis["category"] != record["type"]
+                    or analysis["permissions"] != record["properties"]
+                    or analysis["conditions"] != record["requirements"]
+                    or obligations != record["obligations"]
+                    or key_requirements != record["key_requirements"]):
+                not_reproduced.append(record["id"])
+
+        assert not_reproduced == [], (
+            "the pipeline would rewrite these records differently on regeneration, so "
+            "their current values are hand edits that will silently revert: "
+            + ", ".join(not_reproduced[:10])
+        )
+
+    def test_restricted_categories_are_populated(self):
+        import json
+
+        data_dir = Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+        types = {}
+        for path in data_dir.glob("*.json"):
+            record = json.loads(path.read_text())["license"]
+            types.setdefault(record["type"], []).append(record["id"])
+
+        # The identifier states these restrictions, so the categories cannot be empty.
+        assert "CC-BY-NC-4.0" in types.get("noncommercial", [])
+        assert "Aladdin" in types.get("noncommercial", [])
+        assert "CC-BY-ND-4.0" in types.get("no_derivatives", [])
+        assert "CC-BY-SA-4.0" in types.get("copyleft_weak", [])
+        assert "SSPL-1.0" in types.get("network_copyleft", [])
+        assert "BUSL-1.1" in types.get("source_available", [])
+        assert "EUPL-1.2" in types.get("copyleft_strong", [])
