@@ -36,7 +36,7 @@ jobs:
       - name: Install OSPAC and dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -e ".[llm]"
+          pip install -e ".[llm,test]"
 
       - name: Preflight LLM provider check
         env:
@@ -152,6 +152,15 @@ jobs:
         # until the first full regeneration clears them.
         if: github.event.inputs.force_reprocess == 'true'
         run: python scripts/corpus_quality.py --data-dir ospac/data
+
+      - name: Run the test suite against the generated data
+        # The reproducibility and soundness tests are what stand between a bad
+        # regeneration and the dataset, and auto-merge does not wait for a pull
+        # request's checks unless they are marked required. Running the suite here,
+        # before the version bump and pull request exist, means a dataset the tests
+        # reject can never reach a mergeable PR at all.
+        if: steps.spdx-check.outputs.has_work == 'true' || github.event.inputs.force_reprocess == 'true'
+        run: python -m pytest tests/ -q
 
       - name: Bump patch version
         id: version
