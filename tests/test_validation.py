@@ -301,3 +301,57 @@ class TestSharedDataValidation:
         errors, warnings = validate_license("MIT", record)
         assert errors == []
         assert warnings == []
+
+
+class TestDeprecatedAliasConsistency:
+    """
+    A deprecated SPDX identifier is an alias of a modern one, so the two must classify
+    identically. Six LGPL aliases were marked copyleft_strong while their modern
+    equivalents were copyleft_weak, which made policy rules deny them where the modern
+    spelling was only flagged for review. Nothing detected the disagreement, so the
+    invariant is asserted directly against the shipped dataset.
+    """
+
+    @staticmethod
+    def _canonical(license_id):
+        if license_id.endswith("+"):
+            return license_id[:-1] + "-or-later"
+        return license_id + "-only"
+
+    def _shipped_records(self):
+        import json
+
+        data_dir = Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+        records = {}
+        for path in data_dir.glob("*.json"):
+            record = json.loads(path.read_text())["license"]
+            records[record["id"]] = record
+        return records
+
+    def test_deprecated_aliases_match_their_canonical_type(self):
+        records = self._shipped_records()
+        mismatches = []
+        for license_id, record in sorted(records.items()):
+            if not record.get("spdx_metadata", {}).get("is_deprecated"):
+                continue
+            canonical = self._canonical(license_id)
+            if canonical not in records:
+                continue
+            if record["type"] != records[canonical]["type"]:
+                mismatches.append(
+                    f"{license_id} is {record['type']} but {canonical} is "
+                    f"{records[canonical]['type']}"
+                )
+        assert mismatches == [], "deprecated aliases disagree with canonical form: " + "; ".join(
+            mismatches
+        )
+
+    def test_lgpl_aliases_are_weak_copyleft(self):
+        """LGPL permits linking from proprietary code, so every spelling is weak copyleft."""
+        records = self._shipped_records()
+        for license_id in ["LGPL-2.0", "LGPL-2.0+", "LGPL-2.1", "LGPL-2.1+",
+                           "LGPL-3.0", "LGPL-3.0+", "LGPL-2.0-only", "LGPL-2.1-only",
+                           "LGPL-3.0-only"]:
+            assert records[license_id]["type"] == "copyleft_weak", (
+                f"{license_id} should be copyleft_weak, got {records[license_id]['type']}"
+            )

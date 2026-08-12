@@ -2,7 +2,7 @@
   "license": {
     "id": "LGPL-3.0+",
     "name": "GNU Lesser General Public License v3.0 or later",
-    "type": "copyleft_strong",
+    "type": "copyleft_weak",
     "spdx_id": "LGPL-3.0+",
     "properties": {
       "commercial_use": true,
@@ -59,7 +59,7 @@
     ],
     "key_requirements": [
       "Attribution required",
-      "Combined works must be released under the same license"
+      "Modifications to covered files must stay open-source"
     ],
     "spdx_metadata": {
       "is_osi_approved": true,

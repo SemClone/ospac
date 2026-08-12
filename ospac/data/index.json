@@ -2603,7 +2603,7 @@
     },
     "LGPL-2.0+": {
       "name": "GNU Library General Public License v2 or later",
-      "category": "copyleft_strong",
+      "category": "copyleft_weak",
       "file": "licenses/json/LGPL-2.0+.json",
       "is_deprecated": true,
       "obligations_count": 4
@@ -2624,14 +2624,14 @@
     },
     "LGPL-2.0": {
       "name": "GNU Library General Public License v2 only",
-      "category": "copyleft_strong",
+      "category": "copyleft_weak",
       "file": "licenses/json/LGPL-2.0.json",
       "is_deprecated": true,
       "obligations_count": 4
     },
     "LGPL-2.1+": {
       "name": "GNU Lesser General Public License v2.1 or later",
-      "category": "copyleft_strong",
+      "category": "copyleft_weak",
       "file": "licenses/json/LGPL-2.1+.json",
       "is_deprecated": true,
       "obligations_count": 4
@@ -2652,14 +2652,14 @@
     },
     "LGPL-2.1": {
       "name": "GNU Lesser General Public License v2.1 only",
-      "category": "copyleft_strong",
+      "category": "copyleft_weak",
       "file": "licenses/json/LGPL-2.1.json",
       "is_deprecated": true,
       "obligations_count": 4
     },
     "LGPL-3.0+": {
       "name": "GNU Lesser General Public License v3.0 or later",
-      "category": "copyleft_strong",
+      "category": "copyleft_weak",
       "file": "licenses/json/LGPL-3.0+.json",
       "is_deprecated": true,
       "obligations_count": 4
@@ -2680,7 +2680,7 @@
     },
     "LGPL-3.0": {
       "name": "GNU Lesser General Public License v3.0 only",
-      "category": "copyleft_strong",
+      "category": "copyleft_weak",
       "file": "licenses/json/LGPL-3.0.json",
       "is_deprecated": true,
       "obligations_count": 4

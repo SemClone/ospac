@@ -46,6 +46,17 @@ KNOWN_LICENSES = {
         "requirements": {"disclose_source": True},
         "spdx_metadata": {"is_osi_approved": True},
     },
+    # Deprecated aliases of the LGPL identifiers above. Spot checked explicitly because
+    # they were classified copyleft_strong while their modern equivalents were weak, and
+    # nothing here caught the disagreement.
+    "LGPL-2.1": {
+        "type": "copyleft_weak",
+        "requirements": {"disclose_source": True},
+    },
+    "LGPL-3.0": {
+        "type": "copyleft_weak",
+        "requirements": {"disclose_source": True},
+    },
     "AGPL-3.0-only": {
         "type": "copyleft_strong",
         "requirements": {"disclose_source": True, "same_license": True, "network_use_disclosure": True},

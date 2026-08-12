@@ -69,6 +69,26 @@ that previously returned `allow` may now correctly return `deny`, so builds that
 - The default-policy notice suggested `ospac init`, which does not exist. It now says
   `ospac policy init`.
 
+**Six LGPL identifiers were classified as strong copyleft**
+- `LGPL-2.0`, `LGPL-2.0+`, `LGPL-2.1`, `LGPL-2.1+`, `LGPL-3.0` and `LGPL-3.0+` were typed
+  `copyleft_strong`, while the modern identifiers they are deprecated aliases of
+  (`LGPL-2.0-only`, `LGPL-2.1-only` and so on) were correctly `copyleft_weak`. An alias must
+  classify identically to the identifier it aliases, so these were wrong.
+- The correction table in the data pipeline already declared LGPL as weak copyleft, but
+  listed only the modern spellings, so the deprecated ones kept the misclassification. Those
+  bare spellings are also the ones that appear most often in real package metadata.
+- Consequence: policy rules matching `license_type: copyleft_strong` denied these
+  identifiers where the modern spelling was only flagged for review. The `desktop` and
+  `server` templates denied `LGPL-2.1` and reviewed `LGPL-3.0-only`, which are the same
+  obligation in practice.
+- This was inert until the `license_type` fix above, because no rule matching on
+  `license_type` ever fired. Fixing evaluation made the data defect start affecting
+  decisions, so both are fixed together.
+- `type` and the derived `key_requirements` are corrected in the six records and in
+  `index.json`, the aliases are added to the pipeline's correction table so regeneration
+  keeps them, and a test asserts the invariant directly against the shipped dataset for
+  every deprecated alias, not just LGPL.
+
 ### Changed
 
 - `__version__` is read from installed package metadata, making `pyproject.toml` the single

@@ -27,6 +27,16 @@ _KNOWN_OVERRIDES: Dict[str, Dict] = {
     "LGPL-2.1-or-later": {"category": "copyleft_weak"},
     "LGPL-3.0-only":     {"category": "copyleft_weak"},
     "LGPL-3.0-or-later": {"category": "copyleft_weak"},
+    # The deprecated bare and "+" spellings are aliases of the identifiers above, so they
+    # must classify identically. They were missing here, so the LLM kept marking them
+    # strong while their modern equivalents were corrected to weak. These are also the
+    # spellings that appear most often in real package metadata.
+    "LGPL-2.0":          {"category": "copyleft_weak"},
+    "LGPL-2.0+":         {"category": "copyleft_weak"},
+    "LGPL-2.1":          {"category": "copyleft_weak"},
+    "LGPL-2.1+":         {"category": "copyleft_weak"},
+    "LGPL-3.0":          {"category": "copyleft_weak"},
+    "LGPL-3.0+":         {"category": "copyleft_weak"},
     # MPL-2.0: file-level (weak) copyleft, modified files must stay MPL and source disclosed
     "MPL-2.0": {
         "category": "copyleft_weak",
