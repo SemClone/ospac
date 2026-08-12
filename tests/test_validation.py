@@ -603,7 +603,12 @@ class TestDatasetPipelineReproducibility:
         assert "CC-BY-NC-4.0" in types.get("noncommercial", [])
         assert "Aladdin" in types.get("noncommercial", [])
         assert "CC-BY-ND-4.0" in types.get("no_derivatives", [])
-        assert "CC-BY-SA-4.0" in types.get("copyleft_weak", [])
         assert "SSPL-1.0" in types.get("network_copyleft", [])
         assert "BUSL-1.1" in types.get("source_available", [])
         assert "EUPL-1.2" in types.get("copyleft_strong", [])
+        # ShareAlike must be in a copyleft category, never permissive. Whether the
+        # analysis places CC-BY-SA in weak or strong is its judgement to make; what the
+        # invariant forbids is the category a permissive-approve rule would bless.
+        sa_copyleft = types.get("copyleft_weak", []) + types.get("copyleft_strong", [])
+        assert "CC-BY-SA-4.0" in sa_copyleft
+        assert "CC-BY-SA-4.0" not in types.get("permissive", [])

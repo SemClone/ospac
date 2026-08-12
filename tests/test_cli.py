@@ -186,9 +186,13 @@ class TestDataShow:
         # Permissions come from 'properties', conditions from 'requirements'
         assert "commercial_use" in result.output
         assert "include_license" in result.output
-        # False values must be shown explicitly, not silently omitted
+        # False values must be shown explicitly, not silently omitted. disclose_source
+        # is genuinely false for MIT; the warranty limitation is true, because MIT
+        # disclaims warranty. An earlier version of this test asserted "✗ warranty",
+        # pinning the fabricated pre-analysis data as if it were correct.
         assert "✗ disclose_source" in result.output
-        assert "✗ warranty" in result.output
+        assert "✓ warranty" in result.output
+        assert "✓ liability" in result.output
         assert "is_osi_approved" in result.output
 
     def test_json_output_shape_is_unchanged(self, runner):
