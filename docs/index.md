@@ -55,7 +55,7 @@ Using default enterprise policy. Create a custom policy with 'ospac policy init'
 ✗ GPL-2.0 and Apache-2.0 are incompatible
 
 Violations:
-  - Evaluated 1 rules
+  - GPL-2.0 and Apache-2.0 are incompatible due to patent clause conflicts
 ```
 
 Ask whether a set of licenses is acceptable for how you ship:
@@ -65,7 +65,7 @@ $ ospac evaluate -l "GPL-3.0,MIT" -d commercial -o text
 Evaluating licenses: GPL-3.0, MIT
 --------------------------------------------------
 Action: deny
-Message: Evaluated 2 rules
+Message: GPL licenses not allowed in commercial products due to viral copyleft requirements
 
 Requirements:
   • Preserve copyright notice

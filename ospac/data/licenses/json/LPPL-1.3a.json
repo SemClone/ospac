@@ -62,7 +62,8 @@
     ],
     "key_requirements": [
       "Attribution required",
-      "Modifications to covered files must stay open-source"
+      "Modifications to covered files must stay open-source",
+      "Distribution of modified versions not permitted"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,

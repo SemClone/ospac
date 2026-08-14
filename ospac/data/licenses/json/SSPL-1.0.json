@@ -75,7 +75,8 @@
     ],
     "key_requirements": [
       "Attribution required",
-      "Network use triggers source-disclosure obligation"
+      "Network use triggers source-disclosure obligation",
+      "Derivative works must be shared under the same license"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,

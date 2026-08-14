@@ -680,3 +680,34 @@ class TestCompatibilityListSoundness:
                      ("BSD-4-Clause", "GPL-3.0-only")]:
             assert self._claims(records[a], records[b]) == "incompatible"
             assert self._claims(records[b], records[a]) == "incompatible"
+
+
+class TestRelationshipsTreeSoundness:
+    """
+    The sparse relationships tree was rebuilt during 1.4.1 from the model's wrong
+    lists, one release before the derivation existed, so it shipped claiming MIT is
+    statically incompatible with GPL-3.0 while the records said otherwise.
+    """
+
+    @staticmethod
+    def _family(name):
+        import json
+
+        path = (Path(__file__).parent.parent / "ospac" / "data" / "compatibility"
+                / "relationships" / f"{name}.json")
+        return json.loads(path.read_text())
+
+    def test_permissive_into_copyleft_is_compatible(self):
+        mit = self._family("mit")["MIT"]
+        assert mit["GPL-3.0-only"]["static_linking"] == "compatible"
+        assert mit["GPL-3.0-only"]["distribution"] == "compatible"
+
+    def test_known_pair_is_incompatible_in_every_dimension(self):
+        gpl = self._family("gpl")["GPL-2.0-only"]
+        assert gpl["Apache-2.0"] == {"static_linking": "incompatible",
+                                     "dynamic_linking": "incompatible",
+                                     "distribution": "incompatible"}
+
+    def test_noncommercial_rows_require_review(self):
+        nc = self._family("cc")["CC-BY-NC-4.0"]
+        assert nc["MIT"]["static_linking"] == "review_required"

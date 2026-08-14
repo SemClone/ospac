@@ -389,6 +389,15 @@ class PolicyDataGenerator:
         key_reqs = list(_CATEGORY_KEY.get(category, ["Review license terms before use"]))
         if conditions.get("network_use_disclosure") and category != "network_copyleft":
             key_reqs.append("Network use triggers source-disclosure obligation")
+        # A license can carry more than one restriction, and the category headline only
+        # states the dominant one: CC-BY-NC-SA headlined the NC term and dropped the
+        # share-alike term entirely. Add the lines the category did not already say.
+        if conditions.get("same_license") and not any(
+                "same license" in k.lower() or "stay open-source" in k for k in key_reqs):
+            key_reqs.append("Derivative works must be shared under the same license")
+        if permissions.get("modification") is False and not any(
+                "modified versions" in k for k in key_reqs):
+            key_reqs.append("Distribution of modified versions not permitted")
 
         return obligs, key_reqs
 
@@ -844,7 +853,9 @@ class PolicyDataGenerator:
             if id2 in review:
                 return "review_required"
 
-            # Resolve category-based wildcards
+            # Resolve category-based wildcards. Review wildcards were previously not
+            # resolved at all, so a record whose derived lists say "review everything"
+            # fell through to the category fallback instead.
             for entry in compatible:
                 if entry == "category:any":
                     return "compatible"
@@ -853,6 +864,9 @@ class PolicyDataGenerator:
             for entry in incompatible:
                 if entry == f"category:{cat2}":
                     return "incompatible"
+            for entry in review:
+                if entry == "category:any" or entry == f"category:{cat2}":
+                    return "review_required"
 
             return None  # not specified, fall through to category logic
 
@@ -860,29 +874,39 @@ class PolicyDataGenerator:
         dynamic = resolve("dynamic_linking")
         distribution = resolve("distribution")
 
-        # Category-level fallback for any dimension not covered by LLM rules
-        if static is None or dynamic is None or distribution is None:
+        # Category-level fallback for dimensions the record's lists do not cover. The
+        # semantics mirror _derive_compatibility: permissive code can live inside a
+        # copyleft work, so that pairing is compatible, and the old fallback that called
+        # it incompatible is what wrote "MIT is incompatible with GPL" into the shipped
+        # relationships tree.
+        if static is None or dynamic is None:
             cat1 = license1.get("category", "permissive")
-            if cat1 == "permissive" and cat2 == "permissive":
-                fallback_static, fallback_dynamic, fallback_dist = "compatible", "compatible", "compatible"
-            elif cat1 == "copyleft_strong" or cat2 == "copyleft_strong":
-                if cat1 == cat2:
-                    fallback_static, fallback_dynamic, fallback_dist = "compatible", "compatible", "compatible"
-                else:
-                    # Dynamic linking may be permitted under some interpretations;
-                    # distribution of the combined work under a different license is not.
-                    fallback_static, fallback_dynamic, fallback_dist = "incompatible", "review_required", "incompatible"
+            open_cats = ("permissive", "public_domain")
+            strong_cats = ("copyleft_strong", "network_copyleft")
+
+            if cat1 in open_cats and cat2 in open_cats:
+                fallback_static = fallback_dynamic = "compatible"
+            elif (cat1 in strong_cats and cat2 in open_cats) or (
+                    cat1 in open_cats and cat2 in strong_cats):
+                fallback_static = fallback_dynamic = "compatible"
+            elif cat1 in strong_cats or cat2 in strong_cats:
+                fallback_static = fallback_dynamic = "review_required"
             elif cat1 == "copyleft_weak" or cat2 == "copyleft_weak":
-                fallback_static, fallback_dynamic, fallback_dist = "review_required", "compatible", "compatible"
+                fallback_static, fallback_dynamic = "review_required", "compatible"
             else:
-                fallback_static, fallback_dynamic, fallback_dist = "unknown", "unknown", "unknown"
+                fallback_static = fallback_dynamic = "review_required"
 
             if static is None:
                 static = fallback_static
             if dynamic is None:
                 dynamic = fallback_dynamic
-            if distribution is None:
-                distribution = fallback_dist
+
+        # Records carry no distribution section, so this dimension follows the static
+        # verdict: whether two licenses can coexist in a distributed work is what the
+        # static lists, including the known-incompatible pairs, already answer. The old
+        # category guess here reported GPL-2.0 with Apache-2.0 as distributable together.
+        if distribution is None:
+            distribution = static
 
         return {
             "static_linking": static,
