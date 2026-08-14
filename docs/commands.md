@@ -63,7 +63,7 @@ $ ospac evaluate -l GPL-3.0 -d mobile
     "rule_id": "aggregate",
     "action": "deny",
     "severity": "error",
-    "message": "Evaluated 1 rules",
+    "message": "GPL licenses not allowed in commercial products due to viral copyleft requirements",
     "requirements": [
       "GPL-3.0: Retain copyright notices",
       "GPL-3.0: Include license text",
@@ -75,7 +75,7 @@ $ ospac evaluate -l GPL-3.0 -d mobile
   "per_license": {
     "GPL-3.0": {
       "action": "deny",
-      "message": "Evaluated 2 rules"
+      "message": "GPL licenses not allowed in commercial products due to viral copyleft requirements"
     }
   },
   "using_default_policy": true
@@ -123,7 +123,7 @@ $ ospac check GPL-2.0 Apache-2.0
   "violations": [
     {
       "rule_id": "aggregate",
-      "message": "Evaluated 2 rules",
+      "message": "GPL-2.0 and Apache-2.0 are incompatible due to patent clause conflicts",
       "severity": "error"
     }
   ],

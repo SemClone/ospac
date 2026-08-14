@@ -98,11 +98,14 @@ class PolicyResult:
         for result in results:
             all_requirements.extend(result.requirements)
 
+        # The message carries the winning rule's own reason. Reporting "Evaluated N
+        # rules" here discarded the explanation the rule author wrote: a GPL denial
+        # surfaced with no mention of why, in every output format.
         return cls(
             rule_id="aggregate",
             action=most_restrictive.action,
             severity=highest_severity.severity,
-            message=f"Evaluated {len(results)} rules",
+            message=most_restrictive.message or f"Evaluated {len(results)} rules",
             requirements=list(dict.fromkeys(all_requirements)),
             remediation=most_restrictive.remediation,
         )

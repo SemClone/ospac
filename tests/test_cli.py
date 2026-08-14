@@ -374,3 +374,29 @@ class TestGenerateRefusesToFabricate:
         assert "requires --use-llm" in result.output
         assert not list((out / "licenses" / "json").glob("*.json")) if (
             out / "licenses" / "json").exists() else True
+
+
+class TestRecoveredDeferrals:
+    """
+    Items flagged during review, deferred, and then lost until an audit recovered
+    them: the aggregate discarded the winning rule's reason, and check ignored the
+    linking context entirely.
+    """
+
+    def test_deny_carries_the_rules_own_reason(self, runner):
+        result = runner.invoke(cli, ["evaluate", "-l", "GPL-3.0", "-d", "mobile"])
+        message = json.loads(result.output)["result"]["message"]
+        assert "Evaluated" not in message
+        assert "GPL" in message
+
+    def test_mixed_set_still_carries_the_denying_reason(self, runner):
+        result = runner.invoke(cli, ["evaluate", "-l", "MIT,GPL-3.0", "-d", "commercial"])
+        message = json.loads(result.output)["result"]["message"]
+        assert "GPL" in message
+
+    def test_check_honours_linking_context(self, runner):
+        static = json.loads(runner.invoke(
+            cli, ["check", "MIT", "MPL-2.0", "-c", "static_linking"]).output)
+        general = json.loads(runner.invoke(cli, ["check", "MIT", "MPL-2.0"]).output)
+        assert static["requires_review"] is True
+        assert general["compatible"] is True

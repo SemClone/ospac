@@ -428,13 +428,48 @@ class TestPolicyDataGenerator:
         compat = generator._check_license_compatibility(mit, apache)
         assert compat["static_linking"] == "compatible"
 
-        # GPL with permissive is incompatible
+        # Permissive code can be incorporated into a copyleft work, so the pairing is
+        # compatible; the combined work is simply GPL. This test used to assert
+        # incompatible, which is the claim that poisoned the relationships tree.
         compat = generator._check_license_compatibility(gpl, mit)
+        assert compat["static_linking"] == "compatible"
+        assert compat["distribution"] == "compatible"
+
+        # Known incompatible pairs resolve from the record's lists across every
+        # dimension, including distribution, which used to fall back to a category
+        # guess that called GPL-2.0 and Apache-2.0 distributable together.
+        gpl2 = {"license_id": "GPL-2.0-only", "category": "copyleft_strong",
+                "compatibility_rules": {
+                    "static_linking": {"compatible_with": ["category:permissive"],
+                                       "incompatible_with": ["Apache-2.0"],
+                                       "requires_review": []},
+                    "dynamic_linking": {"compatible_with": ["category:permissive"],
+                                        "incompatible_with": ["Apache-2.0"],
+                                        "requires_review": []}}}
+        apache2 = {"license_id": "Apache-2.0", "category": "permissive"}
+        compat = generator._check_license_compatibility(gpl2, apache2)
         assert compat["static_linking"] == "incompatible"
+        assert compat["distribution"] == "incompatible"
+
+        # A review-everything record, the derived shape for restricted categories,
+        # resolves to review rather than falling through to a category guess.
+        nc = {"license_id": "CC-BY-NC-4.0", "category": "noncommercial",
+              "compatibility_rules": {
+                  "static_linking": {"compatible_with": [], "incompatible_with": [],
+                                     "requires_review": ["category:any"]},
+                  "dynamic_linking": {"compatible_with": [], "incompatible_with": [],
+                                      "requires_review": ["category:any"]}}}
+        compat = generator._check_license_compatibility(nc, mit)
+        assert compat["static_linking"] == "review_required"
+        assert compat["distribution"] == "review_required"
 
         # Same copyleft is compatible
+        # Sharing the strong-copyleft category does not make two licenses compatible:
+        # GPL-2.0 and GPL-3.0 share it and are incompatible. A genuine self-pair
+        # resolves through the record's own id in its derived lists; a bare category
+        # tie is an unknown pair and gets review.
         compat = generator._check_license_compatibility(gpl, gpl)
-        assert compat["static_linking"] == "compatible"
+        assert compat["static_linking"] == "review_required"
 
     def test_validate_generated_data(self):
         """Test validating generated data."""

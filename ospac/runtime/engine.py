@@ -131,8 +131,6 @@ class PolicyRuntime:
             per_license[license_id] = self.evaluate(ctx)
 
         combined = PolicyResult.aggregate(list(per_license.values()))
-        if len(licenses) > 1:
-            combined.message = f"Evaluated {len(licenses)} licenses"
         return combined, per_license
 
     def _find_applicable_rules(self, context: Dict[str, Any]) -> List[Dict]:
@@ -244,7 +242,11 @@ class PolicyRuntime:
             "license1": license1,
             "license2": license2,
             "license_type": license_types,
-            "compatibility_context": context
+            "compatibility_context": context,
+            # Mirror evaluate's derivation so linking rules can fire on pairs too.
+            # check -c static_linking previously reached no rule that matched on
+            # linking_type, because the field was never set here.
+            "linking_type": context if "linking" in context else None
         }
 
         # A compatibility check asks whether a conflict is known, so no rule matching

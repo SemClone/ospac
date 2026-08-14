@@ -143,7 +143,7 @@ ospac evaluate -l "$LICENSES" -d mobile
     "rule_id": "aggregate",
     "action": "approve",
     "severity": "info",
-    "message": "Evaluated 1 rules",
+    "message": "Apache 2.0 license approved for all uses",
     "requirements": [
       "Preserve copyright and NOTICE file if present",
       "Include Apache 2.0 license text",

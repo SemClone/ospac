@@ -5,6 +5,44 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.3] - 2026-08-14
+
+Recovers four review findings that were deferred during the 1.4.x work and lost:
+none had been filed anywhere, and an audit of the session ledger found them.
+
+### Fixed
+
+**The aggregate discarded the winning rule's reason**
+- Every decision reported `Evaluated N rules` instead of the message the matching
+  rule's author wrote, so a GPL denial surfaced with no mention of copyleft in any
+  output format. The aggregate now carries the most restrictive rule's own message,
+  and the per-license map continues to attribute it.
+
+**`check -c static_linking` never reached linking rules**
+- The compatibility context was stored under a key no rule matches on, and
+  `linking_type` was never set, so `check MIT MPL-2.0 -c static_linking` answered
+  as if no context had been given. The pair context now derives `linking_type`
+  exactly as `evaluate` does, so weak copyleft under static linking is flagged for
+  review on pairs too.
+
+**Multi-restriction licenses headlined only the dominant restriction**
+- CC-BY-NC-SA carried `Commercial use not permitted` and dropped the share-alike
+  term from `key_requirements` entirely; CC-BY-NC-ND likewise dropped
+  no-derivatives. The derivation now appends the lines the category headline does
+  not already state. 26 records updated.
+
+**The relationships tree still carried the model's wrong claims**
+- `ospac/data/compatibility/relationships/` was rebuilt during 1.4.1 from the
+  model-generated lists, one release before 1.4.2 derived them, so it shipped
+  claiming MIT is statically incompatible with GPL-3.0 and that CC-BY-NC-4.0 is
+  compatible with 494 licenses. The category fallback behind it also called
+  permissive-into-copyleft incompatible and guessed the distribution dimension
+  independently, reporting GPL-2.0 with Apache-2.0 as distributable together.
+- The fallback now mirrors the derivation semantics, review wildcards resolve
+  instead of falling through, the distribution dimension follows the static
+  verdict so known-incompatible pairs propagate, and the tree is rebuilt from the
+  derived records. Tests pin the tree's soundness alongside the records'.
+
 ## [1.4.2] - 2026-08-12
 
 ### Fixed

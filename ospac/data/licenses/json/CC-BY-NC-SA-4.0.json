@@ -53,7 +53,8 @@
     ],
     "key_requirements": [
       "Attribution required",
-      "Commercial use not permitted"
+      "Commercial use not permitted",
+      "Derivative works must be shared under the same license"
     ],
     "spdx_metadata": {
       "is_osi_approved": false,

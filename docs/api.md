@@ -59,13 +59,14 @@ context = {
 
 result = runtime.evaluate(context)
 print(result.action)     # ActionType.DENY
-print(result.message)    # 'Evaluated 1 rules'
+print(result.message)    # the winning rule's own reason
 print(result.to_dict())
 ```
 
 ```python
 {'rule_id': 'aggregate', 'action': 'deny', 'severity': 'error',
- 'message': 'Evaluated 1 rules', 'requirements': [],
+ 'message': 'GPL licenses not allowed in commercial products due to viral copyleft requirements',
+ 'requirements': [],
  'remediation': 'Replace with MIT, Apache-2.0, or BSD licensed alternative'}
 ```
 
@@ -117,7 +118,7 @@ Returns a `ComplianceResult`:
 >>> r.is_compliant
 False
 >>> r.violations
-[{'rule_id': 'aggregate', 'message': 'Evaluated 1 rules', 'severity': 'error'}]
+[{'rule_id': 'aggregate', 'message': 'GPL-2.0 and Apache-2.0 are incompatible due to patent clause conflicts', 'severity': 'error'}]
 >>> r.required_actions
 ['Use GPL-3.0 (compatible with Apache-2.0) or choose different licenses']
 ```
