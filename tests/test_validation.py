@@ -777,3 +777,53 @@ class TestZeroClauseLicensesAskNothing:
         assert record["obligations"] == []
         assert record["requirements"]["include_license"] is False
         assert record["requirements"]["include_copyright"] is False
+
+
+class TestKnownPairEnforcement:
+    """
+    A review of the v1.4.1 to v1.4.4 diff found the known-incompatible table missed
+    the deprecated + spellings, the runtime never enforced the table beyond the few
+    enumerated policy pairs, and alias spellings of one license were reported as a
+    pair needing review.
+    """
+
+    def test_plus_aliases_are_in_the_exception_table(self):
+        from ospac.pipeline.data_generator import _known_incompatible_ids
+
+        assert "BSD-4-Clause" in _known_incompatible_ids("GPL-3.0+")
+        assert "BSD-4-Clause" in _known_incompatible_ids("GPL-2.0+")
+
+    def test_runtime_check_enforces_every_known_pair(self):
+        from ospac.pipeline.data_generator import _KNOWN_INCOMPATIBLE_PAIRS
+        from ospac.runtime.engine import PolicyRuntime
+
+        runtime = PolicyRuntime()
+        compliant = []
+        for side_a, side_b in _KNOWN_INCOMPATIBLE_PAIRS:
+            for a in side_a:
+                for b in side_b:
+                    for x, y in ((a, b), (b, a)):
+                        if runtime.check_compatibility(x, y).is_compliant:
+                            compliant.append(f"{x} vs {y}")
+        assert compliant == [], (
+            "known incompatible pairs the runtime reports compliant: "
+            + "; ".join(compliant[:6]))
+
+    def test_alias_spellings_are_the_same_license(self):
+        import json
+
+        from ospac.models.license import License
+
+        data_dir = Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+
+        def load(lid):
+            return License.from_dict(
+                json.loads((data_dir / f"{lid}.json").read_text())["license"])
+
+        assert load("GPL-2.0").is_compatible_with(load("GPL-2.0-only")) is True
+        assert load("GPL-3.0+").is_compatible_with(load("GPL-3.0-or-later")) is True
+
+        tree = json.loads((Path(__file__).parent.parent / "ospac" / "data"
+                           / "compatibility" / "relationships" / "gpl.json").read_text())
+        assert tree["GPL-2.0"]["GPL-2.0-only"]["static_linking"] == "compatible"
+        assert tree["GPL-3.0+"]["BSD-4-Clause"]["static_linking"] == "incompatible"

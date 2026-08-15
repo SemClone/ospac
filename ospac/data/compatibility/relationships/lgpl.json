@@ -1866,9 +1866,9 @@
       "distribution": "review_required"
     },
     "LGPL-2.0-or-later": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "review_required"
+      "distribution": "compatible"
     },
     "LGPL-2.0": {
       "static_linking": "review_required",
@@ -5538,9 +5538,9 @@
       "distribution": "review_required"
     },
     "LGPL-2.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "review_required"
+      "distribution": "compatible"
     },
     "LGPL-2.1+": {
       "static_linking": "review_required",
@@ -9190,9 +9190,9 @@
       "distribution": "review_required"
     },
     "LGPL-2.0+": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "review_required"
+      "distribution": "compatible"
     },
     "LGPL-2.0-only": {
       "static_linking": "review_required",
@@ -12862,9 +12862,9 @@
       "distribution": "review_required"
     },
     "LGPL-2.0-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "review_required"
+      "distribution": "compatible"
     },
     "LGPL-2.0-or-later": {
       "static_linking": "review_required",
@@ -16554,9 +16554,9 @@
       "distribution": "review_required"
     },
     "LGPL-2.1-or-later": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "review_required"
+      "distribution": "compatible"
     },
     "LGPL-2.1": {
       "static_linking": "review_required",
@@ -20226,9 +20226,9 @@
       "distribution": "review_required"
     },
     "LGPL-2.1": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "review_required"
+      "distribution": "compatible"
     },
     "LGPL-3.0+": {
       "static_linking": "review_required",
@@ -23878,9 +23878,9 @@
       "distribution": "review_required"
     },
     "LGPL-2.1+": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "review_required"
+      "distribution": "compatible"
     },
     "LGPL-2.1-only": {
       "static_linking": "review_required",
@@ -27550,9 +27550,9 @@
       "distribution": "review_required"
     },
     "LGPL-2.1-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "review_required"
+      "distribution": "compatible"
     },
     "LGPL-2.1-or-later": {
       "static_linking": "review_required",
@@ -31242,9 +31242,9 @@
       "distribution": "review_required"
     },
     "LGPL-3.0-or-later": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "review_required"
+      "distribution": "compatible"
     },
     "LGPL-3.0": {
       "static_linking": "review_required",
@@ -34914,9 +34914,9 @@
       "distribution": "review_required"
     },
     "LGPL-3.0": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "review_required"
+      "distribution": "compatible"
     },
     "LGPLLR": {
       "static_linking": "review_required",
@@ -38566,9 +38566,9 @@
       "distribution": "review_required"
     },
     "LGPL-3.0+": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "review_required"
+      "distribution": "compatible"
     },
     "LGPL-3.0-only": {
       "static_linking": "review_required",
@@ -42238,9 +42238,9 @@
       "distribution": "review_required"
     },
     "LGPL-3.0-only": {
-      "static_linking": "review_required",
+      "static_linking": "compatible",
       "dynamic_linking": "compatible",
-      "distribution": "review_required"
+      "distribution": "compatible"
     },
     "LGPL-3.0-or-later": {
       "static_linking": "review_required",

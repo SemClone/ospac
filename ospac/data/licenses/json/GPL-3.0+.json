@@ -33,7 +33,10 @@
           "category:public_domain"
         ],
         "incompatible_with": [
-          "category:proprietary"
+          "category:proprietary",
+          "BSD-4-Clause",
+          "BSD-4-Clause-Shortened",
+          "BSD-4-Clause-UC"
         ],
         "requires_review": [
           "category:copyleft_weak",
@@ -51,7 +54,10 @@
           "category:public_domain"
         ],
         "incompatible_with": [
-          "category:proprietary"
+          "category:proprietary",
+          "BSD-4-Clause",
+          "BSD-4-Clause-Shortened",
+          "BSD-4-Clause-UC"
         ],
         "requires_review": [
           "category:copyleft_weak",

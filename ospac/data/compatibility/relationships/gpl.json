@@ -5098,9 +5098,9 @@
       "distribution": "review_required"
     },
     "GPL-1.0-or-later": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-1.0": {
       "static_linking": "review_required",
@@ -8770,9 +8770,9 @@
       "distribution": "review_required"
     },
     "GPL-1.0": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-2.0+": {
       "static_linking": "review_required",
@@ -12422,9 +12422,9 @@
       "distribution": "compatible"
     },
     "GPL-1.0+": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-1.0-only": {
       "static_linking": "review_required",
@@ -16094,9 +16094,9 @@
       "distribution": "review_required"
     },
     "GPL-1.0-only": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-1.0-or-later": {
       "static_linking": "review_required",
@@ -18716,19 +18716,19 @@
       "distribution": "compatible"
     },
     "BSD-4-Clause-Shortened": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "static_linking": "incompatible",
+      "dynamic_linking": "incompatible",
+      "distribution": "incompatible"
     },
     "BSD-4-Clause-UC": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "static_linking": "incompatible",
+      "dynamic_linking": "incompatible",
+      "distribution": "incompatible"
     },
     "BSD-4-Clause": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "static_linking": "incompatible",
+      "dynamic_linking": "incompatible",
+      "distribution": "incompatible"
     },
     "BSD-4.3RENO": {
       "static_linking": "compatible",
@@ -19786,9 +19786,9 @@
       "distribution": "review_required"
     },
     "GPL-2.0-or-later": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-2.0-with-GCC-exception": {
       "static_linking": "review_required",
@@ -23483,9 +23483,9 @@
       "distribution": "review_required"
     },
     "GPL-2.0": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-3.0+": {
       "static_linking": "review_required",
@@ -27110,9 +27110,9 @@
       "distribution": "review_required"
     },
     "GPL-2.0+": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-2.0-only": {
       "static_linking": "review_required",
@@ -49117,9 +49117,9 @@
       "distribution": "review_required"
     },
     "GPL-2.0-only": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-2.0-or-later": {
       "static_linking": "review_required",
@@ -51719,19 +51719,19 @@
       "distribution": "compatible"
     },
     "BSD-4-Clause-Shortened": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "static_linking": "incompatible",
+      "dynamic_linking": "incompatible",
+      "distribution": "incompatible"
     },
     "BSD-4-Clause-UC": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "static_linking": "incompatible",
+      "dynamic_linking": "incompatible",
+      "distribution": "incompatible"
     },
     "BSD-4-Clause": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "static_linking": "incompatible",
+      "dynamic_linking": "incompatible",
+      "distribution": "incompatible"
     },
     "BSD-4.3RENO": {
       "static_linking": "compatible",
@@ -52834,9 +52834,9 @@
       "distribution": "review_required"
     },
     "GPL-3.0-or-later": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-3.0-with-GCC-exception": {
       "static_linking": "review_required",
@@ -56516,9 +56516,9 @@
       "distribution": "review_required"
     },
     "GPL-3.0": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Game-Programming-Gems": {
       "static_linking": "compatible",
@@ -60158,9 +60158,9 @@
       "distribution": "review_required"
     },
     "GPL-3.0+": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-3.0-only": {
       "static_linking": "review_required",
@@ -71164,9 +71164,9 @@
       "distribution": "review_required"
     },
     "GPL-3.0-only": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "GPL-3.0-or-later": {
       "static_linking": "review_required",

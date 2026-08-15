@@ -5,6 +5,34 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.5] - 2026-08-15
+
+An independent review of the v1.4.1 to v1.4.4 diff found three defects in the
+compatibility work; all are fixed and each fix is pinned by tests.
+
+### Fixed
+
+**The known-incompatible table missed the deprecated + spellings**
+- `GPL-3.0+` is the deprecated alias of `GPL-3.0-or-later`, but only the modern
+  spellings sat in the 4-clause BSD exception, so the generated data called
+  `GPL-3.0+` with `BSD-4-Clause` compatible. Both + spellings are in the pair now.
+
+**The runtime never enforced the known-incompatible table**
+- `check` answered from policy rules alone, and the policy only enumerated some of
+  the pairs, so `GPL-2.0` with `BSD-4-Clause` reported compliant while the records
+  named each other incompatible: 30 of 48 pair directions passed. The dataset's
+  named incompatibilities now outrank category-level approvals in
+  `check_compatibility`, the same precedence named exceptions get in
+  `License.is_compatible_with`, and a test sweeps every table direction through the
+  runtime. All 60 directions now deny.
+
+**Alias spellings of one license were reported as a pair needing review**
+- `GPL-2.0` and `GPL-2.0-only` are the same license in two spellings, but the
+  relationships tree marked them `review_required` and `is_compatible_with`
+  returned false. A canonical-identifier helper resolves the deprecated bare and
+  `+` GPL-family spellings, and both consumers treat alias-equal identifiers as
+  identical. Five records and the tree rebuilt.
+
 ## [1.4.4] - 2026-08-15
 
 Clears the remaining known defects from the session ledger.

@@ -11,7 +11,7 @@ import shutil
 
 from ospac.runtime.loader import PolicyLoader
 from ospac.runtime.evaluator import RuleEvaluator
-from ospac.models.compliance import ComplianceResult, PolicyResult, ActionType
+from ospac.models.compliance import ComplianceResult, ComplianceStatus, PolicyResult, ActionType
 from ospac.utils.validation import validate_license_id
 
 class PolicyRuntime:
@@ -259,7 +259,30 @@ class PolicyRuntime:
         # The result always reported an empty licenses_checked even though exactly two
         # licenses were checked.
         compliance.licenses_checked = [license1, license2]
+
+        # The dataset's known-incompatible pairs outrank a category-level approval,
+        # the same precedence named exceptions get in License.is_compatible_with.
+        # Policy rules only enumerated some of the pairs, so GPL-2.0 with BSD-4-Clause
+        # was reported compliant while the records named each other incompatible.
+        if compliance.is_compliant or compliance.needs_review:
+            if (self._dataset_names_incompatible(license1, license2)
+                    or self._dataset_names_incompatible(license2, license1)):
+                compliance.status = ComplianceStatus.NON_COMPLIANT
+                compliance.add_violation(
+                    "dataset_known_incompatibility",
+                    f"{license1} and {license2} are a known incompatible pair in the "
+                    f"license dataset")
         return compliance
+
+    def _dataset_names_incompatible(self, license_a: str, license_b: str) -> bool:
+        """True if license_a's record names license_b in its incompatible list."""
+        try:
+            record = self.lookup_license_data(license_a)
+        except ValueError:
+            return False
+        block = (((record or {}).get("license") or {}).get("compatibility") or {})
+        incompatible = (block.get("static_linking") or {}).get("incompatible_with", [])
+        return license_b in incompatible
 
     def get_obligations(self, licenses: List[str], data_dir: Optional[str] = None) -> Dict[str, Any]:
         """

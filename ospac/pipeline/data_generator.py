@@ -142,8 +142,8 @@ _KNOWN_INCOMPATIBLE_PAIRS = [
     # The 4-clause BSD advertising requirement is an additional restriction no GPL
     # version permits.
     ({"BSD-4-Clause", "BSD-4-Clause-UC", "BSD-4-Clause-Shortened"},
-     {"GPL-2.0", "GPL-2.0-only", "GPL-2.0-or-later",
-      "GPL-3.0", "GPL-3.0-only", "GPL-3.0-or-later"}),
+     {"GPL-2.0", "GPL-2.0-only", "GPL-2.0-or-later", "GPL-2.0+",
+      "GPL-3.0", "GPL-3.0-only", "GPL-3.0-or-later", "GPL-3.0+"}),
 ]
 
 
@@ -839,9 +839,18 @@ class PolicyDataGenerator:
         Uses the LLM-generated compatibility_rules from license1 when available,
         falling back to category-level inference only when the specific pair is unlisted.
         """
+        from ospac.utils.validation import canonical_spdx_id
+
         id2 = license2.get("license_id", "")
         cat2 = license2.get("category", "permissive")
         rules = license1.get("compatibility_rules", {})
+
+        # Two spellings of the same license are the same license. Without this,
+        # GPL-2.0 and GPL-2.0-only were reported as a pair needing review.
+        id1 = license1.get("license_id", "")
+        if id1 and id2 and canonical_spdx_id(id1) == canonical_spdx_id(id2):
+            return {"static_linking": "compatible", "dynamic_linking": "compatible",
+                    "distribution": "compatible"}
 
         def resolve(section_key: str) -> str:
             section = rules.get(section_key, {})

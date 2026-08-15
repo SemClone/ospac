@@ -56,9 +56,9 @@
       "distribution": "review_required"
     },
     "AGPL-1.0": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "AGPL-3.0-only": {
       "static_linking": "review_required",
@@ -7380,9 +7380,9 @@
       "distribution": "compatible"
     },
     "AGPL-1.0-only": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "AGPL-1.0-or-later": {
       "static_linking": "review_required",
@@ -11072,9 +11072,9 @@
       "distribution": "review_required"
     },
     "AGPL-3.0": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "ALGLIB-Documentation": {
       "static_linking": "compatible",
@@ -18396,9 +18396,9 @@
       "distribution": "review_required"
     },
     "AGPL-3.0-only": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "AGPL-3.0-or-later": {
       "static_linking": "review_required",

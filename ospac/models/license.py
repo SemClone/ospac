@@ -21,6 +21,13 @@ class License:
 
     def is_compatible_with(self, other: "License", context: str = "general") -> bool:
         """Check if this license is compatible with another."""
+        from ospac.utils.validation import canonical_spdx_id
+
+        # Two spellings of the same license are the same license: GPL-2.0 is the
+        # deprecated alias of GPL-2.0-only.
+        if canonical_spdx_id(self.id) == canonical_spdx_id(other.id):
+            return True
+
         if context not in self.compatibility:
             context = "general"
 

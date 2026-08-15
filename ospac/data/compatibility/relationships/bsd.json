@@ -93116,9 +93116,9 @@
       "distribution": "compatible"
     },
     "GPL-2.0+": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "static_linking": "incompatible",
+      "dynamic_linking": "incompatible",
+      "distribution": "incompatible"
     },
     "GPL-2.0-only": {
       "static_linking": "incompatible",
@@ -93161,9 +93161,9 @@
       "distribution": "incompatible"
     },
     "GPL-3.0+": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "static_linking": "incompatible",
+      "dynamic_linking": "incompatible",
+      "distribution": "incompatible"
     },
     "GPL-3.0-only": {
       "static_linking": "incompatible",
@@ -96783,9 +96783,9 @@
       "distribution": "compatible"
     },
     "GPL-2.0+": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "static_linking": "incompatible",
+      "dynamic_linking": "incompatible",
+      "distribution": "incompatible"
     },
     "GPL-2.0-only": {
       "static_linking": "incompatible",
@@ -96828,9 +96828,9 @@
       "distribution": "incompatible"
     },
     "GPL-3.0+": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "static_linking": "incompatible",
+      "dynamic_linking": "incompatible",
+      "distribution": "incompatible"
     },
     "GPL-3.0-only": {
       "static_linking": "incompatible",
@@ -100450,9 +100450,9 @@
       "distribution": "compatible"
     },
     "GPL-2.0+": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "static_linking": "incompatible",
+      "dynamic_linking": "incompatible",
+      "distribution": "incompatible"
     },
     "GPL-2.0-only": {
       "static_linking": "incompatible",
@@ -100495,9 +100495,9 @@
       "distribution": "incompatible"
     },
     "GPL-3.0+": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "compatible"
+      "static_linking": "incompatible",
+      "dynamic_linking": "incompatible",
+      "distribution": "incompatible"
     },
     "GPL-3.0-only": {
       "static_linking": "incompatible",

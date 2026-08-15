@@ -1191,9 +1191,9 @@
       "distribution": "review_required"
     },
     "Elastic-2.0": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "Entessa": {
       "static_linking": "review_required",
@@ -6388,9 +6388,9 @@
       "distribution": "review_required"
     },
     "PolyForm-Noncommercial-1.0.0": {
-      "static_linking": "review_required",
-      "dynamic_linking": "review_required",
-      "distribution": "review_required"
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
     },
     "PolyForm-Small-Business-1.0.0": {
       "static_linking": "review_required",
