@@ -76,6 +76,8 @@
       "Attribution required",
       "Combined works must be released under the same license"
     ],
+    "aliases": [],
+    "alias_of": "GFDL-1.1-only",
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": true,

@@ -76,6 +76,11 @@
       "Attribution required",
       "Combined works must be released under the same license"
     ],
+    "aliases": [
+      "esa-pl-strong-copyleft-2.4",
+      "european space agency public license (esa-pl) - v2.4 - strong copyleft (type 1)"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

@@ -5,6 +5,33 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-08-15
+
+### Added
+
+**License aliases, owned by the dataset** (#63)
+- Every tool normalizing a declared license curated its own alias table, and divergent
+  tables are how one SBOM gets different answers from different tools. Each record now
+  carries an `aliases` list and deprecated spellings carry `alias_of`, flattened into
+  `ospac/data/aliases.json` and exposed as `ospac.license_aliases()`, a lowercased alias
+  to SPDX id map covering official names, deprecated spellings mapped forward, and
+  curated ecosystem spellings such as `expat` for MIT and `apache2` for Apache-2.0.
+- `ospac.license_never_resolve()` lists family names that must not resolve: `bsd` is
+  2-clause or 3-clause and the choice changes obligations, `gpl` states neither a
+  version nor only/or-later, and the deprecated SPDX key resolved bare GPL to
+  GPL-1.0-or-later, which nobody writing GPL today means.
+- An alias claimed by more than one license resolves to nothing, since a wrong confident
+  answer is worse than none. `ospac data aliases` prints the map from the CLI, and the
+  reproducibility test pins the alias fields alongside everything else.
+- The canonical-identifier mapping gained the GFDL family, whose deprecated bare
+  spellings follow the same pattern as GPL.
+
+**`check` accepts the standard input style** (#18)
+- `check` took only two positional arguments while `evaluate` and `obligations` take
+  `-l "A,B"`, so the input style had to be remembered per command. `check -l "MIT,GPL-3.0"`
+  now works, positionals still work, and mixing the two styles is rejected with a clear
+  message.
+
 ## [1.4.5] - 2026-08-15
 
 An independent review of the v1.4.1 to v1.4.4 diff found three defects in the

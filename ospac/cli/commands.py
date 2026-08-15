@@ -132,20 +132,25 @@ def evaluate(policy_dir: str, licenses: str, context: str,
 
 
 @cli.command()
-@click.argument("license1")
-@click.argument("license2")
+@click.argument("license1", required=False)
+@click.argument("license2", required=False)
+@click.option("--licenses", "-l", "licenses_opt", default=None,
+              help='Comma-separated pair, e.g. -l "MIT,GPL-3.0". Same input style as '
+                   'evaluate and obligations; the two positional arguments also work.')
 @click.option("--context", "-c", default="general",
               help="Compatibility context (e.g., static_linking, dynamic_linking)")
 @click.option("--policy-dir", "-p", type=click.Path(exists=False),
               default=None, help="Path to policy directory (uses default enterprise policy if not provided)")
 @click.option("--output", "-o", type=click.Choice(["json", "text"]),
               default="json", help="Output format (default: json)")
-def check(license1: str, license2: str, context: str, policy_dir: str, output: str):
+def check(license1: Optional[str], license2: Optional[str], licenses_opt: Optional[str],
+          context: str, policy_dir: str, output: str):
     """Check compatibility between two licenses.
 
     Examples:
         # Check if MIT and GPL-3.0 are compatible
         ospac check MIT GPL-3.0
+        ospac check -l "MIT,GPL-3.0"
 
         # Check compatibility for static linking
         ospac check MIT LGPL-2.1 -c static_linking
@@ -153,6 +158,18 @@ def check(license1: str, license2: str, context: str, policy_dir: str, output: s
         # Use text output
         ospac check Apache-2.0 BSD-3-Clause -o text
     """
+    # The commands used to disagree about input style: evaluate and obligations take
+    # -l "A,B" while check took two positional arguments only. Both now work here.
+    if licenses_opt is not None:
+        if license1 or license2:
+            raise click.UsageError("Pass either -l \"A,B\" or two positional licenses, not both.")
+        parts = [part.strip() for part in licenses_opt.split(",") if part.strip()]
+        if len(parts) != 2:
+            raise click.UsageError(f"-l needs exactly two licenses, got {len(parts)}.")
+        license1, license2 = parts
+    elif not (license1 and license2):
+        raise click.UsageError('Provide two licenses: ospac check MIT GPL-3.0, or ospac check -l "MIT,GPL-3.0".')
+
     try:
         runtime = PolicyRuntime(policy_dir)
 
@@ -545,10 +562,41 @@ def show(license_id: str, format: str):
                     click.echo(f"  • {req}")
 
             if spdx_metadata:
+                if license_data.get("alias_of"):
+                    click.secho(f"\nAlias of: {license_data['alias_of']}", fg="yellow")
+                elif license_data.get("aliases"):
+                    click.echo("\nAliases: " + ", ".join(license_data["aliases"]))
+
                 click.echo("\nSPDX metadata:")
                 for key, value in spdx_metadata.items():
                     click.echo(f"  {bool_mark(value)} {key}")
 
+    except Exception as e:
+        click.secho(f"Error: {e}", fg="red", err=True)
+        sys.exit(1)
+
+
+@data.command()
+@click.option("--format", "-f", type=click.Choice(["json", "text"]),
+              default="json", help="Output format (default: json)")
+def aliases(format: str):
+    """Print the license alias map: lowercased alias to SPDX id.
+
+    Tools normalizing declared licenses can consume this instead of curating their
+    own table. Family names such as gpl and bsd are listed under never_resolve
+    because they do not identify one license.
+    """
+    from ospac.aliases import license_aliases, license_never_resolve
+
+    try:
+        alias_map = license_aliases()
+        never = sorted(license_never_resolve())
+        if format == "json":
+            click.echo(json.dumps({"aliases": alias_map, "never_resolve": never}, indent=2))
+        else:
+            for alias, target in alias_map.items():
+                click.echo(f"{alias} -> {target}")
+            click.echo("\nNever resolve: " + ", ".join(never))
     except Exception as e:
         click.secho(f"Error: {e}", fg="red", err=True)
         sys.exit(1)

@@ -47,6 +47,11 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "adobe systems incorporated source code license agreement",
+      "adobe-2006"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

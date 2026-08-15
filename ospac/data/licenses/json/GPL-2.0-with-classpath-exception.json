@@ -65,6 +65,11 @@
       "Attribution required",
       "Modifications to covered files must stay open-source"
     ],
+    "aliases": [
+      "gnu general public license v2.0 w/classpath exception",
+      "gpl-2.0-with-classpath-exception"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

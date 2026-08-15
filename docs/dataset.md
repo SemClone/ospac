@@ -143,6 +143,8 @@ the file on disk has the extra nesting level.
 | `compatibility` | Per-linking-context rules, derived from the record's category plus a table of known license-level exceptions such as GPL-2.0 with Apache-2.0. Entries are license ids or `category:<type>` specifiers; `category:any` means compatible with every family. Only the prose `notes` come from the analysis. |
 | `contamination_effect` | How far copyleft reaches: `none`, `file`, `library`, `project`. |
 | `obligations` | Human-readable duties, derived from `requirements`. |
+| `aliases` | Lowercased spellings that mean this license: its own id and name, the deprecated SPDX spellings mapped forward, and curated ecosystem spellings such as `expat` for MIT. Deprecated records carry an empty list; their strings live on the canonical record. |
+| `alias_of` | On a deprecated GPL, LGPL, AGPL or GFDL spelling: the canonical id it means. `null` elsewhere. |
 | `spdx_metadata` | Upstream flags, including `is_deprecated`. |
 | `generated`, `spdx_list_version` | When the analysis that produced this record ran, and against which SPDX revision. Deterministic repairs derived from the record's own fields do not re-stamp it, so the stamp answers "when was this license analysed", not "when did this file last change". |
 
@@ -164,6 +166,30 @@ license to its family and consults that rule.
 
 The consequence worth internalising: a pair with no stored rule resolves to `unknown`, not
 to compatible. Absence of a recorded conflict is not evidence of compatibility.
+
+## Aliases
+
+Every tool that normalizes a declared license ends up curating its own alias table, and
+divergent tables are how the same SBOM gets different answers from different tools. The
+dataset owns the aliases instead: each record carries its spellings, and
+`ospac/data/aliases.json` flattens them into one lowercased map:
+
+```python
+import ospac
+ospac.license_aliases()["expat"]        # "MIT"
+ospac.license_aliases()["gpl-3.0+"]     # "GPL-3.0-or-later"
+ospac.license_never_resolve()           # {"gpl", "bsd", "apache", ...}
+```
+
+Two rules keep the map honest. An alias claimed by more than one license resolves to
+nothing, because a wrong confident answer is worse than none: SPDX's duplicate Standard
+ML of New Jersey entries are the current casualty. And family names never resolve at
+all: `bsd` is 2-clause or 3-clause and the choice changes obligations, `gpl` states
+neither a version nor only/or-later, and the deprecated SPDX key resolved bare GPL to
+GPL-1.0-or-later, which nobody writing GPL today means. `license_never_resolve()` lists
+them so consumers refuse them deliberately rather than each inventing a guess.
+
+`ospac data aliases` prints the same map from the command line.
 
 ## How it is regenerated
 

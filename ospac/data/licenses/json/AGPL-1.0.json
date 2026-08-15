@@ -77,6 +77,8 @@
       "Combined works must be released under the same license",
       "Network use triggers source-disclosure obligation"
     ],
+    "aliases": [],
+    "alias_of": "AGPL-1.0-only",
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": true,

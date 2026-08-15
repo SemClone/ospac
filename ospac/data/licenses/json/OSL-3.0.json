@@ -78,6 +78,11 @@
       "Network use triggers source-disclosure obligation",
       "Derivative works must be shared under the same license"
     ],
+    "aliases": [
+      "open software license 3.0",
+      "osl-3.0"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": true,

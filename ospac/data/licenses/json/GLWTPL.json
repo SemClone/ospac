@@ -49,6 +49,11 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "glwtpl",
+      "good luck with that public license"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

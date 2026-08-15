@@ -47,6 +47,11 @@
     "key_requirements": [
       "No restrictions"
     ],
+    "aliases": [
+      "do what the f*ck you want to public license",
+      "wtfpl"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": true,

@@ -49,6 +49,11 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "zimbra public license v1.3",
+      "zimbra-1.3"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": true,

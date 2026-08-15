@@ -56,6 +56,11 @@
       "Commercial use not permitted",
       "Derivative works must be shared under the same license"
     ],
+    "aliases": [
+      "non-profit open software license 3.0",
+      "nposl-3.0"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": false,

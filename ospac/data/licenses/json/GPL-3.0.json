@@ -86,6 +86,8 @@
       "Attribution required",
       "Combined works must be released under the same license"
     ],
+    "aliases": [],
+    "alias_of": "GPL-3.0-only",
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": true,
