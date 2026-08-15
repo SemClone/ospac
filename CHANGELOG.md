@@ -5,6 +5,24 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.1] - 2026-08-15
+
+An independent review of 1.5.0 found two defects, both verified by execution and both
+now pinned by tests.
+
+### Fixed
+
+**GFDL invariant variants did not canonicalize**
+- The alias map correctly sent `gfdl-1.3-no-invariants` to `GFDL-1.3-no-invariants-only`,
+  but `canonical_spdx_id` only handled the bare GFDL forms, so `is_compatible_with` still
+  answered false for two spellings of the same license. The invariants and no-invariants
+  variants now canonicalize exactly like the bare forms.
+
+**`check -l` silently repaired malformed input**
+- Empty comma fields were dropped before counting, so `-l "MIT,,GPL-3.0"` and a trailing
+  comma exited zero as a valid-looking two-license check. Malformed automation input now
+  gets a usage error naming what was received; padded but well-formed input still works.
+
 ## [1.5.0] - 2026-08-15
 
 ### Added

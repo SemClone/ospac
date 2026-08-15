@@ -137,9 +137,10 @@ def canonical_spdx_id(license_id: str) -> str:
     """
     import re
 
-    if re.fullmatch(r"([AL]?GPL|GFDL)-\d+\.\d+\+", license_id):
+    base = r"(?:[AL]?GPL-\d+\.\d+|GFDL-\d+\.\d+(?:-no-invariants|-invariants)?)"
+    if re.fullmatch(base + r"\+", license_id):
         return license_id[:-1] + "-or-later"
-    if re.fullmatch(r"([AL]?GPL|GFDL)-\d+\.\d+", license_id):
+    if re.fullmatch(base, license_id):
         return license_id + "-only"
     return license_id
 

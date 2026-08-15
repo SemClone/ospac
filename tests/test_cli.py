@@ -428,3 +428,20 @@ class TestCheckAcceptsStandardInput:
         payload = json.loads(result.output)
         assert payload["aliases"]["expat"] == "MIT"
         assert "gpl" in payload["never_resolve"]
+
+
+class TestCheckRejectsMalformedList:
+    """Empty comma fields were silently repaired into a valid-looking check."""
+
+    def test_empty_middle_field_is_rejected(self, runner):
+        result = runner.invoke(cli, ["check", "-l", "MIT,,GPL-3.0"])
+        assert result.exit_code != 0
+        assert "exactly two" in result.output
+
+    def test_trailing_comma_is_rejected(self, runner):
+        result = runner.invoke(cli, ["check", "-l", "MIT,GPL-3.0,"])
+        assert result.exit_code != 0
+
+    def test_padded_but_wellformed_input_still_works(self, runner):
+        result = runner.invoke(cli, ["check", "-l", " MIT , GPL-3.0 "])
+        assert result.exit_code == 0, result.output

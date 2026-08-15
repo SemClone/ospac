@@ -163,9 +163,12 @@ def check(license1: Optional[str], license2: Optional[str], licenses_opt: Option
     if licenses_opt is not None:
         if license1 or license2:
             raise click.UsageError("Pass either -l \"A,B\" or two positional licenses, not both.")
-        parts = [part.strip() for part in licenses_opt.split(",") if part.strip()]
-        if len(parts) != 2:
-            raise click.UsageError(f"-l needs exactly two licenses, got {len(parts)}.")
+        parts = [part.strip() for part in licenses_opt.split(",")]
+        if len(parts) != 2 or not all(parts):
+            # Malformed automation input such as "MIT,,GPL-3.0" or a trailing comma
+            # must not be silently repaired into a valid-looking two-license check.
+            raise click.UsageError(
+                f'-l needs exactly two licenses, e.g. -l "MIT,GPL-3.0"; got {licenses_opt!r}.')
         license1, license2 = parts
     elif not (license1 and license2):
         raise click.UsageError('Provide two licenses: ospac check MIT GPL-3.0, or ospac check -l "MIT,GPL-3.0".')
