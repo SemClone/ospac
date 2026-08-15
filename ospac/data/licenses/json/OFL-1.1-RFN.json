@@ -64,6 +64,11 @@
       "Attribution required",
       "Modifications to covered files must stay open-source"
     ],
+    "aliases": [
+      "ofl-1.1-rfn",
+      "sil open font license 1.1 with reserved font name"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": false,

@@ -65,6 +65,12 @@
       "Attribution required",
       "Modifications to covered files must stay open-source"
     ],
+    "aliases": [
+      "gnu lesser general public license v3.0 or later",
+      "lgpl-3.0+",
+      "lgpl-3.0-or-later"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": true,

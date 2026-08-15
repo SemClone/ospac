@@ -51,6 +51,11 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "linux man-pages - 1 paragraph",
+      "linux-man-pages-1-para"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

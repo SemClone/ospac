@@ -47,6 +47,11 @@
     "key_requirements": [
       "No restrictions"
     ],
+    "aliases": [
+      "mplus",
+      "mplus font license"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

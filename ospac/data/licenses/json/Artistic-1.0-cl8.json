@@ -51,6 +51,11 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "artistic license 1.0 w/clause 8",
+      "artistic-1.0-cl8"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": false,

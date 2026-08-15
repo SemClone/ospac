@@ -76,6 +76,11 @@
       "Attribution required",
       "Combined works must be released under the same license"
     ],
+    "aliases": [
+      "cc-by-sa-4.0",
+      "creative commons attribution share alike 4.0 international"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": true,

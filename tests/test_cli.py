@@ -400,3 +400,31 @@ class TestRecoveredDeferrals:
         general = json.loads(runner.invoke(cli, ["check", "MIT", "MPL-2.0"]).output)
         assert static["requires_review"] is True
         assert general["compatible"] is True
+
+
+class TestCheckAcceptsStandardInput:
+    """check took only positionals while evaluate and obligations take -l "A,B"."""
+
+    def test_dash_l_works_like_positionals(self, runner):
+        via_opt = json.loads(runner.invoke(cli, ["check", "-l", "MIT,GPL-3.0"]).output)
+        via_pos = json.loads(runner.invoke(cli, ["check", "MIT", "GPL-3.0"]).output)
+        assert via_opt["compatible"] == via_pos["compatible"]
+        assert via_opt["license1"] == "MIT" and via_opt["license2"] == "GPL-3.0"
+
+    def test_mixing_styles_is_rejected(self, runner):
+        result = runner.invoke(cli, ["check", "MIT", "-l", "MIT,GPL-3.0"])
+        assert result.exit_code != 0
+        assert "not both" in result.output
+
+    def test_wrong_count_is_rejected(self, runner):
+        result = runner.invoke(cli, ["check", "-l", "MIT"])
+        assert result.exit_code != 0
+        result = runner.invoke(cli, ["check"])
+        assert result.exit_code != 0
+
+    def test_data_aliases_command(self, runner):
+        result = runner.invoke(cli, ["data", "aliases"])
+        assert result.exit_code == 0, result.output
+        payload = json.loads(result.output)
+        assert payload["aliases"]["expat"] == "MIT"
+        assert "gpl" in payload["never_resolve"]

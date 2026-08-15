@@ -56,6 +56,11 @@
       "Commercial use not permitted",
       "Derivative works must be shared under the same license"
     ],
+    "aliases": [
+      "cc-by-nc-sa-2.0-de",
+      "creative commons attribution non commercial share alike 2.0 germany"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

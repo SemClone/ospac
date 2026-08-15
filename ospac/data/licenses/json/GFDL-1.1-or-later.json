@@ -76,6 +76,12 @@
       "Attribution required",
       "Combined works must be released under the same license"
     ],
+    "aliases": [
+      "gfdl-1.1+",
+      "gfdl-1.1-or-later",
+      "gnu free documentation license v1.1 or later"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": true,

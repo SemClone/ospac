@@ -50,6 +50,11 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "oldap-2.0.1",
+      "open ldap public license v2.0.1"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

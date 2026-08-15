@@ -76,6 +76,11 @@
       "Attribution required",
       "Combined works must be released under the same license"
     ],
+    "aliases": [
+      "gnu general public license v2.0 w/font exception",
+      "gpl-2.0-with-font-exception"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

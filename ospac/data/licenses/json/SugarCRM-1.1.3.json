@@ -64,6 +64,11 @@
       "Attribution required",
       "Modifications to covered files must stay open-source"
     ],
+    "aliases": [
+      "sugarcrm public license v1.1.3",
+      "sugarcrm-1.1.3"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

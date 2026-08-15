@@ -75,6 +75,11 @@
       "Attribution required",
       "Combined works must be released under the same license"
     ],
+    "aliases": [
+      "copyleft-next 0.3.0",
+      "copyleft-next-0.3.0"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

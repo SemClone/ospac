@@ -51,6 +51,11 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "aswf digital assets license 1.1",
+      "aswf-digital-assets-1.1"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

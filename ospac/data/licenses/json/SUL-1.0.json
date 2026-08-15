@@ -53,6 +53,11 @@
       "Attribution required",
       "Commercial use not permitted"
     ],
+    "aliases": [
+      "sul-1.0",
+      "sustainable use license v1.0"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

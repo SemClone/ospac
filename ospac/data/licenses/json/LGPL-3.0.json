@@ -65,6 +65,8 @@
       "Attribution required",
       "Modifications to covered files must stay open-source"
     ],
+    "aliases": [],
+    "alias_of": "LGPL-3.0-only",
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": true,

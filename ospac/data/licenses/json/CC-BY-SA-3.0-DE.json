@@ -76,6 +76,11 @@
       "Attribution required",
       "Combined works must be released under the same license"
     ],
+    "aliases": [
+      "cc-by-sa-3.0-de",
+      "creative commons attribution share alike 3.0 germany"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

@@ -50,6 +50,11 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "apache license 1.1",
+      "apache-1.1"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": true,

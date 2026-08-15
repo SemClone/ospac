@@ -132,13 +132,24 @@ def canonical_spdx_id(license_id: str) -> str:
     SPDX deprecated the bare and "+" spellings in favour of "-only" and "-or-later":
     GPL-2.0 means GPL-2.0-only and GPL-3.0+ means GPL-3.0-or-later. Compatibility
     logic that compares identifiers verbatim called two spellings of the same
-    license a pair needing review. Only the GPL, LGPL and AGPL families carry this
+    license a pair needing review. The GPL, LGPL, AGPL and GFDL families carry this
     aliasing; every other identifier is returned unchanged.
     """
     import re
 
-    if re.fullmatch(r"[AL]?GPL-\d+\.\d+\+", license_id):
+    if re.fullmatch(r"([AL]?GPL|GFDL)-\d+\.\d+\+", license_id):
         return license_id[:-1] + "-or-later"
-    if re.fullmatch(r"[AL]?GPL-\d+\.\d+", license_id):
+    if re.fullmatch(r"([AL]?GPL|GFDL)-\d+\.\d+", license_id):
         return license_id + "-only"
     return license_id
+
+
+# Family names that must never resolve to a specific license. BSD is 2-clause or
+# 3-clause and the choice changes obligations; GPL states neither a version nor
+# only/or-later. Resolving them fabricates a confident answer the document does not
+# support, and it feeds straight into a policy decision. Bare "gpl" is the known trap:
+# the deprecated SPDX key resolved it to GPL-1.0-or-later, which nobody writing GPL in
+# an SBOM today means.
+NEVER_RESOLVE = frozenset({
+    "gpl", "lgpl", "agpl", "bsd", "apache", "public domain",
+})

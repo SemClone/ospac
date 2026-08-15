@@ -49,6 +49,11 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "cdla-permissive-2.0",
+      "community data license agreement permissive 2.0"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

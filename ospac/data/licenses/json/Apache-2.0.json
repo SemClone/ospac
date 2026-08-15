@@ -57,6 +57,16 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "apache 2",
+      "apache 2.0",
+      "apache license 2.0",
+      "apache software license 2.0",
+      "apache v2",
+      "apache-2.0",
+      "apache2"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": true,

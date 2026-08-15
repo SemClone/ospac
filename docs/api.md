@@ -169,6 +169,21 @@ Where ospac reads license data from. Pass a path to override.
 > # ['Retain copyright notices', 'Include license text']
 > ```
 
+## license_aliases and license_never_resolve
+
+```python
+import ospac
+
+ospac.license_aliases()          # {"expat": "MIT", "apache2": "Apache-2.0", ...}
+ospac.license_never_resolve()    # {"gpl", "lgpl", "agpl", "bsd", "apache", "public domain"}
+```
+
+The alias map is lowercased alias to SPDX id, flattened from the records; look up with
+your input lowercased. The never-resolve set is family names that must not map to any
+one license, because resolving them fabricates a version the document never stated.
+Tools normalizing declared licenses should consume these instead of curating their own
+tables. See [The dataset]({{ site.baseurl }}/dataset/#aliases).
+
 ## License
 
 A dataclass over one license record.

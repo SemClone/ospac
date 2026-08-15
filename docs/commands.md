@@ -104,7 +104,11 @@ the answer is a boolean plus the violations behind it.
 
 ```
 ospac check LICENSE1 LICENSE2 [-c CONTEXT] [-p DIR] [-o FORMAT]
+ospac check -l "LICENSE1,LICENSE2" ...
 ```
+
+Both input styles work: the two positional arguments, or `-l` with a comma-separated
+pair, the same style `evaluate` and `obligations` use.
 
 | Option | Effect |
 |:--|:--|
@@ -299,6 +303,19 @@ Fetches the raw upstream SPDX license list without processing it.
 ```
 ospac data download-spdx [-o DIR] [--force]
 ```
+
+### data aliases
+
+Prints the license alias map: lowercased alias to SPDX id, plus the family names that
+never resolve.
+
+```bash
+$ ospac data aliases | jq -r '.aliases["expat"]'
+MIT
+```
+
+See [The dataset]({{ site.baseurl }}/dataset/#aliases) for what the map contains and why
+`gpl` is deliberately absent from it.
 
 ### data validate
 

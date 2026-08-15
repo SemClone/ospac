@@ -66,6 +66,11 @@
       "Attribution required",
       "Modifications to covered files must stay open-source"
     ],
+    "aliases": [
+      "cc-by-sa-2.0",
+      "creative commons attribution share alike 2.0 generic"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

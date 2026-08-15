@@ -51,6 +51,11 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "bzip2 and libbzip2 license v1.0.5",
+      "bzip2-1.0.5"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

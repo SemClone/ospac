@@ -65,6 +65,11 @@
       "Modifications to covered files must stay open-source",
       "Distribution of modified versions not permitted"
     ],
+    "aliases": [
+      "latex project public license v1.3c",
+      "lppl-1.3c"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": false,

@@ -51,6 +51,11 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "python license 2.0",
+      "python-2.0"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": true,

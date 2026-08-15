@@ -75,6 +75,11 @@
       "Attribution required",
       "Combined works must be released under the same license"
     ],
+    "aliases": [
+      "d-fsl-1.0",
+      "deutsche freie software lizenz"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

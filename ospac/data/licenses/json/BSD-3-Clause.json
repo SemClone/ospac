@@ -50,6 +50,13 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "bsd 3-clause \"new\" or \"revised\" license",
+      "bsd-3-clause",
+      "modified bsd",
+      "new bsd"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": true,

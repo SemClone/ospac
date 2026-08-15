@@ -50,6 +50,11 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "xdebug license v 1.03",
+      "xdebug-1.03"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
