@@ -52,6 +52,11 @@
       "Attribution required",
       "Commercial use not permitted"
     ],
+    "aliases": [
+      "cc-by-nc-4.0",
+      "creative commons attribution non commercial 4.0 international"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

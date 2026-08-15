@@ -50,6 +50,11 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "ecl-2.0",
+      "educational community license v2.0"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": true,

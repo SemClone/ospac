@@ -50,6 +50,11 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "unicode license agreement - data files and software (2016)",
+      "unicode-dfs-2016"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": false,

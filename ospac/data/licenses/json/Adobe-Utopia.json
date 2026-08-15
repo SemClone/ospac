@@ -51,6 +51,11 @@
       "Attribution required",
       "Distribution of modified versions not permitted"
     ],
+    "aliases": [
+      "adobe utopia font license",
+      "adobe-utopia"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

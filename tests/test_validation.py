@@ -578,12 +578,16 @@ class TestDatasetPipelineReproducibility:
                 G, record["id"], analysis["category"],
                 analysis["conditions"], analysis["permissions"])
 
+            aliases, alias_of = G._derive_aliases(record["id"], record.get("name", ""))
+
             if (analysis["category"] != record["type"]
                     or analysis["permissions"] != record["properties"]
                     or analysis["conditions"] != record["requirements"]
                     or obligations != record["obligations"]
                     or key_requirements != record["key_requirements"]
-                    or analysis["compatibility_rules"] != record.get("compatibility")):
+                    or analysis["compatibility_rules"] != record.get("compatibility")
+                    or aliases != record.get("aliases")
+                    or alias_of != record.get("alias_of")):
                 not_reproduced.append(record["id"])
 
         assert not_reproduced == [], (
@@ -827,3 +831,85 @@ class TestKnownPairEnforcement:
                            / "compatibility" / "relationships" / "gpl.json").read_text())
         assert tree["GPL-2.0"]["GPL-2.0-only"]["static_linking"] == "compatible"
         assert tree["GPL-3.0+"]["BSD-4-Clause"]["static_linking"] == "incompatible"
+
+
+class TestLicenseAliases:
+    """
+    Every tool normalizing a declared license curates its own alias table, and
+    divergent tables are how one SBOM gets different answers from different tools.
+    The dataset now owns the aliases, and family names must never resolve because
+    they do not identify one license.
+    """
+
+    def test_public_api_contract(self):
+        import ospac
+
+        aliases = ospac.license_aliases()
+        assert aliases["expat"] == "MIT"
+        assert aliases["apache2"] == "Apache-2.0"
+        assert aliases["new bsd"] == "BSD-3-Clause"
+        assert aliases["gpl-3.0"] == "GPL-3.0-only"
+        assert aliases["gpl-3.0+"] == "GPL-3.0-or-later"
+        assert aliases["gfdl-1.3"] == "GFDL-1.3-only"
+        assert aliases["mit license"] == "MIT"
+
+    def test_family_names_never_resolve(self):
+        import ospac
+
+        aliases = ospac.license_aliases()
+        never = ospac.license_never_resolve()
+        for family in ("gpl", "lgpl", "agpl", "bsd", "apache", "public domain"):
+            assert family in never
+            assert family not in aliases, (
+                f"'{family}' resolving to one license fabricates a version the "
+                f"document never stated")
+
+    def test_every_alias_resolves_to_exactly_one_existing_id(self):
+        import json
+
+        import ospac
+
+        data_dir = Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+        known_ids = {p.stem for p in data_dir.glob("*.json")}
+        aliases = ospac.license_aliases()
+        assert len(aliases) == len(set(aliases))
+        missing = {a: t for a, t in aliases.items() if t not in known_ids}
+        assert missing == {}, f"aliases pointing at ids that do not exist: {missing}"
+
+    def test_aliases_file_matches_the_records(self):
+        import json
+
+        import ospac
+        from ospac.utils.validation import NEVER_RESOLVE
+
+        data_dir = Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+        owners = {}
+        for path in data_dir.glob("*.json"):
+            record = json.loads(path.read_text())["license"]
+            for alias in record.get("aliases", []):
+                owners.setdefault(alias, set()).add(record["id"])
+        expected = {a: next(iter(ids)) for a, ids in owners.items()
+                    if len(ids) == 1 and a not in NEVER_RESOLVE}
+        assert ospac.license_aliases() == expected
+
+
+class TestGfdlInvariantsCanonicalize:
+    """
+    The invariants variants alias exactly like the bare forms: the flattener already
+    mapped gfdl-1.3-no-invariants forward, but canonical_spdx_id did not, so the same
+    license in two spellings still got a wrong incompatibility answer from
+    is_compatible_with.
+    """
+
+    def test_invariants_spellings_map_forward(self):
+        from ospac.utils.validation import canonical_spdx_id
+
+        assert canonical_spdx_id("GFDL-1.3-no-invariants") == "GFDL-1.3-no-invariants-only"
+        assert canonical_spdx_id("GFDL-1.2-invariants+") == "GFDL-1.2-invariants-or-later"
+
+    def test_alias_pair_is_compatible(self):
+        from ospac.models.license import License
+
+        bare = License(id="GFDL-1.3-no-invariants", name="", type="copyleft_strong")
+        only = License(id="GFDL-1.3-no-invariants-only", name="", type="copyleft_strong")
+        assert bare.is_compatible_with(only) is True

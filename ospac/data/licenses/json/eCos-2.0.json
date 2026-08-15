@@ -64,6 +64,11 @@
       "Attribution required",
       "Modifications to covered files must stay open-source"
     ],
+    "aliases": [
+      "ecos license version 2.0",
+      "ecos-2.0"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": true,

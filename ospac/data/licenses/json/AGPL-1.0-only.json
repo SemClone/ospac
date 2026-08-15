@@ -78,6 +78,12 @@
       "Combined works must be released under the same license",
       "Network use triggers source-disclosure obligation"
     ],
+    "aliases": [
+      "affero general public license v1.0 only",
+      "agpl-1.0",
+      "agpl-1.0-only"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

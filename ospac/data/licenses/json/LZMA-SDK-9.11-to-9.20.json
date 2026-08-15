@@ -47,6 +47,11 @@
     "key_requirements": [
       "No restrictions"
     ],
+    "aliases": [
+      "lzma sdk license (versions 9.11 to 9.20)",
+      "lzma-sdk-9.11-to-9.20"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

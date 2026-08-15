@@ -50,6 +50,11 @@
     "key_requirements": [
       "Source visible but redistribution restricted"
     ],
+    "aliases": [
+      "business source license 1.1",
+      "busl-1.1"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

@@ -75,6 +75,11 @@
       "Attribution required",
       "Combined works must be released under the same license"
     ],
+    "aliases": [
+      "gnu general public license v3.0 w/gcc runtime library exception",
+      "gpl-3.0-with-gcc-exception"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": false,

@@ -158,6 +158,32 @@ def _known_incompatible_ids(license_id: str) -> list:
     return sorted(ids)
 
 
+# Common spellings package ecosystems actually write, mapped to the SPDX id they mean.
+# SPDX never publishes these, which is why every downstream tool ends up curating its
+# own divergent table. Family names (gpl, bsd, apache) deliberately stay out: they are
+# in NEVER_RESOLVE because resolving them fabricates a version the document never
+# stated.
+_CURATED_ALIASES: Dict[str, str] = {
+    "apache2": "Apache-2.0",
+    "apache 2": "Apache-2.0",
+    "apache 2.0": "Apache-2.0",
+    "apache v2": "Apache-2.0",
+    "apache software license 2.0": "Apache-2.0",
+    "expat": "MIT",
+    "new bsd": "BSD-3-Clause",
+    "modified bsd": "BSD-3-Clause",
+}
+
+
+def _deprecated_spellings(license_id: str) -> List[str]:
+    """The deprecated SPDX spellings that canonical_spdx_id maps to this id."""
+    if license_id.endswith("-or-later"):
+        return [license_id[: -len("-or-later")] + "+"]
+    if license_id.endswith("-only"):
+        return [license_id[: -len("-only")]]
+    return []
+
+
 class PolicyDataGenerator:
     """
     Generate comprehensive policy data from SPDX licenses.
@@ -454,6 +480,35 @@ class PolicyDataGenerator:
         return restrictions
 
     @staticmethod
+    def _derive_aliases(license_id: str, name: str) -> tuple:
+        """
+        Build (aliases, alias_of) for one record, corpus-free and deterministic.
+
+        A deprecated GPL-family spelling carries alias_of pointing at its canonical id
+        and no aliases of its own; every alias string lives on the canonical record so
+        flattening across records cannot produce two owners for one spelling. Aliases
+        are lowercased: the record's own id, its official name, the deprecated
+        spellings that map here, and the curated ecosystem spellings targeting this
+        id. Anything in NEVER_RESOLVE is excluded.
+        """
+        from ospac.utils.validation import NEVER_RESOLVE, canonical_spdx_id
+
+        canonical = canonical_spdx_id(license_id)
+        if canonical != license_id:
+            return [], canonical
+
+        candidates = {license_id.lower()}
+        if name:
+            candidates.add(name.lower())
+        for spelling in _deprecated_spellings(license_id):
+            candidates.add(spelling.lower())
+        for alias, target in _CURATED_ALIASES.items():
+            if target == license_id:
+                candidates.add(alias)
+        candidates -= set(NEVER_RESOLVE)
+        return sorted(candidates), None
+
+    @staticmethod
     def _derive_compatibility(license_id: str, category: str,
                               notes: Optional[str] = None) -> Dict[str, Any]:
         """
@@ -621,6 +676,7 @@ class PolicyDataGenerator:
             logger.info("No new licenses to process. All licenses up to date.")
             # Rebuild index so deprecated-flag updates from Step 1b are reflected
             self._rebuild_index_from_files(spdx_version=spdx_data.get("version", ""))
+            self._write_aliases_file(spdx_version=spdx_data.get("version", ""))
             return self._generate_summary(all_licenses, spdx_data)
 
         logger.info(f"Processing {len(licenses_to_process)} licenses with progress tracking...")
@@ -703,6 +759,7 @@ class PolicyDataGenerator:
         )
         # Rebuild index from ALL on-disk files so delta runs don't truncate the index
         self._rebuild_index_from_files(spdx_version=spdx_data.get("version", ""))
+        self._write_aliases_file(spdx_version=spdx_data.get("version", ""))
 
         # Skip legacy master database generation - using modular files only
 
@@ -1166,6 +1223,10 @@ class PolicyDataGenerator:
                     },
                     "obligations": obligations,
                     "key_requirements": key_requirements,
+                    "aliases": PolicyDataGenerator._derive_aliases(
+                        license_id, license_data.get("name", license_id))[0],
+                    "alias_of": PolicyDataGenerator._derive_aliases(
+                        license_id, license_data.get("name", license_id))[1],
                     "spdx_metadata": {
                         "is_osi_approved": spdx_meta.get("isOsiApproved", False),
                         "is_fsf_libre": spdx_meta.get("isFsfLibre", False),
@@ -1182,6 +1243,41 @@ class PolicyDataGenerator:
 
         logger.info(f"Wrote {len(licenses)} license files to {licenses_json_dir}")
         # Index is rebuilt from ALL files after the delta, see _rebuild_index_from_files
+
+    def _write_aliases_file(self, spdx_version: str = "") -> None:
+        """
+        Flatten per-record aliases into data/aliases.json: lowercased alias to SPDX id.
+
+        An alias claimed by two different ids is ambiguous and resolves to neither,
+        because a wrong confident answer is worse than none. The file carries no
+        timestamp so identical inputs produce identical bytes.
+        """
+        from ospac.utils.validation import NEVER_RESOLVE
+
+        licenses_json_dir = self.output_dir / "licenses" / "json"
+        owners: Dict[str, set] = {}
+        for p in sorted(licenses_json_dir.glob("*.json")):
+            try:
+                with open(p) as f:
+                    record = json.load(f).get("license", {})
+            except (json.JSONDecodeError, OSError):
+                continue
+            for alias in record.get("aliases", []):
+                owners.setdefault(alias, set()).add(record["id"])
+
+        aliases = {a: ids.pop() for a, ids in sorted(owners.items()) if len(ids) == 1}
+        dropped = sorted(a for a, ids in owners.items() if len(ids) > 1)
+        if dropped:
+            logger.warning(f"Ambiguous aliases resolve to nothing: {dropped}")
+
+        payload = {
+            "spdx_list_version": spdx_version,
+            "aliases": aliases,
+            "never_resolve": sorted(NEVER_RESOLVE),
+        }
+        with open(self.output_dir / "aliases.json", "w") as f:
+            json.dump(payload, f, indent=2)
+        logger.info(f"Wrote {len(aliases)} aliases to aliases.json")
 
     def _rebuild_index_from_files(self, spdx_version: str = "") -> None:
         """Build index.json from ALL license JSON files on disk, not just the current batch."""

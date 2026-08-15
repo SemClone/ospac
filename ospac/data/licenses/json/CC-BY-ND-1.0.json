@@ -52,6 +52,11 @@
       "Attribution required",
       "Distribution of modified versions not permitted"
     ],
+    "aliases": [
+      "cc-by-nd-1.0",
+      "creative commons attribution no derivatives 1.0 generic"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

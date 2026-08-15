@@ -50,6 +50,11 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "esa-pl-permissive-2.4",
+      "european space agency public license \u2013 v2.4 \u2013 permissive (type 3)"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

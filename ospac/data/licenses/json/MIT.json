@@ -50,6 +50,12 @@
     "key_requirements": [
       "Attribution required"
     ],
+    "aliases": [
+      "expat",
+      "mit",
+      "mit license"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": true,
       "is_fsf_libre": true,

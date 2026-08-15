@@ -51,6 +51,11 @@
     "key_requirements": [
       "Source visible but redistribution restricted"
     ],
+    "aliases": [
+      "scea",
+      "scea shared source license"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

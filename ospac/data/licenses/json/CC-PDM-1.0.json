@@ -47,6 +47,11 @@
     "key_requirements": [
       "No restrictions"
     ],
+    "aliases": [
+      "cc-pdm-1.0",
+      "creative    commons public domain mark 1.0 universal"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,

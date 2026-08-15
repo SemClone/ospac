@@ -76,6 +76,12 @@
       "Attribution required",
       "Combined works must be released under the same license"
     ],
+    "aliases": [
+      "gfdl-1.1-invariants",
+      "gfdl-1.1-invariants-only",
+      "gnu free documentation license v1.1 only - invariants"
+    ],
+    "alias_of": null,
     "spdx_metadata": {
       "is_osi_approved": false,
       "is_fsf_libre": false,
