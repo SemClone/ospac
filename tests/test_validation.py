@@ -891,3 +891,25 @@ class TestLicenseAliases:
         expected = {a: next(iter(ids)) for a, ids in owners.items()
                     if len(ids) == 1 and a not in NEVER_RESOLVE}
         assert ospac.license_aliases() == expected
+
+
+class TestGfdlInvariantsCanonicalize:
+    """
+    The invariants variants alias exactly like the bare forms: the flattener already
+    mapped gfdl-1.3-no-invariants forward, but canonical_spdx_id did not, so the same
+    license in two spellings still got a wrong incompatibility answer from
+    is_compatible_with.
+    """
+
+    def test_invariants_spellings_map_forward(self):
+        from ospac.utils.validation import canonical_spdx_id
+
+        assert canonical_spdx_id("GFDL-1.3-no-invariants") == "GFDL-1.3-no-invariants-only"
+        assert canonical_spdx_id("GFDL-1.2-invariants+") == "GFDL-1.2-invariants-or-later"
+
+    def test_alias_pair_is_compatible(self):
+        from ospac.models.license import License
+
+        bare = License(id="GFDL-1.3-no-invariants", name="", type="copyleft_strong")
+        only = License(id="GFDL-1.3-no-invariants-only", name="", type="copyleft_strong")
+        assert bare.is_compatible_with(only) is True
