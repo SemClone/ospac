@@ -144,6 +144,7 @@ the file on disk has the extra nesting level.
 | `contamination_effect` | How far copyleft reaches: `none`, `file`, `library`, `project`. |
 | `obligations` | Human-readable duties, derived from `requirements`. |
 | `spdx_metadata` | Upstream flags, including `is_deprecated`. |
+| `generated`, `spdx_list_version` | When the analysis that produced this record ran, and against which SPDX revision. Deterministic repairs derived from the record's own fields do not re-stamp it, so the stamp answers "when was this license analysed", not "when did this file last change". |
 
 {: .note }
 > If you have seen older ospac documentation referring to a single

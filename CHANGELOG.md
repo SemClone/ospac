@@ -5,6 +5,37 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.4] - 2026-08-15
+
+Clears the remaining known defects from the session ledger.
+
+### Fixed
+
+**The bundled policy carried one more rule that could never execute**
+- `gpl_dev_tools` approved GPL for development-only use by matching on a `usage`
+  field that no evaluation path provides, the same never-executes shape as the
+  removed `decision_tree` and compatibility sections. Removed. A test now pins the
+  vocabulary: every `when` key in the bundled policy and in the generated templates
+  must be a field the CLI actually sets, so this class of dead rule cannot return.
+
+**`check` reported an empty `licenses_checked`**
+- `check_compatibility` always returned `licenses_checked: []` even though it
+  checked exactly two licenses. It now names them.
+
+**0BSD asked for attribution and license text**
+- The zero-clause BSD requires nothing at all; the analysis kept asking for
+  copyright retention and license inclusion anyway. Pinned in the correction table
+  and the record rebuilt: obligations are now empty, matching Unlicense and CC0.
+
+### Changed
+
+- The `generated` and `spdx_list_version` fields are documented as recording when
+  the analysis that produced a record ran, against which SPDX revision.
+  Deterministic repairs derived from a record's own fields do not re-stamp it,
+  deliberately: re-stamping would make the reproducibility check impossible, and
+  the stamp answers "when was this license analysed", not "when did this file last
+  change".
+
 ## [1.4.3] - 2026-08-14
 
 Recovers four review findings that were deferred during the 1.4.x work and lost:

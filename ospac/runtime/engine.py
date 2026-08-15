@@ -255,7 +255,11 @@ class PolicyRuntime:
         # with itself, since this context carries no distribution_type and most rules
         # therefore cannot match.
         result = self.evaluate(eval_context, when_unmatched="allow")
-        return ComplianceResult.from_policy_result(result)
+        compliance = ComplianceResult.from_policy_result(result)
+        # The result always reported an empty licenses_checked even though exactly two
+        # licenses were checked.
+        compliance.licenses_checked = [license1, license2]
+        return compliance
 
     def get_obligations(self, licenses: List[str], data_dir: Optional[str] = None) -> Dict[str, Any]:
         """

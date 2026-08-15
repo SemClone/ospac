@@ -206,20 +206,11 @@ rules:
       severity: info
       message: "Public domain dedication approved"
 
-  # Special Cases
-  - id: gpl_dev_tools
-    description: "Allow GPL for development tools"
-    priority: 2
-    when:
-      license: ["GPL-2.0", "GPL-3.0", "GPL-2.0-only", "GPL-3.0-only"]
-      usage: ["development", "testing", "build"]
-    then:
-      action: approve
-      severity: info
-      message: "GPL allowed for development-only tools"
-      requirements:
-        - "Ensure tool is not distributed with product"
-        - "Tool output must not contain GPL code"
+  # A gpl_dev_tools rule used to sit here, approving GPL for development-only use.
+  # It matched on a usage field that no evaluation path ever provides, so it never
+  # executed once: the same shape as the removed decision_tree and compatibility
+  # sections. If the development-use carve-out is wanted, evaluate needs a flag that
+  # populates the field first.
 
   - id: review_commercial
     description: "Review commercial/proprietary licenses"

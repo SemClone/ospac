@@ -344,3 +344,11 @@ class TestPolicyRuntime:
 
         result = runtime.check_compatibility("MIT", "GPL-3.0")
         assert result.is_compliant is True
+
+class TestCheckReportsLicensesChecked:
+    """check_compatibility always returned an empty licenses_checked."""
+
+    def test_licenses_checked_is_populated(self):
+        runtime = PolicyRuntime()
+        result = runtime.check_compatibility("MIT", "GPL-3.0")
+        assert result.licenses_checked == ["MIT", "GPL-3.0"]
