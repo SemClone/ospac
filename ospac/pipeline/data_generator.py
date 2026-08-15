@@ -125,6 +125,9 @@ _KNOWN_OVERRIDES: Dict[str, Dict] = {
     "Apache-2.0": {"conditions": {"state_changes": True}},
     # CC0 is a full public domain waiver, with no copyright or license text requirements
     "CC0-1.0": {"conditions": {"include_copyright": False, "include_license": False}},
+    # 0BSD is the zero-clause BSD: it requires nothing at all, and the analysis kept
+    # asking for attribution anyway
+    "0BSD":    {"conditions": {"include_copyright": False, "include_license": False}},
 }
 
 

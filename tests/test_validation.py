@@ -711,3 +711,69 @@ class TestRelationshipsTreeSoundness:
     def test_noncommercial_rows_require_review(self):
         nc = self._family("cc")["CC-BY-NC-4.0"]
         assert nc["MIT"]["static_linking"] == "review_required"
+
+
+class TestPolicyRulesAreReachable:
+    """
+    Three sections of the bundled policy turned out to be dead config that never
+    executed: decision_tree, the compatibility matrix, and a gpl_dev_tools rule
+    matching on a usage field no evaluation path provides. A rule whose when clause
+    names a field the runtime never populates is silently inert, so this pins the
+    vocabulary: every when key in the bundled policy must be one the CLI actually
+    sets.
+    """
+
+    # The union of fields evaluate and check_compatibility place in their contexts.
+    PROVIDED_FIELDS = {
+        "license", "licenses", "licenses_found", "license_type",
+        "distribution", "distribution_type", "context", "linking_type",
+        "license1", "license2", "compatibility_context",
+    }
+
+    def test_every_bundled_rule_matches_on_provided_fields(self):
+        import yaml
+
+        policy_path = (Path(__file__).parent.parent / "ospac" / "defaults"
+                       / "enterprise_policy.yaml")
+        policy = yaml.safe_load(policy_path.read_text())
+        unreachable = []
+        for rule in policy["rules"]:
+            for key in rule.get("when", {}):
+                if key not in self.PROVIDED_FIELDS:
+                    unreachable.append(f"{rule['id']} matches on '{key}'")
+        assert unreachable == [], (
+            "these rules can never fire because no evaluation path provides the "
+            "field: " + "; ".join(unreachable))
+
+    def test_generated_templates_match_on_provided_fields(self):
+        import yaml
+        from click.testing import CliRunner
+
+        from ospac.cli.commands import cli
+
+        runner = CliRunner()
+        for template in ("mobile", "desktop", "web", "server", "embedded", "library"):
+            with runner.isolated_filesystem():
+                result = runner.invoke(
+                    cli, ["policy", "init", "-t", template, "-o", "t.yaml"])
+                assert result.exit_code == 0, result.output
+                policy = yaml.safe_load(Path("t.yaml").read_text())
+                for rule in policy["rules"]:
+                    for key in rule.get("when", {}):
+                        assert key in self.PROVIDED_FIELDS, (
+                            f"template {template}, rule {rule['id']} matches on "
+                            f"'{key}', which no evaluation path provides")
+
+
+class TestZeroClauseLicensesAskNothing:
+    """0BSD asked for attribution and license text, which zero-clause means it does not."""
+
+    def test_0bsd_has_no_obligations(self):
+        import json
+
+        record = json.loads(
+            (Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+             / "0BSD.json").read_text())["license"]
+        assert record["obligations"] == []
+        assert record["requirements"]["include_license"] is False
+        assert record["requirements"]["include_copyright"] is False

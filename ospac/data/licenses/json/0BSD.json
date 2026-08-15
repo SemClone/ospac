@@ -13,8 +13,8 @@
     },
     "requirements": {
       "disclose_source": false,
-      "include_license": true,
-      "include_copyright": true,
+      "include_license": false,
+      "include_copyright": false,
       "include_notice": false,
       "state_changes": false,
       "same_license": false,
@@ -43,10 +43,7 @@
       "contamination_effect": "none",
       "notes": "0BSD is a permissive license, allowing for broad compatibility without imposing restrictions on linked code."
     },
-    "obligations": [
-      "Retain copyright notices",
-      "Include license text"
-    ],
+    "obligations": [],
     "key_requirements": [
       "No restrictions"
     ],

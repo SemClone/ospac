@@ -9,7 +9,7 @@
       "category": "public_domain",
       "file": "licenses/json/0BSD.json",
       "is_deprecated": false,
-      "obligations_count": 2
+      "obligations_count": 0
     },
     "3D-Slicer-1.0": {
       "name": "3D Slicer License v1.0",
