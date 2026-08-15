@@ -137,7 +137,7 @@ jobs:
         # records remain, and a failed job discards its workspace. Uploading the dataset
         # first means a trial run's output can still be reviewed record by record.
         if: always() && (steps.spdx-check.outputs.has_work == 'true' || github.event.inputs.force_reprocess == 'true')
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: generated-data-${{ github.run_id }}
           path: ospac/data/
