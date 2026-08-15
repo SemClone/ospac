@@ -13,6 +13,10 @@ on:
     paths:
       - 'docs/**'
 
+# The job only builds and link-checks the site, so the token needs nothing but read.
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build the site
