@@ -123,3 +123,22 @@ def validate_license_path(
         )
 
     return target_resolved
+
+
+def canonical_spdx_id(license_id: str) -> str:
+    """
+    Resolve a deprecated GPL-family spelling to its canonical SPDX identifier.
+
+    SPDX deprecated the bare and "+" spellings in favour of "-only" and "-or-later":
+    GPL-2.0 means GPL-2.0-only and GPL-3.0+ means GPL-3.0-or-later. Compatibility
+    logic that compares identifiers verbatim called two spellings of the same
+    license a pair needing review. Only the GPL, LGPL and AGPL families carry this
+    aliasing; every other identifier is returned unchanged.
+    """
+    import re
+
+    if re.fullmatch(r"[AL]?GPL-\d+\.\d+\+", license_id):
+        return license_id[:-1] + "-or-later"
+    if re.fullmatch(r"[AL]?GPL-\d+\.\d+", license_id):
+        return license_id + "-only"
+    return license_id
