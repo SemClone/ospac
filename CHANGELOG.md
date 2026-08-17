@@ -5,7 +5,7 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.6.0] - 2026-08-17
 
 ### Added
 
@@ -43,6 +43,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `contamination_effect` was documented as taking `none`, `file`, `library` or `project`.
   The real values are `none`, `module`, `derivative`, `full` and `unknown`, and the
   documentation had never matched the generator.
+
+**`aliases` was documented as empty on any deprecated record**
+- The real rule correlates with `alias_of`, not with `is_deprecated`: `aliases` is empty
+  exactly when `alias_of` is set, because only then is there a canonical record for the
+  spellings to live on. The 15 deprecated ids with `alias_of: null`, including
+  `wxWindows`, `Net-SNMP` and the seven `GPL-*-with-*-exception` spellings, keep their own
+  aliases. A consumer following the old wording would have skipped `aliases` on those
+  records and lost every spelling for them. Corrected in the schema and in the dataset
+  page, and pinned as a biconditional by test.
 
 ## [1.5.1] - 2026-08-15
 
