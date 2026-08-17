@@ -5,6 +5,45 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+**The data export contract is documented** (#83)
+- `index.json` has carried a `version` field since the first release with no stated
+  meaning, so a downstream consumer had to infer whether it tracked the schema or the
+  data. [Data contract](https://semclone.github.io/ospac/data-contract/) now states which
+  files and fields are the published surface, what triggers a version bump, which of
+  `version`, `generated` and `spdx_list_version` answers staleness, and how a removal is
+  announced. Linked from the README and from The dataset.
+- `ospac.data_version()` returns the dataset's own metadata as a frozen `DataVersion`, so
+  a consumer can gate on `schema_version_info` at import instead of parsing `index.json`.
+  `ospac.DATA_SCHEMA_VERSION` is the same value as a constant for a build-time pin.
+- `version` is now a three-part string across `index.json`, `aliases.json` and
+  `compatibility/metadata.json`, and `aliases.json` carries it for the first time. The
+  old two-part `"1.0"` sorted below `"1.9"` at `"1.10"` under both float and string
+  comparison, which is a live hazard the first time the minor version reaches double
+  digits. The generator writes the constant rather than a literal per call site.
+- `tests/test_data_contract.py` pins every field the contract names, so a silent removal
+  fails CI.
+
+### Fixed
+
+**`schemas/license_schema.json` described data that no longer existed**
+- The schema was referenced by nothing, and had drifted far enough to reject all 733
+  records it describes: five of the ten license families were missing from its `type` enum,
+  which also listed a `restrictive` value that is not a valid family, its
+  `contamination_effect` enum listed three values the generator never emits and omitted
+  three it does, and `additionalProperties: false` rejected `aliases`, `alias_of`,
+  `spdx_metadata`, `generated` and `spdx_list_version`. A stale schema in a directory
+  called `schemas/` is worse than none, because it reads as authoritative. It now matches
+  the shipped data and is declared normative for consumers: its value domains are pinned
+  by test to the same constants the dataset validator uses, and all 733 records are
+  validated against it in CI.
+- `contamination_effect` was documented as taking `none`, `file`, `library` or `project`.
+  The real values are `none`, `module`, `derivative`, `full` and `unknown`, and the
+  documentation had never matched the generator.
+
 ## [1.5.1] - 2026-08-15
 
 An independent review of 1.5.0 found two defects, both verified by execution and both

@@ -45,7 +45,7 @@ every license file:
 
 ```json
 {
-  "version": "1.0",
+  "version": "1.0.0",
   "generated": "2026-08-01T03:04:52.358635",
   "spdx_list_version": "e4c1f27",
   "total_licenses": 733,
@@ -63,6 +63,10 @@ every license file:
 
 Note `spdx_list_version` in both the index and every license record. Every value in the
 dataset is traceable to a specific upstream SPDX commit and a generation timestamp.
+
+If you are reading these files from another tool, `version` and the field list are a
+promise, not an accident. What that promise covers is on
+[Data contract]({{ site.baseurl }}/data-contract/).
 
 ### The dataset is licensed separately from the code
 
@@ -141,7 +145,7 @@ the file on disk has the extra nesting level.
 | `requirements` | Conditions you must satisfy. The booleans here drive `obligations`. |
 | `limitations` | Disclaimer analysis: `liability: true` means the license disclaims liability, which is standard for OSS. `trademark_use: true` means trademark use is restricted. |
 | `compatibility` | Per-linking-context rules, derived from the record's category plus a table of known license-level exceptions such as GPL-2.0 with Apache-2.0. Entries are license ids or `category:<type>` specifiers; `category:any` means compatible with every family. Only the prose `notes` come from the analysis. |
-| `contamination_effect` | How far copyleft reaches: `none`, `file`, `library`, `project`. |
+| `contamination_effect` | How far copyleft reaches: `none`, `module` (the linked module only), `derivative` (derivative works only, which is what share-alike licenses such as CC-BY-SA require), `full` (the whole combined work), `unknown`. |
 | `obligations` | Human-readable duties, derived from `requirements`. |
 | `aliases` | Lowercased spellings that mean this license: its own id and name, the deprecated SPDX spellings mapped forward, and curated ecosystem spellings such as `expat` for MIT. Deprecated records carry an empty list; their strings live on the canonical record. |
 | `alias_of` | On a deprecated GPL, LGPL, AGPL or GFDL spelling: the canonical id it means. `null` elsewhere. |
@@ -159,10 +163,14 @@ the file on disk has the extra nesting level.
 ### Compatibility is stored sparsely
 
 `compatibility/metadata.json` records `"format": "sparse"` and
-`"default_status": "unknown"`. Pairs are not enumerated, since the full list would mean over
-250,000 pairs. Instead, licenses are grouped into families in `categories.json`, and only
-the rules *between* families are stored, in `relationships/`. A lookup resolves each
-license to its family and consults that rule.
+`"default_status": "unknown"`. The writer's rule is that a pair resolving to `unknown` is
+not written, and licenses are grouped into families in `categories.json` so that
+`relationships/` can be split into one file per source family.
+
+In practice the current data has no `unknown` statuses, so nothing is omitted and all 733
+by 733 pairs are on disk: 537,289 of them, about 73 MB. "Sparse" describes the intent, not
+today's file sizes. If you are consuming `relationships/` directly, read
+[Data contract]({{ site.baseurl }}/data-contract/) first, which documents the pair shape.
 
 The consequence worth internalising: a pair with no stored rule resolves to `unknown`, not
 to compatible. Absence of a recorded conflict is not evidence of compatibility.

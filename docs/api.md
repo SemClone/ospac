@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Python API
-nav_order: 5
+nav_order: 6
 description: Using ospac as a library, with the classes and methods it actually exposes.
 ---
 
@@ -14,8 +14,11 @@ and looks up license data.
 from ospac import PolicyRuntime, License, Policy, ComplianceResult
 ```
 
-Those four names are ospac's public surface. Anything under `ospac.pipeline` is
-dataset-generation machinery, not an API to build on.
+Those four names, plus `license_aliases`, `license_never_resolve` and `data_version`
+below, are ospac's public surface. `ospac.__all__` is the authoritative list and also
+carries `DataVersion`, the return type of `data_version()`, and the
+`DATA_SCHEMA_VERSION` constant. Anything under `ospac.pipeline` is dataset-generation
+machinery, not an API to build on.
 
 ## PolicyRuntime
 
@@ -183,6 +186,39 @@ your input lowercased. The never-resolve set is family names that must not map t
 one license, because resolving them fabricates a version the document never stated.
 Tools normalizing declared licenses should consume these instead of curating their own
 tables. See [The dataset]({{ site.baseurl }}/dataset/#aliases).
+
+## data_version
+
+What the bundled dataset says about itself, without parsing `index.json` by hand.
+
+```python
+import ospac
+
+info = ospac.data_version()
+info.schema_version        # '1.0.0'   shape of the shipped files
+info.schema_version_info   # (1, 0, 0) compare on this, not on the string
+info.spdx_list_version     # 'e4c1f27' upstream SPDX revision
+info.generated             # '2026-08-12T09:45:09.769222'
+info.total_licenses        # 733
+```
+
+The three version-ish fields answer different questions and are not interchangeable.
+`schema_version` says whether the shape is one you understand, `generated` says how stale
+your copy is, and `spdx_list_version` says which upstream produced it. A monthly refresh
+moves the second and third and leaves the first alone.
+
+Gate on the major version at import, so an incompatible dataset fails loudly instead of
+normalizing quietly wrong:
+
+```python
+major, _, _ = ospac.data_version().schema_version_info
+if major != 1:
+    raise RuntimeError(f"ospac data schema v{major} is not supported here")
+```
+
+`ospac.DATA_SCHEMA_VERSION` is the same string as a module constant, for a build-time pin.
+What a bump means, and which files and fields carry a promise at all, is on
+[Data contract]({{ site.baseurl }}/data-contract/).
 
 ## License
 

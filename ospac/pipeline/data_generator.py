@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Dict, List, Any, Optional
 from datetime import datetime
 
+from ospac.dataset import DATA_SCHEMA_VERSION
 from ospac.pipeline.spdx_processor import SPDXProcessor
 from ospac.pipeline.llm_analyzer import LicenseAnalyzer
 
@@ -849,9 +850,10 @@ class PolicyDataGenerator:
         # Initialize the matrix handler
         matrix_handler = CompatibilityMatrix(str(self.output_dir / "compatibility"))
 
-        # Build full matrix for conversion
+        # Build full matrix for conversion. The version travels through into
+        # compatibility/metadata.json, which is part of the published surface.
         full_matrix = {
-            "version": "1.0",
+            "version": DATA_SCHEMA_VERSION,
             "generated": datetime.now().isoformat(),
             "total_licenses": len(licenses),
             "compatibility": {}
@@ -985,6 +987,8 @@ class PolicyDataGenerator:
 
     def _generate_obligation_database(self, licenses: List[Dict[str, Any]]) -> Dict[str, Any]:
         """Generate obligation database."""
+        # Intermediate, deleted by _cleanup_temporary_files. Its version is local to this
+        # file and is not DATA_SCHEMA_VERSION, which covers the published surface only.
         obligations = {
             "version": "1.0",
             "generated": datetime.now().isoformat(),
@@ -1017,6 +1021,8 @@ class PolicyDataGenerator:
                                  compatibility_matrix: Dict[str, Any],
                                  obligation_database: Dict[str, Any]) -> None:
         """Generate master database with all license information."""
+        # Also an intermediate, cleaned up after generation. See the note above on why its
+        # version is not DATA_SCHEMA_VERSION.
         master_db = {
             "version": "1.0",
             "generated": datetime.now().isoformat(),
@@ -1271,6 +1277,7 @@ class PolicyDataGenerator:
             logger.warning(f"Ambiguous aliases resolve to nothing: {dropped}")
 
         payload = {
+            "version": DATA_SCHEMA_VERSION,
             "spdx_list_version": spdx_version,
             "aliases": aliases,
             "never_resolve": sorted(NEVER_RESOLVE),
@@ -1283,7 +1290,7 @@ class PolicyDataGenerator:
         """Build index.json from ALL license JSON files on disk, not just the current batch."""
         licenses_json_dir = self.output_dir / "licenses" / "json"
         index = {
-            "version": "1.0",
+            "version": DATA_SCHEMA_VERSION,
             "generated": datetime.now().isoformat(),
             "spdx_list_version": spdx_version,
             "total_licenses": 0,
