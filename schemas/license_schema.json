@@ -169,7 +169,7 @@
             "type": "string",
             "minLength": 1
           },
-          "description": "Lowercased spellings that mean this license. Empty on a deprecated record, whose spellings live on the canonical record."
+          "description": "Lowercased spellings that mean this license. Empty exactly when alias_of is set, because those spellings live on the canonical record instead. A deprecated record whose alias_of is null keeps its own spellings, since there is no single canonical id to move them to."
         },
         "alias_of": {
           "type": ["string", "null"],

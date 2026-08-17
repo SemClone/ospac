@@ -86,10 +86,9 @@ class TestIndex:
         assert set(index) == INDEX_KEYS
 
     def test_record_keys(self, index):
-        # Sampled across the alphabet rather than every record; the schema test below
-        # covers all 733 license files exhaustively.
-        for license_id in ("MIT", "Apache-2.0", "GPL-3.0-only", "CC-BY-NC-4.0"):
-            assert set(index["licenses"][license_id]) == INDEX_RECORD_KEYS, license_id
+        offenders = [lid for lid, entry in index["licenses"].items()
+                     if set(entry) != INDEX_RECORD_KEYS]
+        assert not offenders, f"index record surface changed: {offenders[:5]}"
 
     def test_total_licenses_matches_the_map(self, index):
         assert index["total_licenses"] == len(index["licenses"])
@@ -159,10 +158,14 @@ class TestCompatibilityRelationships:
 
     def test_distribution_context_is_unique_to_the_pair_store(self):
         # The doc warns that the pair rules carry a third context the per-license record
-        # does not. If a record ever grows one, that warning becomes misleading.
-        with open(DATA_DIR / "licenses" / "json" / "MIT.json") as f:
-            compatibility = json.load(f)["license"]["compatibility"]
-        assert "distribution" not in compatibility
+        # does not. If any record grows one, that warning becomes misleading, so this
+        # checks all of them rather than a sample.
+        offenders = []
+        for path in sorted((DATA_DIR / "licenses" / "json").glob("*.json")):
+            with open(path) as f:
+                if "distribution" in json.load(f)["license"]["compatibility"]:
+                    offenders.append(path.name)
+        assert not offenders, f"records grew a distribution context: {offenders[:5]}"
 
     def test_sources_and_targets_are_indexed_ids(self, relationships, index):
         referenced = set()
@@ -187,6 +190,23 @@ class TestDeprecationPointers:
             if target is not None and target not in index["licenses"]:
                 dangling.append(f"{record['id']} -> {target}")
         assert not dangling, f"alias_of points at unindexed ids: {dangling[:5]}"
+
+    def test_aliases_is_empty_exactly_when_alias_of_is_set(self):
+        # The normative schema states this as a biconditional, so it is pinned as one.
+        # Stating it against `is_deprecated` instead would be wrong: 15 deprecated
+        # records have `alias_of: null` and keep their own spellings, because SPDX
+        # replaced them with something other than one plain id to move them to.
+        offenders = []
+        for path in sorted((DATA_DIR / "licenses" / "json").glob("*.json")):
+            with open(path) as f:
+                record = json.load(f)["license"]
+            has_target = record["alias_of"] is not None
+            is_empty = not record["aliases"]
+            if has_target != is_empty:
+                offenders.append(
+                    f"{record['id']}: alias_of={record['alias_of']!r} "
+                    f"aliases={len(record['aliases'])}")
+        assert not offenders, "aliases/alias_of correlation broke:\n" + "\n".join(offenders[:10])
 
     def test_alias_of_is_null_or_a_string(self):
         for path in sorted((DATA_DIR / "licenses" / "json").glob("*.json")):
