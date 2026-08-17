@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Integration
-nav_order: 6
+nav_order: 7
 description: Wiring ospac into CI, the SEMCL.ONE toolchain, and MCP.
 ---
 

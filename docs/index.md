@@ -108,5 +108,6 @@ Decisions are reproducible, so the same inputs give byte-identical output run to
 | [Commands]({{ site.baseurl }}/commands/) | Every CLI command and flag, with real output |
 | [Policies]({{ site.baseurl }}/policies/) | Rule schema, matching, and the build-target templates |
 | [The dataset]({{ site.baseurl }}/dataset/) | How the license data is shaped, shipped, and regenerated |
+| [Data contract]({{ site.baseurl }}/data-contract/) | What a downstream consumer may rely on, and how changes are announced |
 | [Python API]({{ site.baseurl }}/api/) | Using ospac as a library |
 | [Integration]({{ site.baseurl }}/integration/) | CI, the SEMCL.ONE toolchain, and MCP |

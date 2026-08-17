@@ -114,6 +114,7 @@ Full documentation is at **[semclone.github.io/ospac](https://semclone.github.io
 - [Commands](https://semclone.github.io/ospac/commands/): every CLI command and flag, with real output
 - [Policies](https://semclone.github.io/ospac/policies/): rule schema, how matching works, templates
 - [The dataset](https://semclone.github.io/ospac/dataset/): how license data is shaped, shipped, and regenerated
+- [Data contract](https://semclone.github.io/ospac/data-contract/): what a downstream consumer may rely on, what `version` means, how changes are announced
 - [Python API](https://semclone.github.io/ospac/api/): using OSPAC as a library
 - [Integration](https://semclone.github.io/ospac/integration/): CI, the SEMCL.ONE toolchain, MCP
 

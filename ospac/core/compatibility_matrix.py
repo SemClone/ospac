@@ -6,6 +6,8 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Set
 from enum import Enum
 
+from ospac.dataset import DATA_SCHEMA_VERSION
+
 
 class CompatibilityStatus(Enum):
     """License compatibility status."""
@@ -57,7 +59,7 @@ class CompatibilityMatrix:
 
         # Extract metadata
         self._metadata = {
-            "version": data.get("version", "1.0"),
+            "version": data.get("version", DATA_SCHEMA_VERSION),
             "generated": data.get("generated"),
             "total_licenses": len(compatibility),
             "format": "sparse",
@@ -324,7 +326,7 @@ class CompatibilityMatrix:
 
         # Save full matrix
         output_data = {
-            "version": self._metadata.get("version", "1.0"),
+            "version": self._metadata.get("version", DATA_SCHEMA_VERSION),
             "generated": self._metadata.get("generated"),
             "total_licenses": len(all_licenses),
             "compatibility": complete_matrix
