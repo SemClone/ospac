@@ -27,7 +27,7 @@ SCHEMA_FILE = Path(__file__).parent.parent / "schemas" / "license_schema.json"
 
 INDEX_KEYS = {"version", "generated", "spdx_list_version", "total_licenses", "licenses"}
 INDEX_RECORD_KEYS = {"name", "category", "file", "is_deprecated", "obligations_count"}
-ALIASES_KEYS = {"version", "spdx_list_version", "aliases", "never_resolve"}
+ALIASES_KEYS = {"version", "spdx_list_version", "aliases", "ambiguous", "never_resolve"}
 COMPAT_METADATA_KEYS = {"version", "generated", "total_licenses", "format", "default_status"}
 LICENSE_RECORD_KEYS = {
     "id", "name", "type", "spdx_id", "properties", "requirements", "limitations",
@@ -109,12 +109,34 @@ class TestAliases:
 
     def test_accessors_read_the_published_keys(self, aliases_payload):
         assert ospac.license_aliases() == aliases_payload["aliases"]
+        assert ospac.license_ambiguous() == aliases_payload["ambiguous"]
         assert ospac.license_never_resolve() == set(aliases_payload["never_resolve"])
 
     def test_aliases_resolve_to_indexed_ids(self, aliases_payload, index):
         unknown = sorted({v for v in aliases_payload["aliases"].values()
                           if v not in index["licenses"]})
         assert not unknown, f"aliases resolve to ids absent from the index: {unknown[:5]}"
+
+    def test_ambiguous_candidates_are_indexed_ids(self, aliases_payload, index):
+        unknown = sorted({i for ids in aliases_payload["ambiguous"].values()
+                          for i in ids if i not in index["licenses"]})
+        assert not unknown, f"ambiguous names offer ids absent from the index: {unknown[:5]}"
+
+    def test_ambiguous_always_offers_a_choice(self, aliases_payload):
+        # One candidate is not an ambiguity, it is an alias. A consumer reporting
+        # "could be X" for a single X has been handed a resolution in the wrong field.
+        thin = {n: ids for n, ids in aliases_payload["ambiguous"].items() if len(ids) < 2}
+        assert not thin, f"ambiguous entries with fewer than two candidates: {thin}"
+
+    def test_the_three_tables_do_not_overlap(self, aliases_payload):
+        # Each string gets exactly one answer: an id, a choice, or nothing. A string in
+        # two tables makes the answer depend on which one the consumer reads first.
+        aliases = set(aliases_payload["aliases"])
+        ambiguous = set(aliases_payload["ambiguous"])
+        never = set(aliases_payload["never_resolve"])
+        assert not aliases & ambiguous, sorted(aliases & ambiguous)[:5]
+        assert not aliases & never, sorted(aliases & never)[:5]
+        assert not ambiguous & never, sorted(ambiguous & never)[:5]
 
 
 class TestCompatibilityMetadata:
@@ -237,7 +259,10 @@ class TestSchemaVersion:
         assert reported.total_licenses == index["total_licenses"]
 
     def test_schema_version_info_compares_numerically(self):
-        assert ospac.data_version().schema_version_info == (1, 0, 0)
+        # Derived from the constant, not a literal: the point of the test is that the
+        # parts are integers, and a literal here fails on every legitimate bump.
+        expected = tuple(int(part) for part in DATA_SCHEMA_VERSION.split("."))
+        assert ospac.data_version().schema_version_info == expected
         assert (1, 9, 0) < (1, 10, 0)  # the ordering the string form gets wrong
 
 
@@ -292,7 +317,8 @@ class TestLicenseRecordSchema:
 class TestPythonSurface:
     def test_documented_names_are_exported(self):
         for name in ("PolicyRuntime", "License", "Policy", "ComplianceResult",
-                     "license_aliases", "license_never_resolve", "data_version",
+                     "license_aliases", "license_ambiguous", "license_never_resolve",
+                     "data_version",
                      "DataVersion", "DATA_SCHEMA_VERSION"):
             assert name in ospac.__all__, f"{name} dropped from ospac.__all__"
             assert hasattr(ospac, name)

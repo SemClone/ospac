@@ -5,6 +5,36 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+**The dataset owns the ambiguous names** (#89, #88)
+- `ospac.license_ambiguous()` maps text that identifies a license but not which id, to
+  the ids it could mean: `"gnu lesser general public license v2.1"` gives
+  `["LGPL-2.1-only", "LGPL-2.1-or-later"]`. The prose name states the license and the
+  version and still is not an identifier, because only versus or-later is the copyright
+  holder's grant. Resolving it either way asserts something the document never said, and
+  leaving it out entirely made every consumer curate its own list of which names are
+  ambiguous, which is the divergence the alias table moved into the dataset to avoid.
+- The list is derived, not curated: an SPDX name with the grant word removed, so a
+  release that adds a GNU-family license adds its entry with no edit here. Twenty-six
+  entries today, covering GPL, LGPL, AGPL and the GFDL invariants variants.
+- Aliases claimed by two license ids now land there too, with their candidates. They were
+  correctly refused a resolution and then dropped with a log line, which left a consumer
+  reporting a legible name as unrecognised with no way to say why.
+- Folk spellings of the same shape are carried alongside them: `gplv3` is not
+  `GPL-3.0-only`, and a table of alias spellings that quietly resolved it would be making
+  the copyright holder's choice on their behalf.
+- `aliases.json` carries the new `ambiguous` block and `ospac data aliases` prints it.
+  The three tables do not overlap: a string gets an id, a choice, or nothing.
+- `eclipse public license - v 1.0` and its 2.0 counterpart resolve. SPDX publishes
+  "Eclipse Public License 1.0" and never the "- v" form, so a consumer normalizing the
+  spelling could not reach an id that was not in the data. Eclipse Foundation POMs write
+  that form, which makes it what Maven-sourced SBOMs actually carry.
+- `version` in `index.json`, `aliases.json` and `compatibility/metadata.json` moves to
+  `1.1.0`, an added field under the contract's own rule. `DATA_SCHEMA_VERSION` follows.
+
 ## [1.6.0] - 2026-08-17
 
 ### Added

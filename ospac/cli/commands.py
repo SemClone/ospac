@@ -587,18 +587,25 @@ def aliases(format: str):
 
     Tools normalizing declared licenses can consume this instead of curating their
     own table. Family names such as gpl and bsd are listed under never_resolve
-    because they do not identify one license.
+    because they do not identify one license, and prose names such as "gnu general
+    public license v2.0" are listed under ambiguous with the ids they could mean,
+    because the name states the version but not the only/or-later grant.
     """
-    from ospac.aliases import license_aliases, license_never_resolve
+    from ospac.aliases import license_aliases, license_ambiguous, license_never_resolve
 
     try:
         alias_map = license_aliases()
+        ambiguous_map = license_ambiguous()
         never = sorted(license_never_resolve())
         if format == "json":
-            click.echo(json.dumps({"aliases": alias_map, "never_resolve": never}, indent=2))
+            click.echo(json.dumps({"aliases": alias_map, "ambiguous": ambiguous_map,
+                                   "never_resolve": never}, indent=2))
         else:
             for alias, target in alias_map.items():
                 click.echo(f"{alias} -> {target}")
+            click.echo("")
+            for name, ids in ambiguous_map.items():
+                click.echo(f"{name} -> {' or '.join(ids)}")
             click.echo("\nNever resolve: " + ", ".join(never))
     except Exception as e:
         click.secho(f"Error: {e}", fg="red", err=True)

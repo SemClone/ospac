@@ -14,7 +14,7 @@ try:
 except PackageNotFoundError:  # running from a source tree that was never installed
     __version__ = "0.0.0.dev0"
 
-from ospac.aliases import license_aliases, license_never_resolve
+from ospac.aliases import license_aliases, license_ambiguous, license_never_resolve
 from ospac.dataset import DATA_SCHEMA_VERSION, DataVersion, data_version
 from ospac.runtime.engine import PolicyRuntime
 from ospac.models.license import License
@@ -24,6 +24,7 @@ from ospac.models.compliance import ComplianceResult
 __all__ = [
     "PolicyRuntime",
     "license_aliases",
+    "license_ambiguous",
     "license_never_resolve",
     "data_version",
     "DataVersion",

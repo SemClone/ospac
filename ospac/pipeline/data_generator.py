@@ -173,7 +173,35 @@ _CURATED_ALIASES: Dict[str, str] = {
     "expat": "MIT",
     "new bsd": "BSD-3-Clause",
     "modified bsd": "BSD-3-Clause",
+    # The spelling Eclipse Foundation POMs write, and the one Maven-sourced SBOMs
+    # therefore carry. SPDX publishes "Eclipse Public License 1.0" and never the
+    # "- v" form, so no amount of normalizing the input reaches it.
+    "eclipse public license - v 1.0": "EPL-1.0",
+    "eclipse public license - v 2.0": "EPL-2.0",
 }
+
+
+# Folk spellings that name a GNU family and a version but not the grant. "gplv3" is
+# not GPL-3.0-only: only/or-later is the copyright holder's choice and the string does
+# not carry it. They are not aliases for that reason, and they are not in NEVER_RESOLVE
+# either, because unlike bare "gpl" they do identify a version. They belong in the
+# ambiguous table, where a consumer can report which distinction is missing.
+_CURATED_AMBIGUOUS: Dict[str, List[str]] = {
+    "gplv1": ["GPL-1.0-only", "GPL-1.0-or-later"],
+    "gplv2": ["GPL-2.0-only", "GPL-2.0-or-later"],
+    "gplv3": ["GPL-3.0-only", "GPL-3.0-or-later"],
+    "lgplv2": ["LGPL-2.0-only", "LGPL-2.0-or-later"],
+    "lgplv2.1": ["LGPL-2.1-only", "LGPL-2.1-or-later"],
+    "lgplv3": ["LGPL-3.0-only", "LGPL-3.0-or-later"],
+    "agplv1": ["AGPL-1.0-only", "AGPL-1.0-or-later"],
+    "agplv3": ["AGPL-3.0-only", "AGPL-3.0-or-later"],
+}
+
+# An SPDX name carries the grant as a word inside it: "GNU Lesser General Public License
+# v2.1 only", and for the GFDL variants "GNU Free Documentation License v1.1 only -
+# invariants". Removing that word leaves the name a real document writes, which is the
+# spelling that identifies the license and the version and still is not an identifier.
+_GRANT_IN_NAME = re.compile(r"^(?P<head>.+?) (?:only|or later)(?P<tail>.*)$")
 
 
 def _deprecated_spellings(license_id: str) -> List[str]:
@@ -1250,41 +1278,94 @@ class PolicyDataGenerator:
         logger.info(f"Wrote {len(licenses)} license files to {licenses_json_dir}")
         # Index is rebuilt from ALL files after the delta, see _rebuild_index_from_files
 
+    @staticmethod
+    def _derive_ambiguous(records: List[Dict[str, Any]],
+                          owners: Dict[str, set]) -> Dict[str, List[str]]:
+        """
+        Strings that name more than one id, mapped to the ids they could mean.
+
+        Three sources, one rule: the string identifies a license and does not identify
+        which id. An SPDX name with the grant word removed, because "GNU General Public
+        License v2.0" is the name of both GPL-2.0-only and GPL-2.0-or-later and a
+        document writing it has not said which. An alias two records both claim, which
+        the flattening step used to drop with a log line and nowhere for a consumer to
+        look. And the curated folk spellings, which are the same case in the spelling a
+        POM actually writes.
+
+        A string that resolves in `aliases` is not ambiguous, and one in NEVER_RESOLVE
+        names no version at all, so neither belongs here.
+        """
+        from ospac.utils.validation import NEVER_RESOLVE
+
+        candidates: Dict[str, set] = {}
+        for record in records:
+            # A deprecated spelling carries no name of its own for this purpose: the
+            # canonical record holds the same name and both would derive one key.
+            if not record.get("id") or record.get("alias_of"):
+                continue
+            match = _GRANT_IN_NAME.match(record.get("name", "").lower())
+            if match:
+                key = f"{match.group('head')}{match.group('tail')}"
+                candidates.setdefault(key, set()).add(record["id"])
+
+        for alias, ids in owners.items():
+            if len(ids) > 1:
+                candidates.setdefault(alias, set()).update(ids)
+
+        known = {r["id"] for r in records if r.get("id")}
+        for key, ids in _CURATED_AMBIGUOUS.items():
+            missing = sorted(set(ids) - known)
+            if missing:
+                logger.warning(f"Curated ambiguous '{key}' names absent ids: {missing}")
+                continue
+            candidates.setdefault(key, set()).update(ids)
+
+        resolved = {a for a, ids in owners.items() if len(ids) == 1}
+        return {key: sorted(ids) for key, ids in sorted(candidates.items())
+                if len(ids) > 1 and key not in resolved and key not in NEVER_RESOLVE}
+
     def _write_aliases_file(self, spdx_version: str = "") -> None:
         """
-        Flatten per-record aliases into data/aliases.json: lowercased alias to SPDX id.
+        Flatten per-record aliases into data/aliases.json: lowercased alias to SPDX id,
+        alongside the strings that name more than one id.
 
-        An alias claimed by two different ids is ambiguous and resolves to neither,
-        because a wrong confident answer is worse than none. The file carries no
-        timestamp so identical inputs produce identical bytes.
+        An alias claimed by two different ids resolves to neither, because a wrong
+        confident answer is worse than none. It is not lost either: it goes to
+        `ambiguous` with its candidates, so a consumer can name the distinction the
+        document is missing rather than report a legible name as unrecognised. The file
+        carries no timestamp so identical inputs produce identical bytes.
         """
         from ospac.utils.validation import NEVER_RESOLVE
 
         licenses_json_dir = self.output_dir / "licenses" / "json"
-        owners: Dict[str, set] = {}
-        for p in sorted(licenses_json_dir.glob("*.json")):
+        records: List[Dict[str, Any]] = []
+        for path in sorted(licenses_json_dir.glob("*.json")):
             try:
-                with open(p) as f:
-                    record = json.load(f).get("license", {})
+                with open(path) as f:
+                    records.append(json.load(f).get("license", {}))
             except (json.JSONDecodeError, OSError):
                 continue
+
+        owners: Dict[str, set] = {}
+        for record in records:
             for alias in record.get("aliases", []):
                 owners.setdefault(alias, set()).add(record["id"])
 
-        aliases = {a: ids.pop() for a, ids in sorted(owners.items()) if len(ids) == 1}
-        dropped = sorted(a for a, ids in owners.items() if len(ids) > 1)
-        if dropped:
-            logger.warning(f"Ambiguous aliases resolve to nothing: {dropped}")
+        aliases = {a: next(iter(ids)) for a, ids in sorted(owners.items())
+                   if len(ids) == 1}
+        ambiguous = self._derive_ambiguous(records, owners)
 
         payload = {
             "version": DATA_SCHEMA_VERSION,
             "spdx_list_version": spdx_version,
             "aliases": aliases,
+            "ambiguous": ambiguous,
             "never_resolve": sorted(NEVER_RESOLVE),
         }
         with open(self.output_dir / "aliases.json", "w") as f:
             json.dump(payload, f, indent=2)
-        logger.info(f"Wrote {len(aliases)} aliases to aliases.json")
+        logger.info(f"Wrote {len(aliases)} aliases and {len(ambiguous)} ambiguous "
+                    f"names to aliases.json")
 
     def _rebuild_index_from_files(self, spdx_version: str = "") -> None:
         """Build index.json from ALL license JSON files on disk, not just the current batch."""

@@ -34,7 +34,7 @@ may move or vanish in any release.
 
 ```json
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "generated": "2026-08-12T09:45:09.769222",
   "spdx_list_version": "e4c1f27",
   "total_licenses": 733,
@@ -67,21 +67,36 @@ neither will be renamed inside a major version.
 
 ```json
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "spdx_list_version": "e4c1f27",
   "aliases": { "expat": "MIT", "gpl-3.0+": "GPL-3.0-or-later" },
+  "ambiguous": {
+    "gnu general public license v2.0": ["GPL-2.0-only", "GPL-2.0-or-later"],
+    "gplv3": ["GPL-3.0-only", "GPL-3.0-or-later"]
+  },
   "never_resolve": ["agpl", "apache", "bsd", "gpl", "lgpl", "public domain"]
 }
 ```
 
-Keys in `aliases` are lowercased, so lowercase your input before looking it up. Every value
-is an id present in `index.json`. An alias claimed by more than one license is absent
-rather than resolved, because a confidently wrong answer is worse than none.
+Keys in all three tables are lowercased, so lowercase your input before looking it up. The
+three do not overlap: a string gets an id, a choice, or nothing, and never two of those.
+
+Every value in `aliases` is an id present in `index.json`. An alias claimed by more than one
+license is not resolved, because a confidently wrong answer is worse than none.
+
+`ambiguous` maps text that identifies a license but not which id, to the ids it could mean.
+Every value has at least two of them, each present in `index.json`. "GNU General Public
+License v2.0" is the SPDX name of both `GPL-2.0-only` and `GPL-2.0-or-later`: only versus
+or-later is the copyright holder's grant and the license's own name does not carry it, so a
+document writing that name has not said which one it means. Report the choice rather than
+making it. Which strings are ambiguous is license data that moves with SPDX, which is why it
+is here rather than curated per consumer.
 
 `never_resolve` is not a subset of `aliases`, it is the complement: text that must not
-resolve to anything. `bsd` is 2-clause or 3-clause and the choice changes obligations. Treat
-these as unresolved rather than inventing a guess. Read both through
-[`license_aliases()` and `license_never_resolve()`]({{ site.baseurl }}/api/#license_aliases-and-license_never_resolve)
+resolve to anything and offers no candidates either. `bsd` is 2-clause or 3-clause and the
+choice changes obligations. Treat these as unresolved rather than inventing a guess. Read all
+three through
+[`license_aliases()`, `license_ambiguous()` and `license_never_resolve()`]({{ site.baseurl }}/api/#license_aliases-license_ambiguous-and-license_never_resolve)
 rather than parsing the file, if you are in Python.
 
 ### licenses/json/&lt;id&gt;.json
@@ -213,8 +228,8 @@ Rather than opening `index.json` yourself:
 import ospac
 
 info = ospac.data_version()
-info.schema_version        # "1.0.0"
-info.schema_version_info   # (1, 0, 0)
+info.schema_version        # "1.1.0"
+info.schema_version_info   # (1, 1, 0)
 info.spdx_list_version     # "e4c1f27"
 info.generated             # "2026-08-12T09:45:09.769222"
 info.total_licenses        # 733

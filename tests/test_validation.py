@@ -853,6 +853,16 @@ class TestLicenseAliases:
         assert aliases["gfdl-1.3"] == "GFDL-1.3-only"
         assert aliases["mit license"] == "MIT"
 
+    def test_ecosystem_spellings_spdx_never_publishes(self):
+        import ospac
+
+        # SPDX publishes "Eclipse Public License 1.0"; Eclipse Foundation POMs write the
+        # "- v" form, and that is what a Maven-sourced SBOM carries. No amount of
+        # normalizing the input on the consumer side reaches an id that is not here.
+        aliases = ospac.license_aliases()
+        assert aliases["eclipse public license - v 1.0"] == "EPL-1.0"
+        assert aliases["eclipse public license - v 2.0"] == "EPL-2.0"
+
     def test_family_names_never_resolve(self):
         import ospac
 
@@ -891,6 +901,74 @@ class TestLicenseAliases:
         expected = {a: next(iter(ids)) for a, ids in owners.items()
                     if len(ids) == 1 and a not in NEVER_RESOLVE}
         assert ospac.license_aliases() == expected
+
+
+class TestAmbiguousNames:
+    """
+    A prose name can identify a license and a version and still not identify an id:
+    -only versus -or-later is the copyright holder's grant and the license name does
+    not carry it. Resolving those names either way asserts something the document never
+    said, and leaving them out entirely made every consumer curate its own list of
+    which names are ambiguous. The dataset owns the list.
+    """
+
+    def test_gnu_prose_names_offer_both_grants(self):
+        import ospac
+
+        ambiguous = ospac.license_ambiguous()
+        assert ambiguous["gnu lesser general public license v2.1"] == [
+            "LGPL-2.1-only", "LGPL-2.1-or-later"]
+        assert ambiguous["gnu general public license v2.0"] == [
+            "GPL-2.0-only", "GPL-2.0-or-later"]
+        assert ambiguous["gnu free documentation license v1.3 - invariants"] == [
+            "GFDL-1.3-invariants-only", "GFDL-1.3-invariants-or-later"]
+
+    def test_folk_spellings_are_ambiguous_not_resolved(self):
+        import ospac
+
+        aliases = ospac.license_aliases()
+        ambiguous = ospac.license_ambiguous()
+        for spelling in ("gplv2", "gplv3", "lgplv2.1", "agplv3"):
+            assert spelling not in aliases, (
+                f"'{spelling}' names a version but not the grant; resolving it picks "
+                f"only or or-later on the copyright holder's behalf")
+            assert len(ambiguous[spelling]) == 2
+
+    def test_deprecated_spellings_still_resolve(self):
+        import ospac
+
+        # SPDX itself defines GPL-2.0 as GPL-2.0-only, so the deprecated id is not
+        # ambiguous. Only the prose name is.
+        aliases = ospac.license_aliases()
+        ambiguous = ospac.license_ambiguous()
+        assert aliases["gpl-2.0"] == "GPL-2.0-only"
+        assert aliases["gpl-2.0+"] == "GPL-2.0-or-later"
+        assert "gpl-2.0" not in ambiguous
+
+    def test_colliding_aliases_surface_instead_of_vanishing(self):
+        import json
+
+        import ospac
+
+        data_dir = Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+        owners = {}
+        for path in data_dir.glob("*.json"):
+            record = json.loads(path.read_text())["license"]
+            for alias in record.get("aliases", []):
+                owners.setdefault(alias, set()).add(record["id"])
+        collisions = {a: sorted(ids) for a, ids in owners.items() if len(ids) > 1}
+
+        ambiguous = ospac.license_ambiguous()
+        for alias, ids in collisions.items():
+            assert ambiguous.get(alias) == ids, (
+                f"'{alias}' is claimed by {ids} and was dropped without a trace")
+
+    def test_accessor_returns_a_copy(self):
+        import ospac
+
+        first = ospac.license_ambiguous()
+        first["gplv3"].append("nonsense")
+        assert "nonsense" not in ospac.license_ambiguous()["gplv3"]
 
 
 class TestGfdlInvariantsCanonicalize:
