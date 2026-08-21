@@ -413,6 +413,10 @@ _CURATED_AMBIGUOUS: Dict[str, List[str]] = {
 # spelling that identifies the license and the version and still is not an identifier.
 _GRANT_IN_NAME = re.compile(r"^(?P<head>.+?) (?:only|or later)(?P<tail>.*)$")
 
+# Words that leave a phrase unfinished when the trailing "license" is dropped from a
+# name. Purely cosmetic: such a key would never be looked up, but it reads as a bug.
+_DANGLING_TAIL = frozenset({"and", "or", "of", "the", "for", "with", "a", "an", "to"})
+
 # Folk spellings that mean a family whose SPDX name is spelled differently. "openldap"
 # is one word and SPDX writes "Open LDAP Public License", so the derivation below cannot
 # reach it from the names alone. The value is the family, not a list of ids, so the
@@ -428,7 +432,11 @@ _CURATED_FAMILY_SPELLINGS: Dict[str, str] = {
 # an alias table that resolved it would pick a version the string never stated. This is
 # the version-shaped twin of _GRANT_IN_NAME, and it is derived for the same reason: an
 # SPDX release that adds a second version to a family must not need an edit here.
-_VERSION_IN_NAME = re.compile(r"^(?P<head>.+?)[ -]v?\d+(?:\.\d+)*$")
+_VERSION_IN_NAME = re.compile(
+    r"^(?P<head>.+?)"
+    r"(?:[ -]v?\d+(?:\.\d+)*[a-z]?)?"      # 1.0, v2.8, 1.3a
+    r"(?:\s*\(\d{4}-\d{2}-\d{2}\))?$"    # W3C spells the variant as a date
+)
 
 
 def _deprecated_spellings(license_id: str) -> List[str]:
@@ -1539,6 +1547,7 @@ class PolicyDataGenerator:
         # licence. "Eclipse Public License" is EPL-1.0 and EPL-2.0 both, and the trailing
         # "license" word is optional in the wild, so "php" reaches "PHP License" too.
         families: Dict[str, set] = {}
+        names: Dict[str, str] = {}
         for record in records:
             if not record.get("id") or record.get("alias_of"):
                 continue
@@ -1547,9 +1556,21 @@ class PolicyDataGenerator:
                 continue
             # "Mulan Permissive Software License, Version 1" leaves ", Version" behind.
             head = re.sub(r"[,\s]+(?:version|v)$", "", match.group("head")).strip(" ,-")
+            if not head:
+                continue
+            names[record["id"]] = record.get("name", "").lower()
             families.setdefault(head, set()).add(record["id"])
+            # The trailing "license" word is optional in the wild, so "php" reaches
+            # "PHP License". Not when dropping it leaves a dangling connective, though:
+            # "W3C Software Notice and License" would give "w3c software notice and".
             if head.endswith(" license"):
-                families.setdefault(head[: -len(" license")], set()).add(record["id"])
+                short = head[: -len(" license")]
+                if short.rsplit(" ", 1)[-1] not in _DANGLING_TAIL:
+                    families.setdefault(short, set()).add(record["id"])
+        for license_id, name in names.items():
+            if name in families:
+                families[name].add(license_id)
+
         for head, ids in families.items():
             if len(ids) > 1:
                 candidates.setdefault(head, set()).update(ids)

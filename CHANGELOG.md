@@ -35,7 +35,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   removed leaves the family name, and a remainder shared by two shipped ids identifies
   no one licence. 105 ambiguous entries now, up from 32, covering Apache, Mozilla, EPL,
   CDDL, OSL, Zope and the rest. A release that adds a second version to a family gets
-  the same protection with no edit here.
+  the same protection with no edit here. A version is not always a number: SPDX
+  separates the two W3C texts by date, so a trailing `(1998-07-20)` counts, and a record
+  whose whole name is another record's family name joins that family. 112 entries after
+  that, and it also caught Sendmail, SAX-PD and BSD-3-Clause-No-Nuclear.
 - `ambiguous` is now decided before `aliases` and wins. The two tables were disjoint
   before only because each filter remembered to exclude the other, which is what let a
   curated alias claim a family name in the first place. Deciding the order once makes

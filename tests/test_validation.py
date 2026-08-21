@@ -1029,6 +1029,17 @@ class TestAmbiguousNames:
                      for p in data_dir.glob("EPL-*.json"))
         assert ospac.license_ambiguous()["eclipse public license"] == epl
 
+    def test_a_dated_variant_is_a_version_too(self):
+        import ospac
+
+        # SPDX distinguishes the two W3C texts by date rather than by number, and
+        # Sendmail and SAX-PD by a version only one of the pair carries. A rule that
+        # only understood trailing digits called the undated name a confident answer.
+        ambiguous = ospac.license_ambiguous()
+        assert ambiguous["w3c software notice and license"] == ["W3C", "W3C-19980720"]
+        assert ambiguous["sendmail"] == ["Sendmail", "Sendmail-8.23"]
+        assert "sendmail" not in ospac.license_aliases()
+
     def test_folk_family_spellings_reach_the_family(self):
         import ospac
 

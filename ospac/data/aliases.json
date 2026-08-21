@@ -215,7 +215,6 @@
     "bsd 3-clause modification": "BSD-3-Clause-Modification",
     "bsd 3-clause new license": "BSD-3-Clause",
     "bsd 3-clause no military license": "BSD-3-Clause-No-Military-License",
-    "bsd 3-clause no nuclear license": "BSD-3-Clause-No-Nuclear-License",
     "bsd 3-clause no nuclear license 2014": "BSD-3-Clause-No-Nuclear-License-2014",
     "bsd 3-clause no nuclear warranty": "BSD-3-Clause-No-Nuclear-Warranty",
     "bsd 3-clause open mpi variant": "BSD-3-Clause-Open-MPI",
@@ -1376,7 +1375,6 @@
     "ruby license": "Ruby",
     "ruby pty extension license": "Ruby-pty",
     "ruby-pty": "Ruby-pty",
-    "sax public domain notice": "SAX-PD",
     "sax public domain notice 2.0": "SAX-PD-2.0",
     "sax-pd": "SAX-PD",
     "sax-pd-2.0": "SAX-PD-2.0",
@@ -1388,8 +1386,6 @@
     "scheme widget library (swl) software license agreement": "SWL",
     "schemereport": "SchemeReport",
     "secure messaging protocol public license": "SMPPL",
-    "sendmail": "Sendmail",
-    "sendmail license": "Sendmail",
     "sendmail license 8.23": "Sendmail-8.23",
     "sendmail open source license v1.1": "Sendmail-Open-Source-1.1",
     "sendmail-8.23": "Sendmail-8.23",
@@ -1741,6 +1737,14 @@
       "BitTorrent-1.0",
       "BitTorrent-1.1"
     ],
+    "bsd 3-clause no nuclear": [
+      "BSD-3-Clause-No-Nuclear-License",
+      "BSD-3-Clause-No-Nuclear-License-2014"
+    ],
+    "bsd 3-clause no nuclear license": [
+      "BSD-3-Clause-No-Nuclear-License",
+      "BSD-3-Clause-No-Nuclear-License-2014"
+    ],
     "bzip2 and libbzip2": [
       "bzip2-1.0.5",
       "bzip2-1.0.6"
@@ -1916,12 +1920,16 @@
     "latex project public": [
       "LPPL-1.0",
       "LPPL-1.1",
-      "LPPL-1.2"
+      "LPPL-1.2",
+      "LPPL-1.3a",
+      "LPPL-1.3c"
     ],
     "latex project public license": [
       "LPPL-1.0",
       "LPPL-1.1",
-      "LPPL-1.2"
+      "LPPL-1.2",
+      "LPPL-1.3a",
+      "LPPL-1.3c"
     ],
     "lgplv2": [
       "LGPL-2.0-only",
@@ -2088,6 +2096,18 @@
       "RPL-1.1",
       "RPL-1.5"
     ],
+    "sax public domain notice": [
+      "SAX-PD",
+      "SAX-PD-2.0"
+    ],
+    "sendmail": [
+      "Sendmail",
+      "Sendmail-8.23"
+    ],
+    "sendmail license": [
+      "Sendmail",
+      "Sendmail-8.23"
+    ],
     "sgi free software license b": [
       "SGI-B-1.0",
       "SGI-B-1.1",
@@ -2118,6 +2138,10 @@
       "Spencer-86",
       "Spencer-94",
       "Spencer-99"
+    ],
+    "standard ml of new jersey": [
+      "SMLNJ",
+      "StandardML-NJ"
     ],
     "standard ml of new jersey license": [
       "SMLNJ",
@@ -2150,6 +2174,10 @@
     "the parity public license": [
       "Parity-6.0.0",
       "Parity-7.0.0"
+    ],
+    "w3c software notice and license": [
+      "W3C",
+      "W3C-19980720"
     ],
     "yahoo! public": [
       "YPL-1.0",
