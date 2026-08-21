@@ -88,8 +88,9 @@ license is not resolved, because a confidently wrong answer is worse than none.
 Every value has at least two of them, each present in `index.json`. "GNU General Public
 License v2.0" is the SPDX name of both `GPL-2.0-only` and `GPL-2.0-or-later`: only versus
 or-later is the copyright holder's grant and the license's own name does not carry it, so a
-document writing that name has not said which one it means. Report the choice rather than
-making it. Which strings are ambiguous is license data that moves with SPDX, which is why it
+document writing that name has not said which one it means. The same holds one axis over:
+"Eclipse Public License" is the name of both `EPL-1.0` and `EPL-2.0` and states no version.
+Report the choice rather than making it. Which strings are ambiguous is license data that moves with SPDX, which is why it
 is here rather than curated per consumer.
 
 `never_resolve` is not a subset of `aliases`, it is the complement: text that must not

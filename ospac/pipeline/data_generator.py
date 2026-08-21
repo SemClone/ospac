@@ -317,7 +317,6 @@ _CURATED_ALIASES: Dict[str, str] = {
     "jython license": "CNRI-Jython",
     "common public license version 1.0": "CPL-1.0",
     "eiffel forum license 2.0": "EFL-2.0",
-    "eclipse public license": "EPL-1.0",
     "eclipse public license - version 1.0": "EPL-1.0",
     "eclipse public license v1.0": "EPL-1.0",
     "eclipse public license, version 1.0": "EPL-1.0",
@@ -359,17 +358,14 @@ _CURATED_ALIASES: Dict[str, str] = {
     "the university of illinois/ncsa open source license (ncsa)": "NCSA",
     "university of illinois/ncsa": "NCSA",
     "odc open database license v1.0": "ODbL-1.0",
-    "openldap": "OLDAP-2.8",
     "odc public domain dedication & license 1.0": "PDDL-1.0",
     "pddl (public domain dedication and license)": "PDDL-1.0",
-    "php": "PHP-3.0",
     "psf": "PSF-2.0",
     "psf 2.0": "PSF-2.0",
     "psf license": "PSF-2.0",
     "psfl": "PSF-2.0",
     "psfl 2": "PSF-2.0",
     "python software foundation license": "PSF-2.0",
-    "sun industry standards source license": "SISSL",
     "tcl/tk": "TCL",
     "universal permissive license v 1.0": "UPL-1.0",
     "universal permissive license version 1.0": "UPL-1.0",
@@ -416,6 +412,23 @@ _CURATED_AMBIGUOUS: Dict[str, List[str]] = {
 # invariants". Removing that word leaves the name a real document writes, which is the
 # spelling that identifies the license and the version and still is not an identifier.
 _GRANT_IN_NAME = re.compile(r"^(?P<head>.+?) (?:only|or later)(?P<tail>.*)$")
+
+# Folk spellings that mean a family whose SPDX name is spelled differently. "openldap"
+# is one word and SPDX writes "Open LDAP Public License", so the derivation below cannot
+# reach it from the names alone. The value is the family, not a list of ids, so the
+# candidates stay whatever that family currently ships.
+_CURATED_FAMILY_SPELLINGS: Dict[str, str] = {
+    "openldap": "open ldap public license",
+    "openldap license": "open ldap public license",
+}
+
+# An SPDX name usually ends in the version: "Eclipse Public License 1.0", "PHP License
+# v3.0", "Open LDAP Public License v2.8". Remove it and what is left names the family.
+# When two shipped ids share that remainder, the remainder identifies no one licence, and
+# an alias table that resolved it would pick a version the string never stated. This is
+# the version-shaped twin of _GRANT_IN_NAME, and it is derived for the same reason: an
+# SPDX release that adds a second version to a family must not need an edit here.
+_VERSION_IN_NAME = re.compile(r"^(?P<head>.+?)[ -]v?\d+(?:\.\d+)*$")
 
 
 def _deprecated_spellings(license_id: str) -> List[str]:
@@ -1522,6 +1535,31 @@ class PolicyDataGenerator:
                 key = f"{match.group('head')}{match.group('tail')}"
                 candidates.setdefault(key, set()).add(record["id"])
 
+        # Names that differ only by version: the shared remainder names a family, not a
+        # licence. "Eclipse Public License" is EPL-1.0 and EPL-2.0 both, and the trailing
+        # "license" word is optional in the wild, so "php" reaches "PHP License" too.
+        families: Dict[str, set] = {}
+        for record in records:
+            if not record.get("id") or record.get("alias_of"):
+                continue
+            match = _VERSION_IN_NAME.match(record.get("name", "").lower())
+            if not match:
+                continue
+            # "Mulan Permissive Software License, Version 1" leaves ", Version" behind.
+            head = re.sub(r"[,\s]+(?:version|v)$", "", match.group("head")).strip(" ,-")
+            families.setdefault(head, set()).add(record["id"])
+            if head.endswith(" license"):
+                families.setdefault(head[: -len(" license")], set()).add(record["id"])
+        for head, ids in families.items():
+            if len(ids) > 1:
+                candidates.setdefault(head, set()).update(ids)
+        for spelling, head in _CURATED_FAMILY_SPELLINGS.items():
+            ids = families.get(head, set())
+            if len(ids) > 1:
+                candidates.setdefault(spelling, set()).update(ids)
+            else:
+                logger.warning(f"Family spelling '{spelling}' names no family: {head!r}")
+
         for alias, ids in owners.items():
             if len(ids) > 1:
                 candidates.setdefault(alias, set()).update(ids)
@@ -1534,9 +1572,8 @@ class PolicyDataGenerator:
                 continue
             candidates.setdefault(key, set()).update(ids)
 
-        resolved = {a for a, ids in owners.items() if len(ids) == 1}
         return {key: sorted(ids) for key, ids in sorted(candidates.items())
-                if len(ids) > 1 and key not in resolved and key not in NEVER_RESOLVE}
+                if len(ids) > 1 and key not in NEVER_RESOLVE}
 
     def _write_aliases_file(self, spdx_version: str = "") -> None:
         """
@@ -1565,9 +1602,14 @@ class PolicyDataGenerator:
             for alias in record.get("aliases", []):
                 owners.setdefault(alias, set()).add(record["id"])
 
-        aliases = {a: next(iter(ids)) for a, ids in sorted(owners.items())
-                   if len(ids) == 1}
+        # Ambiguity is decided first and wins. A curated alias can name a family by
+        # accident ("eclipse public license" for EPL-1.0), and the alias table is the
+        # wrong place to discover that: resolving it picks a version the string never
+        # stated. Deciding the order here also makes the two tables disjoint by
+        # construction rather than by each filter remembering to exclude the other.
         ambiguous = self._derive_ambiguous(records, owners)
+        aliases = {a: next(iter(ids)) for a, ids in sorted(owners.items())
+                   if len(ids) == 1 and a not in ambiguous}
 
         payload = {
             "version": DATA_SCHEMA_VERSION,

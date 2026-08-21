@@ -908,8 +908,11 @@ class TestLicenseAliases:
             record = json.loads(path.read_text())["license"]
             for alias in record.get("aliases", []):
                 owners.setdefault(alias, set()).add(record["id"])
+        # Ambiguity is decided first and wins: a spelling that names a family rather
+        # than one licence is excluded here even though exactly one record claims it.
+        ambiguous = ospac.license_ambiguous()
         expected = {a: next(iter(ids)) for a, ids in owners.items()
-                    if len(ids) == 1 and a not in NEVER_RESOLVE}
+                    if len(ids) == 1 and a not in NEVER_RESOLVE and a not in ambiguous}
         assert ospac.license_aliases() == expected
 
 
@@ -997,6 +1000,45 @@ class TestAmbiguousNames:
         aliases = ospac.license_aliases()
         assert aliases["gnu general public license v2.0 only"] == "GPL-2.0-only"
         assert aliases["gnu library general public license v2.1 or later"] == "LGPL-2.1-or-later"
+
+    def test_a_family_name_never_resolves_to_one_version(self):
+        import ospac
+
+        # "Eclipse Public License" is the name of EPL-1.0 and EPL-2.0 both. An alias
+        # resolving it picks a version the string never stated, which is the same
+        # fabrication the grant guard exists to prevent, one axis over.
+        aliases = ospac.license_aliases()
+        ambiguous = ospac.license_ambiguous()
+        for family, expected in (("eclipse public license", ["EPL-1.0", "EPL-2.0"]),
+                                 ("php", ["PHP-3.0", "PHP-3.01"]),
+                                 ("apache license", ["Apache-1.0", "Apache-1.1", "Apache-2.0"]),
+                                 ("mozilla public license", ["MPL-1.0", "MPL-1.1", "MPL-2.0"])):
+            assert family not in aliases
+            assert ambiguous[family] == expected
+
+    def test_family_candidates_are_derived_not_listed(self):
+        import json
+
+        import ospac
+
+        # The candidates for a family are whatever that family currently ships, so an
+        # SPDX release adding a version needs no edit. Pinning the list by hand here
+        # would defeat the point, so the test rebuilds it from the records.
+        data_dir = Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+        epl = sorted(json.loads(p.read_text())["license"]["id"]
+                     for p in data_dir.glob("EPL-*.json"))
+        assert ospac.license_ambiguous()["eclipse public license"] == epl
+
+    def test_folk_family_spellings_reach_the_family(self):
+        import ospac
+
+        # SPDX writes "Open LDAP Public License", the wild writes "openldap", and no
+        # amount of deriving from the names bridges that. The curated entry names the
+        # family rather than a list of ids, so the candidates cannot go stale.
+        candidates = ospac.license_ambiguous()["openldap"]
+        assert len(candidates) > 2
+        assert all(i.startswith("OLDAP-") for i in candidates)
+        assert "openldap" not in ospac.license_aliases()
 
     def test_accessor_returns_a_copy(self):
         import ospac
