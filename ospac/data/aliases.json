@@ -215,6 +215,7 @@
     "bsd 3-clause modification": "BSD-3-Clause-Modification",
     "bsd 3-clause new license": "BSD-3-Clause",
     "bsd 3-clause no military license": "BSD-3-Clause-No-Military-License",
+    "bsd 3-clause no nuclear license": "BSD-3-Clause-No-Nuclear-License",
     "bsd 3-clause no nuclear license 2014": "BSD-3-Clause-No-Nuclear-License-2014",
     "bsd 3-clause no nuclear warranty": "BSD-3-Clause-No-Nuclear-Warranty",
     "bsd 3-clause open mpi variant": "BSD-3-Clause-Open-MPI",
@@ -1375,6 +1376,7 @@
     "ruby license": "Ruby",
     "ruby pty extension license": "Ruby-pty",
     "ruby-pty": "Ruby-pty",
+    "sax public domain notice": "SAX-PD",
     "sax public domain notice 2.0": "SAX-PD-2.0",
     "sax-pd": "SAX-PD",
     "sax-pd-2.0": "SAX-PD-2.0",
@@ -1386,6 +1388,8 @@
     "scheme widget library (swl) software license agreement": "SWL",
     "schemereport": "SchemeReport",
     "secure messaging protocol public license": "SMPPL",
+    "sendmail": "Sendmail",
+    "sendmail license": "Sendmail",
     "sendmail license 8.23": "Sendmail-8.23",
     "sendmail open source license v1.1": "Sendmail-Open-Source-1.1",
     "sendmail-8.23": "Sendmail-8.23",
@@ -1588,7 +1592,6 @@
     "vovida software license v1.0": "VSL-1.0",
     "vsl-1.0": "VSL-1.0",
     "w3c": "W3C",
-    "w3c software and notice license": "W3C",
     "w3c software notice and document license (2015-05-13)": "W3C-20150513",
     "w3c software notice and license (1998-07-20)": "W3C-19980720",
     "w3c software notice and license (2002-12-31)": "W3C",
@@ -1715,11 +1718,15 @@
     ],
     "artistic": [
       "Artistic-1.0",
-      "Artistic-2.0"
+      "Artistic-1.0-Perl",
+      "Artistic-2.0",
+      "Artistic-dist"
     ],
     "artistic license": [
       "Artistic-1.0",
-      "Artistic-2.0"
+      "Artistic-1.0-Perl",
+      "Artistic-2.0",
+      "Artistic-dist"
     ],
     "aswf digital assets": [
       "ASWF-Digital-Assets-1.0",
@@ -1736,14 +1743,6 @@
     "bittorrent open source license": [
       "BitTorrent-1.0",
       "BitTorrent-1.1"
-    ],
-    "bsd 3-clause no nuclear": [
-      "BSD-3-Clause-No-Nuclear-License",
-      "BSD-3-Clause-No-Nuclear-License-2014"
-    ],
-    "bsd 3-clause no nuclear license": [
-      "BSD-3-Clause-No-Nuclear-License",
-      "BSD-3-Clause-No-Nuclear-License-2014"
     ],
     "bzip2 and libbzip2": [
       "bzip2-1.0.5",
@@ -1778,6 +1777,14 @@
     "copyleft-next": [
       "copyleft-next-0.3.0",
       "copyleft-next-0.3.1"
+    ],
+    "cryptographic autonomy": [
+      "CAL-1.0",
+      "CAL-1.0-Combined-Work-Exception"
+    ],
+    "cryptographic autonomy license": [
+      "CAL-1.0",
+      "CAL-1.0-Combined-Work-Exception"
     ],
     "detection rule": [
       "DRL-1.0",
@@ -1955,15 +1962,25 @@
       "LPL-1.0",
       "LPL-1.02"
     ],
+    "lzma sdk": [
+      "LZMA-SDK-9.11-to-9.20",
+      "LZMA-SDK-9.22"
+    ],
+    "lzma sdk license": [
+      "LZMA-SDK-9.11-to-9.20",
+      "LZMA-SDK-9.22"
+    ],
     "mozilla public": [
       "MPL-1.0",
       "MPL-1.1",
-      "MPL-2.0"
+      "MPL-2.0",
+      "MPL-2.0-no-copyleft-exception"
     ],
     "mozilla public license": [
       "MPL-1.0",
       "MPL-1.1",
-      "MPL-2.0"
+      "MPL-2.0",
+      "MPL-2.0-no-copyleft-exception"
     ],
     "mulan permissive software": [
       "MulanPSL-1.0",
@@ -1995,6 +2012,7 @@
       "OLDAP-1.2",
       "OLDAP-1.3",
       "OLDAP-1.4",
+      "OLDAP-2.0",
       "OLDAP-2.0.1",
       "OLDAP-2.1",
       "OLDAP-2.2",
@@ -2012,6 +2030,7 @@
       "OLDAP-1.2",
       "OLDAP-1.3",
       "OLDAP-1.4",
+      "OLDAP-2.0",
       "OLDAP-2.0.1",
       "OLDAP-2.1",
       "OLDAP-2.2",
@@ -2043,6 +2062,7 @@
       "OLDAP-1.2",
       "OLDAP-1.3",
       "OLDAP-1.4",
+      "OLDAP-2.0",
       "OLDAP-2.0.1",
       "OLDAP-2.1",
       "OLDAP-2.2",
@@ -2060,6 +2080,7 @@
       "OLDAP-1.2",
       "OLDAP-1.3",
       "OLDAP-1.4",
+      "OLDAP-2.0",
       "OLDAP-2.0.1",
       "OLDAP-2.1",
       "OLDAP-2.2",
@@ -2080,6 +2101,10 @@
       "PHP-3.0",
       "PHP-3.01"
     ],
+    "png reference library": [
+      "libpng-1.6.35",
+      "libpng-2.0"
+    ],
     "python": [
       "Python-2.0",
       "Python-2.0.1"
@@ -2095,18 +2120,6 @@
     "reciprocal public license": [
       "RPL-1.1",
       "RPL-1.5"
-    ],
-    "sax public domain notice": [
-      "SAX-PD",
-      "SAX-PD-2.0"
-    ],
-    "sendmail": [
-      "Sendmail",
-      "Sendmail-8.23"
-    ],
-    "sendmail license": [
-      "Sendmail",
-      "Sendmail-8.23"
     ],
     "sgi free software license b": [
       "SGI-B-1.0",
@@ -2139,10 +2152,6 @@
       "Spencer-94",
       "Spencer-99"
     ],
-    "standard ml of new jersey": [
-      "SMLNJ",
-      "StandardML-NJ"
-    ],
     "standard ml of new jersey license": [
       "SMLNJ",
       "StandardML-NJ"
@@ -2174,6 +2183,14 @@
     "the parity public license": [
       "Parity-6.0.0",
       "Parity-7.0.0"
+    ],
+    "unicode license agreement - data files and software": [
+      "Unicode-DFS-2015",
+      "Unicode-DFS-2016"
+    ],
+    "w3c software and notice license": [
+      "W3C",
+      "W3C-19980720"
     ],
     "w3c software notice and license": [
       "W3C",

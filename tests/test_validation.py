@@ -1011,10 +1011,22 @@ class TestAmbiguousNames:
         ambiguous = ospac.license_ambiguous()
         for family, expected in (("eclipse public license", ["EPL-1.0", "EPL-2.0"]),
                                  ("php", ["PHP-3.0", "PHP-3.01"]),
-                                 ("apache license", ["Apache-1.0", "Apache-1.1", "Apache-2.0"]),
-                                 ("mozilla public license", ["MPL-1.0", "MPL-1.1", "MPL-2.0"])):
+                                 ("apache license", ["Apache-1.0", "Apache-1.1", "Apache-2.0"])):
             assert family not in aliases
             assert ambiguous[family] == expected
+
+    def test_an_exact_official_name_belongs_to_its_record(self):
+        import ospac
+
+        # MPL-2.0 is named "Mozilla Public License 2.0" and
+        # MPL-2.0-no-copyleft-exception qualifies that name. The unqualified string is
+        # the unqualified licence's own name, so it resolves; only the versionless
+        # family name above is a choice.
+        aliases = ospac.license_aliases()
+        assert aliases["mozilla public license 2.0"] == "MPL-2.0"
+        assert aliases["artistic license 1.0"] == "Artistic-1.0"
+        assert aliases["sendmail license"] == "Sendmail"
+        assert "mozilla public license 2.0" not in ospac.license_ambiguous()
 
     def test_family_candidates_are_derived_not_listed(self):
         import json
@@ -1037,8 +1049,10 @@ class TestAmbiguousNames:
         # only understood trailing digits called the undated name a confident answer.
         ambiguous = ospac.license_ambiguous()
         assert ambiguous["w3c software notice and license"] == ["W3C", "W3C-19980720"]
-        assert ambiguous["sendmail"] == ["Sendmail", "Sendmail-8.23"]
-        assert "sendmail" not in ospac.license_aliases()
+        assert "w3c software notice and license" not in ospac.license_aliases()
+        # OLDAP-2.0's name qualifies its version, "v2.0 (or possibly 2.0A and 2.0B)".
+        # A rule reading only the end of the name left it out of its own family.
+        assert "OLDAP-2.0" in ambiguous["openldap"]
 
     def test_folk_family_spellings_reach_the_family(self):
         import ospac

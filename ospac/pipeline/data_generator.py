@@ -370,7 +370,6 @@ _CURATED_ALIASES: Dict[str, str] = {
     "universal permissive license v 1.0": "UPL-1.0",
     "universal permissive license version 1.0": "UPL-1.0",
     "universal permissive license, version 1.0": "UPL-1.0",
-    "w3c software and notice license": "W3C",
     "zpl 1.1": "ZPL-1.1",
     "zpl 2.0": "ZPL-2.0",
     "zope public 2.1": "ZPL-2.1",
@@ -424,6 +423,7 @@ _DANGLING_TAIL = frozenset({"and", "or", "of", "the", "for", "with", "a", "an", 
 _CURATED_FAMILY_SPELLINGS: Dict[str, str] = {
     "openldap": "open ldap public license",
     "openldap license": "open ldap public license",
+    "w3c software and notice license": "w3c software notice and license",
 }
 
 # An SPDX name usually ends in the version: "Eclipse Public License 1.0", "PHP License
@@ -435,7 +435,7 @@ _CURATED_FAMILY_SPELLINGS: Dict[str, str] = {
 _VERSION_IN_NAME = re.compile(
     r"^(?P<head>.+?)"
     r"(?:[ -]v?\d+(?:\.\d+)*[a-z]?)?"      # 1.0, v2.8, 1.3a
-    r"(?:\s*\(\d{4}-\d{2}-\d{2}\))?$"    # W3C spells the variant as a date
+    r"(?:\s*\([^()]*\))?$"                 # W3C dates it; OLDAP-2.0 qualifies it
 )
 
 
@@ -1546,6 +1546,14 @@ class PolicyDataGenerator:
         # Names that differ only by version: the shared remainder names a family, not a
         # licence. "Eclipse Public License" is EPL-1.0 and EPL-2.0 both, and the trailing
         # "license" word is optional in the wild, so "php" reaches "PHP License" too.
+        # A name SPDX gave to one record in full belongs to that record. MPL-2.0 is
+        # "Mozilla Public License 2.0" and MPL-2.0-no-copyleft-exception qualifies it;
+        # the unqualified string means the unqualified licence and is not a choice. Only
+        # a family name that no single record bears is ambiguous, which is the W3C shape:
+        # both texts carry a date, so nothing owns the bare name.
+        owned = {record.get("name", "").lower() for record in records
+                 if record.get("id") and not record.get("alias_of")}
+
         families: Dict[str, set] = {}
         names: Dict[str, str] = {}
         for record in records:
@@ -1559,6 +1567,8 @@ class PolicyDataGenerator:
             if not head:
                 continue
             names[record["id"]] = record.get("name", "").lower()
+            if head in owned:
+                continue
             families.setdefault(head, set()).add(record["id"])
             # The trailing "license" word is optional in the wild, so "php" reaches
             # "PHP License". Not when dropping it leaves a dangling connective, though:

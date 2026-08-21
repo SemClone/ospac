@@ -38,7 +38,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the same protection with no edit here. A version is not always a number: SPDX
   separates the two W3C texts by date, so a trailing `(1998-07-20)` counts, and a record
   whose whole name is another record's family name joins that family. 112 entries after
-  that, and it also caught Sendmail, SAX-PD and BSD-3-Clause-No-Nuclear.
+  that, and it also caught the LZMA SDK, Unicode DFS and Cryptographic Autonomy
+  families. A name SPDX gave to one record in full belongs to that record, so
+  `mozilla public license 2.0` still resolves to `MPL-2.0` despite
+  `MPL-2.0-no-copyleft-exception` qualifying the same name, while the versionless
+  `mozilla public license` is a choice.
 - `ambiguous` is now decided before `aliases` and wins. The two tables were disjoint
   before only because each filter remembered to exclude the other, which is what let a
   curated alias claim a family name in the first place. Deciding the order once makes
