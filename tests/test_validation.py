@@ -863,6 +863,16 @@ class TestLicenseAliases:
         assert aliases["eclipse public license - v 1.0"] == "EPL-1.0"
         assert aliases["eclipse public license - v 2.0"] == "EPL-2.0"
 
+    def test_spellings_merged_from_the_observed_corpus(self):
+        import ospac
+
+        # Real Maven and PyPI metadata spellings. The consumer normalizing case and
+        # punctuation still cannot invent a mapping that is not in the data.
+        aliases = ospac.license_aliases()
+        assert aliases["apache license, version 2.0"] == "Apache-2.0"
+        assert aliases["3-clause bsd license"] == "BSD-3-Clause"
+        assert aliases["academic free license, version 3"] == "AFL-3.0"
+
     def test_family_names_never_resolve(self):
         import ospac
 
@@ -962,6 +972,31 @@ class TestAmbiguousNames:
         for alias, ids in collisions.items():
             assert ambiguous.get(alias) == ids, (
                 f"'{alias}' is claimed by {ids} and was dropped without a trace")
+
+    def test_corpus_spellings_without_a_grant_stay_a_choice(self):
+        import ospac
+
+        # The source corpus maps these at a single id, and taking that mapping would
+        # assert a grant the string never carried. They are the exact spellings a Maven
+        # POM writes, so being absent is not an option either.
+        aliases = ospac.license_aliases()
+        ambiguous = ospac.license_ambiguous()
+        for spelling in ("gnu general public license, version 2",
+                         "the gnu general public license, version 2",
+                         "gnu lesser general public license, version 2.1",
+                         "gnu lesser general public license (lgpl), version 2.1",
+                         "gnu affero general public license v1.0"):
+            assert spelling not in aliases
+            assert len(ambiguous[spelling]) == 2
+
+    def test_a_stated_grant_still_resolves(self):
+        import ospac
+
+        # The guard is about a missing grant, not about the GNU families as such. A
+        # spelling that does state only or or-later resolves normally.
+        aliases = ospac.license_aliases()
+        assert aliases["gnu general public license v2.0 only"] == "GPL-2.0-only"
+        assert aliases["gnu library general public license v2.1 or later"] == "LGPL-2.1-or-later"
 
     def test_accessor_returns_a_copy(self):
         import ospac

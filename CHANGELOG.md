@@ -9,6 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+**201 observed spellings merged into the alias data**
+- Merged from the open-source-policy-rules corpus of licence strings seen in real Maven,
+  npm and PyPI metadata. 1674 aliases now, up from 1473. `apache license, version 2.0`,
+  `3-clause bsd license` and `academic free license, version 3` are the shape of it:
+  spellings SPDX never publishes and a consumer cannot reach by normalising case and
+  punctuation, because the target simply was not in the data.
+- Four of them were held back from `aliases` and routed to `ambiguous` instead. The
+  corpus maps `gnu lesser general public license, version 2.1` and
+  `gnu general public license, version 2` at a single id; taking that mapping would
+  assert a grant the string never carried. They now resolve to a choice, which closes
+  the last rows of the table in #88.
+- Merged into the generator's curated tables rather than into `aliases.json`, so a
+  dataset regeneration keeps them. Hand-editing the flattened file would have lost the
+  lot on the next `ospac data generate`.
+
 **The dataset owns the ambiguous names** (#89, #88)
 - `ospac.license_ambiguous()` maps text that identifies a license but not which id, to
   the ids it could mean: `"gnu lesser general public license v2.1"` gives

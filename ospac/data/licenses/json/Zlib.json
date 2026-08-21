@@ -52,8 +52,11 @@
       "Attribution required"
     ],
     "aliases": [
+      "the zlib/libpng license",
+      "the zlib/libpng license (zlib)",
       "zlib",
-      "zlib license"
+      "zlib license",
+      "zlib/libpng"
     ],
     "alias_of": null,
     "spdx_metadata": {

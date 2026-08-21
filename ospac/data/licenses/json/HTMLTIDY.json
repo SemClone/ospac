@@ -53,7 +53,9 @@
     ],
     "aliases": [
       "html tidy license",
-      "htmltidy"
+      "htmltidy",
+      "java html - jtidy license",
+      "javahtml/jtidy"
     ],
     "alias_of": null,
     "spdx_metadata": {

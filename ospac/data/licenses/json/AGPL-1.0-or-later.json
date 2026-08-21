@@ -80,7 +80,8 @@
     "aliases": [
       "affero general public license v1.0 or later",
       "agpl-1.0+",
-      "agpl-1.0-or-later"
+      "agpl-1.0-or-later",
+      "gnu affero general public license v1.0 or later"
     ],
     "alias_of": null,
     "spdx_metadata": {
