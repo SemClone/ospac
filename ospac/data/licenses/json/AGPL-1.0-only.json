@@ -81,7 +81,8 @@
     "aliases": [
       "affero general public license v1.0 only",
       "agpl-1.0",
-      "agpl-1.0-only"
+      "agpl-1.0-only",
+      "gnu affero general public license v1.0 only"
     ],
     "alias_of": null,
     "spdx_metadata": {

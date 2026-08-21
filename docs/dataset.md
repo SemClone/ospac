@@ -200,12 +200,16 @@ them so consumers refuse them deliberately rather than each inventing a guess.
 
 Refusing to resolve is not the same as having nothing to say, though. `license_ambiguous()`
 is the middle case: text that identifies a license and not which id, mapped to the ids it
-could mean. The GNU families are the whole of it in practice, because their prose names
+could mean. Two things land there. The GNU families, because their prose names
 carry the version and not the grant: "GNU Lesser General Public License v2.1" is the SPDX
 name of both `LGPL-2.1-only` and `LGPL-2.1-or-later`, and choosing between them asserts
 something the document never said. It is derived rather than curated, from the SPDX names
 with the grant word removed, so an SPDX release that adds a family adds its entries too. The
 colliding aliases land here as well, with their candidates, instead of disappearing.
+And family names, because "Eclipse Public License" is the name of `EPL-1.0` and `EPL-2.0`
+both: an SPDX name with its trailing version removed leaves the family, and a remainder
+two shipped ids share identifies no one licence. That half is derived the same way, so a
+release that adds a second version to a family is covered without an edit.
 A validator reading this can tell a user which distinction is missing rather than report a
 perfectly legible name as unrecognised.
 

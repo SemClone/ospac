@@ -9,6 +9,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+**201 observed spellings merged into the alias data**
+- Merged from the open-source-policy-rules corpus of licence strings seen in real Maven,
+  npm and PyPI metadata. 1674 aliases now, up from 1473. `apache license, version 2.0`,
+  `3-clause bsd license` and `academic free license, version 3` are the shape of it:
+  spellings SPDX never publishes and a consumer cannot reach by normalising case and
+  punctuation, because the target simply was not in the data.
+- Four of them were held back from `aliases` and routed to `ambiguous` instead. The
+  corpus maps `gnu lesser general public license, version 2.1` and
+  `gnu general public license, version 2` at a single id; taking that mapping would
+  assert a grant the string never carried. They now resolve to a choice, which closes
+  the last rows of the table in #88.
+- Merged into the generator's curated tables rather than into `aliases.json`, so a
+  dataset regeneration keeps them. Hand-editing the flattened file would have lost the
+  lot on the next `ospac data generate`.
+
+**A family name no longer resolves to one version**
+- `eclipse public license` resolved to `EPL-1.0` while the dataset also ships `EPL-2.0`,
+  and `php` resolved to `PHP-3.0` against `PHP-3.0` and `PHP-3.01`. The string names the
+  family and not the version, so resolving it fabricated a version the document never
+  stated: the same mistake as resolving a name that does not state the only/or-later
+  grant, one axis over. Three curated aliases were doing it, two of them added by the
+  corpus merge above.
+- Detected from the data rather than listed: an SPDX name with its trailing version
+  removed leaves the family name, and a remainder shared by two shipped ids identifies
+  no one licence. 105 ambiguous entries now, up from 32, covering Apache, Mozilla, EPL,
+  CDDL, OSL, Zope and the rest. A release that adds a second version to a family gets
+  the same protection with no edit here. A version is not always a number: SPDX
+  separates the two W3C texts by date, so a trailing `(1998-07-20)` counts, and a record
+  whose whole name is another record's family name joins that family. 112 entries after
+  that, and it also caught the LZMA SDK, Unicode DFS and Cryptographic Autonomy
+  families. A name SPDX gave to one record in full belongs to that record, so
+  `mozilla public license 2.0` still resolves to `MPL-2.0` despite
+  `MPL-2.0-no-copyleft-exception` qualifying the same name, while the versionless
+  `mozilla public license` is a choice.
+- `ambiguous` is now decided before `aliases` and wins. The two tables were disjoint
+  before only because each filter remembered to exclude the other, which is what let a
+  curated alias claim a family name in the first place. Deciding the order once makes
+  them disjoint by construction.
+- Folk spellings whose family SPDX spells differently carry the family name rather than
+  a list of ids, so `openldap` offers every `OLDAP-*` the dataset currently ships and
+  cannot go stale as that set changes.
+
 **The dataset owns the ambiguous names** (#89, #88)
 - `ospac.license_ambiguous()` maps text that identifies a license but not which id, to
   the ids it could mean: `"gnu lesser general public license v2.1"` gives

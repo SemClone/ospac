@@ -178,6 +178,206 @@ _CURATED_ALIASES: Dict[str, str] = {
     # "- v" form, so no amount of normalizing the input reaches it.
     "eclipse public license - v 1.0": "EPL-1.0",
     "eclipse public license - v 2.0": "EPL-2.0",
+    # Spellings observed in real Maven, npm and PyPI metadata, merged from the
+    # open-source-policy-rules corpus. Each one names exactly one id: strings that name
+    # a family without a version, or a version without the only/or-later grant, were
+    # held back for NEVER_RESOLVE and _CURATED_AMBIGUOUS respectively.
+    "academic free 2.1": "AFL-2.1",
+    "academic free 3.0": "AFL-3.0",
+    "academic free license, version 3": "AFL-3.0",
+    "gnu affero general public license v1.0 only": "AGPL-1.0-only",
+    "gnu affero general public license v1.0 or later": "AGPL-1.0-or-later",
+    "antlr 2": "ANTLR-PD",
+    "apache software license, version 1.1": "Apache-1.1",
+    "apache v1.1": "Apache-1.1",
+    "the apache software license, version 1.1": "Apache-1.1",
+    "the opensymphony software license 1.1": "Apache-1.1",
+    "apache 2 license": "Apache-2.0",
+    "apache 2.0 license": "Apache-2.0",
+    "apache 2.0 software license": "Apache-2.0",
+    "apache license 2": "Apache-2.0",
+    "apache license v2": "Apache-2.0",
+    "apache license v2.0": "Apache-2.0",
+    "apache license version 2": "Apache-2.0",
+    "apache license version 2.0": "Apache-2.0",
+    "apache license, 2.0": "Apache-2.0",
+    "apache license, version 2.0": "Apache-2.0",
+    "apache license, version 2.0 (http://www.apache.org/licenses/license-2.0)": "Apache-2.0",
+    "apache public license 2.0": "Apache-2.0",
+    "apache software license - version 2.0": "Apache-2.0",
+    "apache software license, version 2.0": "Apache-2.0",
+    "apache v2 license": "Apache-2.0",
+    "apache v2.0": "Apache-2.0",
+    "apache version 2.0": "Apache-2.0",
+    "apache, version 2.0": "Apache-2.0",
+    "apache-2": "Apache-2.0",
+    "apache-2.0 license": "Apache-2.0",
+    "apache-2.0.": "Apache-2.0",
+    "apache2.0": "Apache-2.0",
+    "asf 2.0": "Apache-2.0",
+    "http://www.apache.org/licenses/license-2.0": "Apache-2.0",
+    "the apache 2.0 license": "Apache-2.0",
+    "the apache license, asl version 2.0": "Apache-2.0",
+    "the apache license, version 2.0": "Apache-2.0",
+    "the apache software license, version 2.0": "Apache-2.0",
+    "the artistic license 1.0": "Artistic-1.0",
+    "artistic license 1.0(perl)": "Artistic-1.0-Perl",
+    "perl artistic": "Artistic-1.0-Perl",
+    "2-clause bsd": "BSD-2-Clause",
+    "2-clause bsd licence (simplified bsd) licence": "BSD-2-Clause",
+    "2-clause bsd license": "BSD-2-Clause",
+    "bsd (2 clause)": "BSD-2-Clause",
+    "bsd (2-clause)": "BSD-2-Clause",
+    "bsd 2": "BSD-2-Clause",
+    "bsd 2-clause": "BSD-2-Clause",
+    "bsd 2-clause license": "BSD-2-Clause",
+    "bsd 2.0": "BSD-2-Clause",
+    "bsd-2": "BSD-2-Clause",
+    "bsd-2 license": "BSD-2-Clause",
+    "bsd-clause-2": "BSD-2-Clause",
+    "bsd2": "BSD-2-Clause",
+    "simplified bsd": "BSD-2-Clause",
+    "simplified bsd license": "BSD-2-Clause",
+    "the bsd 2-clause license": "BSD-2-Clause",
+    "two clause bsd license": "BSD-2-Clause",
+    "two-clause bsd license": "BSD-2-Clause",
+    "bsd patent": "BSD-2-Clause-Patent",
+    "bsd plus patent": "BSD-2-Clause-Patent",
+    "bsd+patent": "BSD-2-Clause-Patent",
+    "bsd-2-clause patent": "BSD-2-Clause-Patent",
+    "3-clause bsd": "BSD-3-Clause",
+    "3-clause bsd license": "BSD-3-Clause",
+    "bsd (3 clause)": "BSD-3-Clause",
+    "bsd (3 clauses)": "BSD-3-Clause",
+    "bsd (3-clause)": "BSD-3-Clause",
+    "bsd 3 clause": "BSD-3-Clause",
+    "bsd 3-clause": "BSD-3-Clause",
+    "bsd 3-clause \"new\" license": "BSD-3-Clause",
+    "bsd 3-clause \"new\" or \"revised\" license (bsd-3-clause)": "BSD-3-Clause",
+    "bsd 3-clause license": "BSD-3-Clause",
+    "bsd 3-clause new license": "BSD-3-Clause",
+    "bsd 3.0": "BSD-3-Clause",
+    "bsd licence 3": "BSD-3-Clause",
+    "bsd license 3": "BSD-3-Clause",
+    "bsd new": "BSD-3-Clause",
+    "bsd(3-clause)": "BSD-3-Clause",
+    "bsd-3": "BSD-3-Clause",
+    "bsd-new": "BSD-3-Clause",
+    "bsd3": "BSD-3-Clause",
+    "eclipse distribution license (new bsd license)": "BSD-3-Clause",
+    "eclipse distribution license - v 1.0": "BSD-3-Clause",
+    "eclipse distribution license v. 1.0": "BSD-3-Clause",
+    "edl 1.0": "BSD-3-Clause",
+    "new bsd (3-clause) license": "BSD-3-Clause",
+    "new bsd license": "BSD-3-Clause",
+    "the bsd 3-clause license": "BSD-3-Clause",
+    "the bsd 3-clause license (bsd3)": "BSD-3-Clause",
+    "the bsd3 license": "BSD-3-Clause",
+    "three-clause bsd-style": "BSD-3-Clause",
+    "boost": "BSL-1.0",
+    "creative commons attribution 1.0": "CC-BY-1.0",
+    "creative commons attribution 2.0": "CC-BY-2.0",
+    "creative commons attribution 2.5": "CC-BY-2.5",
+    "creative commons attribution 3.0": "CC-BY-3.0",
+    "creative commons attribution 4.0": "CC-BY-4.0",
+    "creative commons attribution non commercial 1.0": "CC-BY-NC-1.0",
+    "creative commons attribution non commercial 2.0": "CC-BY-NC-2.0",
+    "creative commons attribution non commercial 2.5": "CC-BY-NC-2.5",
+    "creative commons attribution non commercial 3.0": "CC-BY-NC-3.0",
+    "creative commons attribution non commercial 4.0": "CC-BY-NC-4.0",
+    "creative commons attribution non commercial no derivatives 1.0": "CC-BY-NC-ND-1.0",
+    "creative commons attribution non commercial no derivatives 2.0": "CC-BY-NC-ND-2.0",
+    "creative commons attribution non commercial no derivatives 2.5": "CC-BY-NC-ND-2.5",
+    "creative commons attribution non commercial no derivatives 3.0": "CC-BY-NC-ND-3.0",
+    "creative commons attribution non commercial no derivatives 4.0": "CC-BY-NC-ND-4.0",
+    "creative commons attribution non commercial share alike 1.0": "CC-BY-NC-SA-1.0",
+    "creative commons attribution non commercial share alike 2.0": "CC-BY-NC-SA-2.0",
+    "creative commons attribution non commercial share alike 2.0 france": "CC-BY-NC-SA-2.0-FR",
+    "creative commons attribution non commercial share alike 2.5": "CC-BY-NC-SA-2.5",
+    "creative commons attribution non commercial share alike 3.0": "CC-BY-NC-SA-3.0",
+    "creative commons attribution non commercial share alike 4.0": "CC-BY-NC-SA-4.0",
+    "creative commons attribution no derivatives 1.0": "CC-BY-ND-1.0",
+    "creative commons attribution no derivatives 2.0": "CC-BY-ND-2.0",
+    "creative commons attribution no derivatives 2.5": "CC-BY-ND-2.5",
+    "creative commons attribution no derivatives 3.0": "CC-BY-ND-3.0",
+    "creative commons attribution no derivatives 4.0": "CC-BY-ND-4.0",
+    "creative commons attribution share alike 1.0": "CC-BY-SA-1.0",
+    "creative commons attribution share alike 2.0": "CC-BY-SA-2.0",
+    "creative commons attribution share alike 2.5": "CC-BY-SA-2.5",
+    "creative commons attribution share alike 3.0": "CC-BY-SA-3.0",
+    "creative commons attribution share alike 4.0": "CC-BY-SA-4.0",
+    "cc0": "CC0-1.0",
+    "cc0 1.0": "CC0-1.0",
+    "cc0 1.0 universal": "CC0-1.0",
+    "creative commons 1.0 universal (public domain dedication)": "CC0-1.0",
+    "cddl 1.0": "CDDL-1.0",
+    "common development and distribution license (cddl) v1.0": "CDDL-1.0",
+    "common development and distribution license (cddl) version 1.0": "CDDL-1.0",
+    "jython": "CNRI-Jython",
+    "jython license": "CNRI-Jython",
+    "common public license version 1.0": "CPL-1.0",
+    "eiffel forum license 2.0": "EFL-2.0",
+    "eclipse public license - version 1.0": "EPL-1.0",
+    "eclipse public license v1.0": "EPL-1.0",
+    "eclipse public license, version 1.0": "EPL-1.0",
+    "the eclipse public license version 1.0": "EPL-1.0",
+    "eclipse public license v. 2.0": "EPL-2.0",
+    "eclipse public license v2.0": "EPL-2.0",
+    "eclipse public license, version 2.0": "EPL-2.0",
+    "the eclipse public license version 2.0": "EPL-2.0",
+    "freetype": "FTL",
+    "gnu general public license, version 2 (gpl2), with the classpath exception": "GPL-2.0-with-classpath-exception",
+    "gnu general public license, version 2 with the gnu classpath exception": "GPL-2.0-with-classpath-exception",
+    "java html - jtidy license": "HTMLTIDY",
+    "javahtml/jtidy": "HTMLTIDY",
+    "unicode/icu license": "ICU",
+    "jpeg license": "IJG",
+    "isc license (iscl)": "ISC",
+    "the json license": "JSON",
+    "latex project public license 1.3a": "LPPL-1.3a",
+    "(mit)": "MIT",
+    "bouncy castle licence": "MIT",
+    "expat license": "MIT",
+    "mit (license)": "MIT",
+    "mit licence": "MIT",
+    "mit(license)": "MIT",
+    "mit/x11": "MIT",
+    "the expat license": "MIT",
+    "the mit license": "MIT",
+    "the mit license (mit)": "MIT",
+    "the mit license: http://www.opensource.org/licenses/mit-license.php": "MIT",
+    "mit no attribution license": "MIT-0",
+    "mozilla public license version 1.0": "MPL-1.0",
+    "mozilla public license 2.0 (mpl 2.0)": "MPL-2.0",
+    "mozilla public license v. 2.0": "MPL-2.0",
+    "mozilla public license version 2.0": "MPL-2.0",
+    "mozilla public license, version 2.0": "MPL-2.0",
+    "mplv2": "MPL-2.0",
+    "microsoft public": "MS-PL",
+    "miros licence": "MirOS",
+    "the university of illinois/ncsa open source license (ncsa)": "NCSA",
+    "university of illinois/ncsa": "NCSA",
+    "odc open database license v1.0": "ODbL-1.0",
+    "odc public domain dedication & license 1.0": "PDDL-1.0",
+    "pddl (public domain dedication and license)": "PDDL-1.0",
+    "psf": "PSF-2.0",
+    "psf 2.0": "PSF-2.0",
+    "psf license": "PSF-2.0",
+    "psfl": "PSF-2.0",
+    "psfl 2": "PSF-2.0",
+    "python software foundation license": "PSF-2.0",
+    "tcl/tk": "TCL",
+    "universal permissive license v 1.0": "UPL-1.0",
+    "universal permissive license version 1.0": "UPL-1.0",
+    "universal permissive license, version 1.0": "UPL-1.0",
+    "zpl 1.1": "ZPL-1.1",
+    "zpl 2.0": "ZPL-2.0",
+    "zope public 2.1": "ZPL-2.1",
+    "zpl 2.1": "ZPL-2.1",
+    "the zlib/libpng license": "Zlib",
+    "the zlib/libpng license (zlib)": "Zlib",
+    "zlib/libpng": "Zlib",
+    "gnu library general public license v2.1 or later": "LGPL-2.1-or-later",
 }
 
 
@@ -195,6 +395,15 @@ _CURATED_AMBIGUOUS: Dict[str, List[str]] = {
     "lgplv3": ["LGPL-3.0-only", "LGPL-3.0-or-later"],
     "agplv1": ["AGPL-1.0-only", "AGPL-1.0-or-later"],
     "agplv3": ["AGPL-3.0-only", "AGPL-3.0-or-later"],
+    # Prose spellings from the same corpus that state a version and not the grant. The
+    # corpus maps them at a single id; taking that mapping would assert a grant the
+    # document never carried, so they resolve to a choice here instead.
+    "gnu affero general public license v1.0": ["AGPL-1.0-only", "AGPL-1.0-or-later"],
+    "gnu general public license, version 2": ["GPL-2.0-only", "GPL-2.0-or-later"],
+    "the gnu general public license, version 2": ["GPL-2.0-only", "GPL-2.0-or-later"],
+    "gnu lesser general public license (lgpl) version 2.1": ["LGPL-2.1-only", "LGPL-2.1-or-later"],
+    "gnu lesser general public license (lgpl), version 2.1": ["LGPL-2.1-only", "LGPL-2.1-or-later"],
+    "gnu lesser general public license, version 2.1": ["LGPL-2.1-only", "LGPL-2.1-or-later"],
 }
 
 # An SPDX name carries the grant as a word inside it: "GNU Lesser General Public License
@@ -202,6 +411,32 @@ _CURATED_AMBIGUOUS: Dict[str, List[str]] = {
 # invariants". Removing that word leaves the name a real document writes, which is the
 # spelling that identifies the license and the version and still is not an identifier.
 _GRANT_IN_NAME = re.compile(r"^(?P<head>.+?) (?:only|or later)(?P<tail>.*)$")
+
+# Words that leave a phrase unfinished when the trailing "license" is dropped from a
+# name. Purely cosmetic: such a key would never be looked up, but it reads as a bug.
+_DANGLING_TAIL = frozenset({"and", "or", "of", "the", "for", "with", "a", "an", "to"})
+
+# Folk spellings that mean a family whose SPDX name is spelled differently. "openldap"
+# is one word and SPDX writes "Open LDAP Public License", so the derivation below cannot
+# reach it from the names alone. The value is the family, not a list of ids, so the
+# candidates stay whatever that family currently ships.
+_CURATED_FAMILY_SPELLINGS: Dict[str, str] = {
+    "openldap": "open ldap public license",
+    "openldap license": "open ldap public license",
+    "w3c software and notice license": "w3c software notice and license",
+}
+
+# An SPDX name usually ends in the version: "Eclipse Public License 1.0", "PHP License
+# v3.0", "Open LDAP Public License v2.8". Remove it and what is left names the family.
+# When two shipped ids share that remainder, the remainder identifies no one licence, and
+# an alias table that resolved it would pick a version the string never stated. This is
+# the version-shaped twin of _GRANT_IN_NAME, and it is derived for the same reason: an
+# SPDX release that adds a second version to a family must not need an edit here.
+_VERSION_IN_NAME = re.compile(
+    r"^(?P<head>.+?)"
+    r"(?:[ -]v?\d+(?:\.\d+)*[a-z]?)?"      # 1.0, v2.8, 1.3a
+    r"(?:\s*\([^()]*\))?$"                 # W3C dates it; OLDAP-2.0 qualifies it
+)
 
 
 def _deprecated_spellings(license_id: str) -> List[str]:
@@ -1308,6 +1543,54 @@ class PolicyDataGenerator:
                 key = f"{match.group('head')}{match.group('tail')}"
                 candidates.setdefault(key, set()).add(record["id"])
 
+        # Names that differ only by version: the shared remainder names a family, not a
+        # licence. "Eclipse Public License" is EPL-1.0 and EPL-2.0 both, and the trailing
+        # "license" word is optional in the wild, so "php" reaches "PHP License" too.
+        # A name SPDX gave to one record in full belongs to that record. MPL-2.0 is
+        # "Mozilla Public License 2.0" and MPL-2.0-no-copyleft-exception qualifies it;
+        # the unqualified string means the unqualified licence and is not a choice. Only
+        # a family name that no single record bears is ambiguous, which is the W3C shape:
+        # both texts carry a date, so nothing owns the bare name.
+        owned = {record.get("name", "").lower() for record in records
+                 if record.get("id") and not record.get("alias_of")}
+
+        families: Dict[str, set] = {}
+        names: Dict[str, str] = {}
+        for record in records:
+            if not record.get("id") or record.get("alias_of"):
+                continue
+            match = _VERSION_IN_NAME.match(record.get("name", "").lower())
+            if not match:
+                continue
+            # "Mulan Permissive Software License, Version 1" leaves ", Version" behind.
+            head = re.sub(r"[,\s]+(?:version|v)$", "", match.group("head")).strip(" ,-")
+            if not head:
+                continue
+            names[record["id"]] = record.get("name", "").lower()
+            if head in owned:
+                continue
+            families.setdefault(head, set()).add(record["id"])
+            # The trailing "license" word is optional in the wild, so "php" reaches
+            # "PHP License". Not when dropping it leaves a dangling connective, though:
+            # "W3C Software Notice and License" would give "w3c software notice and".
+            if head.endswith(" license"):
+                short = head[: -len(" license")]
+                if short.rsplit(" ", 1)[-1] not in _DANGLING_TAIL:
+                    families.setdefault(short, set()).add(record["id"])
+        for license_id, name in names.items():
+            if name in families:
+                families[name].add(license_id)
+
+        for head, ids in families.items():
+            if len(ids) > 1:
+                candidates.setdefault(head, set()).update(ids)
+        for spelling, head in _CURATED_FAMILY_SPELLINGS.items():
+            ids = families.get(head, set())
+            if len(ids) > 1:
+                candidates.setdefault(spelling, set()).update(ids)
+            else:
+                logger.warning(f"Family spelling '{spelling}' names no family: {head!r}")
+
         for alias, ids in owners.items():
             if len(ids) > 1:
                 candidates.setdefault(alias, set()).update(ids)
@@ -1320,9 +1603,8 @@ class PolicyDataGenerator:
                 continue
             candidates.setdefault(key, set()).update(ids)
 
-        resolved = {a for a, ids in owners.items() if len(ids) == 1}
         return {key: sorted(ids) for key, ids in sorted(candidates.items())
-                if len(ids) > 1 and key not in resolved and key not in NEVER_RESOLVE}
+                if len(ids) > 1 and key not in NEVER_RESOLVE}
 
     def _write_aliases_file(self, spdx_version: str = "") -> None:
         """
@@ -1351,9 +1633,14 @@ class PolicyDataGenerator:
             for alias in record.get("aliases", []):
                 owners.setdefault(alias, set()).add(record["id"])
 
-        aliases = {a: next(iter(ids)) for a, ids in sorted(owners.items())
-                   if len(ids) == 1}
+        # Ambiguity is decided first and wins. A curated alias can name a family by
+        # accident ("eclipse public license" for EPL-1.0), and the alias table is the
+        # wrong place to discover that: resolving it picks a version the string never
+        # stated. Deciding the order here also makes the two tables disjoint by
+        # construction rather than by each filter remembering to exclude the other.
         ambiguous = self._derive_ambiguous(records, owners)
+        aliases = {a: next(iter(ids)) for a, ids in sorted(owners.items())
+                   if len(ids) == 1 and a not in ambiguous}
 
         payload = {
             "version": DATA_SCHEMA_VERSION,

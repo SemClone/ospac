@@ -51,9 +51,20 @@
       "Attribution required"
     ],
     "aliases": [
+      "(mit)",
+      "bouncy castle licence",
       "expat",
+      "expat license",
       "mit",
-      "mit license"
+      "mit (license)",
+      "mit licence",
+      "mit license",
+      "mit(license)",
+      "mit/x11",
+      "the expat license",
+      "the mit license",
+      "the mit license (mit)",
+      "the mit license: http://www.opensource.org/licenses/mit-license.php"
     ],
     "alias_of": null,
     "spdx_metadata": {

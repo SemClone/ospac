@@ -52,6 +52,7 @@
     ],
     "aliases": [
       "tcl",
+      "tcl/tk",
       "tcl/tk license"
     ],
     "alias_of": null,
