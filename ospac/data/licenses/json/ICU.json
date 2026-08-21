@@ -52,7 +52,8 @@
     ],
     "aliases": [
       "icu",
-      "icu license"
+      "icu license",
+      "unicode/icu license"
     ],
     "alias_of": null,
     "spdx_metadata": {

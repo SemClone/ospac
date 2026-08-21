@@ -53,7 +53,9 @@
     ],
     "aliases": [
       "artistic license 1.0 (perl)",
-      "artistic-1.0-perl"
+      "artistic license 1.0(perl)",
+      "artistic-1.0-perl",
+      "perl artistic"
     ],
     "alias_of": null,
     "spdx_metadata": {

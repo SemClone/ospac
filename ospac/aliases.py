@@ -9,7 +9,7 @@ data lives here and travels with the dataset.
 
 import json
 from pathlib import Path
-from typing import Dict, Set
+from typing import Dict, List, Set
 
 _ALIASES_FILE = Path(__file__).parent / "data" / "aliases.json"
 
@@ -30,6 +30,21 @@ def license_aliases() -> Dict[str, str]:
     is absent. Look up with your input lowercased.
     """
     return dict(_payload()["aliases"])
+
+
+def license_ambiguous() -> Dict[str, List[str]]:
+    """
+    Lowercased text that names a license but not which id, to its candidate ids.
+
+    "gnu lesser general public license v2.1" names the license and the version and is
+    still not an identifier, because -only versus -or-later is the copyright holder's
+    grant and the license's own name does not carry it. Resolving it either way asserts
+    something the document never said. These are absent from license_aliases() for that
+    reason; here a caller can report which distinction is missing instead of reporting a
+    perfectly legible name as unrecognised. Every candidate list has at least two ids.
+    Look up with your input lowercased.
+    """
+    return {name: list(ids) for name, ids in _payload()["ambiguous"].items()}
 
 
 def license_never_resolve() -> Set[str]:

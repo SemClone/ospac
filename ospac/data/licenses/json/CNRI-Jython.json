@@ -53,7 +53,9 @@
     ],
     "aliases": [
       "cnri jython license",
-      "cnri-jython"
+      "cnri-jython",
+      "jython",
+      "jython license"
     ],
     "alias_of": null,
     "spdx_metadata": {

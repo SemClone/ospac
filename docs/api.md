@@ -14,8 +14,8 @@ and looks up license data.
 from ospac import PolicyRuntime, License, Policy, ComplianceResult
 ```
 
-Those four names, plus `license_aliases`, `license_never_resolve` and `data_version`
-below, are ospac's public surface. `ospac.__all__` is the authoritative list and also
+Those four names, plus `license_aliases`, `license_ambiguous`, `license_never_resolve`
+and `data_version` below, are ospac's public surface. `ospac.__all__` is the authoritative list and also
 carries `DataVersion`, the return type of `data_version()`, and the
 `DATA_SCHEMA_VERSION` constant. Anything under `ospac.pipeline` is dataset-generation
 machinery, not an API to build on.
@@ -172,20 +172,33 @@ Where ospac reads license data from. Pass a path to override.
 > # ['Retain copyright notices', 'Include license text']
 > ```
 
-## license_aliases and license_never_resolve
+## license_aliases, license_ambiguous and license_never_resolve
 
 ```python
 import ospac
 
 ospac.license_aliases()          # {"expat": "MIT", "apache2": "Apache-2.0", ...}
+ospac.license_ambiguous()        # {"gplv3": ["GPL-3.0-only", "GPL-3.0-or-later"], ...}
 ospac.license_never_resolve()    # {"gpl", "lgpl", "agpl", "bsd", "apache", "public domain"}
 ```
 
-The alias map is lowercased alias to SPDX id, flattened from the records; look up with
-your input lowercased. The never-resolve set is family names that must not map to any
-one license, because resolving them fabricates a version the document never stated.
-Tools normalizing declared licenses should consume these instead of curating their own
-tables. See [The dataset]({{ site.baseurl }}/dataset/#aliases).
+Three answers a declared license string can get, and every key is lowercased, so lowercase
+your input before looking it up. No string appears in more than one of them.
+
+The alias map is lowercased alias to SPDX id, flattened from the records.
+
+The ambiguous map is text that identifies a license but not which id, mapped to the ids it
+could mean. `gnu lesser general public license v2.1` states the license and the version and
+is still not an identifier: only versus or-later is the copyright holder's grant. Report the
+missing distinction rather than picking one, which is why these are absent from
+`license_aliases()`.
+
+The never-resolve set is family names that must not map to any one license and have no
+candidates to offer, because resolving them fabricates a version the document never stated.
+
+Tools normalizing declared licenses should consume all three instead of curating their own
+tables. `ospac data aliases` prints the same three from the command line. See
+[The dataset]({{ site.baseurl }}/dataset/#aliases).
 
 ## data_version
 
@@ -195,8 +208,8 @@ What the bundled dataset says about itself, without parsing `index.json` by hand
 import ospac
 
 info = ospac.data_version()
-info.schema_version        # '1.0.0'   shape of the shipped files
-info.schema_version_info   # (1, 0, 0) compare on this, not on the string
+info.schema_version        # '1.1.0'   shape of the shipped files
+info.schema_version_info   # (1, 1, 0) compare on this, not on the string
 info.spdx_list_version     # 'e4c1f27' upstream SPDX revision
 info.generated             # '2026-08-12T09:45:09.769222'
 info.total_licenses        # 733

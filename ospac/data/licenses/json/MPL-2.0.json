@@ -68,7 +68,12 @@
     ],
     "aliases": [
       "mozilla public license 2.0",
-      "mpl-2.0"
+      "mozilla public license 2.0 (mpl 2.0)",
+      "mozilla public license v. 2.0",
+      "mozilla public license version 2.0",
+      "mozilla public license, version 2.0",
+      "mpl-2.0",
+      "mplv2"
     ],
     "alias_of": null,
     "spdx_metadata": {

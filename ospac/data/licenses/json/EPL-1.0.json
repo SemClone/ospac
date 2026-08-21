@@ -66,8 +66,13 @@
       "Modifications to covered files must stay open-source"
     ],
     "aliases": [
+      "eclipse public license - v 1.0",
+      "eclipse public license - version 1.0",
       "eclipse public license 1.0",
-      "epl-1.0"
+      "eclipse public license v1.0",
+      "eclipse public license, version 1.0",
+      "epl-1.0",
+      "the eclipse public license version 1.0"
     ],
     "alias_of": null,
     "spdx_metadata": {

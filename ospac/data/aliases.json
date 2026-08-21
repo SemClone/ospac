@@ -1,19 +1,28 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "spdx_list_version": "e4c1f27",
   "aliases": {
+    "(mit)": "MIT",
     "0bsd": "0BSD",
+    "2-clause bsd": "BSD-2-Clause",
+    "2-clause bsd licence (simplified bsd) licence": "BSD-2-Clause",
+    "2-clause bsd license": "BSD-2-Clause",
+    "3-clause bsd": "BSD-3-Clause",
+    "3-clause bsd license": "BSD-3-Clause",
     "3d slicer license v1.0": "3D-Slicer-1.0",
     "3d-slicer-1.0": "3D-Slicer-1.0",
     "3dfx glide license": "Glide",
     "aal": "AAL",
     "abstyles": "Abstyles",
     "abstyles license": "Abstyles",
+    "academic free 2.1": "AFL-2.1",
+    "academic free 3.0": "AFL-3.0",
     "academic free license v1.1": "AFL-1.1",
     "academic free license v1.2": "AFL-1.2",
     "academic free license v2.0": "AFL-2.0",
     "academic free license v2.1": "AFL-2.1",
     "academic free license v3.0": "AFL-3.0",
+    "academic free license, version 3": "AFL-3.0",
     "academy of motion picture arts and sciences bsd": "AMPAS",
     "adacore doc license": "AdaCore-doc",
     "adacore-doc": "AdaCore-doc",
@@ -60,6 +69,7 @@
     "aml glslang variant license": "AML-glslang",
     "aml-glslang": "AML-glslang",
     "ampas": "AMPAS",
+    "antlr 2": "ANTLR-PD",
     "antlr software rights notice": "ANTLR-PD",
     "antlr software rights notice with license fallback": "ANTLR-PD-fallback",
     "antlr-pd": "ANTLR-PD",
@@ -69,16 +79,40 @@
     "any-osi": "any-OSI",
     "any-osi-perl-modules": "any-OSI-perl-modules",
     "apache 2": "Apache-2.0",
+    "apache 2 license": "Apache-2.0",
     "apache 2.0": "Apache-2.0",
+    "apache 2.0 license": "Apache-2.0",
+    "apache 2.0 software license": "Apache-2.0",
     "apache license 1.0": "Apache-1.0",
     "apache license 1.1": "Apache-1.1",
+    "apache license 2": "Apache-2.0",
     "apache license 2.0": "Apache-2.0",
+    "apache license v2": "Apache-2.0",
+    "apache license v2.0": "Apache-2.0",
+    "apache license version 2": "Apache-2.0",
+    "apache license version 2.0": "Apache-2.0",
+    "apache license, 2.0": "Apache-2.0",
+    "apache license, version 2.0": "Apache-2.0",
+    "apache license, version 2.0 (http://www.apache.org/licenses/license-2.0)": "Apache-2.0",
+    "apache public license 2.0": "Apache-2.0",
+    "apache software license - version 2.0": "Apache-2.0",
     "apache software license 2.0": "Apache-2.0",
+    "apache software license, version 1.1": "Apache-1.1",
+    "apache software license, version 2.0": "Apache-2.0",
+    "apache v1.1": "Apache-1.1",
     "apache v2": "Apache-2.0",
+    "apache v2 license": "Apache-2.0",
+    "apache v2.0": "Apache-2.0",
+    "apache version 2.0": "Apache-2.0",
+    "apache, version 2.0": "Apache-2.0",
     "apache-1.0": "Apache-1.0",
     "apache-1.1": "Apache-1.1",
+    "apache-2": "Apache-2.0",
     "apache-2.0": "Apache-2.0",
+    "apache-2.0 license": "Apache-2.0",
+    "apache-2.0.": "Apache-2.0",
     "apache2": "Apache-2.0",
+    "apache2.0": "Apache-2.0",
     "apafml": "APAFML",
     "apl-1.0": "APL-1.0",
     "app-s2p": "App-s2p",
@@ -98,12 +132,14 @@
     "artistic license 1.0 (dist)": "Artistic-dist",
     "artistic license 1.0 (perl)": "Artistic-1.0-Perl",
     "artistic license 1.0 w/clause 8": "Artistic-1.0-cl8",
+    "artistic license 1.0(perl)": "Artistic-1.0-Perl",
     "artistic license 2.0": "Artistic-2.0",
     "artistic-1.0": "Artistic-1.0",
     "artistic-1.0-cl8": "Artistic-1.0-cl8",
     "artistic-1.0-perl": "Artistic-1.0-Perl",
     "artistic-2.0": "Artistic-2.0",
     "artistic-dist": "Artistic-dist",
+    "asf 2.0": "Apache-2.0",
     "aspell russian license": "Aspell-RU",
     "aspell-ru": "Aspell-RU",
     "aswf digital assets license 1.1": "ASWF-Digital-Assets-1.1",
@@ -139,28 +175,45 @@
     "boehm-gc": "Boehm-GC",
     "boehm-gc-without-fee": "Boehm-GC-without-fee",
     "bola-1.1": "BOLA-1.1",
+    "boost": "BSL-1.0",
     "boost software license 1.0": "BSL-1.0",
     "borceux": "Borceux",
     "borceux license": "Borceux",
+    "bouncy castle licence": "MIT",
     "brian gladman 2-clause license": "Brian-Gladman-2-Clause",
     "brian gladman 3-clause license": "Brian-Gladman-3-Clause",
     "brian gladman 3-clause license (no conversion clause)": "Brian-Gladman-3-Clause-no-conversion",
     "brian-gladman-2-clause": "Brian-Gladman-2-Clause",
     "brian-gladman-3-clause": "Brian-Gladman-3-Clause",
     "brian-gladman-3-clause-no-conversion": "Brian-Gladman-3-Clause-no-conversion",
+    "bsd (2 clause)": "BSD-2-Clause",
+    "bsd (2-clause)": "BSD-2-Clause",
+    "bsd (3 clause)": "BSD-3-Clause",
+    "bsd (3 clauses)": "BSD-3-Clause",
+    "bsd (3-clause)": "BSD-3-Clause",
     "bsd 1-clause license": "BSD-1-Clause",
+    "bsd 2": "BSD-2-Clause",
+    "bsd 2-clause": "BSD-2-Clause",
     "bsd 2-clause \"simplified\" license": "BSD-2-Clause",
     "bsd 2-clause - first lines requirement": "BSD-2-Clause-first-lines",
     "bsd 2-clause - ian darwin variant": "BSD-2-Clause-Darwin",
     "bsd 2-clause freebsd license": "BSD-2-Clause-FreeBSD",
+    "bsd 2-clause license": "BSD-2-Clause",
     "bsd 2-clause netbsd license": "BSD-2-Clause-NetBSD",
     "bsd 2-clause pkgconf disclaimer variant": "BSD-2-Clause-pkgconf-disclaimer",
     "bsd 2-clause with views sentence": "BSD-2-Clause-Views",
+    "bsd 2.0": "BSD-2-Clause",
+    "bsd 3 clause": "BSD-3-Clause",
+    "bsd 3-clause": "BSD-3-Clause",
+    "bsd 3-clause \"new\" license": "BSD-3-Clause",
     "bsd 3-clause \"new\" or \"revised\" license": "BSD-3-Clause",
+    "bsd 3-clause \"new\" or \"revised\" license (bsd-3-clause)": "BSD-3-Clause",
     "bsd 3-clause acpica variant": "BSD-3-Clause-acpica",
     "bsd 3-clause clear license": "BSD-3-Clause-Clear",
     "bsd 3-clause flex variant": "BSD-3-Clause-flex",
+    "bsd 3-clause license": "BSD-3-Clause",
     "bsd 3-clause modification": "BSD-3-Clause-Modification",
+    "bsd 3-clause new license": "BSD-3-Clause",
     "bsd 3-clause no military license": "BSD-3-Clause-No-Military-License",
     "bsd 3-clause no nuclear license": "BSD-3-Clause-No-Nuclear-License",
     "bsd 3-clause no nuclear license 2014": "BSD-3-Clause-No-Nuclear-License-2014",
@@ -168,20 +221,31 @@
     "bsd 3-clause open mpi variant": "BSD-3-Clause-Open-MPI",
     "bsd 3-clause sun microsystems": "BSD-3-Clause-Sun",
     "bsd 3-clause tso variant": "BSD-3-Clause-Tso",
+    "bsd 3.0": "BSD-3-Clause",
     "bsd 4 clause shortened": "BSD-4-Clause-Shortened",
     "bsd 4-clause \"original\" or \"old\" license": "BSD-4-Clause",
     "bsd 4.3 reno license": "BSD-4.3RENO",
     "bsd 4.3 tahoe license": "BSD-4.3TAHOE",
     "bsd advertising acknowledgement license": "BSD-Advertising-Acknowledgement",
+    "bsd licence 3": "BSD-3-Clause",
+    "bsd license 3": "BSD-3-Clause",
     "bsd mark modifications license": "BSD-Mark-Modifications",
+    "bsd new": "BSD-3-Clause",
+    "bsd patent": "BSD-2-Clause-Patent",
+    "bsd plus patent": "BSD-2-Clause-Patent",
     "bsd protection license": "BSD-Protection",
     "bsd source code attribution": "BSD-Source-Code",
     "bsd source code attribution - beginning of file variant": "BSD-Source-beginning-file",
     "bsd with attribution": "BSD-3-Clause-Attribution",
     "bsd with attribution and hpnd disclaimer": "BSD-Attribution-HPND-disclaimer",
     "bsd zero clause license": "0BSD",
+    "bsd(3-clause)": "BSD-3-Clause",
+    "bsd+patent": "BSD-2-Clause-Patent",
     "bsd-1-clause": "BSD-1-Clause",
+    "bsd-2": "BSD-2-Clause",
+    "bsd-2 license": "BSD-2-Clause",
     "bsd-2-clause": "BSD-2-Clause",
+    "bsd-2-clause patent": "BSD-2-Clause-Patent",
     "bsd-2-clause plus patent license": "BSD-2-Clause-Patent",
     "bsd-2-clause-darwin": "BSD-2-Clause-Darwin",
     "bsd-2-clause-first-lines": "BSD-2-Clause-first-lines",
@@ -190,6 +254,7 @@
     "bsd-2-clause-patent": "BSD-2-Clause-Patent",
     "bsd-2-clause-pkgconf-disclaimer": "BSD-2-Clause-pkgconf-disclaimer",
     "bsd-2-clause-views": "BSD-2-Clause-Views",
+    "bsd-3": "BSD-3-Clause",
     "bsd-3-clause": "BSD-3-Clause",
     "bsd-3-clause-acpica": "BSD-3-Clause-acpica",
     "bsd-3-clause-attribution": "BSD-3-Clause-Attribution",
@@ -213,13 +278,17 @@
     "bsd-4.3tahoe": "BSD-4.3TAHOE",
     "bsd-advertising-acknowledgement": "BSD-Advertising-Acknowledgement",
     "bsd-attribution-hpnd-disclaimer": "BSD-Attribution-HPND-disclaimer",
+    "bsd-clause-2": "BSD-2-Clause",
     "bsd-inferno-nettverk": "BSD-Inferno-Nettverk",
     "bsd-mark-modifications": "BSD-Mark-Modifications",
+    "bsd-new": "BSD-3-Clause",
     "bsd-protection": "BSD-Protection",
     "bsd-source-beginning-file": "BSD-Source-beginning-file",
     "bsd-source-code": "BSD-Source-Code",
     "bsd-systemics": "BSD-Systemics",
     "bsd-systemics-w3works": "BSD-Systemics-W3Works",
+    "bsd2": "BSD-2-Clause",
+    "bsd3": "BSD-3-Clause",
     "bsl-1.0": "BSL-1.0",
     "buddy": "Buddy",
     "buddy license": "Buddy",
@@ -298,7 +367,11 @@
     "cc-pddc": "CC-PDDC",
     "cc-pdm-1.0": "CC-PDM-1.0",
     "cc-sa-1.0": "CC-SA-1.0",
+    "cc0": "CC0-1.0",
+    "cc0 1.0": "CC0-1.0",
+    "cc0 1.0 universal": "CC0-1.0",
     "cc0-1.0": "CC0-1.0",
+    "cddl 1.0": "CDDL-1.0",
     "cddl-1.0": "CDDL-1.0",
     "cddl-1.1": "CDDL-1.1",
     "cdl-1.0": "CDL-1.0",
@@ -351,12 +424,15 @@
     "code project open license 1.02": "CPOL-1.02",
     "coil-1.0": "COIL-1.0",
     "common attack    pattern enumeration and classification license": "CAPEC-tou",
+    "common development and distribution license (cddl) v1.0": "CDDL-1.0",
+    "common development and distribution license (cddl) version 1.0": "CDDL-1.0",
     "common development and distribution license 1.0": "CDDL-1.0",
     "common development and distribution license 1.1": "CDDL-1.1",
     "common documentation license 1.0": "CDL-1.0",
     "common lisp loop license": "LOOP",
     "common public attribution license 1.0": "CPAL-1.0",
     "common public license 1.0": "CPL-1.0",
+    "common public license version 1.0": "CPL-1.0",
     "common vulnerability enumeration tou license": "cve-tou",
     "community data license agreement permissive 1.0": "CDLA-Permissive-1.0",
     "community data license agreement permissive 2.0": "CDLA-Permissive-2.0",
@@ -378,10 +454,15 @@
     "cpl-1.0": "CPL-1.0",
     "cpol-1.02": "CPOL-1.02",
     "creative    commons public domain mark 1.0 universal": "CC-PDM-1.0",
+    "creative commons 1.0 universal (public domain dedication)": "CC0-1.0",
+    "creative commons attribution 1.0": "CC-BY-1.0",
     "creative commons attribution 1.0 generic": "CC-BY-1.0",
+    "creative commons attribution 2.0": "CC-BY-2.0",
     "creative commons attribution 2.0 generic": "CC-BY-2.0",
+    "creative commons attribution 2.5": "CC-BY-2.5",
     "creative commons attribution 2.5 australia": "CC-BY-2.5-AU",
     "creative commons attribution 2.5 generic": "CC-BY-2.5",
+    "creative commons attribution 3.0": "CC-BY-3.0",
     "creative commons attribution 3.0 australia": "CC-BY-3.0-AU",
     "creative commons attribution 3.0 austria": "CC-BY-3.0-AT",
     "creative commons attribution 3.0 germany": "CC-BY-3.0-DE",
@@ -389,44 +470,71 @@
     "creative commons attribution 3.0 netherlands": "CC-BY-3.0-NL",
     "creative commons attribution 3.0 united states": "CC-BY-3.0-US",
     "creative commons attribution 3.0 unported": "CC-BY-3.0",
+    "creative commons attribution 4.0": "CC-BY-4.0",
     "creative commons attribution 4.0 international": "CC-BY-4.0",
+    "creative commons attribution no derivatives 1.0": "CC-BY-ND-1.0",
     "creative commons attribution no derivatives 1.0 generic": "CC-BY-ND-1.0",
+    "creative commons attribution no derivatives 2.0": "CC-BY-ND-2.0",
     "creative commons attribution no derivatives 2.0 generic": "CC-BY-ND-2.0",
+    "creative commons attribution no derivatives 2.5": "CC-BY-ND-2.5",
     "creative commons attribution no derivatives 2.5 generic": "CC-BY-ND-2.5",
+    "creative commons attribution no derivatives 3.0": "CC-BY-ND-3.0",
     "creative commons attribution no derivatives 3.0 germany": "CC-BY-ND-3.0-DE",
     "creative commons attribution no derivatives 3.0 unported": "CC-BY-ND-3.0",
+    "creative commons attribution no derivatives 4.0": "CC-BY-ND-4.0",
     "creative commons attribution no derivatives 4.0 international": "CC-BY-ND-4.0",
+    "creative commons attribution non commercial 1.0": "CC-BY-NC-1.0",
     "creative commons attribution non commercial 1.0 generic": "CC-BY-NC-1.0",
+    "creative commons attribution non commercial 2.0": "CC-BY-NC-2.0",
     "creative commons attribution non commercial 2.0 generic": "CC-BY-NC-2.0",
+    "creative commons attribution non commercial 2.5": "CC-BY-NC-2.5",
     "creative commons attribution non commercial 2.5 generic": "CC-BY-NC-2.5",
+    "creative commons attribution non commercial 3.0": "CC-BY-NC-3.0",
     "creative commons attribution non commercial 3.0 germany": "CC-BY-NC-3.0-DE",
     "creative commons attribution non commercial 3.0 igo": "CC-BY-NC-3.0-IGO",
     "creative commons attribution non commercial 3.0 unported": "CC-BY-NC-3.0",
+    "creative commons attribution non commercial 4.0": "CC-BY-NC-4.0",
     "creative commons attribution non commercial 4.0 international": "CC-BY-NC-4.0",
+    "creative commons attribution non commercial no derivatives 1.0": "CC-BY-NC-ND-1.0",
     "creative commons attribution non commercial no derivatives 1.0 generic": "CC-BY-NC-ND-1.0",
+    "creative commons attribution non commercial no derivatives 2.0": "CC-BY-NC-ND-2.0",
     "creative commons attribution non commercial no derivatives 2.0 generic": "CC-BY-NC-ND-2.0",
+    "creative commons attribution non commercial no derivatives 2.5": "CC-BY-NC-ND-2.5",
     "creative commons attribution non commercial no derivatives 2.5 generic": "CC-BY-NC-ND-2.5",
+    "creative commons attribution non commercial no derivatives 3.0": "CC-BY-NC-ND-3.0",
     "creative commons attribution non commercial no derivatives 3.0 germany": "CC-BY-NC-ND-3.0-DE",
     "creative commons attribution non commercial no derivatives 3.0 igo": "CC-BY-NC-ND-3.0-IGO",
     "creative commons attribution non commercial no derivatives 3.0 unported": "CC-BY-NC-ND-3.0",
+    "creative commons attribution non commercial no derivatives 4.0": "CC-BY-NC-ND-4.0",
     "creative commons attribution non commercial no derivatives 4.0 international": "CC-BY-NC-ND-4.0",
+    "creative commons attribution non commercial share alike 1.0": "CC-BY-NC-SA-1.0",
     "creative commons attribution non commercial share alike 1.0 generic": "CC-BY-NC-SA-1.0",
+    "creative commons attribution non commercial share alike 2.0": "CC-BY-NC-SA-2.0",
     "creative commons attribution non commercial share alike 2.0 england and wales": "CC-BY-NC-SA-2.0-UK",
+    "creative commons attribution non commercial share alike 2.0 france": "CC-BY-NC-SA-2.0-FR",
     "creative commons attribution non commercial share alike 2.0 generic": "CC-BY-NC-SA-2.0",
     "creative commons attribution non commercial share alike 2.0 germany": "CC-BY-NC-SA-2.0-DE",
+    "creative commons attribution non commercial share alike 2.5": "CC-BY-NC-SA-2.5",
     "creative commons attribution non commercial share alike 2.5 generic": "CC-BY-NC-SA-2.5",
+    "creative commons attribution non commercial share alike 3.0": "CC-BY-NC-SA-3.0",
     "creative commons attribution non commercial share alike 3.0 germany": "CC-BY-NC-SA-3.0-DE",
     "creative commons attribution non commercial share alike 3.0 igo": "CC-BY-NC-SA-3.0-IGO",
     "creative commons attribution non commercial share alike 3.0 unported": "CC-BY-NC-SA-3.0",
+    "creative commons attribution non commercial share alike 4.0": "CC-BY-NC-SA-4.0",
     "creative commons attribution non commercial share alike 4.0 international": "CC-BY-NC-SA-4.0",
+    "creative commons attribution share alike 1.0": "CC-BY-SA-1.0",
     "creative commons attribution share alike 1.0 generic": "CC-BY-SA-1.0",
+    "creative commons attribution share alike 2.0": "CC-BY-SA-2.0",
     "creative commons attribution share alike 2.0 england and wales": "CC-BY-SA-2.0-UK",
     "creative commons attribution share alike 2.0 generic": "CC-BY-SA-2.0",
     "creative commons attribution share alike 2.1 japan": "CC-BY-SA-2.1-JP",
+    "creative commons attribution share alike 2.5": "CC-BY-SA-2.5",
     "creative commons attribution share alike 2.5 generic": "CC-BY-SA-2.5",
+    "creative commons attribution share alike 3.0": "CC-BY-SA-3.0",
     "creative commons attribution share alike 3.0 austria": "CC-BY-SA-3.0-AT",
     "creative commons attribution share alike 3.0 germany": "CC-BY-SA-3.0-DE",
     "creative commons attribution share alike 3.0 unported": "CC-BY-SA-3.0",
+    "creative commons attribution share alike 4.0": "CC-BY-SA-4.0",
     "creative commons attribution share alike 4.0 international": "CC-BY-SA-4.0",
     "creative commons attribution-noncommercial-sharealike 2.0 france": "CC-BY-NC-SA-2.0-FR",
     "creative commons attribution-sharealike 3.0 igo": "CC-BY-SA-3.0-IGO",
@@ -486,16 +594,29 @@
     "dvipdfm license": "dvipdfm",
     "ecl-1.0": "ECL-1.0",
     "ecl-2.0": "ECL-2.0",
+    "eclipse distribution license (new bsd license)": "BSD-3-Clause",
+    "eclipse distribution license - v 1.0": "BSD-3-Clause",
+    "eclipse distribution license v. 1.0": "BSD-3-Clause",
+    "eclipse public license - v 1.0": "EPL-1.0",
+    "eclipse public license - v 2.0": "EPL-2.0",
+    "eclipse public license - version 1.0": "EPL-1.0",
     "eclipse public license 1.0": "EPL-1.0",
     "eclipse public license 2.0": "EPL-2.0",
+    "eclipse public license v. 2.0": "EPL-2.0",
+    "eclipse public license v1.0": "EPL-1.0",
+    "eclipse public license v2.0": "EPL-2.0",
+    "eclipse public license, version 1.0": "EPL-1.0",
+    "eclipse public license, version 2.0": "EPL-2.0",
     "ecos license version 2.0": "eCos-2.0",
     "ecos-2.0": "eCos-2.0",
+    "edl 1.0": "BSD-3-Clause",
     "educational community license v1.0": "ECL-1.0",
     "educational community license v2.0": "ECL-2.0",
     "efl-1.0": "EFL-1.0",
     "efl-2.0": "EFL-2.0",
     "egenix": "eGenix",
     "egenix.com public license 1.1.0": "eGenix",
+    "eiffel forum license 2.0": "EFL-2.0",
     "eiffel forum license v1.0": "EFL-1.0",
     "eiffel forum license v2.0": "EFL-2.0",
     "elastic license 2.0": "Elastic-2.0",
@@ -529,6 +650,7 @@
     "eurosym": "Eurosym",
     "eurosym license": "Eurosym",
     "expat": "MIT",
+    "expat license": "MIT",
     "fair": "Fair",
     "fair license": "Fair",
     "fbm": "FBM",
@@ -543,6 +665,7 @@
     "freebsd-doc": "FreeBSD-DOC",
     "freeimage": "FreeImage",
     "freeimage public license v1.0": "FreeImage",
+    "freetype": "FTL",
     "freetype project license": "FTL",
     "fsf all permissive license": "FSFAP",
     "fsf all permissive license (without warranty)": "FSFAP-no-warranty-disclaimer",
@@ -618,6 +741,8 @@
     "glulxe license": "Glulxe",
     "glwtpl": "GLWTPL",
     "gnome gcr documentation license": "GCR-docs",
+    "gnu affero general public license v1.0 only": "AGPL-1.0-only",
+    "gnu affero general public license v1.0 or later": "AGPL-1.0-or-later",
     "gnu affero general public license v3.0 only": "AGPL-3.0-only",
     "gnu affero general public license v3.0 or later": "AGPL-3.0-or-later",
     "gnu free documentation license v1.1 only": "GFDL-1.1-only",
@@ -651,12 +776,15 @@
     "gnu general public license v3.0 or later": "GPL-3.0-or-later",
     "gnu general public license v3.0 w/autoconf exception": "GPL-3.0-with-autoconf-exception",
     "gnu general public license v3.0 w/gcc runtime library exception": "GPL-3.0-with-GCC-exception",
+    "gnu general public license, version 2 (gpl2), with the classpath exception": "GPL-2.0-with-classpath-exception",
+    "gnu general public license, version 2 with the gnu classpath exception": "GPL-2.0-with-classpath-exception",
     "gnu lesser general public license v2.1 only": "LGPL-2.1-only",
     "gnu lesser general public license v2.1 or later": "LGPL-2.1-or-later",
     "gnu lesser general public license v3.0 only": "LGPL-3.0-only",
     "gnu lesser general public license v3.0 or later": "LGPL-3.0-or-later",
     "gnu library general public license v2 only": "LGPL-2.0-only",
     "gnu library general public license v2 or later": "LGPL-2.0-or-later",
+    "gnu library general public license v2.1 or later": "LGPL-2.1-or-later",
     "gnuplot": "gnuplot",
     "gnuplot license": "gnuplot",
     "good luck with that public license": "GLWTPL",
@@ -756,6 +884,7 @@
     "hpnd-uc-export-us": "HPND-UC-export-US",
     "html tidy license": "HTMLTIDY",
     "htmltidy": "HTMLTIDY",
+    "http://www.apache.org/licenses/license-2.0": "Apache-2.0",
     "hyphen-bulgarian": "hyphen-bulgarian",
     "hyphen-bulgarian license": "hyphen-bulgarian",
     "ibm powerpc initialization and boot software": "IBM-pibs",
@@ -794,6 +923,7 @@
     "ipl-1.0": "IPL-1.0",
     "isc": "ISC",
     "isc license": "ISC",
+    "isc license (iscl)": "ISC",
     "isc veillard variant": "ISC-Veillard",
     "isc-veillard": "ISC-Veillard",
     "iso permission notice": "ISO-permission",
@@ -803,13 +933,18 @@
     "japan network information center license": "JPNIC",
     "jasper license": "JasPer-2.0",
     "jasper-2.0": "JasPer-2.0",
+    "java html - jtidy license": "HTMLTIDY",
+    "javahtml/jtidy": "HTMLTIDY",
     "jove": "jove",
     "jove license": "jove",
+    "jpeg license": "IJG",
     "jpl image use policy": "JPL-image",
     "jpl-image": "JPL-image",
     "jpnic": "JPNIC",
     "json": "JSON",
     "json license": "JSON",
+    "jython": "CNRI-Jython",
+    "jython license": "CNRI-Jython",
     "kastrup": "Kastrup",
     "kastrup license": "Kastrup",
     "kazlib": "Kazlib",
@@ -818,6 +953,7 @@
     "knuth-ctan": "Knuth-CTAN",
     "lal-1.2": "LAL-1.2",
     "lal-1.3": "LAL-1.3",
+    "latex project public license 1.3a": "LPPL-1.3a",
     "latex project public license v1.0": "LPPL-1.0",
     "latex project public license v1.1": "LPPL-1.1",
     "latex project public license v1.2": "LPPL-1.2",
@@ -913,6 +1049,7 @@
     "metamail license": "metamail",
     "michigan/merit networks license": "UMich-Merit",
     "microsoft limited public license": "MS-LPL",
+    "microsoft public": "MS-PL",
     "microsoft public license": "MS-PL",
     "microsoft reciprocal license": "MS-RL",
     "minecraft mod public license v1.0.1": "MMPL-1.0.1",
@@ -921,17 +1058,22 @@
     "mips": "MIPS",
     "mips license": "MIPS",
     "miros": "MirOS",
+    "miros licence": "MirOS",
     "mit": "MIT",
+    "mit (license)": "MIT",
     "mit +no-false-attribs license": "MITNFA",
     "mit click license": "MIT-Click",
     "mit festival variant": "MIT-Festival",
     "mit khronos - old variant": "MIT-Khronos-old",
+    "mit licence": "MIT",
     "mit license": "MIT",
     "mit license modern variant": "MIT-Modern-Variant",
     "mit no attribution": "MIT-0",
+    "mit no attribution license": "MIT-0",
     "mit open group variant": "MIT-open-group",
     "mit testregex variant": "MIT-testregex",
     "mit tom wu variant": "MIT-Wu",
+    "mit(license)": "MIT",
     "mit-0": "MIT-0",
     "mit-advertising": "MIT-advertising",
     "mit-click": "MIT-Click",
@@ -946,6 +1088,7 @@
     "mit-stk license": "MIT-STK",
     "mit-testregex": "MIT-testregex",
     "mit-wu": "MIT-Wu",
+    "mit/x11": "MIT",
     "mitnfa": "MITNFA",
     "mmixware": "MMIXware",
     "mmixware license": "MMIXware",
@@ -956,7 +1099,12 @@
     "mozilla public license 1.0": "MPL-1.0",
     "mozilla public license 1.1": "MPL-1.1",
     "mozilla public license 2.0": "MPL-2.0",
+    "mozilla public license 2.0 (mpl 2.0)": "MPL-2.0",
     "mozilla public license 2.0 (no copyleft exception)": "MPL-2.0-no-copyleft-exception",
+    "mozilla public license v. 2.0": "MPL-2.0",
+    "mozilla public license version 1.0": "MPL-1.0",
+    "mozilla public license version 2.0": "MPL-2.0",
+    "mozilla public license, version 2.0": "MPL-2.0",
     "mpeg software simulation": "MPEG-SSG",
     "mpeg-ssg": "MPEG-SSG",
     "mpi permissive license": "mpi-permissive",
@@ -969,6 +1117,7 @@
     "mpl-2.0-no-copyleft-exception": "MPL-2.0-no-copyleft-exception",
     "mplus": "mplus",
     "mplus font license": "mplus",
+    "mplv2": "MPL-2.0",
     "ms-lpl": "MS-LPL",
     "ms-pl": "MS-PL",
     "ms-rl": "MS-RL",
@@ -1006,6 +1155,8 @@
     "netscape public license v1.0": "NPL-1.0",
     "netscape public license v1.1": "NPL-1.1",
     "new bsd": "BSD-3-Clause",
+    "new bsd (3-clause) license": "BSD-3-Clause",
+    "new bsd license": "BSD-3-Clause",
     "newsletr": "Newsletr",
     "newsletr license": "Newsletr",
     "ngpl": "NGPL",
@@ -1054,6 +1205,8 @@
     "oclc research public license 2.0": "OCLC-2.0",
     "oclc-2.0": "OCLC-2.0",
     "odbl-1.0": "ODbL-1.0",
+    "odc open database license v1.0": "ODbL-1.0",
+    "odc public domain dedication & license 1.0": "PDDL-1.0",
     "odc-by-1.0": "ODC-By-1.0",
     "offis": "OFFIS",
     "offis license": "OFFIS",
@@ -1154,8 +1307,10 @@
     "paratype-free-font-1.3": "ParaType-Free-Font-1.3",
     "parity-6.0.0": "Parity-6.0.0",
     "parity-7.0.0": "Parity-7.0.0",
+    "pddl (public domain dedication and license)": "PDDL-1.0",
     "pddl-1.0": "PDDL-1.0",
     "peer production license": "PPL",
+    "perl artistic": "Artistic-1.0-Perl",
     "php license v3.0": "PHP-3.0",
     "php license v3.01": "PHP-3.01",
     "php-3.0": "PHP-3.0",
@@ -1177,7 +1332,12 @@
     "postgresql": "PostgreSQL",
     "postgresql license": "PostgreSQL",
     "ppl": "PPL",
+    "psf": "PSF-2.0",
+    "psf 2.0": "PSF-2.0",
+    "psf license": "PSF-2.0",
     "psf-2.0": "PSF-2.0",
+    "psfl": "PSF-2.0",
+    "psfl 2": "PSF-2.0",
     "psfrag": "psfrag",
     "psfrag license": "psfrag",
     "psutils": "psutils",
@@ -1185,6 +1345,7 @@
     "python ldap license": "python-ldap",
     "python license 2.0": "Python-2.0",
     "python license 2.0.1": "Python-2.0.1",
+    "python software foundation license": "PSF-2.0",
     "python software foundation license 2.0": "PSF-2.0",
     "python-2.0": "Python-2.0",
     "python-2.0.1": "Python-2.0.1",
@@ -1256,6 +1417,8 @@
     "sil open font license 1.1 with reserved font name": "OFL-1.1-RFN",
     "simpl-2.0": "SimPL-2.0",
     "simple public license 2.0": "SimPL-2.0",
+    "simplified bsd": "BSD-2-Clause",
+    "simplified bsd license": "BSD-2-Clause",
     "sissl": "SISSL",
     "sissl-1.2": "SISSL-1.2",
     "sl": "SL",
@@ -1321,6 +1484,7 @@
     "tapr open hardware license v1.0": "TAPR-OHL-1.0",
     "tapr-ohl-1.0": "TAPR-OHL-1.0",
     "tcl": "TCL",
+    "tcl/tk": "TCL",
     "tcl/tk license": "TCL",
     "tcp wrappers license": "TCP-wrappers",
     "tcp-wrappers": "TCP-wrappers",
@@ -1332,13 +1496,35 @@
     "termreadkey license": "TermReadKey",
     "text-tabs+wrap license": "TTWL",
     "tgppl-1.0": "TGPPL-1.0",
+    "the apache 2.0 license": "Apache-2.0",
+    "the apache license, asl version 2.0": "Apache-2.0",
+    "the apache license, version 2.0": "Apache-2.0",
+    "the apache software license, version 1.1": "Apache-1.1",
+    "the apache software license, version 2.0": "Apache-2.0",
+    "the artistic license 1.0": "Artistic-1.0",
+    "the bsd 2-clause license": "BSD-2-Clause",
+    "the bsd 3-clause license": "BSD-3-Clause",
+    "the bsd 3-clause license (bsd3)": "BSD-3-Clause",
+    "the bsd3 license": "BSD-3-Clause",
+    "the eclipse public license version 1.0": "EPL-1.0",
+    "the eclipse public license version 2.0": "EPL-2.0",
+    "the expat license": "MIT",
+    "the json license": "JSON",
     "the miros licence": "MirOS",
+    "the mit license": "MIT",
+    "the mit license (mit)": "MIT",
+    "the mit license: http://www.opensource.org/licenses/mit-license.php": "MIT",
+    "the opensymphony software license 1.1": "Apache-1.1",
     "the parity public license 6.0.0": "Parity-6.0.0",
     "the parity public license 7.0.0": "Parity-7.0.0",
+    "the university of illinois/ncsa open source license (ncsa)": "NCSA",
     "the unlicense": "Unlicense",
+    "the zlib/libpng license": "Zlib",
+    "the zlib/libpng license (zlib)": "Zlib",
     "thirdeye": "ThirdEye",
     "thirdeye license": "ThirdEye",
     "thor public license 1.0": "TPL-1.0",
+    "three-clause bsd-style": "BSD-3-Clause",
     "threeparttable": "threeparttable",
     "threeparttable license": "threeparttable",
     "time::parsedate license": "TPDL",
@@ -1358,6 +1544,8 @@
     "ttyp0 license": "TTYP0",
     "tu-berlin-1.0": "TU-Berlin-1.0",
     "tu-berlin-2.0": "TU-Berlin-2.0",
+    "two clause bsd license": "BSD-2-Clause",
+    "two-clause bsd license": "BSD-2-Clause",
     "ubuntu font licence v1.0": "Ubuntu-font-1.0",
     "ubuntu-font-1.0": "Ubuntu-font-1.0",
     "ucar": "UCAR",
@@ -1374,8 +1562,13 @@
     "unicode-dfs-2015": "Unicode-DFS-2015",
     "unicode-dfs-2016": "Unicode-DFS-2016",
     "unicode-tou": "Unicode-TOU",
+    "unicode/icu license": "ICU",
     "united    kingdom open parliament licence v3.0": "OPL-UK-3.0",
+    "universal permissive license v 1.0": "UPL-1.0",
     "universal permissive license v1.0": "UPL-1.0",
+    "universal permissive license version 1.0": "UPL-1.0",
+    "universal permissive license, version 1.0": "UPL-1.0",
+    "university of illinois/ncsa": "NCSA",
     "university of illinois/ncsa open source license": "NCSA",
     "unixcrypt": "UnixCrypt",
     "unixcrypt license": "UnixCrypt",
@@ -1466,13 +1659,569 @@
     "zlib": "Zlib",
     "zlib license": "Zlib",
     "zlib-acknowledgement": "zlib-acknowledgement",
+    "zlib/libpng": "Zlib",
     "zlib/libpng license with acknowledgement": "zlib-acknowledgement",
+    "zope public 2.1": "ZPL-2.1",
     "zope public license 1.1": "ZPL-1.1",
     "zope public license 2.0": "ZPL-2.0",
     "zope public license 2.1": "ZPL-2.1",
+    "zpl 1.1": "ZPL-1.1",
+    "zpl 2.0": "ZPL-2.0",
+    "zpl 2.1": "ZPL-2.1",
     "zpl-1.1": "ZPL-1.1",
     "zpl-2.0": "ZPL-2.0",
     "zpl-2.1": "ZPL-2.1"
+  },
+  "ambiguous": {
+    "academic free": [
+      "AFL-1.1",
+      "AFL-1.2",
+      "AFL-2.0",
+      "AFL-2.1",
+      "AFL-3.0"
+    ],
+    "academic free license": [
+      "AFL-1.1",
+      "AFL-1.2",
+      "AFL-2.0",
+      "AFL-2.1",
+      "AFL-3.0"
+    ],
+    "affero general public license v1.0": [
+      "AGPL-1.0-only",
+      "AGPL-1.0-or-later"
+    ],
+    "agplv1": [
+      "AGPL-1.0-only",
+      "AGPL-1.0-or-later"
+    ],
+    "agplv3": [
+      "AGPL-3.0-only",
+      "AGPL-3.0-or-later"
+    ],
+    "apache license": [
+      "Apache-1.0",
+      "Apache-1.1",
+      "Apache-2.0"
+    ],
+    "apple public source": [
+      "APSL-1.0",
+      "APSL-1.1",
+      "APSL-1.2",
+      "APSL-2.0"
+    ],
+    "apple public source license": [
+      "APSL-1.0",
+      "APSL-1.1",
+      "APSL-1.2",
+      "APSL-2.0"
+    ],
+    "artistic": [
+      "Artistic-1.0",
+      "Artistic-1.0-Perl",
+      "Artistic-2.0",
+      "Artistic-dist"
+    ],
+    "artistic license": [
+      "Artistic-1.0",
+      "Artistic-1.0-Perl",
+      "Artistic-2.0",
+      "Artistic-dist"
+    ],
+    "aswf digital assets": [
+      "ASWF-Digital-Assets-1.0",
+      "ASWF-Digital-Assets-1.1"
+    ],
+    "aswf digital assets license": [
+      "ASWF-Digital-Assets-1.0",
+      "ASWF-Digital-Assets-1.1"
+    ],
+    "bittorrent open source": [
+      "BitTorrent-1.0",
+      "BitTorrent-1.1"
+    ],
+    "bittorrent open source license": [
+      "BitTorrent-1.0",
+      "BitTorrent-1.1"
+    ],
+    "bzip2 and libbzip2": [
+      "bzip2-1.0.5",
+      "bzip2-1.0.6"
+    ],
+    "bzip2 and libbzip2 license": [
+      "bzip2-1.0.5",
+      "bzip2-1.0.6"
+    ],
+    "cecill free software license agreement": [
+      "CECILL-1.0",
+      "CECILL-1.1",
+      "CECILL-2.0",
+      "CECILL-2.1"
+    ],
+    "cern open hardware licence": [
+      "CERN-OHL-1.1",
+      "CERN-OHL-1.2"
+    ],
+    "common development and distribution": [
+      "CDDL-1.0",
+      "CDDL-1.1"
+    ],
+    "common development and distribution license": [
+      "CDDL-1.0",
+      "CDDL-1.1"
+    ],
+    "community data license agreement permissive": [
+      "CDLA-Permissive-1.0",
+      "CDLA-Permissive-2.0"
+    ],
+    "copyleft-next": [
+      "copyleft-next-0.3.0",
+      "copyleft-next-0.3.1"
+    ],
+    "cryptographic autonomy": [
+      "CAL-1.0",
+      "CAL-1.0-Combined-Work-Exception"
+    ],
+    "cryptographic autonomy license": [
+      "CAL-1.0",
+      "CAL-1.0-Combined-Work-Exception"
+    ],
+    "detection rule": [
+      "DRL-1.0",
+      "DRL-1.1"
+    ],
+    "detection rule license": [
+      "DRL-1.0",
+      "DRL-1.1"
+    ],
+    "eclipse public": [
+      "EPL-1.0",
+      "EPL-2.0"
+    ],
+    "eclipse public license": [
+      "EPL-1.0",
+      "EPL-2.0"
+    ],
+    "educational community": [
+      "ECL-1.0",
+      "ECL-2.0"
+    ],
+    "educational community license": [
+      "ECL-1.0",
+      "ECL-2.0"
+    ],
+    "eiffel forum": [
+      "EFL-1.0",
+      "EFL-2.0"
+    ],
+    "eiffel forum license": [
+      "EFL-1.0",
+      "EFL-2.0"
+    ],
+    "european union public": [
+      "EUPL-1.0",
+      "EUPL-1.1",
+      "EUPL-1.2"
+    ],
+    "european union public license": [
+      "EUPL-1.0",
+      "EUPL-1.1",
+      "EUPL-1.2"
+    ],
+    "gnu affero general public license v1.0": [
+      "AGPL-1.0-only",
+      "AGPL-1.0-or-later"
+    ],
+    "gnu affero general public license v3.0": [
+      "AGPL-3.0-only",
+      "AGPL-3.0-or-later"
+    ],
+    "gnu free documentation license v1.1": [
+      "GFDL-1.1-only",
+      "GFDL-1.1-or-later"
+    ],
+    "gnu free documentation license v1.1 - invariants": [
+      "GFDL-1.1-invariants-only",
+      "GFDL-1.1-invariants-or-later"
+    ],
+    "gnu free documentation license v1.1 - no invariants": [
+      "GFDL-1.1-no-invariants-only",
+      "GFDL-1.1-no-invariants-or-later"
+    ],
+    "gnu free documentation license v1.2": [
+      "GFDL-1.2-only",
+      "GFDL-1.2-or-later"
+    ],
+    "gnu free documentation license v1.2 - invariants": [
+      "GFDL-1.2-invariants-only",
+      "GFDL-1.2-invariants-or-later"
+    ],
+    "gnu free documentation license v1.2 - no invariants": [
+      "GFDL-1.2-no-invariants-only",
+      "GFDL-1.2-no-invariants-or-later"
+    ],
+    "gnu free documentation license v1.3": [
+      "GFDL-1.3-only",
+      "GFDL-1.3-or-later"
+    ],
+    "gnu free documentation license v1.3 - invariants": [
+      "GFDL-1.3-invariants-only",
+      "GFDL-1.3-invariants-or-later"
+    ],
+    "gnu free documentation license v1.3 - no invariants": [
+      "GFDL-1.3-no-invariants-only",
+      "GFDL-1.3-no-invariants-or-later"
+    ],
+    "gnu general public license v1.0": [
+      "GPL-1.0-only",
+      "GPL-1.0-or-later"
+    ],
+    "gnu general public license v2.0": [
+      "GPL-2.0-only",
+      "GPL-2.0-or-later"
+    ],
+    "gnu general public license v3.0": [
+      "GPL-3.0-only",
+      "GPL-3.0-or-later"
+    ],
+    "gnu general public license, version 2": [
+      "GPL-2.0-only",
+      "GPL-2.0-or-later"
+    ],
+    "gnu lesser general public license (lgpl) version 2.1": [
+      "LGPL-2.1-only",
+      "LGPL-2.1-or-later"
+    ],
+    "gnu lesser general public license (lgpl), version 2.1": [
+      "LGPL-2.1-only",
+      "LGPL-2.1-or-later"
+    ],
+    "gnu lesser general public license v2.1": [
+      "LGPL-2.1-only",
+      "LGPL-2.1-or-later"
+    ],
+    "gnu lesser general public license v3.0": [
+      "LGPL-3.0-only",
+      "LGPL-3.0-or-later"
+    ],
+    "gnu lesser general public license, version 2.1": [
+      "LGPL-2.1-only",
+      "LGPL-2.1-or-later"
+    ],
+    "gnu library general public license v2": [
+      "LGPL-2.0-only",
+      "LGPL-2.0-or-later"
+    ],
+    "gplv1": [
+      "GPL-1.0-only",
+      "GPL-1.0-or-later"
+    ],
+    "gplv2": [
+      "GPL-2.0-only",
+      "GPL-2.0-or-later"
+    ],
+    "gplv3": [
+      "GPL-3.0-only",
+      "GPL-3.0-or-later"
+    ],
+    "latex project public": [
+      "LPPL-1.0",
+      "LPPL-1.1",
+      "LPPL-1.2",
+      "LPPL-1.3a",
+      "LPPL-1.3c"
+    ],
+    "latex project public license": [
+      "LPPL-1.0",
+      "LPPL-1.1",
+      "LPPL-1.2",
+      "LPPL-1.3a",
+      "LPPL-1.3c"
+    ],
+    "lgplv2": [
+      "LGPL-2.0-only",
+      "LGPL-2.0-or-later"
+    ],
+    "lgplv2.1": [
+      "LGPL-2.1-only",
+      "LGPL-2.1-or-later"
+    ],
+    "lgplv3": [
+      "LGPL-3.0-only",
+      "LGPL-3.0-or-later"
+    ],
+    "licence art libre": [
+      "LAL-1.2",
+      "LAL-1.3"
+    ],
+    "lucent public": [
+      "LPL-1.0",
+      "LPL-1.02"
+    ],
+    "lucent public license": [
+      "LPL-1.0",
+      "LPL-1.02"
+    ],
+    "lzma sdk": [
+      "LZMA-SDK-9.11-to-9.20",
+      "LZMA-SDK-9.22"
+    ],
+    "lzma sdk license": [
+      "LZMA-SDK-9.11-to-9.20",
+      "LZMA-SDK-9.22"
+    ],
+    "mozilla public": [
+      "MPL-1.0",
+      "MPL-1.1",
+      "MPL-2.0",
+      "MPL-2.0-no-copyleft-exception"
+    ],
+    "mozilla public license": [
+      "MPL-1.0",
+      "MPL-1.1",
+      "MPL-2.0",
+      "MPL-2.0-no-copyleft-exception"
+    ],
+    "mulan permissive software": [
+      "MulanPSL-1.0",
+      "MulanPSL-2.0"
+    ],
+    "mulan permissive software license": [
+      "MulanPSL-1.0",
+      "MulanPSL-2.0"
+    ],
+    "netscape public": [
+      "NPL-1.0",
+      "NPL-1.1"
+    ],
+    "netscape public license": [
+      "NPL-1.0",
+      "NPL-1.1"
+    ],
+    "norwegian licence for open government data (nlod)": [
+      "NLOD-1.0",
+      "NLOD-2.0"
+    ],
+    "open government licence": [
+      "OGL-UK-1.0",
+      "OGL-UK-2.0",
+      "OGL-UK-3.0"
+    ],
+    "open ldap public": [
+      "OLDAP-1.1",
+      "OLDAP-1.2",
+      "OLDAP-1.3",
+      "OLDAP-1.4",
+      "OLDAP-2.0",
+      "OLDAP-2.0.1",
+      "OLDAP-2.1",
+      "OLDAP-2.2",
+      "OLDAP-2.2.1",
+      "OLDAP-2.2.2",
+      "OLDAP-2.3",
+      "OLDAP-2.4",
+      "OLDAP-2.5",
+      "OLDAP-2.6",
+      "OLDAP-2.7",
+      "OLDAP-2.8"
+    ],
+    "open ldap public license": [
+      "OLDAP-1.1",
+      "OLDAP-1.2",
+      "OLDAP-1.3",
+      "OLDAP-1.4",
+      "OLDAP-2.0",
+      "OLDAP-2.0.1",
+      "OLDAP-2.1",
+      "OLDAP-2.2",
+      "OLDAP-2.2.1",
+      "OLDAP-2.2.2",
+      "OLDAP-2.3",
+      "OLDAP-2.4",
+      "OLDAP-2.5",
+      "OLDAP-2.6",
+      "OLDAP-2.7",
+      "OLDAP-2.8"
+    ],
+    "open software": [
+      "OSL-1.0",
+      "OSL-1.1",
+      "OSL-2.0",
+      "OSL-2.1",
+      "OSL-3.0"
+    ],
+    "open software license": [
+      "OSL-1.0",
+      "OSL-1.1",
+      "OSL-2.0",
+      "OSL-2.1",
+      "OSL-3.0"
+    ],
+    "openldap": [
+      "OLDAP-1.1",
+      "OLDAP-1.2",
+      "OLDAP-1.3",
+      "OLDAP-1.4",
+      "OLDAP-2.0",
+      "OLDAP-2.0.1",
+      "OLDAP-2.1",
+      "OLDAP-2.2",
+      "OLDAP-2.2.1",
+      "OLDAP-2.2.2",
+      "OLDAP-2.3",
+      "OLDAP-2.4",
+      "OLDAP-2.5",
+      "OLDAP-2.6",
+      "OLDAP-2.7",
+      "OLDAP-2.8"
+    ],
+    "openldap license": [
+      "OLDAP-1.1",
+      "OLDAP-1.2",
+      "OLDAP-1.3",
+      "OLDAP-1.4",
+      "OLDAP-2.0",
+      "OLDAP-2.0.1",
+      "OLDAP-2.1",
+      "OLDAP-2.2",
+      "OLDAP-2.2.1",
+      "OLDAP-2.2.2",
+      "OLDAP-2.3",
+      "OLDAP-2.4",
+      "OLDAP-2.5",
+      "OLDAP-2.6",
+      "OLDAP-2.7",
+      "OLDAP-2.8"
+    ],
+    "php": [
+      "PHP-3.0",
+      "PHP-3.01"
+    ],
+    "php license": [
+      "PHP-3.0",
+      "PHP-3.01"
+    ],
+    "png reference library": [
+      "libpng-1.6.35",
+      "libpng-2.0"
+    ],
+    "python": [
+      "Python-2.0",
+      "Python-2.0.1"
+    ],
+    "python license": [
+      "Python-2.0",
+      "Python-2.0.1"
+    ],
+    "reciprocal public": [
+      "RPL-1.1",
+      "RPL-1.5"
+    ],
+    "reciprocal public license": [
+      "RPL-1.1",
+      "RPL-1.5"
+    ],
+    "sgi free software license b": [
+      "SGI-B-1.0",
+      "SGI-B-1.1",
+      "SGI-B-2.0"
+    ],
+    "sil open font": [
+      "OFL-1.0",
+      "OFL-1.1"
+    ],
+    "sil open font license": [
+      "OFL-1.0",
+      "OFL-1.1"
+    ],
+    "solderpad hardware": [
+      "SHL-0.5",
+      "SHL-0.51"
+    ],
+    "solderpad hardware license": [
+      "SHL-0.5",
+      "SHL-0.51"
+    ],
+    "spencer": [
+      "Spencer-86",
+      "Spencer-94",
+      "Spencer-99"
+    ],
+    "spencer license": [
+      "Spencer-86",
+      "Spencer-94",
+      "Spencer-99"
+    ],
+    "standard ml of new jersey license": [
+      "SMLNJ",
+      "StandardML-NJ"
+    ],
+    "sun industry standards source": [
+      "SISSL",
+      "SISSL-1.2"
+    ],
+    "sun industry standards source license": [
+      "SISSL",
+      "SISSL-1.2"
+    ],
+    "technische universitaet berlin": [
+      "TU-Berlin-1.0",
+      "TU-Berlin-2.0"
+    ],
+    "technische universitaet berlin license": [
+      "TU-Berlin-1.0",
+      "TU-Berlin-2.0"
+    ],
+    "the gnu general public license, version 2": [
+      "GPL-2.0-only",
+      "GPL-2.0-or-later"
+    ],
+    "the parity public": [
+      "Parity-6.0.0",
+      "Parity-7.0.0"
+    ],
+    "the parity public license": [
+      "Parity-6.0.0",
+      "Parity-7.0.0"
+    ],
+    "unicode license agreement - data files and software": [
+      "Unicode-DFS-2015",
+      "Unicode-DFS-2016"
+    ],
+    "w3c software and notice license": [
+      "W3C",
+      "W3C-19980720"
+    ],
+    "w3c software notice and license": [
+      "W3C",
+      "W3C-19980720"
+    ],
+    "yahoo! public": [
+      "YPL-1.0",
+      "YPL-1.1"
+    ],
+    "yahoo! public license": [
+      "YPL-1.0",
+      "YPL-1.1"
+    ],
+    "zimbra public": [
+      "Zimbra-1.3",
+      "Zimbra-1.4"
+    ],
+    "zimbra public license": [
+      "Zimbra-1.3",
+      "Zimbra-1.4"
+    ],
+    "zope public": [
+      "ZPL-1.1",
+      "ZPL-2.0",
+      "ZPL-2.1"
+    ],
+    "zope public license": [
+      "ZPL-1.1",
+      "ZPL-2.0",
+      "ZPL-2.1"
+    ]
   },
   "never_resolve": [
     "agpl",

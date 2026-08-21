@@ -45,7 +45,7 @@ every license file:
 
 ```json
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "generated": "2026-08-01T03:04:52.358635",
   "spdx_list_version": "e4c1f27",
   "total_licenses": 733,
@@ -186,18 +186,34 @@ dataset owns the aliases instead: each record carries its spellings, and
 import ospac
 ospac.license_aliases()["expat"]        # "MIT"
 ospac.license_aliases()["gpl-3.0+"]     # "GPL-3.0-or-later"
+ospac.license_ambiguous()["gplv3"]      # ["GPL-3.0-only", "GPL-3.0-or-later"]
 ospac.license_never_resolve()           # {"gpl", "bsd", "apache", ...}
 ```
 
 Two rules keep the map honest. An alias claimed by more than one license resolves to
 nothing, because a wrong confident answer is worse than none: SPDX's duplicate Standard
-ML of New Jersey entries are the current casualty. And family names never resolve at
+ML of New Jersey entries are the current example. And family names never resolve at
 all: `bsd` is 2-clause or 3-clause and the choice changes obligations, `gpl` states
 neither a version nor only/or-later, and the deprecated SPDX key resolved bare GPL to
 GPL-1.0-or-later, which nobody writing GPL today means. `license_never_resolve()` lists
 them so consumers refuse them deliberately rather than each inventing a guess.
 
-`ospac data aliases` prints the same map from the command line.
+Refusing to resolve is not the same as having nothing to say, though. `license_ambiguous()`
+is the middle case: text that identifies a license and not which id, mapped to the ids it
+could mean. Two things land there. The GNU families, because their prose names
+carry the version and not the grant: "GNU Lesser General Public License v2.1" is the SPDX
+name of both `LGPL-2.1-only` and `LGPL-2.1-or-later`, and choosing between them asserts
+something the document never said. It is derived rather than curated, from the SPDX names
+with the grant word removed, so an SPDX release that adds a family adds its entries too. The
+colliding aliases land here as well, with their candidates, instead of disappearing.
+And family names, because "Eclipse Public License" is the name of `EPL-1.0` and `EPL-2.0`
+both: an SPDX name with its trailing version removed leaves the family, and a remainder
+two shipped ids share identifies no one licence. That half is derived the same way, so a
+release that adds a second version to a family is covered without an edit.
+A validator reading this can tell a user which distinction is missing rather than report a
+perfectly legible name as unrecognised.
+
+`ospac data aliases` prints all three from the command line.
 
 ## How it is regenerated
 

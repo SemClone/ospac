@@ -52,7 +52,8 @@
     ],
     "aliases": [
       "isc",
-      "isc license"
+      "isc license",
+      "isc license (iscl)"
     ],
     "alias_of": null,
     "spdx_metadata": {
