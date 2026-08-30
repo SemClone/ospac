@@ -536,3 +536,40 @@ class TestIsCompatibleWithCategoryEntries:
         gpl2, apache = load("GPL-2.0-only"), load("Apache-2.0")
         assert gpl2.is_compatible_with(apache, "static_linking") is False
         assert apache.is_compatible_with(gpl2, "static_linking") is False
+
+
+class TestContaminateIsARefusalThatSaysWhy:
+    """
+    contaminate matched no branch in from_policy_result, so the result kept its
+    constructed UNKNOWN: is_compliant and needs_review both answered no and violations
+    was empty. A caller branching on those two and treating the remainder as fine read a
+    contaminating verdict as fine, and the message the policy author wrote never arrived.
+    """
+
+    def test_it_is_non_compliant_and_carries_its_message(self):
+        from ospac.models.compliance import (ActionType, ComplianceResult,
+                                             ComplianceStatus, PolicyResult)
+
+        result = ComplianceResult.from_policy_result(PolicyResult(
+            rule_id="static_linking_copyleft",
+            action=ActionType.CONTAMINATE,
+            severity="error",
+            message="Entire work must be licensed under the same copyleft license"))
+
+        assert result.status == ComplianceStatus.NON_COMPLIANT
+        assert result.is_compliant is False
+        assert result.needs_review is False
+        assert [v["message"] for v in result.violations] == [
+            "Entire work must be licensed under the same copyleft license"]
+
+    def test_it_stays_distinguishable_from_deny(self):
+        from ospac.models.compliance import ActionType, PolicyResult
+
+        # Same compliance status, different action, and deny still outranks it when
+        # verdicts are aggregated most-restrictive-wins.
+        deny = PolicyResult(rule_id="d", action=ActionType.DENY, severity="error",
+                            message="denied")
+        contaminate = PolicyResult(rule_id="c", action=ActionType.CONTAMINATE,
+                                   severity="error", message="contaminates")
+        assert PolicyResult.aggregate([contaminate, deny]).action == ActionType.DENY
+        assert PolicyResult.aggregate([contaminate]).action == ActionType.CONTAMINATE

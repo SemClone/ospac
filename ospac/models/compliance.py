@@ -169,7 +169,15 @@ class ComplianceResult:
         """Create a ComplianceResult from a PolicyResult."""
         result = cls(status=ComplianceStatus.UNKNOWN)
 
-        if policy_result.action == ActionType.DENY:
+        # contaminate sits with deny: both refuse, and both have to say why. Left out,
+        # a contaminating verdict matched no branch and kept the constructed UNKNOWN, so
+        # is_compliant and needs_review both answered no and violations was empty. A
+        # caller branching on those two and treating the remainder as fine read it as
+        # fine, and one reading violations to explain a decision had nothing to show,
+        # while the policy author had written a message saying the combined work takes
+        # the copyleft licence. They stay distinguishable by action, and by rank in
+        # PolicyResult.aggregate, where contaminate is the less restrictive of the two.
+        if policy_result.action in (ActionType.DENY, ActionType.CONTAMINATE):
             result.status = ComplianceStatus.NON_COMPLIANT
             if policy_result.message:
                 result.add_violation(policy_result.rule_id, policy_result.message, policy_result.severity)
