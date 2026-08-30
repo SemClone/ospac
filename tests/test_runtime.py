@@ -422,6 +422,52 @@ class TestDeclaredLicenceStringsResolve:
         assert declared.action == ActionType.FLAG_FOR_REVIEW
         assert "which identifier the declaration means" in declared.message
 
+    def test_only_what_every_reading_requires_is_reported(self):
+        runtime = PolicyRuntime()
+
+        # "Apache License" is 1.0, 1.1 or 2.0 and all three are approved, so the actions
+        # agree. Their obligations do not: only 2.0 carries NOTICE and state-changes.
+        # Unioning them stated an obligation a declaration meaning 1.0 does not have.
+        declared, _ = runtime.evaluate_licenses(
+            ["apache license"], {"distribution_type": "saas"})
+        oldest, _ = runtime.evaluate_licenses(
+            ["Apache-1.0"], {"distribution_type": "saas"})
+        newest, _ = runtime.evaluate_licenses(
+            ["Apache-2.0"], {"distribution_type": "saas"})
+
+        assert declared.action == ActionType.APPROVE
+        assert set(declared.requirements) <= set(oldest.requirements)
+        assert set(declared.requirements) < set(newest.requirements)
+        # An unambiguous declaration keeps everything its own licence requires.
+        assert "Preserve copyright and NOTICE file if present" in newest.requirements
+
+    def test_a_conflict_under_some_readings_is_review_not_clean(self, tmp_path):
+        # Under the bundled policy the rules already disagree here. This is about the
+        # dataset fallback on its own, so the policy has to match everything.
+        policy = tmp_path / "policy.yaml"
+        policy.write_text(
+            'version: "2.0"\n'
+            "name: allow-everything\n"
+            "rules:\n"
+            "  - id: allow_all\n"
+            "    priority: 1\n"
+            "    when: {}\n"
+            "    then: {action: approve, severity: info, message: fine}\n")
+        runtime = PolicyRuntime(str(policy))
+
+        # Only Apache-2.0 conflicts with GPL-2.0. Denying would assert a reading the
+        # declaration never made; reporting clean would hide one the dataset knows.
+        assert runtime.check_compatibility(
+            "Apache-2.0", "GPL-2.0-only").is_compliant is False
+        assert runtime.check_compatibility(
+            "Apache-1.0", "GPL-2.0-only").is_compliant is True
+
+        partial = runtime.check_compatibility("apache license", "GPL-2.0-only")
+        assert partial.needs_review is True
+        assert any(warning.get("rule_id")
+                   == "dataset_incompatibility_under_some_readings"
+                   for warning in partial.warnings)
+
     def test_a_reading_carries_the_callers_spelling_as_well(self):
         runtime = PolicyRuntime()
 

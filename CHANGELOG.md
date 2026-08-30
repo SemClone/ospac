@@ -31,7 +31,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   disagree the answer is review, never the strictest of them: exactly one reading applies
   and nobody knows which, so most-restrictive-wins would assert an obligation the
   document may not carry. `cryptographic autonomy` is CAL-1.0 or its combined-work
-  exception, network copyleft against permissive, and reports review.
+  exception, network copyleft against permissive, and reports review. Only the
+  obligations every reading carries are reported: `Apache License` is 1.0, 1.1 or 2.0 and
+  only 2.0 requires a NOTICE file. A dataset conflict that holds under some readings and
+  not all is review with a warning naming it, rather than a deny that picks a reading or
+  a clean result that hides one.
 - `evaluate` reports what it made of each declaration under `resolved_licenses`, and the
   text and markdown output say it in a line. A verdict you cannot trace back to an
   identifier is a verdict you have to re-derive the mapping to trust.

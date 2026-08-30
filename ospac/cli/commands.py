@@ -293,10 +293,19 @@ def obligations(licenses: str, policy_dir: str, data_dir: Optional[str], format:
             obligations_dict = _get_license_data_directly(license_list, data_dir)
 
         if format == "json":
+            # Both shapes resolve declared strings, so both report what they made of
+            # them. Publishing it in one branch left a caller using a policy unable to
+            # tell that "Apache 2.0" had been read as Apache-2.0.
+            resolved_licenses = {
+                text: {"license_id": r.license_id, "status": r.status,
+                       "candidates": r.candidates}
+                for text, r in PolicyRuntime.resolve_licenses(license_list).items()
+            }
             if policy_dir:
                 # When using policies, return obligations format
                 output_data = {
                     "licenses": license_list,
+                    "resolved_licenses": resolved_licenses,
                     "obligations": obligations_dict,
                     "using_policy": True
                 }
@@ -304,11 +313,7 @@ def obligations(licenses: str, policy_dir: str, data_dir: Optional[str], format:
                 # When using direct data, return raw license data for system consumption
                 output_data = {
                     "licenses": license_list,
-                    "resolved_licenses": {
-                        text: {"license_id": r.license_id, "status": r.status,
-                               "candidates": r.candidates}
-                        for text, r in PolicyRuntime.resolve_licenses(license_list).items()
-                    },
+                    "resolved_licenses": resolved_licenses,
                     "license_data": obligations_dict,
                     "using_policy": False
                 }

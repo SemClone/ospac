@@ -320,14 +320,26 @@ class PolicyRuntime:
         # has to conflict: one that does not is a reading under which the pair is fine,
         # and the declaration did not rule it out.
         if compliance.is_compliant or compliance.needs_review:
-            if all(self._dataset_names_incompatible(identifier1, identifier2)
-                   or self._dataset_names_incompatible(identifier2, identifier1)
-                   for identifier1, _ in readings1 for identifier2, _ in readings2):
+            conflicts = [self._dataset_names_incompatible(identifier1, identifier2)
+                         or self._dataset_names_incompatible(identifier2, identifier1)
+                         for identifier1, _ in readings1
+                         for identifier2, _ in readings2]
+            if all(conflicts):
                 compliance.status = ComplianceStatus.NON_COMPLIANT
                 compliance.add_violation(
                     "dataset_known_incompatibility",
                     f"{license1} and {license2} are a known incompatible pair in the "
                     f"license dataset")
+            elif any(conflicts):
+                # A conflict under some readings and not others. Denying would assert a
+                # reading the declaration never made, and reporting clean would hide one
+                # the dataset positively knows about. "Apache License" is 1.0, 1.1 or
+                # 2.0 and only 2.0 conflicts with GPL-2.0.
+                compliance.status = ComplianceStatus.REQUIRES_REVIEW
+                compliance.add_warning(
+                    "dataset_incompatibility_under_some_readings",
+                    f"{license1} and {license2} are a known incompatible pair under "
+                    f"some readings of the declaration but not all")
         return compliance
 
     @staticmethod
@@ -342,7 +354,20 @@ class PolicyRuntime:
         may not carry. Agreement is the only thing a reading set can assert on its own.
         """
         if len({result.action for result in results}) == 1:
-            return PolicyResult.aggregate(results, when_unmatched=when_unmatched)
+            agreed = PolicyResult.aggregate(results, when_unmatched=when_unmatched)
+            if len(results) > 1:
+                # aggregate() unions requirements, which is right across licenses that
+                # all apply and wrong across readings where exactly one does. "Apache
+                # License" is 1.0, 1.1 or 2.0 and all three are approved, but only 2.0
+                # carries the NOTICE and state-changes obligations; reporting them for a
+                # declaration that may be 1.0 states an obligation it does not have.
+                shared = set(results[0].requirements or [])
+                for result in results[1:]:
+                    shared &= set(result.requirements or [])
+                agreed.requirements = [requirement
+                                       for requirement in (agreed.requirements or [])
+                                       if requirement in shared]
+            return agreed
         return PolicyResult(
             rule_id="ambiguous_declaration",
             action=ActionType.FLAG_FOR_REVIEW,
