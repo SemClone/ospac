@@ -1668,13 +1668,21 @@ class PolicyDataGenerator:
             if len(ids) > 1:
                 candidates.setdefault(alias, set()).update(ids)
 
-        known = {r["id"] for r in records if r.get("id")}
         for key, ids in _CURATED_AMBIGUOUS.items():
-            missing = sorted(set(ids) - known)
+            missing = sorted(set(ids) - known_ids)
             if missing:
                 logger.warning(f"Curated ambiguous '{key}' names absent ids: {missing}")
                 continue
             candidates.setdefault(key, set()).update(ids)
+            # A curated spelling carries a version the same way an SPDX name does, so
+            # it drops its minor under the same rule. Without this the table answered
+            # for "GNU Affero General Public License v3", whose name SPDX publishes,
+            # and not for the v1 spelling, which is curated.
+            for spelling in _version_spellings(key) - {key}:
+                if spelling in owners or not _shortening_covers_the_major(
+                        set(ids), known_ids):
+                    continue
+                candidates.setdefault(spelling, set()).update(ids)
 
         return {key: sorted(ids) for key, ids in sorted(candidates.items())
                 if len(ids) > 1 and key not in NEVER_RESOLVE}

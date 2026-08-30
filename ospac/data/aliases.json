@@ -1930,6 +1930,10 @@
       "EUPL-1.1",
       "EUPL-1.2"
     ],
+    "gnu affero general public license v1": [
+      "AGPL-1.0-only",
+      "AGPL-1.0-or-later"
+    ],
     "gnu affero general public license v1.0": [
       "AGPL-1.0-only",
       "AGPL-1.0-or-later"

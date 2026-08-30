@@ -962,6 +962,14 @@ class TestAmbiguousNames:
         assert ambiguous["gnu general public license v3"] == [
             "GPL-3.0-only", "GPL-3.0-or-later"]
 
+        # AGPL-1.0's SPDX name omits "GNU", so the "gnu ..." spelling is curated rather
+        # than derived. A curated key carries a version the same way and drops its minor
+        # under the same rule; otherwise the table answered for v3 and not for v1.
+        assert ambiguous["gnu affero general public license v1"] == [
+            "AGPL-1.0-only", "AGPL-1.0-or-later"]
+        assert ambiguous["affero general public license v1"] == [
+            "AGPL-1.0-only", "AGPL-1.0-or-later"]
+
     def test_a_family_with_one_version_resolves_and_others_do_not(self):
         import ospac
 

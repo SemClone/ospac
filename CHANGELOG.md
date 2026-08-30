@@ -47,7 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `apache v1` does not resolve to `Apache-1.1` with `Apache-1.0` beside it, and
   `gnu lesser general public license v2` is absent rather than offering the two LGPL-2.1
   readings while LGPL-2.0 ships under the name SPDX gave it, "Library".
-- 1739 aliases, up from 1669, and 142 ambiguous names, up from 113. Nothing was removed
+- 1739 aliases, up from 1669, and 143 ambiguous names, up from 113. Nothing was removed
   and nothing changed the id it resolved to.
 
 ### Added
