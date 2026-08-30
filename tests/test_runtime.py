@@ -388,6 +388,52 @@ class TestDeclaredLicenceStringsResolve:
                                               {"distribution_type": "commercial"})
         assert result.action == ActionType.DENY
 
+    def test_evaluate_uses_a_verdict_the_readings_share(self):
+        runtime = PolicyRuntime()
+
+        # "GNU Affero General Public License v3" is AGPL-3.0-only or AGPL-3.0-or-later
+        # and the default policy denies both for saas, so deny asserts nothing the
+        # declaration did not carry. Returning review instead kept the deny-versus-review
+        # gap open for the spelling Maven Central actually serves, which is the whole
+        # complaint. check answered this correctly while evaluate did not.
+        base = {"distribution_type": "saas"}
+        declared, _ = runtime.evaluate_licenses(
+            ["GNU Affero General Public License v3"], base)
+        assert declared.action == ActionType.DENY
+        for candidate in ("AGPL-3.0-only", "AGPL-3.0-or-later"):
+            reading, _ = runtime.evaluate_licenses([candidate], base)
+            assert reading.action == ActionType.DENY
+
+    def test_readings_that_disagree_are_never_decided_by_the_strictest(self):
+        runtime = PolicyRuntime()
+
+        # "cryptographic autonomy" is CAL-1.0, which is network_copyleft, or its
+        # combined-work exception, which is permissive. Exactly one applies and nobody
+        # knows which, so most-restrictive-wins would assert an obligation the document
+        # may not carry. It is also why the types must come from each reading: taking
+        # the union let the permissive reading be judged as network copyleft and the
+        # two then looked like they agreed.
+        base = {"distribution_type": "saas"}
+        assert runtime.evaluate_licenses(["CAL-1.0"], base)[0].action == ActionType.DENY
+        assert runtime.evaluate_licenses(
+            ["CAL-1.0-Combined-Work-Exception"], base)[0].action == ActionType.APPROVE
+
+        declared, _ = runtime.evaluate_licenses(["cryptographic autonomy"], base)
+        assert declared.action == ActionType.FLAG_FOR_REVIEW
+        assert "which identifier the declaration means" in declared.message
+
+    def test_a_reading_carries_the_callers_spelling_as_well(self):
+        runtime = PolicyRuntime()
+
+        # Rules compare exact strings and a policy may name either spelling, so both
+        # reach the rules. They are one license written two ways, not two readings:
+        # a rule matching only one of them is a match, not a disagreement.
+        assert runtime._readings("Apache 2.0") == [
+            ("Apache-2.0", ["Apache 2.0", "Apache-2.0"])]
+        assert runtime._readings("gplv2") == [
+            ("GPL-2.0-only", ["GPL-2.0-only", "gplv2"]),
+            ("GPL-2.0-or-later", ["GPL-2.0-or-later", "gplv2"])]
+
     def test_a_name_that_states_no_grant_is_not_resolved_for_the_caller(self):
         runtime = PolicyRuntime()
 

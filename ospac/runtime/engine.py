@@ -127,22 +127,27 @@ class PolicyRuntime:
         naming the deprecated GPL-2.0 keeps matching, and one naming GPL-2.0-only starts
         matching the same input.
 
+        A declaration that names a license without naming which identifier is evaluated
+        under every reading. "GNU Affero General Public License v3" is AGPL-3.0-only or
+        AGPL-3.0-or-later and the default policy denies both for saas, so the verdict is
+        deny and asserts nothing the declaration did not already carry. Where the
+        readings disagree the answer is review, which is the honest one.
+
         Returns (aggregated PolicyResult, {license_id: per-license PolicyResult}).
         base_context carries the shared fields (distribution_type, context, linking_type);
         the per-license fields are filled in here.
         """
         per_license: Dict[str, PolicyResult] = {}
         for license_id in licenses:
-            resolution = resolve_license(license_id)
-            spellings = [license_id]
-            if resolution.license_id and resolution.license_id != license_id:
-                spellings.append(resolution.license_id)
-            license_type = self.resolve_license_type(license_id)
-            ctx = dict(base_context)
-            ctx["licenses"] = spellings
-            ctx["licenses_found"] = spellings
-            ctx["license_type"] = [license_type] if license_type else []
-            per_license[license_id] = self.evaluate(ctx)
+            results = []
+            for identifier, spellings in self._readings(license_id):
+                license_type = self.resolve_license_type(identifier)
+                ctx = dict(base_context)
+                ctx["licenses"] = spellings
+                ctx["licenses_found"] = spellings
+                ctx["license_type"] = [license_type] if license_type else []
+                results.append(self.evaluate(ctx))
+            per_license[license_id] = self._agree_or_review(results, license_id)
 
         combined = PolicyResult.aggregate(list(per_license.values()))
         return combined, per_license
@@ -262,48 +267,45 @@ class PolicyRuntime:
         readings1 = self._readings(license1)
         readings2 = self._readings(license2)
 
-        # Resolve license types from the dataset so rules matching on
-        # license_type (e.g. copyleft_strong) can fire. Licenses missing
-        # from the dataset simply contribute no type.
-        license_types = []
-        for license_id in readings1 + readings2:
-            try:
-                license_data = self.lookup_license_data(license_id)
-            except ValueError:
-                continue
-            license_type = (license_data or {}).get("license", {}).get("type")
-            if license_type and license_type not in license_types:
-                license_types.append(license_type)
+        per_reading = []
+        for identifier1, spellings1 in readings1:
+            for identifier2, spellings2 in readings2:
+                # Types come from the reading's own identifier. Taking the union across
+                # candidates let a permissive reading be judged as the network-copyleft
+                # one it shares a name with, which made the readings look like they
+                # agreed: "cryptographic autonomy" is CAL-1.0 or its combined-work
+                # exception, and those are network_copyleft and permissive.
+                license_types = []
+                for identifier in (identifier1, identifier2):
+                    try:
+                        license_data = self.lookup_license_data(identifier)
+                    except ValueError:
+                        continue
+                    license_type = (license_data or {}).get("license", {}).get("type")
+                    if license_type and license_type not in license_types:
+                        license_types.append(license_type)
 
-        # A compatibility check asks whether a conflict is known, so no rule matching
-        # means "no known conflict", not "needs review". The review default belongs to
-        # permission questions; applying it here made every license read as incompatible
-        # with itself, since this context carries no distribution_type and most rules
-        # therefore cannot match.
-        results = []
-        for reading1 in readings1:
-            for reading2 in readings2:
-                results.append(self.evaluate({
-                    "license1": reading1,
-                    "license2": reading2,
+                # A compatibility check asks whether a conflict is known, so no rule
+                # matching means "no known conflict", not "needs review". The review
+                # default belongs to permission questions; applying it here made every
+                # license read as incompatible with itself, since this context carries
+                # no distribution_type and most rules therefore cannot match.
+                spelled = [self.evaluate({
+                    "license1": spelling1,
+                    "license2": spelling2,
                     "license_type": license_types,
                     "compatibility_context": context,
                     # Mirror evaluate's derivation so linking rules can fire on pairs
                     # too. check -c static_linking previously reached no rule that
                     # matched on linking_type, because the field was never set here.
                     "linking_type": context if "linking" in context else None,
-                }, when_unmatched="allow"))
+                }, when_unmatched="allow")
+                    for spelling1 in spellings1 for spelling2 in spellings2]
+                per_reading.append(
+                    PolicyResult.aggregate(spelled, when_unmatched="allow"))
 
-        if len({result.action for result in results}) == 1:
-            result = PolicyResult.aggregate(results, when_unmatched="allow")
-        else:
-            result = PolicyResult(
-                rule_id="ambiguous_declaration",
-                action=ActionType.FLAG_FOR_REVIEW,
-                severity="warning",
-                message=f"{license1} and {license2} evaluate differently depending on "
-                        f"which identifier the declaration means")
-
+        result = self._agree_or_review(per_reading, f"{license1} and {license2}",
+                                       when_unmatched="allow")
         compliance = ComplianceResult.from_policy_result(result)
         # The result always reported an empty licenses_checked even though exactly two
         # licenses were checked.
@@ -318,9 +320,9 @@ class PolicyRuntime:
         # has to conflict: one that does not is a reading under which the pair is fine,
         # and the declaration did not rule it out.
         if compliance.is_compliant or compliance.needs_review:
-            pairs = [(a, b) for a in readings1 for b in readings2]
-            if all(self._dataset_names_incompatible(a, b)
-                   or self._dataset_names_incompatible(b, a) for a, b in pairs):
+            if all(self._dataset_names_incompatible(identifier1, identifier2)
+                   or self._dataset_names_incompatible(identifier2, identifier1)
+                   for identifier1, _ in readings1 for identifier2, _ in readings2):
                 compliance.status = ComplianceStatus.NON_COMPLIANT
                 compliance.add_violation(
                     "dataset_known_incompatibility",
@@ -328,16 +330,42 @@ class PolicyRuntime:
                     f"license dataset")
         return compliance
 
-    def _readings(self, license_id: str) -> List[str]:
+    @staticmethod
+    def _agree_or_review(results: List[PolicyResult], subject: str,
+                         when_unmatched: str = "review") -> PolicyResult:
         """
-        Every identifier a declared string could mean.
+        The verdict the readings share, or review when they do not share one.
 
-        One entry for anything that resolves, the candidates for a string that names a
-        license without naming which identifier, and the string itself for anything the
-        data does not recognise, so an unknown id still reaches the rules that name it.
+        Most-restrictive-wins is right across licenses, where every one of them applies.
+        It is wrong across readings of one declaration, where exactly one applies and
+        nobody knows which: taking the strictest would assert an obligation the document
+        may not carry. Agreement is the only thing a reading set can assert on its own.
+        """
+        if len({result.action for result in results}) == 1:
+            return PolicyResult.aggregate(results, when_unmatched=when_unmatched)
+        return PolicyResult(
+            rule_id="ambiguous_declaration",
+            action=ActionType.FLAG_FOR_REVIEW,
+            severity="warning",
+            message=f"{subject} evaluates differently depending on which identifier "
+                    f"the declaration means",
+            requirements=["Establish which identifier the declaration means"])
+
+    @staticmethod
+    def _readings(license_id: str) -> List[tuple]:
+        """
+        The identifiers a declared string could mean, each with the spellings that name it.
+
+        One reading unless the declaration names a license without naming which
+        identifier, in which case one per candidate. Readings are different licenses and
+        have to agree before an answer is asserted; spellings are one license written two
+        ways and any of them matching is a match, because a policy may be written against
+        the caller's spelling or against the identifier and rules compare exact strings.
         """
         resolution = resolve_license(license_id)
-        return list(resolution.candidates) or [resolution.license_id or license_id]
+        identifiers = resolution.candidates or [resolution.license_id or license_id]
+        return [(identifier, sorted({identifier, license_id}))
+                for identifier in identifiers]
 
     def _matchable_id(self, license_id: str) -> str:
         """The spelling a rule should be matched against. See matchable_license_id."""

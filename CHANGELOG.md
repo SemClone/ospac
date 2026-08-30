@@ -23,9 +23,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Both spellings are offered to the rules rather than the resolved id replacing the
   input, so a policy naming the deprecated `GPL-2.0` keeps matching and one naming
   `GPL-2.0-only` starts matching the same input.
-- A string that states a license but not the grant is still not resolved for the caller.
-  `GNU Affero General Public License v3` reports `ambiguous` with both readings, because
-  only versus or-later is the copyright holder's choice.
+- A string that states a license but not the grant is still not resolved to one
+  identifier, and is now evaluated under every reading it could have. The default policy
+  denies both AGPL-3.0 grants for saas, so `evaluate -l "GNU Affero General Public
+  License v3" -d saas` denies, which asserts nothing the declaration did not carry;
+  `check gplv2 BSD-4-Clause` reports the conflict for the same reason. Where the readings
+  disagree the answer is review, never the strictest of them: exactly one reading applies
+  and nobody knows which, so most-restrictive-wins would assert an obligation the
+  document may not carry. `cryptographic autonomy` is CAL-1.0 or its combined-work
+  exception, network copyleft against permissive, and reports review.
 - `evaluate` reports what it made of each declaration under `resolved_licenses`, and the
   text and markdown output say it in a line. A verdict you cannot trace back to an
   identifier is a verdict you have to re-derive the mapping to trust.
