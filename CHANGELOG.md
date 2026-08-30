@@ -5,6 +5,18 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- A `contaminate` verdict produces a compliance result that says something (#98).
+  `ComplianceResult.from_policy_result` handled every other action, so a contaminating
+  one matched no branch and kept the constructed `UNKNOWN`: `is_compliant` and
+  `needs_review` both answered no and `violations` was empty, so a caller branching on
+  those two and treating the remainder as fine read it as fine, and the message the
+  policy author wrote never arrived. It is `NON_COMPLIANT` and carries its message, the
+  same as `deny`, and the two stay distinguishable by action and by aggregation rank.
+
 ## [1.8.0] - 2026-08-30
 
 ### Fixed
