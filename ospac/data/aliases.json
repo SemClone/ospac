@@ -2068,10 +2068,6 @@
       "LGPL-2.1-only",
       "LGPL-2.1-or-later"
     ],
-    "gnu lesser general public license v2": [
-      "LGPL-2.1-only",
-      "LGPL-2.1-or-later"
-    ],
     "gnu lesser general public license v2.1": [
       "LGPL-2.1-only",
       "LGPL-2.1-or-later"
@@ -2240,18 +2236,6 @@
       "OLDAP-1.3",
       "OLDAP-1.4"
     ],
-    "open ldap public license v2": [
-      "OLDAP-2.0.1",
-      "OLDAP-2.1",
-      "OLDAP-2.2",
-      "OLDAP-2.2.1",
-      "OLDAP-2.3",
-      "OLDAP-2.4",
-      "OLDAP-2.5",
-      "OLDAP-2.6",
-      "OLDAP-2.7",
-      "OLDAP-2.8"
-    ],
     "open software": [
       "OSL-1.0",
       "OSL-1.1",
@@ -2378,10 +2362,6 @@
       "SISSL-1.2"
     ],
     "sun industry standards source license": [
-      "SISSL",
-      "SISSL-1.2"
-    ],
-    "sun industry standards source license v1": [
       "SISSL",
       "SISSL-1.2"
     ],

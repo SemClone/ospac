@@ -288,6 +288,11 @@ def obligations(licenses: str, policy_dir: str, data_dir: Optional[str], format:
                 # When using direct data, return raw license data for system consumption
                 output_data = {
                     "licenses": license_list,
+                    "resolved_licenses": {
+                        text: {"license_id": r.license_id, "status": r.status,
+                               "candidates": r.candidates}
+                        for text, r in PolicyRuntime.resolve_licenses(license_list).items()
+                    },
                     "license_data": obligations_dict,
                     "using_policy": False
                 }
@@ -1226,17 +1231,20 @@ def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -
         data_dir = str(Path(__file__).parent.parent / "data")
 
     license_data_result = {}
-    licenses = _as_identifiers(licenses)
+    # Keyed by the string the caller asked about, which is what `licenses` lists and
+    # what PolicyRuntime.get_obligations returns. Keying by the resolved id instead
+    # made the two disagree for exactly the inputs resolution was added to serve.
+    resolved = dict(zip(licenses, _as_identifiers(licenses)))
 
     # Try JSON files first (preferred format)
     json_dir = Path(data_dir) / "licenses" / "json"
     if json_dir.exists():
-        for license_id in licenses:
+        for declared, license_id in resolved.items():
             try:
                 # Validate license_id to prevent path traversal
                 validate_license_id(license_id)
             except ValueError as e:
-                click.echo(f"⚠️  Error: Invalid license ID '{license_id}': {e}", err=True)
+                click.echo(f"⚠️  Error: Invalid license ID '{declared}': {e}", err=True)
                 continue
 
             json_file = json_dir / f"{license_id}.json"
@@ -1248,7 +1256,7 @@ def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -
                     # Extract license data from SPDX format
                     if "license" in spdx_data:
                         license_data = spdx_data["license"]
-                        license_data_result[license_id] = license_data
+                        license_data_result[declared] = license_data
                     else:
                         click.echo(f"⚠️  Warning: {license_id} JSON file missing 'license' key", err=True)
 
@@ -1262,7 +1270,7 @@ def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -
         import yaml
         spdx_dir = Path(data_dir) / "licenses" / "spdx"
         if spdx_dir.exists():
-            for license_id in licenses:
+            for declared, license_id in resolved.items():
                 try:
                     # Validate license_id to prevent path traversal
                     validate_license_id(license_id)
@@ -1279,7 +1287,7 @@ def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -
                         # Extract license data from SPDX format
                         if "license" in spdx_data:
                             license_data = spdx_data["license"]
-                            license_data_result[license_id] = license_data
+                            license_data_result[declared] = license_data
                     except Exception:
                         # Continue with other licenses if this file fails
                         pass

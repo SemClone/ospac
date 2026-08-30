@@ -442,6 +442,20 @@ class TestDeclaredLicenceStringsResolve:
         assert runtime._matchable_id("GPL-2.0") == "GPL-2.0"
         assert runtime._matchable_id("Apache 2.0") == "Apache-2.0"
 
+    def test_a_declared_pair_reaches_the_dataset_incompatibility_too(self):
+        runtime = PolicyRuntime()
+
+        # GPL-2.0's record names BSD-4-Clause in incompatible_with, and that list holds
+        # canonical ids. Resolving only the policy context left the dataset fallback
+        # comparing a declared name against canonical ids, so a known incompatible pair
+        # read as clean for exactly the inputs resolution was added to serve.
+        canonical = runtime.check_compatibility("GPL-2.0", "BSD-4-Clause")
+        spelled = runtime.check_compatibility(
+            "GNU General Public License v2.0 only",
+            'bsd 4-clause "original" or "old" license')
+        assert canonical.is_compliant is False
+        assert spelled.is_compliant is False
+
     def test_a_path_is_still_a_path(self):
         runtime = PolicyRuntime()
 

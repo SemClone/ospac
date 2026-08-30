@@ -265,9 +265,12 @@ class PolicyRuntime:
         # Same reason as evaluate_licenses: a pair declared the way a registry spells it
         # reached no pairwise rule at all. These two fields are matched as scalars, so
         # they cannot carry both spellings the way evaluate_licenses does.
+        matchable1 = self._matchable_id(license1)
+        matchable2 = self._matchable_id(license2)
+
         eval_context = {
-            "license1": self._matchable_id(license1),
-            "license2": self._matchable_id(license2),
+            "license1": matchable1,
+            "license2": matchable2,
             "license_type": license_types,
             "compatibility_context": context,
             # Mirror evaluate's derivation so linking rules can fire on pairs too.
@@ -291,9 +294,13 @@ class PolicyRuntime:
         # the same precedence named exceptions get in License.is_compatible_with.
         # Policy rules only enumerated some of the pairs, so GPL-2.0 with BSD-4-Clause
         # was reported compliant while the records named each other incompatible.
+        # The declared spellings are resolved here too. The record is reached either
+        # way, but the incompatible_with list it holds is canonical ids, so a declared
+        # name compared against it matches nothing and a known incompatible pair reads
+        # as clean.
         if compliance.is_compliant or compliance.needs_review:
-            if (self._dataset_names_incompatible(license1, license2)
-                    or self._dataset_names_incompatible(license2, license1)):
+            if (self._dataset_names_incompatible(matchable1, matchable2)
+                    or self._dataset_names_incompatible(matchable2, matchable1)):
                 compliance.status = ComplianceStatus.NON_COMPLIANT
                 compliance.add_violation(
                     "dataset_known_incompatibility",

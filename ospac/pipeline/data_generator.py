@@ -439,32 +439,35 @@ def _version_spellings(text: str) -> Set[str]:
 _ID_VERSION = re.compile(r"^(?P<family>.*?)-?(?P<version>\d+\.\d+(?:\.\d+)*[a-z]?)(?:-.*)?$")
 
 
-def _minor_is_redundant(license_id: str, known_ids: Set[str]) -> bool:
+def _shortening_covers_the_major(claimants: Set[str], known_ids: Set[str]) -> bool:
     """
-    True when dropping this id's minor version still names only this version.
+    True when a shortened spelling names every version its claimants could be confused for.
 
     Collision between two records' shortened spellings catches most of this on its own,
-    but only when the siblings happen to spell their version the same way. SPDX names
-    Apache-1.1 "Apache License 1.1" and ships the folk spelling "apache v1.1", while
-    Apache-1.0 carries neither shape, so nothing collides and "apache v1" would resolve
-    to 1.1 with 1.0 sitting right beside it. Solderpad is the same story with ", Version
-    0.51" against "v0.5". Comparing the ids instead of the spellings sees both.
+    but only when the siblings spell their version the same way. "php license v3" is
+    claimed by PHP-3.0 and PHP-3.01, which is every PHP version at major 3, so the
+    spelling states a choice the data can enumerate. "gnu lesser general public license
+    v2" is claimed by LGPL-2.1 alone, while LGPL-2.0 ships too and SPDX spells its name
+    "Library"; offering the 2.1 pair would narrow a choice the string never made, and
+    nothing in the spellings reveals it. "apache v1" is the single-claimant shape of the
+    same thing: Apache-1.1 carries the folk spelling "apache v1.1" and Apache-1.0
+    carries no matching shape at all. Comparing the ids sees all three.
     """
-    match = _ID_VERSION.match(license_id)
-    if not match:
+    parsed = [_ID_VERSION.match(claimant) for claimant in claimants]
+    if not parsed or not all(parsed):
         return False
-    family, version = match.group("family"), match.group("version")
-    major = version.split(".")[0]
+    keyed = {(m.group("family"), m.group("version").split(".")[0]) for m in parsed}
+    if len(keyed) != 1:
+        return False
+    family, major = keyed.pop()
+
+    shipped = set()
     for other in known_ids:
-        other_match = _ID_VERSION.match(other)
-        if not other_match:
-            continue
-        other_version = other_match.group("version")
-        if (other_match.group("family") == family
-                and other_version.split(".")[0] == major
-                and other_version != version):
-            return False
-    return True
+        match = _ID_VERSION.match(other)
+        if (match and match.group("family") == family
+                and match.group("version").split(".")[0] == major):
+            shipped.add(match.group("version"))
+    return {m.group("version") for m in parsed} == shipped
 
 
 # Words that leave a phrase unfinished when the trailing "license" is dropped from a
@@ -1588,6 +1591,7 @@ class PolicyDataGenerator:
         from ospac.utils.validation import NEVER_RESOLVE
 
         candidates: Dict[str, set] = {}
+        grant_shortened: Dict[str, set] = {}
         for record in records:
             # A deprecated spelling carries no name of its own for this purpose: the
             # canonical record holds the same name and both would derive one key.
@@ -1596,10 +1600,21 @@ class PolicyDataGenerator:
             match = _GRANT_IN_NAME.match(record.get("name", "").lower())
             if match:
                 key = f"{match.group('head')}{match.group('tail')}"
-                for spelling in _version_spellings(key):
-                    if spelling != key and spelling in owners:
+                candidates.setdefault(key, set()).add(record["id"])
+                for spelling in _version_spellings(key) - {key}:
+                    # A spelling some record bears in full belongs to that record.
+                    if spelling in owners:
                         continue
-                    candidates.setdefault(spelling, set()).add(record["id"])
+                    grant_shortened.setdefault(spelling, set()).add(record["id"])
+
+        # Same rule the alias table applies: a shortened spelling is only offered where
+        # it names every version it could be taken for. Without it this path reported
+        # "GNU Lesser General Public License v2" as a choice between the two LGPL-2.1
+        # grants, with LGPL-2.0 shipping beside them and unmentioned.
+        known_ids = {record["id"] for record in records if record.get("id")}
+        for spelling, ids in grant_shortened.items():
+            if _shortening_covers_the_major(ids, known_ids):
+                candidates.setdefault(spelling, set()).update(ids)
 
         # Names that differ only by version: the shared remainder names a family, not a
         # licence. "Eclipse Public License" is EPL-1.0 and EPL-2.0 both, and the trailing
@@ -1703,11 +1718,7 @@ class PolicyDataGenerator:
                 for spelling in _version_spellings(alias) - spelled_in_full:
                     shortened.setdefault(spelling, set()).add(record["id"])
         for spelling, ids in shortened.items():
-            # A single claimant means the spelling resolves, so it has to be right.
-            # A licence whose family ships another version at the same major cannot
-            # claim one: that sibling spells its version differently and therefore
-            # never collided here, which is the whole reason to consult the ids.
-            if len(ids) == 1 and not _minor_is_redundant(next(iter(ids)), known_ids):
+            if not _shortening_covers_the_major(ids, known_ids):
                 continue
             owners.setdefault(spelling, set()).update(ids)
 

@@ -42,12 +42,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the licenses that end up sharing a spelling collide into `ambiguous` with their
   candidates: `php license v3` is `PHP-3.0` or `PHP-3.01`, `latex project public license
   v1` is one of five. A family with a single version at that major resolves.
-- A sibling that spells its version differently is caught by comparing identifiers rather
-  than spellings. `apache v1` no longer resolves to `Apache-1.1` with `Apache-1.0` beside
-  it, and `solderpad hardware license v0` no longer resolves to `SHL-0.5` beside
-  `SHL-0.51`.
-- Only a minor is dropped: `v2.1` shortened to `v2` would name a different license.
-- 1739 aliases, up from 1669, and 145 ambiguous names, up from 113. Nothing was removed
+- A shortened spelling is only published where its claimants cover every version they
+  could be taken for, which is a fact about the identifiers rather than the spellings.
+  `apache v1` does not resolve to `Apache-1.1` with `Apache-1.0` beside it, and
+  `gnu lesser general public license v2` is absent rather than offering the two LGPL-2.1
+  readings while LGPL-2.0 ships under the name SPDX gave it, "Library".
+- 1739 aliases, up from 1669, and 142 ambiguous names, up from 113. Nothing was removed
   and nothing changed the id it resolved to.
 
 ### Added
