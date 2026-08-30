@@ -29,8 +29,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `evaluate` reports what it made of each declaration under `resolved_licenses`, and the
   text and markdown output say it in a line. A verdict you cannot trace back to an
   identifier is a verdict you have to re-derive the mapping to trust.
+- A declaration that names a license without naming its identifier is checked under
+  every reading. `ospac check gplv2 BSD-4-Clause` reports the conflict, because
+  BSD-4-Clause's record names both GPL-2.0 grants and the conflict therefore holds
+  whichever the document meant; where the readings disagree the answer is review rather
+  than whichever reading was tried first. `check` used to report that pair compatible
+  and warn that `gplv2` was not in the dataset, which was false about data ospac ships.
+- A shipped identifier resolves to itself, deprecated ones included. `GPL-2.0` ships a
+  record of its own, so `obligations -l GPL-2.0` returns that record and the reported
+  resolution now agrees with it instead of naming the migration to `GPL-2.0-only`.
+- `check` and `obligations` report `resolved_licenses` the way `evaluate` does.
 - New public `ospac.resolve_license(text)` returning `LicenseResolution(text, license_id,
-  candidates, status)`, and `PolicyRuntime.resolve_licenses(licenses)`.
+  candidates, status)`, `ospac.matchable_license_id(text)`,
+  `ospac.dataset.known_license_ids()` and `PolicyRuntime.resolve_licenses(licenses)`.
+  Whether a declared string is already an identifier is decided against that set rather
+  than by probing for a file, which answered differently on a case-insensitive volume.
 
 **The alias data carries the version spelling registries actually write** (#95)
 - SPDX names a license "GNU Affero General Public License v3.0" and Maven Central serves

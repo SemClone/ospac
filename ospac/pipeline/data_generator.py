@@ -439,6 +439,24 @@ def _version_spellings(text: str) -> Set[str]:
 _ID_VERSION = re.compile(r"^(?P<family>.*?)-?(?P<version>\d+\.\d+(?:\.\d+)*[a-z]?)(?:-.*)?$")
 
 
+def _publish_shortened(target: Dict[str, set], shortened: Dict[str, set],
+                       taken: Set[str], known_ids: Set[str]) -> None:
+    """
+    Move the derived spellings that hold from `shortened` onto `target`.
+
+    Every spelling source collects its own shortened forms and hands them here, so the
+    guard is written once. It was written per source before, and the source added last
+    did not get it: the minor-less form reached the SPDX names and not the curated
+    table, so the data answered for "GNU Affero General Public License v3" and called
+    the v1 spelling unknown. `taken` is the spellings some record already bears in
+    full, which belong to that record and are not reopened.
+    """
+    for spelling, ids in shortened.items():
+        if spelling in taken or not _shortening_covers_the_major(ids, known_ids):
+            continue
+        target.setdefault(spelling, set()).update(ids)
+
+
 def _shortening_covers_the_major(claimants: Set[str], known_ids: Set[str]) -> bool:
     """
     True when a shortened spelling names every version its claimants could be confused for.
@@ -1602,19 +1620,10 @@ class PolicyDataGenerator:
                 key = f"{match.group('head')}{match.group('tail')}"
                 candidates.setdefault(key, set()).add(record["id"])
                 for spelling in _version_spellings(key) - {key}:
-                    # A spelling some record bears in full belongs to that record.
-                    if spelling in owners:
-                        continue
                     grant_shortened.setdefault(spelling, set()).add(record["id"])
 
-        # Same rule the alias table applies: a shortened spelling is only offered where
-        # it names every version it could be taken for. Without it this path reported
-        # "GNU Lesser General Public License v2" as a choice between the two LGPL-2.1
-        # grants, with LGPL-2.0 shipping beside them and unmentioned.
         known_ids = {record["id"] for record in records if record.get("id")}
-        for spelling, ids in grant_shortened.items():
-            if _shortening_covers_the_major(ids, known_ids):
-                candidates.setdefault(spelling, set()).update(ids)
+        _publish_shortened(candidates, grant_shortened, set(owners), known_ids)
 
         # Names that differ only by version: the shared remainder names a family, not a
         # licence. "Eclipse Public License" is EPL-1.0 and EPL-2.0 both, and the trailing
@@ -1675,14 +1684,11 @@ class PolicyDataGenerator:
                 continue
             candidates.setdefault(key, set()).update(ids)
             # A curated spelling carries a version the same way an SPDX name does, so
-            # it drops its minor under the same rule. Without this the table answered
-            # for "GNU Affero General Public License v3", whose name SPDX publishes,
-            # and not for the v1 spelling, which is curated.
-            for spelling in _version_spellings(key) - {key}:
-                if spelling in owners or not _shortening_covers_the_major(
-                        set(ids), known_ids):
-                    continue
-                candidates.setdefault(spelling, set()).update(ids)
+            # it drops its minor under the same rule.
+            _publish_shortened(
+                candidates,
+                {spelling: set(ids) for spelling in _version_spellings(key) - {key}},
+                set(owners), known_ids)
 
         return {key: sorted(ids) for key, ids in sorted(candidates.items())
                 if len(ids) > 1 and key not in NEVER_RESOLVE}
@@ -1723,12 +1729,9 @@ class PolicyDataGenerator:
         shortened: Dict[str, set] = {}
         for record in records:
             for alias in record.get("aliases", []):
-                for spelling in _version_spellings(alias) - spelled_in_full:
+                for spelling in _version_spellings(alias) - {alias}:
                     shortened.setdefault(spelling, set()).add(record["id"])
-        for spelling, ids in shortened.items():
-            if not _shortening_covers_the_major(ids, known_ids):
-                continue
-            owners.setdefault(spelling, set()).update(ids)
+        _publish_shortened(owners, shortened, spelled_in_full, known_ids)
 
         # Ambiguity is decided first and wins. A curated alias can name a family by
         # accident ("eclipse public license" for EPL-1.0), and the alias table is the

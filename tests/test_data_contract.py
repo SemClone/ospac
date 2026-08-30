@@ -327,3 +327,62 @@ class TestPythonSurface:
         reported = ospac.data_version()
         with pytest.raises(Exception):
             reported.schema_version = "9.9.9"
+
+
+class TestPropertiesTheResolutionPathRelieson:
+    """
+    Two facts about the shipped data that code elsewhere assumes and nothing checked.
+    Both were verified by hand while fixing the resolution path, which is exactly the
+    kind of assumption that stops being true on a monthly refresh with nobody looking.
+    """
+
+    def test_every_shipped_id_resolves_from_its_lowercased_spelling(self):
+        import ospac
+
+        # Callers reach a record through matchable_license_id, which returns the input
+        # unchanged when the data cannot settle it. A lower-cased id therefore has to
+        # resolve, or it falls through to a path built from the caller's casing and the
+        # answer starts depending on whether the filesystem is case-sensitive.
+        aliases = ospac.license_aliases()
+        ambiguous = ospac.license_ambiguous()
+        never = ospac.license_never_resolve()
+        unreachable = sorted(
+            license_id for license_id in ospac.dataset.known_license_ids()
+            if license_id.lower() not in aliases
+            or license_id.lower() in ambiguous
+            or license_id.lower() in never)
+        assert unreachable == [], (
+            f"ids whose lowercased spelling does not resolve: {unreachable}")
+
+    def test_incompatible_with_names_every_spelling_of_the_other_licence(self):
+        import json
+
+        import ospac
+
+        # check compares a resolved id against the incompatible_with list by exact
+        # string. A record naming only one spelling of a licence that ships several
+        # would let the other spelling read as clean, silently.
+        data_dir = Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+        records = {}
+        for path in data_dir.glob("*.json"):
+            record = json.loads(path.read_text())["license"]
+            records[record["id"]] = record
+
+        # Ids that mean the same licence: a deprecated spelling and what it maps to.
+        same = {}
+        for license_id, record in records.items():
+            canonical = record.get("alias_of") or license_id
+            same.setdefault(canonical, set()).add(license_id)
+            same[canonical].add(canonical)
+
+        gaps = []
+        for license_id, record in records.items():
+            named = set((record.get("compatibility", {})
+                         .get("static_linking", {}).get("incompatible_with", [])))
+            for other in sorted(named):
+                group = same.get(records.get(other, {}).get("alias_of") or other, set())
+                missing = sorted(spelling for spelling in group
+                                 if spelling in records and spelling not in named)
+                if missing:
+                    gaps.append((license_id, other, missing))
+        assert gaps == [], f"incompatible_with lists naming only some spellings: {gaps}"

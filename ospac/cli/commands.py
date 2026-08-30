@@ -195,9 +195,20 @@ def check(license1: Optional[str], license2: Optional[str], licenses_opt: Option
 
         # A license id that does not resolve in the dataset cannot be checked, only not
         # contradicted. Say so instead of letting a typo read as a clean compatibility.
+        # An ambiguous name is a different report: the dataset knows the license and not
+        # which identifier, the check ran under every reading, and calling that unknown
+        # was false about data ospac ships.
         warnings = list(result.warnings) if result.warnings else []
-        for license_id in (license1, license2):
-            if runtime.resolve_license_type(license_id) is None:
+        resolutions = runtime.resolve_licenses([license1, license2])
+        for license_id, resolution in resolutions.items():
+            if resolution.status == "ambiguous":
+                warnings.append({
+                    "rule_id": "ambiguous_license",
+                    "message": f"{license_id} could be "
+                               f"{' or '.join(resolution.candidates)}; checked under "
+                               f"every reading"
+                })
+            elif runtime.resolve_license_type(license_id) is None:
                 warnings.append({
                     "rule_id": "unknown_license",
                     "message": f"{license_id} is not in the license dataset, so this "
@@ -209,6 +220,11 @@ def check(license1: Optional[str], license2: Optional[str], licenses_opt: Option
                 "license1": license1,
                 "license2": license2,
                 "context": context,
+                "resolved_licenses": {
+                    text: {"license_id": r.license_id, "status": r.status,
+                           "candidates": r.candidates}
+                    for text, r in resolutions.items()
+                },
                 "compatible": result.is_compliant,
                 "requires_review": result.needs_review,
                 "violations": result.violations if result.violations else [],
@@ -509,16 +525,10 @@ def show(license_id: str, format: str):
     """Show details for a specific license from SPDX data."""
     import yaml
     try:
-        # Validate license_id to prevent path traversal
-        validate_license_id(license_id)
-
-        # Use package data directory
         data_dir = Path(__file__).parent.parent / "data"
+        data = _license_record(license_id, str(data_dir))
 
-        # Load from JSON file (preferred format)
-        json_file = data_dir / "licenses" / "json" / f"{license_id}.json"
-
-        if not json_file.exists():
+        if not data:
             click.secho(f"License {license_id} not found", fg="red")
 
             # Show available licenses
@@ -530,9 +540,10 @@ def show(license_id: str, format: str):
                     click.echo(f"  - {lid}")
             sys.exit(1)
 
-        with open(json_file) as f:
-            data = json.load(f)
         license_data = data.get("license", {})
+        # The record answers for its own id. Echoing the argument instead labelled
+        # Apache-2.0's record "apache-2.0" on a case-insensitive volume.
+        license_id = license_data.get("id", license_id)
 
         if format == "json":
             click.echo(json.dumps(license_data, indent=2))
@@ -1210,6 +1221,19 @@ def _output_obligations_markdown(obligations_dict):
                         click.echo(f"  - {item}")
 
 
+def _license_record(license_id: str, data_dir: Optional[str] = None) -> Optional[dict]:
+    """
+    Read one license record, for every command that needs one.
+
+    Four separate copies of "build a path from a license id and open it" is how the
+    case-insensitive filesystem probe survived being fixed: the fix landed in one of
+    them. PolicyRuntime.lookup_license_data is the copy that resolves a declared string
+    against the shipped identifiers and keeps the path inside the dataset, so it is the
+    one they all use. skip_default because reading a record needs no policy.
+    """
+    return PolicyRuntime(skip_default=True).lookup_license_data(license_id, data_dir)
+
+
 def _as_identifiers(licenses: list) -> list:
     """The declared strings as identifiers. See ospac.aliases.matchable_license_id."""
     return [matchable_license_id(declared) for declared in licenses]
@@ -1241,23 +1265,18 @@ def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -
                 click.echo(f"⚠️  Error: Invalid license ID '{declared}': {e}", err=True)
                 continue
 
-            json_file = json_dir / f"{license_id}.json"
-            if json_file.exists():
-                try:
-                    with open(json_file) as f:
-                        spdx_data = json.load(f)
+            try:
+                spdx_data = _license_record(license_id, data_dir)
+            except Exception as e:
+                click.echo(f"⚠️  Warning: Failed to load {license_id}.json: {e}", err=True)
+                continue
 
-                    # Extract license data from SPDX format
-                    if "license" in spdx_data:
-                        license_data = spdx_data["license"]
-                        license_data_result[declared] = license_data
-                    else:
-                        click.echo(f"⚠️  Warning: {license_id} JSON file missing 'license' key", err=True)
-
-                except Exception as e:
-                    click.echo(f"⚠️  Warning: Failed to load {license_id}.json: {e}", err=True)
-            else:
+            if spdx_data is None:
                 click.echo(f"⚠️  Warning: {license_id}.json not found", err=True)
+            elif "license" in spdx_data:
+                license_data_result[declared] = spdx_data["license"]
+            else:
+                click.echo(f"⚠️  Warning: {license_id} JSON file missing 'license' key", err=True)
 
     # Fallback to YAML files if JSON not available
     else:
@@ -1309,16 +1328,10 @@ def _enhance_result_with_obligations(result, license_list: list, runtime: Policy
             # Skip invalid license IDs
             continue
 
-        json_file = json_dir / f"{license_id}.json"
-
-        spdx_data = None
-
-        if json_file.exists():
-            try:
-                with open(json_file) as f:
-                    spdx_data = json.load(f)
-            except Exception:
-                pass
+        try:
+            spdx_data = _license_record(license_id, str(json_dir.parent.parent))
+        except Exception:
+            spdx_data = None
 
         if spdx_data:
             license_data = spdx_data.get("license", {})

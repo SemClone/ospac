@@ -479,6 +479,39 @@ class TestDeclaredLicenceStringsResolve:
         assert record["alias_of"] == "GPL-3.0-only"
         assert record["spdx_metadata"]["is_deprecated"] is True
 
+    def test_an_ambiguous_name_is_checked_under_every_reading(self):
+        runtime = PolicyRuntime()
+
+        # "gplv2" is GPL-2.0-only or GPL-2.0-or-later and BSD-4-Clause's record names
+        # both incompatible, so the conflict holds whichever the document meant.
+        # Flattening the declaration to its own text threw the readings away and the
+        # pair came back compatible, which is the failure direction that matters.
+        assert runtime.check_compatibility("gplv2", "BSD-4-Clause").is_compliant is False
+        assert runtime.check_compatibility(
+            "GPL-2.0-only", "BSD-4-Clause").is_compliant is False
+        assert runtime.check_compatibility(
+            "GPL-2.0-or-later", "BSD-4-Clause").is_compliant is False
+
+    def test_readings_that_disagree_are_not_decided_for_the_caller(self):
+        runtime = PolicyRuntime()
+
+        # The bundled one-way rules name GPL-2.0-only and not GPL-2.0-or-later, so the
+        # two readings of "gplv2" answer differently. The declaration did not choose,
+        # so neither does the check.
+        assert runtime.check_compatibility("gplv2", "MIT").needs_review is True
+
+    def test_one_resolution_policy_for_a_shipped_deprecated_id(self):
+        import ospac
+
+        runtime = PolicyRuntime()
+
+        # The record lookup returns GPL-2.0's own record, so the reported resolution
+        # has to agree. Saying "normalized to GPL-2.0-only" beside that record put two
+        # answers in one payload and the metadata was the one a consumer would believe.
+        assert runtime.lookup_license_data("GPL-2.0")["license"]["id"] == "GPL-2.0"
+        assert ospac.resolve_license("GPL-2.0").status == "exact"
+        assert ospac.resolve_license("GPL-2.0").license_id == "GPL-2.0"
+
     def test_a_path_is_still_a_path(self):
         runtime = PolicyRuntime()
 

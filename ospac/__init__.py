@@ -15,7 +15,8 @@ except PackageNotFoundError:  # running from a source tree that was never instal
     __version__ = "0.0.0.dev0"
 
 from ospac.aliases import (LicenseResolution, license_aliases, license_ambiguous,
-                           license_never_resolve, resolve_license)
+                           license_never_resolve, matchable_license_id,
+                           resolve_license)
 from ospac.dataset import DATA_SCHEMA_VERSION, DataVersion, data_version
 from ospac.runtime.engine import PolicyRuntime
 from ospac.models.license import License
@@ -27,6 +28,7 @@ __all__ = [
     "LicenseResolution",
     "license_aliases",
     "resolve_license",
+    "matchable_license_id",
     "license_ambiguous",
     "license_never_resolve",
     "data_version",

@@ -90,9 +90,18 @@ def resolve_license(text: str) -> LicenseResolution:
     nothing, and "no rule matched" is indistinguishable from a considered ruling at the
     point where the two mean opposite things.
     """
+    from ospac.dataset import known_license_ids
+
     key = (text or "").strip().lower()
     if not key or key in license_never_resolve():
         return LicenseResolution(text, None, [], "unresolved")
+
+    # A shipped identifier denotes itself, deprecated ones included. GPL-2.0 ships a
+    # record of its own and the alias map migrates it to GPL-2.0-only; reporting that
+    # migration while the record lookup returns GPL-2.0's own record put two answers
+    # in one payload and made the migration the one a consumer would believe.
+    if text in known_license_ids():
+        return LicenseResolution(text, text, [], "exact")
 
     candidates = license_ambiguous().get(key)
     if candidates:
@@ -109,18 +118,9 @@ def matchable_license_id(text: str) -> str:
     """
     The spelling a policy rule or a record lookup should use for a declared string.
 
-    The input wins whenever it is itself a shipped identifier, so a policy written
-    against the deprecated GPL-2.0 keeps matching exactly what it always matched, and
-    an obligations lookup for it keeps returning that record's own deprecation
-    metadata rather than the canonical record's. Only a string that names no record is
-    replaced, which is the registry spelling: "Apache 2.0" is not an identifier and
-    reached nothing at all.
-
-    Anything that resolves to neither is returned unchanged, so a caller that
-    validates identifiers still rejects it.
+    resolve_license already decides that a shipped identifier denotes itself, so this
+    is only its answer flattened to a string. Use it where one spelling is needed and
+    resolve_license where the candidates or the status matter: flattening an ambiguous
+    declaration to its own text discards the readings the data does know.
     """
-    from ospac.dataset import known_license_ids
-
-    if text in known_license_ids():
-        return text
     return resolve_license(text).license_id or text

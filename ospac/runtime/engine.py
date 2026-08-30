@@ -249,12 +249,24 @@ class PolicyRuntime:
 
     def check_compatibility(self, license1: str, license2: str,
                            context: str = "general") -> ComplianceResult:
-        """Check if two licenses are compatible."""
+        """
+        Check if two licenses are compatible.
+
+        A declaration that names a license without naming its identifier is checked
+        under every reading it could have. "gplv2" is GPL-2.0-only or GPL-2.0-or-later
+        and BSD-4-Clause's record names both incompatible, so the conflict holds
+        whichever the document meant and saying so asserts nothing extra. Where the
+        readings disagree the declaration decides nothing on its own, and the answer is
+        review rather than the reading that happens to be checked first.
+        """
+        readings1 = self._readings(license1)
+        readings2 = self._readings(license2)
+
         # Resolve license types from the dataset so rules matching on
         # license_type (e.g. copyleft_strong) can fire. Licenses missing
         # from the dataset simply contribute no type.
         license_types = []
-        for license_id in (license1, license2):
+        for license_id in readings1 + readings2:
             try:
                 license_data = self.lookup_license_data(license_id)
             except ValueError:
@@ -263,29 +275,35 @@ class PolicyRuntime:
             if license_type and license_type not in license_types:
                 license_types.append(license_type)
 
-        # Same reason as evaluate_licenses: a pair declared the way a registry spells it
-        # reached no pairwise rule at all. These two fields are matched as scalars, so
-        # they cannot carry both spellings the way evaluate_licenses does.
-        matchable1 = self._matchable_id(license1)
-        matchable2 = self._matchable_id(license2)
-
-        eval_context = {
-            "license1": matchable1,
-            "license2": matchable2,
-            "license_type": license_types,
-            "compatibility_context": context,
-            # Mirror evaluate's derivation so linking rules can fire on pairs too.
-            # check -c static_linking previously reached no rule that matched on
-            # linking_type, because the field was never set here.
-            "linking_type": context if "linking" in context else None
-        }
-
         # A compatibility check asks whether a conflict is known, so no rule matching
         # means "no known conflict", not "needs review". The review default belongs to
         # permission questions; applying it here made every license read as incompatible
         # with itself, since this context carries no distribution_type and most rules
         # therefore cannot match.
-        result = self.evaluate(eval_context, when_unmatched="allow")
+        results = []
+        for reading1 in readings1:
+            for reading2 in readings2:
+                results.append(self.evaluate({
+                    "license1": reading1,
+                    "license2": reading2,
+                    "license_type": license_types,
+                    "compatibility_context": context,
+                    # Mirror evaluate's derivation so linking rules can fire on pairs
+                    # too. check -c static_linking previously reached no rule that
+                    # matched on linking_type, because the field was never set here.
+                    "linking_type": context if "linking" in context else None,
+                }, when_unmatched="allow"))
+
+        if len({result.action for result in results}) == 1:
+            result = PolicyResult.aggregate(results, when_unmatched="allow")
+        else:
+            result = PolicyResult(
+                rule_id="ambiguous_declaration",
+                action=ActionType.FLAG_FOR_REVIEW,
+                severity="warning",
+                message=f"{license1} and {license2} evaluate differently depending on "
+                        f"which identifier the declaration means")
+
         compliance = ComplianceResult.from_policy_result(result)
         # The result always reported an empty licenses_checked even though exactly two
         # licenses were checked.
@@ -294,20 +312,32 @@ class PolicyRuntime:
         # The dataset's known-incompatible pairs outrank a category-level approval,
         # the same precedence named exceptions get in License.is_compatible_with.
         # Policy rules only enumerated some of the pairs, so GPL-2.0 with BSD-4-Clause
-        # was reported compliant while the records named each other incompatible.
-        # The declared spellings are resolved here too. The record is reached either
-        # way, but the incompatible_with list it holds is canonical ids, so a declared
-        # name compared against it matches nothing and a known incompatible pair reads
-        # as clean.
+        # was reported compliant while the records named each other incompatible. The
+        # list a record holds is canonical ids, so a declared name compared against it
+        # matches nothing and a known incompatible pair reads as clean. Every reading
+        # has to conflict: one that does not is a reading under which the pair is fine,
+        # and the declaration did not rule it out.
         if compliance.is_compliant or compliance.needs_review:
-            if (self._dataset_names_incompatible(matchable1, matchable2)
-                    or self._dataset_names_incompatible(matchable2, matchable1)):
+            pairs = [(a, b) for a in readings1 for b in readings2]
+            if all(self._dataset_names_incompatible(a, b)
+                   or self._dataset_names_incompatible(b, a) for a, b in pairs):
                 compliance.status = ComplianceStatus.NON_COMPLIANT
                 compliance.add_violation(
                     "dataset_known_incompatibility",
                     f"{license1} and {license2} are a known incompatible pair in the "
                     f"license dataset")
         return compliance
+
+    def _readings(self, license_id: str) -> List[str]:
+        """
+        Every identifier a declared string could mean.
+
+        One entry for anything that resolves, the candidates for a string that names a
+        license without naming which identifier, and the string itself for anything the
+        data does not recognise, so an unknown id still reaches the rules that name it.
+        """
+        resolution = resolve_license(license_id)
+        return list(resolution.candidates) or [resolution.license_id or license_id]
 
     def _matchable_id(self, license_id: str) -> str:
         """The spelling a rule should be matched against. See matchable_license_id."""
