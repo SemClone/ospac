@@ -406,3 +406,80 @@ class TestPropertiesTheResolutionPathRelieson:
                 if missing:
                     gaps.append((license_id, other, missing))
         assert gaps == [], f"incompatible_with lists naming only some spellings: {gaps}"
+
+
+class TestTheSchemaAndTheValidatorDescribeOneRecord:
+    """
+    schemas/license_schema.json is normative and ospac/utils/data_validation.py is
+    documented as the single source of truth for the dataset rules. Both were true of a
+    different field list: the schema required requirements.include_notice and
+    compatibility.notes and the validator's sets did not, so validate_data.py passed a
+    record the schema then rejected. In the monthly sync that is a green gate followed by
+    a red one whose message names the schema, when the fault is in the generator.
+
+    #85 pinned the two enums to each other and left the required-key sets unpinned, which
+    is why they drifted without anyone noticing.
+    """
+
+    @staticmethod
+    def _required(schema, node):
+        """The required keys of a node, following a $ref rather than stopping at it."""
+        while "$ref" in node:
+            ref = node["$ref"].lstrip("#/").split("/")
+            node = schema
+            for part in ref:
+                node = node[part]
+        return set(node.get("required", []))
+
+    def test_required_key_sets_agree(self):
+        from ospac.utils import data_validation as dv
+
+        schema = json.loads(
+            (Path(__file__).parent.parent / "schemas" / "license_schema.json").read_text())
+        blocks = schema["properties"]["license"]["properties"]
+
+        for name, constant in (("properties", dv.REQUIRED_PROPERTIES),
+                               ("requirements", dv.REQUIRED_REQUIREMENTS),
+                               ("limitations", dv.REQUIRED_LIMITATIONS),
+                               ("compatibility", dv.REQUIRED_COMPAT_KEYS)):
+            assert self._required(schema, blocks[name]) == constant, (
+                f"{name}: schema and validator disagree on which keys are required")
+
+        linking = blocks["compatibility"]["properties"]
+        for context in ("static_linking", "dynamic_linking"):
+            assert self._required(schema, linking[context]) == dv.REQUIRED_COMPAT_LINK_KEYS, (
+                f"compatibility.{context}: schema and validator disagree")
+
+    def test_the_ref_is_actually_followed(self):
+        # The linking contexts state their required keys through a $ref. A test that read
+        # the node directly would find no `required`, compare an empty set, and pass
+        # while proving nothing.
+        schema = json.loads(
+            (Path(__file__).parent.parent / "schemas" / "license_schema.json").read_text())
+        node = (schema["properties"]["license"]["properties"]["compatibility"]
+                ["properties"]["static_linking"])
+        assert "$ref" in node and "required" not in node
+        assert self._required(schema, node) == {
+            "compatible_with", "incompatible_with", "requires_review"}
+
+    def test_a_missing_required_inner_key_is_an_error(self):
+        from ospac.utils.data_validation import validate_license
+
+        # The gate that runs first in the sync is the one that knows which license and
+        # which field is at fault. Reporting it as a warning meant it said nothing, since
+        # warnings do not affect the exit code without --strict.
+        record = json.loads(
+            (Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+             / "MIT.json").read_text())["license"]
+        assert validate_license("MIT", record)[0] == []
+
+        del record["requirements"]["include_notice"]
+        errors = validate_license("MIT", record)[0]
+        assert any("include_notice" in e for e in errors), errors
+
+        record = json.loads(
+            (Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+             / "MIT.json").read_text())["license"]
+        del record["compatibility"]["notes"]
+        errors = validate_license("MIT", record)[0]
+        assert any("notes" in e for e in errors), errors

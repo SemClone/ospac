@@ -98,11 +98,24 @@ REQUIRED_TOP_FIELDS = {"id", "name", "type", "spdx_id", "properties", "requireme
                         "limitations", "compatibility", "obligations", "key_requirements",
                         "spdx_metadata"}
 
+# These four sets are the same field lists schemas/license_schema.json marks required,
+# pinned to it by tests/test_data_contract.py. The two drifted apart while both looked
+# authoritative: the schema required requirements.include_notice and compatibility.notes
+# and these sets did not, so validate_data.py passed a record the schema then rejected,
+# and the sync failed at the later gate with a message naming the schema rather than the
+# generator that produced the record.
+#
+# A missing one is an error rather than a warning for the same reason. Warnings do not
+# affect the exit code unless --strict, so the gate that runs first and knows which
+# license and field is at fault said nothing, and the gate that ran later said only that
+# a property was required.
 REQUIRED_PROPERTIES = {"commercial_use", "distribution", "modification", "patent_grant", "private_use"}
 REQUIRED_REQUIREMENTS = {"disclose_source", "include_license", "include_copyright",
-                          "same_license", "network_use_disclosure", "state_changes"}
+                          "include_notice", "same_license", "network_use_disclosure",
+                          "state_changes"}
 REQUIRED_LIMITATIONS = {"liability", "warranty", "trademark_use"}
-REQUIRED_COMPAT_KEYS = {"static_linking", "dynamic_linking", "contamination_effect"}
+REQUIRED_COMPAT_KEYS = {"static_linking", "dynamic_linking",
+                        "contamination_effect", "notes"}
 REQUIRED_COMPAT_LINK_KEYS = {"compatible_with", "incompatible_with", "requires_review"}
 
 # 'noncommercial' covers licenses that permit use, modification and
@@ -181,7 +194,7 @@ def validate_license(lid: str, lic: dict) -> tuple[list, list]:
     # requirements
     reqs = lic.get("requirements", {})
     for f in REQUIRED_REQUIREMENTS - set(reqs.keys()):
-        warn(f"requirements.{f} missing")
+        err(f"requirements.{f} missing")
     for f, v in reqs.items():
         if not isinstance(v, bool):
             err(f"requirements.{f} must be bool, got {type(v).__name__}")
@@ -189,7 +202,7 @@ def validate_license(lid: str, lic: dict) -> tuple[list, list]:
     # limitations
     lims = lic.get("limitations", {})
     for f in REQUIRED_LIMITATIONS - set(lims.keys()):
-        warn(f"limitations.{f} missing")
+        err(f"limitations.{f} missing")
 
     # compatibility
     compat = lic.get("compatibility", {})
@@ -202,7 +215,7 @@ def validate_license(lid: str, lic: dict) -> tuple[list, list]:
             err(f"compatibility.{link} must be a dict")
             continue
         for f in REQUIRED_COMPAT_LINK_KEYS - set(section.keys()):
-            warn(f"compatibility.{link}.{f} missing")
+            err(f"compatibility.{link}.{f} missing")
         # At least some entries should be non-empty
         if (isinstance(section.get("compatible_with"), list) and
                 isinstance(section.get("incompatible_with"), list) and

@@ -1535,6 +1535,8 @@ class PolicyDataGenerator:
 
         generated_at = datetime.now().isoformat()
 
+        from ospac.utils.data_validation import validate_license
+
         for license_data in licenses:
             license_id = license_data.get("license_id")
             if not license_id:
@@ -1545,6 +1547,8 @@ class PolicyDataGenerator:
             category = license_data.get("category", "permissive")
             conditions = license_data.get("conditions", {})
             permissions = license_data.get("permissions", {})
+            limitations = license_data.get("limitations", {})
+
 
             obligations, key_requirements = self._derive_obligations(
                 license_id, category, conditions, permissions
@@ -1559,7 +1563,7 @@ class PolicyDataGenerator:
                     "spdx_id": license_id,
                     "properties": permissions,
                     "requirements": conditions,
-                    "limitations": license_data.get("limitations", {}),
+                    "limitations": limitations,
                     "compatibility": {
                         "static_linking": compat_rules.get("static_linking", {}),
                         "dynamic_linking": compat_rules.get("dynamic_linking", {}),
@@ -1581,6 +1585,21 @@ class PolicyDataGenerator:
                     "spdx_list_version": spdx_version,
                 }
             }
+
+            # The record is checked before it is written, against the same rules
+            # validate_data.py applies afterwards. An analysis that dropped a boolean
+            # produced a record missing that key, which the validator only warned about,
+            # so the sync's first gate passed it and the schema test failed later naming
+            # the schema rather than the generator that produced it.
+            #
+            # Skipped rather than completed with defaults. Filling a missing boolean with
+            # False is a decision, not a neutral act: disclose_source False on a copyleft
+            # licence is wrong and silent, the same failure as the permissive default
+            # that once recorded every NonCommercial licence as commercially usable.
+            record_errors, _ = validate_license(license_id, license_file_data["license"])
+            if record_errors:
+                logger.error(f"Skipping {license_id}: {'; '.join(record_errors)}")
+                continue
 
             license_file = licenses_json_dir / f"{license_id}.json"
             with open(license_file, "w") as f:

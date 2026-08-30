@@ -538,3 +538,75 @@ class TestAnalysisCategoryCoercion:
             "MIT", "MIT License", "permissive",
             {"commercial_use": True, "modification": True}, {"same_license": False},
         ) == "permissive"
+
+
+class TestAnIncompleteAnalysisIsNotARecord:
+    """
+    An LLM response that drops a boolean used to produce a record missing that key. The
+    validator only warned, so the sync's first gate passed it and the schema test failed
+    later with a message naming the schema, when the fault was upstream. Defaulting the
+    missing boolean instead would be worse: disclose_source False on a copyleft licence
+    is wrong and silent, the same failure as the permissive default that once recorded
+    every NonCommercial licence as commercially usable.
+    """
+
+    @staticmethod
+    def _analysis(license_id):
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+        from ospac.utils.data_validation import (REQUIRED_LIMITATIONS,
+                                                 REQUIRED_PROPERTIES,
+                                                 REQUIRED_REQUIREMENTS)
+        return {
+            "license_id": license_id,
+            "name": f"{license_id} name",
+            "category": "permissive",
+            "permissions": {k: True for k in REQUIRED_PROPERTIES},
+            "conditions": {k: False for k in REQUIRED_REQUIREMENTS},
+            "limitations": {k: True for k in REQUIRED_LIMITATIONS},
+            "compatibility_rules": PolicyDataGenerator._derive_compatibility(
+                license_id, "permissive"),
+            "spdx_data": {},
+        }
+
+    def _generate(self, tmp_path, analyses):
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        generator.output_dir = tmp_path
+        generator._generate_modular_license_files(analyses, {}, {}, spdx_version="test")
+        return sorted(p.stem for p in (tmp_path / "licenses" / "json").glob("*.json"))
+
+    def test_a_complete_analysis_is_written(self, tmp_path):
+        assert self._generate(tmp_path, [self._analysis("TEST-1.0")]) == ["TEST-1.0"]
+
+    def test_a_missing_boolean_skips_the_record(self, tmp_path, caplog):
+        import logging
+
+        partial = self._analysis("TEST-2.0")
+        del partial["conditions"]["include_notice"]
+
+        with caplog.at_level(logging.ERROR):
+            written = self._generate(tmp_path, [self._analysis("TEST-1.0"), partial])
+
+        assert written == ["TEST-1.0"]
+        assert "requirements.include_notice" in caplog.text
+        assert "TEST-2.0" in caplog.text
+
+    def test_every_block_is_checked(self, tmp_path):
+        for block, key in (("permissions", "commercial_use"),
+                           ("conditions", "disclose_source"),
+                           ("limitations", "liability")):
+            partial = self._analysis("TEST-3.0")
+            del partial[block][key]
+            assert self._generate(tmp_path, [partial]) == [], f"{block}.{key} was written"
+
+    def test_a_written_record_satisfies_the_normative_schema(self, tmp_path):
+        import json
+
+        import jsonschema
+
+        self._generate(tmp_path, [self._analysis("TEST-1.0")])
+        record = json.loads((tmp_path / "licenses" / "json" / "TEST-1.0.json").read_text())
+        schema = json.loads((Path(__file__).parent.parent / "schemas"
+                             / "license_schema.json").read_text())
+        jsonschema.validate(record, schema)

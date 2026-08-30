@@ -9,6 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- The normative schema and the dataset validator describe one record again (#87).
+  `schemas/license_schema.json` required `requirements.include_notice` and
+  `compatibility.notes` and `ospac/utils/data_validation.py` did not, so
+  `validate_data.py` passed a record the schema then rejected. In the monthly sync that
+  is a green gate followed by a red one whose message names the schema, when the fault is
+  an analysis response that dropped a key. The sets are reconciled, a missing required
+  inner key is an error rather than a warning so the first gate is the one that explains
+  it, and a test fails if the two ever diverge again, following the schema's `$ref` so it
+  cannot pass vacuously.
+- The generator checks a record against those rules before writing it. A licence whose
+  analysis came back incomplete is skipped with the missing field named, rather than
+  written with the gap or completed with a default: `disclose_source: false` on a
+  copyleft licence would be wrong and silent, which is the failure that once recorded
+  every NonCommercial licence as commercially usable.
+
 - A `contaminate` verdict produces a compliance result that says something (#98).
   `ComplianceResult.from_policy_result` handled every other action, so a contaminating
   one matched no branch and kept the constructed `UNKNOWN`: `is_compliant` and
