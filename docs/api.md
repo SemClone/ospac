@@ -14,8 +14,8 @@ and looks up license data.
 from ospac import PolicyRuntime, License, Policy, ComplianceResult
 ```
 
-Those four names, plus `license_aliases`, `license_ambiguous`, `license_never_resolve`
-and `data_version` below, are ospac's public surface. `ospac.__all__` is the authoritative list and also
+Those four names, plus `license_aliases`, `license_ambiguous`, `license_never_resolve`,
+`resolve_license` and `data_version` below, are ospac's public surface. `ospac.__all__` is the authoritative list and also
 carries `DataVersion`, the return type of `data_version()`, and the
 `DATA_SCHEMA_VERSION` constant. Anything under `ospac.pipeline` is dataset-generation
 machinery, not an API to build on.
@@ -199,6 +199,39 @@ candidates to offer, because resolving them fabricates a version the document ne
 Tools normalizing declared licenses should consume all three instead of curating their own
 tables. `ospac data aliases` prints the same three from the command line. See
 [The dataset]({{ site.baseurl }}/dataset/#aliases).
+
+## resolve_license
+
+One declared license string, and what the shipped data can make of it.
+
+```python
+import ospac
+
+ospac.resolve_license("Apache 2.0")
+# LicenseResolution(text='Apache 2.0', license_id='Apache-2.0', candidates=[], status='normalized')
+
+ospac.resolve_license("GNU Affero General Public License v3")
+# LicenseResolution(text=..., license_id=None,
+#                   candidates=['AGPL-3.0-only', 'AGPL-3.0-or-later'], status='ambiguous')
+```
+
+`status` is the part to branch on:
+
+| status | Meaning | `license_id` | `candidates` |
+|:--|:--|:--|:--|
+| `exact` | already a canonical SPDX identifier | the same string | empty |
+| `normalized` | resolved through the alias map | the identifier | empty |
+| `ambiguous` | names a license, not which identifier | `None` | the readings |
+| `unresolved` | not in the data, or a family name that must never resolve | `None` | empty |
+
+This is the three tables above applied in the order that keeps them from contradicting each
+other, so prefer it to looking up in each yourself. It case-folds the input; it does not
+otherwise normalize spelling, so collapsing whitespace and punctuation is still yours.
+
+`PolicyRuntime.evaluate_licenses` runs it on every declared string before matching, and
+`PolicyRuntime.resolve_licenses(licenses)` returns the resolutions keyed by the string you
+passed, so you can show what a verdict was actually about. The `evaluate` command reports
+the same thing under `resolved_licenses`.
 
 ## data_version
 

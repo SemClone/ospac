@@ -9,6 +9,7 @@ from pathlib import Path
 from ospac.runtime.engine import PolicyRuntime
 from ospac.runtime.loader import PolicyLoader
 from ospac.runtime.evaluator import RuleEvaluator
+from ospac.models.compliance import ActionType
 
 
 class TestPolicyLoader:
@@ -352,3 +353,393 @@ class TestCheckReportsLicensesChecked:
         runtime = PolicyRuntime()
         result = runtime.check_compatibility("MIT", "GPL-3.0")
         assert result.licenses_checked == ["MIT", "GPL-3.0"]
+
+
+class TestDeclaredLicenceStringsResolve:
+    """
+    Package registries do not answer in SPDX. PyPI's license field is free text by
+    construction and requests 2.31.0 declares "Apache 2.0"; Maven POMs carry the prose
+    name out of a <licenses> block. Matching those verbatim reached no rule and came
+    back needing review, which a consumer cannot tell apart from a considered ruling
+    even though a deny and a review mean opposite things downstream.
+    """
+
+    def test_registry_spellings_reach_the_same_verdict_as_the_identifier(self):
+        runtime = PolicyRuntime()
+
+        for declared, identifier, distribution in (
+                ("Apache 2.0", "Apache-2.0", "saas"),
+                ("MIT License", "MIT", "saas"),
+                ("GNU General Public License v3.0 only", "GPL-3.0-only", "commercial"),
+        ):
+            spelled, _ = runtime.evaluate_licenses([declared],
+                                                   {"distribution_type": distribution})
+            canonical, _ = runtime.evaluate_licenses([identifier],
+                                                     {"distribution_type": distribution})
+            assert spelled.action == canonical.action, declared
+
+    def test_the_input_spelling_keeps_matching_alongside_the_resolved_one(self):
+        runtime = PolicyRuntime()
+
+        # The default policy names the deprecated GPL-3.0 and resolution turns it into
+        # GPL-3.0-only. Replacing the input rather than adding to it would break every
+        # policy written against the spelling its author actually used.
+        result, _ = runtime.evaluate_licenses(["GPL-3.0"],
+                                              {"distribution_type": "commercial"})
+        assert result.action == ActionType.DENY
+
+    def test_evaluate_uses_a_verdict_the_readings_share(self):
+        runtime = PolicyRuntime()
+
+        # "GNU Affero General Public License v3" is AGPL-3.0-only or AGPL-3.0-or-later
+        # and the default policy denies both for saas, so deny asserts nothing the
+        # declaration did not carry. Returning review instead kept the deny-versus-review
+        # gap open for the spelling Maven Central actually serves, which is the whole
+        # complaint. check answered this correctly while evaluate did not.
+        base = {"distribution_type": "saas"}
+        declared, _ = runtime.evaluate_licenses(
+            ["GNU Affero General Public License v3"], base)
+        assert declared.action == ActionType.DENY
+        for candidate in ("AGPL-3.0-only", "AGPL-3.0-or-later"):
+            reading, _ = runtime.evaluate_licenses([candidate], base)
+            assert reading.action == ActionType.DENY
+
+    def test_readings_that_disagree_are_never_decided_by_the_strictest(self):
+        runtime = PolicyRuntime()
+
+        # "cryptographic autonomy" is CAL-1.0, which is network_copyleft, or its
+        # combined-work exception, which is permissive. Exactly one applies and nobody
+        # knows which, so most-restrictive-wins would assert an obligation the document
+        # may not carry. It is also why the types must come from each reading: taking
+        # the union let the permissive reading be judged as network copyleft and the
+        # two then looked like they agreed.
+        base = {"distribution_type": "saas"}
+        assert runtime.evaluate_licenses(["CAL-1.0"], base)[0].action == ActionType.DENY
+        assert runtime.evaluate_licenses(
+            ["CAL-1.0-Combined-Work-Exception"], base)[0].action == ActionType.APPROVE
+
+        declared, _ = runtime.evaluate_licenses(["cryptographic autonomy"], base)
+        assert declared.action == ActionType.FLAG_FOR_REVIEW
+        assert "which identifier the declaration means" in declared.message
+
+    def test_only_what_every_reading_requires_is_reported(self):
+        runtime = PolicyRuntime()
+
+        # "Apache License" is 1.0, 1.1 or 2.0 and all three are approved, so the actions
+        # agree. Their obligations do not: only 2.0 carries NOTICE and state-changes.
+        # Unioning them stated an obligation a declaration meaning 1.0 does not have.
+        declared, _ = runtime.evaluate_licenses(
+            ["apache license"], {"distribution_type": "saas"})
+        oldest, _ = runtime.evaluate_licenses(
+            ["Apache-1.0"], {"distribution_type": "saas"})
+        newest, _ = runtime.evaluate_licenses(
+            ["Apache-2.0"], {"distribution_type": "saas"})
+
+        assert declared.action == ActionType.APPROVE
+        assert set(declared.requirements) <= set(oldest.requirements)
+        assert set(declared.requirements) < set(newest.requirements)
+        # An unambiguous declaration keeps everything its own licence requires.
+        assert "Preserve copyright and NOTICE file if present" in newest.requirements
+
+    def test_a_conflict_under_some_readings_is_review_not_clean(self, tmp_path):
+        # Under the bundled policy the rules already disagree here. This is about the
+        # dataset fallback on its own, so the policy has to match everything.
+        policy = tmp_path / "policy.yaml"
+        policy.write_text(
+            'version: "2.0"\n'
+            "name: allow-everything\n"
+            "rules:\n"
+            "  - id: allow_all\n"
+            "    priority: 1\n"
+            "    when: {}\n"
+            "    then: {action: approve, severity: info, message: fine}\n")
+        runtime = PolicyRuntime(str(policy))
+
+        # Only Apache-2.0 conflicts with GPL-2.0. Denying would assert a reading the
+        # declaration never made; reporting clean would hide one the dataset knows.
+        assert runtime.check_compatibility(
+            "Apache-2.0", "GPL-2.0-only").is_compliant is False
+        assert runtime.check_compatibility(
+            "Apache-1.0", "GPL-2.0-only").is_compliant is True
+
+        partial = runtime.check_compatibility("apache license", "GPL-2.0-only")
+        assert partial.needs_review is True
+        assert any(warning.get("rule_id")
+                   == "dataset_incompatibility_under_some_readings"
+                   for warning in partial.warnings)
+
+    def test_get_obligations_resolves_the_declared_string(self):
+        runtime = PolicyRuntime(skip_default=True)
+
+        # The library entry point took the caller's list verbatim, so a policy naming
+        # Apache-2.0 answered nothing for "Apache 2.0" and an ambiguous declaration
+        # raised on validation before anything could be reported.
+        assert (runtime.get_obligations(["Apache 2.0"])["Apache 2.0"]
+                == runtime.get_obligations(["Apache-2.0"])["Apache-2.0"])
+
+        shared = runtime.get_obligations(["Apache License"])["Apache License"]
+        oldest = runtime.get_obligations(["Apache-1.0"])["Apache-1.0"]
+        newest = runtime.get_obligations(["Apache-2.0"])["Apache-2.0"]
+        assert set(shared["obligations"]) <= set(oldest["obligations"])
+        assert set(shared["obligations"]) < set(newest["obligations"])
+
+    def test_agreement_is_about_the_outcome_not_the_word(self, tmp_path):
+        # One reading matches an approval rule and the others fall through to allow.
+        # Both are permissions, so the readings agree; comparing the action verbatim
+        # reported review for a pair every reading permits.
+        policy = tmp_path / "policy.yaml"
+        policy.write_text(
+            'version: "2.0"\n'
+            "name: approve-apache2-with-mit\n"
+            "rules:\n"
+            "  - id: approve_apache2_mit\n"
+            "    priority: 5\n"
+            '    when: {license1: ["Apache-2.0"], license2: ["MIT"]}\n'
+            "    then: {action: approve, severity: info, message: fine}\n")
+        runtime = PolicyRuntime(str(policy))
+
+        assert runtime.check_compatibility("Apache-2.0", "MIT").is_compliant is True
+        assert runtime.check_compatibility("Apache-1.0", "MIT").is_compliant is True
+        declared = runtime.check_compatibility("apache license", "MIT")
+        assert declared.is_compliant is True
+        assert declared.needs_review is False
+
+    def test_readings_that_all_refuse_are_not_downgraded_to_review(self, tmp_path):
+        # deny and contaminate are both refusals. Comparing them as different answers
+        # downgraded a declaration whose every reading is refused to review, which is
+        # the failure direction this whole path exists to close.
+        policy = tmp_path / "policy.yaml"
+        policy.write_text(
+            'version: "2.0"\n'
+            "name: refuse-both-ways\n"
+            "rules:\n"
+            "  - id: deny_only\n"
+            "    priority: 9\n"
+            '    when: {license: ["GPL-2.0-only"]}\n'
+            "    then: {action: deny, severity: error, message: denied}\n"
+            "  - id: contaminate_or_later\n"
+            "    priority: 9\n"
+            '    when: {license: ["GPL-2.0-or-later"]}\n'
+            "    then: {action: contaminate, severity: error, message: contaminates}\n")
+        runtime = PolicyRuntime(str(policy))
+        base = {"distribution_type": "commercial"}
+
+        assert runtime.evaluate_licenses(
+            ["GPL-2.0-only"], base)[0].action == ActionType.DENY
+        assert runtime.evaluate_licenses(
+            ["GPL-2.0-or-later"], base)[0].action == ActionType.CONTAMINATE
+
+        declared, _ = runtime.evaluate_licenses(["gplv2"], base)
+        assert declared.action != ActionType.FLAG_FOR_REVIEW
+        assert declared.action in (ActionType.DENY, ActionType.CONTAMINATE)
+
+    def test_a_deprecated_id_matches_a_policy_naming_the_current_one(self, tmp_path):
+        policy = tmp_path / "policy.yaml"
+        policy.write_text(
+            'version: "2.0"\n'
+            "name: canonical-only\n"
+            "rules:\n"
+            "  - id: deny_gpl2\n"
+            "    priority: 9\n"
+            '    when: {license: ["GPL-2.0-only"]}\n'
+            "    then: {action: deny, severity: error, message: denied}\n")
+        runtime = PolicyRuntime(str(policy))
+        base = {"distribution_type": "commercial"}
+
+        # GPL-2.0 is GPL-2.0-only under a deprecated name, which the record records as
+        # alias_of. A policy written against the current identifier is a policy about
+        # this licence, so it fires. The bundled policy hides this by enumerating both
+        # spellings in every rule; a custom one has no reason to.
+        assert runtime.evaluate_licenses(
+            ["GPL-2.0-only"], base)[0].action == ActionType.DENY
+        assert runtime.evaluate_licenses(["GPL-2.0"], base)[0].action == ActionType.DENY
+
+        # It still keeps its own record, deprecation metadata and all.
+        record = PolicyRuntime().lookup_license_data("GPL-2.0")["license"]
+        assert record["id"] == "GPL-2.0"
+        assert record["spdx_metadata"]["is_deprecated"] is True
+
+    def test_surrounding_whitespace_is_not_a_spelling(self):
+        import ospac
+
+        runtime = PolicyRuntime()
+
+        # The lookup key was stripped and the identifier check was not, so a padded
+        # deprecated id fell through to the alias table and came back as the canonical
+        # record, losing the deprecation metadata that branch exists to keep.
+        for declared in ("GPL-2.0", " GPL-2.0 ", "\tGPL-2.0\n"):
+            assert ospac.resolve_license(declared).license_id == "GPL-2.0", declared
+            record = runtime.lookup_license_data(declared)["license"]
+            assert record["id"] == "GPL-2.0"
+            assert record["spdx_metadata"]["is_deprecated"] is True
+
+        assert ospac.resolve_license("GPL-2.0").status == "exact"
+        assert ospac.resolve_license(" GPL-2.0 ").status == "normalized"
+
+    def test_a_reading_carries_the_callers_spelling_as_well(self):
+        runtime = PolicyRuntime()
+
+        # Rules compare exact strings and a policy may name either spelling, so both
+        # reach the rules. They are one license written two ways, not two readings:
+        # a rule matching only one of them is a match, not a disagreement.
+        assert runtime._readings("Apache 2.0") == [
+            ("Apache-2.0", ["Apache 2.0", "Apache-2.0"])]
+        assert runtime._readings("gplv2") == [
+            ("GPL-2.0-only", ["GPL-2.0-only", "gplv2"]),
+            ("GPL-2.0-or-later", ["GPL-2.0-or-later", "gplv2"])]
+
+    def test_a_name_that_states_no_grant_is_not_resolved_for_the_caller(self):
+        runtime = PolicyRuntime()
+
+        # "GNU Affero General Public License v3" names the licence and not which id,
+        # and -only versus -or-later is the copyright holder's grant. Picking one would
+        # assert something the declaration never said.
+        resolution = runtime.resolve_licenses(
+            ["GNU Affero General Public License v3"])["GNU Affero General Public License v3"]
+        assert resolution.status == "ambiguous"
+        assert resolution.license_id is None
+        assert resolution.candidates == ["AGPL-3.0-only", "AGPL-3.0-or-later"]
+
+    def test_family_names_and_unknown_strings_stay_unresolved(self):
+        runtime = PolicyRuntime()
+
+        for declared in ("gpl", "bsd", "Not-A-Real-License"):
+            resolution = runtime.resolve_licenses([declared])[declared]
+            assert resolution.status == "unresolved", declared
+            assert resolution.license_id is None
+
+    def test_resolution_is_reported_so_a_verdict_can_be_trusted(self):
+        runtime = PolicyRuntime()
+
+        resolutions = runtime.resolve_licenses(["Apache-2.0", "Apache 2.0"])
+        assert resolutions["Apache-2.0"].status == "exact"
+        assert resolutions["Apache 2.0"].status == "normalized"
+        assert resolutions["Apache 2.0"].license_id == "Apache-2.0"
+
+    def test_obligations_follow_a_declared_name_to_its_record(self):
+        runtime = PolicyRuntime()
+
+        assert (runtime.lookup_license_data("Apache 2.0")
+                == runtime.lookup_license_data("Apache-2.0"))
+
+    def test_a_declared_pair_reaches_the_same_pairwise_rule(self):
+        runtime = PolicyRuntime()
+
+        spelled = runtime.check_compatibility(
+            "GNU General Public License v2.0 only", "Apache 2.0")
+        canonical = runtime.check_compatibility("GPL-2.0-only", "Apache-2.0")
+        assert spelled.is_compliant == canonical.is_compliant is False
+        # The report still names what the caller asked about, not what it resolved to.
+        assert spelled.licenses_checked == [
+            "GNU General Public License v2.0 only", "Apache 2.0"]
+
+    def test_an_input_that_names_a_record_keeps_its_own_record(self):
+        runtime = PolicyRuntime()
+
+        # GPL-2.0 is deprecated and the alias map migrates it to GPL-2.0-only, but it
+        # ships a record of its own and the bundled pairwise rules name it. Replacing it
+        # would break every policy written against the spelling its author used.
+        assert runtime._matchable_id("GPL-2.0") == "GPL-2.0"
+        assert runtime._matchable_id("Apache 2.0") == "Apache-2.0"
+
+    def test_a_declared_pair_reaches_the_dataset_incompatibility_too(self):
+        runtime = PolicyRuntime()
+
+        # GPL-2.0's record names BSD-4-Clause in incompatible_with, and that list holds
+        # canonical ids. Resolving only the policy context left the dataset fallback
+        # comparing a declared name against canonical ids, so a known incompatible pair
+        # read as clean for exactly the inputs resolution was added to serve.
+        canonical = runtime.check_compatibility("GPL-2.0", "BSD-4-Clause")
+        spelled = runtime.check_compatibility(
+            "GNU General Public License v2.0 only",
+            'bsd 4-clause "original" or "old" license')
+        assert canonical.is_compliant is False
+        assert spelled.is_compliant is False
+
+    def test_case_does_not_decide_whether_a_string_is_an_identifier(self):
+        runtime = PolicyRuntime()
+
+        # A case-insensitive volume opens Apache-2.0's record for "apache-2.0.json", so
+        # probing the filesystem answered "this is already an identifier" and left the
+        # lower-cased spelling in place. Rule matching is case-sensitive, so the pair
+        # then matched nothing and a reviewed pair read as clean. The shipped id set
+        # answers the same on every platform.
+        assert runtime._matchable_id("apache-2.0") == "Apache-2.0"
+        assert runtime.check_compatibility("apache-2.0", "gpl-3.0").is_compliant is (
+            runtime.check_compatibility("Apache-2.0", "GPL-3.0").is_compliant)
+
+    def test_a_deprecated_id_keeps_its_own_record(self):
+        runtime = PolicyRuntime()
+
+        # GPL-3.0 is deprecated and the alias map migrates it to GPL-3.0-only, but it
+        # ships a record of its own. A caller naming it means that record, including
+        # the deprecation metadata the canonical one does not carry.
+        record = runtime.lookup_license_data("GPL-3.0")["license"]
+        assert record["id"] == "GPL-3.0"
+        assert record["alias_of"] == "GPL-3.0-only"
+        assert record["spdx_metadata"]["is_deprecated"] is True
+
+    def test_an_ambiguous_name_is_checked_under_every_reading(self):
+        runtime = PolicyRuntime()
+
+        # "gplv2" is GPL-2.0-only or GPL-2.0-or-later and BSD-4-Clause's record names
+        # both incompatible, so the conflict holds whichever the document meant.
+        # Flattening the declaration to its own text threw the readings away and the
+        # pair came back compatible, which is the failure direction that matters.
+        assert runtime.check_compatibility("gplv2", "BSD-4-Clause").is_compliant is False
+        assert runtime.check_compatibility(
+            "GPL-2.0-only", "BSD-4-Clause").is_compliant is False
+        assert runtime.check_compatibility(
+            "GPL-2.0-or-later", "BSD-4-Clause").is_compliant is False
+
+    def test_readings_that_disagree_are_not_decided_for_the_caller(self):
+        runtime = PolicyRuntime()
+
+        # The bundled one-way rules name GPL-2.0-only and not GPL-2.0-or-later, so the
+        # two readings of "gplv2" answer differently. The declaration did not choose,
+        # so neither does the check.
+        assert runtime.check_compatibility("gplv2", "MIT").needs_review is True
+
+    def test_one_resolution_policy_for_a_shipped_deprecated_id(self):
+        import ospac
+
+        runtime = PolicyRuntime()
+
+        # The record lookup returns GPL-2.0's own record, so the reported resolution
+        # has to agree. Saying "normalized to GPL-2.0-only" beside that record put two
+        # answers in one payload and the metadata was the one a consumer would believe.
+        assert runtime.lookup_license_data("GPL-2.0")["license"]["id"] == "GPL-2.0"
+        assert ospac.resolve_license("GPL-2.0").status == "exact"
+        assert ospac.resolve_license("GPL-2.0").license_id == "GPL-2.0"
+
+    def test_a_path_is_still_a_path(self):
+        runtime = PolicyRuntime()
+
+        # Resolution runs before validation so a prose name can reach a record at all.
+        # A string the data does not recognise must still be rejected rather than
+        # reaching the filesystem.
+        with pytest.raises(ValueError):
+            runtime.lookup_license_data("../../../etc/passwd")
+
+
+class TestStrongerCopyleftIsNeverMorePermissive:
+    """
+    AGPL-3.0 is GPL-3.0 with the network clause added, so there is no distribution type
+    where it is the less restrictive of the two. A gap that let AGPL fall through every
+    rule while GPL was denied read as an affirmative permission at the point where the
+    policy engine is the only authority in the chain.
+    """
+
+    def test_agpl_is_never_more_permissive_than_gpl(self):
+        runtime = PolicyRuntime()
+        ranked = [ActionType.APPROVE, ActionType.ALLOW, ActionType.FLAG_FOR_REVIEW,
+                  ActionType.CONTAMINATE, ActionType.DENY]
+
+        for distribution in ("commercial", "saas", "embedded", "web", "internal",
+                             "mobile", "desktop"):
+            base = {"distribution_type": distribution}
+            agpl, _ = runtime.evaluate_licenses(["AGPL-3.0"], base)
+            gpl, _ = runtime.evaluate_licenses(["GPL-3.0"], base)
+            assert ranked.index(agpl.action) >= ranked.index(gpl.action), (
+                f"AGPL-3.0 is {agpl.action} for {distribution} where GPL-3.0 is "
+                f"{gpl.action}; AGPL adds an obligation and can never be laxer")

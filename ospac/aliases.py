@@ -8,15 +8,39 @@ data lives here and travels with the dataset.
 """
 
 import json
+from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
-from typing import Dict, List, Set
+from typing import Dict, List, Optional, Set
 
 _ALIASES_FILE = Path(__file__).parent / "data" / "aliases.json"
 
 
+@lru_cache(maxsize=1)
 def _payload() -> dict:
+    """
+    The shipped tables, read once.
+
+    Every resolution consults all three tables, so re-reading half a megabyte of JSON
+    per lookup made resolving a licence cost more than evaluating it. The file ships
+    inside the package and does not change under a running process.
+    """
     with open(_ALIASES_FILE) as f:
         return json.load(f)
+
+
+@lru_cache(maxsize=1)
+def longest_alias_comma_count() -> int:
+    """
+    The most commas any name in the tables contains.
+
+    A caller splitting a comma-separated argument has to consider joining fragments back
+    together, and this is how far it ever has to look.
+    """
+    payload = _payload()
+    return max((name.count(",")
+                for name in list(payload["aliases"]) + list(payload["ambiguous"])),
+               default=0)
 
 
 def license_aliases() -> Dict[str, str]:
@@ -57,3 +81,75 @@ def license_never_resolve() -> Set[str]:
     should treat these as unresolved rather than guessing.
     """
     return set(_payload()["never_resolve"])
+
+
+@dataclass(frozen=True)
+class LicenseResolution:
+    """
+    What the shipped data can say about one declared license string.
+
+    `status` is the part a consumer acts on. "exact" is a canonical SPDX identifier.
+    "normalized" resolved through the alias map, and `license_id` names what it became,
+    so a caller can see that the verdict it got was about the license it meant.
+    "ambiguous" identifies a license and not which identifier, and `candidates` holds
+    the readings; nothing is chosen, because -only versus -or-later is the copyright
+    holder's grant and the string does not carry it. "unresolved" is a name the data
+    does not know, or a family name that must never resolve.
+    """
+
+    text: str
+    license_id: Optional[str]
+    candidates: List[str]
+    status: str
+
+
+def resolve_license(text: str) -> LicenseResolution:
+    """
+    Resolve a declared license string to an SPDX identifier where the data allows it.
+
+    Package registries do not answer in SPDX. PyPI's license field is free text by
+    construction and requests 2.31.0 declares "Apache 2.0"; Maven POMs carry the prose
+    name from a <licenses> block. Matching those verbatim against a policy finds
+    nothing, and "no rule matched" is indistinguishable from a considered ruling at the
+    point where the two mean opposite things.
+    """
+    from ospac.dataset import known_license_ids
+
+    stripped = (text or "").strip()
+    key = stripped.lower()
+    if not key or key in license_never_resolve():
+        return LicenseResolution(text, None, [], "unresolved")
+
+    # A shipped identifier denotes itself, deprecated ones included. GPL-2.0 ships a
+    # record of its own and the alias map migrates it to GPL-2.0-only; reporting that
+    # migration while the record lookup returns GPL-2.0's own record put two answers
+    # in one payload and made the migration the one a consumer would believe.
+    #
+    # Compared stripped, because surrounding whitespace is not a spelling. Comparing the
+    # raw text sent " GPL-2.0 " to the alias table and back with the canonical record,
+    # losing the deprecation metadata this branch exists to keep.
+    if stripped in known_license_ids():
+        return LicenseResolution(
+            text, stripped, [], "exact" if stripped == text else "normalized")
+
+    candidates = license_ambiguous().get(key)
+    if candidates:
+        return LicenseResolution(text, None, list(candidates), "ambiguous")
+
+    resolved = license_aliases().get(key)
+    if resolved is None:
+        return LicenseResolution(text, None, [], "unresolved")
+    return LicenseResolution(
+        text, resolved, [], "exact" if resolved == text else "normalized")
+
+
+def matchable_license_id(text: str) -> str:
+    """
+    The spelling a policy rule or a record lookup should use for a declared string.
+
+    resolve_license already decides that a shipped identifier denotes itself, so this
+    is only its answer flattened to a string. Use it where one spelling is needed and
+    resolve_license where the candidates or the status matter: flattening an ambiguous
+    declaration to its own text discards the readings the data does know.
+    """
+    return resolve_license(text).license_id or text

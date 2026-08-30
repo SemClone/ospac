@@ -16,6 +16,8 @@ from ospac.models.compliance import ComplianceStatus
 from ospac.pipeline.spdx_processor import SPDXProcessor
 from ospac.pipeline.data_generator import PolicyDataGenerator
 from ospac.utils.validation import validate_license_id
+from ospac.aliases import (longest_alias_comma_count, matchable_license_id,
+                           resolve_license)
 from ospac.utils.data_validation import validate_license
 
 # Initialize colorama
@@ -86,7 +88,7 @@ def evaluate(policy_dir: str, licenses: str, context: str,
         if runtime._using_default and output == "text":
             click.secho("Using default enterprise policy. Create a custom policy with 'ospac policy init' to customize.", fg="yellow")
 
-        license_list = [l.strip() for l in licenses.split(",")]
+        license_list = _split_licenses(licenses)
 
         base_context = {
             "context": context,
@@ -101,6 +103,7 @@ def evaluate(policy_dir: str, licenses: str, context: str,
         # approved because MIT fired the permissive rule and the no-match fail-safe
         # therefore never ran for AGPL.
         result, per_license = runtime.evaluate_licenses(license_list, base_context)
+        resolutions = runtime.resolve_licenses(license_list)
 
         # Add license obligations to requirements regardless of policy decision
         _enhance_result_with_obligations(result, license_list, runtime)
@@ -113,6 +116,16 @@ def evaluate(policy_dir: str, licenses: str, context: str,
                 "licenses": license_list,
                 "context": context,
                 "distribution": distribution,
+                # What the alias map made of each declared string. A caller that can
+                # see "Apache 2.0" became Apache-2.0 knows the verdict was about the
+                # license it meant, and one that sees "ambiguous" knows which
+                # distinction the declaration is missing rather than reading a legible
+                # name as unrecognised.
+                "resolved_licenses": {
+                    text: {"license_id": r.license_id, "status": r.status,
+                           "candidates": r.candidates}
+                    for text, r in resolutions.items()
+                },
                 "result": result_dict,
                 "per_license": {
                     lid: {"action": r.action.value, "message": r.message}
@@ -122,9 +135,9 @@ def evaluate(policy_dir: str, licenses: str, context: str,
             }
             click.echo(json.dumps(output_data, indent=2))
         elif output == "markdown":
-            _output_markdown(result, license_list)
+            _output_markdown(result, license_list, resolutions)
         else:
-            _output_text(result, license_list)
+            _output_text(result, license_list, resolutions)
 
     except Exception as e:
         click.secho(f"Error: {e}", fg="red", err=True)
@@ -163,7 +176,7 @@ def check(license1: Optional[str], license2: Optional[str], licenses_opt: Option
     if licenses_opt is not None:
         if license1 or license2:
             raise click.UsageError("Pass either -l \"A,B\" or two positional licenses, not both.")
-        parts = [part.strip() for part in licenses_opt.split(",")]
+        parts = _split_licenses(licenses_opt)
         if len(parts) != 2 or not all(parts):
             # Malformed automation input such as "MIT,,GPL-3.0" or a trailing comma
             # must not be silently repaired into a valid-looking two-license check.
@@ -183,9 +196,20 @@ def check(license1: Optional[str], license2: Optional[str], licenses_opt: Option
 
         # A license id that does not resolve in the dataset cannot be checked, only not
         # contradicted. Say so instead of letting a typo read as a clean compatibility.
+        # An ambiguous name is a different report: the dataset knows the license and not
+        # which identifier, the check ran under every reading, and calling that unknown
+        # was false about data ospac ships.
         warnings = list(result.warnings) if result.warnings else []
-        for license_id in (license1, license2):
-            if runtime.resolve_license_type(license_id) is None:
+        resolutions = runtime.resolve_licenses([license1, license2])
+        for license_id, resolution in resolutions.items():
+            if resolution.status == "ambiguous":
+                warnings.append({
+                    "rule_id": "ambiguous_license",
+                    "message": f"{license_id} could be "
+                               f"{' or '.join(resolution.candidates)}; checked under "
+                               f"every reading"
+                })
+            elif runtime.resolve_license_type(license_id) is None:
                 warnings.append({
                     "rule_id": "unknown_license",
                     "message": f"{license_id} is not in the license dataset, so this "
@@ -197,6 +221,11 @@ def check(license1: Optional[str], license2: Optional[str], licenses_opt: Option
                 "license1": license1,
                 "license2": license2,
                 "context": context,
+                "resolved_licenses": {
+                    text: {"license_id": r.license_id, "status": r.status,
+                           "candidates": r.candidates}
+                    for text, r in resolutions.items()
+                },
                 "compatible": result.is_compliant,
                 "requires_review": result.needs_review,
                 "violations": result.violations if result.violations else [],
@@ -248,7 +277,7 @@ def obligations(licenses: str, policy_dir: str, data_dir: Optional[str], format:
         ospac obligations -l "GPL-3.0, LGPL-2.1" -f checklist
     """
     try:
-        license_list = [l.strip() for l in licenses.split(",")]
+        license_list = _split_licenses(licenses)
 
         # Use package data directory if not specified
         if data_dir is None:
@@ -265,10 +294,34 @@ def obligations(licenses: str, policy_dir: str, data_dir: Optional[str], format:
             obligations_dict = _get_license_data_directly(license_list, data_dir)
 
         if format == "json":
+            # Both shapes resolve declared strings, so both report what they made of
+            # them. Publishing it in one branch left a caller using a policy unable to
+            # tell that "Apache 2.0" had been read as Apache-2.0.
+            resolved_licenses = {
+                text: {"license_id": r.license_id, "status": r.status,
+                       "candidates": r.candidates}
+                for text, r in PolicyRuntime.resolve_licenses(license_list).items()
+            }
+            # license_data holds records, so a declaration with several readings is
+            # absent from it by construction. What those readings share is published
+            # here rather than merged into a record that names no license.
+            ambiguous = {
+                text: {
+                    "candidates": resolution["candidates"],
+                    "shared_obligations": _shared_record_field(
+                        text, "obligations", data_dir),
+                    "shared_key_requirements": _shared_record_field(
+                        text, "key_requirements", data_dir),
+                }
+                for text, resolution in resolved_licenses.items()
+                if resolution["status"] == "ambiguous"
+            }
             if policy_dir:
                 # When using policies, return obligations format
                 output_data = {
                     "licenses": license_list,
+                    "resolved_licenses": resolved_licenses,
+                    "ambiguous_licenses": ambiguous,
                     "obligations": obligations_dict,
                     "using_policy": True
                 }
@@ -276,20 +329,29 @@ def obligations(licenses: str, policy_dir: str, data_dir: Optional[str], format:
                 # When using direct data, return raw license data for system consumption
                 output_data = {
                     "licenses": license_list,
+                    "resolved_licenses": resolved_licenses,
+                    "ambiguous_licenses": ambiguous,
                     "license_data": obligations_dict,
                     "using_policy": False
                 }
             click.echo(json.dumps(output_data, indent=2))
-        elif format == "checklist":
+        else:
             # For human-readable formats, extract obligations from license data
             obligations_only = _extract_obligations_for_display(obligations_dict, policy_dir)
-            _output_checklist(obligations_only)
-        elif format == "markdown":
-            obligations_only = _extract_obligations_for_display(obligations_dict, policy_dir)
-            _output_obligations_markdown(obligations_only)
-        else:
-            obligations_only = _extract_obligations_for_display(obligations_dict, policy_dir)
-            _output_obligations_text(obligations_only)
+            for declared in license_list:
+                shared = _shared_record_field(declared, "obligations", data_dir)
+                if shared:
+                    # setdefault, not assignment: the policy path already filled this in
+                    # from obligations/*.yaml and replacing the entry dropped every
+                    # custom field it carried.
+                    obligations_only.setdefault(declared, {}).setdefault(
+                        "obligations", shared)
+            if format == "checklist":
+                _output_checklist(obligations_only)
+            elif format == "markdown":
+                _output_obligations_markdown(obligations_only)
+            else:
+                _output_obligations_text(obligations_only)
 
     except Exception as e:
         click.secho(f"Error: {e}", fg="red", err=True)
@@ -492,16 +554,10 @@ def show(license_id: str, format: str):
     """Show details for a specific license from SPDX data."""
     import yaml
     try:
-        # Validate license_id to prevent path traversal
-        validate_license_id(license_id)
-
-        # Use package data directory
         data_dir = Path(__file__).parent.parent / "data"
+        data = _license_record(license_id, str(data_dir))
 
-        # Load from JSON file (preferred format)
-        json_file = data_dir / "licenses" / "json" / f"{license_id}.json"
-
-        if not json_file.exists():
+        if not data:
             click.secho(f"License {license_id} not found", fg="red")
 
             # Show available licenses
@@ -513,9 +569,10 @@ def show(license_id: str, format: str):
                     click.echo(f"  - {lid}")
             sys.exit(1)
 
-        with open(json_file) as f:
-            data = json.load(f)
         license_data = data.get("license", {})
+        # The record answers for its own id. Echoing the argument instead labelled
+        # Apache-2.0's record "apache-2.0" on a case-insensitive volume.
+        license_id = license_data.get("id", license_id)
 
         if format == "json":
             click.echo(json.dumps(license_data, indent=2))
@@ -1072,10 +1129,11 @@ def init(template: str, output: str, format: str):
     click.secho(f"✓ Created {format.upper()} policy file: {output}", fg="green")
 
 
-def _output_text(result, licenses):
+def _output_text(result, licenses, resolutions=None):
     """Output result in text format."""
     click.echo(f"\nEvaluating licenses: {', '.join(licenses)}")
     click.echo("-" * 50)
+    _echo_resolutions(resolutions)
 
     if hasattr(result, "action"):
         # Colour by what the action means, not by string equality with one value.
@@ -1100,10 +1158,31 @@ def _output_text(result, licenses):
                 click.echo(f"  • {req}")
 
 
-def _output_markdown(result, licenses):
+def _echo_resolutions(resolutions):
+    """Report the declarations the alias map changed or could not settle."""
+    for text, resolution in (resolutions or {}).items():
+        if resolution.status == "normalized":
+            click.echo(f"Read '{text}' as {resolution.license_id}")
+        elif resolution.status == "ambiguous":
+            click.echo(f"'{text}' could be {' or '.join(resolution.candidates)}; "
+                       f"the declaration does not say which")
+        elif resolution.status == "unresolved":
+            click.echo(f"'{text}' matches no known license identifier")
+
+
+def _output_markdown(result, licenses, resolutions=None):
     """Output result in markdown format."""
     click.echo(f"# License Evaluation Report\n")
     click.echo(f"**Licenses evaluated:** {', '.join(licenses)}\n")
+    for text, resolution in (resolutions or {}).items():
+        if resolution.status == "normalized":
+            click.echo(f"- `{text}` read as `{resolution.license_id}`")
+        elif resolution.status == "ambiguous":
+            click.echo(f"- `{text}` could be "
+                       f"{' or '.join(f'`{c}`' for c in resolution.candidates)}; "
+                       f"the declaration does not say which")
+        elif resolution.status == "unresolved":
+            click.echo(f"- `{text}` matches no known license identifier")
 
     if hasattr(result, "action"):
         _ACTION_STATUS = {
@@ -1171,6 +1250,76 @@ def _output_obligations_markdown(obligations_dict):
                         click.echo(f"  - {item}")
 
 
+def _split_licenses(argument: str) -> list:
+    """
+    Split a comma-separated license argument, keeping a name that contains a comma whole.
+
+    The separator is a comma and so is part of 31 names the shipped data carries.
+    "Apache License, Version 2.0" and "GNU General Public License, version 2" are what a
+    POM writes and what the alias table answers for, and splitting them produced two
+    halves naming nothing, so the declaration came back needing review while the
+    identifier it spells is approved or denied.
+
+    Fragments are joined longest-first, so "Apache License, Version 2.0" wins over the
+    family name "Apache License" that its first half alone would resolve to. A join is
+    never a choice between two readings of the argument: no comma-bearing key in the
+    data has both of its halves resolving on their own, which tests pin.
+    """
+    fragments = [fragment.strip() for fragment in argument.split(",")]
+    # No name in the tables spans more than this many fragments, so a longer join
+    # cannot name anything and probing every suffix only costs time. Splitting a
+    # hundred identifiers took five seconds before this was bounded.
+    span = longest_alias_comma_count() + 1
+
+    licenses, index = [], 0
+    while index < len(fragments):
+        for end in range(min(index + span, len(fragments)), index + 1, -1):
+            candidate = ", ".join(fragments[index:end])
+            if resolve_license(candidate).status != "unresolved":
+                licenses.append(candidate)
+                index = end
+                break
+        else:
+            licenses.append(fragments[index])
+            index += 1
+    return licenses
+
+
+def _license_record(license_id: str, data_dir: Optional[str] = None) -> Optional[dict]:
+    """
+    Read one license record, for every command that needs one.
+
+    Four separate copies of "build a path from a license id and open it" is how the
+    case-insensitive filesystem probe survived being fixed: the fix landed in one of
+    them. PolicyRuntime.lookup_license_data is the copy that resolves a declared string
+    against the shipped identifiers and keeps the path inside the dataset, so it is the
+    one they all use. skip_default because reading a record needs no policy.
+    """
+    return PolicyRuntime(skip_default=True).lookup_license_data(license_id, data_dir)
+
+
+def _shared_record_field(declared: str, field: str, data_dir: Optional[str] = None) -> list:
+    """
+    The entries of `field` that every reading of `declared` carries.
+
+    A declaration naming a license without naming which identifier has no single record,
+    and inventing one would publish a license that does not exist. What it does have is
+    whatever all of its readings agree on, which is the same rule the policy verdict
+    follows: "Apache License" is 1.0, 1.1 or 2.0 and only 2.0 requires a NOTICE file.
+    """
+    shared = None
+    for identifier in resolve_license(declared).candidates:
+        record = (_license_record(identifier, data_dir) or {}).get("license", {})
+        entries = list(record.get(field, []))
+        shared = entries if shared is None else [e for e in shared if e in entries]
+    return shared or []
+
+
+def _as_identifiers(licenses: list) -> list:
+    """The declared strings as identifiers. See ospac.aliases.matchable_license_id."""
+    return [matchable_license_id(declared) for declared in licenses]
+
+
 def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -> dict:
     """Load complete license data directly from SPDX JSON files."""
     import json
@@ -1181,42 +1330,50 @@ def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -
         data_dir = str(Path(__file__).parent.parent / "data")
 
     license_data_result = {}
+    # Keyed by the string the caller asked about, which is what `licenses` lists and
+    # what PolicyRuntime.get_obligations returns. Keying by the resolved id instead
+    # made the two disagree for exactly the inputs resolution was added to serve.
+    resolved = dict(zip(licenses, _as_identifiers(licenses)))
 
     # Try JSON files first (preferred format)
     json_dir = Path(data_dir) / "licenses" / "json"
     if json_dir.exists():
-        for license_id in licenses:
+        for declared, license_id in resolved.items():
+            if resolve_license(declared).candidates:
+                # No single record to return, and a record merged from several would
+                # describe a license that does not exist. The candidates and what they
+                # share are reported alongside instead.
+                click.echo(f"⚠️  Note: '{declared}' names more than one license "
+                           f"identifier; reporting only what every reading shares",
+                           err=True)
+                continue
+
             try:
                 # Validate license_id to prevent path traversal
                 validate_license_id(license_id)
             except ValueError as e:
-                click.echo(f"⚠️  Error: Invalid license ID '{license_id}': {e}", err=True)
+                click.echo(f"⚠️  Error: Invalid license ID '{declared}': {e}", err=True)
                 continue
 
-            json_file = json_dir / f"{license_id}.json"
-            if json_file.exists():
-                try:
-                    with open(json_file) as f:
-                        spdx_data = json.load(f)
+            try:
+                spdx_data = _license_record(license_id, data_dir)
+            except Exception as e:
+                click.echo(f"⚠️  Warning: Failed to load {license_id}.json: {e}", err=True)
+                continue
 
-                    # Extract license data from SPDX format
-                    if "license" in spdx_data:
-                        license_data = spdx_data["license"]
-                        license_data_result[license_id] = license_data
-                    else:
-                        click.echo(f"⚠️  Warning: {license_id} JSON file missing 'license' key", err=True)
-
-                except Exception as e:
-                    click.echo(f"⚠️  Warning: Failed to load {license_id}.json: {e}", err=True)
-            else:
+            if spdx_data is None:
                 click.echo(f"⚠️  Warning: {license_id}.json not found", err=True)
+            elif "license" in spdx_data:
+                license_data_result[declared] = spdx_data["license"]
+            else:
+                click.echo(f"⚠️  Warning: {license_id} JSON file missing 'license' key", err=True)
 
     # Fallback to YAML files if JSON not available
     else:
         import yaml
         spdx_dir = Path(data_dir) / "licenses" / "spdx"
         if spdx_dir.exists():
-            for license_id in licenses:
+            for declared, license_id in resolved.items():
                 try:
                     # Validate license_id to prevent path traversal
                     validate_license_id(license_id)
@@ -1233,7 +1390,7 @@ def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -
                         # Extract license data from SPDX format
                         if "license" in spdx_data:
                             license_data = spdx_data["license"]
-                            license_data_result[license_id] = license_data
+                            license_data_result[declared] = license_data
                     except Exception:
                         # Continue with other licenses if this file fails
                         pass
@@ -1249,11 +1406,22 @@ def _enhance_result_with_obligations(result, license_list: list, runtime: Policy
     data_dir override) so enrichment works regardless of the current working
     directory. The legacy YAML layout no longer ships, so there is no fallback.
     """
-    json_dir = Path(runtime.resolve_data_dir(data_dir)) / "licenses" / "json"
+    data_root = runtime.resolve_data_dir(data_dir)
 
     all_obligations = []
 
-    for license_id in license_list:
+    for declared in license_list:
+        # An ambiguous declaration contributes what all of its readings agree on, the
+        # same rule the verdict follows. Flattening it to its own text reached no record
+        # and it contributed nothing at all, and the validation below rejected it first.
+        if resolve_license(declared).candidates:
+            for field in ("obligations", "key_requirements"):
+                all_obligations.extend(
+                    f"{declared}: {entry}"
+                    for entry in _shared_record_field(declared, field, data_root))
+            continue
+
+        license_id = matchable_license_id(declared)
         try:
             # Validate license_id to prevent path traversal
             validate_license_id(license_id)
@@ -1261,16 +1429,10 @@ def _enhance_result_with_obligations(result, license_list: list, runtime: Policy
             # Skip invalid license IDs
             continue
 
-        json_file = json_dir / f"{license_id}.json"
-
-        spdx_data = None
-
-        if json_file.exists():
-            try:
-                with open(json_file) as f:
-                    spdx_data = json.load(f)
-            except Exception:
-                pass
+        try:
+            spdx_data = _license_record(license_id, data_root)
+        except Exception:
+            spdx_data = None
 
         if spdx_data:
             license_data = spdx_data.get("license", {})

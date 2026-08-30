@@ -445,3 +445,132 @@ class TestCheckRejectsMalformedList:
     def test_padded_but_wellformed_input_still_works(self, runner):
         result = runner.invoke(cli, ["check", "-l", " MIT , GPL-3.0 "])
         assert result.exit_code == 0, result.output
+
+
+class TestObligationsForAnAmbiguousDeclaration:
+    """
+    "Apache License" and "gplv2" name a license without naming which identifier. There
+    is no single record to return and merging several would publish a license that does
+    not exist, so what every reading shares is reported instead. Flattening them to
+    their own text made the command answer "Invalid license ID" for a string the shipped
+    data recognises, and return an empty payload beside candidates it had just listed.
+    """
+
+    def test_shared_obligations_are_reported(self):
+        runner = CliRunner()
+        result = runner.invoke(cli, ["obligations", "-l", "Apache License",
+                                     "-f", "checklist"])
+        assert result.exit_code == 0
+        assert "Invalid license ID" not in result.output
+        assert "Retain copyright notices" in result.output
+        # Only Apache-2.0 carries this one, so a declaration that may be 1.0 does not.
+        assert "NOTICE" not in result.output
+
+    def test_json_keeps_records_and_candidates_apart(self):
+        import json as json_module
+
+        runner = CliRunner()
+        result = runner.invoke(cli, ["obligations", "-l", "gplv2,Apache 2.0"])
+        assert result.exit_code == 0
+        payload = json_module.loads(result.output[result.output.index("{"):])
+
+        # A record dump holds records. The ambiguous declaration has none, and saying so
+        # is the point: a merged record would name a license nobody wrote.
+        assert list(payload["license_data"]) == ["Apache 2.0"]
+        ambiguous = payload["ambiguous_licenses"]["gplv2"]
+        assert ambiguous["candidates"] == ["GPL-2.0-only", "GPL-2.0-or-later"]
+        assert "Provide or offer access to complete source code" in (
+            ambiguous["shared_obligations"])
+
+
+class TestLicenceNamesThatContainACommaSurviveParsing:
+    """
+    The separator is a comma and so is part of 31 names the shipped data carries.
+    "Apache License, Version 2.0" is what a POM writes and what the alias table answers
+    for, and splitting it produced two halves naming nothing, so the declaration came
+    back needing review while the identifier it spells is approved.
+    """
+
+    def test_a_comma_bearing_name_is_one_declaration(self):
+        from ospac.cli.commands import _split_licenses
+
+        assert _split_licenses("Apache License, Version 2.0") == [
+            "Apache License, Version 2.0"]
+        assert _split_licenses("GNU General Public License, version 2") == [
+            "GNU General Public License, version 2"]
+
+    def test_a_list_is_still_a_list(self):
+        from ospac.cli.commands import _split_licenses
+
+        assert _split_licenses("MIT,Apache-2.0") == ["MIT", "Apache-2.0"]
+        assert _split_licenses("MIT, GPL-3.0") == ["MIT", "GPL-3.0"]
+        # Longest match first, so the joined name wins over its first half, which is a
+        # family name that would resolve to a choice of versions on its own.
+        assert _split_licenses("MIT, Apache License, Version 2.0") == [
+            "MIT", "Apache License, Version 2.0"]
+
+    def test_the_comma_bearing_name_reaches_the_same_verdict(self):
+        runner = CliRunner()
+        spelled = runner.invoke(cli, ["evaluate", "-l", "Apache License, Version 2.0",
+                                      "-d", "saas"])
+        canonical = runner.invoke(cli, ["evaluate", "-l", "Apache-2.0", "-d", "saas"])
+        assert spelled.exit_code == 0
+        assert (json.loads(spelled.output)["result"]["action"]
+                == json.loads(canonical.output)["result"]["action"] == "approve")
+
+    def test_the_join_search_is_bounded(self, monkeypatch):
+        from ospac.aliases import longest_alias_comma_count
+        from ospac.cli import commands
+
+        # Probing every suffix made splitting quadratic, and each probe reads three
+        # tables: a hundred identifiers took five seconds before policy evaluation
+        # started. No name spans more fragments than this, so a longer join cannot name
+        # anything. Counted rather than timed, so the pin does not depend on the runner.
+        span = longest_alias_comma_count() + 1
+        calls = []
+        real = commands.resolve_license
+        monkeypatch.setattr(commands, "resolve_license",
+                            lambda text: (calls.append(text), real(text))[1])
+
+        identifiers = ["MIT", "Apache-2.0", "GPL-3.0-only", "BSD-3-Clause"] * 50
+        parsed = commands._split_licenses(",".join(identifiers))
+
+        assert parsed == identifiers
+        assert len(calls) <= span * len(identifiers)
+
+    def test_malformed_input_is_still_rejected(self):
+        runner = CliRunner()
+        result = runner.invoke(cli, ["check", "-l", "MIT,,GPL-3.0"])
+        assert result.exit_code != 0
+        assert "exactly two licenses" in result.output
+
+
+class TestPolicySuppliedObligationFieldsSurvive:
+    """
+    The human formats fall back to the dataset's shared obligations for an ambiguous
+    declaration. Assigning that entry replaced whatever obligations/*.yaml had put
+    there, so a custom field vanished from text, checklist and markdown output.
+    """
+
+    def test_custom_fields_are_not_replaced(self, tmp_path):
+        import shutil
+
+        policy_dir = tmp_path / "policies"
+        (policy_dir / "obligations").mkdir(parents=True)
+        shutil.copy(
+            Path(__file__).parent.parent / "ospac" / "defaults"
+            / "enterprise_policy.yaml", policy_dir / "main.yaml")
+        (policy_dir / "obligations" / "custom.yaml").write_text(
+            'version: "2.0"\n'
+            "obligations:\n"
+            "  Apache-1.0: {reviewer: legal@example.com}\n"
+            "  Apache-1.1: {reviewer: legal@example.com}\n"
+            "  Apache-2.0: {reviewer: legal@example.com}\n")
+
+        runner = CliRunner()
+        result = runner.invoke(cli, ["obligations", "-l", "Apache License",
+                                     "-p", str(policy_dir)])
+        assert result.exit_code == 0
+        entry = json.loads(result.output)["obligations"]["Apache License"]
+        assert entry["reviewer"] == "legal@example.com"
+        assert "Retain copyright notices" in entry["obligations"]

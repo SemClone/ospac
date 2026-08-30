@@ -5,6 +5,107 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+**evaluate resolves a declared license through the shipped alias map** (#94)
+- `ospac evaluate`, `check` and `obligations` matched license identifiers exactly, so a
+  string that was not already canonical SPDX reached no rule and came back
+  `flag_for_review`. Package registries do not answer in SPDX: PyPI's license field is
+  free text by construction and requests 2.31.0 declares `Apache 2.0`, so any caller
+  feeding registry metadata hit this on most packages. The data that resolves it has
+  shipped since 1.6.0 and only the `aliases` command consulted it.
+- `Apache 2.0` now approves where `Apache-2.0` approves, and `GNU General Public License
+  v3.0 only` denies where `GPL-3.0-only` denies. The difference was load-bearing: a
+  consumer applying a hard cap on `deny` and none on `flag_for_review` let a package
+  through at the point where the policy engine is the only authority in the chain.
+- Both spellings are offered to the rules rather than the resolved id replacing the
+  input, so a policy naming the deprecated `GPL-2.0` keeps matching and one naming
+  `GPL-2.0-only` starts matching the same input.
+- A string that states a license but not the grant is still not resolved to one
+  identifier, and is now evaluated under every reading it could have. The default policy
+  denies both AGPL-3.0 grants for saas, so `evaluate -l "GNU Affero General Public
+  License v3" -d saas` denies, which asserts nothing the declaration did not carry;
+  `check gplv2 BSD-4-Clause` reports the conflict for the same reason. Where the readings
+  disagree the answer is review, never the strictest of them: exactly one reading applies
+  and nobody knows which, so most-restrictive-wins would assert an obligation the
+  document may not carry. `cryptographic autonomy` is CAL-1.0 or its combined-work
+  exception, network copyleft against permissive, and reports review. Only the
+  obligations every reading carries are reported: `Apache License` is 1.0, 1.1 or 2.0 and
+  only 2.0 requires a NOTICE file. A dataset conflict that holds under some readings and
+  not all is review with a warning naming it, rather than a deny that picks a reading or
+  a clean result that hides one.
+- `evaluate` reports what it made of each declaration under `resolved_licenses`, and the
+  text and markdown output say it in a line. A verdict you cannot trace back to an
+  identifier is a verdict you have to re-derive the mapping to trust.
+- A declaration that names a license without naming its identifier is checked under
+  every reading. `ospac check gplv2 BSD-4-Clause` reports the conflict, because
+  BSD-4-Clause's record names both GPL-2.0 grants and the conflict therefore holds
+  whichever the document meant; where the readings disagree the answer is review rather
+  than whichever reading was tried first. `check` used to report that pair compatible
+  and warn that `gplv2` was not in the dataset, which was false about data ospac ships.
+- A deprecated identifier carries the current one as a spelling, so a policy written
+  against `GPL-2.0-only` fires for a caller passing `GPL-2.0`. The bundled policy hid
+  this by naming both spellings in every rule; a custom policy has no reason to.
+- A shipped identifier resolves to itself, deprecated ones included. `GPL-2.0` ships a
+  record of its own, so `obligations -l GPL-2.0` returns that record and the reported
+  resolution now agrees with it instead of naming the migration to `GPL-2.0-only`.
+- A license name that contains a comma survives the CLI's comma-separated list.
+  `evaluate -l "Apache License, Version 2.0"` split into two halves naming nothing and
+  came back needing review, while the identifier it spells is approved. Fragments are
+  rejoined longest-first and no further than the longest name in the tables reaches, and
+  a list of identifiers is unaffected. The shipped tables are read once per process
+  rather than once per lookup, which is what made an unbounded search expensive: a
+  hundred identifiers took five seconds to split and now takes three milliseconds.
+- `check` and `obligations` report `resolved_licenses` the way `evaluate` does.
+- `obligations` answers for an ambiguous declaration instead of rejecting it.
+  `ospac obligations -l "Apache License"` reported "Invalid license ID" for a string the
+  shipped data recognises; it now lists what every reading shares, and publishes the
+  candidates and that shared set under `ambiguous_licenses`. `license_data` still holds
+  records only, because a record merged from several readings would describe a license
+  that does not exist. `PolicyRuntime.get_obligations` resolves its argument too, so a
+  policy naming `Apache-2.0` answers for a caller passing `Apache 2.0`, and the
+  `--policy-dir` path no longer exits 1 on an ambiguous declaration.
+- Readings agree when their compliance outcome agrees, not when the action word matches.
+  A reading that matched an approval rule beside one that fell through to allow is two
+  permissions, and reporting review there flagged a pair every reading permits. Likewise
+  deny and contaminate are both refusals, so a declaration whose every reading is refused
+  is not downgraded to review.
+- New public `ospac.resolve_license(text)` returning `LicenseResolution(text, license_id,
+  candidates, status)`, `ospac.matchable_license_id(text)`,
+  `ospac.dataset.known_license_ids()` and `PolicyRuntime.resolve_licenses(licenses)`.
+  Whether a declared string is already an identifier is decided against that set rather
+  than by probing for a file, which answered differently on a case-insensitive volume.
+
+**The alias data carries the version spelling registries actually write** (#95)
+- SPDX names a license "GNU Affero General Public License v3.0" and Maven Central serves
+  "GNU Affero General Public License v3" for every iText artifact. Only the SPDX spelling
+  was present, so one license got two answers: a choice of grants for one form, unknown
+  for the other, and the unknown one is the commoner form on Central. Six GNU spellings
+  were missing this way, not one.
+- Derived, not curated. Every record now also claims its name with the minor dropped, and
+  the licenses that end up sharing a spelling collide into `ambiguous` with their
+  candidates: `php license v3` is `PHP-3.0` or `PHP-3.01`, `latex project public license
+  v1` is one of five. A family with a single version at that major resolves.
+- A shortened spelling is only published where its claimants cover every version they
+  could be taken for, which is a fact about the identifiers rather than the spellings.
+  `apache v1` does not resolve to `Apache-1.1` with `Apache-1.0` beside it, and
+  `gnu lesser general public license v2` is absent rather than offering the two LGPL-2.1
+  readings while LGPL-2.0 ships under the name SPDX gave it, "Library".
+- 1739 aliases, up from 1669, and 143 ambiguous names, up from 113. Nothing was removed
+  and nothing changed the id it resolved to.
+
+### Added
+
+- `tests/test_runtime.py::TestStrongerCopyleftIsNeverMorePermissive` pins the invariant
+  behind #93: for every distribution type, `AGPL-3.0` may never evaluate more permissively
+  than `GPL-3.0`. The gap itself was closed in #76; nothing had been holding it closed.
+- `tests/test_validation.py` now checks that regenerating `aliases.json` from the shipped
+  records reproduces the shipped file, instead of re-deriving the expected mapping by
+  hand. The old shape would have let the generator and the data drift apart while still
+  passing.
+
 ## [1.7.0] - 2026-08-20
 
 ### Added

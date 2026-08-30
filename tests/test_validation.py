@@ -557,6 +557,7 @@ class TestDatasetPipelineReproducibility:
 
     def test_pipeline_reproduces_every_shipped_record(self):
         import json
+        import shutil
 
         from ospac.pipeline.data_generator import PolicyDataGenerator as G
 
@@ -896,24 +897,31 @@ class TestLicenseAliases:
         missing = {a: t for a, t in aliases.items() if t not in known_ids}
         assert missing == {}, f"aliases pointing at ids that do not exist: {missing}"
 
-    def test_aliases_file_matches_the_records(self):
+    def test_aliases_file_is_reproducible_from_the_records(self, tmp_path):
         import json
+        import shutil
 
-        import ospac
-        from ospac.utils.validation import NEVER_RESOLVE
+        from ospac.pipeline.data_generator import PolicyDataGenerator
 
-        data_dir = Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
-        owners = {}
-        for path in data_dir.glob("*.json"):
-            record = json.loads(path.read_text())["license"]
-            for alias in record.get("aliases", []):
-                owners.setdefault(alias, set()).add(record["id"])
-        # Ambiguity is decided first and wins: a spelling that names a family rather
-        # than one licence is excluded here even though exactly one record claims it.
-        ambiguous = ospac.license_ambiguous()
-        expected = {a: next(iter(ids)) for a, ids in owners.items()
-                    if len(ids) == 1 and a not in NEVER_RESOLVE and a not in ambiguous}
-        assert ospac.license_aliases() == expected
+        # The records are the source of truth and aliases.json is a flattening of
+        # them, so regenerating it from the shipped records must reproduce the shipped
+        # file exactly. Deriving the expected mapping by hand here instead let the
+        # generator and the data drift apart while the test still passed.
+        data_dir = Path(__file__).parent.parent / "ospac" / "data"
+        shipped = json.loads((data_dir / "aliases.json").read_text())
+
+        # A symlink keeps this cheap, but it needs a privilege Windows does not grant
+        # by default, and the records are only read here.
+        try:
+            (tmp_path / "licenses").symlink_to(data_dir / "licenses",
+                                               target_is_directory=True)
+        except (OSError, NotImplementedError):
+            shutil.copytree(data_dir / "licenses", tmp_path / "licenses")
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        generator.output_dir = tmp_path
+        generator._write_aliases_file(spdx_version=shipped["spdx_list_version"])
+
+        assert json.loads((tmp_path / "aliases.json").read_text()) == shipped
 
 
 class TestAmbiguousNames:
@@ -946,6 +954,124 @@ class TestAmbiguousNames:
                 f"'{spelling}' names a version but not the grant; resolving it picks "
                 f"only or or-later on the copyright holder's behalf")
             assert len(ambiguous[spelling]) == 2
+
+    def test_registry_spellings_drop_the_redundant_minor(self):
+        import ospac
+
+        # SPDX names the licence "GNU Affero General Public License v3.0"; every iText
+        # POM on Maven Central declares "GNU Affero General Public License v3". Carrying
+        # only the SPDX spelling answered the same question two ways: a choice of grants
+        # for one, unknown for the other, and the second is the commoner form on Central.
+        ambiguous = ospac.license_ambiguous()
+        assert ambiguous["gnu affero general public license v3"] == [
+            "AGPL-3.0-only", "AGPL-3.0-or-later"]
+        assert ambiguous["gnu general public license v2"] == [
+            "GPL-2.0-only", "GPL-2.0-or-later"]
+        assert ambiguous["gnu general public license v3"] == [
+            "GPL-3.0-only", "GPL-3.0-or-later"]
+
+        # AGPL-1.0's SPDX name omits "GNU", so the "gnu ..." spelling is curated rather
+        # than derived. A curated key carries a version the same way and drops its minor
+        # under the same rule; otherwise the table answered for v3 and not for v1.
+        assert ambiguous["gnu affero general public license v1"] == [
+            "AGPL-1.0-only", "AGPL-1.0-or-later"]
+        assert ambiguous["affero general public license v1"] == [
+            "AGPL-1.0-only", "AGPL-1.0-or-later"]
+
+    def test_a_family_with_one_version_resolves_and_others_do_not(self):
+        import ospac
+
+        aliases = ospac.license_aliases()
+        ambiguous = ospac.license_ambiguous()
+
+        # EPL ships 1.0 and 2.0 and nothing between, so "v1" names exactly one licence.
+        assert aliases["eclipse public license v1"] == "EPL-1.0"
+
+        # PHP ships 3.0 and 3.01, LPPL ships five versions at major 1. Resolving "v3"
+        # or "v1" there picks a version the string never stated, so they name a choice.
+        assert "php license v3" not in aliases
+        assert ambiguous["php license v3"] == ["PHP-3.0", "PHP-3.01"]
+        assert "latex project public license v1" not in aliases
+        assert len(ambiguous["latex project public license v1"]) == 5
+
+    def test_a_sibling_spelling_the_version_differently_still_blocks(self):
+        import ospac
+
+        # Apache-1.0 spells its version "Apache License 1.0" while Apache-1.1 also ships
+        # "apache v1.1", so the two shortened spellings never collide and nothing in the
+        # strings reveals the clash. Solderpad is the same shape: "v0.5" against
+        # ", Version 0.51". The ids show what the spellings hide.
+        aliases = ospac.license_aliases()
+        assert "apache v1" not in aliases
+        assert "solderpad hardware license v0" not in aliases
+
+    def test_a_shortened_spelling_names_every_version_it_could_mean(self):
+        import ospac
+
+        aliases = ospac.license_aliases()
+        ambiguous = ospac.license_ambiguous()
+
+        # LGPL-2.1 shortens to "v2" and LGPL-2.0 ships beside it under the name SPDX
+        # gave it, "Library". Nothing collides, so offering the 2.1 pair alone would
+        # narrow a choice the string never made. The same shape hides OLDAP-2.0 and
+        # OLDAP-2.2.2 behind the other Open LDAP 2.x spellings.
+        for spelling in ("gnu lesser general public license v2",
+                         "gnu lesser general public license v2 only",
+                         "open ldap public license v2"):
+            assert spelling not in aliases, spelling
+            assert spelling not in ambiguous, spelling
+
+        # Where the claimants do cover the major, the choice is published in full.
+        assert ambiguous["open ldap public license v1"] == [
+            "OLDAP-1.1", "OLDAP-1.2", "OLDAP-1.3", "OLDAP-1.4"]
+
+    def test_no_shortened_spelling_resolves_past_a_sibling_version(self):
+        import glob
+        import json
+
+        import ospac
+        from ospac.pipeline.data_generator import _ID_VERSION
+
+        # The invariant behind the rule, checked across the whole table rather than on
+        # the handful of examples above: an alias may only name a licence whose family
+        # ships no other version at that major.
+        def parsed(license_id):
+            match = _ID_VERSION.match(license_id)
+            return match and (match.group("family"),
+                              match.group("version").split(".")[0],
+                              match.group("version"))
+
+        records = [json.loads(Path(p).read_text())["license"] for p in
+                   glob.glob(str(Path(__file__).parent.parent / "ospac" / "data" /
+                                 "licenses" / "json" / "*.json"))]
+        shipped = [entry for entry in (parsed(r["id"]) for r in records) if entry]
+        # Only spellings the shortening invented are in scope. "GNU Library General
+        # Public License v2 only" is the name SPDX gave LGPL-2.0, so it names that
+        # licence however many other versions the family ships.
+        spelled_in_full = {alias for r in records for alias in r.get("aliases", [])}
+
+        offenders = []
+        for alias, target in ospac.license_aliases().items():
+            entry = parsed(target)
+            if not entry or alias in spelled_in_full:
+                continue
+            family, major, version = entry
+            siblings = {v for f, m, v in shipped if (f, m) == (family, major)}
+            if siblings != {version}:
+                offenders.append((alias, target, sorted(siblings)))
+        assert offenders == [], (
+            f"derived spellings naming one version where the family ships several: "
+            f"{offenders}")
+
+    def test_only_the_minor_is_dropped(self):
+        import ospac
+
+        # "v2.1" shortened to "v2" would name LGPL-2.0, a different licence.
+        aliases = ospac.license_aliases()
+        ambiguous = ospac.license_ambiguous()
+        assert aliases["gnu library general public license v2 only"] == "LGPL-2.0-only"
+        assert ambiguous["gnu lesser general public license v2.1"] == [
+            "LGPL-2.1-only", "LGPL-2.1-or-later"]
 
     def test_deprecated_spellings_still_resolve(self):
         import ospac

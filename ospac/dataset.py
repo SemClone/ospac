@@ -13,8 +13,9 @@ programmatic half of it.
 
 import json
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
-from typing import Tuple
+from typing import FrozenSet, Tuple
 
 # Version of the shipped data layout, not of the ospac package. MAJOR.MINOR.PATCH:
 # MAJOR for a removal or an incompatible change to a documented field, MINOR for a
@@ -73,3 +74,20 @@ def data_version() -> DataVersion:
         spdx_list_version=index["spdx_list_version"],
         total_licenses=index["total_licenses"],
     )
+
+
+@lru_cache(maxsize=1)
+def known_license_ids() -> FrozenSet[str]:
+    """
+    Every identifier the bundled dataset ships, exactly as it spells them.
+
+    The set to ask whether a declared string is already an identifier. Probing the
+    filesystem for a record answers that question wrong on a case-insensitive volume,
+    where "apache-2.0.json" opens Apache-2.0's record and a lower-cased id therefore
+    looks canonical while matching nothing case-sensitively downstream.
+
+    Deprecated identifiers are included: they ship records of their own, and a caller
+    naming one means that record and its deprecation metadata.
+    """
+    with open(_INDEX_FILE) as f:
+        return frozenset(json.load(f)["licenses"])
