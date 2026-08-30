@@ -49,6 +49,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   record of its own, so `obligations -l GPL-2.0` returns that record and the reported
   resolution now agrees with it instead of naming the migration to `GPL-2.0-only`.
 - `check` and `obligations` report `resolved_licenses` the way `evaluate` does.
+- `obligations` answers for an ambiguous declaration instead of rejecting it.
+  `ospac obligations -l "Apache License"` reported "Invalid license ID" for a string the
+  shipped data recognises; it now lists what every reading shares, and publishes the
+  candidates and that shared set under `ambiguous_licenses`. `license_data` still holds
+  records only, because a record merged from several readings would describe a license
+  that does not exist.
 - New public `ospac.resolve_license(text)` returning `LicenseResolution(text, license_id,
   candidates, status)`, `ospac.matchable_license_id(text)`,
   `ospac.dataset.known_license_ids()` and `PolicyRuntime.resolve_licenses(licenses)`.

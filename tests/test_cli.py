@@ -445,3 +445,39 @@ class TestCheckRejectsMalformedList:
     def test_padded_but_wellformed_input_still_works(self, runner):
         result = runner.invoke(cli, ["check", "-l", " MIT , GPL-3.0 "])
         assert result.exit_code == 0, result.output
+
+
+class TestObligationsForAnAmbiguousDeclaration:
+    """
+    "Apache License" and "gplv2" name a license without naming which identifier. There
+    is no single record to return and merging several would publish a license that does
+    not exist, so what every reading shares is reported instead. Flattening them to
+    their own text made the command answer "Invalid license ID" for a string the shipped
+    data recognises, and return an empty payload beside candidates it had just listed.
+    """
+
+    def test_shared_obligations_are_reported(self):
+        runner = CliRunner()
+        result = runner.invoke(cli, ["obligations", "-l", "Apache License",
+                                     "-f", "checklist"])
+        assert result.exit_code == 0
+        assert "Invalid license ID" not in result.output
+        assert "Retain copyright notices" in result.output
+        # Only Apache-2.0 carries this one, so a declaration that may be 1.0 does not.
+        assert "NOTICE" not in result.output
+
+    def test_json_keeps_records_and_candidates_apart(self):
+        import json as json_module
+
+        runner = CliRunner()
+        result = runner.invoke(cli, ["obligations", "-l", "gplv2,Apache 2.0"])
+        assert result.exit_code == 0
+        payload = json_module.loads(result.output[result.output.index("{"):])
+
+        # A record dump holds records. The ambiguous declaration has none, and saying so
+        # is the point: a merged record would name a license nobody wrote.
+        assert list(payload["license_data"]) == ["Apache 2.0"]
+        ambiguous = payload["ambiguous_licenses"]["gplv2"]
+        assert ambiguous["candidates"] == ["GPL-2.0-only", "GPL-2.0-or-later"]
+        assert "Provide or offer access to complete source code" in (
+            ambiguous["shared_obligations"])

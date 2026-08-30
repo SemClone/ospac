@@ -301,11 +301,26 @@ def obligations(licenses: str, policy_dir: str, data_dir: Optional[str], format:
                        "candidates": r.candidates}
                 for text, r in PolicyRuntime.resolve_licenses(license_list).items()
             }
+            # license_data holds records, so a declaration with several readings is
+            # absent from it by construction. What those readings share is published
+            # here rather than merged into a record that names no license.
+            ambiguous = {
+                text: {
+                    "candidates": resolution["candidates"],
+                    "shared_obligations": _shared_record_field(
+                        text, "obligations", data_dir),
+                    "shared_key_requirements": _shared_record_field(
+                        text, "key_requirements", data_dir),
+                }
+                for text, resolution in resolved_licenses.items()
+                if resolution["status"] == "ambiguous"
+            }
             if policy_dir:
                 # When using policies, return obligations format
                 output_data = {
                     "licenses": license_list,
                     "resolved_licenses": resolved_licenses,
+                    "ambiguous_licenses": ambiguous,
                     "obligations": obligations_dict,
                     "using_policy": True
                 }
@@ -314,20 +329,24 @@ def obligations(licenses: str, policy_dir: str, data_dir: Optional[str], format:
                 output_data = {
                     "licenses": license_list,
                     "resolved_licenses": resolved_licenses,
+                    "ambiguous_licenses": ambiguous,
                     "license_data": obligations_dict,
                     "using_policy": False
                 }
             click.echo(json.dumps(output_data, indent=2))
-        elif format == "checklist":
+        else:
             # For human-readable formats, extract obligations from license data
             obligations_only = _extract_obligations_for_display(obligations_dict, policy_dir)
-            _output_checklist(obligations_only)
-        elif format == "markdown":
-            obligations_only = _extract_obligations_for_display(obligations_dict, policy_dir)
-            _output_obligations_markdown(obligations_only)
-        else:
-            obligations_only = _extract_obligations_for_display(obligations_dict, policy_dir)
-            _output_obligations_text(obligations_only)
+            for declared in license_list:
+                shared = _shared_record_field(declared, "obligations", data_dir)
+                if shared:
+                    obligations_only[declared] = {"obligations": shared}
+            if format == "checklist":
+                _output_checklist(obligations_only)
+            elif format == "markdown":
+                _output_obligations_markdown(obligations_only)
+            else:
+                _output_obligations_text(obligations_only)
 
     except Exception as e:
         click.secho(f"Error: {e}", fg="red", err=True)
@@ -1239,6 +1258,23 @@ def _license_record(license_id: str, data_dir: Optional[str] = None) -> Optional
     return PolicyRuntime(skip_default=True).lookup_license_data(license_id, data_dir)
 
 
+def _shared_record_field(declared: str, field: str, data_dir: Optional[str] = None) -> list:
+    """
+    The entries of `field` that every reading of `declared` carries.
+
+    A declaration naming a license without naming which identifier has no single record,
+    and inventing one would publish a license that does not exist. What it does have is
+    whatever all of its readings agree on, which is the same rule the policy verdict
+    follows: "Apache License" is 1.0, 1.1 or 2.0 and only 2.0 requires a NOTICE file.
+    """
+    shared = None
+    for identifier in resolve_license(declared).candidates:
+        record = (_license_record(identifier, data_dir) or {}).get("license", {})
+        entries = list(record.get(field, []))
+        shared = entries if shared is None else [e for e in shared if e in entries]
+    return shared or []
+
+
 def _as_identifiers(licenses: list) -> list:
     """The declared strings as identifiers. See ospac.aliases.matchable_license_id."""
     return [matchable_license_id(declared) for declared in licenses]
@@ -1263,6 +1299,15 @@ def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -
     json_dir = Path(data_dir) / "licenses" / "json"
     if json_dir.exists():
         for declared, license_id in resolved.items():
+            if resolve_license(declared).candidates:
+                # No single record to return, and a record merged from several would
+                # describe a license that does not exist. The candidates and what they
+                # share are reported alongside instead.
+                click.echo(f"⚠️  Note: '{declared}' names more than one license "
+                           f"identifier; reporting only what every reading shares",
+                           err=True)
+                continue
+
             try:
                 # Validate license_id to prevent path traversal
                 validate_license_id(license_id)
@@ -1321,11 +1366,22 @@ def _enhance_result_with_obligations(result, license_list: list, runtime: Policy
     data_dir override) so enrichment works regardless of the current working
     directory. The legacy YAML layout no longer ships, so there is no fallback.
     """
-    json_dir = Path(runtime.resolve_data_dir(data_dir)) / "licenses" / "json"
+    data_root = runtime.resolve_data_dir(data_dir)
 
     all_obligations = []
 
-    for license_id in _as_identifiers(license_list):
+    for declared in license_list:
+        # An ambiguous declaration contributes what all of its readings agree on, the
+        # same rule the verdict follows. Flattening it to its own text reached no record
+        # and it contributed nothing at all, and the validation below rejected it first.
+        if resolve_license(declared).candidates:
+            for field in ("obligations", "key_requirements"):
+                all_obligations.extend(
+                    f"{declared}: {entry}"
+                    for entry in _shared_record_field(declared, field, data_root))
+            continue
+
+        license_id = matchable_license_id(declared)
         try:
             # Validate license_id to prevent path traversal
             validate_license_id(license_id)
@@ -1334,7 +1390,7 @@ def _enhance_result_with_obligations(result, license_list: list, runtime: Policy
             continue
 
         try:
-            spdx_data = _license_record(license_id, str(json_dir.parent.parent))
+            spdx_data = _license_record(license_id, data_root)
         except Exception:
             spdx_data = None
 
