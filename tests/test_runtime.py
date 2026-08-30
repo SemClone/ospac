@@ -504,6 +504,35 @@ class TestDeclaredLicenceStringsResolve:
         assert declared.is_compliant is True
         assert declared.needs_review is False
 
+    def test_readings_that_all_refuse_are_not_downgraded_to_review(self, tmp_path):
+        # deny and contaminate are both refusals. Comparing them as different answers
+        # downgraded a declaration whose every reading is refused to review, which is
+        # the failure direction this whole path exists to close.
+        policy = tmp_path / "policy.yaml"
+        policy.write_text(
+            'version: "2.0"\n'
+            "name: refuse-both-ways\n"
+            "rules:\n"
+            "  - id: deny_only\n"
+            "    priority: 9\n"
+            '    when: {license: ["GPL-2.0-only"]}\n'
+            "    then: {action: deny, severity: error, message: denied}\n"
+            "  - id: contaminate_or_later\n"
+            "    priority: 9\n"
+            '    when: {license: ["GPL-2.0-or-later"]}\n'
+            "    then: {action: contaminate, severity: error, message: contaminates}\n")
+        runtime = PolicyRuntime(str(policy))
+        base = {"distribution_type": "commercial"}
+
+        assert runtime.evaluate_licenses(
+            ["GPL-2.0-only"], base)[0].action == ActionType.DENY
+        assert runtime.evaluate_licenses(
+            ["GPL-2.0-or-later"], base)[0].action == ActionType.CONTAMINATE
+
+        declared, _ = runtime.evaluate_licenses(["gplv2"], base)
+        assert declared.action != ActionType.FLAG_FOR_REVIEW
+        assert declared.action in (ActionType.DENY, ActionType.CONTAMINATE)
+
     def test_a_reading_carries_the_callers_spelling_as_well(self):
         runtime = PolicyRuntime()
 

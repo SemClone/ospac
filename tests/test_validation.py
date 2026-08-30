@@ -557,6 +557,7 @@ class TestDatasetPipelineReproducibility:
 
     def test_pipeline_reproduces_every_shipped_record(self):
         import json
+        import shutil
 
         from ospac.pipeline.data_generator import PolicyDataGenerator as G
 
@@ -908,7 +909,13 @@ class TestLicenseAliases:
         data_dir = Path(__file__).parent.parent / "ospac" / "data"
         shipped = json.loads((data_dir / "aliases.json").read_text())
 
-        (tmp_path / "licenses").symlink_to(data_dir / "licenses")
+        # A symlink keeps this cheap, but it needs a privilege Windows does not grant
+        # by default, and the records are only read here.
+        try:
+            (tmp_path / "licenses").symlink_to(data_dir / "licenses",
+                                               target_is_directory=True)
+        except (OSError, NotImplementedError):
+            shutil.copytree(data_dir / "licenses", tmp_path / "licenses")
         generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
         generator.output_dir = tmp_path
         generator._write_aliases_file(spdx_version=shipped["spdx_list_version"])

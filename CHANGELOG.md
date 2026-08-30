@@ -59,7 +59,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `--policy-dir` path no longer exits 1 on an ambiguous declaration.
 - Readings agree when their compliance outcome agrees, not when the action word matches.
   A reading that matched an approval rule beside one that fell through to allow is two
-  permissions, and reporting review there flagged a pair every reading permits.
+  permissions, and reporting review there flagged a pair every reading permits. Likewise
+  deny and contaminate are both refusals, so a declaration whose every reading is refused
+  is not downgraded to review.
 - New public `ospac.resolve_license(text)` returning `LicenseResolution(text, license_id,
   candidates, status)`, `ospac.matchable_license_id(text)`,
   `ospac.dataset.known_license_ids()` and `PolicyRuntime.resolve_licenses(licenses)`.

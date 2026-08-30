@@ -16,13 +16,20 @@ from ospac.utils.validation import validate_license_id
 from ospac.aliases import (LicenseResolution, matchable_license_id,
                            resolve_license)
 
-# The compliance outcome each action produces, mirroring
-# ComplianceResult.from_policy_result. Two actions in one class are one answer.
+# What each action answers, for deciding whether two readings of one declaration agree.
+# Two actions in one class are one answer: approve and allow are both permissions, deny
+# and contaminate are both refusals. Leaving contaminate out downgraded a declaration
+# whose every reading is refused to review, which is the direction that matters.
+#
+# ComplianceResult.from_policy_result maps contaminate to UNKNOWN rather than to
+# NON_COMPLIANT. That is a separate question about one result's status and is left
+# alone here; this table is only about agreement.
 _COMPLIANCE_CLASS = {
     ActionType.APPROVE: ComplianceStatus.COMPLIANT,
     ActionType.ALLOW: ComplianceStatus.COMPLIANT,
     ActionType.FLAG_FOR_REVIEW: ComplianceStatus.REQUIRES_REVIEW,
     ActionType.DENY: ComplianceStatus.NON_COMPLIANT,
+    ActionType.CONTAMINATE: ComplianceStatus.NON_COMPLIANT,
 }
 
 
