@@ -468,6 +468,42 @@ class TestDeclaredLicenceStringsResolve:
                    == "dataset_incompatibility_under_some_readings"
                    for warning in partial.warnings)
 
+    def test_get_obligations_resolves_the_declared_string(self):
+        runtime = PolicyRuntime(skip_default=True)
+
+        # The library entry point took the caller's list verbatim, so a policy naming
+        # Apache-2.0 answered nothing for "Apache 2.0" and an ambiguous declaration
+        # raised on validation before anything could be reported.
+        assert (runtime.get_obligations(["Apache 2.0"])["Apache 2.0"]
+                == runtime.get_obligations(["Apache-2.0"])["Apache-2.0"])
+
+        shared = runtime.get_obligations(["Apache License"])["Apache License"]
+        oldest = runtime.get_obligations(["Apache-1.0"])["Apache-1.0"]
+        newest = runtime.get_obligations(["Apache-2.0"])["Apache-2.0"]
+        assert set(shared["obligations"]) <= set(oldest["obligations"])
+        assert set(shared["obligations"]) < set(newest["obligations"])
+
+    def test_agreement_is_about_the_outcome_not_the_word(self, tmp_path):
+        # One reading matches an approval rule and the others fall through to allow.
+        # Both are permissions, so the readings agree; comparing the action verbatim
+        # reported review for a pair every reading permits.
+        policy = tmp_path / "policy.yaml"
+        policy.write_text(
+            'version: "2.0"\n'
+            "name: approve-apache2-with-mit\n"
+            "rules:\n"
+            "  - id: approve_apache2_mit\n"
+            "    priority: 5\n"
+            '    when: {license1: ["Apache-2.0"], license2: ["MIT"]}\n'
+            "    then: {action: approve, severity: info, message: fine}\n")
+        runtime = PolicyRuntime(str(policy))
+
+        assert runtime.check_compatibility("Apache-2.0", "MIT").is_compliant is True
+        assert runtime.check_compatibility("Apache-1.0", "MIT").is_compliant is True
+        declared = runtime.check_compatibility("apache license", "MIT")
+        assert declared.is_compliant is True
+        assert declared.needs_review is False
+
     def test_a_reading_carries_the_callers_spelling_as_well(self):
         runtime = PolicyRuntime()
 

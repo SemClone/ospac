@@ -54,7 +54,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   shipped data recognises; it now lists what every reading shares, and publishes the
   candidates and that shared set under `ambiguous_licenses`. `license_data` still holds
   records only, because a record merged from several readings would describe a license
-  that does not exist.
+  that does not exist. `PolicyRuntime.get_obligations` resolves its argument too, so a
+  policy naming `Apache-2.0` answers for a caller passing `Apache 2.0`, and the
+  `--policy-dir` path no longer exits 1 on an ambiguous declaration.
+- Readings agree when their compliance outcome agrees, not when the action word matches.
+  A reading that matched an approval rule beside one that fell through to allow is two
+  permissions, and reporting review there flagged a pair every reading permits.
 - New public `ospac.resolve_license(text)` returning `LicenseResolution(text, license_id,
   candidates, status)`, `ospac.matchable_license_id(text)`,
   `ospac.dataset.known_license_ids()` and `PolicyRuntime.resolve_licenses(licenses)`.

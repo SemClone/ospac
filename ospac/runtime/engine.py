@@ -16,6 +16,16 @@ from ospac.utils.validation import validate_license_id
 from ospac.aliases import (LicenseResolution, matchable_license_id,
                            resolve_license)
 
+# The compliance outcome each action produces, mirroring
+# ComplianceResult.from_policy_result. Two actions in one class are one answer.
+_COMPLIANCE_CLASS = {
+    ActionType.APPROVE: ComplianceStatus.COMPLIANT,
+    ActionType.ALLOW: ComplianceStatus.COMPLIANT,
+    ActionType.FLAG_FOR_REVIEW: ComplianceStatus.REQUIRES_REVIEW,
+    ActionType.DENY: ComplianceStatus.NON_COMPLIANT,
+}
+
+
 class PolicyRuntime:
     """
     Main policy execution runtime.
@@ -353,7 +363,12 @@ class PolicyRuntime:
         nobody knows which: taking the strictest would assert an obligation the document
         may not carry. Agreement is the only thing a reading set can assert on its own.
         """
-        if len({result.action for result in results}) == 1:
+        # Agreement is about the outcome, not the word. approve and allow are one
+        # compliance class, and a reading that matched an approval rule alongside one
+        # that fell through to allow is two permissions, not a disagreement; reporting
+        # review there would flag a pair every reading permits.
+        if len({_COMPLIANCE_CLASS.get(result.action, result.action)
+                for result in results}) == 1:
             agreed = PolicyResult.aggregate(results, when_unmatched=when_unmatched)
             if len(results) > 1:
                 # aggregate() unions requirements, which is right across licenses that
@@ -411,41 +426,50 @@ class PolicyRuntime:
         Get all obligations for the given licenses.
 
         Args:
-            licenses: List of SPDX license identifiers
+            licenses: Declared license strings, SPDX identifiers or not
             data_dir: Optional data directory path
 
         Returns:
-            Dictionary keyed by license id. Each value is a dictionary that
-            contains an "obligations" list from the license dataset, merged
-            with any entries from obligations/ policy files. Licenses with
-            no known obligations are omitted.
+            Dictionary keyed by the string that was passed in. Each value is a
+            dictionary that contains an "obligations" list from the license dataset,
+            merged with any entries from obligations/ policy files. Licenses with no
+            known obligations are omitted.
+
+            Declared strings are resolved, so a policy naming Apache-2.0 answers for a
+            caller passing "Apache 2.0". A declaration that names a license without
+            naming which identifier reports only what every reading of it carries,
+            because exactly one reading applies and nobody knows which.
         """
         # Use package data directory if not specified
         data_dir = self.resolve_data_dir(data_dir)
 
         obligations = {}
+        for declared in licenses:
+            per_reading = [self._obligations_for(identifier, data_dir)
+                           for identifier, _ in self._readings(declared)]
+            shared = self._shared_obligations(per_reading)
+            if shared:
+                obligations[declared] = shared
+        return obligations
+
+    def _obligations_for(self, license_id: str, data_dir: str) -> Dict[str, Any]:
+        """The obligations one identifier carries, from the policies and the dataset."""
+        entry: Dict[str, Any] = {}
 
         # Look for obligations in all obligation policy files
         for policy_name, policy_data in self.policies.items():
             if policy_name.startswith("obligations/") and "obligations" in policy_data:
-                for license_id in licenses:
-                    if license_id in policy_data["obligations"]:
-                        if license_id not in obligations:
-                            obligations[license_id] = {}
-                        obligations[license_id].update(policy_data["obligations"][license_id])
+                if license_id in policy_data["obligations"]:
+                    entry.update(policy_data["obligations"][license_id])
 
         # Check for modular per-license files first (preferred)
-        licenses_dir = Path(data_dir) / "licenses"
-        if licenses_dir.exists():
-            for license_id in licenses:
-                license_data = self.lookup_license_data(license_id, data_dir) or {}
-                # Per-license JSON files wrap the record in a "license" key
-                license_record = license_data.get("license", license_data)
-                license_obligations = license_record.get("obligations", [])
-                if license_obligations:
-                    if license_id not in obligations:
-                        obligations[license_id] = {}
-                    obligations[license_id]["obligations"] = license_obligations
+        listed = []
+        if (Path(data_dir) / "licenses").exists():
+            # A ValueError is not caught: an id that reaches this and is not a licence
+            # is a path, and refusing it is the point of the guard.
+            license_data = self.lookup_license_data(license_id, data_dir) or {}
+            # Per-license JSON files wrap the record in a "license" key
+            listed = license_data.get("license", license_data).get("obligations", [])
         else:
             # Fallback to legacy obligation database for backward compatibility
             obligation_db_path = Path(data_dir) / "obligation_database.json"
@@ -453,19 +477,41 @@ class PolicyRuntime:
                 try:
                     with open(obligation_db_path) as f:
                         obligation_db = json.load(f)
-
-                    for license_id in licenses:
-                        if license_id in obligation_db.get("licenses", {}):
-                            license_obligations = obligation_db["licenses"][license_id].get("obligations", [])
-                            if license_obligations:
-                                if license_id not in obligations:
-                                    obligations[license_id] = {}
-                                obligations[license_id]["obligations"] = license_obligations
+                    listed = (obligation_db.get("licenses", {})
+                              .get(license_id, {}).get("obligations", []))
                 except Exception:
-                    # If we can't load the obligation database, just continue with policy-based obligations
-                    pass
+                    # If we can't load the obligation database, just continue with
+                    # policy-based obligations
+                    listed = []
 
-        return obligations
+        if listed:
+            entry["obligations"] = listed
+        return entry
+
+    @staticmethod
+    def _shared_obligations(per_reading: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """
+        What every reading of one declaration carries.
+
+        A single reading keeps everything it has. Several keep only the entries they all
+        agree on: "Apache License" is 1.0, 1.1 or 2.0 and reporting 2.0's NOTICE
+        obligation for it would state something a declaration meaning 1.0 does not.
+        """
+        if not per_reading:
+            return {}
+        if len(per_reading) == 1:
+            return per_reading[0]
+
+        shared = {key: value for key, value in per_reading[0].items()
+                  if all(other.get(key) == value for other in per_reading[1:])}
+        listed = [entry.get("obligations", []) for entry in per_reading]
+        common = [obligation for obligation in listed[0]
+                  if all(obligation in other for other in listed[1:])]
+        if common:
+            shared["obligations"] = common
+        else:
+            shared.pop("obligations", None)
+        return shared
 
     def lookup_license_data(self, license_id: str, data_dir: Optional[str] = None) -> Optional[Dict[str, Any]]:
         """
