@@ -456,6 +456,29 @@ class TestDeclaredLicenceStringsResolve:
         assert canonical.is_compliant is False
         assert spelled.is_compliant is False
 
+    def test_case_does_not_decide_whether_a_string_is_an_identifier(self):
+        runtime = PolicyRuntime()
+
+        # A case-insensitive volume opens Apache-2.0's record for "apache-2.0.json", so
+        # probing the filesystem answered "this is already an identifier" and left the
+        # lower-cased spelling in place. Rule matching is case-sensitive, so the pair
+        # then matched nothing and a reviewed pair read as clean. The shipped id set
+        # answers the same on every platform.
+        assert runtime._matchable_id("apache-2.0") == "Apache-2.0"
+        assert runtime.check_compatibility("apache-2.0", "gpl-3.0").is_compliant is (
+            runtime.check_compatibility("Apache-2.0", "GPL-3.0").is_compliant)
+
+    def test_a_deprecated_id_keeps_its_own_record(self):
+        runtime = PolicyRuntime()
+
+        # GPL-3.0 is deprecated and the alias map migrates it to GPL-3.0-only, but it
+        # ships a record of its own. A caller naming it means that record, including
+        # the deprecation metadata the canonical one does not carry.
+        record = runtime.lookup_license_data("GPL-3.0")["license"]
+        assert record["id"] == "GPL-3.0"
+        assert record["alias_of"] == "GPL-3.0-only"
+        assert record["spdx_metadata"]["is_deprecated"] is True
+
     def test_a_path_is_still_a_path(self):
         runtime = PolicyRuntime()
 

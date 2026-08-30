@@ -13,7 +13,8 @@ from ospac.runtime.loader import PolicyLoader
 from ospac.runtime.evaluator import RuleEvaluator
 from ospac.models.compliance import ComplianceResult, ComplianceStatus, PolicyResult, ActionType
 from ospac.utils.validation import validate_license_id
-from ospac.aliases import LicenseResolution, resolve_license
+from ospac.aliases import (LicenseResolution, matchable_license_id,
+                           resolve_license)
 
 class PolicyRuntime:
     """
@@ -309,21 +310,8 @@ class PolicyRuntime:
         return compliance
 
     def _matchable_id(self, license_id: str) -> str:
-        """
-        The spelling a rule should be matched against.
-
-        The input wins whenever it names a record of its own, so a policy written
-        against the deprecated GPL-2.0 keeps matching exactly what it always matched.
-        Only a declaration that names no record is replaced, which is the registry
-        spelling: "Apache 2.0" is not an identifier and reached no rule at all.
-        """
-        try:
-            validate_license_id(license_id)
-        except ValueError:
-            return resolve_license(license_id).license_id or license_id
-        if self._read_license_record(license_id) is not None:
-            return license_id
-        return resolve_license(license_id).license_id or license_id
+        """The spelling a rule should be matched against. See matchable_license_id."""
+        return matchable_license_id(license_id)
 
     def _dataset_names_incompatible(self, license_a: str, license_b: str) -> bool:
         """True if license_a's record names license_b in its incompatible list."""
@@ -412,27 +400,13 @@ class PolicyRuntime:
         """
         # A registry does not answer in SPDX: PyPI's license field is free text by
         # construction and requests 2.31.0 declares "Apache 2.0", which names no file
-        # here and is not even a legal identifier. The shipped alias map resolves those,
-        # so consult it rather than reporting a legible name as unknown. The input is
-        # tried first, so a spelling that already names a record keeps its own record
-        # and the deprecated ids that ship a record of their own are unaffected.
-        try:
-            validate_license_id(license_id)
-        except ValueError:
-            resolved = resolve_license(license_id).license_id
-            if not resolved:
-                # Nothing the data recognises, so this is a path and not a licence.
-                raise
-            return self.lookup_license_data(resolved, data_dir)
-
-        record = self._read_license_record(license_id, data_dir)
-        if record is not None:
-            return record
-
-        resolved = resolve_license(license_id).license_id
-        if resolved and resolved != license_id:
-            return self._read_license_record(resolved, data_dir)
-        return None
+        # here and is not even a legal identifier. Resolve first, so a declared name
+        # reaches its record; an input that is already a shipped id keeps its own
+        # record, and anything that resolves to nothing still fails validation and so
+        # never reaches the filesystem.
+        target = matchable_license_id(license_id)
+        validate_license_id(target)
+        return self._read_license_record(target, data_dir)
 
     def _read_license_record(self, license_id: str,
                              data_dir: Optional[str] = None) -> Optional[Dict[str, Any]]:

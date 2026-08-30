@@ -16,7 +16,7 @@ from ospac.models.compliance import ComplianceStatus
 from ospac.pipeline.spdx_processor import SPDXProcessor
 from ospac.pipeline.data_generator import PolicyDataGenerator
 from ospac.utils.validation import validate_license_id
-from ospac.aliases import resolve_license
+from ospac.aliases import matchable_license_id, resolve_license
 from ospac.utils.data_validation import validate_license
 
 # Initialize colorama
@@ -1211,14 +1211,8 @@ def _output_obligations_markdown(obligations_dict):
 
 
 def _as_identifiers(licenses: list) -> list:
-    """
-    The declared strings as SPDX identifiers, keeping anything the data cannot settle.
-
-    The record loaders below take an identifier and build a path from it, so a declared
-    string has to become one first. A string the alias map cannot resolve is passed
-    through unchanged and fails validation exactly as it does today.
-    """
-    return [resolve_license(declared).license_id or declared for declared in licenses]
+    """The declared strings as identifiers. See ospac.aliases.matchable_license_id."""
+    return [matchable_license_id(declared) for declared in licenses]
 
 
 def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -> dict:

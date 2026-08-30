@@ -103,3 +103,24 @@ def resolve_license(text: str) -> LicenseResolution:
         return LicenseResolution(text, None, [], "unresolved")
     return LicenseResolution(
         text, resolved, [], "exact" if resolved == text else "normalized")
+
+
+def matchable_license_id(text: str) -> str:
+    """
+    The spelling a policy rule or a record lookup should use for a declared string.
+
+    The input wins whenever it is itself a shipped identifier, so a policy written
+    against the deprecated GPL-2.0 keeps matching exactly what it always matched, and
+    an obligations lookup for it keeps returning that record's own deprecation
+    metadata rather than the canonical record's. Only a string that names no record is
+    replaced, which is the registry spelling: "Apache 2.0" is not an identifier and
+    reached nothing at all.
+
+    Anything that resolves to neither is returned unchanged, so a caller that
+    validates identifiers still rejects it.
+    """
+    from ospac.dataset import known_license_ids
+
+    if text in known_license_ids():
+        return text
+    return resolve_license(text).license_id or text
