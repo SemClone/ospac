@@ -1075,6 +1075,13 @@ class PolicyDataGenerator:
 
         # Merge: existing on-disk licenses + current batch (current batch takes precedence)
         by_id = {l.get("license_id"): l for l in converted_all}
+
+        # The current batch is judged before it replaces anything. Rejecting after the
+        # merge removed the id from the batch but left the good record already
+        # overwritten: _generate_modular_license_files does not delete, and the index
+        # and alias rebuilds read from disk, so a reprocess that came back unusable left
+        # the previous record published while the new matrix omitted it.
+        converted_analyzed, rejected = self._reject_incomplete_records(converted_analyzed)
         for lic in converted_analyzed:
             lid = lic.get("license_id")
             if lid:
@@ -1087,12 +1094,6 @@ class PolicyDataGenerator:
             )
             for l in by_id.values()
         ]
-
-        # Filtered before anything is derived from it, not at the point of writing. The
-        # compatibility matrix, the obligation database and the summary counts are all
-        # built from this list, so dropping a licence later published relationships and a
-        # count for a licence absent from licenses/json, index.json and the alias tables.
-        all_to_write, rejected = self._reject_incomplete_records(all_to_write)
 
         compatibility_matrix = self._generate_compatibility_matrix(all_to_write)
         obligation_database = self._generate_obligation_database(all_to_write)
@@ -1605,11 +1606,31 @@ class PolicyDataGenerator:
         """
         from ospac.utils.data_validation import validate_license
 
+        analyzer = getattr(self, "llm_analyzer", None)
+        fell_back = set(getattr(analyzer, "analysis_fallback_licenses", set()) or set())
+
         kept, rejected = [], set()
         for license_data in licenses:
             license_id = license_data.get("license_id")
             if not license_id:
                 continue
+
+            # A fabricated analysis is not an analysis, whatever shape it happens to
+            # validate to. It sets every permission false and every condition true, which
+            # the category coercion then reads as noncommercial, and for an id outside
+            # KNOWN_LICENSES that record has no internal contradiction left for the rules
+            # to catch. Ask the analyzer which licences it answered for itself rather
+            # than inferring it from the record.
+            #
+            # analysis_fallback_licenses, not fallback_licenses: the wider set also counts
+            # a licence whose compatibility extraction fell back, and those lists are
+            # re-derived from the category before the record is written.
+            if license_id in fell_back:
+                logger.error(f"Skipping {license_id}: analysis came from the fallback, "
+                             f"not from the model")
+                rejected.add(license_id)
+                continue
+
             errors, _ = validate_license(
                 license_id, self._assemble_record(license_data, "")["license"])
             if errors:

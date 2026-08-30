@@ -26,9 +26,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   compatibility matrix, the obligation database and the summary counts are built, so a
   skipped licence does not leave relationships and a count behind with no record to match
   them, and `generation_summary.json` names what was rejected.
-- The same check refuses an LLM fallback. With no provider configured `analyze_license`
-  returns every permission false and every condition true, and that was written out as a
-  record claiming MIT forbids commercial use and requires source disclosure.
+- The same check refuses a fabricated analysis. With no provider configured
+  `analyze_license` returns every permission false and every condition true, and that was
+  written out as a record claiming MIT forbids commercial use and requires source
+  disclosure. The analyzer is asked which licences it answered for itself rather than
+  inferring it from the record: for an id outside `KNOWN_LICENSES` the fabricated shape
+  coerces to `noncommercial` and is then internally consistent, so nothing in the rules
+  could catch it. New `LicenseAnalyzer.analysis_fallback_licenses` names that set, which
+  is narrower than `fallback_licenses`; a licence whose compatibility extraction fell
+  back is unaffected, because those lists are re-derived before a record is written.
 
 - A `contaminate` verdict produces a compliance result that says something (#98).
   `ComplianceResult.from_policy_result` handled every other action, so a contaminating

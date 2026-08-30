@@ -629,14 +629,42 @@ class TestAnIncompleteAnalysisIsNotARecord:
         from ospac.pipeline.data_generator import PolicyDataGenerator
         from ospac.pipeline.llm_analyzer import LicenseAnalyzer
 
-        fallback = asyncio.run(LicenseAnalyzer().analyze_license("MIT", "MIT text"))
-        fallback["license_id"] = "MIT"
-        fallback["name"] = "MIT License"
+        # llm_provider is forced to None rather than left to the environment. A machine
+        # with Ollama installed and running would otherwise send a live request and get
+        # a real analysis, and the test would assert nothing.
+        analyzer = LicenseAnalyzer()
+        analyzer.llm_provider = None
+
+        # An id outside KNOWN_LICENSES, which is the case schema validation cannot catch:
+        # every permission false coerces to noncommercial and the record is then
+        # internally consistent.
+        fallback = asyncio.run(analyzer.analyze_license("Zed", "Zed license text"))
+        fallback["license_id"] = "Zed"
+        fallback["name"] = "Zed License"
+        assert "Zed" in analyzer.analysis_fallback_licenses
 
         generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        generator.llm_analyzer = analyzer
         kept, rejected = generator._reject_incomplete_records([fallback])
         assert kept == []
-        assert rejected == {"MIT"}
+        assert rejected == {"Zed"}
+
+    def test_a_compatibility_fallback_alone_is_not_fatal(self):
+        """
+        The compatibility lists are re-derived from the category before a record is
+        written, so a fallback there is discarded rather than published. Rejecting on the
+        wider fallback_licenses would have thrown away good analyses.
+        """
+        import asyncio
+
+        from ospac.pipeline.llm_analyzer import LicenseAnalyzer
+
+        analyzer = LicenseAnalyzer()
+        analyzer.llm_provider = None
+        asyncio.run(analyzer.extract_compatibility_rules("Zed", {"category": "permissive"}))
+
+        assert "Zed" in analyzer.fallback_licenses
+        assert "Zed" not in analyzer.analysis_fallback_licenses
 
     def test_a_rejected_licence_is_absent_from_the_derived_artifacts(self, tmp_path):
         from ospac.pipeline.data_generator import PolicyDataGenerator
