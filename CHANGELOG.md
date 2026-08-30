@@ -48,6 +48,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A shipped identifier resolves to itself, deprecated ones included. `GPL-2.0` ships a
   record of its own, so `obligations -l GPL-2.0` returns that record and the reported
   resolution now agrees with it instead of naming the migration to `GPL-2.0-only`.
+- A license name that contains a comma survives the CLI's comma-separated list.
+  `evaluate -l "Apache License, Version 2.0"` split into two halves naming nothing and
+  came back needing review, while the identifier it spells is approved. Fragments are
+  rejoined longest-first, and a list of identifiers is unaffected.
 - `check` and `obligations` report `resolved_licenses` the way `evaluate` does.
 - `obligations` answers for an ambiguous declaration instead of rejecting it.
   `ospac obligations -l "Apache License"` reported "Invalid license ID" for a string the

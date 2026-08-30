@@ -899,6 +899,7 @@ class TestLicenseAliases:
 
     def test_aliases_file_is_reproducible_from_the_records(self, tmp_path):
         import json
+        import shutil
 
         from ospac.pipeline.data_generator import PolicyDataGenerator
 

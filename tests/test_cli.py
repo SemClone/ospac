@@ -481,3 +481,45 @@ class TestObligationsForAnAmbiguousDeclaration:
         assert ambiguous["candidates"] == ["GPL-2.0-only", "GPL-2.0-or-later"]
         assert "Provide or offer access to complete source code" in (
             ambiguous["shared_obligations"])
+
+
+class TestLicenceNamesThatContainACommaSurviveParsing:
+    """
+    The separator is a comma and so is part of 31 names the shipped data carries.
+    "Apache License, Version 2.0" is what a POM writes and what the alias table answers
+    for, and splitting it produced two halves naming nothing, so the declaration came
+    back needing review while the identifier it spells is approved.
+    """
+
+    def test_a_comma_bearing_name_is_one_declaration(self):
+        from ospac.cli.commands import _split_licenses
+
+        assert _split_licenses("Apache License, Version 2.0") == [
+            "Apache License, Version 2.0"]
+        assert _split_licenses("GNU General Public License, version 2") == [
+            "GNU General Public License, version 2"]
+
+    def test_a_list_is_still_a_list(self):
+        from ospac.cli.commands import _split_licenses
+
+        assert _split_licenses("MIT,Apache-2.0") == ["MIT", "Apache-2.0"]
+        assert _split_licenses("MIT, GPL-3.0") == ["MIT", "GPL-3.0"]
+        # Longest match first, so the joined name wins over its first half, which is a
+        # family name that would resolve to a choice of versions on its own.
+        assert _split_licenses("MIT, Apache License, Version 2.0") == [
+            "MIT", "Apache License, Version 2.0"]
+
+    def test_the_comma_bearing_name_reaches_the_same_verdict(self):
+        runner = CliRunner()
+        spelled = runner.invoke(cli, ["evaluate", "-l", "Apache License, Version 2.0",
+                                      "-d", "saas"])
+        canonical = runner.invoke(cli, ["evaluate", "-l", "Apache-2.0", "-d", "saas"])
+        assert spelled.exit_code == 0
+        assert (json.loads(spelled.output)["result"]["action"]
+                == json.loads(canonical.output)["result"]["action"] == "approve")
+
+    def test_malformed_input_is_still_rejected(self):
+        runner = CliRunner()
+        result = runner.invoke(cli, ["check", "-l", "MIT,,GPL-3.0"])
+        assert result.exit_code != 0
+        assert "exactly two licenses" in result.output

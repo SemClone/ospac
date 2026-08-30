@@ -87,7 +87,7 @@ def evaluate(policy_dir: str, licenses: str, context: str,
         if runtime._using_default and output == "text":
             click.secho("Using default enterprise policy. Create a custom policy with 'ospac policy init' to customize.", fg="yellow")
 
-        license_list = [l.strip() for l in licenses.split(",")]
+        license_list = _split_licenses(licenses)
 
         base_context = {
             "context": context,
@@ -175,7 +175,7 @@ def check(license1: Optional[str], license2: Optional[str], licenses_opt: Option
     if licenses_opt is not None:
         if license1 or license2:
             raise click.UsageError("Pass either -l \"A,B\" or two positional licenses, not both.")
-        parts = [part.strip() for part in licenses_opt.split(",")]
+        parts = _split_licenses(licenses_opt)
         if len(parts) != 2 or not all(parts):
             # Malformed automation input such as "MIT,,GPL-3.0" or a trailing comma
             # must not be silently repaired into a valid-looking two-license check.
@@ -276,7 +276,7 @@ def obligations(licenses: str, policy_dir: str, data_dir: Optional[str], format:
         ospac obligations -l "GPL-3.0, LGPL-2.1" -f checklist
     """
     try:
-        license_list = [l.strip() for l in licenses.split(",")]
+        license_list = _split_licenses(licenses)
 
         # Use package data directory if not specified
         if data_dir is None:
@@ -1243,6 +1243,36 @@ def _output_obligations_markdown(obligations_dict):
                     click.echo(f"- **{key}:**")
                     for item in value:
                         click.echo(f"  - {item}")
+
+
+def _split_licenses(argument: str) -> list:
+    """
+    Split a comma-separated license argument, keeping a name that contains a comma whole.
+
+    The separator is a comma and so is part of 31 names the shipped data carries.
+    "Apache License, Version 2.0" and "GNU General Public License, version 2" are what a
+    POM writes and what the alias table answers for, and splitting them produced two
+    halves naming nothing, so the declaration came back needing review while the
+    identifier it spells is approved or denied.
+
+    Fragments are joined longest-first, so "Apache License, Version 2.0" wins over the
+    family name "Apache License" that its first half alone would resolve to. A join is
+    never a choice between two readings of the argument: no comma-bearing key in the
+    data has both of its halves resolving on their own, which tests pin.
+    """
+    fragments = [fragment.strip() for fragment in argument.split(",")]
+    licenses, index = [], 0
+    while index < len(fragments):
+        for end in range(len(fragments), index + 1, -1):
+            candidate = ", ".join(fragments[index:end])
+            if resolve_license(candidate).status != "unresolved":
+                licenses.append(candidate)
+                index = end
+                break
+        else:
+            licenses.append(fragments[index])
+            index += 1
+    return licenses
 
 
 def _license_record(license_id: str, data_dir: Optional[str] = None) -> Optional[dict]:

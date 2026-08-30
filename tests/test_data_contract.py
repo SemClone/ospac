@@ -354,6 +354,26 @@ class TestPropertiesTheResolutionPathRelieson:
         assert unreachable == [], (
             f"ids whose lowercased spelling does not resolve: {unreachable}")
 
+    def test_no_comma_bearing_name_has_two_resolving_halves(self):
+        import ospac
+
+        # The CLI separates licenses with a comma and joins fragments back together when
+        # the join names something. That is only unambiguous while no key's two halves
+        # each name a license on their own; one that did would make "A, B" a coin flip
+        # between one declaration and two.
+        tables = dict(ospac.license_aliases())
+        tables.update({name: ids for name, ids in ospac.license_ambiguous().items()})
+        coin_flips = []
+        for name in tables:
+            if "," not in name:
+                continue
+            head, _, tail = name.partition(",")
+            if (ospac.resolve_license(head.strip()).status != "unresolved"
+                    and ospac.resolve_license(tail.strip()).status != "unresolved"):
+                coin_flips.append(name)
+        assert coin_flips == [], (
+            f"comma-bearing names whose halves both resolve: {coin_flips}")
+
     def test_incompatible_with_names_every_spelling_of_the_other_licence(self):
         import json
 
