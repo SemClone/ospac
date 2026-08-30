@@ -115,7 +115,8 @@ def resolve_license(text: str) -> LicenseResolution:
     """
     from ospac.dataset import known_license_ids
 
-    key = (text or "").strip().lower()
+    stripped = (text or "").strip()
+    key = stripped.lower()
     if not key or key in license_never_resolve():
         return LicenseResolution(text, None, [], "unresolved")
 
@@ -123,8 +124,13 @@ def resolve_license(text: str) -> LicenseResolution:
     # record of its own and the alias map migrates it to GPL-2.0-only; reporting that
     # migration while the record lookup returns GPL-2.0's own record put two answers
     # in one payload and made the migration the one a consumer would believe.
-    if text in known_license_ids():
-        return LicenseResolution(text, text, [], "exact")
+    #
+    # Compared stripped, because surrounding whitespace is not a spelling. Comparing the
+    # raw text sent " GPL-2.0 " to the alias table and back with the canonical record,
+    # losing the deprecation metadata this branch exists to keep.
+    if stripped in known_license_ids():
+        return LicenseResolution(
+            text, stripped, [], "exact" if stripped == text else "normalized")
 
     candidates = license_ambiguous().get(key)
     if candidates:

@@ -559,6 +559,23 @@ class TestDeclaredLicenceStringsResolve:
         assert record["id"] == "GPL-2.0"
         assert record["spdx_metadata"]["is_deprecated"] is True
 
+    def test_surrounding_whitespace_is_not_a_spelling(self):
+        import ospac
+
+        runtime = PolicyRuntime()
+
+        # The lookup key was stripped and the identifier check was not, so a padded
+        # deprecated id fell through to the alias table and came back as the canonical
+        # record, losing the deprecation metadata that branch exists to keep.
+        for declared in ("GPL-2.0", " GPL-2.0 ", "\tGPL-2.0\n"):
+            assert ospac.resolve_license(declared).license_id == "GPL-2.0", declared
+            record = runtime.lookup_license_data(declared)["license"]
+            assert record["id"] == "GPL-2.0"
+            assert record["spdx_metadata"]["is_deprecated"] is True
+
+        assert ospac.resolve_license("GPL-2.0").status == "exact"
+        assert ospac.resolve_license(" GPL-2.0 ").status == "normalized"
+
     def test_a_reading_carries_the_callers_spelling_as_well(self):
         runtime = PolicyRuntime()
 
