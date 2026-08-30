@@ -341,7 +341,11 @@ def obligations(licenses: str, policy_dir: str, data_dir: Optional[str], format:
             for declared in license_list:
                 shared = _shared_record_field(declared, "obligations", data_dir)
                 if shared:
-                    obligations_only[declared] = {"obligations": shared}
+                    # setdefault, not assignment: the policy path already filled this in
+                    # from obligations/*.yaml and replacing the entry dropped every
+                    # custom field it carried.
+                    obligations_only.setdefault(declared, {}).setdefault(
+                        "obligations", shared)
             if format == "checklist":
                 _output_checklist(obligations_only)
             elif format == "markdown":

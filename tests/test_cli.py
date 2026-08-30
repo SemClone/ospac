@@ -543,3 +543,34 @@ class TestLicenceNamesThatContainACommaSurviveParsing:
         result = runner.invoke(cli, ["check", "-l", "MIT,,GPL-3.0"])
         assert result.exit_code != 0
         assert "exactly two licenses" in result.output
+
+
+class TestPolicySuppliedObligationFieldsSurvive:
+    """
+    The human formats fall back to the dataset's shared obligations for an ambiguous
+    declaration. Assigning that entry replaced whatever obligations/*.yaml had put
+    there, so a custom field vanished from text, checklist and markdown output.
+    """
+
+    def test_custom_fields_are_not_replaced(self, tmp_path):
+        import shutil
+
+        policy_dir = tmp_path / "policies"
+        (policy_dir / "obligations").mkdir(parents=True)
+        shutil.copy(
+            Path(__file__).parent.parent / "ospac" / "defaults"
+            / "enterprise_policy.yaml", policy_dir / "main.yaml")
+        (policy_dir / "obligations" / "custom.yaml").write_text(
+            'version: "2.0"\n'
+            "obligations:\n"
+            "  Apache-1.0: {reviewer: legal@example.com}\n"
+            "  Apache-1.1: {reviewer: legal@example.com}\n"
+            "  Apache-2.0: {reviewer: legal@example.com}\n")
+
+        runner = CliRunner()
+        result = runner.invoke(cli, ["obligations", "-l", "Apache License",
+                                     "-p", str(policy_dir)])
+        assert result.exit_code == 0
+        entry = json.loads(result.output)["obligations"]["Apache License"]
+        assert entry["reviewer"] == "legal@example.com"
+        assert "Retain copyright notices" in entry["obligations"]

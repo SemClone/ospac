@@ -533,6 +533,32 @@ class TestDeclaredLicenceStringsResolve:
         assert declared.action != ActionType.FLAG_FOR_REVIEW
         assert declared.action in (ActionType.DENY, ActionType.CONTAMINATE)
 
+    def test_a_deprecated_id_matches_a_policy_naming_the_current_one(self, tmp_path):
+        policy = tmp_path / "policy.yaml"
+        policy.write_text(
+            'version: "2.0"\n'
+            "name: canonical-only\n"
+            "rules:\n"
+            "  - id: deny_gpl2\n"
+            "    priority: 9\n"
+            '    when: {license: ["GPL-2.0-only"]}\n'
+            "    then: {action: deny, severity: error, message: denied}\n")
+        runtime = PolicyRuntime(str(policy))
+        base = {"distribution_type": "commercial"}
+
+        # GPL-2.0 is GPL-2.0-only under a deprecated name, which the record records as
+        # alias_of. A policy written against the current identifier is a policy about
+        # this licence, so it fires. The bundled policy hides this by enumerating both
+        # spellings in every rule; a custom one has no reason to.
+        assert runtime.evaluate_licenses(
+            ["GPL-2.0-only"], base)[0].action == ActionType.DENY
+        assert runtime.evaluate_licenses(["GPL-2.0"], base)[0].action == ActionType.DENY
+
+        # It still keeps its own record, deprecation metadata and all.
+        record = PolicyRuntime().lookup_license_data("GPL-2.0")["license"]
+        assert record["id"] == "GPL-2.0"
+        assert record["spdx_metadata"]["is_deprecated"] is True
+
     def test_a_reading_carries_the_callers_spelling_as_well(self):
         runtime = PolicyRuntime()
 

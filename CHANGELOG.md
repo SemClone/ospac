@@ -45,6 +45,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   whichever the document meant; where the readings disagree the answer is review rather
   than whichever reading was tried first. `check` used to report that pair compatible
   and warn that `gplv2` was not in the dataset, which was false about data ospac ships.
+- A deprecated identifier carries the current one as a spelling, so a policy written
+  against `GPL-2.0-only` fires for a caller passing `GPL-2.0`. The bundled policy hid
+  this by naming both spellings in every rule; a custom policy has no reason to.
 - A shipped identifier resolves to itself, deprecated ones included. `GPL-2.0` ships a
   record of its own, so `obligations -l GPL-2.0` returns that record and the reported
   resolution now agrees with it instead of naming the migration to `GPL-2.0-only`.

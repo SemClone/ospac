@@ -398,8 +398,7 @@ class PolicyRuntime:
                     f"the declaration means",
             requirements=["Establish which identifier the declaration means"])
 
-    @staticmethod
-    def _readings(license_id: str) -> List[tuple]:
+    def _readings(self, license_id: str) -> List[tuple]:
         """
         The identifiers a declared string could mean, each with the spellings that name it.
 
@@ -408,11 +407,27 @@ class PolicyRuntime:
         have to agree before an answer is asserted; spellings are one license written two
         ways and any of them matching is a match, because a policy may be written against
         the caller's spelling or against the identifier and rules compare exact strings.
+
+        A deprecated identifier carries the current one it stands for as a spelling. It
+        keeps its own record, because a caller naming GPL-2.0 means GPL-2.0's record and
+        its deprecation metadata, but a policy written against GPL-2.0-only is a policy
+        about the same license and has to fire.
         """
         resolution = resolve_license(license_id)
         identifiers = resolution.candidates or [resolution.license_id or license_id]
-        return [(identifier, sorted({identifier, license_id}))
-                for identifier in identifiers]
+
+        readings = []
+        for identifier in identifiers:
+            spellings = {identifier, license_id}
+            try:
+                record = self.lookup_license_data(identifier) or {}
+            except ValueError:
+                record = {}
+            current = (record.get("license") or {}).get("alias_of")
+            if current:
+                spellings.add(current)
+            readings.append((identifier, sorted(spellings)))
+        return readings
 
     def _matchable_id(self, license_id: str) -> str:
         """The spelling a rule should be matched against. See matchable_license_id."""
