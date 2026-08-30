@@ -369,7 +369,7 @@ class TestPolicyDataGenerator:
     @pytest.mark.asyncio
     @patch.object(SPDXProcessor, "download_spdx_data")
     @patch.object(SPDXProcessor, "get_license_text")
-    @patch.object(LicenseAnalyzer, "batch_analyze")
+    @patch.object(LicenseAnalyzer, "analyze_license")
     async def test_generate_all_data(self, mock_analyze, mock_get_text,
                                      mock_download, temp_dir, mock_spdx_data):
         """Test generating all data."""
@@ -377,24 +377,39 @@ class TestPolicyDataGenerator:
         mock_download.return_value = mock_spdx_data
         mock_get_text.return_value = "License text"
 
-        mock_analyze.return_value = [
-            {
-                "license_id": "MIT",
+        # analyze_license is what generate_all_data calls. Patching batch_analyze left
+        # the real one running, and with no LLM configured it returns a maximally
+        # restrictive fallback that was then written as MIT's record.
+        #
+        # A complete analysis, with MIT's real values. A response missing any of these
+        # booleans is refused rather than written with the gap.
+        async def analysis(license_id, text):
+            return {
+                "license_id": license_id,
                 "name": "MIT License",
                 "category": "permissive",
-                "permissions": {"commercial_use": True},
-                "conditions": {"include_license": True},
+                "permissions": {"commercial_use": True, "distribution": True,
+                                "modification": True, "patent_grant": False,
+                                "private_use": True},
+                "conditions": {"disclose_source": False, "include_license": True,
+                               "include_copyright": True, "include_notice": False,
+                               "state_changes": False, "same_license": False,
+                               "network_use_disclosure": False},
+                "limitations": {"liability": True, "warranty": True,
+                                "trademark_use": False},
                 "obligations": ["Include license"],
-                "compatibility_rules": {}
+                "compatibility_rules": {},
             }
-        ]
+        mock_analyze.side_effect = analysis
 
         generator = PolicyDataGenerator(output_dir=temp_dir)
         summary = await generator.generate_all_data(limit=1)
 
         assert summary["total_licenses"] == 1
+        assert summary["rejected_licenses"] == []
         assert "categories" in summary
         assert "validation" in summary
+        assert (temp_dir / "licenses" / "json" / "MIT.json").exists()
 
         # index.json is rebuilt from all on-disk files after generation
         assert (temp_dir / "index.json").exists()
@@ -569,11 +584,13 @@ class TestAnIncompleteAnalysisIsNotARecord:
         }
 
     def _generate(self, tmp_path, analyses):
+        """Filter as generate_all_data does, then write what survived."""
         from ospac.pipeline.data_generator import PolicyDataGenerator
 
         generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
         generator.output_dir = tmp_path
-        generator._generate_modular_license_files(analyses, {}, {}, spdx_version="test")
+        kept, _ = generator._reject_incomplete_records(analyses)
+        generator._generate_modular_license_files(kept, {}, {}, spdx_version="test")
         return sorted(p.stem for p in (tmp_path / "licenses" / "json").glob("*.json"))
 
     def test_a_complete_analysis_is_written(self, tmp_path):
@@ -599,6 +616,44 @@ class TestAnIncompleteAnalysisIsNotARecord:
             partial = self._analysis("TEST-3.0")
             del partial[block][key]
             assert self._generate(tmp_path, [partial]) == [], f"{block}.{key} was written"
+
+    def test_an_llm_fallback_is_not_a_record(self):
+        """
+        With no provider configured, analyze_license returns a maximally restrictive
+        fallback: every permission false, every condition true. Written out, that is a
+        fabricated record claiming MIT forbids commercial use and requires source
+        disclosure. It is refused for the same reason an incomplete one is.
+        """
+        import asyncio
+
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+        from ospac.pipeline.llm_analyzer import LicenseAnalyzer
+
+        fallback = asyncio.run(LicenseAnalyzer().analyze_license("MIT", "MIT text"))
+        fallback["license_id"] = "MIT"
+        fallback["name"] = "MIT License"
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        kept, rejected = generator._reject_incomplete_records([fallback])
+        assert kept == []
+        assert rejected == {"MIT"}
+
+    def test_a_rejected_licence_is_absent_from_the_derived_artifacts(self, tmp_path):
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+
+        # The filter runs before the compatibility matrix, the obligation database and
+        # the summary counts are built. Dropping a licence at the point of writing
+        # instead published relationships and a count for a licence that has no record.
+        partial = self._analysis("TEST-2.0")
+        del partial["conditions"]["include_notice"]
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        generator.output_dir = tmp_path
+        kept, rejected = generator._reject_incomplete_records(
+            [self._analysis("TEST-1.0"), partial])
+
+        assert [l["license_id"] for l in kept] == ["TEST-1.0"]
+        assert rejected == {"TEST-2.0"}
 
     def test_a_written_record_satisfies_the_normative_schema(self, tmp_path):
         import json

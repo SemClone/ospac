@@ -1088,6 +1088,12 @@ class PolicyDataGenerator:
             for l in by_id.values()
         ]
 
+        # Filtered before anything is derived from it, not at the point of writing. The
+        # compatibility matrix, the obligation database and the summary counts are all
+        # built from this list, so dropping a licence later published relationships and a
+        # count for a licence absent from licenses/json, index.json and the alias tables.
+        all_to_write, rejected = self._reject_incomplete_records(all_to_write)
+
         compatibility_matrix = self._generate_compatibility_matrix(all_to_write)
         obligation_database = self._generate_obligation_database(all_to_write)
 
@@ -1104,10 +1110,13 @@ class PolicyDataGenerator:
         # Skip legacy master database generation - using modular files only
 
         # Step 6: Generate validation data
+        analyzed_licenses = [l for l in analyzed_licenses
+                             if l.get("license_id") not in rejected]
         validation_report = self._validate_generated_data(analyzed_licenses)
 
         summary = {
             "total_licenses": len(analyzed_licenses),
+            "rejected_licenses": sorted(rejected),
             "spdx_version": spdx_data.get("version"),
             "generated_at": datetime.now().isoformat(),
             "output_directory": str(self.output_dir),
@@ -1524,6 +1533,92 @@ class PolicyDataGenerator:
         # Keep: licenses/json/, index.json, compatibility/ (split matrix for runtime queries)
         logger.info("Cleanup complete. Final artifacts: licenses/json/, index.json, compatibility/")
 
+    def _assemble_record(self, license_data: Dict[str, Any], generated_at: str,
+                         spdx_version: str = "") -> Dict[str, Any]:
+        """
+        Build one on-disk record from one analysis.
+
+        One place, because the batch is checked against the dataset rules before anything
+        is derived from it and the check has to see the record that would be written, not
+        an approximation of it.
+        """
+        license_id = license_data.get("license_id", "")
+        spdx_meta = license_data.get("spdx_data", {})
+        compat_rules = license_data.get("compatibility_rules", {})
+        category = license_data.get("category", "permissive")
+        conditions = license_data.get("conditions", {})
+        permissions = license_data.get("permissions", {})
+        limitations = license_data.get("limitations", {})
+
+        obligations, key_requirements = self._derive_obligations(
+            license_id, category, conditions, permissions
+        )
+        aliases, alias_of = PolicyDataGenerator._derive_aliases(
+            license_id, license_data.get("name", license_id))
+
+        # Use the same schema as existing files (license wrapper, type/properties/requirements)
+        return {
+            "license": {
+                "id": license_id,
+                "name": license_data.get("name", license_id),
+                "type": category,
+                "spdx_id": license_id,
+                "properties": permissions,
+                "requirements": conditions,
+                "limitations": limitations,
+                "compatibility": {
+                    "static_linking": compat_rules.get("static_linking", {}),
+                    "dynamic_linking": compat_rules.get("dynamic_linking", {}),
+                    "contamination_effect": compat_rules.get("contamination_effect", "unknown"),
+                    "notes": compat_rules.get("notes", ""),
+                },
+                "obligations": obligations,
+                "key_requirements": key_requirements,
+                "aliases": aliases,
+                "alias_of": alias_of,
+                "spdx_metadata": {
+                    "is_osi_approved": spdx_meta.get("isOsiApproved", False),
+                    "is_fsf_libre": spdx_meta.get("isFsfLibre", False),
+                    "is_deprecated": spdx_meta.get("isDeprecatedLicenseId", False),
+                },
+                "generated": generated_at,
+                "spdx_list_version": spdx_version,
+            }
+        }
+
+    def _reject_incomplete_records(self, licenses: List[Dict[str, Any]]) -> tuple:
+        """
+        Split a batch into the licences that make a valid record and the ones that do not.
+
+        An analysis that dropped a boolean produced a record missing that key. The
+        validator only warned, so the sync's first gate passed it and the schema test
+        failed later naming the schema rather than the generator that produced it.
+
+        Skipped rather than completed with defaults. Filling a missing boolean with False
+        is a decision, not a neutral act: disclose_source False on a copyleft licence is
+        wrong and silent, the same failure as the permissive default that once recorded
+        every NonCommercial licence as commercially usable. A skipped licence keeps
+        whatever record it already had on disk and the run names the field that was
+        missing, so it is regenerated rather than shipped fabricated.
+
+        Returns (kept, rejected_ids).
+        """
+        from ospac.utils.data_validation import validate_license
+
+        kept, rejected = [], set()
+        for license_data in licenses:
+            license_id = license_data.get("license_id")
+            if not license_id:
+                continue
+            errors, _ = validate_license(
+                license_id, self._assemble_record(license_data, "")["license"])
+            if errors:
+                logger.error(f"Skipping {license_id}: {'; '.join(errors)}")
+                rejected.add(license_id)
+            else:
+                kept.append(license_data)
+        return kept, rejected
+
     def _generate_modular_license_files(self, licenses: List[Dict[str, Any]],
                                       compatibility_matrix: Dict[str, Any],
                                       obligation_database: Dict[str, Any],
@@ -1535,75 +1630,15 @@ class PolicyDataGenerator:
 
         generated_at = datetime.now().isoformat()
 
-        from ospac.utils.data_validation import validate_license
-
         for license_data in licenses:
             license_id = license_data.get("license_id")
             if not license_id:
                 continue
 
-            spdx_meta = license_data.get("spdx_data", {})
-            compat_rules = license_data.get("compatibility_rules", {})
-            category = license_data.get("category", "permissive")
-            conditions = license_data.get("conditions", {})
-            permissions = license_data.get("permissions", {})
-            limitations = license_data.get("limitations", {})
-
-
-            obligations, key_requirements = self._derive_obligations(
-                license_id, category, conditions, permissions
-            )
-
-            # Use the same schema as existing files (license wrapper, type/properties/requirements)
-            license_file_data = {
-                "license": {
-                    "id": license_id,
-                    "name": license_data.get("name", license_id),
-                    "type": category,
-                    "spdx_id": license_id,
-                    "properties": permissions,
-                    "requirements": conditions,
-                    "limitations": limitations,
-                    "compatibility": {
-                        "static_linking": compat_rules.get("static_linking", {}),
-                        "dynamic_linking": compat_rules.get("dynamic_linking", {}),
-                        "contamination_effect": compat_rules.get("contamination_effect", "unknown"),
-                        "notes": compat_rules.get("notes", ""),
-                    },
-                    "obligations": obligations,
-                    "key_requirements": key_requirements,
-                    "aliases": PolicyDataGenerator._derive_aliases(
-                        license_id, license_data.get("name", license_id))[0],
-                    "alias_of": PolicyDataGenerator._derive_aliases(
-                        license_id, license_data.get("name", license_id))[1],
-                    "spdx_metadata": {
-                        "is_osi_approved": spdx_meta.get("isOsiApproved", False),
-                        "is_fsf_libre": spdx_meta.get("isFsfLibre", False),
-                        "is_deprecated": spdx_meta.get("isDeprecatedLicenseId", False),
-                    },
-                    "generated": generated_at,
-                    "spdx_list_version": spdx_version,
-                }
-            }
-
-            # The record is checked before it is written, against the same rules
-            # validate_data.py applies afterwards. An analysis that dropped a boolean
-            # produced a record missing that key, which the validator only warned about,
-            # so the sync's first gate passed it and the schema test failed later naming
-            # the schema rather than the generator that produced it.
-            #
-            # Skipped rather than completed with defaults. Filling a missing boolean with
-            # False is a decision, not a neutral act: disclose_source False on a copyleft
-            # licence is wrong and silent, the same failure as the permissive default
-            # that once recorded every NonCommercial licence as commercially usable.
-            record_errors, _ = validate_license(license_id, license_file_data["license"])
-            if record_errors:
-                logger.error(f"Skipping {license_id}: {'; '.join(record_errors)}")
-                continue
-
             license_file = licenses_json_dir / f"{license_id}.json"
             with open(license_file, "w") as f:
-                json.dump(license_file_data, f, indent=2)
+                json.dump(self._assemble_record(license_data, generated_at,
+                                                spdx_version), f, indent=2)
 
         logger.info(f"Wrote {len(licenses)} license files to {licenses_json_dir}")
         # Index is rebuilt from ALL files after the delta, see _rebuild_index_from_files

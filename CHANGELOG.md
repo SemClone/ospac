@@ -18,11 +18,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   inner key is an error rather than a warning so the first gate is the one that explains
   it, and a test fails if the two ever diverge again, following the schema's `$ref` so it
   cannot pass vacuously.
-- The generator checks a record against those rules before writing it. A licence whose
-  analysis came back incomplete is skipped with the missing field named, rather than
-  written with the gap or completed with a default: `disclose_source: false` on a
-  copyleft licence would be wrong and silent, which is the failure that once recorded
-  every NonCommercial licence as commercially usable.
+- The generator checks a record against those rules before deriving anything from it. A
+  licence whose analysis came back incomplete is skipped with the missing field named,
+  rather than written with the gap or completed with a default: `disclose_source: false`
+  on a copyleft licence would be wrong and silent, which is the failure that once
+  recorded every NonCommercial licence as commercially usable. The check runs before the
+  compatibility matrix, the obligation database and the summary counts are built, so a
+  skipped licence does not leave relationships and a count behind with no record to match
+  them, and `generation_summary.json` names what was rejected.
+- The same check refuses an LLM fallback. With no provider configured `analyze_license`
+  returns every permission false and every condition true, and that was written out as a
+  record claiming MIT forbids commercial use and requires source disclosure.
 
 - A `contaminate` verdict produces a compliance result that says something (#98).
   `ComplianceResult.from_policy_result` handled every other action, so a contaminating
