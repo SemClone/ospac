@@ -9,15 +9,38 @@ data lives here and travels with the dataset.
 
 import json
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
 from typing import Dict, List, Optional, Set
 
 _ALIASES_FILE = Path(__file__).parent / "data" / "aliases.json"
 
 
+@lru_cache(maxsize=1)
 def _payload() -> dict:
+    """
+    The shipped tables, read once.
+
+    Every resolution consults all three tables, so re-reading half a megabyte of JSON
+    per lookup made resolving a licence cost more than evaluating it. The file ships
+    inside the package and does not change under a running process.
+    """
     with open(_ALIASES_FILE) as f:
         return json.load(f)
+
+
+@lru_cache(maxsize=1)
+def longest_alias_comma_count() -> int:
+    """
+    The most commas any name in the tables contains.
+
+    A caller splitting a comma-separated argument has to consider joining fragments back
+    together, and this is how far it ever has to look.
+    """
+    payload = _payload()
+    return max((name.count(",")
+                for name in list(payload["aliases"]) + list(payload["ambiguous"])),
+               default=0)
 
 
 def license_aliases() -> Dict[str, str]:

@@ -518,6 +518,26 @@ class TestLicenceNamesThatContainACommaSurviveParsing:
         assert (json.loads(spelled.output)["result"]["action"]
                 == json.loads(canonical.output)["result"]["action"] == "approve")
 
+    def test_the_join_search_is_bounded(self, monkeypatch):
+        from ospac.aliases import longest_alias_comma_count
+        from ospac.cli import commands
+
+        # Probing every suffix made splitting quadratic, and each probe reads three
+        # tables: a hundred identifiers took five seconds before policy evaluation
+        # started. No name spans more fragments than this, so a longer join cannot name
+        # anything. Counted rather than timed, so the pin does not depend on the runner.
+        span = longest_alias_comma_count() + 1
+        calls = []
+        real = commands.resolve_license
+        monkeypatch.setattr(commands, "resolve_license",
+                            lambda text: (calls.append(text), real(text))[1])
+
+        identifiers = ["MIT", "Apache-2.0", "GPL-3.0-only", "BSD-3-Clause"] * 50
+        parsed = commands._split_licenses(",".join(identifiers))
+
+        assert parsed == identifiers
+        assert len(calls) <= span * len(identifiers)
+
     def test_malformed_input_is_still_rejected(self):
         runner = CliRunner()
         result = runner.invoke(cli, ["check", "-l", "MIT,,GPL-3.0"])

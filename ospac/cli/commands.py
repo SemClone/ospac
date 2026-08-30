@@ -16,7 +16,8 @@ from ospac.models.compliance import ComplianceStatus
 from ospac.pipeline.spdx_processor import SPDXProcessor
 from ospac.pipeline.data_generator import PolicyDataGenerator
 from ospac.utils.validation import validate_license_id
-from ospac.aliases import matchable_license_id, resolve_license
+from ospac.aliases import (longest_alias_comma_count, matchable_license_id,
+                           resolve_license)
 from ospac.utils.data_validation import validate_license
 
 # Initialize colorama
@@ -1261,9 +1262,14 @@ def _split_licenses(argument: str) -> list:
     data has both of its halves resolving on their own, which tests pin.
     """
     fragments = [fragment.strip() for fragment in argument.split(",")]
+    # No name in the tables spans more than this many fragments, so a longer join
+    # cannot name anything and probing every suffix only costs time. Splitting a
+    # hundred identifiers took five seconds before this was bounded.
+    span = longest_alias_comma_count() + 1
+
     licenses, index = [], 0
     while index < len(fragments):
-        for end in range(len(fragments), index + 1, -1):
+        for end in range(min(index + span, len(fragments)), index + 1, -1):
             candidate = ", ".join(fragments[index:end])
             if resolve_license(candidate).status != "unresolved":
                 licenses.append(candidate)

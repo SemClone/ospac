@@ -13,6 +13,7 @@ programmatic half of it.
 
 import json
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
 from typing import FrozenSet, Tuple
 
@@ -75,6 +76,7 @@ def data_version() -> DataVersion:
     )
 
 
+@lru_cache(maxsize=1)
 def known_license_ids() -> FrozenSet[str]:
     """
     Every identifier the bundled dataset ships, exactly as it spells them.

@@ -51,7 +51,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A license name that contains a comma survives the CLI's comma-separated list.
   `evaluate -l "Apache License, Version 2.0"` split into two halves naming nothing and
   came back needing review, while the identifier it spells is approved. Fragments are
-  rejoined longest-first, and a list of identifiers is unaffected.
+  rejoined longest-first and no further than the longest name in the tables reaches, and
+  a list of identifiers is unaffected. The shipped tables are read once per process
+  rather than once per lookup, which is what made an unbounded search expensive: a
+  hundred identifiers took five seconds to split and now takes three milliseconds.
 - `check` and `obligations` report `resolved_licenses` the way `evaluate` does.
 - `obligations` answers for an ambiguous declaration instead of rejecting it.
   `ospac obligations -l "Apache License"` reported "Invalid license ID" for a string the
