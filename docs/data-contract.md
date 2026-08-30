@@ -93,6 +93,14 @@ document writing that name has not said which one it means. The same holds one a
 Report the choice rather than making it. Which strings are ambiguous is license data that moves with SPDX, which is why it
 is here rather than curated per consumer.
 
+A version is carried in both spellings a registry uses. SPDX writes "GNU Affero General
+Public License v3.0" and every iText POM on Maven Central declares "GNU Affero General
+Public License v3", so both keys are present and give the same answer. The shortened form
+is only offered where it still names one thing: `php license v3` is a choice between
+`PHP-3.0` and `PHP-3.01`, and `latex project public license v1` a choice between five, so
+those are in `ambiguous` rather than `aliases`. Only a minor is ever dropped, never
+`v2.1` to `v2`.
+
 `never_resolve` is not a subset of `aliases`, it is the complement: text that must not
 resolve to anything and offers no candidates either. `bsd` is 2-clause or 3-clause and the
 choice changes obligations. Treat these as unresolved rather than inventing a guess. Read all

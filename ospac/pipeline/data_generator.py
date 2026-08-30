@@ -9,7 +9,7 @@ import yaml
 import logging
 import asyncio
 from pathlib import Path
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Set
 from datetime import datetime
 
 from ospac.dataset import DATA_SCHEMA_VERSION
@@ -411,6 +411,61 @@ _CURATED_AMBIGUOUS: Dict[str, List[str]] = {
 # invariants". Removing that word leaves the name a real document writes, which is the
 # spelling that identifies the license and the version and still is not an identifier.
 _GRANT_IN_NAME = re.compile(r"^(?P<head>.+?) (?:only|or later)(?P<tail>.*)$")
+
+# SPDX writes a version in full, "GNU Affero General Public License v3.0", and package
+# metadata drops the minor: every iText POM on Maven Central declares "GNU Affero
+# General Public License v3". The two spell one licence, so a table carrying only the
+# SPDX form answers "unknown" for the spelling the registries actually serve while
+# answering the same question for the fuller one.
+#
+# Dropping the minor is not always safe, and this deliberately does not try to decide
+# that here. "LaTeX Project Public License v1" names five shipped licences and picking
+# 1.0 would fabricate a version the string never stated. Every record produces its own
+# shortened spelling, so the licences that share one collide in `owners` and the
+# existing rule sends them to `ambiguous` with their candidates. A family with a single
+# version collides with nothing and resolves. The shortening states the spelling; the
+# corpus decides whether it identifies anyone.
+_MINOR_IN_NAME = re.compile(r"(?<= )(v\d+)(?:\.\d+)+[a-z]?(?= |$)")
+
+
+def _version_spellings(text: str) -> Set[str]:
+    """`text`, plus the same string with the minor version dropped."""
+    return {text, _MINOR_IN_NAME.sub(r"\1", text)}
+
+
+# The family and version an id carries: Apache-1.1 is ("Apache", "1.1"), and the grant
+# and exception suffixes are tail, so GPL-2.0-only and GPL-2.0-with-bison-exception are
+# both ("GPL", "2.0").
+_ID_VERSION = re.compile(r"^(?P<family>.*?)-?(?P<version>\d+\.\d+(?:\.\d+)*[a-z]?)(?:-.*)?$")
+
+
+def _minor_is_redundant(license_id: str, known_ids: Set[str]) -> bool:
+    """
+    True when dropping this id's minor version still names only this version.
+
+    Collision between two records' shortened spellings catches most of this on its own,
+    but only when the siblings happen to spell their version the same way. SPDX names
+    Apache-1.1 "Apache License 1.1" and ships the folk spelling "apache v1.1", while
+    Apache-1.0 carries neither shape, so nothing collides and "apache v1" would resolve
+    to 1.1 with 1.0 sitting right beside it. Solderpad is the same story with ", Version
+    0.51" against "v0.5". Comparing the ids instead of the spellings sees both.
+    """
+    match = _ID_VERSION.match(license_id)
+    if not match:
+        return False
+    family, version = match.group("family"), match.group("version")
+    major = version.split(".")[0]
+    for other in known_ids:
+        other_match = _ID_VERSION.match(other)
+        if not other_match:
+            continue
+        other_version = other_match.group("version")
+        if (other_match.group("family") == family
+                and other_version.split(".")[0] == major
+                and other_version != version):
+            return False
+    return True
+
 
 # Words that leave a phrase unfinished when the trailing "license" is dropped from a
 # name. Purely cosmetic: such a key would never be looked up, but it reads as a bug.
@@ -1541,7 +1596,10 @@ class PolicyDataGenerator:
             match = _GRANT_IN_NAME.match(record.get("name", "").lower())
             if match:
                 key = f"{match.group('head')}{match.group('tail')}"
-                candidates.setdefault(key, set()).add(record["id"])
+                for spelling in _version_spellings(key):
+                    if spelling != key and spelling in owners:
+                        continue
+                    candidates.setdefault(spelling, set()).add(record["id"])
 
         # Names that differ only by version: the shared remainder names a family, not a
         # licence. "Eclipse Public License" is EPL-1.0 and EPL-2.0 both, and the trailing
@@ -1632,6 +1690,26 @@ class PolicyDataGenerator:
         for record in records:
             for alias in record.get("aliases", []):
                 owners.setdefault(alias, set()).add(record["id"])
+
+        # The minor-less spelling is claimed here rather than on the record, because
+        # whether it identifies one licence is a fact about the corpus and a record
+        # cannot see the corpus. A spelling some record bears in full belongs to that
+        # record and is not reopened: LGPL-2.1 shortens to the name SPDX gave LGPL-2.0.
+        spelled_in_full = set(owners)
+        known_ids = {r["id"] for r in records if r.get("id")}
+        shortened: Dict[str, set] = {}
+        for record in records:
+            for alias in record.get("aliases", []):
+                for spelling in _version_spellings(alias) - spelled_in_full:
+                    shortened.setdefault(spelling, set()).add(record["id"])
+        for spelling, ids in shortened.items():
+            # A single claimant means the spelling resolves, so it has to be right.
+            # A licence whose family ships another version at the same major cannot
+            # claim one: that sibling spells its version differently and therefore
+            # never collided here, which is the whole reason to consult the ids.
+            if len(ids) == 1 and not _minor_is_redundant(next(iter(ids)), known_ids):
+                continue
+            owners.setdefault(spelling, set()).update(ids)
 
         # Ambiguity is decided first and wins. A curated alias can name a family by
         # accident ("eclipse public license" for EPL-1.0), and the alias table is the

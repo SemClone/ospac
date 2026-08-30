@@ -16,6 +16,7 @@ from ospac.models.compliance import ComplianceStatus
 from ospac.pipeline.spdx_processor import SPDXProcessor
 from ospac.pipeline.data_generator import PolicyDataGenerator
 from ospac.utils.validation import validate_license_id
+from ospac.aliases import resolve_license
 from ospac.utils.data_validation import validate_license
 
 # Initialize colorama
@@ -101,6 +102,7 @@ def evaluate(policy_dir: str, licenses: str, context: str,
         # approved because MIT fired the permissive rule and the no-match fail-safe
         # therefore never ran for AGPL.
         result, per_license = runtime.evaluate_licenses(license_list, base_context)
+        resolutions = runtime.resolve_licenses(license_list)
 
         # Add license obligations to requirements regardless of policy decision
         _enhance_result_with_obligations(result, license_list, runtime)
@@ -113,6 +115,16 @@ def evaluate(policy_dir: str, licenses: str, context: str,
                 "licenses": license_list,
                 "context": context,
                 "distribution": distribution,
+                # What the alias map made of each declared string. A caller that can
+                # see "Apache 2.0" became Apache-2.0 knows the verdict was about the
+                # license it meant, and one that sees "ambiguous" knows which
+                # distinction the declaration is missing rather than reading a legible
+                # name as unrecognised.
+                "resolved_licenses": {
+                    text: {"license_id": r.license_id, "status": r.status,
+                           "candidates": r.candidates}
+                    for text, r in resolutions.items()
+                },
                 "result": result_dict,
                 "per_license": {
                     lid: {"action": r.action.value, "message": r.message}
@@ -122,9 +134,9 @@ def evaluate(policy_dir: str, licenses: str, context: str,
             }
             click.echo(json.dumps(output_data, indent=2))
         elif output == "markdown":
-            _output_markdown(result, license_list)
+            _output_markdown(result, license_list, resolutions)
         else:
-            _output_text(result, license_list)
+            _output_text(result, license_list, resolutions)
 
     except Exception as e:
         click.secho(f"Error: {e}", fg="red", err=True)
@@ -1072,10 +1084,11 @@ def init(template: str, output: str, format: str):
     click.secho(f"✓ Created {format.upper()} policy file: {output}", fg="green")
 
 
-def _output_text(result, licenses):
+def _output_text(result, licenses, resolutions=None):
     """Output result in text format."""
     click.echo(f"\nEvaluating licenses: {', '.join(licenses)}")
     click.echo("-" * 50)
+    _echo_resolutions(resolutions)
 
     if hasattr(result, "action"):
         # Colour by what the action means, not by string equality with one value.
@@ -1100,10 +1113,31 @@ def _output_text(result, licenses):
                 click.echo(f"  • {req}")
 
 
-def _output_markdown(result, licenses):
+def _echo_resolutions(resolutions):
+    """Report the declarations the alias map changed or could not settle."""
+    for text, resolution in (resolutions or {}).items():
+        if resolution.status == "normalized":
+            click.echo(f"Read '{text}' as {resolution.license_id}")
+        elif resolution.status == "ambiguous":
+            click.echo(f"'{text}' could be {' or '.join(resolution.candidates)}; "
+                       f"the declaration does not say which")
+        elif resolution.status == "unresolved":
+            click.echo(f"'{text}' matches no known license identifier")
+
+
+def _output_markdown(result, licenses, resolutions=None):
     """Output result in markdown format."""
     click.echo(f"# License Evaluation Report\n")
     click.echo(f"**Licenses evaluated:** {', '.join(licenses)}\n")
+    for text, resolution in (resolutions or {}).items():
+        if resolution.status == "normalized":
+            click.echo(f"- `{text}` read as `{resolution.license_id}`")
+        elif resolution.status == "ambiguous":
+            click.echo(f"- `{text}` could be "
+                       f"{' or '.join(f'`{c}`' for c in resolution.candidates)}; "
+                       f"the declaration does not say which")
+        elif resolution.status == "unresolved":
+            click.echo(f"- `{text}` matches no known license identifier")
 
     if hasattr(result, "action"):
         _ACTION_STATUS = {
@@ -1171,6 +1205,17 @@ def _output_obligations_markdown(obligations_dict):
                         click.echo(f"  - {item}")
 
 
+def _as_identifiers(licenses: list) -> list:
+    """
+    The declared strings as SPDX identifiers, keeping anything the data cannot settle.
+
+    The record loaders below take an identifier and build a path from it, so a declared
+    string has to become one first. A string the alias map cannot resolve is passed
+    through unchanged and fails validation exactly as it does today.
+    """
+    return [resolve_license(declared).license_id or declared for declared in licenses]
+
+
 def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -> dict:
     """Load complete license data directly from SPDX JSON files."""
     import json
@@ -1181,6 +1226,7 @@ def _get_license_data_directly(licenses: list, data_dir: Optional[str] = None) -
         data_dir = str(Path(__file__).parent.parent / "data")
 
     license_data_result = {}
+    licenses = _as_identifiers(licenses)
 
     # Try JSON files first (preferred format)
     json_dir = Path(data_dir) / "licenses" / "json"
@@ -1253,7 +1299,7 @@ def _enhance_result_with_obligations(result, license_list: list, runtime: Policy
 
     all_obligations = []
 
-    for license_id in license_list:
+    for license_id in _as_identifiers(license_list):
         try:
             # Validate license_id to prevent path traversal
             validate_license_id(license_id)

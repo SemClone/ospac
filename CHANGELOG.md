@@ -5,6 +5,61 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+**evaluate resolves a declared license through the shipped alias map** (#94)
+- `ospac evaluate`, `check` and `obligations` matched license identifiers exactly, so a
+  string that was not already canonical SPDX reached no rule and came back
+  `flag_for_review`. Package registries do not answer in SPDX: PyPI's license field is
+  free text by construction and requests 2.31.0 declares `Apache 2.0`, so any caller
+  feeding registry metadata hit this on most packages. The data that resolves it has
+  shipped since 1.6.0 and only the `aliases` command consulted it.
+- `Apache 2.0` now approves where `Apache-2.0` approves, and `GNU General Public License
+  v3.0 only` denies where `GPL-3.0-only` denies. The difference was load-bearing: a
+  consumer applying a hard cap on `deny` and none on `flag_for_review` let a package
+  through at the point where the policy engine is the only authority in the chain.
+- Both spellings are offered to the rules rather than the resolved id replacing the
+  input, so a policy naming the deprecated `GPL-2.0` keeps matching and one naming
+  `GPL-2.0-only` starts matching the same input.
+- A string that states a license but not the grant is still not resolved for the caller.
+  `GNU Affero General Public License v3` reports `ambiguous` with both readings, because
+  only versus or-later is the copyright holder's choice.
+- `evaluate` reports what it made of each declaration under `resolved_licenses`, and the
+  text and markdown output say it in a line. A verdict you cannot trace back to an
+  identifier is a verdict you have to re-derive the mapping to trust.
+- New public `ospac.resolve_license(text)` returning `LicenseResolution(text, license_id,
+  candidates, status)`, and `PolicyRuntime.resolve_licenses(licenses)`.
+
+**The alias data carries the version spelling registries actually write** (#95)
+- SPDX names a license "GNU Affero General Public License v3.0" and Maven Central serves
+  "GNU Affero General Public License v3" for every iText artifact. Only the SPDX spelling
+  was present, so one license got two answers: a choice of grants for one form, unknown
+  for the other, and the unknown one is the commoner form on Central. Six GNU spellings
+  were missing this way, not one.
+- Derived, not curated. Every record now also claims its name with the minor dropped, and
+  the licenses that end up sharing a spelling collide into `ambiguous` with their
+  candidates: `php license v3` is `PHP-3.0` or `PHP-3.01`, `latex project public license
+  v1` is one of five. A family with a single version at that major resolves.
+- A sibling that spells its version differently is caught by comparing identifiers rather
+  than spellings. `apache v1` no longer resolves to `Apache-1.1` with `Apache-1.0` beside
+  it, and `solderpad hardware license v0` no longer resolves to `SHL-0.5` beside
+  `SHL-0.51`.
+- Only a minor is dropped: `v2.1` shortened to `v2` would name a different license.
+- 1739 aliases, up from 1669, and 145 ambiguous names, up from 113. Nothing was removed
+  and nothing changed the id it resolved to.
+
+### Added
+
+- `tests/test_runtime.py::TestStrongerCopyleftIsNeverMorePermissive` pins the invariant
+  behind #93: for every distribution type, `AGPL-3.0` may never evaluate more permissively
+  than `GPL-3.0`. The gap itself was closed in #76; nothing had been holding it closed.
+- `tests/test_validation.py` now checks that regenerating `aliases.json` from the shipped
+  records reproduces the shipped file, instead of re-deriving the expected mapping by
+  hand. The old shape would have let the generator and the data drift apart while still
+  passing.
+
 ## [1.7.0] - 2026-08-20
 
 ### Added

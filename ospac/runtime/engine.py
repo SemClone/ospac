@@ -13,6 +13,7 @@ from ospac.runtime.loader import PolicyLoader
 from ospac.runtime.evaluator import RuleEvaluator
 from ospac.models.compliance import ComplianceResult, ComplianceStatus, PolicyResult, ActionType
 from ospac.utils.validation import validate_license_id
+from ospac.aliases import LicenseResolution, resolve_license
 
 class PolicyRuntime:
     """
@@ -117,21 +118,44 @@ class PolicyRuntime:
         license means every license either gets a verdict from a rule or falls to the
         fail-safe on its own.
 
+        A declared license is resolved through the shipped alias map before matching.
+        Registries do not answer in SPDX, so "Apache 2.0" and "MIT License" reached no
+        rule and came back needing review, which a consumer cannot tell apart from a
+        considered ruling even though the two mean opposite things. Both spellings are
+        offered to the rules rather than the resolved one replacing the input: a policy
+        naming the deprecated GPL-2.0 keeps matching, and one naming GPL-2.0-only starts
+        matching the same input.
+
         Returns (aggregated PolicyResult, {license_id: per-license PolicyResult}).
         base_context carries the shared fields (distribution_type, context, linking_type);
         the per-license fields are filled in here.
         """
         per_license: Dict[str, PolicyResult] = {}
         for license_id in licenses:
+            resolution = resolve_license(license_id)
+            spellings = [license_id]
+            if resolution.license_id and resolution.license_id != license_id:
+                spellings.append(resolution.license_id)
             license_type = self.resolve_license_type(license_id)
             ctx = dict(base_context)
-            ctx["licenses"] = [license_id]
-            ctx["licenses_found"] = [license_id]
+            ctx["licenses"] = spellings
+            ctx["licenses_found"] = spellings
             ctx["license_type"] = [license_type] if license_type else []
             per_license[license_id] = self.evaluate(ctx)
 
         combined = PolicyResult.aggregate(list(per_license.values()))
         return combined, per_license
+
+    @staticmethod
+    def resolve_licenses(licenses: List[str]) -> Dict[str, LicenseResolution]:
+        """
+        What the alias map made of each declared license, keyed by the string given.
+
+        A caller that can see "Apache 2.0" became Apache-2.0 can trust the verdict was
+        about the license it meant; one that cannot has to re-derive the mapping to find
+        out, which is the duplicated alias table this data exists to remove.
+        """
+        return {license_id: resolve_license(license_id) for license_id in licenses}
 
     def _find_applicable_rules(self, context: Dict[str, Any]) -> List[Dict]:
         """Find all rules that apply to the given context."""
@@ -238,9 +262,12 @@ class PolicyRuntime:
             if license_type and license_type not in license_types:
                 license_types.append(license_type)
 
+        # Same reason as evaluate_licenses: a pair declared the way a registry spells it
+        # reached no pairwise rule at all. These two fields are matched as scalars, so
+        # they cannot carry both spellings the way evaluate_licenses does.
         eval_context = {
-            "license1": license1,
-            "license2": license2,
+            "license1": self._matchable_id(license1),
+            "license2": self._matchable_id(license2),
             "license_type": license_types,
             "compatibility_context": context,
             # Mirror evaluate's derivation so linking rules can fire on pairs too.
@@ -273,6 +300,23 @@ class PolicyRuntime:
                     f"{license1} and {license2} are a known incompatible pair in the "
                     f"license dataset")
         return compliance
+
+    def _matchable_id(self, license_id: str) -> str:
+        """
+        The spelling a rule should be matched against.
+
+        The input wins whenever it names a record of its own, so a policy written
+        against the deprecated GPL-2.0 keeps matching exactly what it always matched.
+        Only a declaration that names no record is replaced, which is the registry
+        spelling: "Apache 2.0" is not an identifier and reached no rule at all.
+        """
+        try:
+            validate_license_id(license_id)
+        except ValueError:
+            return resolve_license(license_id).license_id or license_id
+        if self._read_license_record(license_id) is not None:
+            return license_id
+        return resolve_license(license_id).license_id or license_id
 
     def _dataset_names_incompatible(self, license_a: str, license_b: str) -> bool:
         """True if license_a's record names license_b in its incompatible list."""
@@ -359,9 +403,33 @@ class PolicyRuntime:
         Raises:
             ValueError: If license_id contains invalid characters or path separators
         """
-        # Validate license_id to prevent path traversal attacks
-        validate_license_id(license_id)
+        # A registry does not answer in SPDX: PyPI's license field is free text by
+        # construction and requests 2.31.0 declares "Apache 2.0", which names no file
+        # here and is not even a legal identifier. The shipped alias map resolves those,
+        # so consult it rather than reporting a legible name as unknown. The input is
+        # tried first, so a spelling that already names a record keeps its own record
+        # and the deprecated ids that ship a record of their own are unaffected.
+        try:
+            validate_license_id(license_id)
+        except ValueError:
+            resolved = resolve_license(license_id).license_id
+            if not resolved:
+                # Nothing the data recognises, so this is a path and not a licence.
+                raise
+            return self.lookup_license_data(resolved, data_dir)
 
+        record = self._read_license_record(license_id, data_dir)
+        if record is not None:
+            return record
+
+        resolved = resolve_license(license_id).license_id
+        if resolved and resolved != license_id:
+            return self._read_license_record(resolved, data_dir)
+        return None
+
+    def _read_license_record(self, license_id: str,
+                             data_dir: Optional[str] = None) -> Optional[Dict[str, Any]]:
+        """Read one license record by exact id, or None if there is no such file."""
         data_dir = self.resolve_data_dir(data_dir)
         licenses_dir = Path(data_dir) / "licenses"
         if licenses_dir.exists():

@@ -8,8 +8,9 @@ data lives here and travels with the dataset.
 """
 
 import json
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Set
+from typing import Dict, List, Optional, Set
 
 _ALIASES_FILE = Path(__file__).parent / "data" / "aliases.json"
 
@@ -57,3 +58,48 @@ def license_never_resolve() -> Set[str]:
     should treat these as unresolved rather than guessing.
     """
     return set(_payload()["never_resolve"])
+
+
+@dataclass(frozen=True)
+class LicenseResolution:
+    """
+    What the shipped data can say about one declared license string.
+
+    `status` is the part a consumer acts on. "exact" is a canonical SPDX identifier.
+    "normalized" resolved through the alias map, and `license_id` names what it became,
+    so a caller can see that the verdict it got was about the license it meant.
+    "ambiguous" identifies a license and not which identifier, and `candidates` holds
+    the readings; nothing is chosen, because -only versus -or-later is the copyright
+    holder's grant and the string does not carry it. "unresolved" is a name the data
+    does not know, or a family name that must never resolve.
+    """
+
+    text: str
+    license_id: Optional[str]
+    candidates: List[str]
+    status: str
+
+
+def resolve_license(text: str) -> LicenseResolution:
+    """
+    Resolve a declared license string to an SPDX identifier where the data allows it.
+
+    Package registries do not answer in SPDX. PyPI's license field is free text by
+    construction and requests 2.31.0 declares "Apache 2.0"; Maven POMs carry the prose
+    name from a <licenses> block. Matching those verbatim against a policy finds
+    nothing, and "no rule matched" is indistinguishable from a considered ruling at the
+    point where the two mean opposite things.
+    """
+    key = (text or "").strip().lower()
+    if not key or key in license_never_resolve():
+        return LicenseResolution(text, None, [], "unresolved")
+
+    candidates = license_ambiguous().get(key)
+    if candidates:
+        return LicenseResolution(text, None, list(candidates), "ambiguous")
+
+    resolved = license_aliases().get(key)
+    if resolved is None:
+        return LicenseResolution(text, None, [], "unresolved")
+    return LicenseResolution(
+        text, resolved, [], "exact" if resolved == text else "normalized")
