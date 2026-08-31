@@ -797,6 +797,29 @@ class TestAnIncompleteAnalysisIsNotARecord:
         assert "unknown or unrecognized" not in notes
         assert "Weak copyleft" in notes
 
+    def test_the_compatibility_fallback_keeps_the_shape_a_record_needs(self):
+        """
+        compatibility.notes is required, and these rules are returned straight to callers
+        that do not go through the generator's re-derivation. Dropping the key to remove
+        the prose left them building a record the validator rejects; an empty string is
+        falsy, so the derivation still supplies the note the category calls for.
+        """
+        import asyncio
+
+        from ospac.pipeline.llm_analyzer import LicenseAnalyzer
+        from ospac.utils.data_validation import REQUIRED_COMPAT_KEYS
+
+        analyzer = LicenseAnalyzer()
+        analyzer.llm_provider = None
+
+        for category in ("permissive", "copyleft_strong", "copyleft_weak", "nonsense"):
+            rules = asyncio.run(
+                analyzer.extract_compatibility_rules("X", {"category": category}))
+            assert "notes" in rules, category
+            assert rules["notes"] == "", category
+            assert REQUIRED_COMPAT_KEYS <= set(rules) | {"static_linking",
+                                                         "dynamic_linking"}
+
     def test_the_record_id_is_the_one_the_pipeline_asked_about(self):
         """
         Filenames, the merge, rejection and the fallback match all key off license_id. A

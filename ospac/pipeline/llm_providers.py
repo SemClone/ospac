@@ -248,12 +248,13 @@ Rules for contamination_effect:
         """
         Get default compatibility rules used when LLM extraction fails.
 
-        No prose. The lists here are replaced by _derive_compatibility before a record is
-        written, but a note was preserved through it, so a fallback published "Category
-        unknown or unrecognized, manual review required" as the compatibility note of a
-        licence whose category was known. Leaving it out lets the derivation supply the
-        note its category actually calls for, which is what makes it true that a
-        compatibility fallback leaves nothing in the record.
+        Empty prose, not a missing key. The lists here are replaced by
+        _derive_compatibility before a record is written, but a note was preserved
+        through it, so a fallback published "Category unknown or unrecognized, manual
+        review required" as the compatibility note of a licence whose category was known.
+        An empty string is falsy, so the derivation supplies the note the category calls
+        for, and the shape stays what a record requires for a caller that embeds these
+        rules without going through the generator.
         """
         self._record_fallback(license_id,
                               "compatibility rules fell back to category defaults",
@@ -272,7 +273,8 @@ Rules for contamination_effect:
                     "incompatible_with": [],
                     "requires_review": []
                 },
-                "contamination_effect": "none"
+                "contamination_effect": "none",
+                "notes": ""
             }
         elif category == "copyleft_strong":
             return {
@@ -286,7 +288,8 @@ Rules for contamination_effect:
                     "incompatible_with": [],
                     "requires_review": ["category:proprietary"]
                 },
-                "contamination_effect": "full"
+                "contamination_effect": "full",
+                "notes": ""
             }
         else:
             # Unknown or unrecognized category: fail closed, require review
@@ -301,7 +304,8 @@ Rules for contamination_effect:
                     "incompatible_with": [],
                     "requires_review": ["category:any"]
                 },
-                "contamination_effect": "unknown"
+                "contamination_effect": "unknown",
+                "notes": ""
             }
 
 
