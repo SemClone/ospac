@@ -818,13 +818,52 @@ class TestAnIncompleteAnalysisIsNotARecord:
         """
         import inspect
 
+        import pytest as _pytest
+
         from ospac.pipeline.data_generator import PolicyDataGenerator
 
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        good = self._analysis("TEST-1.0")
+        assert generator._reject_stale_records_or_raise([good]) is None
+
+        bad = self._analysis("TEST-5.0")
+        del bad["conditions"]["include_notice"]
+        with _pytest.raises(RuntimeError, match="TEST-5.0"):
+            generator._reject_stale_records_or_raise([bad])
+
+        # And it is consulted before anything is derived, on both paths that publish:
+        # the full run, and the one that finds nothing new to do and rebuilds anyway.
         source = inspect.getsource(PolicyDataGenerator.generate_all_data)
-        stop = source.index("if stale:")
-        derive = source.index("_generate_compatibility_matrix")
-        assert stop < derive, "the check must run before anything is derived"
-        assert "raise RuntimeError" in source[stop:derive]
+        assert (source.index("_reject_stale_records_or_raise")
+                < source.index("_generate_compatibility_matrix"))
+        early = source.index("No new licenses to process")
+        assert (source.index("_reject_stale_records_or_raise", early)
+                < source.index("_rebuild_index_from_files", early))
+
+    def test_coercion_does_not_invent_a_category(self):
+        """
+        The NonCommercial coercion exists to override a category the model got wrong, and
+        it set one where the analysis stated none. That reintroduced the default this
+        change removed, since the fallback shape sets every permission false. It also
+        raised KeyError deriving compatibility, which the per-licence handler swallows,
+        so the licence was dropped without reaching the gate or rejected_licenses.
+        """
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        analysis = self._analysis("TEST-6.0")
+        analysis["permissions"]["commercial_use"] = False
+        del analysis["category"]
+
+        applied = generator._apply_identifier_restrictions("TEST-6.0", analysis)
+        assert applied.get("category") is None
+        assert generator._reject_incomplete_records([applied])[1] == {"TEST-6.0"}
+
+        # A stated category is still overridden: NonCommercial dominates.
+        stated = self._analysis("TEST-7.0")
+        stated["permissions"]["commercial_use"] = False
+        assert generator._apply_identifier_restrictions(
+            "TEST-7.0", stated)["category"] == "noncommercial"
 
     def test_a_written_record_satisfies_the_normative_schema(self, tmp_path):
         import json

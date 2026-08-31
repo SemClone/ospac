@@ -53,7 +53,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   anything is derived, because dropping it from the write set does not unpublish it:
   nothing deletes the file and the index and alias rebuilds read it back off disk, so the
   licence would stay in `index.json` and `aliases.json` while the compatibility matrix
-  omitted it.
+  omitted it. A run that finds nothing new to do is checked too: it rebuilds the index
+  and the alias tables from those records and returns, so it republished them without
+  reading them.
+- The NonCommercial coercion no longer invents a category. It exists to override one the
+  model got wrong, and it was setting one where the analysis stated none, which put back
+  the default just removed: the fallback shape sets every permission false. Deriving
+  compatibility from an absent category also raised, and the per-licence handler swallows
+  that, so the licence was dropped without reaching the gate or the rejected list.
 - A record is identified by the licence the pipeline asked about, not by the id the model
   echoed back. Filenames, the merge, rejection and the fallback match all key off it, so
   a model answering about one licence while echoing another's id overwrote that record

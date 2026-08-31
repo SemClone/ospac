@@ -967,7 +967,11 @@ class PolicyDataGenerator:
         # category already expresses the restriction.
         permissions = result.get("permissions") or {}
         conditions = result.get("conditions") or {}
-        if permissions.get("commercial_use") is False:
+        # Only where a category was stated. Forcing NonCommercial over a category the
+        # model got wrong is the point of this; writing one where the analysis stated
+        # none is inventing the answer, and it put back the default that was just
+        # removed, since the fallback shape sets every permission false.
+        if result.get("category") and permissions.get("commercial_use") is False:
             result["category"] = "noncommercial"
         elif conditions.get("same_license") is True and result.get("category") == "permissive":
             result["category"] = "copyleft_weak"
@@ -977,9 +981,14 @@ class PolicyDataGenerator:
         # The compatibility lists are derived from the final category, keeping whatever
         # prose notes the analysis produced. This runs on every path that writes a
         # record, so the lists cannot drift from the category they describe.
+        # .get, not [...]: an analysis that stated no category raised a KeyError here,
+        # and the per-licence handler in generate_all_data swallows it and moves on, so
+        # the licence never reached the rejection gate and never appeared in
+        # rejected_licenses. The run could then finish successfully having quietly
+        # dropped it. Absent flows through and the gate names it.
         existing_notes = (result.get("compatibility_rules") or {}).get("notes")
         result["compatibility_rules"] = PolicyDataGenerator._derive_compatibility(
-            license_id, result["category"], existing_notes)
+            license_id, result.get("category"), existing_notes)
 
         return result
 
@@ -1017,6 +1026,11 @@ class PolicyDataGenerator:
 
         if not licenses_to_process:
             logger.info("No new licenses to process. All licenses up to date.")
+            # The records on disk are judged here too. This path rebuilds the index and
+            # the alias tables from them and returns, so a run with nothing new to do
+            # republished a record that predates these rules without ever reading it.
+            self._reject_stale_records_or_raise(
+                self._convert_yaml_format(self._load_all_processed_licenses()))
             # Rebuild index so deprecated-flag updates from Step 1b are reflected
             self._rebuild_index_from_files(spdx_version=spdx_data.get("version", ""))
             self._write_aliases_file(spdx_version=spdx_data.get("version", ""))
@@ -1115,12 +1129,7 @@ class PolicyDataGenerator:
         # matrix, which is a worse dataset than either leaving it alone or removing it.
         # A published record that no longer satisfies the rules is a corrupt dataset and
         # wants a person, not a partial regeneration.
-        _, stale = self._reject_incomplete_records(all_to_write)
-        if stale:
-            raise RuntimeError(
-                f"{len(stale)} record(s) already on disk no longer satisfy the dataset "
-                f"rules: {', '.join(sorted(stale))}. Nothing was regenerated. Delete or "
-                f"repair them and re-run; the errors are logged above.")
+        self._reject_stale_records_or_raise(all_to_write)
 
         compatibility_matrix = self._generate_compatibility_matrix(all_to_write)
         obligation_database = self._generate_obligation_database(all_to_write)
@@ -1617,6 +1626,24 @@ class PolicyDataGenerator:
                 "spdx_list_version": spdx_version,
             }
         }
+
+    def _reject_stale_records_or_raise(self, licenses: List[Dict[str, Any]]) -> None:
+        """
+        Refuse to regenerate anything if a record already on disk fails the dataset rules.
+
+        Dropping such a record from the write set does not unpublish it:
+        _generate_modular_license_files does not delete, and the index and alias rebuilds
+        read the file straight back off disk. The licence would stay in index.json and
+        aliases.json and be missing from the compatibility matrix, which is a worse
+        dataset than either leaving it alone or removing it. A published record that no
+        longer satisfies the rules is a corrupt dataset and wants a person.
+        """
+        _, stale = self._reject_incomplete_records(licenses)
+        if stale:
+            raise RuntimeError(
+                f"{len(stale)} record(s) already on disk no longer satisfy the dataset "
+                f"rules: {', '.join(sorted(stale))}. Nothing was regenerated. Delete or "
+                f"repair them and re-run; the errors are logged above.")
 
     def _reject_incomplete_records(self, licenses: List[Dict[str, Any]]) -> tuple:
         """
