@@ -9,6 +9,81 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- The normative schema and the dataset validator describe one record again (#87).
+  `schemas/license_schema.json` required `requirements.include_notice` and
+  `compatibility.notes` and `ospac/utils/data_validation.py` did not, so
+  `validate_data.py` passed a record the schema then rejected. In the monthly sync that
+  is a green gate followed by a red one whose message names the schema, when the fault is
+  an analysis response that dropped a key. The sets are reconciled, a missing required
+  inner key is an error rather than a warning so the first gate is the one that explains
+  it, and a test fails if the two ever diverge again, following the schema's `$ref` so it
+  cannot pass vacuously.
+- The generator checks a record against those rules before deriving anything from it. A
+  licence whose analysis came back incomplete is skipped with the missing field named,
+  rather than written with the gap or completed with a default: `disclose_source: false`
+  on a copyleft licence would be wrong and silent, which is the failure that once
+  recorded every NonCommercial licence as commercially usable. The check runs before the
+  compatibility matrix, the obligation database and the summary counts are built, so a
+  skipped licence does not leave relationships and a count behind with no record to match
+  them, and `generation_summary.json` names what was rejected.
+- The same check refuses a fabricated analysis. With no provider configured
+  `analyze_license` returns every permission false and every condition true, and that was
+  written out as a record claiming MIT forbids commercial use and requires source
+  disclosure. The analyzer is asked which licences it answered for itself rather than
+  inferring it from the record: for an id outside `KNOWN_LICENSES` the fabricated shape
+  coerces to `noncommercial` and is then internally consistent, so nothing in the rules
+  could catch it. New `LicenseAnalyzer.analysis_fallback_licenses` names that set, which
+  is narrower than `fallback_licenses`; a licence whose compatibility extraction fell
+  back is unaffected, because those lists are re-derived before a record is written.
+  `ospac data generate` gates on the narrower set for the same reason, and reports a
+  licence the generator refused rather than exiting 0 over it. A malformed compatibility
+  response no longer reads as a fabricated analysis: the shared JSON parser took an
+  analysis fallback whatever it was parsing, so it both mismarked the licence and
+  returned an analysis where compatibility rules were expected.
+- A record whose analysis states no category is refused rather than published as
+  permissive. Both the record assembler and the on-disk conversion defaulted a missing
+  type to `permissive`, which gave it `compatible_with: ["category:any"]`. That is the
+  silent permissive fallback this pipeline already had to fix once, sitting on the path
+  that rewrites every record on every run. A `type` that is present but empty is an error
+  too: the key satisfied the required-field check and the domain check skipped a falsy
+  value, so `type: null` validated clean for any licence outside the known set.
+- The records already on disk are judged as well, not only the batch being analysed. They
+  are rewritten from the merged set every run, so one that predates these rules, or one a
+  delta run never revisits, was republished unexamined. Finding one stops the run before
+  anything is derived, because dropping it from the write set does not unpublish it:
+  nothing deletes the file and the index and alias rebuilds read it back off disk, so the
+  licence would stay in `index.json` and `aliases.json` while the compatibility matrix
+  omitted it. A run that finds nothing new to do is checked too: it rebuilds the index
+  and the alias tables from those records and returns, so it republished them without
+  reading them. The stored JSON is judged as stored: rebuilding each record first
+  supplied `aliases`, `generated` and the rest from memory, so a file missing exactly
+  those passed the gate written to catch them, and consulting the current run's fallback
+  state made a `--force-reprocess` whose new analysis fell back look like corruption
+  instead of a licence that keeps the record it already has.
+- The NonCommercial coercion no longer invents a category. It exists to override one the
+  model got wrong, and it was setting one where the analysis stated none, which put back
+  the default just removed: the fallback shape sets every permission false. Deriving
+  compatibility from an absent category also raised, and the per-licence handler swallows
+  that, so the licence was dropped without reaching the gate or the rejected list.
+- A record is identified by the licence the pipeline asked about, not by the id the model
+  echoed back. Filenames, the merge, rejection and the fallback match all key off it, so
+  a model answering about one licence while echoing another's id overwrote that record
+  and left its own unprocessed, to be re-queued every month.
+- A compatibility fallback no longer leaves prose in the record. Its lists are re-derived
+  from the category, but its note survived that, so a fallback published "Category
+  unknown or unrecognized, manual review required" as the compatibility note of a licence
+  whose category was known.
+- The schema and the validator disagreed at the top level too, on `aliases`, `alias_of`,
+  `generated` and `spdx_list_version`, and inside `spdx_metadata` on `is_osi_approved`,
+  `is_fsf_libre` and `is_deprecated`. A record missing `aliases`, or one of those flags,
+  passed `validate_data.py` and the schema rejected it, which is the same drift the
+  nested blocks had. The parity test covers every block and the top level now.
+- A licence whose current analysis was refused keeps the record it already has, untouched.
+  It stays in the write set so the compatibility matrix and the index agree about which
+  licences exist, but rewriting the file restamped `generated` and `spdx_list_version` on
+  a record that had no fresh analysis, so it claimed to have been re-checked when it was
+  not.
+
 - A `contaminate` verdict produces a compliance result that says something (#98).
   `ComplianceResult.from_policy_result` handled every other action, so a contaminating
   one matched no branch and kept the constructed `UNKNOWN`: `is_compliant` and

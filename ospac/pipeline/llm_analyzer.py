@@ -46,6 +46,13 @@ class LicenseAnalyzer:
         # provider itself; see the fallback_licenses property.
         self._fallback_licenses: Set[str] = set()
 
+        # The subset whose analysis itself fell back, as opposed to only its
+        # compatibility extraction. The two are not equally serious: the compatibility
+        # lists are re-derived from the final category on every path that writes a
+        # record, so a fallback there is discarded, while a fallback analysis fabricates
+        # every boolean in the record and must not be published.
+        self._analysis_fallback_licenses: Set[str] = set()
+
         # Auto-select models if not provided
         if not model:
             model = self._get_default_model(self.provider_name)
@@ -81,6 +88,21 @@ class LicenseAnalyzer:
         licenses = set(self._fallback_licenses)
         if self.llm_provider is not None:
             licenses |= self.llm_provider.fallback_licenses
+        return licenses
+
+    @property
+    def analysis_fallback_licenses(self) -> Set[str]:
+        """
+        License IDs whose analysis was fabricated rather than produced by the model.
+
+        Narrower than fallback_licenses, which also counts a licence whose compatibility
+        extraction fell back. That one is harmless because the lists are re-derived from
+        the category before a record is written; this one is not, because it invents
+        every boolean the record carries.
+        """
+        licenses = set(self._analysis_fallback_licenses)
+        if self.llm_provider is not None:
+            licenses |= getattr(self.llm_provider, "analysis_fallback_licenses", set())
         return licenses
 
     @property
@@ -146,6 +168,7 @@ class LicenseAnalyzer:
             Conservative placeholder analysis
         """
         self._fallback_licenses.add(license_id)
+        self._analysis_fallback_licenses.add(license_id)
         return {
             "license_id": license_id,
             "category": "unknown",
@@ -220,7 +243,7 @@ class LicenseAnalyzer:
                     "special_requirements": ["Include license and copyright notice"]
                 },
                 "contamination_effect": "none",
-                "notes": "Permissive license with minimal restrictions"
+                "notes": ""
             }
 
         elif category == "copyleft_strong":
@@ -241,7 +264,7 @@ class LicenseAnalyzer:
                     "special_requirements": ["Source code must be provided", "Same license required"]
                 },
                 "contamination_effect": "full",
-                "notes": "Strong copyleft with viral effect"
+                "notes": ""
             }
 
         elif category == "copyleft_weak":
@@ -262,7 +285,7 @@ class LicenseAnalyzer:
                     "special_requirements": ["Allow relinking", "Provide LGPL source"]
                 },
                 "contamination_effect": "module",
-                "notes": "Weak copyleft affecting only the library itself"
+                "notes": ""
             }
 
         else:
@@ -284,7 +307,7 @@ class LicenseAnalyzer:
                     "special_requirements": ["Manual review required before distribution"]
                 },
                 "contamination_effect": "unknown",
-                "notes": "Category unknown or unrecognized, manual review required"
+                "notes": ""
             }
 
     async def batch_analyze(self, licenses: List[Dict[str, Any]], max_concurrent: int = 5) -> List[Dict[str, Any]]:

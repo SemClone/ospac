@@ -294,11 +294,16 @@ class TestProviderUnavailability:
 class TestGenerateFallbackGate:
     """ospac data generate must not exit zero if fallback records were written."""
 
-    def _make_fake_generator_class(self, fallback_licenses, captured_kwargs):
+    def _make_fake_generator_class(self, fallback_licenses, captured_kwargs,
+                                   analysis_fallbacks=None, rejected=()):
         class FakeAnalyzer:
             pass
 
         FakeAnalyzer.fallback_licenses = set(fallback_licenses)
+        # Defaults to the whole set: a caller naming a fallback without saying which kind
+        # means the fatal one.
+        FakeAnalyzer.analysis_fallback_licenses = set(
+            fallback_licenses if analysis_fallbacks is None else analysis_fallbacks)
         FakeAnalyzer.fallback_count = len(fallback_licenses)
 
         class FakeGenerator:
@@ -313,16 +318,19 @@ class TestGenerateFallbackGate:
                     "output_directory": str(self.output_dir),
                     "categories": {"permissive": 2, "unknown": 1},
                     "validation": {"is_valid": True},
+                    "rejected_licenses": sorted(rejected),
                 }
 
         return FakeGenerator
 
-    def _invoke_generate(self, monkeypatch, tmp_path, fallback_licenses):
+    def _invoke_generate(self, monkeypatch, tmp_path, fallback_licenses,
+                         analysis_fallbacks=None, rejected=()):
         from click.testing import CliRunner
         from ospac.cli import commands as cli_commands
 
         captured_kwargs = {}
-        fake_cls = self._make_fake_generator_class(fallback_licenses, captured_kwargs)
+        fake_cls = self._make_fake_generator_class(
+            fallback_licenses, captured_kwargs, analysis_fallbacks, rejected)
         monkeypatch.setattr(cli_commands, "PolicyDataGenerator", fake_cls)
 
         runner = CliRunner()
@@ -332,6 +340,31 @@ class TestGenerateFallbackGate:
              "--use-llm", "--llm-provider", "openai"],
         )
         return result, captured_kwargs
+
+    def test_a_compatibility_only_fallback_does_not_fail_the_run(self, monkeypatch,
+                                                                 tmp_path):
+        """
+        The compatibility lists are re-derived from the category before a record is
+        written, so a fallback there leaves nothing fabricated behind. Failing on it
+        refused a dataset that was fine.
+        """
+        result, _ = self._invoke_generate(
+            monkeypatch, tmp_path, {"MIT"}, analysis_fallbacks=set())
+
+        assert result.exit_code == 0, result.output
+        assert "compatibility rules only" in result.output
+
+    def test_a_rejected_licence_fails_the_run(self, monkeypatch, tmp_path):
+        """
+        A licence the generator refused has no fresh analysis, whether it was refused for
+        a fabricated one or for a record that did not satisfy the dataset rules. The run
+        cannot report success over it.
+        """
+        result, _ = self._invoke_generate(
+            monkeypatch, tmp_path, set(), analysis_fallbacks=set(), rejected={"Zed"})
+
+        assert result.exit_code == 1
+        assert "Zed" in result.output
 
     def test_generate_fails_when_fallback_records_written(self, monkeypatch, tmp_path):
         """Any fallback record must be reported and fail the run."""
@@ -369,7 +402,7 @@ class TestPolicyDataGenerator:
     @pytest.mark.asyncio
     @patch.object(SPDXProcessor, "download_spdx_data")
     @patch.object(SPDXProcessor, "get_license_text")
-    @patch.object(LicenseAnalyzer, "batch_analyze")
+    @patch.object(LicenseAnalyzer, "analyze_license")
     async def test_generate_all_data(self, mock_analyze, mock_get_text,
                                      mock_download, temp_dir, mock_spdx_data):
         """Test generating all data."""
@@ -377,24 +410,39 @@ class TestPolicyDataGenerator:
         mock_download.return_value = mock_spdx_data
         mock_get_text.return_value = "License text"
 
-        mock_analyze.return_value = [
-            {
-                "license_id": "MIT",
+        # analyze_license is what generate_all_data calls. Patching batch_analyze left
+        # the real one running, and with no LLM configured it returns a maximally
+        # restrictive fallback that was then written as MIT's record.
+        #
+        # A complete analysis, with MIT's real values. A response missing any of these
+        # booleans is refused rather than written with the gap.
+        async def analysis(license_id, text):
+            return {
+                "license_id": license_id,
                 "name": "MIT License",
                 "category": "permissive",
-                "permissions": {"commercial_use": True},
-                "conditions": {"include_license": True},
+                "permissions": {"commercial_use": True, "distribution": True,
+                                "modification": True, "patent_grant": False,
+                                "private_use": True},
+                "conditions": {"disclose_source": False, "include_license": True,
+                               "include_copyright": True, "include_notice": False,
+                               "state_changes": False, "same_license": False,
+                               "network_use_disclosure": False},
+                "limitations": {"liability": True, "warranty": True,
+                                "trademark_use": False},
                 "obligations": ["Include license"],
-                "compatibility_rules": {}
+                "compatibility_rules": {},
             }
-        ]
+        mock_analyze.side_effect = analysis
 
         generator = PolicyDataGenerator(output_dir=temp_dir)
         summary = await generator.generate_all_data(limit=1)
 
         assert summary["total_licenses"] == 1
+        assert summary["rejected_licenses"] == []
         assert "categories" in summary
         assert "validation" in summary
+        assert (temp_dir / "licenses" / "json" / "MIT.json").exists()
 
         # index.json is rebuilt from all on-disk files after generation
         assert (temp_dir / "index.json").exists()
@@ -538,3 +586,397 @@ class TestAnalysisCategoryCoercion:
             "MIT", "MIT License", "permissive",
             {"commercial_use": True, "modification": True}, {"same_license": False},
         ) == "permissive"
+
+
+class TestAnIncompleteAnalysisIsNotARecord:
+    """
+    An LLM response that drops a boolean used to produce a record missing that key. The
+    validator only warned, so the sync's first gate passed it and the schema test failed
+    later with a message naming the schema, when the fault was upstream. Defaulting the
+    missing boolean instead would be worse: disclose_source False on a copyleft licence
+    is wrong and silent, the same failure as the permissive default that once recorded
+    every NonCommercial licence as commercially usable.
+    """
+
+    @staticmethod
+    def _analysis(license_id):
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+        from ospac.utils.data_validation import (REQUIRED_LIMITATIONS,
+                                                 REQUIRED_PROPERTIES,
+                                                 REQUIRED_REQUIREMENTS)
+        return {
+            "license_id": license_id,
+            "name": f"{license_id} name",
+            "category": "permissive",
+            "permissions": {k: True for k in REQUIRED_PROPERTIES},
+            "conditions": {k: False for k in REQUIRED_REQUIREMENTS},
+            "limitations": {k: True for k in REQUIRED_LIMITATIONS},
+            "compatibility_rules": PolicyDataGenerator._derive_compatibility(
+                license_id, "permissive"),
+            "spdx_data": {},
+        }
+
+    def _generate(self, tmp_path, analyses):
+        """Filter as generate_all_data does, then write what survived."""
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        generator.output_dir = tmp_path
+        kept, _ = generator._reject_incomplete_records(analyses)
+        generator._generate_modular_license_files(kept, {}, {}, spdx_version="test")
+        return sorted(p.stem for p in (tmp_path / "licenses" / "json").glob("*.json"))
+
+    def test_a_complete_analysis_is_written(self, tmp_path):
+        assert self._generate(tmp_path, [self._analysis("TEST-1.0")]) == ["TEST-1.0"]
+
+    def test_a_missing_boolean_skips_the_record(self, tmp_path, caplog):
+        import logging
+
+        partial = self._analysis("TEST-2.0")
+        del partial["conditions"]["include_notice"]
+
+        with caplog.at_level(logging.ERROR):
+            written = self._generate(tmp_path, [self._analysis("TEST-1.0"), partial])
+
+        assert written == ["TEST-1.0"]
+        assert "requirements.include_notice" in caplog.text
+        assert "TEST-2.0" in caplog.text
+
+    def test_every_block_is_checked(self, tmp_path):
+        for block, key in (("permissions", "commercial_use"),
+                           ("conditions", "disclose_source"),
+                           ("limitations", "liability")):
+            partial = self._analysis("TEST-3.0")
+            del partial[block][key]
+            assert self._generate(tmp_path, [partial]) == [], f"{block}.{key} was written"
+
+    def test_an_llm_fallback_is_not_a_record(self):
+        """
+        With no provider configured, analyze_license returns a maximally restrictive
+        fallback: every permission false, every condition true. Written out, that is a
+        fabricated record claiming MIT forbids commercial use and requires source
+        disclosure. It is refused for the same reason an incomplete one is.
+        """
+        import asyncio
+
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+        from ospac.pipeline.llm_analyzer import LicenseAnalyzer
+
+        # llm_provider is forced to None rather than left to the environment. A machine
+        # with Ollama installed and running would otherwise send a live request and get
+        # a real analysis, and the test would assert nothing.
+        analyzer = LicenseAnalyzer()
+        analyzer.llm_provider = None
+
+        # An id outside KNOWN_LICENSES, which is the case schema validation cannot catch:
+        # every permission false coerces to noncommercial and the record is then
+        # internally consistent.
+        fallback = asyncio.run(analyzer.analyze_license("Zed", "Zed license text"))
+        fallback["license_id"] = "Zed"
+        fallback["name"] = "Zed License"
+        assert "Zed" in analyzer.analysis_fallback_licenses
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        generator.llm_analyzer = analyzer
+        kept, rejected = generator._reject_incomplete_records([fallback])
+        assert kept == []
+        assert rejected == {"Zed"}
+
+    def test_a_provider_compatibility_fallback_alone_is_not_fatal(self):
+        """
+        The provider records both kinds through _record_fallback. Unioning its whole set
+        into the analysis set put a valid analysis whose compatibility rules fell back
+        back into the fatal category, which is the conflation the split exists to remove.
+        """
+        from ospac.pipeline.llm_providers import LLMProvider
+
+        class Provider(LLMProvider):
+            def __init__(self):
+                super().__init__("model")
+
+            async def analyze_license(self, *args):
+                pass
+
+            async def extract_compatibility_rules(self, *args):
+                pass
+
+        provider = Provider()
+        provider._record_fallback("A", "analysis failed")
+        provider._record_fallback("B", "compat defaults", analysis=False)
+
+        assert provider.fallback_licenses == {"A", "B"}
+        assert provider.analysis_fallback_licenses == {"A"}
+
+    def test_a_compatibility_fallback_alone_is_not_fatal(self):
+        """
+        The compatibility lists are re-derived from the category before a record is
+        written, so a fallback there is discarded rather than published. Rejecting on the
+        wider fallback_licenses would have thrown away good analyses.
+        """
+        import asyncio
+
+        from ospac.pipeline.llm_analyzer import LicenseAnalyzer
+
+        analyzer = LicenseAnalyzer()
+        analyzer.llm_provider = None
+        asyncio.run(analyzer.extract_compatibility_rules("Zed", {"category": "permissive"}))
+
+        assert "Zed" in analyzer.fallback_licenses
+        assert "Zed" not in analyzer.analysis_fallback_licenses
+
+    def test_a_rejected_licence_is_absent_from_the_derived_artifacts(self, tmp_path):
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+
+        # The filter runs before the compatibility matrix, the obligation database and
+        # the summary counts are built. Dropping a licence at the point of writing
+        # instead published relationships and a count for a licence that has no record.
+        partial = self._analysis("TEST-2.0")
+        del partial["conditions"]["include_notice"]
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        generator.output_dir = tmp_path
+        kept, rejected = generator._reject_incomplete_records(
+            [self._analysis("TEST-1.0"), partial])
+
+        assert [l["license_id"] for l in kept] == ["TEST-1.0"]
+        assert rejected == {"TEST-2.0"}
+
+    def test_a_missing_category_is_not_permissive(self, tmp_path):
+        """
+        A record whose analysis states no category was published as permissive with
+        compatible_with ["category:any"], which is the silent permissive fallback this
+        pipeline already had to fix once, on the path that rewrites all 733 records.
+        """
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+
+        analysis = self._analysis("TEST-4.0")
+        del analysis["category"]
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        assert generator._assemble_record(analysis, "")["license"]["type"] is None
+        kept, rejected = generator._reject_incomplete_records([analysis])
+        assert kept == []
+        assert rejected == {"TEST-4.0"}
+
+    def test_an_empty_type_is_rejected_by_the_validator(self):
+        import json
+
+        from ospac.utils.data_validation import validate_license
+
+        # The key being present satisfied the top-level requirement and the domain check
+        # skipped a falsy value, so type: null validated clean for any licence outside
+        # KNOWN_LICENSES and was published.
+        record = json.loads(
+            (Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+             / "Zed.json").read_text())["license"]
+        assert validate_license("Zed", record)[0] == []
+
+        record["type"] = None
+        assert any("type is empty" in e for e in validate_license("Zed", record)[0])
+
+    def test_a_compatibility_fallback_leaves_no_prose_behind(self):
+        import asyncio
+
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+        from ospac.pipeline.llm_analyzer import LicenseAnalyzer
+
+        # The lists are re-derived, but a note survived the derivation, so a fallback
+        # published "Category unknown or unrecognized" as the compatibility note of a
+        # licence whose category was known.
+        analyzer = LicenseAnalyzer()
+        analyzer.llm_provider = None
+        rules = asyncio.run(
+            analyzer.extract_compatibility_rules("MPL-2.0", {"category": "copyleft_weak"}))
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        applied = generator._apply_identifier_restrictions("MPL-2.0", {
+            "category": "copyleft_weak", "compatibility_rules": rules,
+            "permissions": {}, "conditions": {}})
+
+        notes = applied["compatibility_rules"]["notes"]
+        assert "unknown or unrecognized" not in notes
+        assert "Weak copyleft" in notes
+
+    def test_the_compatibility_fallback_keeps_the_shape_a_record_needs(self):
+        """
+        compatibility.notes is required, and these rules are returned straight to callers
+        that do not go through the generator's re-derivation. Dropping the key to remove
+        the prose left them building a record the validator rejects; an empty string is
+        falsy, so the derivation still supplies the note the category calls for.
+        """
+        import asyncio
+
+        from ospac.pipeline.llm_analyzer import LicenseAnalyzer
+        from ospac.utils.data_validation import REQUIRED_COMPAT_KEYS
+
+        analyzer = LicenseAnalyzer()
+        analyzer.llm_provider = None
+
+        for category in ("permissive", "copyleft_strong", "copyleft_weak", "nonsense"):
+            rules = asyncio.run(
+                analyzer.extract_compatibility_rules("X", {"category": category}))
+            assert "notes" in rules, category
+            assert rules["notes"] == "", category
+            assert REQUIRED_COMPAT_KEYS <= set(rules) | {"static_linking",
+                                                         "dynamic_linking"}
+
+    def test_the_record_id_is_the_one_the_pipeline_asked_about(self):
+        """
+        Filenames, the merge, rejection and the fallback match all key off license_id. A
+        model echoing a different id overwrote that licence's record and left its own
+        unprocessed, to be re-queued every month.
+        """
+        import inspect
+
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+
+        source = inspect.getsource(PolicyDataGenerator.generate_all_data)
+        assert 'analysis["license_id"] = license_id' in source
+
+    def test_an_invalid_disk_record_stops_the_run_rather_than_half_regenerating(
+            self, tmp_path):
+        """
+        Dropping such a record from the write set does not unpublish it: nothing deletes
+        it, and the index and alias rebuilds read it straight back off disk. It would
+        stay in index.json and aliases.json while the compatibility matrix omitted it.
+        """
+        import inspect
+        import json as json_module
+        import shutil
+
+        import pytest as _pytest
+
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+
+        shipped = (Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json")
+        json_dir = tmp_path / "licenses" / "json"
+        json_dir.mkdir(parents=True)
+        for name in ("MIT.json", "Apache-2.0.json"):
+            shutil.copy(shipped / name, json_dir / name)
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        generator.output_dir = tmp_path
+        assert generator._reject_stale_records_or_raise() is None
+
+        # Judged as stored. Rebuilding the record first supplied aliases, generated and
+        # the rest from memory, so a file missing exactly those passed the gate written
+        # to catch them.
+        record = json_module.loads((json_dir / "MIT.json").read_text())
+        del record["license"]["aliases"]
+        (json_dir / "MIT.json").write_text(json_module.dumps(record))
+
+        with _pytest.raises(RuntimeError, match="MIT"):
+            generator._reject_stale_records_or_raise()
+
+        # And it is consulted before anything is derived, on both paths that publish:
+        # the full run, and the one that finds nothing new to do and rebuilds anyway.
+        source = inspect.getsource(PolicyDataGenerator.generate_all_data)
+        assert (source.index("_reject_stale_records_or_raise")
+                < source.index("_generate_compatibility_matrix"))
+        early = source.index("No new licenses to process")
+        assert (source.index("_reject_stale_records_or_raise", early)
+                < source.index("_rebuild_index_from_files", early))
+
+    def test_a_reprocess_that_falls_back_is_not_a_stale_record(self, tmp_path):
+        """
+        The stale gate must not consult this run's fallback state. Under
+        --force-reprocess a licence whose new analysis fell back is in that set, and
+        raising here pre-empted the CLI reporting it and keeping the good record on disk.
+        """
+        import shutil
+
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+        from ospac.pipeline.llm_analyzer import LicenseAnalyzer
+
+        shipped = (Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json")
+        json_dir = tmp_path / "licenses" / "json"
+        json_dir.mkdir(parents=True)
+        shutil.copy(shipped / "MIT.json", json_dir / "MIT.json")
+
+        analyzer = LicenseAnalyzer()
+        analyzer.llm_provider = None
+        analyzer._analysis_fallback_licenses.add("MIT")
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        generator.output_dir = tmp_path
+        generator.llm_analyzer = analyzer
+
+        assert generator._reject_stale_records_or_raise() is None
+
+    def test_a_rejected_record_is_left_exactly_as_it_was(self, tmp_path):
+        """
+        A rejected licence stays in the write set so the matrix and the index agree about
+        which licences exist, but rewriting its file restamps generated and
+        spdx_list_version on a record that had no fresh analysis, so the record would
+        claim to have been re-checked when it was not.
+        """
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        generator.output_dir = tmp_path
+        generator._generate_modular_license_files(
+            [self._analysis("TEST-1.0"), self._analysis("TEST-8.0")], {}, {},
+            spdx_version="first")
+
+        record = tmp_path / "licenses" / "json" / "TEST-8.0.json"
+        before = record.read_text()
+
+        generator._generate_modular_license_files(
+            [self._analysis("TEST-1.0"), self._analysis("TEST-8.0")], {}, {},
+            spdx_version="second", skip={"TEST-8.0"})
+
+        assert record.read_text() == before
+        assert '"second"' in (tmp_path / "licenses" / "json" / "TEST-1.0.json").read_text()
+
+    def test_the_spdx_metadata_block_is_pinned_too(self):
+        import json as json_module
+
+        from ospac.utils.data_validation import validate_license
+
+        # Third instance of the same drift: the schema required the three flags and the
+        # validator did not name them, so a record missing one passed validate_data.py
+        # for any licence outside the known set and the schema rejected it.
+        record = json_module.loads(
+            (Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+             / "Zed.json").read_text())["license"]
+        assert validate_license("Zed", record)[0] == []
+
+        del record["spdx_metadata"]["is_osi_approved"]
+        assert any("spdx_metadata.is_osi_approved" in e
+                   for e in validate_license("Zed", record)[0])
+
+    def test_coercion_does_not_invent_a_category(self):
+        """
+        The NonCommercial coercion exists to override a category the model got wrong, and
+        it set one where the analysis stated none. That reintroduced the default this
+        change removed, since the fallback shape sets every permission false. It also
+        raised KeyError deriving compatibility, which the per-licence handler swallows,
+        so the licence was dropped without reaching the gate or rejected_licenses.
+        """
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        analysis = self._analysis("TEST-6.0")
+        analysis["permissions"]["commercial_use"] = False
+        del analysis["category"]
+
+        applied = generator._apply_identifier_restrictions("TEST-6.0", analysis)
+        assert applied.get("category") is None
+        assert generator._reject_incomplete_records([applied])[1] == {"TEST-6.0"}
+
+        # A stated category is still overridden: NonCommercial dominates.
+        stated = self._analysis("TEST-7.0")
+        stated["permissions"]["commercial_use"] = False
+        assert generator._apply_identifier_restrictions(
+            "TEST-7.0", stated)["category"] == "noncommercial"
+
+    def test_a_written_record_satisfies_the_normative_schema(self, tmp_path):
+        import json
+
+        import jsonschema
+
+        self._generate(tmp_path, [self._analysis("TEST-1.0")])
+        record = json.loads((tmp_path / "licenses" / "json" / "TEST-1.0.json").read_text())
+        schema = json.loads((Path(__file__).parent.parent / "schemas"
+                             / "license_schema.json").read_text())
+        jsonschema.validate(record, schema)

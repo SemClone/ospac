@@ -96,14 +96,29 @@ KNOWN_LICENSES = {
 
 REQUIRED_TOP_FIELDS = {"id", "name", "type", "spdx_id", "properties", "requirements",
                         "limitations", "compatibility", "obligations", "key_requirements",
-                        "spdx_metadata"}
+                        "aliases", "alias_of", "spdx_metadata", "generated",
+                        "spdx_list_version"}
 
+# These six sets are the same field lists schemas/license_schema.json marks required,
+# pinned to it by tests/test_data_contract.py. The two drifted apart while both looked
+# authoritative: the schema required aliases, alias_of, generated, spdx_list_version,
+# requirements.include_notice and compatibility.notes and these sets did not, so validate_data.py passed a record the schema then rejected,
+# and the sync failed at the later gate with a message naming the schema rather than the
+# generator that produced the record.
+#
+# A missing one is an error rather than a warning for the same reason. Warnings do not
+# affect the exit code unless --strict, so the gate that runs first and knows which
+# license and field is at fault said nothing, and the gate that ran later said only that
+# a property was required.
 REQUIRED_PROPERTIES = {"commercial_use", "distribution", "modification", "patent_grant", "private_use"}
 REQUIRED_REQUIREMENTS = {"disclose_source", "include_license", "include_copyright",
-                          "same_license", "network_use_disclosure", "state_changes"}
+                          "include_notice", "same_license", "network_use_disclosure",
+                          "state_changes"}
 REQUIRED_LIMITATIONS = {"liability", "warranty", "trademark_use"}
-REQUIRED_COMPAT_KEYS = {"static_linking", "dynamic_linking", "contamination_effect"}
+REQUIRED_COMPAT_KEYS = {"static_linking", "dynamic_linking",
+                        "contamination_effect", "notes"}
 REQUIRED_COMPAT_LINK_KEYS = {"compatible_with", "incompatible_with", "requires_review"}
+REQUIRED_SPDX_METADATA = {"is_osi_approved", "is_fsf_libre", "is_deprecated"}
 
 # 'noncommercial' covers licenses that permit use, modification and
 # redistribution but forbid commercial use (CC-BY-NC-*, PolyForm-Noncommercial).
@@ -162,8 +177,13 @@ def validate_license(lid: str, lic: dict) -> tuple[list, list]:
         err(f"id field '{lic.get('id')}' does not match filename '{lid}'")
     if lic.get("name", "") == lid:
         warn("name is same as id, should be human-readable (e.g. 'MIT License')")
+    # An empty or null type is not "no opinion", it is a missing answer. The key being
+    # present satisfied REQUIRED_TOP_FIELDS and the truthiness guard then skipped the
+    # domain check, so a record carrying type: null validated clean and was published.
     lic_type_raw = lic.get("type", "")
-    if lic_type_raw and lic_type_raw not in VALID_TYPES:
+    if not lic_type_raw:
+        err(f"type is empty, must be one of {VALID_TYPES}")
+    elif lic_type_raw not in VALID_TYPES:
         if "|" in lic_type_raw:
             # Ambiguous type on a genuinely grey license: warn, don't fail
             warn(f"ambiguous type '{lic_type_raw}', resolve to one of {VALID_TYPES}")
@@ -181,7 +201,7 @@ def validate_license(lid: str, lic: dict) -> tuple[list, list]:
     # requirements
     reqs = lic.get("requirements", {})
     for f in REQUIRED_REQUIREMENTS - set(reqs.keys()):
-        warn(f"requirements.{f} missing")
+        err(f"requirements.{f} missing")
     for f, v in reqs.items():
         if not isinstance(v, bool):
             err(f"requirements.{f} must be bool, got {type(v).__name__}")
@@ -189,7 +209,12 @@ def validate_license(lid: str, lic: dict) -> tuple[list, list]:
     # limitations
     lims = lic.get("limitations", {})
     for f in REQUIRED_LIMITATIONS - set(lims.keys()):
-        warn(f"limitations.{f} missing")
+        err(f"limitations.{f} missing")
+
+    # spdx_metadata
+    metadata = lic.get("spdx_metadata", {})
+    for f in REQUIRED_SPDX_METADATA - set(metadata.keys()):
+        err(f"spdx_metadata.{f} missing")
 
     # compatibility
     compat = lic.get("compatibility", {})
@@ -202,7 +227,7 @@ def validate_license(lid: str, lic: dict) -> tuple[list, list]:
             err(f"compatibility.{link} must be a dict")
             continue
         for f in REQUIRED_COMPAT_LINK_KEYS - set(section.keys()):
-            warn(f"compatibility.{link}.{f} missing")
+            err(f"compatibility.{link}.{f} missing")
         # At least some entries should be non-empty
         if (isinstance(section.get("compatible_with"), list) and
                 isinstance(section.get("incompatible_with"), list) and

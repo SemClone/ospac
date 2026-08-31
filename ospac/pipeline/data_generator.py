@@ -664,7 +664,10 @@ class PolicyDataGenerator:
                 converted_license = {
                     "license_id": license_data.get("id"),
                     "name": license_data.get("name", license_data.get("id")),
-                    "category": license_data.get("type", "permissive"),
+                    # No default: a record on disk whose type is missing must fail
+                    # validation rather than be republished as permissive with
+                    # compatible_with ["category:any"].
+                    "category": license_data.get("type"),
                     "permissions": license_data.get("properties", {}),
                     "conditions": license_data.get("requirements", {}),
                     "limitations": license_data.get("limitations", {}),
@@ -964,7 +967,11 @@ class PolicyDataGenerator:
         # category already expresses the restriction.
         permissions = result.get("permissions") or {}
         conditions = result.get("conditions") or {}
-        if permissions.get("commercial_use") is False:
+        # Only where a category was stated. Forcing NonCommercial over a category the
+        # model got wrong is the point of this; writing one where the analysis stated
+        # none is inventing the answer, and it put back the default that was just
+        # removed, since the fallback shape sets every permission false.
+        if result.get("category") and permissions.get("commercial_use") is False:
             result["category"] = "noncommercial"
         elif conditions.get("same_license") is True and result.get("category") == "permissive":
             result["category"] = "copyleft_weak"
@@ -974,9 +981,14 @@ class PolicyDataGenerator:
         # The compatibility lists are derived from the final category, keeping whatever
         # prose notes the analysis produced. This runs on every path that writes a
         # record, so the lists cannot drift from the category they describe.
+        # .get, not [...]: an analysis that stated no category raised a KeyError here,
+        # and the per-licence handler in generate_all_data swallows it and moves on, so
+        # the licence never reached the rejection gate and never appeared in
+        # rejected_licenses. The run could then finish successfully having quietly
+        # dropped it. Absent flows through and the gate names it.
         existing_notes = (result.get("compatibility_rules") or {}).get("notes")
         result["compatibility_rules"] = PolicyDataGenerator._derive_compatibility(
-            license_id, result["category"], existing_notes)
+            license_id, result.get("category"), existing_notes)
 
         return result
 
@@ -1014,6 +1026,10 @@ class PolicyDataGenerator:
 
         if not licenses_to_process:
             logger.info("No new licenses to process. All licenses up to date.")
+            # The records on disk are judged here too. This path rebuilds the index and
+            # the alias tables from them and returns, so a run with nothing new to do
+            # republished a record that predates these rules without ever reading it.
+            self._reject_stale_records_or_raise()
             # Rebuild index so deprecated-flag updates from Step 1b are reflected
             self._rebuild_index_from_files(spdx_version=spdx_data.get("version", ""))
             self._write_aliases_file(spdx_version=spdx_data.get("version", ""))
@@ -1048,6 +1064,12 @@ class PolicyDataGenerator:
                 analysis["compatibility_rules"] = compatibility
                 analysis["spdx_data"] = license_data  # raw SPDX entry for OSI/FSF/deprecated flags
                 analysis["name"] = license_data.get("name", license_id)
+                # The licence being analysed is the one the pipeline asked about, not the
+                # one the model echoed back. Filenames, the merge, rejection and the
+                # provenance match all key off this, so a model answering about
+                # GPL-3.0-or-later while echoing "GPL-3.0-only" overwrote that record and
+                # left its own id unprocessed, to be re-queued every month.
+                analysis["license_id"] = license_id
                 analysis = self._apply_known_corrections(license_id, analysis)
                 analysis = self._apply_identifier_restrictions(license_id, analysis)
                 analyzed_licenses.append(analysis)
@@ -1075,6 +1097,13 @@ class PolicyDataGenerator:
 
         # Merge: existing on-disk licenses + current batch (current batch takes precedence)
         by_id = {l.get("license_id"): l for l in converted_all}
+
+        # The current batch is judged before it replaces anything. Rejecting after the
+        # merge removed the id from the batch but left the good record already
+        # overwritten: _generate_modular_license_files does not delete, and the index
+        # and alias rebuilds read from disk, so a reprocess that came back unusable left
+        # the previous record published while the new matrix omitted it.
+        converted_analyzed, rejected = self._reject_incomplete_records(converted_analyzed)
         for lic in converted_analyzed:
             lid = lic.get("license_id")
             if lid:
@@ -1088,14 +1117,31 @@ class PolicyDataGenerator:
             for l in by_id.values()
         ]
 
+        # The merged set is judged too, not only the current batch. Everything already on
+        # disk is rewritten from here every run, so a record that predates these rules, or
+        # one a delta run never revisits, was republished unexamined.
+        #
+        # Nothing is derived if that finds anything. Dropping such a record from the write
+        # set does not unpublish it: _generate_modular_license_files does not delete, and
+        # the index and alias rebuilds read the file straight back off disk. The licence
+        # would stay in index.json and aliases.json and be missing from the compatibility
+        # matrix, which is a worse dataset than either leaving it alone or removing it.
+        # A published record that no longer satisfies the rules is a corrupt dataset and
+        # wants a person, not a partial regeneration.
+        self._reject_stale_records_or_raise()
+
         compatibility_matrix = self._generate_compatibility_matrix(all_to_write)
         obligation_database = self._generate_obligation_database(all_to_write)
 
         # Step 5: Generate modular per-license files and rebuild the full index
         logger.info("Generating modular per-license files...")
+        # The rejected ids stay in all_to_write so the matrix and the index agree about
+        # which licences exist, but their files are left alone. Rewriting one restamps
+        # generated and spdx_list_version on a record that had no fresh analysis, which
+        # is the record claiming to have been re-checked when it was not.
         self._generate_modular_license_files(
             all_to_write, compatibility_matrix, obligation_database,
-            spdx_version=spdx_data.get("version", "")
+            spdx_version=spdx_data.get("version", ""), skip=rejected
         )
         # Rebuild index from ALL on-disk files so delta runs don't truncate the index
         self._rebuild_index_from_files(spdx_version=spdx_data.get("version", ""))
@@ -1104,10 +1150,13 @@ class PolicyDataGenerator:
         # Skip legacy master database generation - using modular files only
 
         # Step 6: Generate validation data
+        analyzed_licenses = [l for l in analyzed_licenses
+                             if l.get("license_id") not in rejected]
         validation_report = self._validate_generated_data(analyzed_licenses)
 
         summary = {
             "total_licenses": len(analyzed_licenses),
+            "rejected_licenses": sorted(rejected),
             "spdx_version": spdx_data.get("version"),
             "generated_at": datetime.now().isoformat(),
             "output_directory": str(self.output_dir),
@@ -1524,69 +1573,192 @@ class PolicyDataGenerator:
         # Keep: licenses/json/, index.json, compatibility/ (split matrix for runtime queries)
         logger.info("Cleanup complete. Final artifacts: licenses/json/, index.json, compatibility/")
 
+    def _assemble_record(self, license_data: Dict[str, Any], generated_at: str,
+                         spdx_version: str = "") -> Dict[str, Any]:
+        """
+        Build one on-disk record from one analysis.
+
+        One place, because the batch is checked against the dataset rules before anything
+        is derived from it and the check has to see the record that would be written, not
+        an approximation of it.
+        """
+        license_id = license_data.get("license_id", "")
+        spdx_meta = license_data.get("spdx_data", {})
+        compat_rules = license_data.get("compatibility_rules", {})
+        # No default. A record whose analysis did not state a category was published as
+        # permissive with compatible_with ["category:any"], which is the silent
+        # permissive fallback this pipeline already had to fix once. Absent here means
+        # the record fails validation and is not written.
+        category = license_data.get("category")
+        conditions = license_data.get("conditions", {})
+        permissions = license_data.get("permissions", {})
+        limitations = license_data.get("limitations", {})
+
+        obligations, key_requirements = self._derive_obligations(
+            license_id, category, conditions, permissions
+        )
+        aliases, alias_of = PolicyDataGenerator._derive_aliases(
+            license_id, license_data.get("name", license_id))
+
+        # Use the same schema as existing files (license wrapper, type/properties/requirements)
+        return {
+            "license": {
+                "id": license_id,
+                "name": license_data.get("name", license_id),
+                "type": category,
+                "spdx_id": license_id,
+                "properties": permissions,
+                "requirements": conditions,
+                "limitations": limitations,
+                "compatibility": {
+                    "static_linking": compat_rules.get("static_linking", {}),
+                    "dynamic_linking": compat_rules.get("dynamic_linking", {}),
+                    "contamination_effect": compat_rules.get("contamination_effect", "unknown"),
+                    "notes": compat_rules.get("notes", ""),
+                },
+                "obligations": obligations,
+                "key_requirements": key_requirements,
+                "aliases": aliases,
+                "alias_of": alias_of,
+                "spdx_metadata": {
+                    "is_osi_approved": spdx_meta.get("isOsiApproved", False),
+                    "is_fsf_libre": spdx_meta.get("isFsfLibre", False),
+                    "is_deprecated": spdx_meta.get("isDeprecatedLicenseId", False),
+                },
+                "generated": generated_at,
+                "spdx_list_version": spdx_version,
+            }
+        }
+
+    def _reject_stale_records_or_raise(self) -> None:
+        """
+        Refuse to regenerate anything if a record already on disk fails the dataset rules.
+
+        Dropping such a record from the write set does not unpublish it:
+        _generate_modular_license_files does not delete, and the index and alias rebuilds
+        read the file straight back off disk. The licence would stay in index.json and
+        aliases.json and be missing from the compatibility matrix, which is a worse
+        dataset than either leaving it alone or removing it. A published record that no
+        longer satisfies the rules is a corrupt dataset and wants a person.
+
+        The stored JSON is judged as stored. Running it back through the fresh-analysis
+        filter rebuilt each record with _assemble_record first, which supplies aliases,
+        alias_of, generated and the rest from memory, so a file missing exactly those
+        passed the gate meant to catch them. That filter also consults this run's
+        fallback state, which under --force-reprocess names a licence whose new analysis
+        fell back and would raise here, before the CLI could report it and keep the good
+        record it already has.
+        """
+        from ospac.utils.data_validation import validate_license
+
+        json_dir = self.output_dir / "licenses" / "json"
+        if not json_dir.exists():
+            return
+
+        stale = {}
+        for path in sorted(json_dir.glob("*.json")):
+            try:
+                record = json.loads(path.read_text()).get("license", {})
+            except (json.JSONDecodeError, OSError) as error:
+                stale[path.stem] = [f"unreadable: {error}"]
+                continue
+            errors, _ = validate_license(path.stem, record)
+            if errors:
+                stale[path.stem] = errors
+
+        if stale:
+            for license_id, errors in stale.items():
+                logger.error(f"Stale record {license_id}: {'; '.join(errors)}")
+            raise RuntimeError(
+                f"{len(stale)} record(s) already on disk no longer satisfy the dataset "
+                f"rules: {', '.join(sorted(stale))}. Nothing was regenerated. Delete or "
+                f"repair them and re-run; the errors are logged above.")
+
+    def _reject_incomplete_records(self, licenses: List[Dict[str, Any]]) -> tuple:
+        """
+        Split a batch into the licences that make a valid record and the ones that do not.
+
+        An analysis that dropped a boolean produced a record missing that key. The
+        validator only warned, so the sync's first gate passed it and the schema test
+        failed later naming the schema rather than the generator that produced it.
+
+        Skipped rather than completed with defaults. Filling a missing boolean with False
+        is a decision, not a neutral act: disclose_source False on a copyleft licence is
+        wrong and silent, the same failure as the permissive default that once recorded
+        every NonCommercial licence as commercially usable. A skipped licence keeps
+        whatever record it already had on disk and the run names the field that was
+        missing, so it is regenerated rather than shipped fabricated.
+
+        Returns (kept, rejected_ids).
+        """
+        from ospac.utils.data_validation import validate_license
+
+        analyzer = getattr(self, "llm_analyzer", None)
+        fell_back = set(getattr(analyzer, "analysis_fallback_licenses", set()) or set())
+
+        kept, rejected = [], set()
+        for license_data in licenses:
+            license_id = license_data.get("license_id")
+            if not license_id:
+                continue
+
+            # A fabricated analysis is not an analysis, whatever shape it happens to
+            # validate to. It sets every permission false and every condition true, which
+            # the category coercion then reads as noncommercial, and for an id outside
+            # KNOWN_LICENSES that record has no internal contradiction left for the rules
+            # to catch. Ask the analyzer which licences it answered for itself rather
+            # than inferring it from the record.
+            #
+            # analysis_fallback_licenses, not fallback_licenses: the wider set also counts
+            # a licence whose compatibility extraction fell back, and those lists are
+            # re-derived from the category before the record is written.
+            if license_id in fell_back:
+                logger.error(f"Skipping {license_id}: analysis came from the fallback, "
+                             f"not from the model")
+                rejected.add(license_id)
+                continue
+
+            errors, _ = validate_license(
+                license_id, self._assemble_record(license_data, "")["license"])
+            if errors:
+                logger.error(f"Skipping {license_id}: {'; '.join(errors)}")
+                rejected.add(license_id)
+            else:
+                kept.append(license_data)
+        return kept, rejected
+
     def _generate_modular_license_files(self, licenses: List[Dict[str, Any]],
                                       compatibility_matrix: Dict[str, Any],
                                       obligation_database: Dict[str, Any],
-                                      spdx_version: str = "") -> None:
-        """Generate individual license files with obligations and compatibility data."""
+                                      spdx_version: str = "",
+                                      skip: Optional[Set[str]] = None) -> None:
+        """
+        Generate individual license files with obligations and compatibility data.
+
+        `skip` are licences whose current analysis was refused. They keep the record they
+        already have: rewriting it restamps generated and spdx_list_version on something
+        that had no fresh analysis, so the record would claim to have been re-checked.
+        """
+        skip = skip or set()
         # Write to licenses/json/ to match the established on-disk layout
         licenses_json_dir = self.output_dir / "licenses" / "json"
         licenses_json_dir.mkdir(parents=True, exist_ok=True)
 
         generated_at = datetime.now().isoformat()
 
+        written = 0
         for license_data in licenses:
             license_id = license_data.get("license_id")
-            if not license_id:
+            if not license_id or license_id in skip:
                 continue
 
-            spdx_meta = license_data.get("spdx_data", {})
-            compat_rules = license_data.get("compatibility_rules", {})
-            category = license_data.get("category", "permissive")
-            conditions = license_data.get("conditions", {})
-            permissions = license_data.get("permissions", {})
-
-            obligations, key_requirements = self._derive_obligations(
-                license_id, category, conditions, permissions
-            )
-
-            # Use the same schema as existing files (license wrapper, type/properties/requirements)
-            license_file_data = {
-                "license": {
-                    "id": license_id,
-                    "name": license_data.get("name", license_id),
-                    "type": category,
-                    "spdx_id": license_id,
-                    "properties": permissions,
-                    "requirements": conditions,
-                    "limitations": license_data.get("limitations", {}),
-                    "compatibility": {
-                        "static_linking": compat_rules.get("static_linking", {}),
-                        "dynamic_linking": compat_rules.get("dynamic_linking", {}),
-                        "contamination_effect": compat_rules.get("contamination_effect", "unknown"),
-                        "notes": compat_rules.get("notes", ""),
-                    },
-                    "obligations": obligations,
-                    "key_requirements": key_requirements,
-                    "aliases": PolicyDataGenerator._derive_aliases(
-                        license_id, license_data.get("name", license_id))[0],
-                    "alias_of": PolicyDataGenerator._derive_aliases(
-                        license_id, license_data.get("name", license_id))[1],
-                    "spdx_metadata": {
-                        "is_osi_approved": spdx_meta.get("isOsiApproved", False),
-                        "is_fsf_libre": spdx_meta.get("isFsfLibre", False),
-                        "is_deprecated": spdx_meta.get("isDeprecatedLicenseId", False),
-                    },
-                    "generated": generated_at,
-                    "spdx_list_version": spdx_version,
-                }
-            }
-
+            written += 1
             license_file = licenses_json_dir / f"{license_id}.json"
             with open(license_file, "w") as f:
-                json.dump(license_file_data, f, indent=2)
+                json.dump(self._assemble_record(license_data, generated_at,
+                                                spdx_version), f, indent=2)
 
-        logger.info(f"Wrote {len(licenses)} license files to {licenses_json_dir}")
+        logger.info(f"Wrote {written} license files to {licenses_json_dir}")
         # Index is rebuilt from ALL files after the delta, see _rebuild_index_from_files
 
     @staticmethod

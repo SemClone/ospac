@@ -123,9 +123,16 @@ out of date it rejected all 733 records it claimed to describe: five of the ten 
 families were absent from its `type` enum, three of the five real `contamination_effect`
 values were absent while three values the generator never emits were listed, and it was
 closed against five fields the records had carried for releases. It now matches the shipped
-data, its value domains are pinned by test to the same constants the dataset validator uses,
-and every shipped record is validated against it in CI. You can point a validator at it and
-trust the result.
+data, its value domains and its required-key sets are pinned by test to the same constants
+the dataset validator uses, and every shipped record is validated against it in CI. You can
+point a validator at it and trust the result.
+
+The value domains were pinned and the required-key sets were not, so the two drifted: the
+schema required `requirements.include_notice` and `compatibility.notes` and the validator
+did not, which meant `validate_data.py` passed a record the schema then rejected. Both sets
+are pinned now, and the generator checks a record against the same rules before writing it,
+so a licence whose analysis came back incomplete is skipped with the field named rather than
+written with the gap.
 
 One deliberate looseness: the schema does not forbid unknown fields. The compatibility
 promise below permits new fields in a minor release, so a schema that rejected them would
@@ -301,8 +308,12 @@ and this page are the channel. If you consume the dataset in automation, watch r
 ## How this is enforced
 
 `tests/test_data_contract.py` asserts every field named on this page, that the schema's
-value domains still match the dataset validator's constants, and that all 733 shipped
-records validate against the normative schema. A silent removal fails CI.
+value domains and required-key sets still match the dataset validator's constants, and that
+all 733 shipped records validate against the normative schema. A silent removal fails CI.
+
+The required-key comparison follows the schema's `$ref` rather than stopping at it. The
+linking contexts state their required keys through one, so a test reading the node directly
+would find no `required`, compare an empty set, and pass while proving nothing.
 
 The field lists in that test are typed out by hand rather than read from the data, on
 purpose. A test that derives its expectations from the file it is checking asserts only that

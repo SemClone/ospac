@@ -47,14 +47,28 @@ class LLMProvider(ABC):
         # dataset contains fabricated records and must not be published.
         self.fallback_licenses: Set[str] = set()
 
+        # The subset whose analysis itself was fabricated, as opposed to only its
+        # compatibility rules. The compatibility lists are re-derived from the final
+        # category before any record is written, so that fallback leaves nothing behind;
+        # a fabricated analysis invents every boolean the record carries.
+        self.analysis_fallback_licenses: Set[str] = set()
+
     @property
     def fallback_count(self) -> int:
         """Number of licenses whose analysis fell back instead of using the LLM."""
         return len(self.fallback_licenses)
 
-    def _record_fallback(self, license_id: str, reason: str) -> None:
-        """Record that a license record was produced by fallback, not the LLM."""
+    def _record_fallback(self, license_id: str, reason: str,
+                         analysis: bool = True) -> None:
+        """
+        Record that a license record was produced by fallback, not the LLM.
+
+        `analysis` False for a fallback that only replaced the compatibility rules, which
+        are re-derived before writing and so do not reach the record.
+        """
         self.fallback_licenses.add(license_id)
+        if analysis:
+            self.analysis_fallback_licenses.add(license_id)
         self.logger.warning(f"Fallback record for {license_id}: {reason}")
 
     @abstractmethod
@@ -157,8 +171,19 @@ Rules for contamination_effect:
 - derivative: all derivative works must be same license (LGPL-style for static linking)
 - full: entire combined work must be same license (GPL/AGPL-style)"""
 
-    def _parse_json_response(self, response_text: str, license_id: str) -> Dict[str, Any]:
-        """Parse JSON from LLM response."""
+    def _parse_json_response(self, response_text: str, license_id: str,
+                             fallback=None) -> Dict[str, Any]:
+        """
+        Parse JSON from LLM response.
+
+        `fallback` is what an unparseable response becomes. It defaults to a fallback
+        analysis because most callers are asking for one, and the compatibility callers
+        pass their own: this method is shared, so a malformed compatibility response
+        produced an analysis-shaped record and marked the licence as having a fabricated
+        analysis, when the analysis had come back fine and only the derived compatibility
+        rules were lost.
+        """
+        fallback = fallback or (lambda: self._get_fallback_analysis(license_id))
         try:
             # Find JSON in response
             json_start = response_text.find("{")
@@ -168,11 +193,11 @@ Rules for contamination_effect:
                 return json.loads(json_str)
             else:
                 self.logger.warning(f"Could not extract JSON from LLM response for {license_id}")
-                return self._get_fallback_analysis(license_id)
+                return fallback()
         except json.JSONDecodeError as e:
             self.logger.error(f"Failed to parse LLM response for {license_id}: {e}")
             self.logger.debug(f"Response content: {response_text[:500]}")
-            return self._get_fallback_analysis(license_id)
+            return fallback()
 
     def _get_fallback_analysis(self, license_id: str) -> Dict[str, Any]:
         """
@@ -220,8 +245,20 @@ Rules for contamination_effect:
         }
 
     def _get_default_compatibility_rules(self, license_id: str, analysis: Dict[str, Any]) -> Dict[str, Any]:
-        """Get default compatibility rules used when LLM extraction fails."""
-        self._record_fallback(license_id, "compatibility rules fell back to category defaults")
+        """
+        Get default compatibility rules used when LLM extraction fails.
+
+        Empty prose, not a missing key. The lists here are replaced by
+        _derive_compatibility before a record is written, but a note was preserved
+        through it, so a fallback published "Category unknown or unrecognized, manual
+        review required" as the compatibility note of a licence whose category was known.
+        An empty string is falsy, so the derivation supplies the note the category calls
+        for, and the shape stays what a record requires for a caller that embeds these
+        rules without going through the generator.
+        """
+        self._record_fallback(license_id,
+                              "compatibility rules fell back to category defaults",
+                              analysis=False)
         category = analysis.get("category", "unknown")
 
         if category == "permissive":
@@ -237,7 +274,7 @@ Rules for contamination_effect:
                     "requires_review": []
                 },
                 "contamination_effect": "none",
-                "notes": "Permissive license with minimal restrictions"
+                "notes": ""
             }
         elif category == "copyleft_strong":
             return {
@@ -252,7 +289,7 @@ Rules for contamination_effect:
                     "requires_review": ["category:proprietary"]
                 },
                 "contamination_effect": "full",
-                "notes": "Strong copyleft with viral effect"
+                "notes": ""
             }
         else:
             # Unknown or unrecognized category: fail closed, require review
@@ -268,7 +305,7 @@ Rules for contamination_effect:
                     "requires_review": ["category:any"]
                 },
                 "contamination_effect": "unknown",
-                "notes": "Category unknown or unrecognized, manual review required"
+                "notes": ""
             }
 
 
@@ -337,7 +374,10 @@ class OpenAIProvider(LLMProvider):
             )
 
             response_text = response.choices[0].message.content
-            return self._parse_json_response(response_text, license_id)
+            return self._parse_json_response(
+                response_text, license_id,
+                fallback=lambda: self._get_default_compatibility_rules(
+                    license_id, analysis))
 
         except Exception as e:
             self.logger.error(f"OpenAI compatibility extraction failed for {license_id}: {e}")
@@ -409,7 +449,10 @@ class ClaudeProvider(LLMProvider):
             )
 
             response_text = message.content[0].text
-            return self._parse_json_response(response_text, license_id)
+            return self._parse_json_response(
+                response_text, license_id,
+                fallback=lambda: self._get_default_compatibility_rules(
+                    license_id, analysis))
 
         except Exception as e:
             self.logger.error(f"Claude compatibility extraction failed for {license_id}: {e}")
@@ -483,7 +526,10 @@ class OllamaProvider(LLMProvider):
             )
 
             response_text = response['message']['content']
-            return self._parse_json_response(response_text, license_id)
+            return self._parse_json_response(
+                response_text, license_id,
+                fallback=lambda: self._get_default_compatibility_rules(
+                    license_id, analysis))
 
         except Exception as e:
             self.logger.error(f"Ollama compatibility extraction failed for {license_id}: {e}")
