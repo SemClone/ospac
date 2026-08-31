@@ -245,7 +245,16 @@ Rules for contamination_effect:
         }
 
     def _get_default_compatibility_rules(self, license_id: str, analysis: Dict[str, Any]) -> Dict[str, Any]:
-        """Get default compatibility rules used when LLM extraction fails."""
+        """
+        Get default compatibility rules used when LLM extraction fails.
+
+        No prose. The lists here are replaced by _derive_compatibility before a record is
+        written, but a note was preserved through it, so a fallback published "Category
+        unknown or unrecognized, manual review required" as the compatibility note of a
+        licence whose category was known. Leaving it out lets the derivation supply the
+        note its category actually calls for, which is what makes it true that a
+        compatibility fallback leaves nothing in the record.
+        """
         self._record_fallback(license_id,
                               "compatibility rules fell back to category defaults",
                               analysis=False)
@@ -263,8 +272,7 @@ Rules for contamination_effect:
                     "incompatible_with": [],
                     "requires_review": []
                 },
-                "contamination_effect": "none",
-                "notes": "Permissive license with minimal restrictions"
+                "contamination_effect": "none"
             }
         elif category == "copyleft_strong":
             return {
@@ -278,8 +286,7 @@ Rules for contamination_effect:
                     "incompatible_with": [],
                     "requires_review": ["category:proprietary"]
                 },
-                "contamination_effect": "full",
-                "notes": "Strong copyleft with viral effect"
+                "contamination_effect": "full"
             }
         else:
             # Unknown or unrecognized category: fail closed, require review
@@ -294,8 +301,7 @@ Rules for contamination_effect:
                     "incompatible_with": [],
                     "requires_review": ["category:any"]
                 },
-                "contamination_effect": "unknown",
-                "notes": "Category unknown or unrecognized, manual review required"
+                "contamination_effect": "unknown"
             }
 
 

@@ -242,8 +242,7 @@ class LicenseAnalyzer:
                     "cannot_distribute_with": [],
                     "special_requirements": ["Include license and copyright notice"]
                 },
-                "contamination_effect": "none",
-                "notes": "Permissive license with minimal restrictions"
+                "contamination_effect": "none"
             }
 
         elif category == "copyleft_strong":
@@ -263,8 +262,7 @@ class LicenseAnalyzer:
                     "cannot_distribute_with": ["category:proprietary"],
                     "special_requirements": ["Source code must be provided", "Same license required"]
                 },
-                "contamination_effect": "full",
-                "notes": "Strong copyleft with viral effect"
+                "contamination_effect": "full"
             }
 
         elif category == "copyleft_weak":
@@ -284,8 +282,7 @@ class LicenseAnalyzer:
                     "cannot_distribute_with": [],
                     "special_requirements": ["Allow relinking", "Provide LGPL source"]
                 },
-                "contamination_effect": "module",
-                "notes": "Weak copyleft affecting only the library itself"
+                "contamination_effect": "module"
             }
 
         else:
@@ -306,8 +303,7 @@ class LicenseAnalyzer:
                     "cannot_distribute_with": [],
                     "special_requirements": ["Manual review required before distribution"]
                 },
-                "contamination_effect": "unknown",
-                "notes": "Category unknown or unrecognized, manual review required"
+                "contamination_effect": "unknown"
             }
 
     async def batch_analyze(self, licenses: List[Dict[str, Any]], max_concurrent: int = 5) -> List[Dict[str, Any]]:

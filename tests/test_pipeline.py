@@ -741,6 +741,75 @@ class TestAnIncompleteAnalysisIsNotARecord:
         assert [l["license_id"] for l in kept] == ["TEST-1.0"]
         assert rejected == {"TEST-2.0"}
 
+    def test_a_missing_category_is_not_permissive(self, tmp_path):
+        """
+        A record whose analysis states no category was published as permissive with
+        compatible_with ["category:any"], which is the silent permissive fallback this
+        pipeline already had to fix once, on the path that rewrites all 733 records.
+        """
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+
+        analysis = self._analysis("TEST-4.0")
+        del analysis["category"]
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        assert generator._assemble_record(analysis, "")["license"]["type"] is None
+        kept, rejected = generator._reject_incomplete_records([analysis])
+        assert kept == []
+        assert rejected == {"TEST-4.0"}
+
+    def test_an_empty_type_is_rejected_by_the_validator(self):
+        import json
+
+        from ospac.utils.data_validation import validate_license
+
+        # The key being present satisfied the top-level requirement and the domain check
+        # skipped a falsy value, so type: null validated clean for any licence outside
+        # KNOWN_LICENSES and was published.
+        record = json.loads(
+            (Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+             / "Zed.json").read_text())["license"]
+        assert validate_license("Zed", record)[0] == []
+
+        record["type"] = None
+        assert any("type is empty" in e for e in validate_license("Zed", record)[0])
+
+    def test_a_compatibility_fallback_leaves_no_prose_behind(self):
+        import asyncio
+
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+        from ospac.pipeline.llm_analyzer import LicenseAnalyzer
+
+        # The lists are re-derived, but a note survived the derivation, so a fallback
+        # published "Category unknown or unrecognized" as the compatibility note of a
+        # licence whose category was known.
+        analyzer = LicenseAnalyzer()
+        analyzer.llm_provider = None
+        rules = asyncio.run(
+            analyzer.extract_compatibility_rules("MPL-2.0", {"category": "copyleft_weak"}))
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        applied = generator._apply_identifier_restrictions("MPL-2.0", {
+            "category": "copyleft_weak", "compatibility_rules": rules,
+            "permissions": {}, "conditions": {}})
+
+        notes = applied["compatibility_rules"]["notes"]
+        assert "unknown or unrecognized" not in notes
+        assert "Weak copyleft" in notes
+
+    def test_the_record_id_is_the_one_the_pipeline_asked_about(self):
+        """
+        Filenames, the merge, rejection and the fallback match all key off license_id. A
+        model echoing a different id overwrote that licence's record and left its own
+        unprocessed, to be re-queued every month.
+        """
+        import inspect
+
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+
+        source = inspect.getsource(PolicyDataGenerator.generate_all_data)
+        assert 'analysis["license_id"] = license_id' in source
+
     def test_a_written_record_satisfies_the_normative_schema(self, tmp_path):
         import json
 

@@ -664,7 +664,10 @@ class PolicyDataGenerator:
                 converted_license = {
                     "license_id": license_data.get("id"),
                     "name": license_data.get("name", license_data.get("id")),
-                    "category": license_data.get("type", "permissive"),
+                    # No default: a record on disk whose type is missing must fail
+                    # validation rather than be republished as permissive with
+                    # compatible_with ["category:any"].
+                    "category": license_data.get("type"),
                     "permissions": license_data.get("properties", {}),
                     "conditions": license_data.get("requirements", {}),
                     "limitations": license_data.get("limitations", {}),
@@ -1048,6 +1051,12 @@ class PolicyDataGenerator:
                 analysis["compatibility_rules"] = compatibility
                 analysis["spdx_data"] = license_data  # raw SPDX entry for OSI/FSF/deprecated flags
                 analysis["name"] = license_data.get("name", license_id)
+                # The licence being analysed is the one the pipeline asked about, not the
+                # one the model echoed back. Filenames, the merge, rejection and the
+                # provenance match all key off this, so a model answering about
+                # GPL-3.0-or-later while echoing "GPL-3.0-only" overwrote that record and
+                # left its own id unprocessed, to be re-queued every month.
+                analysis["license_id"] = license_id
                 analysis = self._apply_known_corrections(license_id, analysis)
                 analysis = self._apply_identifier_restrictions(license_id, analysis)
                 analyzed_licenses.append(analysis)
@@ -1094,6 +1103,12 @@ class PolicyDataGenerator:
             )
             for l in by_id.values()
         ]
+
+        # The merged set is judged too, not only the current batch. Everything already on
+        # disk is rewritten from here every run, so a record that predates these rules, or
+        # one a delta run never revisits, was republished unexamined.
+        all_to_write, stale = self._reject_incomplete_records(all_to_write)
+        rejected |= stale
 
         compatibility_matrix = self._generate_compatibility_matrix(all_to_write)
         obligation_database = self._generate_obligation_database(all_to_write)
@@ -1546,7 +1561,11 @@ class PolicyDataGenerator:
         license_id = license_data.get("license_id", "")
         spdx_meta = license_data.get("spdx_data", {})
         compat_rules = license_data.get("compatibility_rules", {})
-        category = license_data.get("category", "permissive")
+        # No default. A record whose analysis did not state a category was published as
+        # permissive with compatible_with ["category:any"], which is the silent
+        # permissive fallback this pipeline already had to fix once. Absent here means
+        # the record fails validation and is not written.
+        category = license_data.get("category")
         conditions = license_data.get("conditions", {})
         permissions = license_data.get("permissions", {})
         limitations = license_data.get("limitations", {})

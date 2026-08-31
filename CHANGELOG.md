@@ -40,6 +40,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   response no longer reads as a fabricated analysis: the shared JSON parser took an
   analysis fallback whatever it was parsing, so it both mismarked the licence and
   returned an analysis where compatibility rules were expected.
+- A record whose analysis states no category is refused rather than published as
+  permissive. Both the record assembler and the on-disk conversion defaulted a missing
+  type to `permissive`, which gave it `compatible_with: ["category:any"]`. That is the
+  silent permissive fallback this pipeline already had to fix once, sitting on the path
+  that rewrites every record on every run. A `type` that is present but empty is an error
+  too: the key satisfied the required-field check and the domain check skipped a falsy
+  value, so `type: null` validated clean for any licence outside the known set.
+- The records already on disk are judged as well, not only the batch being analysed. They
+  are rewritten from the merged set every run, so one that predates these rules, or one a
+  delta run never revisits, was republished unexamined.
+- A record is identified by the licence the pipeline asked about, not by the id the model
+  echoed back. Filenames, the merge, rejection and the fallback match all key off it, so
+  a model answering about one licence while echoing another's id overwrote that record
+  and left its own unprocessed, to be re-queued every month.
+- A compatibility fallback no longer leaves prose in the record. Its lists are re-derived
+  from the category, but its note survived that, so a fallback published "Category
+  unknown or unrecognized, manual review required" as the compatibility note of a licence
+  whose category was known.
 - The schema and the validator disagreed at the top level too, on `aliases`, `alias_of`,
   `generated` and `spdx_list_version`. A record missing `aliases` passed
   `validate_data.py` and the schema rejected it, which is the same drift the nested

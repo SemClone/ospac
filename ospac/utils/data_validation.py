@@ -176,8 +176,13 @@ def validate_license(lid: str, lic: dict) -> tuple[list, list]:
         err(f"id field '{lic.get('id')}' does not match filename '{lid}'")
     if lic.get("name", "") == lid:
         warn("name is same as id, should be human-readable (e.g. 'MIT License')")
+    # An empty or null type is not "no opinion", it is a missing answer. The key being
+    # present satisfied REQUIRED_TOP_FIELDS and the truthiness guard then skipped the
+    # domain check, so a record carrying type: null validated clean and was published.
     lic_type_raw = lic.get("type", "")
-    if lic_type_raw and lic_type_raw not in VALID_TYPES:
+    if not lic_type_raw:
+        err(f"type is empty, must be one of {VALID_TYPES}")
+    elif lic_type_raw not in VALID_TYPES:
         if "|" in lic_type_raw:
             # Ambiguous type on a genuinely grey license: warn, don't fail
             warn(f"ambiguous type '{lic_type_raw}', resolve to one of {VALID_TYPES}")
