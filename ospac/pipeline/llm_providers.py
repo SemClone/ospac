@@ -171,8 +171,19 @@ Rules for contamination_effect:
 - derivative: all derivative works must be same license (LGPL-style for static linking)
 - full: entire combined work must be same license (GPL/AGPL-style)"""
 
-    def _parse_json_response(self, response_text: str, license_id: str) -> Dict[str, Any]:
-        """Parse JSON from LLM response."""
+    def _parse_json_response(self, response_text: str, license_id: str,
+                             fallback=None) -> Dict[str, Any]:
+        """
+        Parse JSON from LLM response.
+
+        `fallback` is what an unparseable response becomes. It defaults to a fallback
+        analysis because most callers are asking for one, and the compatibility callers
+        pass their own: this method is shared, so a malformed compatibility response
+        produced an analysis-shaped record and marked the licence as having a fabricated
+        analysis, when the analysis had come back fine and only the derived compatibility
+        rules were lost.
+        """
+        fallback = fallback or (lambda: self._get_fallback_analysis(license_id))
         try:
             # Find JSON in response
             json_start = response_text.find("{")
@@ -182,11 +193,11 @@ Rules for contamination_effect:
                 return json.loads(json_str)
             else:
                 self.logger.warning(f"Could not extract JSON from LLM response for {license_id}")
-                return self._get_fallback_analysis(license_id)
+                return fallback()
         except json.JSONDecodeError as e:
             self.logger.error(f"Failed to parse LLM response for {license_id}: {e}")
             self.logger.debug(f"Response content: {response_text[:500]}")
-            return self._get_fallback_analysis(license_id)
+            return fallback()
 
     def _get_fallback_analysis(self, license_id: str) -> Dict[str, Any]:
         """
@@ -353,7 +364,10 @@ class OpenAIProvider(LLMProvider):
             )
 
             response_text = response.choices[0].message.content
-            return self._parse_json_response(response_text, license_id)
+            return self._parse_json_response(
+                response_text, license_id,
+                fallback=lambda: self._get_default_compatibility_rules(
+                    license_id, analysis))
 
         except Exception as e:
             self.logger.error(f"OpenAI compatibility extraction failed for {license_id}: {e}")
@@ -425,7 +439,10 @@ class ClaudeProvider(LLMProvider):
             )
 
             response_text = message.content[0].text
-            return self._parse_json_response(response_text, license_id)
+            return self._parse_json_response(
+                response_text, license_id,
+                fallback=lambda: self._get_default_compatibility_rules(
+                    license_id, analysis))
 
         except Exception as e:
             self.logger.error(f"Claude compatibility extraction failed for {license_id}: {e}")
@@ -499,7 +516,10 @@ class OllamaProvider(LLMProvider):
             )
 
             response_text = response['message']['content']
-            return self._parse_json_response(response_text, license_id)
+            return self._parse_json_response(
+                response_text, license_id,
+                fallback=lambda: self._get_default_compatibility_rules(
+                    license_id, analysis))
 
         except Exception as e:
             self.logger.error(f"Ollama compatibility extraction failed for {license_id}: {e}")

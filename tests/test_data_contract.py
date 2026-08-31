@@ -438,6 +438,15 @@ class TestTheSchemaAndTheValidatorDescribeOneRecord:
             (Path(__file__).parent.parent / "schemas" / "license_schema.json").read_text())
         blocks = schema["properties"]["license"]["properties"]
 
+        # The top level too. Comparing only the nested blocks left aliases, alias_of,
+        # generated and spdx_list_version required by the schema and absent from the
+        # validator, which is the same drift one level up from the one this test was
+        # written for: a record missing aliases passed validate_data.py and the schema
+        # rejected it.
+        assert self._required(schema, schema["properties"]["license"]) == (
+            dv.REQUIRED_TOP_FIELDS), (
+            "top level: schema and validator disagree on which keys are required")
+
         for name, constant in (("properties", dv.REQUIRED_PROPERTIES),
                                ("requirements", dv.REQUIRED_REQUIREMENTS),
                                ("limitations", dv.REQUIRED_LIMITATIONS),

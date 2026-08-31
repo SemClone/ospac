@@ -294,11 +294,16 @@ class TestProviderUnavailability:
 class TestGenerateFallbackGate:
     """ospac data generate must not exit zero if fallback records were written."""
 
-    def _make_fake_generator_class(self, fallback_licenses, captured_kwargs):
+    def _make_fake_generator_class(self, fallback_licenses, captured_kwargs,
+                                   analysis_fallbacks=None, rejected=()):
         class FakeAnalyzer:
             pass
 
         FakeAnalyzer.fallback_licenses = set(fallback_licenses)
+        # Defaults to the whole set: a caller naming a fallback without saying which kind
+        # means the fatal one.
+        FakeAnalyzer.analysis_fallback_licenses = set(
+            fallback_licenses if analysis_fallbacks is None else analysis_fallbacks)
         FakeAnalyzer.fallback_count = len(fallback_licenses)
 
         class FakeGenerator:
@@ -313,16 +318,19 @@ class TestGenerateFallbackGate:
                     "output_directory": str(self.output_dir),
                     "categories": {"permissive": 2, "unknown": 1},
                     "validation": {"is_valid": True},
+                    "rejected_licenses": sorted(rejected),
                 }
 
         return FakeGenerator
 
-    def _invoke_generate(self, monkeypatch, tmp_path, fallback_licenses):
+    def _invoke_generate(self, monkeypatch, tmp_path, fallback_licenses,
+                         analysis_fallbacks=None, rejected=()):
         from click.testing import CliRunner
         from ospac.cli import commands as cli_commands
 
         captured_kwargs = {}
-        fake_cls = self._make_fake_generator_class(fallback_licenses, captured_kwargs)
+        fake_cls = self._make_fake_generator_class(
+            fallback_licenses, captured_kwargs, analysis_fallbacks, rejected)
         monkeypatch.setattr(cli_commands, "PolicyDataGenerator", fake_cls)
 
         runner = CliRunner()
@@ -332,6 +340,31 @@ class TestGenerateFallbackGate:
              "--use-llm", "--llm-provider", "openai"],
         )
         return result, captured_kwargs
+
+    def test_a_compatibility_only_fallback_does_not_fail_the_run(self, monkeypatch,
+                                                                 tmp_path):
+        """
+        The compatibility lists are re-derived from the category before a record is
+        written, so a fallback there leaves nothing fabricated behind. Failing on it
+        refused a dataset that was fine.
+        """
+        result, _ = self._invoke_generate(
+            monkeypatch, tmp_path, {"MIT"}, analysis_fallbacks=set())
+
+        assert result.exit_code == 0, result.output
+        assert "compatibility rules only" in result.output
+
+    def test_a_rejected_licence_fails_the_run(self, monkeypatch, tmp_path):
+        """
+        A licence the generator refused has no fresh analysis, whether it was refused for
+        a fabricated one or for a record that did not satisfy the dataset rules. The run
+        cannot report success over it.
+        """
+        result, _ = self._invoke_generate(
+            monkeypatch, tmp_path, set(), analysis_fallbacks=set(), rejected={"Zed"})
+
+        assert result.exit_code == 1
+        assert "Zed" in result.output
 
     def test_generate_fails_when_fallback_records_written(self, monkeypatch, tmp_path):
         """Any fallback record must be reported and fail the run."""

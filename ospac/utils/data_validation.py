@@ -96,12 +96,13 @@ KNOWN_LICENSES = {
 
 REQUIRED_TOP_FIELDS = {"id", "name", "type", "spdx_id", "properties", "requirements",
                         "limitations", "compatibility", "obligations", "key_requirements",
-                        "spdx_metadata"}
+                        "aliases", "alias_of", "spdx_metadata", "generated",
+                        "spdx_list_version"}
 
-# These four sets are the same field lists schemas/license_schema.json marks required,
+# These five sets are the same field lists schemas/license_schema.json marks required,
 # pinned to it by tests/test_data_contract.py. The two drifted apart while both looked
-# authoritative: the schema required requirements.include_notice and compatibility.notes
-# and these sets did not, so validate_data.py passed a record the schema then rejected,
+# authoritative: the schema required aliases, alias_of, generated, spdx_list_version,
+# requirements.include_notice and compatibility.notes and these sets did not, so validate_data.py passed a record the schema then rejected,
 # and the sync failed at the later gate with a message naming the schema rather than the
 # generator that produced the record.
 #

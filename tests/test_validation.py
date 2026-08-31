@@ -278,6 +278,10 @@ class TestSharedDataValidation:
                 "state_changes": False,
             },
             "limitations": {"liability": True, "warranty": True, "trademark_use": False},
+            "aliases": [],
+            "alias_of": None,
+            "generated": "2026-01-01T00:00:00",
+            "spdx_list_version": "test",
             "compatibility": {
                 "static_linking": {
                     "compatible_with": ["Apache-2.0"],
@@ -344,6 +348,10 @@ class TestRestrictionSemanticsRules:
             "properties": props,
             "requirements": reqs,
             "limitations": {"liability": True, "warranty": True, "trademark_use": False},
+            "aliases": [],
+            "alias_of": None,
+            "generated": "2026-01-01T00:00:00",
+            "spdx_list_version": "test",
             "compatibility": {
                 "static_linking": {
                     "compatible_with": ["Apache-2.0"],

@@ -35,6 +35,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   could catch it. New `LicenseAnalyzer.analysis_fallback_licenses` names that set, which
   is narrower than `fallback_licenses`; a licence whose compatibility extraction fell
   back is unaffected, because those lists are re-derived before a record is written.
+  `ospac data generate` gates on the narrower set for the same reason, and reports a
+  licence the generator refused rather than exiting 0 over it. A malformed compatibility
+  response no longer reads as a fabricated analysis: the shared JSON parser took an
+  analysis fallback whatever it was parsing, so it both mismarked the licence and
+  returned an analysis where compatibility rules were expected.
+- The schema and the validator disagreed at the top level too, on `aliases`, `alias_of`,
+  `generated` and `spdx_list_version`. A record missing `aliases` passed
+  `validate_data.py` and the schema rejected it, which is the same drift the nested
+  blocks had. The parity test covers the top level now.
 
 - A `contaminate` verdict produces a compliance result that says something (#98).
   `ComplianceResult.from_policy_result` handled every other action, so a contaminating

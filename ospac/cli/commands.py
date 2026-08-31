@@ -479,14 +479,32 @@ def generate(output_dir: str, force: bool, force_reprocess: bool, limit: Optiona
         # Fail closed if any record came from fallback instead of the LLM.
         # A partially fabricated compliance dataset must not be publishable.
         if use_llm:
-            fallback_ids = sorted(getattr(generator.llm_analyzer, "fallback_licenses", set()))
+            analyzer = generator.llm_analyzer
+            # analysis_fallback_licenses, not fallback_licenses. The wider set also counts
+            # a licence whose compatibility rules fell back, and those are re-derived from
+            # the category before a record is written, so failing on them refused a
+            # dataset that had nothing fabricated in it.
+            compat_only = (set(getattr(analyzer, "fallback_licenses", set()))
+                           - set(getattr(analyzer, "analysis_fallback_licenses", set())))
+            if compat_only:
+                click.secho(
+                    f"  {len(compat_only)} licence(s) fell back on compatibility rules "
+                    f"only; those lists are re-derived, so the records are unaffected.",
+                    fg="yellow", err=True)
+
+            # A licence the generator refused is one the dataset cannot claim to have
+            # re-checked, whether it was refused for a fabricated analysis or for a
+            # record that did not satisfy the dataset rules.
+            fallback_ids = sorted(
+                set(getattr(analyzer, "analysis_fallback_licenses", set()))
+                | set(summary.get("rejected_licenses", [])))
             if fallback_ids:
                 preview = ", ".join(fallback_ids[:10])
                 if len(fallback_ids) > 10:
                     preview += f", and {len(fallback_ids) - 10} more"
                 click.secho(
-                    f"✗ {len(fallback_ids)} license record(s) were produced by fallback analysis "
-                    f"instead of {llm_provider.upper()}: {preview}",
+                    f"✗ {len(fallback_ids)} license record(s) were not analyzed by "
+                    f"{llm_provider.upper()}: {preview}",
                     fg="red", err=True
                 )
                 # Remove the fabricated records. Delta processing uses on-disk files as
@@ -517,8 +535,8 @@ def generate(output_dir: str, force: bool, force_reprocess: bool, limit: Optiona
                         f"  Removed {removed} placeholder record(s) so the next run "
                         f"reprocesses them.", fg="yellow", err=True)
                 click.secho(
-                    "Fallback records deliberately under-permit and must not be published. "
-                    "Fix the provider errors logged above and re-run.",
+                    "A record that was not analyzed must not be published: the fallback "
+                    "deliberately under-permits. Fix the errors logged above and re-run.",
                     fg="red", err=True
                 )
                 sys.exit(1)
