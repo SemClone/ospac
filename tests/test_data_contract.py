@@ -531,3 +531,36 @@ class TestTheSchemaAndTheValidatorDescribeOneRecord:
         del record["compatibility"]["notes"]
         errors = validate_license("MIT", record)[0]
         assert any("notes" in e for e in errors), errors
+
+
+class TestTheWriterStampsItsOwnSchemaVersion:
+    """
+    build_from_full_matrix took the version from the full matrix it was handed. That file
+    predates this encoding, so the output was v2-shaped and labelled 1.x, and a consumer
+    gating on version would read integers as status objects. The gate exists to stop
+    exactly that.
+    """
+
+    def test_an_old_input_still_produces_a_v2_stamped_store(self, tmp_path):
+        from ospac.core.compatibility_matrix import CompatibilityMatrix
+        from ospac.dataset import DATA_SCHEMA_VERSION
+
+        full = tmp_path / "full.json"
+        full.write_text(json.dumps({
+            "version": "1.1.0",
+            "generated": "2026-01-01T00:00:00",
+            "compatibility": {"MIT": {"Apache-2.0": {
+                "static_linking": "compatible",
+                "dynamic_linking": "compatible",
+                "distribution": "compatible"}}},
+        }))
+
+        out = tmp_path / "out"
+        CompatibilityMatrix(str(out)).build_from_full_matrix(str(full))
+
+        metadata = json.loads((out / "metadata.json").read_text())
+        assert metadata["version"] == DATA_SCHEMA_VERSION
+        assert metadata["format"] == "interned"
+
+        pairs = json.loads((out / "relationships" / "mit.json").read_text())
+        assert isinstance(pairs["MIT"]["Apache-2.0"], int)

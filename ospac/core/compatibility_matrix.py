@@ -60,7 +60,12 @@ class CompatibilityMatrix:
 
         # Extract metadata
         self._metadata = {
-            "version": data.get("version", DATA_SCHEMA_VERSION),
+            # The writer's version, not the input's. This encodes pairs as indexes, so
+            # the output is schema 2 whatever the full matrix it was built from says.
+            # Carrying the input's version through stamped v2-shaped files as 1.x, and a
+            # consumer gating on version would then read integers as status objects,
+            # which is the mistake the gate exists to prevent.
+            "version": DATA_SCHEMA_VERSION,
             "generated": data.get("generated"),
             "total_licenses": len(compatibility),
             "format": "interned",
