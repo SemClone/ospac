@@ -55,7 +55,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   licence would stay in `index.json` and `aliases.json` while the compatibility matrix
   omitted it. A run that finds nothing new to do is checked too: it rebuilds the index
   and the alias tables from those records and returns, so it republished them without
-  reading them.
+  reading them. The stored JSON is judged as stored: rebuilding each record first
+  supplied `aliases`, `generated` and the rest from memory, so a file missing exactly
+  those passed the gate written to catch them, and consulting the current run's fallback
+  state made a `--force-reprocess` whose new analysis fell back look like corruption
+  instead of a licence that keeps the record it already has.
 - The NonCommercial coercion no longer invents a category. It exists to override one the
   model got wrong, and it was setting one where the analysis stated none, which put back
   the default just removed: the fallback shape sets every permission false. Deriving

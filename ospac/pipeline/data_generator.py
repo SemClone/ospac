@@ -1029,8 +1029,7 @@ class PolicyDataGenerator:
             # The records on disk are judged here too. This path rebuilds the index and
             # the alias tables from them and returns, so a run with nothing new to do
             # republished a record that predates these rules without ever reading it.
-            self._reject_stale_records_or_raise(
-                self._convert_yaml_format(self._load_all_processed_licenses()))
+            self._reject_stale_records_or_raise()
             # Rebuild index so deprecated-flag updates from Step 1b are reflected
             self._rebuild_index_from_files(spdx_version=spdx_data.get("version", ""))
             self._write_aliases_file(spdx_version=spdx_data.get("version", ""))
@@ -1129,7 +1128,7 @@ class PolicyDataGenerator:
         # matrix, which is a worse dataset than either leaving it alone or removing it.
         # A published record that no longer satisfies the rules is a corrupt dataset and
         # wants a person, not a partial regeneration.
-        self._reject_stale_records_or_raise(all_to_write)
+        self._reject_stale_records_or_raise()
 
         compatibility_matrix = self._generate_compatibility_matrix(all_to_write)
         obligation_database = self._generate_obligation_database(all_to_write)
@@ -1627,7 +1626,7 @@ class PolicyDataGenerator:
             }
         }
 
-    def _reject_stale_records_or_raise(self, licenses: List[Dict[str, Any]]) -> None:
+    def _reject_stale_records_or_raise(self) -> None:
         """
         Refuse to regenerate anything if a record already on disk fails the dataset rules.
 
@@ -1637,9 +1636,35 @@ class PolicyDataGenerator:
         aliases.json and be missing from the compatibility matrix, which is a worse
         dataset than either leaving it alone or removing it. A published record that no
         longer satisfies the rules is a corrupt dataset and wants a person.
+
+        The stored JSON is judged as stored. Running it back through the fresh-analysis
+        filter rebuilt each record with _assemble_record first, which supplies aliases,
+        alias_of, generated and the rest from memory, so a file missing exactly those
+        passed the gate meant to catch them. That filter also consults this run's
+        fallback state, which under --force-reprocess names a licence whose new analysis
+        fell back and would raise here, before the CLI could report it and keep the good
+        record it already has.
         """
-        _, stale = self._reject_incomplete_records(licenses)
+        from ospac.utils.data_validation import validate_license
+
+        json_dir = self.output_dir / "licenses" / "json"
+        if not json_dir.exists():
+            return
+
+        stale = {}
+        for path in sorted(json_dir.glob("*.json")):
+            try:
+                record = json.loads(path.read_text()).get("license", {})
+            except (json.JSONDecodeError, OSError) as error:
+                stale[path.stem] = [f"unreadable: {error}"]
+                continue
+            errors, _ = validate_license(path.stem, record)
+            if errors:
+                stale[path.stem] = errors
+
         if stale:
+            for license_id, errors in stale.items():
+                logger.error(f"Stale record {license_id}: {'; '.join(errors)}")
             raise RuntimeError(
                 f"{len(stale)} record(s) already on disk no longer satisfy the dataset "
                 f"rules: {', '.join(sorted(stale))}. Nothing was regenerated. Delete or "

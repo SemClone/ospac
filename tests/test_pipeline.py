@@ -810,26 +810,40 @@ class TestAnIncompleteAnalysisIsNotARecord:
         source = inspect.getsource(PolicyDataGenerator.generate_all_data)
         assert 'analysis["license_id"] = license_id' in source
 
-    def test_an_invalid_disk_record_stops_the_run_rather_than_half_regenerating(self):
+    def test_an_invalid_disk_record_stops_the_run_rather_than_half_regenerating(
+            self, tmp_path):
         """
         Dropping such a record from the write set does not unpublish it: nothing deletes
         it, and the index and alias rebuilds read it straight back off disk. It would
         stay in index.json and aliases.json while the compatibility matrix omitted it.
         """
         import inspect
+        import json as json_module
+        import shutil
 
         import pytest as _pytest
 
         from ospac.pipeline.data_generator import PolicyDataGenerator
 
-        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
-        good = self._analysis("TEST-1.0")
-        assert generator._reject_stale_records_or_raise([good]) is None
+        shipped = (Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json")
+        json_dir = tmp_path / "licenses" / "json"
+        json_dir.mkdir(parents=True)
+        for name in ("MIT.json", "Apache-2.0.json"):
+            shutil.copy(shipped / name, json_dir / name)
 
-        bad = self._analysis("TEST-5.0")
-        del bad["conditions"]["include_notice"]
-        with _pytest.raises(RuntimeError, match="TEST-5.0"):
-            generator._reject_stale_records_or_raise([bad])
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        generator.output_dir = tmp_path
+        assert generator._reject_stale_records_or_raise() is None
+
+        # Judged as stored. Rebuilding the record first supplied aliases, generated and
+        # the rest from memory, so a file missing exactly those passed the gate written
+        # to catch them.
+        record = json_module.loads((json_dir / "MIT.json").read_text())
+        del record["license"]["aliases"]
+        (json_dir / "MIT.json").write_text(json_module.dumps(record))
+
+        with _pytest.raises(RuntimeError, match="MIT"):
+            generator._reject_stale_records_or_raise()
 
         # And it is consulted before anything is derived, on both paths that publish:
         # the full run, and the one that finds nothing new to do and rebuilds anyway.
@@ -839,6 +853,32 @@ class TestAnIncompleteAnalysisIsNotARecord:
         early = source.index("No new licenses to process")
         assert (source.index("_reject_stale_records_or_raise", early)
                 < source.index("_rebuild_index_from_files", early))
+
+    def test_a_reprocess_that_falls_back_is_not_a_stale_record(self, tmp_path):
+        """
+        The stale gate must not consult this run's fallback state. Under
+        --force-reprocess a licence whose new analysis fell back is in that set, and
+        raising here pre-empted the CLI reporting it and keeping the good record on disk.
+        """
+        import shutil
+
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+        from ospac.pipeline.llm_analyzer import LicenseAnalyzer
+
+        shipped = (Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json")
+        json_dir = tmp_path / "licenses" / "json"
+        json_dir.mkdir(parents=True)
+        shutil.copy(shipped / "MIT.json", json_dir / "MIT.json")
+
+        analyzer = LicenseAnalyzer()
+        analyzer.llm_provider = None
+        analyzer._analysis_fallback_licenses.add("MIT")
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        generator.output_dir = tmp_path
+        generator.llm_analyzer = analyzer
+
+        assert generator._reject_stale_records_or_raise() is None
 
     def test_coercion_does_not_invent_a_category(self):
         """
