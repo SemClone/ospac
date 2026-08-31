@@ -3,7 +3,7 @@
 import json
 import os
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Set
+from typing import Any, Dict, List, Optional, Tuple, Set
 from enum import Enum
 
 from ospac.dataset import DATA_SCHEMA_VERSION
@@ -36,6 +36,7 @@ class CompatibilityMatrix:
         # In-memory caches
         self._compatibility_cache: Dict[str, Dict[str, str]] = {}
         self._category_cache: Dict[str, List[str]] = {}
+        self._relationship_cache: Dict[str, Dict[str, Any]] = {}
         self._metadata: Dict = {}
 
         # File paths
@@ -62,8 +63,11 @@ class CompatibilityMatrix:
             "version": data.get("version", DATA_SCHEMA_VERSION),
             "generated": data.get("generated"),
             "total_licenses": len(compatibility),
-            "format": "sparse",
-            "default_status": "unknown"
+            "format": "interned",
+            "default_status": "unknown",
+            # Filled in by _process_relationships: the distinct status values the pairs
+            # take, listed once so a pair can be an index into them.
+            "statuses": [],
         }
 
         # Categorize licenses based on patterns
@@ -119,14 +123,35 @@ class CompatibilityMatrix:
         return {k: v for k, v in categories.items() if v}
 
     def _process_relationships(self, compatibility: Dict, categories: Dict[str, List[str]]) -> None:
-        """Process and store non-default relationships efficiently."""
+        """
+        Store the pairs as indexes into the distinct statuses they take.
+
+        The old encoding wrote every pair's status object out in full, and its one
+        compaction rule was to omit a pair resolving to "unknown". No pair ever did, so
+        "sparse" was a complete 733 x 733 enumeration: 537,289 pairs and 76 MB installed,
+        of which other.json alone was 59 MB. The whole table holds four distinct status
+        objects, so the same information is the four written once and an index per pair.
+
+        This changes the file format, not what a lookup answers. `default_status` still
+        governs a pair that is absent, which stays "unknown": absence of a recorded
+        conflict is not evidence of compatibility, and inverting that to omit the 88%
+        that are compatible would turn a missing rule into a silent approval.
+        """
         print("Processing compatibility relationships...")
 
-        # Statistics
+        statuses: List[Any] = []
+        codes: Dict[str, int] = {}
+
+        def code_for(status: Any) -> int:
+            key = json.dumps(status, sort_keys=True)
+            if key not in codes:
+                codes[key] = len(statuses)
+                statuses.append(status)
+            return codes[key]
+
         total_relationships = 0
         stored_relationships = 0
 
-        # Process by category to create smaller files
         for category, licenses in categories.items():
             category_relationships = {}
 
@@ -138,7 +163,7 @@ class CompatibilityMatrix:
 
                 # Only store non-default relationships
                 non_default = {
-                    target: status
+                    target: code_for(status)
                     for target, status in license_compat.items()
                     if status and status != "unknown"
                 }
@@ -149,16 +174,18 @@ class CompatibilityMatrix:
 
                 total_relationships += len(license_compat)
 
-            # Save category relationships
             if category_relationships:
                 category_file = self.relationships_dir / f"{category}.json"
                 with open(category_file, 'w') as f:
-                    json.dump(category_relationships, f, indent=2)
+                    json.dump(category_relationships, f, separators=(",", ":"))
                 print(f"  Saved {category}: {len(category_relationships)} licenses")
 
-        compression_ratio = (1 - stored_relationships / total_relationships) * 100 if total_relationships > 0 else 0
-        print(f"\nCompression: {stored_relationships}/{total_relationships} relationships stored")
-        print(f"Space saved: {compression_ratio:.1f}%")
+        # The table is written after the pairs, because it is built while encoding them.
+        self._metadata["statuses"] = statuses
+        self._save_metadata()
+
+        print(f"\nStored {stored_relationships}/{total_relationships} relationships "
+              f"as indexes into {len(statuses)} distinct status value(s)")
 
     def _save_metadata(self) -> None:
         """Save metadata to file."""
@@ -184,6 +211,7 @@ class CompatibilityMatrix:
 
         # Load relationships on demand (lazy loading)
         self._compatibility_cache = {}
+        self._relationship_cache = {}
 
     def get_compatibility(self, license1: str, license2: str) -> str:
         """
@@ -213,40 +241,59 @@ class CompatibilityMatrix:
 
     def _load_relationship(self, license1: str, license2: str) -> str:
         """Load specific relationship from file."""
-        # Find category for license1
-        category = self._find_category(license1)
-        if not category:
+        relationships = self._category_relationships(self._find_category(license1))
+        if license1 not in relationships:
             return self._metadata.get("default_status", "unknown")
 
-        # Load category file if not cached
-        category_file = self.relationships_dir / f"{category}.json"
-        if not category_file.exists():
-            return self._metadata.get("default_status", "unknown")
+        rel = self._resolve(relationships[license1].get(license2))
 
-        with open(category_file, 'r') as f:
-            relationships = json.load(f)
-
-        # Get relationship
-        if license1 in relationships:
-            rel = relationships[license1].get(license2)
-            # Handle dict format (with static/dynamic/distribution keys)
-            if isinstance(rel, dict):
-                # Return overall compatibility based on static linking (most restrictive)
-                static = rel.get("static_linking", "unknown")
-                if static == "compatible":
-                    return "compatible"
-                elif static == "incompatible":
-                    return "incompatible"
-                elif static == "review_required":
-                    return "review_needed"
-                return static
-            # Handle string format
-            elif isinstance(rel, str):
-                return rel
-            else:
-                return self._metadata.get("default_status", "unknown")
-
+        # Handle dict format (with static/dynamic/distribution keys)
+        if isinstance(rel, dict):
+            # Return overall compatibility based on static linking (most restrictive)
+            static = rel.get("static_linking", "unknown")
+            if static == "compatible":
+                return "compatible"
+            elif static == "incompatible":
+                return "incompatible"
+            elif static == "review_required":
+                return "review_needed"
+            return static
+        # Handle string format
+        elif isinstance(rel, str):
+            return rel
         return self._metadata.get("default_status", "unknown")
+
+    def _resolve(self, stored: Any) -> Any:
+        """
+        A stored pair as its status.
+
+        Pairs are indexes into the `statuses` table in metadata.json, because the whole
+        table holds four distinct status objects and writing each one out per pair cost
+        76 MB. A pair stored as an object or a string is read as itself, so data written
+        before that change still answers.
+        """
+        if isinstance(stored, bool) or not isinstance(stored, int):
+            return stored
+        statuses = self._metadata.get("statuses") or []
+        return statuses[stored] if 0 <= stored < len(statuses) else None
+
+    def _category_relationships(self, category: Optional[str]) -> Dict[str, Any]:
+        """
+        One category's pairs, parsed once.
+
+        Every uncached lookup used to re-read and re-parse the whole file, and the
+        largest is most of the store, so a miss cost tens of megabytes of parsing.
+        """
+        if not category:
+            return {}
+        if category not in self._relationship_cache:
+            category_file = self.relationships_dir / f"{category}.json"
+            if category_file.exists():
+                with open(category_file, 'r') as f:
+                    self._relationship_cache[category] = json.load(f)
+            else:
+                self._relationship_cache[category] = {}
+        return self._relationship_cache[category]
 
     def _find_category(self, license_id: str) -> Optional[str]:
         """Find which category a license belongs to."""
@@ -255,48 +302,36 @@ class CompatibilityMatrix:
                 return category
         return None
 
+    def _linking_status(self, stored: Any) -> Optional[str]:
+        """The static-linking verdict a stored pair carries, whatever shape it is in."""
+        status = self._resolve(stored)
+        if isinstance(status, dict):
+            return status.get("static_linking")
+        if isinstance(status, str):
+            return status
+        return None
+
     def get_compatible_licenses(self, license_id: str) -> List[str]:
         """Get all licenses compatible with the given license."""
-        compatible = []
-
-        # Load all relationships for this license
-        category = self._find_category(license_id)
-        if category:
-            category_file = self.relationships_dir / f"{category}.json"
-            if category_file.exists():
-                with open(category_file, 'r') as f:
-                    relationships = json.load(f)
-
-                if license_id in relationships:
-                    for target, status in relationships[license_id].items():
-                        # Handle dict format
-                        if isinstance(status, dict):
-                            if status.get("static_linking") == "compatible":
-                                compatible.append(target)
-                        # Handle string format
-                        elif status == CompatibilityStatus.COMPATIBLE.value:
-                            compatible.append(target)
-
-        return sorted(compatible)
+        pairs = self._category_relationships(
+            self._find_category(license_id)).get(license_id, {})
+        return sorted(
+            target for target, stored in pairs.items()
+            if self._linking_status(stored) == CompatibilityStatus.COMPATIBLE.value)
 
     def get_incompatible_licenses(self, license_id: str) -> List[str]:
-        """Get all licenses incompatible with the given license."""
-        incompatible = []
+        """
+        Get all licenses incompatible with the given license.
 
-        # Load all relationships for this license
-        category = self._find_category(license_id)
-        if category:
-            category_file = self.relationships_dir / f"{category}.json"
-            if category_file.exists():
-                with open(category_file, 'r') as f:
-                    relationships = json.load(f)
-
-                if license_id in relationships:
-                    for target, status in relationships[license_id].items():
-                        if status == CompatibilityStatus.INCOMPATIBLE.value:
-                            incompatible.append(target)
-
-        return sorted(incompatible)
+        Reads the same shapes as get_compatible_licenses. It compared the stored value
+        against the string form only, so on data that stores a status object per pair,
+        which is every release that has shipped, it returned nothing at all.
+        """
+        pairs = self._category_relationships(
+            self._find_category(license_id)).get(license_id, {})
+        return sorted(
+            target for target, stored in pairs.items()
+            if self._linking_status(stored) == CompatibilityStatus.INCOMPATIBLE.value)
 
     def export_full_matrix(self, output_path: str) -> None:
         """Export back to full matrix format if needed."""
@@ -308,7 +343,10 @@ class CompatibilityMatrix:
         for category_file in self.relationships_dir.glob("*.json"):
             with open(category_file, 'r') as f:
                 relationships = json.load(f)
-                full_compatibility.update(relationships)
+            for source, pairs in relationships.items():
+                full_compatibility[source] = {
+                    target: self._resolve(stored) for target, stored in pairs.items()
+                }
 
         # Fill in defaults for all license pairs
         all_licenses = []

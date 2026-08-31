@@ -160,17 +160,21 @@ the file on disk has the extra nesting level.
 > still read the old names. See the warnings in
 > [Commands]({{ site.baseurl }}/commands/#data-show).
 
-### Compatibility is stored sparsely
+### Compatibility pairs are stored as indexes
 
-`compatibility/metadata.json` records `"format": "sparse"` and
-`"default_status": "unknown"`. The writer's rule is that a pair resolving to `unknown` is
-not written, and licenses are grouped into families in `categories.json` so that
+`compatibility/metadata.json` records `"format": "interned"` and
+`"default_status": "unknown"`. Licenses are grouped into families in `categories.json` so
 `relationships/` can be split into one file per source family.
 
-In practice the current data has no `unknown` statuses, so nothing is omitted and all 733
-by 733 pairs are on disk: 537,289 of them, about 73 MB. "Sparse" describes the intent, not
-today's file sizes. If you are consuming `relationships/` directly, read
-[Data contract]({{ site.baseurl }}/data-contract/) first, which documents the pair shape.
+All 733 by 733 pairs are on disk, 537,289 of them, and between them they take four
+distinct status values. Those four are listed once in `metadata.json` under `statuses`,
+and each pair is an index into that list. Written out in full the store was about 76 MB;
+as indexes it is under 10 MB. If you are consuming `relationships/` directly, read
+[Data contract]({{ site.baseurl }}/data-contract/) first, which documents the pair shape
+and how to resolve one.
+
+The label was `sparse` before, for a writer's rule that omits a pair resolving to
+`unknown`. No pair does, so nothing was ever omitted.
 
 The consequence worth internalising: a pair with no stored rule resolves to `unknown`, not
 to compatible. Absence of a recorded conflict is not evidence of compatibility.

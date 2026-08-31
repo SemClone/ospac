@@ -1,7 +1,29 @@
 {
-  "version": "1.1.0",
+  "version": "2.0.0",
   "generated": "2026-08-15T11:21:20.451440",
   "total_licenses": 733,
-  "format": "sparse",
-  "default_status": "unknown"
+  "format": "interned",
+  "default_status": "unknown",
+  "statuses": [
+    {
+      "static_linking": "compatible",
+      "dynamic_linking": "compatible",
+      "distribution": "compatible"
+    },
+    {
+      "static_linking": "review_required",
+      "dynamic_linking": "review_required",
+      "distribution": "review_required"
+    },
+    {
+      "static_linking": "incompatible",
+      "dynamic_linking": "incompatible",
+      "distribution": "incompatible"
+    },
+    {
+      "static_linking": "review_required",
+      "dynamic_linking": "compatible",
+      "distribution": "review_required"
+    }
+  ]
 }

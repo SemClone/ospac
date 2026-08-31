@@ -708,11 +708,20 @@ class TestRelationshipsTreeSoundness:
 
     @staticmethod
     def _family(name):
+        """
+        One family's pairs, with each status resolved.
+
+        Pairs are stored as indexes into the statuses table in metadata.json, because
+        537,289 of them take four distinct values and writing each one out cost 76 MB.
+        The assertions below are about the statuses, so they are resolved here.
+        """
         import json
 
-        path = (Path(__file__).parent.parent / "ospac" / "data" / "compatibility"
-                / "relationships" / f"{name}.json")
-        return json.loads(path.read_text())
+        compat = (Path(__file__).parent.parent / "ospac" / "data" / "compatibility")
+        statuses = json.loads((compat / "metadata.json").read_text())["statuses"]
+        tree = json.loads((compat / "relationships" / f"{name}.json").read_text())
+        return {source: {target: statuses[code] for target, code in pairs.items()}
+                for source, pairs in tree.items()}
 
     def test_permissive_into_copyleft_is_compatible(self):
         mit = self._family("mit")["MIT"]
@@ -840,10 +849,11 @@ class TestKnownPairEnforcement:
         assert load("GPL-2.0").is_compatible_with(load("GPL-2.0-only")) is True
         assert load("GPL-3.0+").is_compatible_with(load("GPL-3.0-or-later")) is True
 
-        tree = json.loads((Path(__file__).parent.parent / "ospac" / "data"
-                           / "compatibility" / "relationships" / "gpl.json").read_text())
-        assert tree["GPL-2.0"]["GPL-2.0-only"]["static_linking"] == "compatible"
-        assert tree["GPL-3.0+"]["BSD-4-Clause"]["static_linking"] == "incompatible"
+        compat = Path(__file__).parent.parent / "ospac" / "data" / "compatibility"
+        statuses = json.loads((compat / "metadata.json").read_text())["statuses"]
+        tree = json.loads((compat / "relationships" / "gpl.json").read_text())
+        assert statuses[tree["GPL-2.0"]["GPL-2.0-only"]]["static_linking"] == "compatible"
+        assert statuses[tree["GPL-3.0+"]["BSD-4-Clause"]]["static_linking"] == "incompatible"
 
 
 class TestLicenseAliases:

@@ -92,6 +92,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   policy author wrote never arrived. It is `NON_COMPLIANT` and carries its message, the
   same as `deny`, and the two stay distinguishable by action and by aggregation rank.
 
+## [Unreleased]
+
+### Changed
+
+**The compatibility pair store holds indexes, not repeated status objects** (#84)
+- `relationships/` was 76 MB installed, of which `other.json` alone was 59 MB, and it is
+  a complete 733 by 733 enumeration: 537,289 pairs. Between them those pairs take four
+  distinct status values, so each one was carrying a copy of an object the store already
+  held 134,000 times over. The four are listed once in `compatibility/metadata.json`
+  under `statuses` and a pair is an index into that list. Under 10 MB, and `pip install
+  ospac` no longer lands 78 MB in site-packages.
+- Lookups answer exactly what they answered before, verified pair by pair across a sample
+  of 4,000. `default_status` stays `unknown`: which pairs exist did not change, so the 88%
+  that are compatible are still stored rather than assumed, and a pair that cannot be
+  found still resolves to unknown rather than to compatible.
+- `"format"` now reads `interned`. It said `sparse`, which described a writer's rule that
+  omits a pair resolving to `unknown`; no pair ever does, so nothing was ever omitted and
+  the label promised a small file that was never delivered.
+- A test fails if the store degenerates back to writing each pair out, and another if a
+  pair stops being an index into the table.
+- `get_incompatible_licenses` returns results again. It compared the stored value against
+  the string form only, so on data that stores a status per pair, which is every release
+  that has shipped, it returned an empty list for every license.
+- A category file is parsed once rather than on every uncached lookup. The largest is most
+  of the store, so a miss cost tens of megabytes of parsing.
+
+### Data schema
+
+- `version` is `2.0.0` in `index.json`, `aliases.json` and `compatibility/metadata.json`.
+  The pair value changed from an object to an integer, which the export contract makes a
+  MAJOR bump. Nothing else about the published surface changed: the per-license records,
+  the alias tables and the category files are untouched, and a consumer that reads
+  compatibility through `ospac` rather than off disk needs no change.
+
 ## [1.8.0] - 2026-08-30
 
 ### Fixed

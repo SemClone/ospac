@@ -28,7 +28,8 @@ SCHEMA_FILE = Path(__file__).parent.parent / "schemas" / "license_schema.json"
 INDEX_KEYS = {"version", "generated", "spdx_list_version", "total_licenses", "licenses"}
 INDEX_RECORD_KEYS = {"name", "category", "file", "is_deprecated", "obligations_count"}
 ALIASES_KEYS = {"version", "spdx_list_version", "aliases", "ambiguous", "never_resolve"}
-COMPAT_METADATA_KEYS = {"version", "generated", "total_licenses", "format", "default_status"}
+COMPAT_METADATA_KEYS = {"version", "generated", "total_licenses", "format",
+                        "default_status", "statuses"}
 LICENSE_RECORD_KEYS = {
     "id", "name", "type", "spdx_id", "properties", "requirements", "limitations",
     "compatibility", "obligations", "key_requirements", "aliases", "alias_of",
@@ -143,11 +144,11 @@ class TestCompatibilityMetadata:
     def test_top_level_keys(self):
         assert set(_load("compatibility", "metadata.json")) == COMPAT_METADATA_KEYS
 
-    def test_sparse_format_and_unknown_default_are_still_the_contract(self):
+    def test_interned_format_and_unknown_default_are_still_the_contract(self):
         metadata = _load("compatibility", "metadata.json")
         # A consumer that treats an absent pair as compatible is wrong, and the doc
         # says so. If either value ever changes, that reasoning changes with it.
-        assert metadata["format"] == "sparse"
+        assert metadata["format"] == "interned"
         assert metadata["default_status"] == "unknown"
 
 
@@ -170,13 +171,50 @@ class TestCompatibilityRelationships:
         return loaded
 
     def test_pairs_use_the_three_documented_contexts(self, relationships):
-        found = set()
-        for family in relationships.values():
-            for targets in family.values():
-                for pair in targets.values():
-                    found.add(frozenset(pair))
+        statuses = _load("compatibility", "metadata.json")["statuses"]
+        found = {frozenset(status) for status in statuses}
         expected = {frozenset({"static_linking", "dynamic_linking", "distribution"})}
         assert found == expected, f"pair context keys changed: {[sorted(k) for k in found]}"
+
+    def test_every_pair_is_an_index_into_the_status_table(self, relationships):
+        statuses = _load("compatibility", "metadata.json")["statuses"]
+        for family, tree in relationships.items():
+            for source, targets in tree.items():
+                for target, stored in targets.items():
+                    assert isinstance(stored, int) and not isinstance(stored, bool), (
+                        f"{family}: {source} -> {target} is {type(stored).__name__}, "
+                        f"not an index")
+                    assert 0 <= stored < len(statuses), (
+                        f"{family}: {source} -> {target} indexes outside the table")
+
+    def test_the_store_has_not_degenerated_back_to_writing_each_pair_out(
+            self, relationships):
+        """
+        The pairs are a complete 733x733 enumeration, because the one compaction rule
+        was to omit a pair resolving to `unknown` and no pair ever does. That is fine
+        while a pair costs an index; it cost 76 MB when each one was written out in
+        full, of which other.json alone was 59 MB.
+
+        The number of pairs is not asserted, because it grows with every SPDX refresh.
+        What is asserted is that they stay indexes into a table far smaller than they
+        are, which is the property that made the size collapse.
+        """
+        statuses = _load("compatibility", "metadata.json")["statuses"]
+        pairs = sum(len(targets) for tree in relationships.values()
+                    for targets in tree.values())
+
+        assert len(statuses) < 100, (
+            f"{len(statuses)} distinct statuses: the table is meant to be the few "
+            f"values the pairs actually take")
+        assert pairs > len(statuses) * 100, (
+            "far fewer pairs than expected per distinct status, which is what a store "
+            "writing each pair out in full would look like")
+
+        installed = sum(path.stat().st_size for path in
+                        (DATA_DIR / "compatibility" / "relationships").glob("*.json"))
+        assert installed < 40_000_000, (
+            f"relationships/ is {installed / 1e6:.0f} MB; it was 76 MB when each pair "
+            f"carried its own status object and 9 MB after they became indexes")
 
     def test_distribution_context_is_unique_to_the_pair_store(self):
         # The doc warns that the pair rules carry a third context the per-license record
