@@ -146,45 +146,59 @@ ospac makes no network calls and neither should a compliance check.
 
 ### compatibility/
 
-`metadata.json` publishes `version`, `generated`, `total_licenses`, `format`, and
-`default_status`. `categories.json` maps a family name to the license ids in it.
-`relationships/<family>.json` holds the pair rules.
+`metadata.json` publishes `version`, `generated`, `total_licenses`, `format`,
+`default_status`, and `statuses`. `categories.json` maps a family name to the license ids
+in it. `relationships/<family>.json` holds the pair rules.
 
-A relationship file is keyed by source license id, then by target license id, then by
-linking context:
+`statuses` lists the distinct status values the pairs take, once:
 
 ```json
+// compatibility/metadata.json
 {
-  "Apache-1.0": {
-    "0BSD": {
-      "static_linking": "compatible",
-      "dynamic_linking": "compatible",
-      "distribution": "compatible"
-    }
-  }
+  "format": "interned",
+  "default_status": "unknown",
+  "statuses": [
+    { "static_linking": "compatible", "dynamic_linking": "compatible",
+      "distribution": "compatible" },
+    { "static_linking": "review_required", "dynamic_linking": "review_required",
+      "distribution": "review_required" }
+  ]
 }
 ```
+
+A relationship file is keyed by source license id, then by target license id, and the
+value is an index into that list:
+
+```json
+// compatibility/relationships/mit.json
+{
+  "MIT": { "Apache-2.0": 0, "GPL-3.0-only": 0, "CC-BY-NC-4.0": 1 }
+}
+```
+
+A pair is an index into `statuses` in `metadata.json`, not a status object. All 537,289
+pairs take four distinct values between them, so the four are written once and each pair
+costs an integer. Written out in full they cost 76 MB, of which `other.json` alone was
+59 MB; as indexes the same information is under 10 MB. Resolve a pair by reading
+`metadata.json` once and indexing into `statuses`.
+
+`"format"` says `interned` for that reason. It said `sparse` before, which described the
+writer's one compaction rule, that a pair resolving to `unknown` is omitted. No pair ever
+resolves to `unknown`, so nothing was ever omitted and the store was a complete
+enumeration wearing a label that promised otherwise.
 
 The family in the filename groups the *source* license only. Targets are every license, so
 `apache.json` contains rows for the three Apache sources against all 733 targets. Note that
 the pair rules carry a third context, `distribution`, which the per-license record's
 `compatibility` block does not have.
 
-**Budget for the size.** `relationships/` is currently about 73 MB across ten files, and
-`other.json` alone is 59 MB. Stream it or index it; do not plan on holding it in memory
-next to everything else you are doing.
-
-That size is the thing to know about `"format": "sparse"`, because the label promises more
-than the data delivers. The intent of the format is that pairs resolving to `unknown` are
-omitted. In the shipped data there are no `unknown` statuses, so nothing is omitted and the
-store is a full enumeration: all 733 by 733 pairs, 537,289 of them, are present. Treat
-`sparse` as a statement about the writer's rule, not as a promise that the file is small.
-
 `"default_status": "unknown"` is still the rule you must implement for a pair you cannot
 find: **unknown, not compatible**. Absence of a recorded conflict is not evidence of its
 absence. A consumer that treats a missing pair as approval will ship a violation and blame
 the dataset. Today no pair is missing, but that is a property of the current data and not a
-promise, so code the default anyway.
+promise, so code the default anyway. Interning changed what a pair looks like on disk and
+nothing about which pairs exist, so this rule is unaffected: the 88% of pairs that are
+compatible are still stored, not assumed.
 
 Note also that the family names in `categories.json` (`gpl`, `bsd`, `cc`, `apache` and so
 on) are a different taxonomy from the `type`/`category` field on a license (`permissive`,

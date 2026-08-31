@@ -22,7 +22,7 @@ from typing import FrozenSet, Tuple
 # purely additive field, PATCH for a correction to the contract that does not change
 # the shape. A monthly SPDX refresh changes `generated` and `spdx_list_version` and
 # leaves this alone.
-DATA_SCHEMA_VERSION = "1.1.0"
+DATA_SCHEMA_VERSION = "2.0.0"
 
 _INDEX_FILE = Path(__file__).parent / "data" / "index.json"
 
