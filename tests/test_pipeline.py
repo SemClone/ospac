@@ -810,6 +810,22 @@ class TestAnIncompleteAnalysisIsNotARecord:
         source = inspect.getsource(PolicyDataGenerator.generate_all_data)
         assert 'analysis["license_id"] = license_id' in source
 
+    def test_an_invalid_disk_record_stops_the_run_rather_than_half_regenerating(self):
+        """
+        Dropping such a record from the write set does not unpublish it: nothing deletes
+        it, and the index and alias rebuilds read it straight back off disk. It would
+        stay in index.json and aliases.json while the compatibility matrix omitted it.
+        """
+        import inspect
+
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+
+        source = inspect.getsource(PolicyDataGenerator.generate_all_data)
+        stop = source.index("if stale:")
+        derive = source.index("_generate_compatibility_matrix")
+        assert stop < derive, "the check must run before anything is derived"
+        assert "raise RuntimeError" in source[stop:derive]
+
     def test_a_written_record_satisfies_the_normative_schema(self, tmp_path):
         import json
 

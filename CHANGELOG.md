@@ -49,7 +49,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   value, so `type: null` validated clean for any licence outside the known set.
 - The records already on disk are judged as well, not only the batch being analysed. They
   are rewritten from the merged set every run, so one that predates these rules, or one a
-  delta run never revisits, was republished unexamined.
+  delta run never revisits, was republished unexamined. Finding one stops the run before
+  anything is derived, because dropping it from the write set does not unpublish it:
+  nothing deletes the file and the index and alias rebuilds read it back off disk, so the
+  licence would stay in `index.json` and `aliases.json` while the compatibility matrix
+  omitted it.
 - A record is identified by the licence the pipeline asked about, not by the id the model
   echoed back. Filenames, the merge, rejection and the fallback match all key off it, so
   a model answering about one licence while echoing another's id overwrote that record

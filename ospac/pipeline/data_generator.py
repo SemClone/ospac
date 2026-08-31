@@ -1107,8 +1107,20 @@ class PolicyDataGenerator:
         # The merged set is judged too, not only the current batch. Everything already on
         # disk is rewritten from here every run, so a record that predates these rules, or
         # one a delta run never revisits, was republished unexamined.
-        all_to_write, stale = self._reject_incomplete_records(all_to_write)
-        rejected |= stale
+        #
+        # Nothing is derived if that finds anything. Dropping such a record from the write
+        # set does not unpublish it: _generate_modular_license_files does not delete, and
+        # the index and alias rebuilds read the file straight back off disk. The licence
+        # would stay in index.json and aliases.json and be missing from the compatibility
+        # matrix, which is a worse dataset than either leaving it alone or removing it.
+        # A published record that no longer satisfies the rules is a corrupt dataset and
+        # wants a person, not a partial regeneration.
+        _, stale = self._reject_incomplete_records(all_to_write)
+        if stale:
+            raise RuntimeError(
+                f"{len(stale)} record(s) already on disk no longer satisfy the dataset "
+                f"rules: {', '.join(sorted(stale))}. Nothing was regenerated. Delete or "
+                f"repair them and re-run; the errors are logged above.")
 
         compatibility_matrix = self._generate_compatibility_matrix(all_to_write)
         obligation_database = self._generate_obligation_database(all_to_write)
