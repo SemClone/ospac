@@ -74,9 +74,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   unknown or unrecognized, manual review required" as the compatibility note of a licence
   whose category was known.
 - The schema and the validator disagreed at the top level too, on `aliases`, `alias_of`,
-  `generated` and `spdx_list_version`. A record missing `aliases` passed
-  `validate_data.py` and the schema rejected it, which is the same drift the nested
-  blocks had. The parity test covers the top level now.
+  `generated` and `spdx_list_version`, and inside `spdx_metadata` on `is_osi_approved`,
+  `is_fsf_libre` and `is_deprecated`. A record missing `aliases`, or one of those flags,
+  passed `validate_data.py` and the schema rejected it, which is the same drift the
+  nested blocks had. The parity test covers every block and the top level now.
+- A licence whose current analysis was refused keeps the record it already has, untouched.
+  It stays in the write set so the compatibility matrix and the index agree about which
+  licences exist, but rewriting the file restamped `generated` and `spdx_list_version` on
+  a record that had no fresh analysis, so it claimed to have been re-checked when it was
+  not.
 
 - A `contaminate` verdict produces a compliance result that says something (#98).
   `ComplianceResult.from_policy_result` handled every other action, so a contaminating

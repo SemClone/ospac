@@ -880,6 +880,48 @@ class TestAnIncompleteAnalysisIsNotARecord:
 
         assert generator._reject_stale_records_or_raise() is None
 
+    def test_a_rejected_record_is_left_exactly_as_it_was(self, tmp_path):
+        """
+        A rejected licence stays in the write set so the matrix and the index agree about
+        which licences exist, but rewriting its file restamps generated and
+        spdx_list_version on a record that had no fresh analysis, so the record would
+        claim to have been re-checked when it was not.
+        """
+        from ospac.pipeline.data_generator import PolicyDataGenerator
+
+        generator = PolicyDataGenerator.__new__(PolicyDataGenerator)
+        generator.output_dir = tmp_path
+        generator._generate_modular_license_files(
+            [self._analysis("TEST-1.0"), self._analysis("TEST-8.0")], {}, {},
+            spdx_version="first")
+
+        record = tmp_path / "licenses" / "json" / "TEST-8.0.json"
+        before = record.read_text()
+
+        generator._generate_modular_license_files(
+            [self._analysis("TEST-1.0"), self._analysis("TEST-8.0")], {}, {},
+            spdx_version="second", skip={"TEST-8.0"})
+
+        assert record.read_text() == before
+        assert '"second"' in (tmp_path / "licenses" / "json" / "TEST-1.0.json").read_text()
+
+    def test_the_spdx_metadata_block_is_pinned_too(self):
+        import json as json_module
+
+        from ospac.utils.data_validation import validate_license
+
+        # Third instance of the same drift: the schema required the three flags and the
+        # validator did not name them, so a record missing one passed validate_data.py
+        # for any licence outside the known set and the schema rejected it.
+        record = json_module.loads(
+            (Path(__file__).parent.parent / "ospac" / "data" / "licenses" / "json"
+             / "Zed.json").read_text())["license"]
+        assert validate_license("Zed", record)[0] == []
+
+        del record["spdx_metadata"]["is_osi_approved"]
+        assert any("spdx_metadata.is_osi_approved" in e
+                   for e in validate_license("Zed", record)[0])
+
     def test_coercion_does_not_invent_a_category(self):
         """
         The NonCommercial coercion exists to override a category the model got wrong, and

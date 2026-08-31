@@ -99,7 +99,7 @@ REQUIRED_TOP_FIELDS = {"id", "name", "type", "spdx_id", "properties", "requireme
                         "aliases", "alias_of", "spdx_metadata", "generated",
                         "spdx_list_version"}
 
-# These five sets are the same field lists schemas/license_schema.json marks required,
+# These six sets are the same field lists schemas/license_schema.json marks required,
 # pinned to it by tests/test_data_contract.py. The two drifted apart while both looked
 # authoritative: the schema required aliases, alias_of, generated, spdx_list_version,
 # requirements.include_notice and compatibility.notes and these sets did not, so validate_data.py passed a record the schema then rejected,
@@ -118,6 +118,7 @@ REQUIRED_LIMITATIONS = {"liability", "warranty", "trademark_use"}
 REQUIRED_COMPAT_KEYS = {"static_linking", "dynamic_linking",
                         "contamination_effect", "notes"}
 REQUIRED_COMPAT_LINK_KEYS = {"compatible_with", "incompatible_with", "requires_review"}
+REQUIRED_SPDX_METADATA = {"is_osi_approved", "is_fsf_libre", "is_deprecated"}
 
 # 'noncommercial' covers licenses that permit use, modification and
 # redistribution but forbid commercial use (CC-BY-NC-*, PolyForm-Noncommercial).
@@ -209,6 +210,11 @@ def validate_license(lid: str, lic: dict) -> tuple[list, list]:
     lims = lic.get("limitations", {})
     for f in REQUIRED_LIMITATIONS - set(lims.keys()):
         err(f"limitations.{f} missing")
+
+    # spdx_metadata
+    metadata = lic.get("spdx_metadata", {})
+    for f in REQUIRED_SPDX_METADATA - set(metadata.keys()):
+        err(f"spdx_metadata.{f} missing")
 
     # compatibility
     compat = lic.get("compatibility", {})

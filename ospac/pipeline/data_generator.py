@@ -1135,9 +1135,13 @@ class PolicyDataGenerator:
 
         # Step 5: Generate modular per-license files and rebuild the full index
         logger.info("Generating modular per-license files...")
+        # The rejected ids stay in all_to_write so the matrix and the index agree about
+        # which licences exist, but their files are left alone. Rewriting one restamps
+        # generated and spdx_list_version on a record that had no fresh analysis, which
+        # is the record claiming to have been re-checked when it was not.
         self._generate_modular_license_files(
             all_to_write, compatibility_matrix, obligation_database,
-            spdx_version=spdx_data.get("version", "")
+            spdx_version=spdx_data.get("version", ""), skip=rejected
         )
         # Rebuild index from ALL on-disk files so delta runs don't truncate the index
         self._rebuild_index_from_files(spdx_version=spdx_data.get("version", ""))
@@ -1726,25 +1730,35 @@ class PolicyDataGenerator:
     def _generate_modular_license_files(self, licenses: List[Dict[str, Any]],
                                       compatibility_matrix: Dict[str, Any],
                                       obligation_database: Dict[str, Any],
-                                      spdx_version: str = "") -> None:
-        """Generate individual license files with obligations and compatibility data."""
+                                      spdx_version: str = "",
+                                      skip: Optional[Set[str]] = None) -> None:
+        """
+        Generate individual license files with obligations and compatibility data.
+
+        `skip` are licences whose current analysis was refused. They keep the record they
+        already have: rewriting it restamps generated and spdx_list_version on something
+        that had no fresh analysis, so the record would claim to have been re-checked.
+        """
+        skip = skip or set()
         # Write to licenses/json/ to match the established on-disk layout
         licenses_json_dir = self.output_dir / "licenses" / "json"
         licenses_json_dir.mkdir(parents=True, exist_ok=True)
 
         generated_at = datetime.now().isoformat()
 
+        written = 0
         for license_data in licenses:
             license_id = license_data.get("license_id")
-            if not license_id:
+            if not license_id or license_id in skip:
                 continue
 
+            written += 1
             license_file = licenses_json_dir / f"{license_id}.json"
             with open(license_file, "w") as f:
                 json.dump(self._assemble_record(license_data, generated_at,
                                                 spdx_version), f, indent=2)
 
-        logger.info(f"Wrote {len(licenses)} license files to {licenses_json_dir}")
+        logger.info(f"Wrote {written} license files to {licenses_json_dir}")
         # Index is rebuilt from ALL files after the delta, see _rebuild_index_from_files
 
     @staticmethod

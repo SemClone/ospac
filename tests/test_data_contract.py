@@ -450,7 +450,8 @@ class TestTheSchemaAndTheValidatorDescribeOneRecord:
         for name, constant in (("properties", dv.REQUIRED_PROPERTIES),
                                ("requirements", dv.REQUIRED_REQUIREMENTS),
                                ("limitations", dv.REQUIRED_LIMITATIONS),
-                               ("compatibility", dv.REQUIRED_COMPAT_KEYS)):
+                               ("compatibility", dv.REQUIRED_COMPAT_KEYS),
+                               ("spdx_metadata", dv.REQUIRED_SPDX_METADATA)):
             assert self._required(schema, blocks[name]) == constant, (
                 f"{name}: schema and validator disagree on which keys are required")
 
