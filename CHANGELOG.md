@@ -5,126 +5,93 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
-
-### Fixed
-
-- The normative schema and the dataset validator describe one record again (#87).
-  `schemas/license_schema.json` required `requirements.include_notice` and
-  `compatibility.notes` and `ospac/utils/data_validation.py` did not, so
-  `validate_data.py` passed a record the schema then rejected. In the monthly sync that
-  is a green gate followed by a red one whose message names the schema, when the fault is
-  an analysis response that dropped a key. The sets are reconciled, a missing required
-  inner key is an error rather than a warning so the first gate is the one that explains
-  it, and a test fails if the two ever diverge again, following the schema's `$ref` so it
-  cannot pass vacuously.
-- The generator checks a record against those rules before deriving anything from it. A
-  licence whose analysis came back incomplete is skipped with the missing field named,
-  rather than written with the gap or completed with a default: `disclose_source: false`
-  on a copyleft licence would be wrong and silent, which is the failure that once
-  recorded every NonCommercial licence as commercially usable. The check runs before the
-  compatibility matrix, the obligation database and the summary counts are built, so a
-  skipped licence does not leave relationships and a count behind with no record to match
-  them, and `generation_summary.json` names what was rejected.
-- The same check refuses a fabricated analysis. With no provider configured
-  `analyze_license` returns every permission false and every condition true, and that was
-  written out as a record claiming MIT forbids commercial use and requires source
-  disclosure. The analyzer is asked which licences it answered for itself rather than
-  inferring it from the record: for an id outside `KNOWN_LICENSES` the fabricated shape
-  coerces to `noncommercial` and is then internally consistent, so nothing in the rules
-  could catch it. New `LicenseAnalyzer.analysis_fallback_licenses` names that set, which
-  is narrower than `fallback_licenses`; a licence whose compatibility extraction fell
-  back is unaffected, because those lists are re-derived before a record is written.
-  `ospac data generate` gates on the narrower set for the same reason, and reports a
-  licence the generator refused rather than exiting 0 over it. A malformed compatibility
-  response no longer reads as a fabricated analysis: the shared JSON parser took an
-  analysis fallback whatever it was parsing, so it both mismarked the licence and
-  returned an analysis where compatibility rules were expected.
-- A record whose analysis states no category is refused rather than published as
-  permissive. Both the record assembler and the on-disk conversion defaulted a missing
-  type to `permissive`, which gave it `compatible_with: ["category:any"]`. That is the
-  silent permissive fallback this pipeline already had to fix once, sitting on the path
-  that rewrites every record on every run. A `type` that is present but empty is an error
-  too: the key satisfied the required-field check and the domain check skipped a falsy
-  value, so `type: null` validated clean for any licence outside the known set.
-- The records already on disk are judged as well, not only the batch being analysed. They
-  are rewritten from the merged set every run, so one that predates these rules, or one a
-  delta run never revisits, was republished unexamined. Finding one stops the run before
-  anything is derived, because dropping it from the write set does not unpublish it:
-  nothing deletes the file and the index and alias rebuilds read it back off disk, so the
-  licence would stay in `index.json` and `aliases.json` while the compatibility matrix
-  omitted it. A run that finds nothing new to do is checked too: it rebuilds the index
-  and the alias tables from those records and returns, so it republished them without
-  reading them. The stored JSON is judged as stored: rebuilding each record first
-  supplied `aliases`, `generated` and the rest from memory, so a file missing exactly
-  those passed the gate written to catch them, and consulting the current run's fallback
-  state made a `--force-reprocess` whose new analysis fell back look like corruption
-  instead of a licence that keeps the record it already has.
-- The NonCommercial coercion no longer invents a category. It exists to override one the
-  model got wrong, and it was setting one where the analysis stated none, which put back
-  the default just removed: the fallback shape sets every permission false. Deriving
-  compatibility from an absent category also raised, and the per-licence handler swallows
-  that, so the licence was dropped without reaching the gate or the rejected list.
-- A record is identified by the licence the pipeline asked about, not by the id the model
-  echoed back. Filenames, the merge, rejection and the fallback match all key off it, so
-  a model answering about one licence while echoing another's id overwrote that record
-  and left its own unprocessed, to be re-queued every month.
-- A compatibility fallback no longer leaves prose in the record. Its lists are re-derived
-  from the category, but its note survived that, so a fallback published "Category
-  unknown or unrecognized, manual review required" as the compatibility note of a licence
-  whose category was known.
-- The schema and the validator disagreed at the top level too, on `aliases`, `alias_of`,
-  `generated` and `spdx_list_version`, and inside `spdx_metadata` on `is_osi_approved`,
-  `is_fsf_libre` and `is_deprecated`. A record missing `aliases`, or one of those flags,
-  passed `validate_data.py` and the schema rejected it, which is the same drift the
-  nested blocks had. The parity test covers every block and the top level now.
-- A licence whose current analysis was refused keeps the record it already has, untouched.
-  It stays in the write set so the compatibility matrix and the index agree about which
-  licences exist, but rewriting the file restamped `generated` and `spdx_list_version` on
-  a record that had no fresh analysis, so it claimed to have been re-checked when it was
-  not.
-
-- A `contaminate` verdict produces a compliance result that says something (#98).
-  `ComplianceResult.from_policy_result` handled every other action, so a contaminating
-  one matched no branch and kept the constructed `UNKNOWN`: `is_compliant` and
-  `needs_review` both answered no and `violations` was empty, so a caller branching on
-  those two and treating the remainder as fine read it as fine, and the message the
-  policy author wrote never arrived. It is `NON_COMPLIANT` and carries its message, the
-  same as `deny`, and the two stay distinguishable by action and by aggregation rank.
-
-## [Unreleased]
+## [1.9.0] - 2026-08-30
 
 ### Changed
 
 **The compatibility pair store holds indexes, not repeated status objects** (#84)
-- `relationships/` was 76 MB installed, of which `other.json` alone was 59 MB, and it is
-  a complete 733 by 733 enumeration: 537,289 pairs. Between them those pairs take four
-  distinct status values, so each one was carrying a copy of an object the store already
-  held 134,000 times over. The four are listed once in `compatibility/metadata.json`
-  under `statuses` and a pair is an index into that list. Under 10 MB, and `pip install
-  ospac` no longer lands 78 MB in site-packages.
-- Lookups answer exactly what they answered before, verified pair by pair across a sample
-  of 4,000. `default_status` stays `unknown`: which pairs exist did not change, so the 88%
-  that are compatible are still stored rather than assumed, and a pair that cannot be
-  found still resolves to unknown rather than to compatible.
-- `"format"` now reads `interned`. It said `sparse`, which described a writer's rule that
-  omits a pair resolving to `unknown`; no pair ever does, so nothing was ever omitted and
-  the label promised a small file that was never delivered.
+- `relationships/` was 76 MB installed, `other.json` alone 59 MB, and it is a complete
+  733 by 733 enumeration: 537,289 pairs. Between them those pairs take four distinct
+  status values, so each one carried a copy of an object the store already held over
+  130,000 times. The four are listed once in `compatibility/metadata.json` under
+  `statuses` and a pair is an index into that list. 8.8 MB, and `pip install ospac` lands
+  10 MB of data rather than 78 MB.
+- Lookups answer what they answered before, checked pair by pair over a sample of 4,000.
+  Which pairs exist did not change, so the 88% that are compatible are still stored
+  rather than assumed, and `default_status` stays `unknown`: a pair that cannot be found
+  resolves to unknown, never to compatible.
+- `distribution` is kept. It is byte for byte identical to `static_linking` in all
+  537,289 pairs, but once a pair is an index it costs nothing, and the two matching today
+  is not a promise they always will.
+- `"format"` reads `interned`. It read `sparse`, which described a rule that omits a pair
+  resolving to `unknown`; none ever does, so nothing was ever omitted.
 - A test fails if the store degenerates back to writing each pair out, and another if a
-  pair stops being an index into the table.
+  pair stops being an index.
+
+### Fixed
+
+**Nothing unusable reaches the dataset** (#87)
+- `schemas/license_schema.json` and `ospac/utils/data_validation.py` disagreed about
+  which keys are required, at the top level, inside the nested blocks and inside
+  `spdx_metadata`. `validate_data.py` passed records the schema then rejected, so the
+  monthly sync failed at a later gate with a message naming the schema when the fault was
+  an analysis that dropped a key. The sets are reconciled, a missing required key is an
+  error rather than a warning so the gate that runs first is the one that explains it,
+  and a test fails if they diverge again, following the schema's `$ref` so it cannot pass
+  vacuously.
+- A record is checked before anything is derived from it, and one that fails is refused
+  rather than repaired. Filling a missing boolean with `false` is a decision:
+  `disclose_source: false` on a copyleft license is wrong and silent, which is the
+  failure that once recorded every NonCommercial license as commercially usable.
+- A missing category is refused rather than published as `permissive` with
+  `compatible_with: ["category:any"]`, on either of the two paths that defaulted it. The
+  NonCommercial coercion no longer invents one where the analysis stated none, and a
+  `type` that is present but empty is an error: the key satisfied the required-field
+  check while the domain check skipped a falsy value.
+- A fabricated analysis is refused. With no provider configured, `analyze_license`
+  returns every permission false and every condition true, which coerces to
+  `noncommercial` and is then internally consistent, so no rule could catch it from its
+  shape. The analyzer is asked what it answered for itself instead. New
+  `LicenseAnalyzer.analysis_fallback_licenses` names that set; it is narrower than
+  `fallback_licenses`, because a compatibility extraction that fell back leaves nothing
+  in the record and refusing on it discarded good analyses.
+- The records already on disk are judged too, as stored. They are rewritten from the
+  merged set on every run, so one predating these rules was republished unexamined,
+  including on the path that finds nothing new to do and rebuilds the index and alias
+  tables anyway. Finding one stops the run rather than regenerating around it: dropping
+  it from the write set does not unpublish it, so the license would stay in `index.json`
+  and `aliases.json` while the compatibility matrix omitted it.
+- A license whose current analysis was refused keeps the record it already has,
+  untouched. Rewriting it restamped `generated` and `spdx_list_version` on a record that
+  had no fresh analysis, so it claimed to have been re-checked, and a later run skipped
+  it because the file looked current.
+- A record is identified by the license the pipeline asked about, not by the id the model
+  echoed back. Filenames, the merge and rejection all key off it, so a model answering
+  about one license while echoing another's id overwrote that record and left its own
+  unprocessed, to be re-queued every month.
+- `ospac data generate` reports a license the generator refused rather than exiting 0
+  over it, and no longer fails on a compatibility-only fallback.
+
+**Other**
+- A `contaminate` verdict produces a compliance result that says something (#98). It
+  matched no branch in `ComplianceResult.from_policy_result` and kept the constructed
+  `UNKNOWN`, so `is_compliant` and `needs_review` both answered no and `violations` was
+  empty; the message the policy author wrote never arrived. It is `NON_COMPLIANT` and
+  carries its message, the same as `deny`, and the two stay distinguishable by action and
+  by aggregation rank.
 - `get_incompatible_licenses` returns results again. It compared the stored value against
   the string form only, so on data that stores a status per pair, which is every release
   that has shipped, it returned an empty list for every license.
-- A category file is parsed once rather than on every uncached lookup. The largest is most
-  of the store, so a miss cost tens of megabytes of parsing.
+- A compatibility category file is parsed once rather than on every uncached lookup. The
+  largest is most of the store, so a miss cost tens of megabytes of parsing.
 
 ### Data schema
 
 - `version` is `2.0.0` in `index.json`, `aliases.json` and `compatibility/metadata.json`.
   The pair value changed from an object to an integer, which the export contract makes a
-  MAJOR bump. Nothing else about the published surface changed: the per-license records,
-  the alias tables and the category files are untouched, and a consumer that reads
-  compatibility through `ospac` rather than off disk needs no change.
+  MAJOR bump. Nothing else on the published surface moved: the per-license records, the
+  alias tables and the category files are untouched, and a consumer reading compatibility
+  through `ospac` rather than off disk needs no change.
 
 ## [1.8.0] - 2026-08-30
 
