@@ -47,14 +47,28 @@ class LLMProvider(ABC):
         # dataset contains fabricated records and must not be published.
         self.fallback_licenses: Set[str] = set()
 
+        # The subset whose analysis itself was fabricated, as opposed to only its
+        # compatibility rules. The compatibility lists are re-derived from the final
+        # category before any record is written, so that fallback leaves nothing behind;
+        # a fabricated analysis invents every boolean the record carries.
+        self.analysis_fallback_licenses: Set[str] = set()
+
     @property
     def fallback_count(self) -> int:
         """Number of licenses whose analysis fell back instead of using the LLM."""
         return len(self.fallback_licenses)
 
-    def _record_fallback(self, license_id: str, reason: str) -> None:
-        """Record that a license record was produced by fallback, not the LLM."""
+    def _record_fallback(self, license_id: str, reason: str,
+                         analysis: bool = True) -> None:
+        """
+        Record that a license record was produced by fallback, not the LLM.
+
+        `analysis` False for a fallback that only replaced the compatibility rules, which
+        are re-derived before writing and so do not reach the record.
+        """
         self.fallback_licenses.add(license_id)
+        if analysis:
+            self.analysis_fallback_licenses.add(license_id)
         self.logger.warning(f"Fallback record for {license_id}: {reason}")
 
     @abstractmethod
@@ -221,7 +235,9 @@ Rules for contamination_effect:
 
     def _get_default_compatibility_rules(self, license_id: str, analysis: Dict[str, Any]) -> Dict[str, Any]:
         """Get default compatibility rules used when LLM extraction fails."""
-        self._record_fallback(license_id, "compatibility rules fell back to category defaults")
+        self._record_fallback(license_id,
+                              "compatibility rules fell back to category defaults",
+                              analysis=False)
         category = analysis.get("category", "unknown")
 
         if category == "permissive":

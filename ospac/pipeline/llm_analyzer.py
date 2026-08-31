@@ -102,7 +102,7 @@ class LicenseAnalyzer:
         """
         licenses = set(self._analysis_fallback_licenses)
         if self.llm_provider is not None:
-            licenses |= self.llm_provider.fallback_licenses
+            licenses |= getattr(self.llm_provider, "analysis_fallback_licenses", set())
         return licenses
 
     @property

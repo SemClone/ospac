@@ -492,12 +492,26 @@ def generate(output_dir: str, force: bool, force_reprocess: bool, limit: Optiona
                 # Remove the fabricated records. Delta processing uses on-disk files as
                 # its record of what is done, so leaving these in place would make the
                 # next run skip them and report a clean dataset over stale placeholders.
+                #
+                # Except the ones the generator refused to write. For those the file on
+                # disk is the record from the last run that succeeded, not a placeholder,
+                # and deleting it would throw away a good analysis because a later one
+                # failed. The run still fails: a licence with no fresh analysis is a
+                # licence the dataset cannot claim to have re-checked.
+                rejected = set(summary.get("rejected_licenses", []))
                 removed = 0
                 for fallback_id in fallback_ids:
+                    if fallback_id in rejected:
+                        continue
                     record_path = Path(output_dir) / "licenses" / "json" / f"{fallback_id}.json"
                     if record_path.exists():
                         record_path.unlink()
                         removed += 1
+                if rejected & set(fallback_ids):
+                    click.secho(
+                        f"  Kept {len(rejected & set(fallback_ids))} previously good "
+                        f"record(s) that this run refused to overwrite.",
+                        fg="yellow", err=True)
                 if removed:
                     click.secho(
                         f"  Removed {removed} placeholder record(s) so the next run "

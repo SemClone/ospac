@@ -649,6 +649,31 @@ class TestAnIncompleteAnalysisIsNotARecord:
         assert kept == []
         assert rejected == {"Zed"}
 
+    def test_a_provider_compatibility_fallback_alone_is_not_fatal(self):
+        """
+        The provider records both kinds through _record_fallback. Unioning its whole set
+        into the analysis set put a valid analysis whose compatibility rules fell back
+        back into the fatal category, which is the conflation the split exists to remove.
+        """
+        from ospac.pipeline.llm_providers import LLMProvider
+
+        class Provider(LLMProvider):
+            def __init__(self):
+                super().__init__("model")
+
+            async def analyze_license(self, *args):
+                pass
+
+            async def extract_compatibility_rules(self, *args):
+                pass
+
+        provider = Provider()
+        provider._record_fallback("A", "analysis failed")
+        provider._record_fallback("B", "compat defaults", analysis=False)
+
+        assert provider.fallback_licenses == {"A", "B"}
+        assert provider.analysis_fallback_licenses == {"A"}
+
     def test_a_compatibility_fallback_alone_is_not_fatal(self):
         """
         The compatibility lists are re-derived from the category before a record is
