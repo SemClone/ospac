@@ -1,8 +1,8 @@
 {
   "version": "2.0.0",
-  "generated": "2026-08-12T09:45:09.769222",
-  "spdx_list_version": "e4c1f27",
-  "total_licenses": 733,
+  "generated": "2026-09-01T07:13:31.592374",
+  "spdx_list_version": "24b4ed8",
+  "total_licenses": 737,
   "licenses": {
     "0BSD": {
       "name": "BSD Zero Clause License",
@@ -424,6 +424,13 @@
       "is_deprecated": false,
       "obligations_count": 2
     },
+    "BSD-2-Clause-pos-unchanged": {
+      "name": "BSD 2-Clause - position unchanged variant",
+      "category": "permissive",
+      "file": "licenses/json/BSD-2-Clause-pos-unchanged.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
     "BSD-2-Clause": {
       "name": "BSD 2-Clause \"Simplified\" License",
       "category": "permissive",
@@ -606,6 +613,13 @@
       "is_deprecated": false,
       "obligations_count": 2
     },
+    "BSD-Source-Code-no-disclaimer": {
+      "name": "BSD Source Code Attribution - no disclaimer",
+      "category": "permissive",
+      "file": "licenses/json/BSD-Source-Code-no-disclaimer.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
     "BSD-Source-Code": {
       "name": "BSD Source Code Attribution",
       "category": "permissive",
@@ -631,6 +645,13 @@
       "name": "Systemics BSD variant license",
       "category": "permissive",
       "file": "licenses/json/BSD-Systemics.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "BSD-ask-to-endorse": {
+      "name": "BSD - ask to endorse",
+      "category": "permissive",
+      "file": "licenses/json/BSD-ask-to-endorse.json",
       "is_deprecated": false,
       "obligations_count": 2
     },
@@ -1711,6 +1732,13 @@
       "file": "licenses/json/FDK-AAC.json",
       "is_deprecated": false,
       "obligations_count": 3
+    },
+    "FDK-MPEG-H": {
+      "name": "Fraunhofer FDK MPEG-H Software",
+      "category": "permissive",
+      "file": "licenses/json/FDK-MPEG-H.json",
+      "is_deprecated": false,
+      "obligations_count": 2
     },
     "FSFAP-no-warranty-disclaimer": {
       "name": "FSF All Permissive License (without Warranty)",
