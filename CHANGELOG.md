@@ -5,6 +5,14 @@ All notable changes to OSPAC (Open Source Policy as Code) will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+- ospac ships its PEP 561 `py.typed` marker (#104). Without it a type checker
+  will not read annotations from an installed package, so every consumer saw
+  ospac as untyped and had to suppress the import rather than check it. 174 of
+  ospac's 189 functions are already annotated, so this delivers existing work.
+
 ## [1.9.0] - 2026-08-30
 
 ### Changed
