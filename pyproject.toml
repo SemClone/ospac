@@ -99,6 +99,9 @@ include = ["ospac*"]
 
 [tool.setuptools.package-data]
 ospac = [
+    # PEP 561. Without this in the installed package a type checker will not
+    # read ospac's annotations, and every consumer sees it as untyped.
+    "py.typed",
     "data/**/*.json",
     "data/**/*.yaml",
     "data/**/*.yml",
