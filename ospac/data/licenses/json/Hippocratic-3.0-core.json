@@ -1,0 +1,92 @@
+{
+  "license": {
+    "id": "Hippocratic-3.0-core",
+    "name": "Hippocratic License 3.0",
+    "type": "copyleft_strong",
+    "spdx_id": "Hippocratic-3.0-core",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": true,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": true,
+      "include_license": true,
+      "include_copyright": true,
+      "include_notice": true,
+      "state_changes": true,
+      "same_license": true,
+      "network_use_disclosure": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademark_use": false
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "Hippocratic-3.0-core",
+          "category:permissive",
+          "category:public_domain"
+        ],
+        "incompatible_with": [
+          "category:proprietary"
+        ],
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "Hippocratic-3.0-core",
+          "category:permissive",
+          "category:public_domain"
+        ],
+        "incompatible_with": [
+          "category:proprietary"
+        ],
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft",
+          "category:noncommercial",
+          "category:no_derivatives",
+          "category:source_available"
+        ]
+      },
+      "contamination_effect": "full",
+      "notes": "Hippocratic-3.0-core has a strong copyleft effect, requiring the entire combined work to be licensed under the same terms."
+    },
+    "obligations": [
+      "Retain copyright notices",
+      "Include license text",
+      "Document changes made to the code",
+      "Provide or offer access to complete source code",
+      "Distribute modifications under the same license"
+    ],
+    "key_requirements": [
+      "Attribution required",
+      "Combined works must be released under the same license"
+    ],
+    "aliases": [
+      "hippocratic license 3.0",
+      "hippocratic-3.0-core"
+    ],
+    "alias_of": null,
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-10-01T08:17:47.193213",
+    "spdx_list_version": "3.29.0"
+  }
+}

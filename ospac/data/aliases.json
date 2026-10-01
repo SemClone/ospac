@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "spdx_list_version": "24b4ed8",
+  "spdx_list_version": "3.29.0",
   "aliases": {
     "(mit)": "MIT",
     "0bsd": "0BSD",
@@ -214,6 +214,7 @@
     "bsd 3-clause \"new\" license": "BSD-3-Clause",
     "bsd 3-clause \"new\" or \"revised\" license": "BSD-3-Clause",
     "bsd 3-clause \"new\" or \"revised\" license (bsd-3-clause)": "BSD-3-Clause",
+    "bsd 3-clause - openwebui variant": "BSD-3-Clause-OpenWebUI",
     "bsd 3-clause acpica variant": "BSD-3-Clause-acpica",
     "bsd 3-clause clear license": "BSD-3-Clause-Clear",
     "bsd 3-clause flex variant": "BSD-3-Clause-flex",
@@ -242,6 +243,7 @@
     "bsd protection license": "BSD-Protection",
     "bsd source code attribution": "BSD-Source-Code",
     "bsd source code attribution - beginning of file variant": "BSD-Source-beginning-file",
+    "bsd source code attribution - gpl alternative": "BSD-Source-alt-GPL",
     "bsd source code attribution - no disclaimer": "BSD-Source-Code-no-disclaimer",
     "bsd with attribution": "BSD-3-Clause-Attribution",
     "bsd with attribution and hpnd disclaimer": "BSD-Attribution-HPND-disclaimer",
@@ -276,6 +278,7 @@
     "bsd-3-clause-no-nuclear-license-2014": "BSD-3-Clause-No-Nuclear-License-2014",
     "bsd-3-clause-no-nuclear-warranty": "BSD-3-Clause-No-Nuclear-Warranty",
     "bsd-3-clause-open-mpi": "BSD-3-Clause-Open-MPI",
+    "bsd-3-clause-openwebui": "BSD-3-Clause-OpenWebUI",
     "bsd-3-clause-sun": "BSD-3-Clause-Sun",
     "bsd-3-clause-tso": "BSD-3-Clause-Tso",
     "bsd-4-clause": "BSD-4-Clause",
@@ -292,6 +295,7 @@
     "bsd-mark-modifications": "BSD-Mark-Modifications",
     "bsd-new": "BSD-3-Clause",
     "bsd-protection": "BSD-Protection",
+    "bsd-source-alt-gpl": "BSD-Source-alt-GPL",
     "bsd-source-beginning-file": "BSD-Source-beginning-file",
     "bsd-source-code": "BSD-Source-Code",
     "bsd-source-code-no-disclaimer": "BSD-Source-Code-no-disclaimer",
@@ -874,7 +878,9 @@
     "hidapi": "HIDAPI",
     "hidapi license": "HIDAPI",
     "hippocratic license 2.1": "Hippocratic-2.1",
+    "hippocratic license 3.0": "Hippocratic-3.0-core",
     "hippocratic-2.1": "Hippocratic-2.1",
+    "hippocratic-3.0-core": "Hippocratic-3.0-core",
     "historical permission notice and disclaimer": "HPND",
     "historical permission notice and disclaimer    - inria-imag variant": "HPND-INRIA-IMAG",
     "historical permission notice and disclaimer - dec variant": "HPND-DEC",
@@ -2111,6 +2117,14 @@
     "gplv3": [
       "GPL-3.0-only",
       "GPL-3.0-or-later"
+    ],
+    "hippocratic": [
+      "Hippocratic-2.1",
+      "Hippocratic-3.0-core"
+    ],
+    "hippocratic license": [
+      "Hippocratic-2.1",
+      "Hippocratic-3.0-core"
     ],
     "latex project public": [
       "LPPL-1.0",

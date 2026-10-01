@@ -1,8 +1,8 @@
 {
   "version": "2.0.0",
-  "generated": "2026-09-01T07:13:31.592374",
-  "spdx_list_version": "24b4ed8",
-  "total_licenses": 737,
+  "generated": "2026-10-01T08:17:47.415877",
+  "spdx_list_version": "3.29.0",
+  "total_licenses": 740,
   "licenses": {
     "0BSD": {
       "name": "BSD Zero Clause License",
@@ -508,6 +508,13 @@
       "is_deprecated": false,
       "obligations_count": 2
     },
+    "BSD-3-Clause-OpenWebUI": {
+      "name": "BSD 3-Clause - OpenWebUI variant",
+      "category": "permissive",
+      "file": "licenses/json/BSD-3-Clause-OpenWebUI.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
     "BSD-3-Clause-Sun": {
       "name": "BSD 3-Clause Sun Microsystems",
       "category": "permissive",
@@ -624,6 +631,13 @@
       "name": "BSD Source Code Attribution",
       "category": "permissive",
       "file": "licenses/json/BSD-Source-Code.json",
+      "is_deprecated": false,
+      "obligations_count": 2
+    },
+    "BSD-Source-alt-GPL": {
+      "name": "BSD Source Code Attribution - GPL alternative",
+      "category": "copyleft_weak",
+      "file": "licenses/json/BSD-Source-alt-GPL.json",
       "is_deprecated": false,
       "obligations_count": 2
     },
@@ -2425,6 +2439,13 @@
       "file": "licenses/json/Hippocratic-2.1.json",
       "is_deprecated": false,
       "obligations_count": 3
+    },
+    "Hippocratic-3.0-core": {
+      "name": "Hippocratic License 3.0",
+      "category": "copyleft_strong",
+      "file": "licenses/json/Hippocratic-3.0-core.json",
+      "is_deprecated": false,
+      "obligations_count": 5
     },
     "IBM-pibs": {
       "name": "IBM PowerPC Initialization and Boot Software",
