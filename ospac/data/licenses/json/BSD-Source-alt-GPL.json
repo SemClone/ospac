@@ -1,0 +1,79 @@
+{
+  "license": {
+    "id": "BSD-Source-alt-GPL",
+    "name": "BSD Source Code Attribution - GPL alternative",
+    "type": "copyleft_weak",
+    "spdx_id": "BSD-Source-alt-GPL",
+    "properties": {
+      "commercial_use": true,
+      "distribution": true,
+      "modification": true,
+      "patent_grant": false,
+      "private_use": true
+    },
+    "requirements": {
+      "disclose_source": false,
+      "include_license": true,
+      "include_copyright": true,
+      "include_notice": true,
+      "state_changes": false,
+      "same_license": false,
+      "network_use_disclosure": false
+    },
+    "limitations": {
+      "liability": true,
+      "warranty": true,
+      "trademark_use": true
+    },
+    "compatibility": {
+      "static_linking": {
+        "compatible_with": [
+          "BSD-Source-alt-GPL",
+          "category:permissive",
+          "category:public_domain"
+        ],
+        "incompatible_with": [],
+        "requires_review": [
+          "category:copyleft_weak",
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
+      },
+      "dynamic_linking": {
+        "compatible_with": [
+          "BSD-Source-alt-GPL",
+          "category:permissive",
+          "category:public_domain",
+          "category:copyleft_weak"
+        ],
+        "incompatible_with": [],
+        "requires_review": [
+          "category:copyleft_strong",
+          "category:network_copyleft"
+        ]
+      },
+      "contamination_effect": "module",
+      "notes": "The BSD-Source-alt-GPL license allows for compatibility with permissive and weak copyleft licenses without imposing a viral effect."
+    },
+    "obligations": [
+      "Retain copyright notices",
+      "Include license text"
+    ],
+    "key_requirements": [
+      "Attribution required",
+      "Modifications to covered files must stay open-source"
+    ],
+    "aliases": [
+      "bsd source code attribution - gpl alternative",
+      "bsd-source-alt-gpl"
+    ],
+    "alias_of": null,
+    "spdx_metadata": {
+      "is_osi_approved": false,
+      "is_fsf_libre": false,
+      "is_deprecated": false
+    },
+    "generated": "2026-10-01T08:17:47.193213",
+    "spdx_list_version": "3.29.0"
+  }
+}
