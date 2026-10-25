@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- `ospac policy validate` exits 1 on a policy it has flagged as incomplete (#109).
+  A missing `version`, or missing both `rules` and `license`, printed a warning and
+  then `✓ Policy file is valid` anyway, exiting 0 - so a CI job gating on the command
+  passed on a file the command itself had just rejected. A top-level value that is not
+  a mapping is now reported as such instead of being checked for fields it cannot have.
+
 ## [1.9.2] - 2026-09-01
 
 ### Fixed
