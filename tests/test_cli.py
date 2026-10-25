@@ -574,3 +574,68 @@ class TestPolicySuppliedObligationFieldsSurvive:
         entry = json.loads(result.output)["obligations"]["Apache License"]
         assert entry["reviewer"] == "legal@example.com"
         assert "Retain copyright notices" in entry["obligations"]
+
+
+class TestPolicyValidateExitCode:
+    """
+    `policy validate` printed its own warnings and then said the file was valid
+    anyway, exiting 0. A CI job gating on it passed on a policy the tool had
+    just flagged as incomplete, so every failed check must now exit non-zero
+    and the success line must not be printed at all.
+    """
+
+    def _write(self, tmp_path, name, text):
+        path = tmp_path / name
+        path.write_text(text)
+        return path
+
+    def test_missing_version_fails(self, runner, tmp_path):
+        path = self._write(tmp_path, "p.yaml", "rules:\n  - id: r1\n")
+        result = runner.invoke(cli, ["policy", "validate", str(path)])
+        assert result.exit_code == 1, result.output
+        assert "version" in result.output
+        assert "✓" not in result.output
+
+    def test_missing_rules_and_license_fails(self, runner, tmp_path):
+        path = self._write(tmp_path, "p.yaml", 'version: "1.0"\n')
+        result = runner.invoke(cli, ["policy", "validate", str(path)])
+        assert result.exit_code == 1, result.output
+        assert "✓" not in result.output
+
+    def test_license_alone_satisfies_the_rules_check(self, runner, tmp_path):
+        path = self._write(tmp_path, "p.yaml", 'version: "1.0"\nlicense: MIT\n')
+        result = runner.invoke(cli, ["policy", "validate", str(path)])
+        assert result.exit_code == 0, result.output
+        assert "✓" in result.output
+
+    def test_generated_policy_is_valid(self, runner, tmp_path):
+        policy_file = _init_policy(runner, tmp_path, "mobile")
+        result = runner.invoke(cli, ["policy", "validate", str(policy_file)])
+        assert result.exit_code == 0, result.output
+        assert "✓" in result.output
+
+    def test_json_policy_is_valid(self, runner, tmp_path):
+        path = self._write(tmp_path, "p.json",
+                           '{"version": "1.0", "rules": []}')
+        result = runner.invoke(cli, ["policy", "validate", str(path)])
+        assert result.exit_code == 0, result.output
+        assert "✓" in result.output
+
+    def test_top_level_list_fails(self, runner, tmp_path):
+        """Parseable, but not a policy: a sequence has no fields to check."""
+        path = self._write(tmp_path, "p.yaml", "- version: \"1.0\"\n")
+        result = runner.invoke(cli, ["policy", "validate", str(path)])
+        assert result.exit_code == 1, result.output
+        assert "✓" not in result.output
+
+    def test_empty_file_fails(self, runner, tmp_path):
+        path = self._write(tmp_path, "p.yaml", "")
+        result = runner.invoke(cli, ["policy", "validate", str(path)])
+        assert result.exit_code == 1, result.output
+        assert "✓" not in result.output
+
+    def test_unparseable_file_still_fails(self, runner, tmp_path):
+        path = self._write(tmp_path, "p.json", "{not json")
+        result = runner.invoke(cli, ["policy", "validate", str(path)])
+        assert result.exit_code == 1, result.output
+        assert "✓" not in result.output

@@ -227,6 +227,10 @@ ospac policy validate ./my_policy.yaml
 Run this in CI on any change to a policy file. A policy that fails to load falls back to
 the default, which means a typo can silently replace your rules with someone else's.
 
+Exits 0 only when every check passes. A file that does not parse, that is not a mapping,
+or that is missing `version` or both `rules` and `license` prints the reasons on stderr
+and exits 1, so a CI step gating on this command fails on it.
+
 ## data
 
 Inspects the bundled dataset and, for maintainers, regenerates it. Read

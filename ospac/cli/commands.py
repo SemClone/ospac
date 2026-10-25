@@ -377,14 +377,30 @@ def validate(policy_file: str):
             else:
                 data = yaml.safe_load(f)
 
-        # Basic validation
-        if "version" not in data:
-            click.secho("⚠ Missing 'version' field", fg="yellow")
+        # Basic validation. Every failed check exits non-zero: the
+        # success line used to be printed unconditionally, so a CI job
+        # gating on this command passed on a policy the command had
+        # just flagged as incomplete.
+        problems: List[str] = []
 
-        if "rules" not in data and "license" not in data:
-            click.secho("⚠ Missing 'rules' or 'license' field", fg="yellow")
+        if not isinstance(data, dict):
+            problems.append(
+                "Policy file must contain a mapping at the top level, "
+                f"found {type(data).__name__}")
+        else:
+            if "version" not in data:
+                problems.append("Missing 'version' field")
 
-        click.secho(f"✓ Policy file is valid", fg="green")
+            if "rules" not in data and "license" not in data:
+                problems.append("Missing 'rules' or 'license' field")
+
+        if problems:
+            for problem in problems:
+                click.secho(f"✗ {problem}", fg="red", err=True)
+            click.secho("✗ Policy file is invalid", fg="red", err=True)
+            sys.exit(1)
+
+        click.secho("✓ Policy file is valid", fg="green")
 
     except (json.JSONDecodeError, yaml.YAMLError) as e:
         click.secho(f"✗ Invalid syntax: {e}", fg="red", err=True)
